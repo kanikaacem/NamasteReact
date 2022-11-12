@@ -1,38 +1,27 @@
 import './App.css';
 import {BrowserRouter, Routes, Route,Link} from "react-router-dom";
 import Login from "./pages/Login";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
+import PostJob from "./pages/PostJob";
 import NotFound from "./pages/NotFound";
-import Button from '@mui/material/Button';
 import PrivateRoute from "./utils/PrivateRoute";
-//import {useState} from "react";
-import {useSelector, useDispatch} from 'react-redux'
-
+import Header from './Component/Header';
+import Signup from './pages/SignUp';
 function App() {
-  const auth = useSelector(state => state.auth);
-  const dispatch = useDispatch();
   return (
   <>
   <BrowserRouter>
-  {/* <nav>
-    <ul>
-      <li> <Link to="/" >Home</Link></li>
-      <li> <Link to="/about/1">About 1</Link></li>
-      <li> <Link to="/about/2">About 2</Link></li>
-      <li> <Link to="/profile">Profile</Link></li>
-    </ul>
-
-    {auth ? <Button variant="contained" onClick={() => dispatch({type:"LOGOUT"})}>Logout</Button> : 
-    <Button variant="contained" onClick={() => dispatch({type:"LOGIN"})}>Login</Button>}
-   
-  </nav> */}
+  <Header></Header>
   <Routes>
     <Route exact path="/" element={<Home></Home>} />
+    <Route path="/login" element={<Login></Login>} />
     <Route path="/home" element={<Home></Home>} />
     <Route path="/about/:id" element={<About></About>}/>
-    <Route path="/profile" element={<PrivateRoute Component={Profile}></PrivateRoute>} />
+    <Route path="/sign-up" element={<Signup></Signup>}/>
+    {/* <Route path="/profile" element={<PrivateRoute Component={Profile}></PrivateRoute>} /> */}
+    <Route path="/post-job" element={<PrivateRoute Component={PostJob}></PrivateRoute>}/>
     <Route path="*" element={<NotFound></NotFound>} />
   </Routes>
   </BrowserRouter>

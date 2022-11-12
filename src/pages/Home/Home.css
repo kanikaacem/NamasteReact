@@ -1,0 +1,391 @@
+.SearchBarDiv{
+    /* background: #F0DC82; */
+    padding: 20px 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    /* margin-bottom: 50px; */
+}
+.SearchBar{
+    background: #E2E2E2;
+    height: 60px;
+    width: 100%;
+    border-radius: 50px;
+    display:flex;
+    align-items: center;
+    padding:0px 20px;
+    gap:20px;
+    -webkit-box-shadow: 2px 2px 8px 0px rgb(148 134 90);
+    -moz-box-shadow: 2px 2px 8px 0px rgba(148,134,90,1);
+    box-shadow: 2px 2px 8px 0px rgb(148 134 90);
+}
+.Search{
+    border: none;
+    outline: none;
+    width: 4;
+    width: 500px;
+    height:20px;
+    font-size: 16px;
+}
+.SearchBar span{
+    color:#8D8D8D;
+}
+
+.SearchBar select{
+    width:180px;
+    border:none;
+    outline:none;
+}
+
+.SearchButton{
+    -webkit-box-shadow: 0.5px 0.5px 5px 4px rgba(158,138,195,1) !important;
+    -moz-box-shadow: 0.5px 0.5px 5px 4px rgba(158,138,195,1) !important;
+    box-shadow: 0.5px 0.5px 5px 4px rgba(158,138,195,1) !important;
+
+}
+
+.css-1869usk-MuiFormControl-root{
+    width:200px;
+}
+/* Job Category */
+.JobCategories{
+    /* background: #F0DC82; */
+    /* padding: 50px; */
+        padding: 20px 50px;
+
+}
+.JobCategoriesWrapper{
+    /* min-height: 150px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 15px;
+    background-color: white;
+    column-gap: 50px;
+    row-gap: 20px;
+    -webkit-box-shadow: 2px 2px 8px 0px rgb(148 134 90);
+    -moz-box-shadow: 2px 2px 8px 0px rgba(148,134,90,1);
+    box-shadow: 2px 2px 8px 0px rgb(148 134 90);
+    border-radius: 20px;
+}
+
+.JobCategoriesItems{
+    /* min-height: 150px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+    /* padding: 20px; */
+    background-color: white;
+    column-gap: 45px;
+    row-gap: 20px;
+}
+.CategoryItem{
+    /* max-width: 180px;  */
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    /* padding: 20px 0px; */
+    color: #000000;
+    /* -webkit-box-shadow: 2px 2px 8px 0px rgb(148 134 90);
+    -moz-box-shadow: 2px 2px 8px 0px rgba(148,134,90,1);
+    box-shadow: 2px 2px 8px 0px rgb(148 134 90); */
+    border-radius: 10px;
+    padding: 5px;
+    border:2px solid #E2E2E2;
+
+
+}
+.CategoryItem.active{
+    border-bottom: 3px solid #2B1E44;
+    color:#2B1E44;
+}
+
+.CategoryItem div{
+    font-size: 14px;
+    font-weight: 500;
+    /* min-height: 50px; */
+}
+.CategoryItem .CategoryLogo{
+    width: 30px;
+    height: 30px;
+}
+
+.recommendJobsWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background:#E7E7E7;
+    padding: 30px 0px;
+
+}
+.jobItem{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top:20px;
+}
+
+.jobs{
+    max-width: 800px;
+    background: white;
+    border-radius: 20px;
+    padding: 20px 80px;
+    margin-left: 70px;
+    min-height: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor:pointer;
+}
+
+.jobs h3{
+    margin:0px;
+}
+.jobLogo{
+    border-radius: 10px;
+    background: wi;
+    position: absolute;
+    left: 8%;
+    width: 70px;
+    background: red;
+    height: 70px;
+}
+
+.jobs span{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size:14px;
+    color:#838383;
+}
+/*About us */
+.aboutUsWrapper{
+    padding: 30px;
+    min-height: 400px;
+    background: #E5521D;
+}
+.aboutUsInWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* gap: 10%; */
+    flex-wrap: wrap;
+}
+.aboutUsInWrapper .description{
+    width: 50%;
+    padding: 50px 20px;
+    line-height: 1.5;
+    text-align: justify;
+    font-weight: 600;
+    color:#ffffff;
+}
+
+.aboutUsInWrapper .secDesc{
+    width:30%;
+    padding:10px;
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.aboutUsInWrapper .secDesc .secDescItem{
+    border-radius: 10px;
+    width: 10px;
+    min-width: 30%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.OurPartners ,.jobYahan{
+    /* background-color: #E7E7E7; */
+    padding:30px 0px;
+}
+
+.OurPartnersWrapper{
+    /* width: 1100px;
+    margin: 0 auto; */
+    border-top: 2px solid #B7B7B7;
+    border-bottom: 2px solid #B7B7B7;
+    padding: 20px 0px;
+}
+.partnerCompany img{
+    width:100%;
+    height: 100%;
+}
+
+.partnerCompany{
+    width: 200px;
+    height: 80px;
+    background: #F0DC82;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.partnersCo{
+    display: flex;
+    gap: 50px;
+    margin-top:50px;
+}
+.partnersCoSec{
+    display: flex;
+    gap: 50px;
+    margin-left: 100px;
+    margin-top: 50px;
+}
+.filter{
+    background: #D9D9D9;
+    width: 100%;
+}
+.filterWrapper{
+    padding: 20px 50px;
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap:20px;
+    flex-wrap: wrap;
+}
+/* Why Job Yahan */
+.jobYahanWrapper{
+    width: 1100px;
+    margin: 0 auto;
+    border-top: 2px solid #B7B7B7;
+    border-bottom: 2px solid #B7B7B7;
+    padding: 20px 0px;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-position-y: bottom
+}
+
+.jobYahan .description{
+    width: 50%;
+    padding: 50px 20px;
+    font-size: 23px;
+    line-height: 1.5;
+    text-align: justify;
+    font-weight: 600;
+    float: right;
+}
+
+.css-1869usk-MuiFormControl-root{
+    min-width: 170px;
+}
+.css-1869usk-MuiFormControl-root{
+    margin:0px !important;
+}
+
+.filter .css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input{
+    padding: 0px;
+    padding-right: 24px;
+    font-size: 14px;
+}
+
+.logoutWrapper{
+    border: 3px solid #2B1E44;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100px;
+    height: 40px;
+}
+
+.logoutWrapper .Icondiv{
+    display: flex;
+    align-items: 10px;
+    height: 41px;
+    width: 50px;
+    background: #2B1E44;
+    align-items: center;
+    justify-content: center;
+    cursor:pointer;
+    position: relative;
+}
+
+.logoutWrapper .userProfile{
+    display: flex;
+    align-items: 50px;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    cursor: pointer;
+}
+.homeFSec{
+    min-height:calc(100vh - 140px);
+}
+.logoutMenu{
+    position: absolute;
+    top: 82px;
+    z-index: 343;
+    right: 157px;
+}
+
+.select{
+    border: 1px solid #a09d9d !important;
+    width: 95% !important;
+    padding: 3px !important;
+    margin: 10px 0px;
+    color: #a09d9d;
+}
+
+.css-1869usk-MuiFormControl-root{
+    /* width:100% !important; */
+}
+
+/* .MuiMenu-list{
+    background: #E2E2E2 !important;
+} */
+
+/* ReviewItem */
+.reviewItem{
+    display: flex;
+    gap: 100px;
+    flex-wrap: wrap;
+    background: #E5521D;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    padding:30px 0px;
+    height:680px;
+}
+
+.reviewWrapper{
+    background: #ffffff;
+    border-radius:10px;
+    width:530px;
+    position:relative;
+    min-height: 225px;
+}
+.borderDiv{
+    border: 2px solid #2B1E44;
+    position: absolute;
+    width: 100%;
+    /* height: 100px; */
+    border-radius: 10px;
+    height: 100%;
+    top: -14px;
+    right: 12px;
+    display: flex;
+    padding:18px;
+}
+.carousel-root{
+    margin:30px 0px;
+}

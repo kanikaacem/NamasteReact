@@ -11,57 +11,227 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.info-item{
-  display:flex;
-  margin:10px 0px;
+
+.info-item {
+  display: flex;
+  margin: 10px 0px;
 }
-.login-wrapper,.info-wrapper{
-    padding: 4rem;
-    min-height: 32rem;
-    box-shadow: 0 9px 16px 0 rgb(0 106 194 / 20%);
-    background-color: white;
-    min-height: fit-content;
-    width:25%;
+
+.login-wrapper,
+.info-wrapper {
+  padding: 4rem;
+  min-height: 32rem;
+  box-shadow: 0 9px 16px 0 rgb(0 106 194 / 20%);
+  background-color: white;
+  min-height: fit-content;
+  width: 25%;
 }
-.content{
-    background: #FAFAFA;
+
+.content {
+  background: #FAFAFA;
 }
-.LoginWrapper{
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
+
+.LoginWrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
 }
-.info-title{
+
+.info-title {
   font-size: 25px;
   font-weight: 600;
-  margin: 15px 0px;
-}
-.input-item span{
-  display: block;
-  font-weight: 500;
-}
-.input-item input{
-  padding: 10px;
-  margin: 10px 0px;
-  width: 93%;
+  margin: 5px 0px;
 }
 
-.loginForm span{
-  display:flex;
+.loginForm span {
+  display: flex;
 }
 
-.loginForm button{
+.loginForm button {
   width: 100%;
   margin: 10px 0px;
 }
 
-.forgotPassword{
+.forgotPassword {
   justify-content: flex-end;
   color: blue;
 }
-.OTPLogin ,.OR{
+
+.OTPLogin,
+.OR {
   justify-content: center;
   color: blue;
 }
+
+nav {
+  /* background: #D9D9D9; */
+  padding: 20px 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Profile Page */
+.UserProfileWrapper {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.6s linear;
+  z-index: 78947;
+}
+
+.UserProfile {
+  width: 350px;
+  background: white;
+  height: 100vh;
+  padding: 40px 28px 28px;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(234, 241, 245);
+  border-radius: 16px 0px 0px 16px;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+}
+
+.userProfileImage {
+  width: 100%;
+  border-radius: 50%;
+  border: 6px solid rgb(24, 193, 163);
+}
+
+.updateProfile {
+  color: #457eff;
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  margin-top: 10px;
+  text-decoration: none;
+  margin: 0px;
+}
+
+.updatedProfileProgress {
+  background: green;
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  padding: 5px;
+  position: absolute;
+  left: 57px;
+  top: 120px;
+}
+
+.performanceItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d3e1ea;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 25px;
+}
+
+.viewAll {
+  color: blue;
+  font-weight: 600;
+}
+
+.Settings div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0px;
+  cursor: pointer;
+}
+
+
+.ButtonsMenu {
+  display: flex;
+  gap: 10px;
+}
+
+.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input {
+  background: none !important;
+}
+
+.css-1869usk-MuiFormControl-root {
+  width: 100% !important;
+}
+
+/* sign up page */
+.SignupPage {
+  background: #FAFAFA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-wrapper {
+  padding: 2rem;
+  box-shadow: 0 9px 16px 0 rgb(0 106 194 / 20%);
+  background-color: white;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Errors for validation */
+.error {
+  color: #da534d;
+  font-size: 14px;
+}
+
+/*form Informatin */
+.form-information {
+  font-size: 14px;
+  color: green;
+}
+
+/* Signup */
+.email-signup-form,
+.password-generation-form,
+.mobile-opt-verification-form,
+.hr-information-form {
+  margin: 30px 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.email-signup-wrapper,
+.password-generation-wrapper,
+.mobile-opt-verification-wrapper,
+.hr-information-wrapper {
+  width: 100%;
+}
+
+.input-item {
+  width: 100%;
+}
+
+.input-item input {
+  padding: 10px;
+  margin: 10px 0px;
+  width: 93%;
+  border-radius: 10px;
+  border: none;
+  background-color: #f2f4f8;
+  outline: none;
+}
+
+/* .input-item span {
+  display: block;
+  font-weight: 500;
+} */
