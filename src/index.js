@@ -116,3 +116,8 @@ root.render(
       //console.log(localStorage.getItem("authenticated"));
       //window.location.href="/";
       //localStorage.setItem("user",JSON.stringify(json));
+
+//https://www.npmjs.com/package/react-select
+//https://www.albertgao.xyz/2018/12/15/how-to-add-official-google-sign-in-to-your-react-application/
+//https://www.npmjs.com/package/reactjs-social-login
+//https://www.npmjs.com/package/react-social-login-buttons

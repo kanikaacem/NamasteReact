@@ -2,14 +2,15 @@ import Button from '@mui/material/Button';
 import Error from '../Component/Error';
 import FormInformation from '../Component/FormInformation';
 import GoogleIcon from '@mui/icons-material/Google';
-import useGapi from '@use-gapi/react';
 import { company_type } from '../utils/Data';
 import { profile_type } from '../utils/Data';
 import CustomizeSelect from '../Component/CustomizeSelect';
-import { useState, useRef, useEffect } from "react";
-
+import { useState, useRef, useEffect, useCallback } from "react";
+import { LoginSocialGoogle } from 'reactjs-social-login';
+import { GoogleLoginButton } from 'react-social-login-buttons';
 
 const CLIENT_ID = '346122009616-bbip3t7tcb1kf75u6q1k8k9pkj6nn1fs.apps.googleusercontent.com';
+//const GOOGLE_BUTTON_ID = "google-sign-in-button";
 
 const Signup = () => {
     // const { signIn, profile } = useGapi({
@@ -26,15 +27,10 @@ const Signup = () => {
     const mobileoptverificationwrapper = useRef(null);
     const hrinformationwrapper = useRef(null);
     const companyinformationwrapper = useRef(null);
-    // const company_type = useRef(null);
-    // const profile_type = useRef(null);
-
-
     const email_regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     const mobile_regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
 
     const [formErrors, setformErrors] = useState({
-        // full_name_error: "",
         email_error: "",
         password_error: "",
         mobile_number_error: "",
@@ -200,13 +196,55 @@ const Signup = () => {
         let profile_type = event.target.elements.profile_type.value
         let company_description = event.target.elements.company_description.value;
         let company_gst = event.target.elements.company_gst.value;
+        let company_pan = event.target.elements.company_pan.value;
         let company_pincode = event.target.elements.company_pincode.value;
         let company_website = event.target.elements.company_website.value;
         let mobile_number = event.target.elements.mobile_number.value;
-        console.log(company_type, profile_type, company_description, company_gst, company_pincode, company_pincode, company_website, mobile_number);
+        if (company_type == null) {
+            setcompanyTypeError("Company Type is required");
+        }
+        if (profile_type == '') {
+            setprofileTypeError("Profile Type is required");
+        }
+        if (company_gst == '') {
+            setcompanyGSTError("Company GST is required");
+        }
+        if (company_pincode == '') {
+            setcompanyPincodeError("Company Pincode is required");
+        }
+        if (company_pan == '') {
+            setcompanyPanError("Company Pan is required");
+        }
+        if (company_website == '') {
+            setcompanyWebsiteError("Company website is required");
+        }
+
+
+
 
     }
+
+    const onLoginStart = useCallback(() => {
+        alert('login start');
+    }, []);
+
+    // const onSuccess = (googleUser) => {
+    //     const profile = googleUser.getBasicProfile();
+    //     console.log("Name: " + profile.getName());
+    // }
+
     useEffect(() => {
+        // window.gapi.client.init({
+        //     clientId: CLIENT_ID,
+        //     scope: 'email',
+        //     plugin_name: 'PLUGIN'
+        // })
+        // window.gapi.signin2.render(GOOGLE_BUTTON_ID, {
+        //     width: 200,
+        //     height: 50,
+        //     onsuccess: onSuccess
+        // });
+
         passwordgenerationwrapper.current.style.display = 'none';
         mobileoptverificationwrapper.current.style.display = 'none';
         hrinformationwrapper.current.style.display = 'none';
@@ -238,11 +276,28 @@ const Signup = () => {
 
                     <div className="signup-with-google">
                         <div>OR </div>
-                        <a href="http://192.168.1.6:8000/google"> Signup with Google</a>
-                        <form action="http://192.168.1.6:8000/google" method="get">
-                            <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit"><GoogleIcon style={{ marginRight: '10px' }}></GoogleIcon> Signup with Google</Button>
-                        </form>
-                        {/* <button onClick={signIn}>Google Login button</button> */}
+
+                        {/* <div id={GOOGLE_BUTTON_ID} /> */}
+
+                        <LoginSocialGoogle
+                            client_id={CLIENT_ID}
+                            onLoginStart={onLoginStart}
+                            // redirect_uri={REDIRECT_URI}
+                            scope="openid profile email"
+                            discoveryDocs="claims_supported"
+                            access_type="offline"
+                            onResolve={({ provider, data }) => {
+                                console.log(data);
+                                console.log(provider);
+                                // setProvider(provider);
+                                // setProfile(data);
+                            }}
+                            onReject={err => {
+                                console.log(err);
+                            }}
+                        >
+                            <GoogleLoginButton />
+                        </LoginSocialGoogle>
 
                     </div>
 
@@ -326,9 +381,9 @@ const Signup = () => {
 
                 <div className="company-information-wrapper" ref={companyinformationwrapper}>
                     <form className="company-information-form" onSubmit={handleCompanySubmit}>
-
                         <div className="input-item">
                             <CustomizeSelect placeholder="Company type" data={company_type} id_data="company_type" />
+                            {companyTypeError && <Error text={companyTypeError} />}
                         </div>
 
                         <div className='input-item' style={{ width: '98%' }}>
@@ -350,10 +405,12 @@ const Signup = () => {
                         <div className="input-item">
                             <input placeholder="Company Website" type="text" name="company_website"
                             ></input>
+                            {companyWebsiteError && <Error text={companyWebsiteError} />}
                         </div>
 
                         <div className="input-item">
                             <CustomizeSelect placeholder="Profile type" data={profile_type} name="profile_type" id_data="profile_type" />
+                            {profileTypeError && <Error text={profileTypeError} />}
                         </div>
 
                         <div className="input-item">
@@ -365,16 +422,19 @@ const Signup = () => {
                         <div className="input-item">
                             <input placeholder="Company Pincode" type="text" name="company_pincode"
                             ></input>
+                            {companyPincodeError && <Error text={companyPincodeError} />}
                         </div>
 
                         <div className="input-item">
                             <input placeholder="Company Pan" type="text" name="company_pan"
                             ></input>
+                            {companyPanError && <Error text={companyPanError} />}
                         </div>
 
                         <div className="input-item">
                             <input placeholder="Company GST" type="text" name="company_gst"
                             ></input>
+                            {companyGSTError && <Error text={companyGSTError} />}
                         </div>
 
                         <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Submit</Button>
