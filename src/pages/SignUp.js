@@ -1,14 +1,35 @@
 import Button from '@mui/material/Button';
 import Error from '../Component/Error';
 import FormInformation from '../Component/FormInformation';
+import GoogleIcon from '@mui/icons-material/Google';
+import useGapi from '@use-gapi/react';
+import { company_type } from '../utils/Data';
+import { profile_type } from '../utils/Data';
+import CustomizeSelect from '../Component/CustomizeSelect';
 import { useState, useRef, useEffect } from "react";
 
 
+const CLIENT_ID = '346122009616-bbip3t7tcb1kf75u6q1k8k9pkj6nn1fs.apps.googleusercontent.com';
+
 const Signup = () => {
+    // const { signIn, profile } = useGapi({
+    //     apiKey: "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",
+    //     clientId: CLIENT_ID,
+    // })
+
+    // const { p, auth } = profile;
+    // console.log(p.email) // exampleuser@gmail.com
+    // console.log(auth.accessToken)
+
     const emailsignupwrapper = useRef(null);
     const passwordgenerationwrapper = useRef(null);
     const mobileoptverificationwrapper = useRef(null);
     const hrinformationwrapper = useRef(null);
+    const companyinformationwrapper = useRef(null);
+    // const company_type = useRef(null);
+    // const profile_type = useRef(null);
+
+
     const email_regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     const mobile_regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
 
@@ -20,38 +41,109 @@ const Signup = () => {
         otp_error: "",
         otp_resend_error: "",
         otp_information: "",
+        full_name_error: "",
 
     });
+    const [companyTypeError, setcompanyTypeError] = useState("");
+    const [companyLogoError, setcompanyLogoError] = useState("");
+    const [companyWebsiteError, setcompanyWebsiteError] = useState("");
+    const [profileTypeError, setprofileTypeError] = useState("");
+    const [companyDescriptionError, setcompanyDescriptionError] = useState("");
+    const [companyPincodeError, setcompanyPincodeError] = useState("");
+    const [companyPanError, setcompanyPanError] = useState("");
+    const [companyGSTError, setcompanyGSTError] = useState("");
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [mobile_number, setMobileNumber] = useState("");
+    const [resendOtp, setresendOtp] = useState(false);
 
-    const handleEmailSignup = (event) => {
+    const handleEmailSignup = async (event) => {
         event.preventDefault();
         let email = event.target.elements.email.value;
         if (email === '') setformErrors({ email_error: 'Email is required.' });
         else if (!email_regex.test(email)) setformErrors({ email_error: 'Email is not valid.' });
         else {
-            setformErrors({ email_error: '' });
-            setEmail(email);
-            emailsignupwrapper.current.style.display = 'none';
-            passwordgenerationwrapper.current.style.display = 'block';
+            let response = await fetch("http://192.168.1.6:8000/api/employer/checkemail", {
+                // Adding method type
+                method: "POST",
+                // Adding body or contents to send
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json; charset=UTF-8'
+                },
+                body: JSON.stringify({
+                    email: email
+                }),
+            })
+
+            if (response.ok) {
+                response = await response.json();
+                let message = response.message;
+                if (message == 1) {
+                    setformErrors({ email_error: 'Email is already Present.' });
+                }
+                else {
+                    setformErrors({ email_error: '' });
+                    setEmail(email);
+                    emailsignupwrapper.current.style.display = 'none';
+                    passwordgenerationwrapper.current.style.display = 'block';
+                }
+
+            }
+
+
 
         }
     }
 
-    const handlePasswordGeneration = (event) => {
+    const GoogleSignup = () => {
+        //window.location.href = "https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fgoogleauth&scope=profile%20email&client_id=346122009616-bbip3t7tcb1kf75u6q1k8k9pkj6nn1fs.apps.googleusercontent.com&service=lso&o2v=2&flowName=GeneralOAuthFlow"
+        console.log("I am running");
+        fetch('http://192.168.1.6:8000/google', {
+            method: "GET",
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json; charset=UTF-8'
+            }
+        });
+
+        // Axios
+        //     .get('http://192.168.1.6:8000/google',)
+        //     .then(res => {
+        //         console.log(res);
+        //     })
+        //     .catch(err => console.log(err));
+
+    }
+
+    const handlePasswordGeneration = async (event) => {
         event.preventDefault();
         let password = event.target.elements.password.value;
         if (password === '') setformErrors({ password_error: 'Password is required.' });
         else if (password.length < 10) setformErrors({ password_error: 'The length of password is atleast require 10 characters' });
         else {
             setformErrors({ password_error: '' });
-            setPassword
+            setPassword(password);
+
+            // let response = await fetch("http://192.168.1.6:8000/api/employer/logindetail", {
+            //     method: "POST",
+            //     headers: {
+            //         'Access-Control-Allow-Origin': '*',
+            //         'Content-Type': 'application/json; charset=UTF-8'
+            //     },
+            //     body: JSON.stringify({
+            //         email: email,
+            //         password: password,
+
+            //     }),
+            // })
+            // if (response.ok) {
+            //     response = await response.json();
+            //     console.log(response);
             passwordgenerationwrapper.current.style.display = 'none';
             mobileoptverificationwrapper.current.style.display = "block";
-
+            // }
         }
     }
 
@@ -62,7 +154,8 @@ const Signup = () => {
         else if (!mobile_regex.test(mobile_number)) setformErrors({ mobile_number_error: 'Please enter a valid mobile number.' });
         else {
             setformErrors({ mobile_number_error: '' });
-            setformErrors({ otp_information: "OTP is send on the above number.It will be expire in 1 mins" });
+            setformErrors({ otp_information: "OTP is send .It will be expire in 1 mins" });
+            setMobileNumber(mobile_number);
             localStorage.setItem("otp", 1234, 6000);
         }
     }
@@ -71,53 +164,65 @@ const Signup = () => {
         event.preventDefault();
         let otp = event.target.elements.otp.value;
         if (otp == '') setformErrors({ otp_error: 'Please Enter the otp' });
-        else if (otp != localStorage.getItem("otp")) setformErrors({ otp_error: "Otp is not valid" });
+        else if (otp != localStorage.getItem("otp")) {
+            setformErrors({ otp_error: "Otp is not valid" });
+            setresendOtp(true);
+        }
         else {
+            setresendOtp(false);
             mobileoptverificationwrapper.current.style.display = 'none';
             hrinformationwrapper.current.style.display = 'block';
-            console.log(formData);
         }
     }
 
     const handleHrInformation = (event) => {
         event.preventDefault();
+        let full_name = event.target.elements.full_name.value;
+        if (full_name == '') setformErrors({ full_name_error: "Name is required" });
+        else {
+            hrinformationwrapper.current.style.display = 'none';
+            companyinformationwrapper.current.style.display = 'block';
+        }
     }
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     let fullname = event.target.elements.full_name.value;
-    //     let mobile_number = event.target.elements.mobile_number.value;
-    //     let password = event.target.elements.password.value;
-    //     let confirm_password = event.target.elements.confirm_password.value;
-    //     // if (fullname == '') {
-    //     //     setformErrors({ full_name: 'Enter the full name.' });
-    //     // }
 
-    //     // if (mobile_number == '') {
-    //     //     setformErrors({ mobile_number: 'Enter the mobile number.' });
-    //     // }
-
-    //     // if (email_address == '') {
-    //     //     setformErrors({ email_address: 'Enter the email address.' });
-    //     // }
-
-    //     // if (password == '') {
-    //     //     setformErrors({ password: 'Enter the password.' });
-    //     // }
-
-    //     // if (confirm_password == '') {
-    //     //     setformErrors({ confirm_password: 'Enter the confirm password.' });
-    //     // }
+    // const initializeGoogleSigIn = () => {
+    //     window.gapi.load('auth2', () => {
+    //         let auth2 = gapi.auth2.init({
+    //             client_id: CLIENT_ID,
+    //         })
+    //         console.log('api inited')
+    //     })
     // }
 
+    const handleCompanySubmit = (event) => {
+        event.preventDefault();
+        let company_type = event.target.elements.company_type.value;
+        let profile_type = event.target.elements.profile_type.value
+        let company_description = event.target.elements.company_description.value;
+        let company_gst = event.target.elements.company_gst.value;
+        let company_pincode = event.target.elements.company_pincode.value;
+        let company_website = event.target.elements.company_website.value;
+        let mobile_number = event.target.elements.mobile_number.value;
+        console.log(company_type, profile_type, company_description, company_gst, company_pincode, company_pincode, company_website, mobile_number);
+
+    }
     useEffect(() => {
         passwordgenerationwrapper.current.style.display = 'none';
         mobileoptverificationwrapper.current.style.display = 'none';
         hrinformationwrapper.current.style.display = 'none';
+        companyinformationwrapper.current.style.display = 'none';
 
+        // const script = document.createElement('script');
+        // script.src = 'https://apis.google.com/js/platform.js';
+        // script.onload = () => {
+        //     initializeGoogleSigIn();
+        // }
+        // document.body.appendChild(script);
     }, []);
+
     return (<>
         <div className="SignupPage">
-            <div className="signup-wrapper" style={{ width: '35%', marginTop: '20px', borderRadius: '20px' }}>
+            <div className="signup-wrapper" style={{ minWidth: '35%', marginTop: '20px', borderRadius: '20px' }}>
                 <div className="info-title">Let us Simplify the Hiring Process</div>
                 <span>Register to find your Next Hire. Get Started Soon.</span>
                 <div className="email-signup-wrapper" ref={emailsignupwrapper}>
@@ -130,6 +235,18 @@ const Signup = () => {
 
                         <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Submit</Button>
                     </form>
+
+                    <div className="signup-with-google">
+                        <div>OR </div>
+                        <a href="http://192.168.1.6:8000/google"> Signup with Google</a>
+                        <form action="http://192.168.1.6:8000/google" method="get">
+                            <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit"><GoogleIcon style={{ marginRight: '10px' }}></GoogleIcon> Signup with Google</Button>
+                        </form>
+                        {/* <button onClick={signIn}>Google Login button</button> */}
+
+                    </div>
+
+
                 </div>
 
 
@@ -153,8 +270,12 @@ const Signup = () => {
                             {formErrors.mobile_number_error && <Error text={formErrors.mobile_number_error}></Error>}
                             {formErrors.otp_information && <FormInformation text={formErrors.otp_information} />}
                         </div>
+                        {resendOtp ?
+                            <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit">Resend</Button>
+                            :
+                            <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit">Send</Button>
 
-                        <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Send</Button>
+                        }
 
                         <hr></hr><hr></hr>
 
@@ -177,70 +298,90 @@ const Signup = () => {
                         <div className="input-item">
                             <input placeholder="Full Name" type="text" name="full_name"
                             ></input>
+                            {formErrors.full_name_error && <Error text={formErrors.full_name_error}></Error>}
+
                         </div>
 
                         <div className="input-item">
-                            <input placeholder="Mobile Number" type="text" name="mobile_number"
+                            <input placeholder="Mobile Number" type="text" name="mobile_number" value={mobile_number}
+                                readOnly
                             ></input>
                         </div>
 
                         <div className="input-item">
-                            <input placeholder="Email" type="text" name="email"
+                            <input placeholder="Email" type="text" name="email" value={email}
+                                readOnly
                             ></input>
                         </div>
 
                         <div className="input-item">
-                            <input placeholder="Password" type="text" name="password"
+                            <input placeholder="Password" type="text" name="password" value={password}
+                                readOnly
                             ></input>
                         </div>
 
                         <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Submit</Button>
+                    </form>
+                </div>
 
+                <div className="company-information-wrapper" ref={companyinformationwrapper}>
+                    <form className="company-information-form" onSubmit={handleCompanySubmit}>
 
+                        <div className="input-item">
+                            <CustomizeSelect placeholder="Company type" data={company_type} id_data="company_type" />
+                        </div>
+
+                        <div className='input-item' style={{ width: '98%' }}>
+                            <input type="file" />
+                        </div>
+
+                        <div className="input-item">
+                            <input placeholder="Email" type="text" name="email" value={email}
+                                readOnly
+                            ></input>
+                        </div>
+
+                        <div className="input-item">
+                            <input placeholder="Mobile Number" type="text" name="mobile_number" value={mobile_number}
+                                readOnly
+                            ></input>
+                        </div>
+
+                        <div className="input-item">
+                            <input placeholder="Company Website" type="text" name="company_website"
+                            ></input>
+                        </div>
+
+                        <div className="input-item">
+                            <CustomizeSelect placeholder="Profile type" data={profile_type} name="profile_type" id_data="profile_type" />
+                        </div>
+
+                        <div className="input-item">
+                            <textarea rows="5" cols="50" name="company_description">
+                                Company Description
+                            </textarea>
+                        </div>
+
+                        <div className="input-item">
+                            <input placeholder="Company Pincode" type="text" name="company_pincode"
+                            ></input>
+                        </div>
+
+                        <div className="input-item">
+                            <input placeholder="Company Pan" type="text" name="company_pan"
+                            ></input>
+                        </div>
+
+                        <div className="input-item">
+                            <input placeholder="Company GST" type="text" name="company_gst"
+                            ></input>
+                        </div>
+
+                        <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Submit</Button>
                     </form>
                 </div>
 
 
-                {/* <form className="Signup-form" onSubmit={handleSubmit}>
-                    <div className="input-item">
-                        <span> Full Name *</span>
-                        <input placeholder="Enter your name" type="text" name="full_name"
-                        ></input>
-                        {formErrors.full_name && <Error text={formErrors.full_name}></Error>}
-                    </div>
-
-                    <div className="input-item">
-                        <span> Mobile Number *</span>
-                        <input placeholder="Enter your mobile number" type="text" name="mobile_number"
-                        ></input>
-                        {formErrors.mobile_number && <Error text={formErrors.mobile_number}></Error>}
-                    </div>
-
-                    <div className="input-item">
-                        <span> Email Address *</span>
-                        <input placeholder="Enter your email address" type="email" name="email_address"
-                        ></input>
-                        {formErrors.email_address && <Error text={formErrors.email_address}></Error>}
-                    </div>
-
-                    <div className="input-item">
-                        <span> Password *</span>
-                        <input placeholder="Enter your Password" type="password" name="password"
-                        ></input>
-                        {formErrors.password && <Error text={formErrors.password}></Error>}
-                    </div>
-
-                    <div className="input-item">
-                        <span> Confirm Password *</span>
-                        <input placeholder="Confirm your Password" type="password" name="confirm_password"
-                        ></input>
-                        {formErrors.confirm_password && <Error text={formErrors.confirm_password}></Error>}
-                    </div>
-
-
-                    <Button variant="contained" type="submit" >Submit</Button>
-
-                </form> */}
             </div>
         </div>
     </>)

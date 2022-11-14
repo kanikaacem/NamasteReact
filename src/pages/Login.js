@@ -7,17 +7,6 @@ import { useForm } from 'react-hook-form';
 import Error from '../Component/Error';
 
 import { useEffect } from 'react';
-// import { Google } from '@mui/icons-material';
-// import { googleLogout } from '@moeindana/google-oauth';
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import { GoogleLogin } from '@react-oauth/google';
-// import { googleLogout } from '@react-oauth/google';
-//import { GoogleLogin } from 'react-google-login';
-// import { GoogleAPI, GoogleLogin, GoogleLogout } from 'react-google-oauth'
-// import { GoogleOAuthProvider } from '@moeindana/google-oauth';
-// import { GoogleLogin } from '@moeindana/google-oauth';
-//const CLIENT_ID = "938817844055-okvg6eisdle7d40pqo83i4rc3nk5angd.apps.googleusercontent.com";
-
 const Login = () => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const dispatch = useDispatch();
@@ -50,20 +39,6 @@ const Login = () => {
 
     }
 
-    // const responseGoogle = (response) => {
-    //     console.log(response);
-    // }
-    // useEffect(() => {
-    //     google.accounts.id.initialize({
-    //         client_id: "938817844055-okvg6eisdle7d40pqo83i4rc3nk5angd.apps.googleusercontent.com",
-    //         callback: handleCallbackResponse
-    //     });
-
-    //     google.accounts.id.renderButton(
-    //         document.getElementById("signInDiv"),
-    //         { theme: "outline", size: "large" }
-    //     )
-    // }, []);
     return (<>
         {isLoggedIn == 'true' && <Navigate to="/"></Navigate>}
         <div className="content">
@@ -79,7 +54,7 @@ const Login = () => {
                     <div className="info-title">Login</div>
                     <form className="loginForm" onSubmit={handleSubmit(Login)}>
                         <div className="input-item">
-                            <span> Email ID/ Username</span>
+                            {/* <span> Email ID/ Username</span> */}
                             <input placeholder="Enter Email ID/ Username" type="text" name="email"
                                 {...register("email", { required: true })}></input>
                             {errors.email && errors.email.type === "required" && (
@@ -90,7 +65,7 @@ const Login = () => {
                             )}
                         </div>
                         <div className="input-item">
-                            <span> Password</span>
+                            {/* <span> Password</span> */}
                             <input placeholder="Enter Password" type="password" name="password"
                                 {...register("password", { required: true })}></input>
                             {errors.password && errors.password.type === "required" && (
@@ -104,39 +79,6 @@ const Login = () => {
                 <span className="OR"> Or</span> */}
 
                     </form>
-
-                    <div id="signInDiv"></div>
-                    <GoogleOAuthProvider clientId="739106075686-o3iq57fl19qmf50planckptdekklb1du.apps.googleusercontent.com">
-                        <GoogleLogin
-                            onSuccess={credentialResponse => {
-                                console.log(credentialResponse);
-
-
-                            }}
-                            onError={() => {
-                                console.log('Login Failed');
-                            }}
-                        />
-                    </GoogleOAuthProvider>
-
-                    {/* <GoogleLogin
-                        clientId={CLIENT_ID}
-                        buttonText="Sign in with Google"
-                        onSuccess={responseGoogle}
-                        onFailure={responseGoogle}
-                        cookiePolicy={'single_host_origin'}
-                    /> */}
-
-                    {/* <GoogleOAuthProvider clientId={CLIENT_ID}>
-                        <GoogleLogin
-                            onSuccess={response => {
-                                console.log(response);
-                            }}
-                            onError={() => {
-                                console.log('Login Failed');
-                            }}
-                        />
-                    </GoogleOAuthProvider> */}
 
                 </div>
             </div>

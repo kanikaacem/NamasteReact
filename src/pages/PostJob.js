@@ -3,8 +3,8 @@ import CustomizeSelect from "../Component/CustomizeSelect";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { useForm } from 'react-hook-form';
-import {Role} from "../utils/Data";
-import {City ,Experience} from "../utils/Data";
+import { Role } from "../utils/Data";
+import { cities, Experience } from "../utils/Data";
 
 const PostJob = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -22,15 +22,15 @@ const PostJob = () => {
         console.log("hello");
     };
     return (<>
-      <div className="postjob-wrapper" style={{width:'50%',margin:'0 auto'}}>
+        <div className="postjob-wrapper" style={{ width: '50%', margin: '0 auto' }}>
             <div className="info-title">Post Job</div>
-              <form className="postjobForm" onSubmit={handleSubmit(postjob)} >
+            <form className="postjobForm" onSubmit={handleSubmit(postjob)} >
                 <div className="input-item">
                     <span> Title</span>
                     <input placeholder="Enter Title" type="text" name="title"
-                     {...register("title", {required: true }) }
-                     ></input>
-                     {/* {errors.email && errors.email.type === "required" && (
+                        {...register("title", { required: true })}
+                    ></input>
+                    {/* {errors.email && errors.email.type === "required" && (
                            <Error text="Email is required"/>
                      )}
                      {errors.email && errors.email.type === "pattern" && (
@@ -40,12 +40,12 @@ const PostJob = () => {
                 <div className="input-item">
                     <span> Role </span>
                     <div className="select">
-                    <CustomizeSelect 
-                    style={{width:'100%'}}
-                    placeholder="Select Role" data={Role}
-                    name="role"
-                    {...register("role", {required: true }) }
-                    />
+                        <CustomizeSelect
+                            style={{ width: '100%' }}
+                            placeholder="Select Role" data={Role}
+                            name="role"
+                            {...register("role", { required: true })}
+                        />
                     </div>
                     {/* <input placeholder="Enter Password" type="password" name="password" 
                     {...register("password", {required: true})}
@@ -57,8 +57,8 @@ const PostJob = () => {
                 <div className="input-item">
                     <span> Experience </span>
                     <div className="select">
-                    <CustomizeSelect 
-                    placeholder="Select Experience" data={Experience}/>
+                        <CustomizeSelect
+                            placeholder="Select Experience" data={Experience} />
                     </div>
                     {/* <input placeholder="Enter Password" type="password" name="password" 
                     {...register("password", {required: true})}
@@ -67,12 +67,12 @@ const PostJob = () => {
                         <Error text="Password is required" />
                     )} */}
                 </div>
-                
+
                 <div className="input-item">
                     <span> Opening </span>
                     <input placeholder="Enter opening" type="text" name="text"
                     //  {...register("email", {required: true }) }
-                     ></input>
+                    ></input>
 
                     {/* <input placeholder="Enter Password" type="password" name="password" 
                     {...register("password", {required: true})}
@@ -86,7 +86,7 @@ const PostJob = () => {
                     <span> Salary </span>
                     <input placeholder="Enter salary" type="text" name="text"
                     //  {...register("email", {required: true }) }
-                     ></input>
+                    ></input>
 
                     {/* <input placeholder="Enter Password" type="password" name="password" 
                     {...register("password", {required: true})}
@@ -111,7 +111,7 @@ const PostJob = () => {
                     <span> Description </span>
                     <input placeholder="Enter description" type="text" name="text"
                     //  {...register("email", {required: true }) }
-                     ></input>
+                    ></input>
 
                     {/* <input placeholder="Enter Password" type="password" name="password" 
                     {...register("password", {required: true})}
@@ -124,8 +124,8 @@ const PostJob = () => {
                 <div className="input-item">
                     <span> City </span>
                     <div className="select">
-                    <CustomizeSelect 
-                    placeholder="Select City" data={City}/>
+                        <CustomizeSelect
+                            placeholder="Select City" data={cities} />
                     </div>
                     {/* <input placeholder="Enter Password" type="password" name="password" 
                     {...register("password", {required: true})}
@@ -135,13 +135,13 @@ const PostJob = () => {
                     )} */}
                 </div>
 
-                
+
                 <Button variant="contained" type="submit" >Submit</Button>
                 {/* <span className="OTPLogin"> Use OTP to Login</span>
                 <span className="OR"> Or</span> */}
 
-              </form>
-      </div>
+            </form>
+        </div>
     </>)
 }
 export default PostJob;

@@ -166,6 +166,18 @@ nav {
   width: 100% !important;
 }
 
+/* Errors for validation */
+.error {
+  color: #da534d;
+  font-size: 14px;
+}
+
+/*form Informatin */
+.form-information {
+  font-size: 14px;
+  color: green;
+}
+
 /* sign up page */
 .SignupPage {
   background: #FAFAFA;
@@ -185,23 +197,11 @@ nav {
   justify-content: center;
 }
 
-/* Errors for validation */
-.error {
-  color: #da534d;
-  font-size: 14px;
-}
-
-/*form Informatin */
-.form-information {
-  font-size: 14px;
-  color: green;
-}
-
-/* Signup */
 .email-signup-form,
 .password-generation-form,
 .mobile-opt-verification-form,
-.hr-information-form {
+.hr-information-form,
+.company-information-form {
   margin: 30px 0px;
   width: 100%;
   display: flex;
@@ -213,15 +213,37 @@ nav {
 .email-signup-wrapper,
 .password-generation-wrapper,
 .mobile-opt-verification-wrapper,
-.hr-information-wrapper {
+.hr-information-wrapper,
+.company-information-wrapper {
   width: 100%;
 }
 
 .input-item {
   width: 100%;
+  margin: 10px 0px;
+
 }
 
-.input-item input {
+.input-item input,
+textarea {
+  padding: 10px;
+  width: 93%;
+  border-radius: 10px;
+  border: none;
+  background-color: #f2f4f8;
+  outline: none;
+}
+
+.signup-with-google {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+}
+
+.company-information-form .input-item .css-1869usk-MuiFormControl-root {
   padding: 10px;
   margin: 10px 0px;
   width: 93%;
@@ -229,7 +251,20 @@ nav {
   border: none;
   background-color: #f2f4f8;
   outline: none;
+  width: 90%;
+  width: 92% !important;
 }
+
+.company-information-form .input-item .MuiSelect-select {
+  padding: 0px !important;
+  font-size: 13px !important;
+  width: 80% !important;
+}
+
+.company-information-form .input-item .css-1869usk-MuiFormControl-root .css-ag1hyn-MuiInputBase-root-MuiInput-root-MuiSelect-root {
+  font-size: 14px;
+}
+
 
 /* .input-item span {
   display: block;
