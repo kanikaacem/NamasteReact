@@ -121,3 +121,13 @@ root.render(
 //https://www.albertgao.xyz/2018/12/15/how-to-add-official-google-sign-in-to-your-react-application/
 //https://www.npmjs.com/package/reactjs-social-login
 //https://www.npmjs.com/package/react-social-login-buttons
+//https://stackoverflow.com/questions/53191753/get-react-select-selected-option-when-using-multi-dropdown
+//https://www.folkstalk.com/2022/09/how-to-show-base64-image-in-react-with-code-examples-2.html
+//https://www.npmjs.com/package/react-file-base64
+
+//https://medium.com/nerd-for-tech/how-to-store-an-image-to-a-database-with-react-using-base-64-9d53147f6c4f
+//https://formik.org/docs/overview
+
+//https://www.npmjs.com/package/react-js-loader
+//https://stackoverflow.com/questions/67514276/react-formik-with-react-select-convert-multiple-select-array-to-string
+//https://www.npmjs.com/package/use-state-validate

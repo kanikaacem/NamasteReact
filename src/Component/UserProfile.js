@@ -4,12 +4,11 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import QuizIcon from '@mui/icons-material/Quiz';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Badge from '@mui/material/Badge';
-// import { Link} from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
 const UserProfile = () => {
+    const user = localStorage.user && JSON.parse(localStorage.user);
     const dispatch = useDispatch();
-
     const closeProfile = () => {
         dispatch({ type: 'SHOW_HIDE_PROFILE' })
     }
@@ -38,7 +37,7 @@ const UserProfile = () => {
                         </div>
                         <div className="updatedProfileProgress"> 93%</div>
                         <div className="userProfieDescription">
-                            <div><b>Name</b></div>
+                            <div><b>{user && user.fullname}</b></div>
                             <div>Developer</div>
                             <div className="updateProfile">View & Update Profile </div>
                         </div>
