@@ -7,12 +7,13 @@ import { cities, Experience } from "../utils/Data";
 import { useState, useRef } from "react";
 import Error from '../Component/Error';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import Loader from "react-js-loader";
+// import Loader from "react-js-loader";
+import { DefaultEditor } from 'react-simple-wysiwyg';
 
 const PostJob = () => {
     const user = localStorage.user && JSON.parse(localStorage.user);
     const postjobForm = useRef();
-    // const [requestProgress, setrequestProgress] = useState(true);
+    const [longJobDescription, setlongJobDescription] = useState("");
     const [formSubmitted, setformSubmitted] = useState(false);
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [jobTitleError, setjobTitleError] = useState("");
@@ -21,7 +22,7 @@ const PostJob = () => {
     const [openingError, setopeningError] = useState("");
     const [salaryError, setsalaryError] = useState("");
     const [skillsError, setskillsError] = useState("");
-    const [jobDescriptionError, setjobDescriptionError] = useState("")
+    const [shortJobDescription, setshortJobDescription] = useState("")
     const [cityError, setcityError] = useState("");
 
     const animatedComponents = makeAnimated();
@@ -39,8 +40,13 @@ const PostJob = () => {
         setSelectedOptions(options);
     };
 
+    const setLogDescription = (e) => {
+        setlongJobDescription(e.target.value);
+        console.log(e.target.value);
+    }
     const closeAlert = () => {
         setformSubmitted(false);
+        window.location.href = "/employer-dashboard";
     }
     const PostJob = async (event) => {
         event.preventDefault();
@@ -49,7 +55,7 @@ const PostJob = () => {
         // console.log(event.target.reset());
         // setrequestProgress(true);
         let job_title = event.target.elements.job_title.value;
-        let job_description = event.target.elements.job_description.value;
+        let short_job_description = event.target.elements.short_job_description.value;
         let role = event.target.elements.role.value;
         let experience = event.target.elements.experience.value;
         let opening = event.target.elements.opening.value;
@@ -59,7 +65,7 @@ const PostJob = () => {
         let skills = [];
 
         if (job_title == '') setjobTitleError("Job title is required.");
-        if (job_description == '') setjobDescriptionError("Job Description is required.")
+        if (short_job_description == '') setshortJobDescription("Job Description is required.")
         // if (job_description.length > 3) setjobDescriptionError("Job Description length should be upmost 250 words.");
         if (role == '') setroleError("Job Role is required");
         if (experience == '') setexperienceError("Experience is required.");
@@ -68,8 +74,8 @@ const PostJob = () => {
         if (selectedOptions.length == 0) setskillsError("Skills is required");
         if (city == '') setcityError("City is required");
 
-        console.log(selectedOptions);
-        if (job_title != '' && job_description != '' && role != '' && experience != '' && opening != '' && salary != '' && city != '') {
+        // console.log(selectedOptions);
+        if (job_title != '' && short_job_description != '' && role != '' && experience != '' && opening != '' && salary != '' && city != '') {
             selectedOptions && selectedOptions.map((ele) => skills.push(ele.value));
             skills = skills.toString();
             // console.log(skills);
@@ -90,7 +96,8 @@ const PostJob = () => {
                     opening: opening,
                     salary: salary,
                     skills: skills,
-                    description: job_description,
+                    shortdescription: short_job_description,
+                    description: longJobDescription,
                     location: city
 
                 }),
@@ -98,7 +105,13 @@ const PostJob = () => {
             if (response.ok) {
                 // setrequestProgress(false);
                 setformSubmitted(true);
-                window.location.reload();
+
+                // setTimeout(() => {
+                //     setformSubmitted(false);
+
+                //     window.location.reload();
+                // }, 5000);
+
             }
 
         }
@@ -106,8 +119,8 @@ const PostJob = () => {
     return (<>
         <div className="content">
 
-            {formSubmitted && <SweetAlert success title="Good job!" onConfirm={closeAlert} >
-                You clicked the button!
+            {formSubmitted && <SweetAlert confirmBtnBsStyle="success" onConfirm={closeAlert} title="Job Saved!" >
+                Your Job is saved and will be seen in the portal after the review.
             </SweetAlert>}
 
             {/* <div className="loader">
@@ -165,8 +178,12 @@ const PostJob = () => {
 
                     <div className="input-item">
                         {/* <input placeholder="Enter Job description" type="text" name="job_description"></input> */}
-                        <textarea name="job_description" placeholder='Enter Job description' style={{ height: '200px' }}></textarea>
-                        {jobDescriptionError && <Error text={jobDescriptionError} />}
+                        <textarea name="short_job_description" placeholder='Enter Short Job Description' style={{ height: '100px' }}></textarea>
+                        {shortJobDescription && <Error text={shortJobDescription} />}
+                    </div>
+
+                    <div className="input-item">
+                        <DefaultEditor value={longJobDescription} onChange={setLogDescription} />
                     </div>
 
                     <div className="input-item">

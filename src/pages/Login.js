@@ -37,7 +37,7 @@ const Login = () => {
         //     setrequestProgress(false);
         //     dispatch({ type: 'LOGIN', payload: "dkfjldk" });
         // }, 5000);
-        let response = await fetch("http://192.168.1.6:8000/api/users/login", {
+        let response = await fetch("http://192.168.1.6:8000/api/employer/loginemployer", {
             // Adding method type
             method: "POST",
             // Adding body or contents to send
@@ -58,6 +58,7 @@ const Login = () => {
                 dispatch({ type: 'LOGIN', payload: JSON.stringify(response.user) });
             }
             if (response.status == '0') {
+                setrequestProgress(false);
                 setemailError("");
                 setpasswordError("Invalid Credentials");
             }
@@ -89,55 +90,58 @@ const Login = () => {
             <div className="loader">
                 <Loader type="spinner-cub" bgColor={"#2B1E44"} color={'#FFFFFF'} size={100} />
             </div>}
-        <div className="content">
+        <div className="LoginPage">
+            <div className="content">
 
-            {/* <div className="LoginWrapper"> */}
-            {/* <div className="info-wrapper">
-                    <div className="info-title"> New to JobYahan?</div>
-                    <div className="info-list">
-                        {jobInfo.map((item) => <div class="info-item" key={item.id} id={item.id}> <CheckIcon></CheckIcon>  {item.text} </div>)}
-                    </div>
-                    <Button variant="outlined" href="/sign-up">Sign up for Free</Button>
-                </div> */}
-            <div className="login-wrapper" >
-                <div className="info-title">Login</div>
-                <form className="loginForm" onSubmit={Login}>
-                    <div className="input-item">
-                        <input placeholder="Enter Email ID/ Username" type="text" name="email"></input>
-                        {emailError && <Error text={emailError} />}
-                    </div>
-                    <div className="input-item">
-                        <input placeholder="Enter Password" type="password" name="password"></input>
-                        {passwordError && <Error text={passwordError} />}
-                    </div>
+                {/* <div className="LoginWrapper"> */}
+                {/* <div className="info-wrapper">
+        <div className="info-title"> New to JobYahan?</div>
+        <div className="info-list">
+            {jobInfo.map((item) => <div class="info-item" key={item.id} id={item.id}> <CheckIcon></CheckIcon>  {item.text} </div>)}
+        </div>
+        <Button variant="outlined" href="/sign-up">Sign up for Free</Button>
+    </div> */}
+                <div className="login-wrapper" >
+                    <div className="info-title">Login</div>
+                    <form className="loginForm" onSubmit={Login}>
+                        <div className="input-item">
+                            <input placeholder="Enter Email ID/ Username" type="text" name="email"></input>
+                            {emailError && <Error text={emailError} />}
+                        </div>
+                        <div className="input-item">
+                            <input placeholder="Enter Password" type="password" name="password"></input>
+                            {passwordError && <Error text={passwordError} />}
+                        </div>
 
-                    <span className="forgotPassword"> Forgot Password ?</span>
-                    <Button variant="contained" type="submit" style={{ borderRadius: '10px', background: '#2B1E44' }}>Sign In</Button>
-                    {/* <div className="signin-with-google">
-                        <div>OR </div>
+                        <span className="forgotPassword"> Forgot Password ?</span>
+                        <Button variant="contained" type="submit" style={{ borderRadius: '10px', background: '#2B1E44' }}>Sign In</Button>
+                        {/* <div className="signin-with-google">
+            <div>OR </div>
 
-                        <LoginSocialGoogle
-                            client_id={CLIENT_ID}
-                            scope="openid profile email"
-                            discoveryDocs="claims_supported"
-                            access_type="offline"
-                            onResolve={GoogleSignInResolve}
-                            onReject={err => {
-                                console.log(err);
-                            }}
-                        >
-                            <button type="button" class="signin-with-google-btn" >
-                                Sign In with Google
-                            </button>
+            <LoginSocialGoogle
+                client_id={CLIENT_ID}
+                scope="openid profile email"
+                discoveryDocs="claims_supported"
+                access_type="offline"
+                onResolve={GoogleSignInResolve}
+                onReject={err => {
+                    console.log(err);
+                }}
+            >
+                <button type="button" class="signin-with-google-btn" >
+                    Sign In with Google
+                </button>
 
-                        </LoginSocialGoogle>
+            </LoginSocialGoogle>
 
-                    </div> */}
+        </div> */}
 
-                </form>
+                    </form>
 
+                </div>
             </div>
         </div>
+
         {/* </div> */}
     </>)
 

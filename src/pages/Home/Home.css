@@ -145,10 +145,11 @@
     justify-content: center;
     position: relative;
     margin-top: 20px;
+    border-radius: 10px;
 }
 
-.jobs {
-    max-width: 800px;
+.jobInformation {
+    width: 700px;
     background: white;
     border-radius: 20px;
     padding: 20px 80px;
@@ -158,23 +159,26 @@
     flex-direction: column;
     gap: 10px;
     cursor: pointer;
+    box-shadow: 0 9px 16px 0 rgb(0 106 194 / 20%);
+
 }
 
-.jobs h3 {
+.jobInformation h3 {
     margin: 0px;
 }
 
 .jobLogo {
     border-radius: 10px;
-    background: wi;
     position: absolute;
     left: 8%;
     width: 70px;
-    background: red;
     height: 70px;
+    background: white;
+    box-shadow: 0 9px 16px 0 rgb(0 106 194 / 20%);
+
 }
 
-.jobs span {
+.jobInformation span {
     display: flex;
     align-items: center;
     gap: 10px;

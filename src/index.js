@@ -12,6 +12,7 @@ const initialState = {
     "title" : "Mobile Applications"
   },
   showProfile : false,
+  EmployeeMenuSelected : 'posted_jobs'
 };
 const reducer = (state, action) =>{
   switch(action.type){
@@ -29,11 +30,14 @@ const reducer = (state, action) =>{
     case "SHOW_HIDE_PROFILE":
        return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),showProfile: ! state.showProfile}
 
-    case "ACTIVE_CATEGORY":
-      let {id ,title} = action.payload;
-      return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),categoryActive:{'id': id, 'title' : title}}
+    // case "ACTIVE_CATEGORY":
+    //   let {id ,title} = action.payload;
+    //   return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),categoryActive:{'id': id, 'title' : title}}
 
-    
+    case "CHANGE_EMPLOYEE_MENU" :
+      let selected_menu= action.payload;
+      console.log(selected_menu);
+      return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),EmployeeMenuSelected:selected_menu}
     default:
       return state;
   }
@@ -131,3 +135,11 @@ root.render(
 //https://www.npmjs.com/package/react-js-loader
 //https://stackoverflow.com/questions/67514276/react-formik-with-react-select-convert-multiple-select-array-to-string
 //https://www.npmjs.com/package/use-state-validate
+//https://stackoverflow.com/questions/73201840/react-material-ui-open-datepicker-on-button-click
+
+//https://www.npmjs.com/package/react-datepicker
+//https://www.npmjs.com/package/reactjs-file-uploader
+//https://www.npmjs.com/package/react-modal
+//https://www.npmjs.com/package/react-rte
+//https://www.npmjs.com/package/react-simple-wysiwyg
+//https://www.npmjs.com/package/html-react-parser

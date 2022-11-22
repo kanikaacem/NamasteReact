@@ -7,6 +7,7 @@ import WhyJobYahan from "./Component/WhyJobYahan";
 import Reviews from "./Component/Reviews";
 import Filter from "../../Component/Filter";
 import { useSelector } from "react-redux";
+import { Navigate } from 'react-router-dom';
 
 import "./Home.css";
 
@@ -15,6 +16,8 @@ function Home() {
     const user = localStorage.user && JSON.parse(localStorage.user);
 
     return (<>
+        {isLoggedIn == 'true' && user.type == 'employer' && <Navigate to="/employer-dashboard"></Navigate>}
+        {/* {isLoggedIn == 'true' && <Navigate to="/employer-dashboard"></Navigate>} */}
 
         <div className="homeFSec" style={{ background: "url('./assets/Background.png') no-repeat", backgroundPosition: 'bottom' }}>
             <h1 style={{ textAlign: 'center', margin: '0 auto', color: '#2B1E44' }}>Accelerate your job search with premium services</h1>

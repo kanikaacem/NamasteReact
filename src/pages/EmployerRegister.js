@@ -15,7 +15,7 @@ import Loader from "react-js-loader";
 
 const CLIENT_ID = "346122009616-5gsdqla59hflt7sg5f8n38valqs6p1q8.apps.googleusercontent.com";
 
-const Signup = () => {
+const EmployerRegister = () => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const dispatch = useDispatch();
 
@@ -67,7 +67,7 @@ const Signup = () => {
     const [gstImage, setgstImage] = useState("");
 
     const CheckEmail = async (email) => {
-        setrequestProgress(true);
+        // setrequestProgress(true);
         let response = await fetch("http://192.168.1.6:8000/api/employer/checkemail", {
             // Adding method type
             method: "POST",
@@ -82,7 +82,7 @@ const Signup = () => {
         })
 
         if (response.ok) {
-            setrequestProgress(false);
+            // setrequestProgress(false);
             response = await response.json();
             let message = response.message;
             if (message == 1) {
@@ -133,11 +133,11 @@ const Signup = () => {
             setconfirmpasswordError("Passwored doesn't match.");
         }
         else {
-            setrequestProgress(true);
+            // setrequestProgress(true);
             setformErrors({ password_error: '' });
             setPassword(password);
 
-            let response = await fetch("http://192.168.1.6:8000/api/employer/logindetail", {
+            let response = await fetch("http://192.168.1.6:8000/api/employer/savelogindetail", {
                 method: "POST",
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -152,7 +152,7 @@ const Signup = () => {
             if (response.ok) {
                 response = await response.json();
                 console.log(response);
-                setrequestProgress(false);
+                // setrequestProgress(false);
                 passwordgenerationwrapper.current.style.display = 'none';
                 mobileoptverificationwrapper.current.style.display = "block";
             }
@@ -190,12 +190,13 @@ const Signup = () => {
 
     const handleHrInformation = async (event) => {
         event.preventDefault();
-        setrequestProgress(true);
         let full_name = event.target.elements.full_name.value;
         console.log(full_name, email, password, mobile_number);
         // console.log(email, password, full_name, mobile_number);
         if (full_name == '') setformErrors({ full_name_error: "Name is required" });
         else {
+            // setrequestProgress(true);
+
             let response = await fetch("http://192.168.1.6:8000/api/employer/postemployer", {
                 method: "PUT",
                 headers: {
@@ -213,7 +214,7 @@ const Signup = () => {
             })
             if (response.ok) {
                 response = await response.json();
-                setrequestProgress(false);
+                // setrequestProgress(false);
                 console.log(response);
                 hrinformationwrapper.current.style.display = 'none';
                 companyinformationwrapper.current.style.display = 'block';
@@ -270,7 +271,6 @@ const Signup = () => {
 
     const handleCompanySubmit = async (event) => {
         event.preventDefault();
-        setrequestProgress(true);
         // console.log(event.target.elements);
         let company_name = event.target.elements.company_name.value;
         let company_email = event.target.elements.company_email.value;
@@ -332,6 +332,7 @@ const Signup = () => {
             && gst_number != ''
             && company_address != ''
             && company_city != '') {
+            // setrequestProgress(true);
 
             let response = await fetch("http://192.168.1.6:8000/api/company/postcompany", {
                 method: "POST",
@@ -370,8 +371,8 @@ const Signup = () => {
                             'Content-Type': 'application/json; charset=UTF-8'
                         },
                         body: JSON.stringify({
-                            email: 'kanika.np@acem.edu.in',
-                            password: '1234567890',
+                            email: email,
+                            password: password,
 
                         }),
                     })
@@ -380,7 +381,7 @@ const Signup = () => {
                         loginresponse = await loginresponse.json();
                         console.log(loginresponse);
                         if (loginresponse.status == '1') {
-                            setrequestProgress(false);
+                            // setrequestProgress(false);
                             dispatch({ type: 'LOGIN', payload: JSON.stringify(loginresponse.user) });
                         }
 
@@ -403,230 +404,233 @@ const Signup = () => {
 
     return (<>
         {isLoggedIn == 'true' && <Navigate to="/"></Navigate>}
-        <div className="SignupPage">
-            {requestProgress &&
-                <div className="loader">
-                    <Loader type="spinner-cub" bgColor={"#2B1E44"} color={'#FFFFFF'} size={100} />
-                </div>
-            }
-            {/* <img src={companyLogo} alt="hello" /> */}
-            <div className="signup-wrapper" style={{ minWidth: '35%', marginTop: '20px', borderRadius: '10px' }}>
-                <div className="info-title">Let's Simplify the Hiring Process</div>
-                <span>Register to find your Next Hire. Get Started Soon.</span>
-                <div className="email-signup-wrapper" ref={emailsignupwrapper}>
-                    <form className="email-signup-form" onSubmit={handleEmailSignup}>
-                        <div className="input-item">
-                            <input placeholder="Email" type="email" name="email"
-                            ></input>
-                            {formErrors.email_error && <Error text={formErrors.email_error}></Error>}
+        <div className="employerRegisterPage">
+            <div className="employer-register-div">
+                {requestProgress &&
+                    <div className="loader">
+                        <Loader type="spinner-cub" bgColor={"#2B1E44"} color={'#FFFFFF'} size={100} />
+                    </div>
+                }
+                {/* <img src={companyLogo} alt="hello" /> */}
+                <div className="employer-register-page-wrapper" style={{ minWidth: '35%', marginTop: '20px', borderRadius: '10px' }}>
+                    <div className="info-title">Let's Simplify the Hiring Process</div>
+                    <span>Register to find your Next Hire. Get Started Soon.</span>
+                    <div className="email-signup-wrapper" ref={emailsignupwrapper}>
+                        <form className="email-signup-form" onSubmit={handleEmailSignup}>
+                            <div className="input-item">
+                                <input placeholder="Email" type="email" name="email"
+                                ></input>
+                                {formErrors.email_error && <Error text={formErrors.email_error}></Error>}
+                            </div>
+
+                            <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Submit</Button>
+                        </form>
+
+                        <div className="signup-with-google">
+                            <div>OR </div>
+
+                            <LoginSocialGoogle
+                                client_id={CLIENT_ID}
+                                // onLoginStart={onLoginStart}
+                                // redirect_uri={REDIRECT_URI}
+                                scope="openid profile email"
+                                discoveryDocs="claims_supported"
+                                access_type="offline"
+                                onResolve={GoogleSignupResolve}
+                                onReject={err => {
+                                    console.log(err);
+                                }}
+                            >
+                                <button type="button" class="signup-with-google-btn" >
+                                    Sign up with Google
+                                </button>
+
+                            </LoginSocialGoogle>
+
                         </div>
 
-                        <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Submit</Button>
-                    </form>
-
-                    <div className="signup-with-google">
-                        <div>OR </div>
-
-                        <LoginSocialGoogle
-                            client_id={CLIENT_ID}
-                            // onLoginStart={onLoginStart}
-                            // redirect_uri={REDIRECT_URI}
-                            scope="openid profile email"
-                            discoveryDocs="claims_supported"
-                            access_type="offline"
-                            onResolve={GoogleSignupResolve}
-                            onReject={err => {
-                                console.log(err);
-                            }}
-                        >
-                            <button type="button" class="signup-with-google-btn" >
-                                Sign up with Google
-                            </button>
-
-                        </LoginSocialGoogle>
 
                     </div>
 
 
+                    <div className="password-generation-wrapper" ref={passwordgenerationwrapper}>
+                        <form className="password-generation-form" onSubmit={handlePasswordGeneration} >
+                            <div className="input-item">
+                                <input placeholder="Password ( length should be 10 )" type="password" name="password"
+                                ></input>
+                                {passwordError && <Error text={passwordError}></Error>}
+                            </div>
+
+                            <div className="input-item">
+                                <input placeholder="Confirm Password ( length should be 10 )" type="password" name="confirm_password"
+                                ></input>
+                                {confirmpasswordError && <Error text={confirmpasswordError}></Error>}
+                            </div>
+
+                            <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Submit</Button>
+                        </form>
+                    </div>
+
+                    <div className="mobile-opt-verification-wrapper" ref={mobileoptverificationwrapper}>
+                        <form className="mobile-opt-verification-form" onSubmit={handleMobileVerfication} >
+                            <div className="input-item">
+                                <input placeholder="Mobile Number" type="text" name="mobile_number"
+                                ></input>
+                                {formErrors.mobile_number_error && <Error text={formErrors.mobile_number_error}></Error>}
+                                {formErrors.otp_information && <FormInformation text={formErrors.otp_information} />}
+                            </div>
+                            {resendOtp ?
+                                <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit">Resend</Button>
+                                :
+                                <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit">Send</Button>
+
+                            }
+
+                            <hr></hr><hr></hr>
+
+                        </form>
+
+                        <form className="mobile-opt-verification-form" onSubmit={MobileOTPVerification} >
+                            <div className="input-item">
+                                <input placeholder="OTP" type="text" name="otp"
+                                ></input>
+                                {formErrors.otp_error && <Error text={formErrors.otp_error}></Error>}
+                            </div>
+
+                            <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Submit</Button>
+                        </form>
+
+                    </div>
+
+                    <div className="hr-information-wrapper" ref={hrinformationwrapper}>
+                        <form className="hr-information-form" onSubmit={handleHrInformation} >
+                            <div className="input-item">
+                                <input placeholder="Full Name" type="text" name="full_name"
+                                ></input>
+                                {formErrors.full_name_error && <Error text={formErrors.full_name_error}></Error>}
+
+                            </div>
+
+                            <div className="input-item">
+                                <input placeholder="Mobile Number" type="text" name="mobile_number" value={mobile_number}
+                                    readOnly
+                                ></input>
+                            </div>
+
+                            <div className="input-item">
+                                <input placeholder="Email" type="text" name="email" value={email}
+                                    readOnly
+                                ></input>
+                            </div>
+
+                            <div className="input-item">
+                                <input placeholder="Password" type="password" name="password" value={password}
+                                    readOnly
+                                ></input>
+                            </div>
+
+                            <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Submit</Button>
+                        </form>
+                    </div>
+
+
+                    <div className="company-information-wrapper" ref={companyinformationwrapper}>
+                        <form className="company-information-form" onSubmit={handleCompanySubmit}>
+
+                            <div className="input-item">
+                                <input placeholder="Company Name" type="text" name="company_name"
+                                ></input>
+                                {companyNameError && <Error text={companyNameError} />}
+                            </div>
+
+                            <div className="input-item">
+                                <CustomizeSelect placeholder="Company type" data={company_type} id_data="company_type" />
+                                {companyTypeError && <Error text={companyTypeError} />}
+                            </div>
+
+                            <div className='input-item'>
+                                {/* <label for="resume" className="upload_file" >Upload Company Logo</label> */}
+                                <FileBase64 id="upload_file"
+                                    onDone={uploadCompanyImage} />
+                                {companyLogoError && <Error text={companyLogoError} />}
+                            </div>
+
+                            <div className="input-item">
+                                <input placeholder="Email" type="text" name="company_email"
+                                ></input>
+                                {companyEmailError && <Error text={companyEmailError} />}
+                            </div>
+
+                            <div className="input-item">
+                                <input placeholder="Mobile Number" type="text" name="company_mobile_number"
+                                ></input>
+                                {companyMobileError && <Error text={companyMobileError} />}
+                            </div>
+
+                            <div className="input-item">
+                                <CustomizeSelect placeholder="Profile type" data={profile_type} name="profile_type" id_data="profile_type" />
+                                {profileTypeError && <Error text={profileTypeError} />}
+                            </div>
+
+                            <div className="input-item">
+                                <input placeholder="Company Website" type="text" name="company_website"
+                                ></input>
+                                {companyWebsiteError && <Error text={companyWebsiteError} />}
+                            </div>
+
+                            <div className="input-item">
+                                <textarea rows="5" cols="50" name="company_description">
+                                    Company Description
+                                </textarea>
+                            </div>
+
+                            <div className="input-item">
+                                <CustomizeSelect placeholder="City" data={cities} name="city" id_data="company_city" />
+                            </div>
+
+                            <div className="input-item">
+                                <input placeholder="Pincode" type="text" name="company_pincode"
+                                ></input>
+                                {companyPincodeError && <Error text={companyPincodeError} />}
+                            </div>
+
+                            <div className="input-item">
+                                <input placeholder="Address" type="text" name="company_address"
+                                ></input>
+                                {companyAddressError && <Error text={companyAddressError} />}
+                            </div>
+
+                            <div className="input-item">
+                                <input type="text" name="pan_number" placeholder="Pan Number" />
+                                {companyPanError && <Error text={companyPanError} />}
+                            </div>
+
+                            <div className="input-item">
+                                <FileBase64
+                                    onDone={uploadPanImage} />
+                                {companyPanImageError && <Error text={companyPanError} />}
+
+                            </div>
+
+                            <div className="input-item">
+                                <input type="text" name="gst_number" placeholder="GST Number" />
+                                {companyGSTError && <Error text={companyGSTError} />}
+                            </div>
+
+                            <div className="input-item">
+                                <FileBase64
+                                    onDone={uploadGstImage} />
+                                {companyGSTImageError && <Error text={companyGSTImageError} />}
+                            </div>
+
+                            <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Submit</Button>
+                        </form>
+                    </div>
+
+
                 </div>
-
-
-                <div className="password-generation-wrapper" ref={passwordgenerationwrapper}>
-                    <form className="password-generation-form" onSubmit={handlePasswordGeneration} >
-                        <div className="input-item">
-                            <input placeholder="Password ( length should be 10 )" type="password" name="password"
-                            ></input>
-                            {passwordError && <Error text={passwordError}></Error>}
-                        </div>
-
-                        <div className="input-item">
-                            <input placeholder="Confirm Password ( length should be 10 )" type="password" name="confirm_password"
-                            ></input>
-                            {confirmpasswordError && <Error text={confirmpasswordError}></Error>}
-                        </div>
-
-                        <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Submit</Button>
-                    </form>
-                </div>
-
-                <div className="mobile-opt-verification-wrapper" ref={mobileoptverificationwrapper}>
-                    <form className="mobile-opt-verification-form" onSubmit={handleMobileVerfication} >
-                        <div className="input-item">
-                            <input placeholder="Mobile Number" type="text" name="mobile_number"
-                            ></input>
-                            {formErrors.mobile_number_error && <Error text={formErrors.mobile_number_error}></Error>}
-                            {formErrors.otp_information && <FormInformation text={formErrors.otp_information} />}
-                        </div>
-                        {resendOtp ?
-                            <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit">Resend</Button>
-                            :
-                            <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit">Send</Button>
-
-                        }
-
-                        <hr></hr><hr></hr>
-
-                    </form>
-
-                    <form className="mobile-opt-verification-form" onSubmit={MobileOTPVerification} >
-                        <div className="input-item">
-                            <input placeholder="OTP" type="text" name="otp"
-                            ></input>
-                            {formErrors.otp_error && <Error text={formErrors.otp_error}></Error>}
-                        </div>
-
-                        <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Submit</Button>
-                    </form>
-
-                </div>
-
-                <div className="hr-information-wrapper" ref={hrinformationwrapper}>
-                    <form className="hr-information-form" onSubmit={handleHrInformation} >
-                        <div className="input-item">
-                            <input placeholder="Full Name" type="text" name="full_name"
-                            ></input>
-                            {formErrors.full_name_error && <Error text={formErrors.full_name_error}></Error>}
-
-                        </div>
-
-                        <div className="input-item">
-                            <input placeholder="Mobile Number" type="text" name="mobile_number" value={mobile_number}
-                                readOnly
-                            ></input>
-                        </div>
-
-                        <div className="input-item">
-                            <input placeholder="Email" type="text" name="email" value={email}
-                                readOnly
-                            ></input>
-                        </div>
-
-                        <div className="input-item">
-                            <input placeholder="Password" type="password" name="password" value={password}
-                                readOnly
-                            ></input>
-                        </div>
-
-                        <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Submit</Button>
-                    </form>
-                </div>
-
-
-                <div className="company-information-wrapper" ref={companyinformationwrapper}>
-                    <form className="company-information-form" onSubmit={handleCompanySubmit}>
-
-                        <div className="input-item">
-                            <input placeholder="Company Name" type="text" name="company_name"
-                            ></input>
-                            {companyNameError && <Error text={companyNameError} />}
-                        </div>
-
-                        <div className="input-item">
-                            <CustomizeSelect placeholder="Company type" data={company_type} id_data="company_type" />
-                            {companyTypeError && <Error text={companyTypeError} />}
-                        </div>
-
-                        <div className='input-item'>
-                            <FileBase64
-                                onDone={uploadCompanyImage} />
-                            {companyLogoError && <Error text={companyLogoError} />}
-                        </div>
-
-                        <div className="input-item">
-                            <input placeholder="Email" type="text" name="company_email"
-                            ></input>
-                            {companyEmailError && <Error text={companyEmailError} />}
-                        </div>
-
-                        <div className="input-item">
-                            <input placeholder="Mobile Number" type="text" name="company_mobile_number"
-                            ></input>
-                            {companyMobileError && <Error text={companyMobileError} />}
-                        </div>
-
-                        <div className="input-item">
-                            <CustomizeSelect placeholder="Profile type" data={profile_type} name="profile_type" id_data="profile_type" />
-                            {profileTypeError && <Error text={profileTypeError} />}
-                        </div>
-
-                        <div className="input-item">
-                            <input placeholder="Company Website" type="text" name="company_website"
-                            ></input>
-                            {companyWebsiteError && <Error text={companyWebsiteError} />}
-                        </div>
-
-                        <div className="input-item">
-                            <textarea rows="5" cols="50" name="company_description">
-                                Company Description
-                            </textarea>
-                        </div>
-
-                        <div className="input-item">
-                            <CustomizeSelect placeholder="City" data={cities} name="city" id_data="company_city" />
-                        </div>
-
-                        <div className="input-item">
-                            <input placeholder="Pincode" type="text" name="company_pincode"
-                            ></input>
-                            {companyPincodeError && <Error text={companyPincodeError} />}
-                        </div>
-
-                        <div className="input-item">
-                            <input placeholder="Address" type="text" name="company_address"
-                            ></input>
-                            {companyAddressError && <Error text={companyAddressError} />}
-                        </div>
-
-                        <div className="input-item">
-                            <input type="text" name="pan_number" placeholder="Pan Number" />
-                            {companyPanError && <Error text={companyPanError} />}
-                        </div>
-
-                        <div className="input-item">
-                            <FileBase64
-                                onDone={uploadPanImage} />
-                            {companyPanImageError && <Error text={companyPanError} />}
-
-                        </div>
-
-                        <div className="input-item">
-                            <input type="text" name="gst_number" placeholder="GST Number" />
-                            {companyGSTError && <Error text={companyGSTError} />}
-                        </div>
-
-                        <div className="input-item">
-                            <FileBase64
-                                onDone={uploadGstImage} />
-                            {companyGSTImageError && <Error text={companyGSTImageError} />}
-                        </div>
-
-                        <Button style={{ borderRadius: '10px', background: '#2B1E44' }} variant="contained" type="submit" >Submit</Button>
-                    </form>
-                </div>
-
-
             </div>
         </div>
     </>)
 }
-export default Signup;
+export default EmployerRegister;

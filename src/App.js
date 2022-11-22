@@ -8,7 +8,9 @@ import PostJob from "./pages/PostJob";
 import NotFound from "./pages/NotFound";
 import PrivateRoute from "./utils/PrivateRoute";
 import Header from './Component/Header';
-import Signup from './pages/SignUp';
+import EmployerRegister from './pages/EmployerRegister';
+import EmployerDashboard from './pages/EmployerDashboard';
+import UserRegistration from "./pages/UserRegistration";
 function App() {
   return (
     <>
@@ -18,10 +20,10 @@ function App() {
           <Route exact path="/" element={<Home></Home>} />
           <Route path="/login" element={<Login></Login>} />
           <Route path="/home" element={<Home></Home>} />
+          <Route path="/employer-dashboard" element={<PrivateRoute Component={EmployerDashboard}></PrivateRoute>} />
           <Route path="/about/:id" element={<About></About>} />
-          <Route path="/sign-up" element={<Signup></Signup>} />
-
-          {/* <Route path="/profile" element={<PrivateRoute Component={Profile}></PrivateRoute>} /> */}
+          <Route path="/employeer-register" element={<EmployerRegister></EmployerRegister>} />
+          <Route path="/user-signup" element={<UserRegistration></UserRegistration>}></Route>
           <Route path="/post-job" element={<PrivateRoute Component={PostJob}></PrivateRoute>} />
           <Route path="*" element={<NotFound></NotFound>} />
         </Routes>
