@@ -1,53 +1,43 @@
+import { Box } from "@mui/material";
 import Heading from "../Component/Heading";
 import UserReview from "./UserReview";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
+import { reviews } from "../../../utils/Data";
+import { useState, useEffect } from "react";
+
 const Reviews = () => {
-    const reviews = [
-        {
-            id: 0,
-            reviews: "1 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-            image: "./assets/profile.png"
-        },
-        {
-            id: 1,
-            reviews: "2 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-            image: "./assets/profile.png"
-        },
-        {
-            id: 2,
-            reviews: "3 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-            image: "./assets/profile.png"
-        },
-        {
-            id: 3,
-            reviews: "4 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-            image: "./assets/profile.png"
-        },
-        {
-            id: 4,
-            reviews: "3 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-            image: "./assets/profile.png"
-        },
-        {
-            id: 5,
-            reviews: "4 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-            image: "./assets/profile.png"
-        }
-    ]
+
+    const [item, setItem] = useState(reviews);
+
     const splitedReview = [];
-    while (reviews.length > 0)
-        splitedReview.push(reviews.splice(0, 4));
+    while (reviews.length > 0) {
+        splitedReview.push(reviews.splice(0, 2));
+    }
+
+    useEffect(() => {
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        console.log(item);
+        // if (!isMobile)
+        //     // setItem(2);
+    })
 
 
     return (<>
-        {/* {console.log(splitedReview)} */}
         <div className="reviews">
-            <Heading text="Review!" />
-            <Carousel>
-                {/* <UserReview></UserReview>
-        <UserReview></UserReview> */}
+            <Box sx={{
+                background: "#FAFAFA",
+                padding: "20px 0px",
+                color: "445578"
+            }}>
+                < Heading text="What Customers Say about us!" />
+
+            </Box>
+            <Carousel
+                autoPlay="true"
+                infiniteLoop="true"
+            >
                 {splitedReview.map((reviews, index) => {
                     return (<>
                         <div className="reviewItem" key={index}>

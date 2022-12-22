@@ -1,30 +1,67 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Login from "./pages/Login";
-import Home from "./pages/Home/Home";
-import About from "./pages/About";
-import Profile from "./pages/Profile";
-import PostJob from "./pages/PostJob";
-import NotFound from "./pages/NotFound";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { useSelector } from "react-redux";
+
+/*Employer Component*/
+import EmployerRegister from './Pages/Employer/EmployerRegister';
+import EmployerLogin from "./Pages/Employer/EmployerLogin";
+import EmployerDashboard from "./Pages/Employer/EmployerDashboard";
+import PostJob from "./Pages/Employer/PostJob";
+import PostedJobs from './Pages/Employer/PostedJobs';
+import AccountSetting from './Pages/Employer/AccountSetting';
+
+/*Candidate Component*/
+import CandidateRegistration from "./Pages/Candidate/CandidateRegistration";
+import CandidateLogin from "./Pages/Candidate/CandidateLogin";
+import CandidateDashboard from "./Pages/Candidate/CandidateDashboard";
+import CandidateProfile from "./Pages/Candidate/CandidateProfile";
+import UpdateProfile from "./Pages/Candidate/UpdateProfile";
+import Settings from './Pages/Candidate/Settings';
+
+/*Website Page*/
+import Home from "./Pages/Home/Home";
+import NotFound from "./Pages/NotFound";
 import PrivateRoute from "./utils/PrivateRoute";
-import Header from './Component/Header';
-import EmployerRegister from './pages/EmployerRegister';
-import EmployerDashboard from './pages/EmployerDashboard';
-import UserRegistration from "./pages/UserRegistration";
+import Dashboard from './Pages/Common/Dashboard';
+import JobDescription from './Pages/JobDescription';
+
 function App() {
+
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
   return (
     <>
       <BrowserRouter>
-        <Header></Header>
         <Routes>
           <Route exact path="/" element={<Home></Home>} />
-          <Route path="/login" element={<Login></Login>} />
-          <Route path="/home" element={<Home></Home>} />
-          <Route path="/employer-dashboard" element={<PrivateRoute Component={EmployerDashboard}></PrivateRoute>} />
-          <Route path="/about/:id" element={<About></About>} />
-          <Route path="/employeer-register" element={<EmployerRegister></EmployerRegister>} />
-          <Route path="/user-signup" element={<UserRegistration></UserRegistration>}></Route>
-          <Route path="/post-job" element={<PrivateRoute Component={PostJob}></PrivateRoute>} />
+
+          <Route path="/employer-register" element={<EmployerRegister></EmployerRegister>} />
+          <Route path="/employer-login" element={<EmployerLogin></EmployerLogin>} />
+
+          <Route path="/candidate-login" element={<CandidateLogin></CandidateLogin>}></Route>
+          <Route path="/candidate-register" element={<CandidateRegistration />} />
+          <Route path="/profile" element={<CandidateProfile></CandidateProfile>} />
+
+
+          <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
+            <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
+            <Route path="post-a-job" element={<PostJob></PostJob>} />
+            <Route path="posted-jobs" element={<PostedJobs></PostedJobs>} />
+            <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
+            <Route path="account-setting" element={<AccountSetting></AccountSetting>} />
+          </Route>
+
+          {/* <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>} /> */}
+          <Route path="/candidate-dashboard" element={<Dashboard />} >
+            <Route path="" element={<CandidateDashboard></CandidateDashboard>} />
+            <Route path="update-profile" element={<UpdateProfile></UpdateProfile>} />
+            <Route path="settings" element={<Settings></Settings>} />
+            <Route path="*" element={<NotFound></NotFound>} />
+          </Route>
+
+
+          <Route path="/job-description/:id" element={<PrivateRoute Component={JobDescription}></PrivateRoute>} />
+
           <Route path="*" element={<NotFound></NotFound>} />
         </Routes>
       </BrowserRouter>

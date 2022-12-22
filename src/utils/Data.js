@@ -159,12 +159,6 @@ export const Experience = [
     { id: 2, name: '2-3 years', value: '2-3' }
 ]
 
-export const Role = [
-    { id: 1, name: 'Frontend developer', value: 'frontend_developer' },
-    { id: 2, name: 'Backend developer', value: 'backend_developer' },
-    { id: 3, name: 'ML Engineer', value: 'ml_enginner' },
-    { id: 4, name: 'Python Developer', value: 'python_developer' }
-]
 
 export const aboutUS = [
     {
@@ -177,24 +171,27 @@ export const aboutUS = [
         id: 1,
         per: '30% ',
         description: 'Everything that can be necessary to create and manage new',
-        background: '#03ACE5',
-        color: '#ffffff'
+        background: '#543989',
+        color: '#FFFFFF'
     },
     {
         id: 2,
         per: '40% ',
         description: 'Everything that can be necessary to create and manage new',
-        background: '#BFFFAD',
+        background: '#543989',
+        color: "#FFFFFF"
     },
     {
         id: 3,
         per: '20% ',
         description: 'Everything that can be necessary to create and manage new',
-        background: '#FCC08C',
+        background: '#445578',
+        color: "#FFFFFF"
+
     }
 ]
 
-export const company_type = [
+export const CompanyType = [
     {
         id: 1,
         value: "funded_startup",
@@ -237,7 +234,7 @@ export const company_type = [
     }
 ]
 
-export const profile_type = [
+export const ProfileType = [
     {
         id: 1,
         value: 'business_development',
@@ -257,5 +254,310 @@ export const profile_type = [
         id: 4,
         value: 'operations',
         name: 'Operations'
+    }
+]
+
+
+export const Role = [
+    { id: 1, name: "Beautician", value: "beautician" },
+    { id: 2, name: "Bartender", value: "bartender" },
+    { id: 3, name: "Accounting", value: "accounting" },
+    { id: 4, name: "Tax", value: "tax" },
+    { id: 5, name: "Finance", value: "finance" },
+    { id: 6, name: "Cleaner/Washer", value: "cleaner_/_washer" },
+    { id: 7, name: "Welder", value: "welder" },
+    { id: 8, name: "Wearhouse", value: "wearhouse" },
+    { id: 9, name: "Hospital Nurse boy", value: "hostipal_nurse_boy" },
+    { id: 10, name: "Trainer (gym, musician , martial arts)", value: "trainer_(gym_,_musicain_,_martial_arts)" },
+    { id: 11, name: "Ticket clerk", value: "ticket_clerk" },
+    { id: 12, name: "Teacher / Tutor", value: "teacher_/_tutor" },
+    { id: 13, name: "Tailor", value: "tailor" },
+    { id: 14, name: "Musician orchestra", value: "musician_orchestra" },
+    { id: 15, name: "Metal Industry worker", value: "metal_industry_worker" },
+    { id: 16, name: "Textile Industry worker", value: "textile_industry_worker" },
+    { id: 17, name: "Service Engineer (Mobile, Laptop, display)", value: "service_engineer_(mobile,_laptop,_display)" },
+    { id: 18, name: "Flid Sales (door to door)", value: "fild_sales_(door_to_door)" },
+    { id: 19, name: "Showroom Sales(Garment, automobile)", value: "showroom_sales(garment,_automobile)" },
+    { id: 20, name: "Mechanic (Automobile, Ac, Refrigerator", value: "mechanic_(automobile,_ac,_refrigerator)" }
+]
+
+export const EmployerMenu = [
+    {
+        id: 1,
+        Menu: "WorkOutlineIcon",
+        MenuName: "Dashboard",
+        value: "dashboard",
+        url: ""
+
+    },
+
+    {
+        id: 2,
+        Menu: "WorkOutlineIcon",
+        MenuName: "Posted Jobs",
+        value: "posted_jobs",
+        url: "posted-jobs"
+
+    },
+    {
+        id: 3,
+        Menu: "WorkOutlineIcon",
+        MenuName: "Post a Job",
+        value: "post_a_job",
+        url: "post-a-job"
+
+    },
+    {
+        id: 4,
+        Menu: "WorkOutlineIcon",
+        MenuName: "Applied Candidates",
+        value: "applied_candidates",
+        url: ""
+
+    },
+    {
+        id: 5,
+        Menu: "WorkOutlineIcon",
+        MenuName: "Saved Candidates",
+        value: "saved_candidates",
+        url: ""
+
+    },
+    // {
+    //     id: 6,
+    //     Menu: "WorkOutlineIcon",
+    //     MenuName: "Subscription Plans",
+    //     value: "subscription_plans",
+    //     url: "subscription-plan"
+
+    // },
+
+    {
+        id: 5,
+        Menu: "WorkOutlineIcon",
+        MenuName: "Account Setting",
+        value: "account-setting",
+        url: "account-setting"
+
+    },
+    // {
+    //     id: 8,
+    //     Menu: "WorkOutlineIcon",
+    //     MenuName: "Change Password",
+    //     value: "change-password",
+    //     url: "change-password"
+
+    // }
+]
+
+export const CandidateMenu = [
+    {
+        id: 1,
+        MenuName: "Dashboard",
+        value: "dashboard",
+        url: "/"
+    },
+    {
+        id: 2,
+        MenuName: "Applied Jobs",
+        value: "applied_jobs"
+    },
+    {
+        id: 3,
+        MenuName: "Saved Jobs",
+        value: "saved_jobs"
+    }
+]
+
+export const Skills = [
+    { label: "Electrician", value: 'electrician' },
+    { label: "Machine operator (Manufacturing machine)", value: 'machine_operator_(manufacturing_machine)' },
+    { label: "Computer data operator", value: 'computer_data_operator' },
+    { label: "Broadband technician", value: 'broadband_technician' },
+    { label: "DTH Technician", value: 'dth_technician' },
+    { label: "Telecom", value: 'telecom' },
+    { label: "Wireless broadband technician", value: 'wireless_broadband_technician' },
+    { label: "Hypermarket/supermarket", value: 'hypermarket/supermarket' },
+    { label: "Courier service", value: 'courier_service' },
+    { label: "Delivery service", value: 'delivery_service' },
+    { label: "Security service", value: 'security_service' },
+    { label: "Cooking service", value: 'cooking_service' },
+    { label: "Driver Security (Heavy driver , Light driver)", value: 'driver_security_(heavy_driver_,_light_driver)' },
+    { label: "Office boy", value: 'office_boy' },
+    { label: "Textile manufacture worker", value: 'textile_manufacture_worker' },
+    { label: "Hairdresser (Makeup)", value: 'hairdresser_(makeup)' },
+    { label: "Massage specialist,beautician", value: 'massage_specialist,beautician' },
+    { label: "Housekeeper", value: 'housekeeper' },
+    { label: "Nursing skills (hospital grand staff)", value: 'nursing_skills_(hospital_grand_staff)' },
+    { label: "BPO Telecaller", value: 'bpo_tellcaller' },
+    { label: "Construction contractor", value: 'construction_contractor' },
+    { label: "Bookkeeping", value: 'bookkeeping' },
+    { label: "Tax , Finance", value: 'tax_,_finance' },
+    { label: "Animation", value: 'animation' }
+]
+
+export const JobFilter = [
+    {
+        id: 1,
+        value: "published",
+        name: "Published"
+    },
+    {
+        id: 2,
+        value: "unpublished",
+        name: "Unpublished"
+    },
+    {
+        id: 3,
+        value: "under_review",
+        name: "Under Review"
+    },
+    {
+        id: 4,
+        value: "rejected",
+        name: "Rejected"
+    }
+]
+
+export const reviews = [
+    {
+        id: 0,
+        reviews: "1 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        image: "./assets/profile.png"
+    },
+    {
+        id: 1,
+        reviews: "2 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        image: "./assets/profile.png"
+    },
+    {
+        id: 2,
+        reviews: "3 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        image: "./assets/profile.png"
+    },
+    {
+        id: 3,
+        reviews: "4 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        image: "./assets/profile.png"
+    },
+    {
+        id: 4,
+        reviews: "3 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        image: "./assets/profile.png"
+    },
+    {
+        id: 5,
+        reviews: "4 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        image: "./assets/profile.png"
+    }
+]
+
+export const CandidateLogoutMenu = [
+    {
+        id: 1,
+        Name: "Edit Profile",
+        value: "edit_profile",
+        url: ""
+    },
+    {
+        id: 2,
+        Name: "My Job",
+        value: "my_job",
+        url: ""
+
+    },
+    {
+        id: 3,
+        Name: "Personalize JobFeed",
+        value: "personalize_Jobfeed",
+        url: ""
+    },
+    {
+        id: 4,
+        Name: "Saved Jobs",
+        value: "saved_jobs",
+        url: ""
+    },
+    {
+        id: 5,
+        Name: "Applied Jobs",
+        value: "applied_jobs",
+        url: ""
+    },
+    {
+        id: 6,
+        Name: "Change Password",
+        value: "change_password",
+        url: "change-password"
+    },
+    {
+        id: 7,
+        Name: "Settings",
+        value: "settings",
+        url: ""
+    }
+
+]
+
+export const EmailNotifications = [
+    {
+        id: 1,
+        Name: "Daily New Jobs",
+        value: "daily_new_jobs"
+    },
+    {
+        id: 2,
+        Name: "Follow-up Used",
+        value: "follow_up_used"
+    },
+    {
+        id: 3,
+        Name: "Chat Notifications",
+        value: "chat_notifications"
+    },
+    {
+        id: 4,
+        Name: "Recruiters Viewing my Profile",
+        value: "recruiters_viewing_my_profile"
+    },
+    {
+        id: 5,
+        Name: "Applied Jobs",
+        value: "applied_jobs"
+    },
+    {
+        id: 6,
+        Name: "Pending Test",
+        value: "pending_test"
+    },
+    {
+        id: 7,
+        Name: "Educational - Learn & Grow",
+        value: "educational_learn_and_grow"
+    },
+    {
+        id: 8,
+        Name: "Jobs Relevant for me",
+        value: "jobs_relevant_for_me"
+    },
+    {
+        id: 9,
+        Name: "Follow-up Credited",
+        value: "follow_up_credited"
+    },
+    {
+        id: 10,
+        Name: "Promotinal",
+        value: "promotional"
+    },
+    {
+        id: 11,
+        Name: "Recruiter's Actions",
+        value: "recruiters_actions"
+    },
+    {
+        id: 12,
+        Name: "Unpublished Job Notification",
+        value: "unpublished_job_notification"
     }
 ]

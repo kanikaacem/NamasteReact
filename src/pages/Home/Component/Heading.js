@@ -1,6 +1,6 @@
-const Heading = ({text,color}) => {
+const Heading = ({ text, color }) => {
     return (<>
-        <h1 className="title" style={{color:color ? color : "#2B1E44" ,textAlign:"center",margin:'0px'}}> {text}</h1>
+        <h1 className="title" style={{ color: color ? color : "black", textAlign: "center", margin: '0px' }}> {text}</h1>
     </>)
 }
 

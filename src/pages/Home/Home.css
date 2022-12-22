@@ -10,25 +10,10 @@
     /* margin-bottom: 50px; */
 }
 
-.SearchBar {
-    background: #E2E2E2;
-    height: 60px;
-    width: 100%;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    padding: 0px 20px;
-    gap: 20px;
-    -webkit-box-shadow: 2px 2px 8px 0px rgb(148 134 90);
-    -moz-box-shadow: 2px 2px 8px 0px rgba(148, 134, 90, 1);
-    box-shadow: 2px 2px 8px 0px rgb(148 134 90);
-}
 
 .Search {
     border: none;
     outline: none;
-    width: 4;
-    width: 500px;
     height: 20px;
     font-size: 16px;
 }
@@ -43,69 +28,22 @@
     outline: none;
 }
 
-.SearchButton {
-    -webkit-box-shadow: 0.5px 0.5px 5px 4px rgba(158, 138, 195, 1) !important;
-    -moz-box-shadow: 0.5px 0.5px 5px 4px rgba(158, 138, 195, 1) !important;
-    box-shadow: 0.5px 0.5px 5px 4px rgba(158, 138, 195, 1) !important;
-
-}
 
 .css-1869usk-MuiFormControl-root {
     width: 200px;
 }
 
 /* Job Category */
-.JobCategories {
-    /* background: #F0DC82; */
-    /* padding: 50px; */
-    padding: 20px 50px;
-
-}
-
-.JobCategoriesWrapper {
-    /* min-height: 150px; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 15px;
-    background-color: white;
-    column-gap: 50px;
-    row-gap: 20px;
-    -webkit-box-shadow: 2px 2px 8px 0px rgb(148 134 90);
-    -moz-box-shadow: 2px 2px 8px 0px rgba(148, 134, 90, 1);
-    box-shadow: 2px 2px 8px 0px rgb(148 134 90);
-    border-radius: 20px;
-}
-
-.JobCategoriesItems {
-    /* min-height: 150px; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-
-    /* padding: 20px; */
-    background-color: white;
-    column-gap: 45px;
-    row-gap: 20px;
-}
 
 .CategoryItem {
-    /* max-width: 180px;  */
     text-align: center;
     cursor: pointer;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 2px;
-    /* padding: 20px 0px; */
+    gap: 5px;
     color: #000000;
-    /* -webkit-box-shadow: 2px 2px 8px 0px rgb(148 134 90);
-    -moz-box-shadow: 2px 2px 8px 0px rgba(148,134,90,1);
-    box-shadow: 2px 2px 8px 0px rgb(148 134 90); */
     border-radius: 10px;
     padding: 5px;
     border: 2px solid #E2E2E2;
@@ -125,8 +63,8 @@
 }
 
 .CategoryItem .CategoryLogo {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
 
 .recommendJobsWrapper {
@@ -134,47 +72,52 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #E7E7E7;
-    padding: 30px 0px;
+
+    /* position: relative; */
 
 }
 
 .jobItem {
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     position: relative;
     margin-top: 20px;
     border-radius: 10px;
 }
 
 .jobInformation {
+    padding: 10px 20px;
+    padding-left: 50px;
     width: 700px;
     background: white;
     border-radius: 20px;
-    padding: 20px 80px;
     margin-left: 70px;
     min-height: 70px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     cursor: pointer;
-    box-shadow: 0 9px 16px 0 rgb(0 106 194 / 20%);
+    /* box-shadow: 0px 4px 5px 5px rgba(218, 232, 250, 0.75); */
 
 }
 
 .jobInformation h3 {
     margin: 0px;
+    font-weight: 500;
+    font-size: 16px;
+
 }
 
 .jobLogo {
-    border-radius: 10px;
+    /* border-radius: 10px;
     position: absolute;
-    left: 8%;
-    width: 70px;
-    height: 70px;
-    background: white;
-    box-shadow: 0 9px 16px 0 rgb(0 106 194 / 20%);
+    left: 5%;
+    top: 14%;
+    width: 60px;
+    height: 60px;
+    background: white; */
+    /* box-shadow: 0 9px 16px 0 rgb(0 106 194 / 20%); */
 
 }
 
@@ -187,11 +130,11 @@
 }
 
 /*About us */
-.aboutUsWrapper {
+/* .aboutUsWrapper {
     padding: 30px;
     min-height: 400px;
     background: #E5521D;
-}
+} */
 
 .aboutUsInWrapper {
     display: flex;
@@ -201,8 +144,8 @@
     flex-wrap: wrap;
 }
 
-.aboutUsInWrapper .description {
-    width: 50%;
+.description {
+    min-width: 50%;
     padding: 50px 20px;
     line-height: 1.5;
     text-align: justify;
@@ -210,8 +153,8 @@
     color: #ffffff;
 }
 
-.aboutUsInWrapper .secDesc {
-    width: 30%;
+.secDesc {
+    width: 100%;
     padding: 10px;
     display: flex;
     flex-direction: row;
@@ -221,7 +164,7 @@
     justify-content: center;
 }
 
-.aboutUsInWrapper .secDesc .secDescItem {
+.secDesc .secDescItem {
     border-radius: 10px;
     width: 10px;
     min-width: 30%;
@@ -279,12 +222,12 @@
 }
 
 .filterWrapper {
-    padding: 20px 50px;
+    /* padding: 20px 50px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 20px;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
 }
 
 /* Why Job Yahan */
@@ -299,7 +242,7 @@
     background-position-y: bottom
 }
 
-.jobYahan .description {
+.jobYahan .job_description {
     width: 50%;
     padding: 50px 20px;
     font-size: 23px;
@@ -386,12 +329,12 @@
     display: flex;
     gap: 100px;
     flex-wrap: wrap;
-    background: #E5521D;
+    background: #FAFAFA;
     padding: 20px;
     justify-content: center;
     align-items: center;
     padding: 30px 0px;
-    height: 680px;
+    /* height: 680px; */
 }
 
 .reviewWrapper {
@@ -402,19 +345,66 @@
     min-height: 225px;
 }
 
-.borderDiv {
-    border: 2px solid #2B1E44;
-    position: absolute;
-    width: 100%;
-    /* height: 100px; */
-    border-radius: 10px;
-    height: 100%;
-    top: -14px;
-    right: 12px;
-    display: flex;
-    padding: 18px;
+.carousel .control-dots .dot {
+    background: #2B1E44;
+    width: 20px;
+    height: 20px;
 }
 
-.carousel-root {
-    margin: 30px 0px;
+.home-banner-section .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hbs-right-section-wrapper,
+.hbs-left-section-wrapper {
+    width: 50%;
+}
+
+.hbs-right-section {
+    max-width: 745px;
+    padding-left: 20px;
+    margin-left: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hbs-right-section .rs-title-small {
+    font-size: 20px;
+    font-weight: 500;
+    color: #17171d;
+    margin-bottom: 30px;
+}
+
+.hbs-right-section .rs-title-large {
+    font-size: 66px;
+    line-height: 72px;
+    font-weight: 500;
+    color: #17171d;
+    margin-bottom: 30px;
+}
+
+.hbs-right-section .rs-description {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.home-banner-section .gradient-text {
+    font-size: 150px;
+    line-height: 110px;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding-right: 200px;
+    background: -webkit-linear-gradient(top, rgba(192, 213, 240, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(to bottom, rgba(192, 213, 240, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
 }

@@ -1,13 +1,17 @@
-import SearchBar from "../../Component/SearchBar";
-import JobCategory from "./Component/JobCategory";
-import RecommendJobs from "./Component/RecommendJobs";
-import AboutUs from "./Component/AboutUs";
-import OurPartners from "./Component/OurPartners";
-import WhyJobYahan from "./Component/WhyJobYahan";
-import Reviews from "./Component/Reviews";
-import Filter from "../../Component/Filter";
+import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Navigate } from 'react-router-dom';
+
+/* Site Header */
+import Header from "../../ThemeComponent/Common/Header";
+
+import RecommendedJobs from "./Component/RecommendedJobs";
+import AboutUs from "./Component/AboutUs";
+import WhyJobYahan from "./Component/WhyJobYahan";
+import Reviews from "./Component/Reviews";
+import Filter from "../../ThemeComponent/Filter";
+import HomeSection from './Component/HomeSection';
+import Footer from "../../ThemeComponent/Common/Footer";
 
 import "./Home.css";
 
@@ -17,22 +21,23 @@ function Home() {
 
     return (<>
         {isLoggedIn == 'true' && user.type == 'employer' && <Navigate to="/employer-dashboard"></Navigate>}
-        {/* {isLoggedIn == 'true' && <Navigate to="/employer-dashboard"></Navigate>} */}
+        <Header />
+        <HomeSection />
 
-        <div className="homeFSec" style={{ background: "url('./assets/Background.png') no-repeat", backgroundPosition: 'bottom' }}>
-            <h1 style={{ textAlign: 'center', margin: '0 auto', color: '#2B1E44' }}>Accelerate your job search with premium services</h1>
-            <span style={{ textAlign: 'center', display: 'block', margin: '3px 0px', fontWeight: '500' }}>
-                Services to help you get hired, faster: from preparing your CV, getting recruiter attention, finding the right jobs, and more!
-            </span>
-            <SearchBar></SearchBar>
-            <JobCategory></JobCategory>
-        </div>
-        <Filter></Filter>
-        <RecommendJobs></RecommendJobs>
-        {/* <OurPartners></OurPartners> */}
-        <AboutUs></AboutUs>
-        <WhyJobYahan></WhyJobYahan>
-        <Reviews></Reviews>
+        <Box sx={{
+            padding: { lg: "20px 50px", md: "20px", xs: "20px" },
+            background: "#D9D9D9"
+
+        }}>
+            <Filter />
+        </Box>
+
+        <RecommendedJobs />
+        <AboutUs />
+        <WhyJobYahan />
+        <Reviews />
+        <Footer />
+
     </>)
 }
 export default Home;

@@ -21,6 +21,17 @@ nav {
   justify-content: space-between;
 }
 
+nav {
+  /* width: 70%;
+  position: sticky;
+  top: 0px;
+  background: white;
+  margin: 0 auto;
+  z-index: 348;
+  border-radius: 20px; */
+  /* box-shadow: 0px 0px 25px rgb(56 152 226 / 30%); */
+}
+
 .HeaderMenus {
   display: flex;
   gap: 10px;
@@ -50,10 +61,10 @@ nav {
 }
 
 /* Login Page */
-.LoginPage {
+/* .LoginPage {
   background: #FAFAFA;
   height: 100%;
-}
+} */
 
 .login-wrapper,
 .info-wrapper,
@@ -206,11 +217,7 @@ nav {
   width: 100% !important;
 }
 
-/* Errors for validation */
-.error {
-  color: #da534d;
-  font-size: 14px;
-}
+
 
 /*form Informatin */
 .form-information {
@@ -219,11 +226,11 @@ nav {
 }
 
 /* employer sign up page */
-.employer-register-div {
+/* .employer-register-div {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .employer-register-page-wrapper {
   padding: 2rem;
@@ -265,11 +272,13 @@ nav {
 
 .input-item input,
 textarea {
-  padding: 10px;
-  width: 93%;
-  border-radius: 10px;
+  /* padding: 10px; */
+  /* width: 93%; */
+  /* border-radius: 10px; */
   border: none;
-  background-color: #f2f4f8;
+  margin: 10px 0px;
+  font-size: 14px;
+  /* background-color: #f2f4f8; */
   outline: none;
 }
 
@@ -395,13 +404,13 @@ textarea {
   margin: 0 auto;
 }
 
-.css-1s2u09g-control {
+/* .css-1s2u09g-control {
   border: none !important;
   width: 97% !important;
   background: #f2f4f8 !important;
   border-radius: 10px !important;
   font-size: 13px !important;
-}
+} */
 
 .css-1pahdxg-control:hover {
   border: 2px solid #f2f4f8 !important;
@@ -422,29 +431,24 @@ textarea {
   font-size: 13px !important;
 }
 
-.rsw-editor {
-  width: 500px !important;
-  height: 300px;
-}
 
 /* Show Job Description */
-.jobDescriptionPage {
+/* .jobDescriptionPage {
   width: 100%;
-  /* height: 100%; */
-  /* position: fixed; */
+  
   position: absolute;
-  background: rgba(0, 0, 0, 0.5);
-  top: 0px;
+  
   right: 0px;
   align-items: center;
   display: flex;
-  justify-content: flex-end;
-  display: none;
+  justify-content: center;
   z-index: 335;
-}
+} */
 
 .jobDescriptionPage.active {
-  display: block;
+  /* display: block;
+  height: 100vh;
+  overflow: hidden; */
   /* visibility: visible; */
 
 }
@@ -453,13 +457,14 @@ textarea {
   padding: 40px;
   background: white;
   width: 40%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   border-radius: 16px 0px 0px 16px;
   display: flex;
   flex-direction: column;
   padding: 30px 50px;
   float: right;
   gap: 20px;
+  height: 100vh;
 }
 
 .jobDescriptionWrapper .items {
@@ -485,29 +490,40 @@ textarea {
 }
 
 /* Employer Dashboard */
-.employer-dashboard {
-  background: #FAFAFA;
-  padding: 20px;
+/* .employer-dashboard { */
+/* background: #FAFAFA; */
+/* padding: 20px;
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
-}
+  justify-content: center; */
+/* align-items: center; */
+/* } */
 
 .employer-left-Side {
-  padding: 2rem;
-  /* max-height: 60vh; */
-  /* min-height: 32rem; */
-  box-shadow: 0 9px 16px 0 rgb(0 106 194 / 20%);
-  background-color: white;
-  /* min-height: 60vh; */
-  width: 20%;
-  border-radius: 10px;
-  margin-top: 20px;
-  position: relative;
   height: fit-content;
+  width: 20%;
+  margin: 60px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
-.employerInformation {
+.employerProfile {
+  box-shadow: 0 9px 16px 0 rgb(0 106 194 / 20%);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.menus {
+  box-shadow: 0 9px 16px 0 rgb(0 106 194 / 20%);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.userInformation {
   display: flex;
   align-items: center;
   gap: 5%;
@@ -515,9 +531,12 @@ textarea {
 
 .employerInformation .name {
   font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  text-transform: capitalize;
 }
 
-.employer-left-Side .menus .menuItem {
+/* .employer-left-Side .menus .menuItem {
   margin: 20px 0px;
   cursor: pointer;
 }
@@ -527,19 +546,28 @@ textarea {
   color: white;
   padding: 10px;
   border-radius: 10px;
-}
+} */
 
-.LogoutButton {
-  border-radius: '10px';
-  background: '#2B1E44' !important;
-}
+/* .LogoutButton {
+  display: block;
+  margin: 0 auto;
+} */
 
-.LogoutButton {
+/* .LogoutButton {
   margin: 150px auto 0px auto !important;
   display: block !important;
-}
+} */
+
 
 /* Employee Dashboard */
+.menu.active {
+  /* color: #5bb8a4;
+  font-weight: 600; */
+  /* background: white;
+  border-radius: 10px;
+  width: 330px; */
+}
+
 .all-tab-information {
   display: flex;
   flex-direction: column;
@@ -548,3 +576,142 @@ textarea {
   align-items: center;
   justify-content: center;
 }
+
+.profileImage {
+  border-radius: 50%;
+  width: 100px;
+  position: absolute;
+  top: -80px;
+}
+
+/* Update Profile */
+.updateProfilePage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.AddExperienceEducation {
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.AddExperienceEducationWrapper {
+  width: 35%;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.EducationDiv {
+  padding: 10px;
+  /* background: grey; */
+  border-radius: 10px;
+  margin: 10px 0px;
+  color: white;
+  background: #2B1E44;
+}
+
+/* Category Div */
+.MainCategoryDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.CategoryColumn {
+  width: 300px;
+}
+
+.JobDescriptionModal {
+  display: none;
+}
+
+.JobDescriptionModal.active {
+  display: block;
+}
+
+#mui-component-select-role,
+#mui-component-select-experience,
+#mui-component-select-city,
+#mui-component-select-profile_type,
+#mui-component-select-company_type {
+  width: 100%;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+  padding: 10px 0px;
+  color: black;
+}
+
+#mui-component-select-role,
+#mui-component-select-experience,
+#mui-component-select-city::placeholder {
+  color: #8892A3;
+}
+
+#mui-component-select-role-error,
+#mui-component-select-experience-error,
+#mui-component-select-city-error {
+  width: 100%;
+  font-size: 14px;
+  border-bottom: 1px solid #d32f2f;
+  padding: 10px 0px;
+  color: #8892A3;
+}
+
+.carousel .thumbs-wrapper {
+  display: none !important;
+}
+
+/* Home Page Pagination */
+.css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background: #2B1E44 !important;
+  color: white;
+}
+
+/*Employer Dashboard account setting */
+.EmployeeMenuSelected,
+.AccountMenu,
+.SettingMenu,
+.CandidateMenuSelected {
+  /* color: #62459b; */
+  color: #445578;
+  font-weight: 600 !important;
+}
+
+/*Candidate Email Notification setting */
+/* input[type=checkbox] {
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 15px;
+  height: 12px;
+  position: relative;
+}
+
+input[type=checkbox]:after {
+  position: absolute;
+  width: 10px;
+  height: 15px;
+  top: 0;
+  content: " ";
+  background-color: #2B1E44;
+  color: #fff;
+  display: inline-block;
+  visibility: visible;
+  padding: 0px 3px;
+  border-radius: 3px;
+}
+
+input[type=checkbox]:checked:after {
+  content: "✓";
+  font-size: 12px;
+} */
