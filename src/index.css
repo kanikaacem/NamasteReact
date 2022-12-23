@@ -687,31 +687,13 @@ textarea {
   font-weight: 600 !important;
 }
 
-/*Candidate Email Notification setting */
-/* input[type=checkbox] {
-  margin-right: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  width: 15px;
-  height: 12px;
-  position: relative;
+#permanant_address,
+#current_location {
+  width: 100%;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  border-bottom: 1px solid #2B1E44;
 }
 
-input[type=checkbox]:after {
-  position: absolute;
-  width: 10px;
-  height: 15px;
-  top: 0;
-  content: " ";
-  background-color: #2B1E44;
-  color: #fff;
-  display: inline-block;
-  visibility: visible;
-  padding: 0px 3px;
-  border-radius: 3px;
+#date_of_birth {
+  border-bottom: "1px solid #2B1E44" !important;
 }
-
-input[type=checkbox]:checked:after {
-  content: "✓";
-  font-size: 12px;
-} */

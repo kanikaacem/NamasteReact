@@ -4,6 +4,7 @@ import { Box, Container, Stack, Typography, TextField, Button, Stepper, Step, St
 import { useState } from "react";
 
 import PersonalInformation from "../../ThemeComponent/ThemeForms/PersonalInformation";
+import ProfessionalDetail from "../../ThemeComponent/ThemeForms/ProfessionalDetail";
 const CandidateProfile = () => {
 
     function getSteps() {
@@ -25,14 +26,14 @@ const CandidateProfile = () => {
         }
     }
 
-    const isStepOptional = (step) => {
-        return step === 1;
-    };
+    // const isStepOptional = (step) => {
+    //     return step === 1;
+    // };
 
     const isStepSkipped = (step) => {
         return skipped.has(step);
     };
-    const [activeStep, setActiveStep] = useState(0);
+    const [activeStep, setActiveStep] = useState(1);
     const [skipped, setSkipped] = useState(new Set());
 
     const steps = getSteps();
@@ -45,9 +46,9 @@ const CandidateProfile = () => {
                         {steps.map((label, index) => {
                             const stepProps = {};
                             const labelProps = {};
-                            if (isStepOptional(index)) {
-                                labelProps.optional = <Typography variant="caption">Optional</Typography>;
-                            }
+                            // if (isStepOptional(index)) {
+                            //     labelProps.optional = <Typography variant="caption">Optional</Typography>;
+                            // }
                             if (isStepSkipped(index)) {
                                 stepProps.completed = false;
                             }
@@ -60,8 +61,9 @@ const CandidateProfile = () => {
                     </Stepper>
                 </Box>
 
-                <Box sx={{ padding: "30px" }}>
-                    {activeStep == 0 && <PersonalInformation />}
+                <Box >
+                    {activeStep == 0 && <PersonalInformation setActiveStep={setActiveStep} />}
+                    {activeStep == 1 && <ProfessionalDetail setActiveStep={setActiveStep} />}
                 </Box>
             </Container>
 

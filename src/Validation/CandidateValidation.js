@@ -4,6 +4,14 @@ export const candidateLoginValidationSchema = yup.object().shape({
     email_address: yup.string().required("Email Address is required").email("Please enter a valid email Address"),
     password: yup.string().required("Password is required")
 })
+
+//Change Email Address 
+export const NewEmailValidation = yup.object().shape({
+    email_address: yup.string().required("Email Address is required").email("Please enter a valid email Address"),
+
+})
+
+//Candidate Registration Step 1
 export const CandidateRegistrationSchema = yup.object().shape({
     // full_name: yup.string().required("Full Name is required"),
     email_id: yup.string().required("Email Id is required").email("Email Id should not valid"),
@@ -16,8 +24,25 @@ export const CandidateRegistrationSchema = yup.object().shape({
     // mobile_number: yup.string().required("Mobile Number is required").min(10),
     // work_status: yup.string().required("Work status is required")
 })
-//Change Email Address 
-export const NewEmailValidation = yup.object().shape({
-    email_address: yup.string().required("Email Address is required").email("Please enter a valid email Address"),
+
+//Candidate Registration Step 2
+export const PersonalRegistrationSchema = yup.object().shape({
+    full_name: yup.string().required("FullName is required"),
+    date_of_birth: yup.string().required("Date of Birth is required"),
+    permanant_address: yup.string().required("Permanant address is required"),
+    current_location: yup.string().required("Current Location is required"),
+    email_id: yup.string().required("Email Id is required").email("Email Id is not valid"),
+    phone_number: yup.number().min(10).required("Phone Number is required"),
+})
+
+//Candidate Registration Step 3
+export const ProfessionalDetailSchema = yup.object().shape({
+    institue_name: yup.string().required("Institue Name is required"),
+    qualification: yup.string().required("Qualification is required"),
+    course_type: yup.string().required("Course Type is required"),
+    starting_year: yup.string().required("Staring Year is required"),
+    ending_year: yup.string().required("Ending Year is required"),
+    percentage: yup.string().required("Percentage is required"),
+
 
 })
