@@ -81,7 +81,7 @@ const EmployerDashboard = () => {
             });
             if (data.ok) {
                 data = await data.json();
-                // console.log(data)
+                console.log(data)
                 setData(data.data)
 
             }

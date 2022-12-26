@@ -1,36 +1,55 @@
 import { Box, Container, Stack, Typography, Snackbar, Alert, styled } from "@mui/material";
 
+import { JobCategories } from "../../utils/Data";
 import ButtonType2 from "../../ThemeComponent/Common/ButtonType2";
-const CandidateJobPerferences = () => {
 
+import { useState } from "react";
+import { gridColumnsTotalWidthSelector } from "@mui/x-data-grid";
+const CandidateJobPerferences = () => {
+    const [perference, setPerference] = useState(false);
     const PerferencesArray = [];
     const addPerferences = (event) => {
-        let perferencesElement = event.target;
-        perferencesElement.classList.remove("perferences")
-        perferencesElement.classList.add("perferencesactive");
-        PerferencesArray.push(perferencesElement.innerHTML);
+        let perferencesElement = event.currentTarget;
+        // console.log(perferencesElement)
+        if (perferencesElement.classList.contains('perferences')) {
+            perferencesElement.classList.remove("perferences")
+            perferencesElement.classList.add("perferencesactive");
+        } else {
+            perferencesElement.classList.add("perferences")
+            perferencesElement.classList.remove("perferencesactive");
+        }
+        // PerferencesArray.push(perferencesElement.innerHTML);
     }
-    const perferences = {
-        border: " 1px solid #2B1E44",
-        borderRadius: "10px",
-        padding: "10px",
-        cursor: "pointer"
+    const SubmitPerferences = async () => {
+        // document.querySelectorAll(".perferencesactive").forEach((item) => 
+        // );
+        // console.log(PerferencesArray)
+        setPerference(true);
     }
-    const perferencesactive = {
-        border: " 1px solid #2B1E44",
-        borderRadius: "10px",
-        padding: "10px",
-        cursor: "pointer",
-        background: "#2B1E44",
-        color: "#FFFFFF"
-    }
+
+
     return (<>
         <Box className="JobPerferencesPage"
             sx={{
                 minHeight: "100vh",
                 background: "#FFFFFF"
-                // background: "#e8f0f9",
             }}>
+
+            <Snackbar
+                open={perference}
+                autoHideDuration={6000} onClose={
+                    () => setPerference(false)
+                }
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            >
+                <Alert onClose={
+                    () => setPerference(false)
+                } severity="success" sx={{ width: '100%' }}>
+                    Your Perferences is successfully submitted.
+                </Alert>
+
+            </Snackbar>
+
             <Box sx={{
                 height: "100px",
                 background: "#445578",
@@ -62,80 +81,22 @@ const CandidateJobPerferences = () => {
                 padding: "20px 50px"
 
             }}>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-
-
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-
-
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-
-
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-
-
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
-
-
-
+                {JobCategories.map((item) => {
+                    return (<>
+                        <Stack direction="row" gap={1} className="JOBPERFERENCES" key={item.id} onClick={addPerferences} alignItems="center" justifyContent="center">
+                            <Box sx={{ width: "25px" }}>
+                                <img src={item.logo} alt={item.title} width="100%" />
+                            </Box>
+                            <Box>
+                                {item.title}
+                            </Box>
+                        </Stack>
+                    </>)
+                })}
 
 
             </Box>
-            <Box sx={{ display: "flex", justifyContent: "center" }}><ButtonType2 ClickEvent={() => console.log(PerferencesArray)} ButtonText="Save Perferences" /></Box>
+            <Box sx={{ display: "flex", justifyContent: "center" }}><ButtonType2 ClickEvent={SubmitPerferences} ButtonText="Save Perferences" /></Box>
 
 
         </Box>

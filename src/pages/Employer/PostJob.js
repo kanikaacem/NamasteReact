@@ -83,7 +83,7 @@ const PostJob = () => {
 
 
     return (<>
-        <Typography component="div" sx={{ fontWeight: "600", fontSize: "30px", padding: "30px" }}>
+        <Typography component="div" sx={{ fontWeight: "600", fontSize: "30px", padding: "20px 10px" }}>
             Post Job
         </Typography>
         <Snackbar
@@ -102,7 +102,7 @@ const PostJob = () => {
             padding: "27px 40px 20px 35px",
             background: "#FFFFFF",
             width: "50%",
-            margin: "20px auto",
+            margin: "0px auto",
             borderTop: "4px solid #2B1E44"
         }}>
             <Typography component="div" sx={{ fontWeight: "600" }}>

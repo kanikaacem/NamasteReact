@@ -204,7 +204,7 @@ const JobDescription = () => {
                             fontSize: "20px",
                         }}>
                             Posted on :- <Moment format="DD/MM/YYYY">
-                                {data && data.createdAt}
+                                {data && data.createdat}
                             </Moment>
                         </Typography>
 
