@@ -64,7 +64,7 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                 onSubmit={handleSubmit}
             >
                 {({ errors, touched, values, setFieldValue }) => (
-                    <Form >
+                    <Form className="EmailSignupForm">
 
                         <Box className="input-item">
                             <ThemeLabel LableFor="email_address" LableText="Email Address" />

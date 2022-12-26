@@ -7,6 +7,8 @@ import FileBase64 from 'react-file-base64';
 import { useSelector } from 'react-redux';
 
 import { Link } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
+
 import { LoginSocialGoogle } from 'reactjs-social-login';
 
 import { CandidateRegistrationSchema } from "../../Validation/CandidateValidation";
@@ -16,28 +18,14 @@ import Error from '../../ThemeComponent/Common/Error';
 import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
 import ButtonType2 from "../../ThemeComponent/Common/ButtonType2";
 
+import { useDispatch } from "react-redux";
 // const CLIENT_ID = "346122009616-5gsdqla59hflt7sg5f8n38valqs6p1q8.apps.googleusercontent.com";
 
 const CandidateRegistration = () => {
     const api_url = useSelector(state => state.api_url);
+    const CandidateRegistration = useSelector(state => state.CandidateRegistration);
 
-    // const [file, setFile] = useState("");
-    // const [startDate, setStartDate] = useState("");
-    // const [formSubmitted, setformSubmitted] = useState("");
-    // const [profileImage, setprofileImage] = useState("");
-    // const [fullNameError, setfullNameError] = useState("");
-
-    // const [profileImageError, setprofileImageError] = useState("");
-
-    // const [emailIdError, setemailIdError] = useState("");
-    // const [passwordError, setpasswordError] = useState("");
-    // const [MobileNumberError, setMobileNumberError] = useState("");
-    // const [permanantAddressError, setpermanantAddressError] = useState("");
-    // const [currentAddressError, setcurrentAddressError] = useState("");
-    // const [dobError, setdobError] = useState("");
-    // const [matrialStatusError, setmatrialStatusError] = useState("");
-    // const [genderError, setgenderError] = useState("");
-
+    const dispatch = useDispatch();
     const defaultValue = {
         email_id: "",
         password: "",
@@ -173,29 +161,27 @@ const CandidateRegistration = () => {
             email: values.email_id,
             password: values.password
         }
-        window.location.href = "http://localhost:3000/profile";
         console.log(CandidateLoginForm);
-        // let response = await fetch(api_url + "/api/employer/loginemployer", {
-        //     method: "POST",
-        //     headers: {
-        //         'Access-Control-Allow-Origin': '*',
-        //         'Content-Type': 'application/json; charset=UTF-8'
-        //     },
-        //     body: JSON.stringify(CandidateLoginForm)
-        // })
+        let response = await fetch(api_url + "/api/users/saveusernameandpassword", {
+            method: "POST",
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json; charset=UTF-8'
+            },
+            body: JSON.stringify(CandidateLoginForm)
+        })
 
-        // if (response.ok) {
-        //     response = await response.json();
-        //     if (response.status == '1') {
-        //         dispatch({ type: 'LOGIN', payload: JSON.stringify(response.user) });
-        //     }
-        //     if (response.status == '0') {
-        //         setFieldError("password", "Invalid Credentials")
-        //     }
-
-        // }
+        if (response.ok) {
+            response = await response.json();
+            if (response.status == '1') {
+                dispatch({ type: 'USER_REGISTRATION', payload: JSON.stringify(response) });
+                // window.location.href = "http://localhost:3000/profile";
+            }
+        }
     }
     return (<>
+        {CandidateRegistration == true && <Navigate to="/profile"></Navigate>}
+
         <Box className="CandidateRegistrationPage" >
 
             {

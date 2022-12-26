@@ -4,7 +4,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 import { useState, useEffect } from "react";
 
-import { Link, Navigate } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
@@ -17,6 +17,7 @@ import JobComponent from "../../ThemeComponent/JobComponent";
 const CandidateDashboard = () => {
 
     const api_url = useSelector(state => state.api_url);
+    const user = useOutletContext();
 
     const CustomizeImage = styled(Box)({
         width: "500px",
@@ -130,10 +131,10 @@ const CandidateDashboard = () => {
 
                                     <Box>
                                         <Typography component="h3" sx={{ fontSize: "20px", fontWeight: "600", color: "#2B1E44" }}>
-                                            User Name
+                                            {user.employername ? user.employername : user.fullname}
                                         </Typography>
                                         <Typography component="h3" sx={{ fontSize: "14px", color: "#2B1E44" }}>
-                                            user@gmail.com
+                                            {user.email}
                                         </Typography>
                                     </Box>
 

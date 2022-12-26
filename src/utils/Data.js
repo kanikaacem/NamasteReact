@@ -455,46 +455,52 @@ export const reviews = [
 export const CandidateLogoutMenu = [
     {
         id: 1,
+        Name: "My Profile",
+        value: "my_profile",
+        url: "candidate-profile"
+    },
+    {
+        id: 2,
         Name: "Edit Profile",
         value: "edit_profile",
         url: ""
     },
     {
-        id: 2,
+        id: 3,
         Name: "My Job",
         value: "my_job",
         url: ""
 
     },
     {
-        id: 3,
+        id: 4,
         Name: "Personalize JobFeed",
         value: "personalize_Jobfeed",
         url: ""
     },
     {
-        id: 4,
+        id: 5,
         Name: "Saved Jobs",
         value: "saved_jobs",
         url: ""
     },
     {
-        id: 5,
+        id: 6,
         Name: "Applied Jobs",
         value: "applied_jobs",
         url: ""
     },
     {
-        id: 6,
+        id: 7,
         Name: "Change Password",
         value: "change_password",
         url: "change-password"
     },
     {
-        id: 7,
+        id: 8,
         Name: "Settings",
-        value: "settings",
-        url: ""
+        value: "",
+        url: "settings"
     }
 
 ]

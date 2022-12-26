@@ -1,3 +1,4 @@
+import { yearPickerClasses } from "@mui/x-date-pickers";
 import * as yup from "yup";
 //Employer Login Validation
 export const candidateLoginValidationSchema = yup.object().shape({
@@ -31,8 +32,9 @@ export const PersonalRegistrationSchema = yup.object().shape({
     date_of_birth: yup.string().required("Date of Birth is required"),
     permanant_address: yup.string().required("Permanant address is required"),
     current_location: yup.string().required("Current Location is required"),
-    email_id: yup.string().required("Email Id is required").email("Email Id is not valid"),
     phone_number: yup.number().min(10).required("Phone Number is required"),
+    marital_status: yup.string().required("Martial Status is required"),
+    gender: yup.string().required("Gender is required")
 })
 
 //Candidate Registration Step 3
@@ -45,4 +47,13 @@ export const ProfessionalDetailSchema = yup.object().shape({
     percentage: yup.string().required("Percentage is required"),
 
 
+})
+
+//Candidate WorkHistory Step 4
+export const WorkHistorySchema = yup.object().shape({
+    company_name: yup.string().required("Company Name is required"),
+    designation: yup.string().required("Designation is required"),
+    department: yup.string().required("Department is required"),
+    starting_year: yup.string().required("Staring Year is required"),
+    ending_year: yup.string().required("Ending Year is required"),
 })

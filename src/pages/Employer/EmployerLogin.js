@@ -43,6 +43,7 @@ const EmployerLogin = () => {
 
         if (response.ok) {
             response = await response.json();
+            console.log(response);
             if (response.status == '1') {
                 dispatch({ type: 'LOGIN', payload: JSON.stringify(response.user) });
             }
@@ -110,7 +111,7 @@ const EmployerLogin = () => {
                                     onSubmit={handleSubmit}
                                 >
                                     {({ errors, touched }) => (
-                                        <Form >
+                                        <Form className="EmployerLoginForm">
 
                                             <Box className="input-item">
                                                 <ThemeLabel LableFor="email_address" LableText="Email Address" />

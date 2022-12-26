@@ -148,7 +148,7 @@ const Dashboard = () => {
                         <Box direction="row" sx={{ width: "75%" }}>
                             <List sx={{ display: "flex" }}>
 
-                                {EmployerMenu.map((item) => {
+                                {user.type == "employer" && EmployerMenu.map((item) => {
                                     return (<>
                                         <ListItem sx={{ width: "fit-content" }}
                                             button key={item.id} to={item.url} component={NavLink}
@@ -160,7 +160,7 @@ const Dashboard = () => {
                                     </>)
                                 })}
 
-                                {/* {CandidateMenu.map((item) => {
+                                {user.type == "candidate" && CandidateMenu.map((item) => {
                                     return (<>
                                         <ListItem sx={{ width: "fit-content" }}
                                             button key={item.id} to={item.url} component={NavLink}
@@ -170,7 +170,7 @@ const Dashboard = () => {
                                             <ListItemText className={CandidateMenuSelected === item.value && "CandidateMenuSelected"} primary={item.MenuName} />
                                         </ListItem>
                                     </>)
-                                })} */}
+                                })}
 
 
 
@@ -201,7 +201,7 @@ const Dashboard = () => {
                             }}>
                                 <Box sx={{ background: "#1f8f75", padding: "20px", height: "70px" }}>
                                     <Typography component="div" sx={{ fontSize: "20px", color: "#FFFFFF" }}>
-                                        {user.fullname}
+                                        {user.employername ? user.employername : user.fullname}
                                     </Typography>
                                     <Typography component="div" sx={{ fontSize: "16px", color: "#FFFFFF" }}>
                                         {user.email}
@@ -218,52 +218,61 @@ const Dashboard = () => {
                                         {user && user.lastlogin}
                                     </Moment>
                                 </Box>
-                                <Stack gap={2} direction="column" sx={{ background: "#FFFFFF", padding: "20px" }}>
-                                    <Typography component="div" sx={{ fontSize: "14px" }}>
-                                        Basic Postings : Unlimited
-                                    </Typography>
 
-                                    <Typography component="div" sx={{ fontSize: "14px" }}>
-                                        Premium Posting : 0 credits
-                                    </Typography>
 
-                                    <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => window.location.href = 'http://localhost:3000/employer-dashboard/account-setting'}>
-                                        <PersonIcon />
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Account Setting
-                                        </Typography>
-                                    </Stack>
+                                {
+                                    user.type == "employer" && (<>
+                                        <Stack gap={2} direction="column" sx={{ background: "#FFFFFF", padding: "20px" }}>
+                                            <Typography component="div" sx={{ fontSize: "14px" }}>
+                                                Basic Postings : Unlimited
+                                            </Typography>
 
-                                    <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => dispatch({ type: "LOGOUT" })}>
-                                        <LogoutIcon />
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Logout
-                                        </Typography>
-                                    </Stack>
-                                </Stack>
-                                {/* <Box sx={{ background: "#FFFFFF", padding: "20px" }}>
-                                    <List sx={{ display: "flex", flexDirection: "column" }}>
-                                        {CandidateLogoutMenu.map((item) => {
-                                            return (<>
-                                                <ListItem sx={{ width: "fit-content" }}
-                                                    button key={item.id} to={item.url} component={NavLink}
-                                                    className="menu"
-                                                    id={item.id}
-                                                    onClick={() => { }} >
-                                                    <ListItemText primary={item.Name} />
-                                                </ListItem>
-                                            </>)
-                                        })}
-                                    </List>
+                                            <Typography component="div" sx={{ fontSize: "14px" }}>
+                                                Premium Posting : 0 credits
+                                            </Typography>
 
-                                    <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => dispatch({ type: "LOGOUT" })}>
-                                        <LogoutIcon />
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Logout
-                                        </Typography>
-                                    </Stack>
-                                </Box> */}
+                                            <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => window.location.href = 'http://localhost:3000/employer-dashboard/account-setting'}>
+                                                <PersonIcon />
+                                                <Typography component="div" sx={{ fontSize: "14px" }}>
+                                                    Account Setting
+                                                </Typography>
+                                            </Stack>
 
+                                            <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => dispatch({ type: "LOGOUT" })}>
+                                                <LogoutIcon />
+                                                <Typography component="div" sx={{ fontSize: "14px" }}>
+                                                    Logout
+                                                </Typography>
+                                            </Stack>
+                                        </Stack></>)
+                                }
+
+                                {
+                                    user.type == "candidate" && (<>
+                                        <Box sx={{ background: "#FFFFFF", padding: "20px", height: "300px", overflow: "scroll" }}>
+                                            <List sx={{ display: "flex", flexDirection: "column" }}>
+                                                {CandidateLogoutMenu.map((item) => {
+                                                    return (<>
+                                                        <ListItem sx={{ width: "100%" }}
+                                                            button key={item.id} to={item.url} component={NavLink}
+                                                            className="menu"
+                                                            id={item.id}
+                                                            onClick={() => { }} >
+                                                            <ListItemText primary={item.Name} />
+                                                        </ListItem>
+                                                    </>)
+                                                })}
+                                            </List>
+
+                                            <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => dispatch({ type: "LOGOUT" })}>
+                                                <LogoutIcon />
+                                                <Typography component="div" sx={{ fontSize: "14px" }}>
+                                                    Logout
+                                                </Typography>
+                                            </Stack>
+                                        </Box>
+                                    </>)
+                                }
 
                             </Box>
                         </>

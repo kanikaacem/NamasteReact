@@ -51,7 +51,7 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
             onSubmit={handleSubmit}
         >
             {({ errors, touched, values, setFieldValue }) => (
-                <Form >
+                <Form className="PasswordGenerationForm" >
 
                     <Box className="input-item">
                         <ThemeLabel LableFor="password" LableText="Password" />

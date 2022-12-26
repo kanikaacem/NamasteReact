@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
+/*Email Verification Page*/
+import EmployerVerficationPage from './Pages/Common/EmailVerficationPage';
+
 /*Employer Component*/
 import EmployerRegister from './Pages/Employer/EmployerRegister';
 import EmployerLogin from "./Pages/Employer/EmployerLogin";
@@ -18,6 +21,8 @@ import CandidateDashboard from "./Pages/Candidate/CandidateDashboard";
 import CandidateProfile from "./Pages/Candidate/CandidateProfile";
 import UpdateProfile from "./Pages/Candidate/UpdateProfile";
 import Settings from './Pages/Candidate/Settings';
+import Profile from "./Pages/Candidate/Profile";
+import CandidateJobPerferences from "./Pages/Candidate/CandidateJobPerferences";
 
 /*Website Page*/
 import Home from "./Pages/Home/Home";
@@ -35,6 +40,8 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home></Home>} />
 
+          <Route path="/verificationpage/:id" element={<EmployerVerficationPage />} />
+
           <Route path="/employer-register" element={<EmployerRegister></EmployerRegister>} />
           <Route path="/employer-login" element={<EmployerLogin></EmployerLogin>} />
 
@@ -51,9 +58,11 @@ function App() {
             <Route path="account-setting" element={<AccountSetting></AccountSetting>} />
           </Route>
 
-          {/* <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>} /> */}
-          <Route path="/candidate-dashboard" element={<Dashboard />} >
+          <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
+            {/* <Route path="/candidate-dashboard" element={<Dashboard />} > */}
             <Route path="" element={<CandidateDashboard></CandidateDashboard>} />
+            <Route path="perferences" element={<CandidateJobPerferences></CandidateJobPerferences>} />
+            <Route path="candidate-profile" element={<Profile></Profile>}></Route>
             <Route path="update-profile" element={<UpdateProfile></UpdateProfile>} />
             <Route path="settings" element={<Settings></Settings>} />
             <Route path="*" element={<NotFound></NotFound>} />

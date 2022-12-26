@@ -10,7 +10,7 @@ import ButtonType1 from "../Common/ButtonType1";
 
 import { useState } from "react";
 
-const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm }) => {
+const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNumber }) => {
     const [sendOtp, setSendOtp] = useState(false);
 
     const handleClose = (event) => {
@@ -36,6 +36,7 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm }) => {
         otp: ""
     }
     const handleSubmit1 = async (values, { setFieldError }) => {
+        setMobileNumber(values.mobile_number);
         setSendOtp(true);
     }
     const handleSubmit2 = async (values, { setFieldError }) => {

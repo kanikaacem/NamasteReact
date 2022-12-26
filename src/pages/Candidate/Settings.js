@@ -16,10 +16,10 @@ import PrivacySetting from "./PrivacySetting";
 
 import { useState } from "react";
 const Settings = () => {
-    const [currentMenu, setCurrentMenu] = useState("privacy");
+    const [currentMenu, setCurrentMenu] = useState("email_notification");
 
     return (<>
-        <Box sx={{ height: "150px", background: "#445578", margin: "30px" }}>
+        <Box sx={{ height: "150px", background: "#445578", margin: "0px 30px" }}>
             <Stack direction="row" alignItems="center">
                 {/* <Stack sx={{ width: "15%", height: "150px", background: "green" }}>
                     <img src={window.location.origin + "/assets/Setting.png"} height="100%" width="100%" alt="Setting" ></img>

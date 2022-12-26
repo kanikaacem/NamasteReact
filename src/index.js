@@ -11,13 +11,16 @@ const initialState = {
     "id" : 1,
     "title" : "Mobile Applications"
   },
-  api_url: 'http://192.168.1.6:8000',
+  // api_url: 'http://192.168.1.6:8000',
   // api_url : 'http://192.168.1.32:8000',
   // api_url: 'http://192.168.1.16:8000',
+  api_url:'http://192.168.1.3:8000',
   showProfile : false,
   EmployeeMenuSelected : "dashboard",
   CandidateMenuSelected : "dashboard",
-  activeJob : ''
+  activeJob : '',
+  candidateInfo: '',
+  CandidateRegistration:false
 };
 const reducer = (state, action) =>{
   switch(action.type){
@@ -50,6 +53,10 @@ const reducer = (state, action) =>{
     case "JOB_DESCRIPTION":
       let job_id = action.payload;
       return {...initialState, isLoggedIn:localStorage.getItem("isLoggedIn"),activeJob:job_id}
+
+    case "USER_REGISTRATION":
+      let candidateInfo = action.payload;
+      return {...initialState,candidateInfo:candidateInfo,CandidateRegistration:true}
     default:
       return state;
   }
@@ -226,3 +233,4 @@ root.render(
 //https://www.npmjs.com/package/react-time-ago
 //https://www.npmjs.com/package/@ramonak/react-progress-bar
 //https://www.npmjs.com/package/react-translate
+//https://express.adobe.com/tools/remove-background

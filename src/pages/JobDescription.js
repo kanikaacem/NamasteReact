@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography, Snackbar, Alert } from "@mui/material";
 import { useParams } from "react-router-dom";
 import Moment from 'react-moment';
 import { useEffect, useState } from "react";
@@ -12,9 +12,13 @@ const JobDescription = () => {
     const user = localStorage.user && JSON.parse(localStorage.user);
     const [data, setdata] = useState("");
     const [company, setcompany] = useState("");
-    const [savedJobs, setsavedJobs] = useState("");
-    const [appliedJobs, setappliedJobs] = useState("");
+
+    const [savedJobs, setsavedJobs] = useState(false);
+    const [appliedJobs, setappliedJobs] = useState(false);
+    const [unsavedJobs, setunsavedJobs] = useState(false);
+
     const api_url = useSelector(state => state.api_url);
+
     const JobAction = async (jobId, jobAction) => {
         let url = "";
         if (jobAction == "apply") url = api_url + "/api/job/applyforjob";
@@ -29,15 +33,18 @@ const JobDescription = () => {
             },
             body: JSON.stringify({
                 userid: user._id,
-                jobsid: jobId
+                jobid: jobId
 
             }),
         })
         if (response.ok) {
             response = await response.json();
-            // window.location.reload();
-            // console.log(response);
-            window.location.href = "/";
+            console.log(response);
+            if (jobAction == "apply") setappliedJobs(true);
+            if (jobAction == "save") setsavedJobs(true);
+            if (jobAction == "unsave") setunsavedJobs(true);
+            // setsavedJobs(false);
+            // setappliedJobs(false);
 
         }
 
@@ -63,31 +70,69 @@ const JobDescription = () => {
             }
         }
 
-        const getSavedAppliedJobs = async () => {
-            let response = await fetch(api_url + "/api/users/getuserbyid", {
-                method: "POST",
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-Type': 'application/json; charset=UTF-8'
-                },
-                body: JSON.stringify({
-                    userid: user._id
+        // const getSavedAppliedJobs = async () => {
+        //     let response = await fetch(api_url + "/api/users/getuserbyid", {
+        //         method: "POST",
+        //         headers: {
+        //             'Access-Control-Allow-Origin': '*',
+        //             'Content-Type': 'application/json; charset=UTF-8'
+        //         },
+        //         body: JSON.stringify({
+        //             userid: user._id
 
-                }),
-            })
-            if (response.ok) {
-                response = await response.json();
-                console.log(response);
-            }
-        }
+        //         }),
+        //     })
+        //     if (response.ok) {
+        //         response = await response.json();
+        //         console.log(response);
+        //     }
+        // }
         getJobDescription();
-        getSavedAppliedJobs();
+        // getSavedAppliedJobs();
 
 
 
     }, []);
 
+    const handleClose = (event) => {
+        setsavedJobs(false);
+        setappliedJobs(false);
+    };
+
     return (<>
+        <Snackbar
+            open={savedJobs}
+            autoHideDuration={6000} onClose={handleClose}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        >
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                You successfully saved  this Job.
+            </Alert>
+
+        </Snackbar>
+        <Snackbar
+            open={appliedJobs}
+            autoHideDuration={6000} onClose={handleClose}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        >
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                You successfully Applied for this Job.
+            </Alert>
+
+        </Snackbar>
+
+        <Snackbar
+            open={unsavedJobs}
+            autoHideDuration={6000} onClose={handleClose}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        >
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                You successfully Unsaved this Job.
+            </Alert>
+
+        </Snackbar>
+
+
         <Box
             className="jobDescriptionPage"
             id={company.id}
@@ -194,10 +239,12 @@ const JobDescription = () => {
                                     <Box>{parse(data && data.description)}</Box>
                                 </Box>
                             </Box>
-                            {/* <Stack direction="row" gap={3} >
-                                <ButtonType2 ButtonText="Apply Now" />
-                                <ButtonType2 ButtonText="Save Job" />
-                            </Stack> */}
+                            {user && user.type == "candidate" && <>
+                                <Stack direction="row" gap={3} >
+                                    <ButtonType2 ClickEvent={() => JobAction(id, "apply")} ButtonText="Apply Now" />
+                                    <ButtonType2 ClickEvent={() => JobAction(id, "save")} ButtonText="Save Job" />
+                                </Stack>
+                            </>}
                         </Box>
                     </Box>
                     {/* <Box sx={{ width: "30%", padding: "30px 0px" }}>

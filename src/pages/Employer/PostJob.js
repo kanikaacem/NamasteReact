@@ -74,7 +74,7 @@ const PostJob = () => {
                 resetForm();
                 setCity(" ");
                 setRole(" ");
-                selectedOptions(" ");
+                setSelectedOptions([]);
             }
 
         }

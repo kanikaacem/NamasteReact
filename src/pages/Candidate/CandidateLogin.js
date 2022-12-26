@@ -28,7 +28,7 @@ const CandidateLogin = () => {
             email: values.email_address,
             password: values.password
         }
-        let response = await fetch(api_url + "/api/employer/loginemployer", {
+        let response = await fetch(api_url + "/api/users/login", {
             method: "POST",
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -39,8 +39,9 @@ const CandidateLogin = () => {
 
         if (response.ok) {
             response = await response.json();
+            // console.log(response);
             if (response.status == '1') {
-                dispatch({ type: 'LOGIN', payload: JSON.stringify(response.user) });
+                dispatch({ type: 'LOGIN', payload: JSON.stringify(response.data) });
             }
             if (response.status == '0') {
                 setFieldError("password", "Invalid Credentials")

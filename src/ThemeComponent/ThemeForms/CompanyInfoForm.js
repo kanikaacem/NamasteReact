@@ -10,18 +10,24 @@ import ButtonType1 from "../Common/ButtonType1";
 import ButtonType2 from "../Common/ButtonType2";
 
 import { useState, useRef } from "react";
+import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-const CompanyInfoForm = ({ email, userId }) => {
+const CompanyInfoForm = ({ email, userId, mobile_number }) => {
+    const isLoggedIn = useSelector(state => state.isLoggedIn);
     const api_url = useSelector(state => state.api_url);
+    const dispatch = useDispatch();
 
     const companyImageRef = useRef();
     const companyGSTRef = useRef();
     const companyPanRef = useRef();
 
-    const [companyImage, setCompanyImage] = useState([]);
-    const [companyGST, setCompanyGST] = useState([]);
-    const [companyPan, setCompanyPan] = useState([]);
+    const [companyLogoImage, setCompanyLogoImage] = useState();
+    const [companyGST, setCompanyGST] = useState();
+    const [companyPan, setCompanyPan] = useState();
+
+    const [companyLogoError, setcompanyLogoError] = useState("");
+
     const [city, setCity] = useState(" ");
     const [profileType, setProfileType] = useState(" ");
     const [companyType, setCompanyType] = useState(" ");
@@ -45,72 +51,87 @@ const CompanyInfoForm = ({ email, userId }) => {
 
     const uploadCompanyLogo = async (event) => {
         let file = event.target.files[0];
+        let file_size = file.size;
+        // setCompanyLogoImage(file);
+        // console.log(companyLogoImage);
         var output = document.getElementById('companyLogo');
         output.src = URL.createObjectURL(event.target.files[0]);
 
-        let data = new FormData();
-        let logo = document.getElementById("upload_company_logo").value;
-        console.log(logo);
-        data = {
-            userid: "639973d6b289e3db5a6fbe69",
-            imagetype: "comlogo",
-            image: logo
-        }
-        let response = await fetch("http://192.168.1.6:8000/api/employer/updateImage", {
-            method: "POST",
-            body: data
-        })
-        if (response.ok) {
-            response = await response.json();
-            console.log(response);
-        }
-        // console.log(companyLogo)
-        // if (imageUploadType === "companyLogo")
-        // console.log(companyImageRef.current);
-        // companyImageRef.current.src = URL.createObjectURL(file);
-        // setCompanyLogo(event.target.files[0])
-        // console.log(companyImageRef.current);
-
-        // let file_size = files.file.size;
-        // if (file_type != 'png' && file_type != 'jpeg' && file_type != 'jpg')
+        // if (file != 'png' && file != 'jpeg' && file != 'jpg')
         //     setcompanyLogoError("File type should be JPEG and PNG.")
         // else if (file_size > 3000000) {
         //     setcompanyLogoError("File Size should be less than and equal to 3MB.")
         // }
         // else {
-        //     setcompanyLogoError("");
-        //     setcompanyLogo(files.base64);
-        // }
+        let formData = new FormData();
+        formData.append('image', event.target.files[0]);
+        formData.append('imagetype', "comlogo");
+        formData.append('userid', userId);
+        let response = await fetch(api_url + "/api/users/postuser", {
+            method: "POST",
+            body: formData,
+        })
+        if (response.ok) {
+            response = await response.json();
+            console.log(response);
+        }
     }
 
-    const uploadCompanyPan = (event) => {
+    const uploadCompanyPan = async (event) => {
         var output = document.getElementById("PanImage");
         output.src = URL.createObjectURL(event.target.files[0]);
+        let formData = new FormData();
+        formData.append('image', event.target.files[0]);
+        formData.append('imagetype', "panimage");
+        formData.append('userid', userId);
+        let response = await fetch(api_url + "/api/users/postuser", {
+            method: "POST",
+            body: formData,
+        })
+        if (response.ok) {
+            response = await response.json();
+            console.log(response);
+        }
+
 
 
     }
 
-    const uploadCompanyGST = (event) => {
+    const uploadCompanyGST = async (event) => {
         var output = document.getElementById("GSTImage");
         output.src = URL.createObjectURL(event.target.files[0]);
+        let formData = new FormData();
+        formData.append('image', event.target.files[0]);
+        formData.append('imagetype', "gstimage");
+        formData.append('userid', userId);
+        let response = await fetch(api_url + "/api/users/postuser", {
+            method: "POST",
+            body: formData,
+        })
+        if (response.ok) {
+            response = await response.json();
+            console.log(response);
+        }
 
     }
     const handleSubmit = async (values) => {
         let data = new FormData();
         data = {
+            // userid: userId,
+            userid: "63a69a19d990bbac7fc42042",
             employername: values.hr_name,
-            profiletype: values.profile_type,
+            mobile: mobile_number,
+            companyprofiletype: values.profile_type,
             companytype: values.company_type,
             companyname: values.company_name,
             companyemail: values.company_email,
             companywebsite: values.company_website,
             companyaddress: values.company_address,
             companycity: values.company_city,
-            companylannumber: values.company_lan_number,
+            companynumber: values.company_lan_number,
             companypincode: values.company_pincode,
-            companypannumber: values.company_pan_number,
+            companypancard: values.company_pan_number,
             companygstnumber: values.company_gst_number,
-            userid: userId,
             // userid: "63a040c3e45cb1872e2e7cc6"
 
         }
@@ -124,26 +145,18 @@ const CompanyInfoForm = ({ email, userId }) => {
         })
         if (response.ok) {
             response = await response.json();
-            // console.log(response);
-            window.location.href = "http://localhost:3000/employer-login";
+            // console.log(response.user);
+            dispatch({ type: 'LOGIN', payload: JSON.stringify(response.user) });
+            // window.location.href = "http://localhost:3000/employer-login";
         }
 
     }
     return (<>
+        {isLoggedIn == 'true' && <Navigate to="/employer-dashboard"></Navigate>}
+
         <Typography component="h3" sx={{ fontSize: "30px", fontWeight: "600", textAlign: "center", color: "#2B1E44", margin: "30px 0px" }}>
             Company Information
         </Typography>
-
-        {/* <Snackbar
-            open={formSubmitted}
-            autoHideDuration={6000} onClose={handleClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        >
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                Employer is registered Successsfully.
-            </Alert>
-
-        </Snackbar> */}
 
         <Formik
 
@@ -152,7 +165,7 @@ const CompanyInfoForm = ({ email, userId }) => {
             onSubmit={handleSubmit}
         >
             {({ errors, touched, values, setFieldValue }) => (
-                <Form>
+                <Form className="CompanyInformationForm">
 
                     <Box className="input-item">
                         <ThemeLabel LableFor="hr_name" LableText="Hr Name" />
@@ -232,20 +245,16 @@ const CompanyInfoForm = ({ email, userId }) => {
                     </Box>
 
                     <Box className="input-item">
+
                         <ThemeLabel LableFor="upload_company_logo" LableText="Upload Company Logo" />
 
                         <Field
                             id="upload_company_logo"
                             style={{ display: "none", outline: "none" }}
                             type="file" name="upload_company_logo"
-                            // onChange={(event) => {
-                            //     file = event.target.files[0];
-                            //     setCompanyLogo(file);
-                            //     uploadImage("companyLogo")
-                            // }}
-                            // onChange={
-                            //     uploadCompanyLogo
-                            // }
+                            onChange={
+                                uploadCompanyLogo
+                            }
                             fullWidth />
 
 
