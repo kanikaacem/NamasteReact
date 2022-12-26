@@ -14,7 +14,9 @@ const initialState = {
   // api_url: 'http://192.168.1.6:8000',
   // api_url : 'http://192.168.1.32:8000',
   // api_url: 'http://192.168.1.16:8000',
-  api_url:'http://192.168.1.3:8000',
+  // api_url:'http://192.168.1.3:8000',
+
+  api_url:'http://65.0.98.87:3001',
   showProfile : false,
   EmployeeMenuSelected : "dashboard",
   CandidateMenuSelected : "dashboard",

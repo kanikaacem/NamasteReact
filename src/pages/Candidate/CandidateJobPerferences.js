@@ -10,27 +10,46 @@ const CandidateJobPerferences = () => {
         perferencesElement.classList.add("perferencesactive");
         PerferencesArray.push(perferencesElement.innerHTML);
     }
+    const perferences = {
+        border: " 1px solid #2B1E44",
+        borderRadius: "10px",
+        padding: "10px",
+        cursor: "pointer"
+    }
+    const perferencesactive = {
+        border: " 1px solid #2B1E44",
+        borderRadius: "10px",
+        padding: "10px",
+        cursor: "pointer",
+        background: "#2B1E44",
+        color: "#FFFFFF"
+    }
     return (<>
         <Box className="JobPerferencesPage"
             sx={{
                 minHeight: "100vh",
-                background: "#e8f0f9",
+                background: "#FFFFFF"
+                // background: "#e8f0f9",
             }}>
-            <Box sx={{ height: "100px", background: "#445578", margin: "0px 30px" }}>
+            <Box sx={{
+                height: "100px",
+                background: "#445578",
+                margin: "0px 30px"
+            }}>
                 <Stack direction="row" alignItems="center">
-                    {/* <Stack sx={{ width: "15%", height: "150px", background: "green" }}>
-                    <img src={window.location.origin + "/assets/Setting.png"} height="100%" width="100%" alt="Setting" ></img>
-                </Stack> */}
+
                     <Box sx={{ width: "50%", padding: "20px" }}>
-                        <Typography component="div" sx={{ fontSize: "16px", color: "white" }}>
-                            Create your own Job Feed
+                        <Typography component="span" sx={{ fontSize: "30px", color: "white" }}>
+                            Create your own Job Feed,
+                            <Typography component="span" sx={{ fontWeight: "600", fontSize: "30px", color: "white", marginLeft: "10px" }}>
+                                Let Get Started !!!
+                            </Typography>
                         </Typography>
-                        <Typography component="div" sx={{ fontWeight: "600", fontSize: "25px", color: "white" }}>
-                            Get Started
-                        </Typography>
+
                     </Box>
                 </Stack>
             </Box>
+
 
             <Box sx={{
                 display: "flex",
@@ -43,7 +62,75 @@ const CandidateJobPerferences = () => {
                 padding: "20px 50px"
 
             }}>
-                <Box className="perferences" onClick={addPerferences}> Demo Perferences1</Box>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+
+
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+
+
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+
+
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+
+
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+                <div className="JOBPERFERENCES" onClick={addPerferences}> Demo Perferences1</div>
+
+
 
 
 

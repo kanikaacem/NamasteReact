@@ -691,15 +691,15 @@ textarea {
 }
 
 /* User Perferences page */
-.perferences {
-  padding: "10px" !important;
-  border-radius: "10px" !important;
-  border: "1px solid #445578" !important;
-  width: "fit-content" !important;
-  cursor: "pointer" !important;
+.JOBPERFERENCES {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #445578;
+  width: fit-content;
+  cursor: pointer;
 }
 
 .perferencesactive {
-  background: "#2B1E44" !important;
-  color: "#FFFFFF" !important;
+  background: #445578;
+  color: #FFFFFF;
 }
