@@ -77,13 +77,16 @@ const JobComponent = ({ company, data }) => {
                     <h3> {company && company.companyName ? company.companyName : "Company Name"} - {data && data.title} - {data && data.role.replaceAll("_", " ")}</h3>
 
                     <Stack direction="row" gap={5}>
-                        <span><WorkOutlineIcon></WorkOutlineIcon>{data && data.experience} Yrs </span>
+                        <span><WorkOutlineIcon></WorkOutlineIcon>{data && data.experience} Yrs  </span>
                         <span><CurrencyRupeeIcon></CurrencyRupeeIcon> {data && data.salary}</span>
                         <span><PlaceIcon></PlaceIcon>{data && data.location}</span>
                         <span><Moment format="DD/MM/YYYY">
                             {data && data.createdat}
                         </Moment></span>
+
                     </Stack>
+
+                    <span> <a href={`employer-dashboard/job/${data._id}/recommedations`} > View All Candidate</a></span>
 
                     {/* <div style={{ display: 'flex', gap: '10px', position: 'absolute', right: '10px' }}>
                         {user.type == 'employer' && <>

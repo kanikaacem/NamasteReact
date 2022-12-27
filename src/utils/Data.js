@@ -312,7 +312,7 @@ export const EmployerMenu = [
         Menu: "WorkOutlineIcon",
         MenuName: "Applied Candidates",
         value: "applied_candidates",
-        url: ""
+        url: "applied-candidates"
 
     },
     {
@@ -320,7 +320,7 @@ export const EmployerMenu = [
         Menu: "WorkOutlineIcon",
         MenuName: "Saved Candidates",
         value: "saved_candidates",
-        url: ""
+        url: "saved-candidates"
 
     },
     // {
@@ -419,6 +419,36 @@ export const JobFilter = [
     }
 ]
 
+export const CandidateFilter = [
+    {
+        id: 1,
+        value: "shortlisted",
+        name: "Shortlisted"
+    },
+    {
+        id: 2,
+        value: "rejected",
+        name: "Rejected"
+    }
+]
+
+export const MeetingType = [
+    {
+        id: 1,
+        value: "video",
+        name: "Video"
+    },
+    {
+        id: 2,
+        value: "face_to_face",
+        name: "Face to Face"
+    },
+    {
+        id: 3,
+        value: "telephonic",
+        name: "Telephonic"
+    }
+]
 export const reviews = [
     {
         id: 0,

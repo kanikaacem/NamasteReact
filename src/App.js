@@ -14,15 +14,20 @@ import PostJob from "./Pages/Employer/PostJob";
 import PostedJobs from './Pages/Employer/PostedJobs';
 import AccountSetting from './Pages/Employer/AccountSetting';
 import CandidateRecommendation from './Pages/Employer/CandidateRecommendation';
+import SavedCandidate from "./Pages/Employer/SavedCandidate";
+import AppliedCandidate from './Pages/Employer/AppliedCandidate';
+import Chat from "./Pages/Common/Chat";
+import ViewProfile from "./Pages/Employer/ViewProfile";
 
 /*Candidate Component*/
 import CandidateRegistration from "./Pages/Candidate/CandidateRegistration";
 import CandidateLogin from "./Pages/Candidate/CandidateLogin";
 import CandidateDashboard from "./Pages/Candidate/CandidateDashboard";
 import CandidateProfile from "./Pages/Candidate/CandidateProfile";
+import CandidateProfilePage from "./Pages/Candidate/CandidateProfilePage";
 import UpdateProfile from "./Pages/Candidate/UpdateProfile";
 import Settings from './Pages/Candidate/Settings';
-import Profile from "./Pages/Candidate/Profile";
+import Profile from "./Pages/Candidate/CandidateProfilePage";
 import CandidateJobPerferences from "./Pages/Candidate/CandidateJobPerferences";
 
 /*Website Page*/
@@ -41,14 +46,14 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home></Home>} />
 
-          <Route path="/verificationpage/:id" element={<EmployerVerficationPage />} />
+          <Route path="/verification/:email" element={<EmployerVerficationPage />} />
 
           <Route path="/employer-register" element={<EmployerRegister></EmployerRegister>} />
           <Route path="/employer-login" element={<EmployerLogin></EmployerLogin>} />
 
           <Route path="/candidate-login" element={<CandidateLogin></CandidateLogin>}></Route>
           <Route path="/candidate-register" element={<CandidateRegistration />} />
-          <Route path="/profile" element={<CandidateProfile></CandidateProfile>} />
+          <Route path="/profile/:step" element={<CandidateProfile></CandidateProfile>} />
 
 
           <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
@@ -57,16 +62,23 @@ function App() {
             <Route path="posted-jobs" element={<PostedJobs></PostedJobs>} />
             <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
             <Route path="job/:id/recommedations" element={<CandidateRecommendation></CandidateRecommendation>} />
+            <Route path="applied-candidates" element={<AppliedCandidate />} />
+            <Route path="saved-candidates" element={<SavedCandidate></SavedCandidate>} />
             <Route path="account-setting" element={<AccountSetting></AccountSetting>} />
+            <Route path="view-profile" element={<ViewProfile></ViewProfile>} />
+            <Route path="chats" element={<Chat></Chat>} />
           </Route>
           <Route path="perferences" element={<CandidateJobPerferences></CandidateJobPerferences>} />
+
+          <Route path="/update-profile" element={<UpdateProfile></UpdateProfile>} />
+          <Route path="/candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route>
 
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             {/* <Route path="/candidate-dashboard" element={<Dashboard />} > */}
             <Route path="" element={<CandidateDashboard></CandidateDashboard>} />
-            <Route path="candidate-profile" element={<Profile></Profile>}></Route>
+            {/* <Route path="candidate-profile" element={<Profile></Profile>}></Route> */}
             <Route path="update-profile" element={<UpdateProfile></UpdateProfile>} />
-            <Route path="settings" element={<Settings></Settings>} />
+            {/* <Route path="/settings" element={<Settings></Settings>} /> */}
             <Route path="*" element={<NotFound></NotFound>} />
           </Route>
 

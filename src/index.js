@@ -11,12 +11,12 @@ const initialState = {
     "id" : 1,
     "title" : "Mobile Applications"
   },
-  // api_url: 'http://192.168.1.6:8000',
+  api_url: 'http://192.168.1.7:3001',
   // api_url : 'http://192.168.1.32:8000',
   // api_url: 'http://192.168.1.16:8000',
   // api_url:'http://192.168.1.3:8000',
 
-  api_url:'http://65.0.98.87:3001',
+  // api_url:'http://65.0.98.87:3001',
   showProfile : false,
   EmployeeMenuSelected : "dashboard",
   CandidateMenuSelected : "dashboard",
@@ -236,3 +236,5 @@ root.render(
 //https://www.npmjs.com/package/@ramonak/react-progress-bar
 //https://www.npmjs.com/package/react-translate
 //https://express.adobe.com/tools/remove-background
+//https://www.geeksforgeeks.org/how-to-create-tabs-in-reactjs/
+//https://www.npmjs.com/package/reactjs-pdf-reader

@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Select, MenuItem, Tooltip, IconButton } from "@mui/material";
+import { Box, Stack, Select, MenuItem, Tooltip, IconButton } from "@mui/material";
 import { DataGrid } from '@mui/x-data-grid';
 import Moment from 'react-moment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -6,10 +6,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import { JobFilter } from "../../utils/Data";
-import { useEffect } from "react";
+
+import ButtonType2 from "../../ThemeComponent/Common/ButtonType2";
+import ChatAssistant from "../../ThemeComponent/Common/ChatAssistant";
+import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
 
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const PostedJobs = () => {
     const user = localStorage.user && JSON.parse(localStorage.user);
@@ -22,7 +25,7 @@ const PostedJobs = () => {
         {
             field: 'createdAt',
             headerName: 'Created On',
-            width: 250,
+            width: 200,
             renderCell: (params) => {
                 return (<>
                     <Box>
@@ -51,6 +54,7 @@ const PostedJobs = () => {
                                 </Box>
                             </Stack>
                         </Stack>
+                        <span> <a href={`employer-dashboard/job/${params.row._id}/recommedations`} > View All Candidate</a></span>
                     </Stack>
                 </>)
             }
@@ -70,11 +74,20 @@ const PostedJobs = () => {
             field: 'activity',
             headerName: 'Activity',
             width: 250,
+            renderCell: (params) => {
+                return (<>
+                    <Stack direction="column" gap={1} justifyContent="center" alignItems="center">
+                        <div> 112 Views</div>
+                        <div> 21 Applied </div>
+                    </Stack>
+                </>
+                )
+            }
         },
         {
             field: 'action',
             headerName: 'Action',
-            width: 150,
+            width: 230,
             renderCell: (params) => {
                 return (<>
                     <Stack direction="row">
@@ -133,9 +146,9 @@ const PostedJobs = () => {
     }, []);
 
     return (<>
-        <Box sx={{ padding: "20px" }}>
-            <Container>
-                <Box>
+        <Stack direction="row" sx={{ padding: "20px" }}>
+            <Stack sx={{ width: "80%" }} gap={1}>
+                <Stack direction="row" justifyContent="space-between">
                     <Select
                         variant="standard"
                         labelId="demo-simple-select-label"
@@ -153,9 +166,14 @@ const PostedJobs = () => {
                             <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
                         )}
                     </Select>
-                </Box>
-                <Box sx={{ height: 400, width: '100%', marginTop: "50px" }}>
+                    <Box>
+                        <ButtonType2 ButtonText="Post a Job" ClickEvent={() => window.location.href = window.location.origin + "/employer-dashboard/post-a-job"}></ButtonType2>
+                    </Box>
+                </Stack>
+                <Box sx={{ height: 500, width: '100%' }}>
                     {jobData && <DataGrid
+                        getRowHeight={() => 'auto'}
+                        sx={{ background: "#FFFFFF" }}
                         rows={jobData}
                         columns={columns}
                         pageSize={5}
@@ -164,8 +182,13 @@ const PostedJobs = () => {
 
                     />}
                 </Box>
-            </Container>
-        </Box>
+            </Stack>
+            <Box sx={{ width: "20%" }}>
+                <ChatAssistant />
+                <ChatComponent />
+                <ChatComponent />
+            </Box>
+        </Stack>
 
     </>)
 }

@@ -117,8 +117,8 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const handleSubmit = async (values) => {
         let data = new FormData();
         data = {
-            // userid: userId,
-            userid: "63a69a19d990bbac7fc42042",
+            userid: userId,
+            // userid: "63a69a19d990bbac7fc42042",
             employername: values.hr_name,
             mobile: mobile_number,
             companyprofiletype: values.profile_type,

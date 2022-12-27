@@ -135,11 +135,12 @@ const EmployerDashboard = () => {
                         <Stack direction="row" alignItems="center" justifyContent="space-between">
                             <Box>
                                 <Typography component="span" sx={{ fontSize: "30px" }}>
-                                    {dayMessage}, {user.employername}
+                                    {dayMessage}, {user && user.employername}
                                 </Typography>
                             </Box>
                             <Box>
-                                <ButtonType2 ButtonText="Post a Job" ClickEvent={() => window.location.href = window.location.href + "/post-a-job"}></ButtonType2></Box>
+                                <ButtonType2 ButtonText="Post a Job" ClickEvent={() => window.location.href = window.location.href + "/post-a-job"}></ButtonType2>
+                            </Box>
 
                         </Stack>
                     </Container>
@@ -149,7 +150,7 @@ const EmployerDashboard = () => {
 
                         <Stack gap={1} sx={{ minWidth: "100px" }}>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
-                                {user.postjobs.length}
+                                0
                             </Typography>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
                                 Posted Jobs
@@ -158,7 +159,7 @@ const EmployerDashboard = () => {
 
                         <Stack gap={1} sx={{ minWidth: "100px" }}>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
-                                {user.savedCan.length}
+                                3
                             </Typography>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
                                 Saved Candidate

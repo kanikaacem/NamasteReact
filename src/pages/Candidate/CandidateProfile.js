@@ -1,6 +1,7 @@
 
 import { Box, Container, Stack, Typography, TextField, Button, Stepper, Step, StepLabel } from "@mui/material";
 
+import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 import PersonalInformation from "../../ThemeComponent/ThemeForms/PersonalInformation";
@@ -8,6 +9,8 @@ import ProfessionalDetail from "../../ThemeComponent/ThemeForms/ProfessionalDeta
 import WorkHistory from "../../ThemeComponent/ThemeForms/WorkHistory";
 import UploadResume from "../../ThemeComponent/ThemeForms/UploadResume";
 const CandidateProfile = () => {
+
+    const { step } = useParams();
 
     function getSteps() {
         return ['Personal Details', 'Professional Details', 'Work History', 'Upload Resume'];
@@ -30,7 +33,7 @@ const CandidateProfile = () => {
     const isStepSkipped = (step) => {
         return skipped.has(step);
     };
-    const [activeStep, setActiveStep] = useState(0);
+    const [activeStep, setActiveStep] = useState(step);
     const [skipped, setSkipped] = useState(new Set());
 
     const steps = getSteps();

@@ -155,13 +155,13 @@ const CandidateRegistration = () => {
     // }
 
     const handleSubmit = async (values, { setFieldError }) => {
+        // dispatch({ type: 'USER_REGISTRATION', payload: JSON.stringify("hlleo") });
 
         let CandidateLoginForm = new FormData();
         CandidateLoginForm = {
             email: values.email_id,
             password: values.password
         }
-        console.log(CandidateLoginForm);
         let response = await fetch(api_url + "/api/users/saveusernameandpassword", {
             method: "POST",
             headers: {
@@ -175,12 +175,11 @@ const CandidateRegistration = () => {
             response = await response.json();
             if (response.status == '1') {
                 dispatch({ type: 'USER_REGISTRATION', payload: JSON.stringify(response) });
-                // window.location.href = "http://localhost:3000/profile";
             }
         }
     }
     return (<>
-        {CandidateRegistration == true && <Navigate to="/profile"></Navigate>}
+        {CandidateRegistration == true && <Navigate to="/profile/0"></Navigate>}
 
         <Box className="CandidateRegistrationPage" >
 

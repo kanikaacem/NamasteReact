@@ -34,6 +34,7 @@ const Dashboard = () => {
 
     const api_url = useSelector(state => state.api_url);
 
+
     //Employer Menu 
 
     // useEffect(() => {
@@ -178,12 +179,13 @@ const Dashboard = () => {
                         </Box>
 
                         <Stack direction="row" gap={3} justifyContent="flex-end" alignItems="center" sx={{ width: "20%" }}>
-                            <Badge badgeContent={4} color="primary">
+                            <Badge badgeContent={4} color="primary" sx={{ cursor: "pointer" }}
+                                onClick={() => window.location.href = window.location.origin + '/employer-dashboard/chats'}>
                                 <MailOutlineIcon></MailOutlineIcon>
                             </Badge>
-                            <Badge badgeContent={4} color="primary">
+                            {/* <Badge badgeContent={4} color="primary">
                                 <NotificationsNoneIcon></NotificationsNoneIcon>
-                            </Badge>
+                            </Badge> */}
                             <Box sx={{ cursor: "pointer" }} onClick={() => setOpenProfile(!openProfile)}>
                                 {/* <Avatar alt="Remy Sharp" src="./assets/companyLogo.png" /> */}
                                 <Avatar alt={user.fullname} />
@@ -228,7 +230,7 @@ const Dashboard = () => {
                                             </Typography>
 
                                             <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                Premium Posting : 0 credits
+                                                Premium Posting : {user && user.plan} credits
                                             </Typography>
 
                                             <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => window.location.href = 'http://localhost:3000/employer-dashboard/account-setting'}>

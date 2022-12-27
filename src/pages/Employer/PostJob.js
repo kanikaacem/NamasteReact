@@ -83,7 +83,7 @@ const PostJob = () => {
 
 
     return (<>
-        <Typography component="div" sx={{ fontWeight: "600", fontSize: "30px", padding: "20px 10px" }}>
+        <Typography component="div" sx={{ fontWeight: "600", fontSize: "30px", padding: "5px 100px" }}>
             Post Job
         </Typography>
         <Snackbar
@@ -97,180 +97,182 @@ const PostJob = () => {
 
         </Snackbar>
 
-        <Box sx={{
-            borderRadius: "20px",
-            padding: "27px 40px 20px 35px",
-            background: "#FFFFFF",
-            width: "50%",
-            margin: "0px auto",
-            borderTop: "4px solid #2B1E44"
-        }}>
-            <Typography component="div" sx={{ fontWeight: "600" }}>
-                Share some basic details about the role
-            </Typography>
+        <Box sx={{ padding: "40px" }}>
+            <Box sx={{
+                borderRadius: "20px",
+                padding: "27px 40px 20px 35px",
+                background: "#FFFFFF",
+                width: "50%",
+                margin: "0px auto",
+                borderTop: "4px solid #2B1E44"
+            }}>
+                <Typography component="div" sx={{ fontWeight: "600" }}>
+                    Share some basic details about the role
+                </Typography>
 
-            <Typography component="div">
-                This helps us find you the most relevant candidates
-            </Typography>
-            <Formik
+                <Typography component="div">
+                    This helps us find you the most relevant candidates
+                </Typography>
+                <Formik
 
-                initialValues={defaultValue}
-                validationSchema={postJobValidationSchema}
-                onSubmit={handleSubmit}
-            >
-                {({ values, errors, touched, setFieldValue }) => (
-                    <Form >
+                    initialValues={defaultValue}
+                    validationSchema={postJobValidationSchema}
+                    onSubmit={handleSubmit}
+                >
+                    {({ values, errors, touched, setFieldValue }) => (
+                        <Form >
 
-                        <Box className="input-item">
-                            <ThemeLabel LableFor="job_title" LableText="Job Title" />
-                            <Field
-                                variant="standard"
-                                error={errors.job_title && touched.job_title}
-                                as={TextField}
-                                id="job_title"
-                                placeholder="Enter Job Title" type="text" name="job_title" fullWidth />
-                            {errors.job_title && touched.job_title && <Error text={errors.job_title} />}
-
-
-                        </Box>
-
-                        <Box className="input-item">
-                            <ThemeLabel LableFor="role" LableText="Role" />
-                            <SelectField
-                                variant="standard"
-                                labelId="demo-simple-select-label"
-                                name="role"
-                                value={role}
-                                label="role"
-                                onChange={(event) => {
-                                    setRole(event.target.value);
-                                    setFieldValue("role", event.target.value);
-                                }}
-                                sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                disableUnderline
-                            >
-                                <MenuItem value=" ">Select Role</MenuItem>
-                                {Role.map((item) =>
-                                    <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                                )}
-                            </SelectField>
-                            {errors.role && touched.role && <Error text={errors.role} />}
-                        </Box>
-
-                        <Box className="input-item">
-                            <ThemeLabel LableFor="experience" LableText="Experience" />
-                            <Field
-                                variant="standard"
-                                error={errors.experience && touched.experience}
-                                as={TextField}
-                                name="experience"
-                                id="experience"
-                                placeholder="Enter Experience" fullWidth />
-                            {errors.experience && touched.experience && <Error text={errors.experience} />}
-                        </Box>
-
-                        <Box className="input-item">
-                            <ThemeLabel LableFor="opening" LableText="Opening" />
-                            <Field
-                                variant="standard"
-                                error={errors.opening && touched.opening}
-                                as={TextField}
-                                id="opening"
-                                placeholder="Enter Opening" type="text" name="opening" fullWidth />
-                            {errors.opening && touched.opening && <Error text={errors.opening} />}
-                        </Box>
-
-                        <Box className="input-item">
-                            <ThemeLabel LableFor="salary" LableText="Salary" />
-                            <Field
-                                variant="standard"
-                                error={errors.opening && touched.opening}
-                                as={TextField}
-                                id="salary"
-                                placeholder="Enter Salary" type="text" name="salary" fullWidth />
-                            {errors.salary && touched.salary && <Error text={errors.salary} />}
-                        </Box>
-
-                        <Box className="input-item">
-                            <ThemeLabel LableFor="skills" LableText="Skills" />
-                            <Field
-                                variant="standard"
-                                error={errors.skills && touched.skills}
-                                component={Select}
-                                name="skills"
-                                options={Skills}
-                                components={animatedComponents}
-                                onChange={(options) => {
-                                    let optionvalue = [];
-                                    setSelectedOptions(options);
-                                    options.map((item) => {
-                                        optionvalue.push(item.value);
-                                    })
-                                    setFieldValue("skills", optionvalue.join(","));
-                                }}
-                                isMulti
-                                id_data={(errors.skills && touched.skills) ? "skills-error" : "skills"}
-                                placeholder="Select Experience" data={Experience} fullWidth />
-
-                            {errors.skills && touched.skills && <Error text={errors.skills} />}
-                        </Box>
-
-                        <Box className="input-item">
-                            <ThemeLabel LableFor="long_description" LableText="Long Description" />
-                            <DefaultEditor
-                                style={{
-                                    minHeight: "300px",
-                                    margin: "20px 0px !important",
-                                    display: "block"
-                                }}
-                                name="long_description"
-                                value={values['long_description']} onChange={(e) => { setFieldValue("long_description", e.target.value) }} />
-                            {errors.long_description && touched.long_description && <Error text={errors.long_description} />}
-                        </Box>
-
-                        <Box className="input-item">
-                            <ThemeLabel LableFor="short_description" LableText="Short Description" />
-                            <Field
-                                variant="standard"
-                                error={errors.short_description && touched.short_description}
-                                as={TextField}
-                                id="short_description"
-                                placeholder="Enter Short Description" type="textarea" name="short_description" fullWidth />
-                            {errors.short_description && touched.short_description && <Error text={errors.short_description} />}
+                            <Box className="input-item">
+                                <ThemeLabel LableFor="job_title" LableText="Job Title" />
+                                <Field
+                                    variant="standard"
+                                    error={errors.job_title && touched.job_title}
+                                    as={TextField}
+                                    id="job_title"
+                                    placeholder="Enter Job Title" type="text" name="job_title" fullWidth />
+                                {errors.job_title && touched.job_title && <Error text={errors.job_title} />}
 
 
-                        </Box>
-                        <Box className="input-item">
-                            <ThemeLabel LableFor="city" LableText="City" />
-                            <SelectField
-                                variant="standard"
-                                labelId="demo-simple-select-label"
-                                name="city"
-                                value={city}
-                                label="Age"
-                                onChange={(event) => {
-                                    setCity(event.target.value);
-                                    setFieldValue("city", event.target.value);
-                                }}
-                                sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                disableUnderline
-                            >
-                                <MenuItem value=" ">Select City</MenuItem>
-                                {cities.map((item) =>
-                                    <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                                )}
-                            </SelectField>
+                            </Box>
 
-                            {errors.city && touched.city && <Error text={errors.city} />}
-                        </Box>
+                            <Box className="input-item">
+                                <ThemeLabel LableFor="role" LableText="Role" />
+                                <SelectField
+                                    variant="standard"
+                                    labelId="demo-simple-select-label"
+                                    name="role"
+                                    value={role}
+                                    label="role"
+                                    onChange={(event) => {
+                                        setRole(event.target.value);
+                                        setFieldValue("role", event.target.value);
+                                    }}
+                                    sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
+                                    disableUnderline
+                                >
+                                    <MenuItem value=" ">Select Role</MenuItem>
+                                    {Role.map((item) =>
+                                        <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
+                                    )}
+                                </SelectField>
+                                {errors.role && touched.role && <Error text={errors.role} />}
+                            </Box>
 
-                        <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                            <ButtonType1 ButtonText="Post Job" />
-                        </Box>
-                    </Form>
-                )}
-            </Formik>
+                            <Box className="input-item">
+                                <ThemeLabel LableFor="experience" LableText="Experience" />
+                                <Field
+                                    variant="standard"
+                                    error={errors.experience && touched.experience}
+                                    as={TextField}
+                                    name="experience"
+                                    id="experience"
+                                    placeholder="Enter Experience" fullWidth />
+                                {errors.experience && touched.experience && <Error text={errors.experience} />}
+                            </Box>
 
+                            <Box className="input-item">
+                                <ThemeLabel LableFor="opening" LableText="Opening" />
+                                <Field
+                                    variant="standard"
+                                    error={errors.opening && touched.opening}
+                                    as={TextField}
+                                    id="opening"
+                                    placeholder="Enter Opening" type="text" name="opening" fullWidth />
+                                {errors.opening && touched.opening && <Error text={errors.opening} />}
+                            </Box>
+
+                            <Box className="input-item">
+                                <ThemeLabel LableFor="salary" LableText="Salary" />
+                                <Field
+                                    variant="standard"
+                                    error={errors.opening && touched.opening}
+                                    as={TextField}
+                                    id="salary"
+                                    placeholder="Enter Salary" type="text" name="salary" fullWidth />
+                                {errors.salary && touched.salary && <Error text={errors.salary} />}
+                            </Box>
+
+                            <Box className="input-item">
+                                <ThemeLabel LableFor="skills" LableText="Skills" />
+                                <Field
+                                    variant="standard"
+                                    error={errors.skills && touched.skills}
+                                    component={Select}
+                                    name="skills"
+                                    options={Skills}
+                                    components={animatedComponents}
+                                    onChange={(options) => {
+                                        let optionvalue = [];
+                                        setSelectedOptions(options);
+                                        options.map((item) => {
+                                            optionvalue.push(item.value);
+                                        })
+                                        setFieldValue("skills", optionvalue.join(","));
+                                    }}
+                                    isMulti
+                                    id_data={(errors.skills && touched.skills) ? "skills-error" : "skills"}
+                                    placeholder="Select Experience" data={Experience} fullWidth />
+
+                                {errors.skills && touched.skills && <Error text={errors.skills} />}
+                            </Box>
+
+                            <Box className="input-item">
+                                <ThemeLabel LableFor="long_description" LableText="Long Description" />
+                                <DefaultEditor
+                                    style={{
+                                        minHeight: "300px",
+                                        margin: "20px 0px !important",
+                                        display: "block"
+                                    }}
+                                    name="long_description"
+                                    value={values['long_description']} onChange={(e) => { setFieldValue("long_description", e.target.value) }} />
+                                {errors.long_description && touched.long_description && <Error text={errors.long_description} />}
+                            </Box>
+
+                            <Box className="input-item">
+                                <ThemeLabel LableFor="short_description" LableText="Short Description" />
+                                <Field
+                                    variant="standard"
+                                    error={errors.short_description && touched.short_description}
+                                    as={TextField}
+                                    id="short_description"
+                                    placeholder="Enter Short Description" type="textarea" name="short_description" fullWidth />
+                                {errors.short_description && touched.short_description && <Error text={errors.short_description} />}
+
+
+                            </Box>
+                            <Box className="input-item">
+                                <ThemeLabel LableFor="city" LableText="City" />
+                                <SelectField
+                                    variant="standard"
+                                    labelId="demo-simple-select-label"
+                                    name="city"
+                                    value={city}
+                                    label="Age"
+                                    onChange={(event) => {
+                                        setCity(event.target.value);
+                                        setFieldValue("city", event.target.value);
+                                    }}
+                                    sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
+                                    disableUnderline
+                                >
+                                    <MenuItem value=" ">Select City</MenuItem>
+                                    {cities.map((item) =>
+                                        <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
+                                    )}
+                                </SelectField>
+
+                                {errors.city && touched.city && <Error text={errors.city} />}
+                            </Box>
+
+                            <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
+                                <ButtonType1 ButtonText="Post Job" />
+                            </Box>
+                        </Form>
+                    )}
+                </Formik>
+
+            </Box>
         </Box>
 
 
