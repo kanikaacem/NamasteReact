@@ -41,6 +41,7 @@ const WorkHistory = ({ setActiveStep }) => {
         console.log(values);
 
         let formData = new FormData();
+
         formData = {
             userid: userid,
             companyname: values.company_name,
