@@ -67,7 +67,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         formData.append('image', event.target.files[0]);
         formData.append('imagetype', "comlogo");
         formData.append('userid', userId);
-        let response = await fetch(api_url + "/api/users/postuser", {
+        let response = await fetch(api_url + "/api/employer/updateimage", {
             method: "POST",
             body: formData,
         })
@@ -84,7 +84,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         formData.append('image', event.target.files[0]);
         formData.append('imagetype', "panimage");
         formData.append('userid', userId);
-        let response = await fetch(api_url + "/api/users/postuser", {
+        let response = await fetch(api_url + "/api/employer/updateimage", {
             method: "POST",
             body: formData,
         })
@@ -104,7 +104,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         formData.append('image', event.target.files[0]);
         formData.append('imagetype', "gstimage");
         formData.append('userid', userId);
-        let response = await fetch(api_url + "/api/users/postuser", {
+        let response = await fetch(api_url + "/api/employer/updateimage", {
             method: "POST",
             body: formData,
         })
