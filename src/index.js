@@ -11,7 +11,7 @@ const initialState = {
     "id" : 1,
     "title" : "Mobile Applications"
   },
-  api_url: 'http://13.126.115.3/:3001',
+  api_url: 'http://13.126.115.3:3001',
   // api_url : 'http://192.168.1.32:8000',
   // api_url: 'http://192.168.1.16:8000',
   // api_url:'http://192.168.1.3:8000',
