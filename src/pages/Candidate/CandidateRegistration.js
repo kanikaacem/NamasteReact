@@ -173,6 +173,7 @@ const CandidateRegistration = () => {
 
         if (response.ok) {
             response = await response.json();
+            console.log(response);
             if (response.status == '1') {
                 dispatch({ type: 'USER_REGISTRATION', payload: JSON.stringify(response) });
             }
