@@ -51,7 +51,7 @@ const WorkHistory = ({ setActiveStep }) => {
         }
         console.log(formData);
 
-        let response = await fetch(api_url + "/api/users/updateworkhistory", {
+        let response = await fetch(api_url + "/api/users/createworkhistory", {
             method: "POST",
             headers: {
                 'Access-Control-Allow-Origin': '*',

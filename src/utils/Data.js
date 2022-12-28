@@ -597,3 +597,40 @@ export const EmailNotifications = [
         value: "unpublished_job_notification"
     }
 ]
+
+export const CandidateEducation = [
+    {
+        id: 1,
+        Name: "MBA/PGDM",
+        value: "MBA/PGDM"
+    },
+    {
+        id: 2,
+        Name: "CA",
+        value: "CA"
+    },
+    { id: 3, Name: "CS", value: "CS" },
+    { id: 4, Name: "ICWA", value: "ICWA" },
+    { id: 5, Name: "LLB/LLM", value: "LLB/LLM" },
+    { id: 6, Name: "BTech/BE", value: "BTech/BE" },
+    { id: 7, Name: "BArch", value: "BArch" },
+    { id: 8, Name: "MBBS", value: "MBBS" },
+    { id: 9, Name: "BSc", value: "BSc" },
+    { id: 10, Name: "BA", value: "BA" },
+    { id: 11, Name: "Bcom", value: "Bcom" },
+    { id: 12, Name: "BBA", value: "BBA" },
+    { id: 13, Name: "BCA", value: "BCA" },
+    { id: 14, Name: "PhD", value: "PhD" },
+    { id: 15, Name: "MSc/MS/M Tech", value: "MSc/MS/M Tech" },
+    { id: 16, Name: "MCA", value: "MCA" },
+    { id: 17, Name: "MA", value: "MA" },
+    { id: 18, Name: "Integrated Masters Program", value: "Integrated Masters Program" },
+    { id: 19, Name: "CFA", value: "CFA" },
+    { id: 20, Name: "FRM", value: "FRM" },
+    { id: 21, Name: "CWM", value: "CWM" },
+    { id: 22, Name: "Passed CFA Level 1", value: "Passed CFA Level 1" },
+    { id: 23, Name: "Passed CFA Level 2", value: "Passed CFA Level 2" },
+    { id: 24, Name: "Passed CFA Level 3", value: "Passed CFA Level 3" },
+    { id: 25, Name: "PGDDA", value: "PGDDA" },
+
+]

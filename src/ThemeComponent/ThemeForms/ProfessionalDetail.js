@@ -1,11 +1,11 @@
-import { Box, Stack, Typography, Button, TextField, Radio, RadioGroup, FormControlLabel, FormControl, Snackbar, Alert } from "@mui/material";
+import { Box, Select, Stack, Typography, Button, TextField, Radio, RadioGroup, FormControlLabel, FormControl, Snackbar, Alert, MenuItem } from "@mui/material";
 
 import { Formik, Field, Form } from "formik";
 
 import DatePicker from "react-datepicker";
 
 import { ProfessionalDetailSchema } from "../../Validation/CandidateValidation";
-
+import { CandidateEducation } from "../../utils/Data";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from '../../ThemeComponent/Common/Error';
 import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
@@ -29,6 +29,8 @@ const ProfessionalDetail = ({ setActiveStep }) => {
         ending_year: "",
         percentage: "",
     }
+
+    const [qualification, setQualification] = useState(" ");
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [courseType, setCourseType] = useState('full_time');
     const [startingDate, setStartingDate] = useState();
@@ -51,7 +53,7 @@ const ProfessionalDetail = ({ setActiveStep }) => {
             passing_year: values.ending_year,
             percentage: values.percentage
         }
-        // console.log(formData);
+        console.log(formData);
         let response = await fetch(api_url + "/api/users/updateeducation", {
             method: "POST",
             headers: {
@@ -68,6 +70,7 @@ const ProfessionalDetail = ({ setActiveStep }) => {
                 resetForm("");
                 setStartingDate("");
                 setEndingDate("");
+                setQualification(" ");
                 setFormSubmitted(true);
             }
         }
@@ -122,12 +125,24 @@ const ProfessionalDetail = ({ setActiveStep }) => {
 
                             <Stack direction="column" gap={1} className="profile-input-item">
                                 <ThemeLabel LableFor="qualification" LableText="Qualification" />
-                                <Field
-                                    size="small"
-                                    error={errors.qualification && touched.qualification}
-                                    as={TextField}
-                                    id="qualification"
-                                    placeholder="Enter Qualification" type="text" name="qualification" fullWidth />
+                                <Select
+                                    variant="standard"
+                                    labelId="demo-simple-select-label"
+                                    name="profile_type"
+                                    value={qualification}
+                                    label="Age"
+                                    onChange={(event) => {
+                                        setQualification(event.target.value);
+                                        setFieldValue("qualification", event.target.value);
+                                    }}
+                                    sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
+                                    disableUnderline
+                                >
+                                    <MenuItem value=" ">Select Qualification</MenuItem>
+                                    {CandidateEducation.map((item) =>
+                                        <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                    )}
+                                </Select>
                                 {errors.qualification && touched.qualification && <Error text={errors.qualification} />}
 
                             </Stack>
