@@ -167,7 +167,7 @@ const JobDescription = () => {
                             fontStyle: "italic",
                             textTransform: "capitalize"
                         }}>
-                            {company && company.companyName ? company.companyName : "company Name"}
+                            {data && data.companyName ? data.companyName : "company Name"}
                         </Typography>
                         <Typography component="span" sx={{
                             fontSize: "20px",

@@ -17,7 +17,8 @@ const CandidateComponent = ({ item }) => {
                         </Box>
                         <Box>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
-                                {item.userid.email}
+                                {/* {item.userid && item.userid.email} */}
+                                Kanika.np@acem.edu.in
                             </Typography>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
                                 Experience : 4 ys

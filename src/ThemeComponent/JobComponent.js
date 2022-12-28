@@ -68,13 +68,13 @@ const JobComponent = ({ company, data }) => {
                         height: "60px",
                         background: "#FFFFFF"
                     }}>
-                    <img style={{ width: "100%", borderRadius: '10px' }} src={company && company.companyLogo ? company.companyLogo : './assets/companyLogo.png'} alt=""></img>
+                    <img style={{ width: "100%", borderRadius: '10px' }} src={data && data.companyLogo ? data.companyLogo : './assets/companyLogo.png'} alt=""></img>
                 </Box>
 
 
                 <Box className="jobInformation">
 
-                    <h3> {company && company.companyName ? company.companyName : "Company Name"} - {data && data.title} - {data && data.role.replaceAll("_", " ")}</h3>
+                    <h3> {data && data.companyName ? data.companyName : "Company Name"} - {data && data.title} - {data && data.role.replaceAll("_", " ")}</h3>
 
                     <Stack direction="row" gap={5}>
                         <span><WorkOutlineIcon></WorkOutlineIcon>{data && data.experience} Yrs  </span>
@@ -86,7 +86,12 @@ const JobComponent = ({ company, data }) => {
 
                     </Stack>
 
-                    <span> <a href={`employer-dashboard/job/${data._id}/recommedations`} > View All Candidate</a></span>
+                    {
+                        user.type == "employer" && <>
+                            <span> <a href={`employer-dashboard/job/${data._id}/recommedations`} > View All Candidate</a></span>
+
+                        </>
+                    }
 
                     {/* <div style={{ display: 'flex', gap: '10px', position: 'absolute', right: '10px' }}>
                         {user.type == 'employer' && <>

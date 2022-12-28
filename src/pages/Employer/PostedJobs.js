@@ -54,7 +54,6 @@ const PostedJobs = () => {
                                 </Box>
                             </Stack>
                         </Stack>
-                        <span> <a href={`employer-dashboard/job/${params.row._id}/recommedations`} > View All Candidate</a></span>
                     </Stack>
                 </>)
             }

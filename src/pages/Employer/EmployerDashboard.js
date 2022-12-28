@@ -81,8 +81,10 @@ const EmployerDashboard = () => {
             });
             if (data.ok) {
                 data = await data.json();
-                console.log(data)
+                // console.log("data" + data)
                 setData(data.data)
+                console.log(data);
+                // console.log(data.length)
 
             }
         };
@@ -102,7 +104,7 @@ const EmployerDashboard = () => {
     const jobs = data.slice(IndexOfFirstData, IndexOfLastData);
 
     return (<>
-        {console.log(user)}
+        {/* {console.log(user)} */}
         <Stack direction="row" gap={4} sx={{ padding: "50px" }}>
 
             <Stack direction="column" gap={3} sx={{ width: "80%" }}>
@@ -150,7 +152,7 @@ const EmployerDashboard = () => {
 
                         <Stack gap={1} sx={{ minWidth: "100px" }}>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
-                                0
+                                {data.length}
                             </Typography>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
                                 Posted Jobs
