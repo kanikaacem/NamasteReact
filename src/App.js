@@ -29,6 +29,7 @@ import UpdateProfile from "./Pages/Candidate/UpdateProfile";
 import Settings from './Pages/Candidate/Settings';
 import Profile from "./Pages/Candidate/CandidateProfilePage";
 import CandidateJobPerferences from "./Pages/Candidate/CandidateJobPerferences";
+import SavedJobs from './Pages/Candidate/SavedJobs';
 
 /*Website Page*/
 import Home from "./Pages/Home/Home";
@@ -68,7 +69,8 @@ function App() {
             <Route path="view-profile" element={<ViewProfile></ViewProfile>} />
             <Route path="chats" element={<Chat></Chat>} />
           </Route>
-          <Route path="perferences" element={<CandidateJobPerferences></CandidateJobPerferences>} />
+          {/* <Route path="/perferences" element={<CandidateJobPerferences></CandidateJobPerferences>} /> */}
+          <Route path="/view-profile" element={<ViewProfile></ViewProfile>} />
 
           <Route path="/update-profile" element={<UpdateProfile></UpdateProfile>} />
           <Route path="/candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route>
@@ -76,9 +78,10 @@ function App() {
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             {/* <Route path="/candidate-dashboard" element={<Dashboard />} > */}
             <Route path="" element={<CandidateDashboard></CandidateDashboard>} />
-            {/* <Route path="candidate-profile" element={<Profile></Profile>}></Route> */}
+            <Route path="candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route>
             <Route path="update-profile" element={<UpdateProfile></UpdateProfile>} />
-            {/* <Route path="/settings" element={<Settings></Settings>} /> */}
+            <Route path="saved-jobs" element={<SavedJobs></SavedJobs>} />
+            <Route path="perferences" element={<CandidateJobPerferences></CandidateJobPerferences>} />
             <Route path="*" element={<NotFound></NotFound>} />
           </Route>
 
