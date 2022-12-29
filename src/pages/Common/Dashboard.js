@@ -149,7 +149,7 @@ const Dashboard = () => {
                         <Box direction="row" sx={{ width: "75%" }}>
                             <List sx={{ display: "flex" }}>
 
-                                {user.type == "employer" && EmployerMenu.map((item) => {
+                                {user && user.type == "employer" && EmployerMenu.map((item) => {
                                     return (<>
                                         <ListItem sx={{ width: "fit-content" }}
                                             button key={item.id} to={item.url} component={NavLink}
@@ -161,7 +161,7 @@ const Dashboard = () => {
                                     </>)
                                 })}
 
-                                {user.type == "candidate" && CandidateMenu.map((item) => {
+                                {user && user.type == "candidate" && CandidateMenu.map((item) => {
                                     return (<>
                                         <ListItem sx={{ width: "fit-content" }}
                                             button key={item.id} to={item.url} component={NavLink}
@@ -223,7 +223,7 @@ const Dashboard = () => {
 
 
                                 {
-                                    user.type == "employer" && (<>
+                                    user && user.type == "employer" && (<>
                                         <Stack gap={2} direction="column" sx={{ background: "#FFFFFF", padding: "20px" }}>
                                             <Typography component="div" sx={{ fontSize: "14px" }}>
                                                 Basic Postings : Unlimited
@@ -250,8 +250,8 @@ const Dashboard = () => {
                                 }
 
                                 {
-                                    user.type == "candidate" && (<>
-                                        <Box sx={{ background: "#FFFFFF", padding: "20px", height: "300px", overflow: "scroll" }}>
+                                    user && user.type == "candidate" && (<>
+                                        <Box sx={{ background: "#FFFFFF", padding: "0px 20px", height: "300px", overflow: "scroll" }}>
                                             <List sx={{ display: "flex", flexDirection: "column" }}>
                                                 {CandidateLogoutMenu.map((item) => {
                                                     return (<>

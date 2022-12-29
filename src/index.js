@@ -22,7 +22,8 @@ const initialState = {
   CandidateMenuSelected : "dashboard",
   activeJob : '',
   candidateInfo: '',
-  CandidateRegistration:false
+  CandidateRegistration:false,
+  user:{}
 };
 const reducer = (state, action) =>{
   switch(action.type){
@@ -30,7 +31,7 @@ const reducer = (state, action) =>{
       let user = action.payload;
       localStorage.setItem('isLoggedIn',true);
       localStorage.setItem('user',user);
-      return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn")};
+      return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:localStorage.getItem('user')};
 
     case "LOGOUT":
       localStorage.setItem("user","")

@@ -95,9 +95,12 @@ const AppliedCandidate = () => {
 
                 <Stack direction="column" gap={2}>
 
-                    {data && data.map((item) => {
+                    {data ? data.map((item) => {
                         return (<CandidateComponent item={item}></CandidateComponent>)
-                    })}
+                    }) :
+                        <Box sx={{ width: "100%" }}>
+                        </Box>
+                    }
 
                 </Stack>
             </Stack>

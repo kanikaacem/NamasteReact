@@ -11,6 +11,13 @@ const CandidateRecommendation = () => {
 
     const id = useParams();
 
+    useEffect(() => {
+        const getAppliedCandidate = async () => {
+            console.log(id);
+        }
+        getAppliedCandidate();
+    })
+
     return (<>
         <Stack direction="row" gap={2} >
             <Stack direction="column" gap={2} className="JobRecommened Candidates" sx={{ padding: '20px', width: "80%" }}>

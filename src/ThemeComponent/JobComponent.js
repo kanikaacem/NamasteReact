@@ -87,7 +87,7 @@ const JobComponent = ({ company, data }) => {
                     </Stack>
 
                     {
-                        user.type == "employer" && <>
+                        user && user.type == "employer" && <>
                             <span> <a href={`employer-dashboard/job/${data._id}/recommedations`} > View All Candidate</a></span>
 
                         </>

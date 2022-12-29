@@ -85,7 +85,7 @@ const CandidateJobPerferences = () => {
                     return (<>
                         <Stack direction="row" gap={1} className="JOBPERFERENCES" key={item.id} onClick={addPerferences} alignItems="center" justifyContent="center">
                             <Box sx={{ width: "25px" }}>
-                                <img src={item.logo} alt={item.title} width="100%" />
+                                <img src={window.location.origin + item.logo.replace('.', '')} alt={item.title} width="100%" />
                             </Box>
                             <Box>
                                 {item.title}

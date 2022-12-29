@@ -42,7 +42,6 @@ const PostJob = () => {
     };
 
     const handleSubmit = async (values, { resetForm }) => {
-
         let formData = new FormData();
         formData = {
             userid: user._id,
@@ -70,7 +69,6 @@ const PostJob = () => {
             response = await response.json();
             if (response.status == 1) {
                 setFormSubmitted(true);
-
                 resetForm();
                 setCity(" ");
                 setRole(" ");

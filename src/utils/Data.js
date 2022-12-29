@@ -360,12 +360,14 @@ export const CandidateMenu = [
     {
         id: 2,
         MenuName: "Applied Jobs",
-        value: "applied_jobs"
+        value: "applied_jobs",
+        url: "saved-jobs"
     },
     {
         id: 3,
         MenuName: "Saved Jobs",
-        value: "saved_jobs"
+        value: "saved_jobs",
+        url: "saved-jobs"
     }
 ]
 
@@ -489,45 +491,35 @@ export const CandidateLogoutMenu = [
         value: "my_profile",
         url: "candidate-profile"
     },
+
     {
         id: 2,
-        Name: "Edit Profile",
-        value: "edit_profile",
-        url: ""
-    },
-    {
-        id: 3,
         Name: "My Job",
         value: "my_job",
         url: ""
 
     },
     {
-        id: 4,
+        id: 3,
         Name: "Personalize JobFeed",
         value: "personalize_Jobfeed",
-        url: ""
+        url: "perferences"
+    },
+    {
+        id: 4,
+        Name: "Saved Jobs",
+        value: "saved_jobs",
+        url: "saved-jobs"
     },
     {
         id: 5,
-        Name: "Saved Jobs",
-        value: "saved_jobs",
-        url: ""
-    },
-    {
-        id: 6,
         Name: "Applied Jobs",
         value: "applied_jobs",
-        url: ""
+        url: "applied_job"
     },
+
     {
-        id: 7,
-        Name: "Change Password",
-        value: "change_password",
-        url: "change-password"
-    },
-    {
-        id: 8,
+        id: 5,
         Name: "Settings",
         value: "",
         url: "settings"

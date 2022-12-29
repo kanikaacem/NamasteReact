@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import parse from 'html-react-parser';
 
+import CheckIcon from '@mui/icons-material/Check';
+
 import ButtonType2 from "../ThemeComponent/Common/ButtonType2";
 
 const JobDescription = () => {
@@ -12,6 +14,7 @@ const JobDescription = () => {
     const user = localStorage.user && JSON.parse(localStorage.user);
     const [data, setdata] = useState("");
     const [company, setcompany] = useState("");
+    const [alreadyApplied, setAlreadyApplied] = useState(false);
 
     const [savedJobs, setsavedJobs] = useState(false);
     const [appliedJobs, setappliedJobs] = useState(false);
@@ -43,8 +46,7 @@ const JobDescription = () => {
             if (jobAction == "apply") setappliedJobs(true);
             if (jobAction == "save") setsavedJobs(true);
             if (jobAction == "unsave") setunsavedJobs(true);
-            // setsavedJobs(false);
-            // setappliedJobs(false);
+
 
         }
 
@@ -70,25 +72,27 @@ const JobDescription = () => {
             }
         }
 
-        // const getSavedAppliedJobs = async () => {
-        //     let response = await fetch(api_url + "/api/users/getuserbyid", {
-        //         method: "POST",
-        //         headers: {
-        //             'Access-Control-Allow-Origin': '*',
-        //             'Content-Type': 'application/json; charset=UTF-8'
-        //         },
-        //         body: JSON.stringify({
-        //             userid: user._id
+        const getSavedAppliedJobs = async () => {
+            let response = await fetch(api_url + "/api/users/getuserbyid", {
+                method: "POST",
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json; charset=UTF-8'
+                },
+                body: JSON.stringify({
+                    userid: user._id
 
-        //         }),
-        //     })
-        //     if (response.ok) {
-        //         response = await response.json();
-        //         console.log(response);
-        //     }
-        // }
+                }),
+            })
+            if (response.ok) {
+                response = await response.json();
+                // if (response.status == "1") setAlreadyApplied(true);
+                console.log(response);
+
+            }
+        }
         getJobDescription();
-        // getSavedAppliedJobs();
+        getSavedAppliedJobs();
 
 
 
@@ -241,7 +245,19 @@ const JobDescription = () => {
                             </Box>
                             {user && user.type == "candidate" && <>
                                 <Stack direction="row" gap={3} >
-                                    <ButtonType2 ClickEvent={() => JobAction(id, "apply")} ButtonText="Apply Now" />
+                                    {!alreadyApplied ? <ButtonType2 ClickEvent={() => JobAction(id, "apply")} ButtonText="Apply Now" /> :
+                                        <Stack direction="row" gap={2} sx={{
+                                            alignItems: "center",
+                                            color: "red"
+                                        }}>
+                                            <CheckIcon />
+                                            <Typography component="h3" sx={{
+                                                fontSize: "16px",
+                                                marginRight: "20px",
+                                            }}>
+                                                Already Applied
+                                            </Typography>
+                                        </Stack>}
                                     <ButtonType2 ClickEvent={() => JobAction(id, "save")} ButtonText="Save Job" />
                                 </Stack>
                             </>}

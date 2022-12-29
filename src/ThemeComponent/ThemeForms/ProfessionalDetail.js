@@ -46,6 +46,7 @@ const ProfessionalDetail = ({ setActiveStep }) => {
         let formData = new FormData();
         formData = {
             userid: userid,
+            // userid: "63ac1e7ffe81366e8caeabdd",
             universityname: values.institue_name,
             qualification: values.qualification,
             coursetype: values.course_type,
@@ -54,7 +55,7 @@ const ProfessionalDetail = ({ setActiveStep }) => {
             percentage: values.percentage
         }
         console.log(formData);
-        let response = await fetch(api_url + "/api/users/updateeducation", {
+        let response = await fetch(api_url + "/api/users/createeducation", {
             method: "POST",
             headers: {
                 'Access-Control-Allow-Origin': '*',

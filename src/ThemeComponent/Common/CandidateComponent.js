@@ -5,50 +5,62 @@ import ChatIcon from '@mui/icons-material/Chat';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 
+import Moment from 'react-moment';
+
 const CandidateComponent = ({ item }) => {
     console.log(item)
     return (<>
         <Stack direction="column" gap={1} sx={{ padding: "20px", background: "#FFFFFF" }}>
             <Stack direction="row" gap={2} >
                 <Box sx={{ width: "25%" }}>
-                    <Stack direction="row" gap={1} alignItems="center" justifyContent="center">
-                        <Box sx={{ width: "50px" }}>
+                    <Stack direction="row" gap={2} alignItems="center" justifyContent="center">
+                        <Box sx={{ width: "200px" }}>
                             <img src={window.location.origin + "/assets/profile.png"} alt="ProfileLogo" width="100%" sx={{ borderRadius: "50%" }} />
                         </Box>
-                        <Box>
+                        <Stack gap={1} direction="column" sx={{ margin: "20px 0px" }}>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
-                                {/* {item.userid && item.userid.email} */}
-                                Kanika.np@acem.edu.in
+                                Name:{item && item.userid && item.userid.fullname}
                             </Typography>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
-                                Experience : 4 ys
+                                Email:{item && item.userid && item.userid.email}
                             </Typography>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
-                                Location : Indore
+                                Location :  {item && item.userid && item.userid.address}
                             </Typography>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
-                                Notice Period : Immediately
+                                Notice Period : {item && item.userid && item.userid.notice_period}
                             </Typography>
-                        </Box>
+                            <Typography component="div" sx={{ fontSize: "14px", textTransform: "capitalize" }}>
+                                Applied For :  {item && item.jobsrole.replaceAll("_", " ")}
+                            </Typography>
+
+                        </Stack>
                     </Stack>
                     <Box sx={{ margin: "20px auto", textAlign: "center" }}>
                         <Button variant="outlined" startIcon={<PhoneIcon />} > Call</Button>
                     </Box>
                 </Box>
                 <Box sx={{ width: "25%" }}>
-                    {item && item.userid.education.map((item) => {
+                    {item && item.userid.workhistory.map((work) => {
                         return (<>
-                            <Box>
-                                <Typography component="div" sx={{ fontSize: "14px", fontWeight: "600" }}>
-                                    InnovationM
-                                </Typography>
-                                <Typography component="div" sx={{ fontSize: "14px" }}>
-                                    Sr. software engineer
-                                </Typography>
-                                <Typography component="div" sx={{ fontSize: "14px" }}>
-                                    Feb, 2022 to present
-                                </Typography>
-                            </Box>
+                            {typeof (work) != null &&
+
+                                <Box>
+                                    <Typography component="div" sx={{ fontSize: "14px", fontWeight: "600", textTransform: "capitalize" }}>
+                                        {work && work.department}
+                                    </Typography>
+                                    <Typography component="div" sx={{ fontSize: "14px", textTransform: "capitalize" }}>
+                                        {work && work.designation}
+                                    </Typography>
+                                    {/* <Typography component="div" sx={{ fontSize: "14px" }}>
+                                        <Moment format="DD/MM/YYYY">
+                                            {item && item.startdate}
+                                        </Moment> to <Moment format="DD/MM/YYYY">
+                                            {item && item.endate}
+                                        </Moment>
+                                    </Typography> */}
+                                </Box>}
+
                         </>)
                     })}
 
@@ -78,17 +90,25 @@ const CandidateComponent = ({ item }) => {
                     </Box> */}
                 </Box>
                 <Box sx={{ width: "25%" }}>
-                    <Box>
-                        <Typography component="div" sx={{ fontSize: "14px", fontWeight: "600" }}>
-                            Radha Raman institue of technology and science bhipal
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                            BTech / BE (Full time)
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                            2014 to 2018
-                        </Typography>
-                    </Box>
+                    {
+                        item && item.userid.education.map((education) => {
+                            return (<>
+                                {
+                                    typeof (education) != null && <>
+                                        <Box>
+                                            <Typography component="div" sx={{ fontSize: "14px", fontWeight: "600" }}>
+                                                {education && education.institute}
+                                            </Typography>
+                                            <Typography component="div" sx={{ fontSize: "14px" }}>
+                                                {education && education.qualification}
+                                            </Typography>
+
+                                        </Box></>
+                                }
+                            </>)
+                        })
+                    }
+
                 </Box>
                 <Stack direction="column" gap={1} sx={{ width: "25%" }} alignItems="center" justifyContent="center">
                     <Stack direction="row" gap={2}>
