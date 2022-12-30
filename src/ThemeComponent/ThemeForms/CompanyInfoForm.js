@@ -49,7 +49,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const [companyWebsite, setCompanyWebsite] = useState("");
     const [companyLanNumber, setCompanyLanNumber] = useState("");
 
-    const [companyInfoForm, setCompanyInfoForm] = useState(3);
+    const [companyInfoForm, setCompanyInfoForm] = useState(1);
 
     const defaultValue = {
         hr_name: hrName,
