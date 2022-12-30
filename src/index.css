@@ -639,9 +639,7 @@ textarea {
 
 #mui-component-select-role,
 #mui-component-select-experience,
-#mui-component-select-city,
 #mui-component-select-profile_type,
-#mui-component-select-company_type,
 #mui-component-select-job_type,
 #mui-component-select-job_working_type,
 #mui-component-select-salary_type,
@@ -839,4 +837,29 @@ textarea {
   font-family: 'Montserrat';
   font-size: 16px;
   font-weight: 500
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  border-radius: 7px;
+  font-size: 16px !important;
+  font-family: 'Montserrat' !important;
+  font-weight: 500 !important;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input::placeholder {
+  color: #B1B1B1 !important;
+}
+
+.CompanyInformationForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  background: #EAEAEA;
+
+}
+
+#mui-component-select-company_type,
+#mui-component-select-city {
+  font-family: "Montserrat";
+}
+
+.CompanyInformationForm .css-14lo706 {
+  display: none !important;
 }

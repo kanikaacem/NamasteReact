@@ -76,7 +76,7 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
                             error={errors.mobile_number && touched.mobile_number}
                             id="mobile_number"
                             as={TextField}
-                            placeholder="Enter Mobile Number" type="text" name="mobile_number" />
+                            placeholder="Enter Mobile Number" type="text" name="mobile_number *" />
                         <Button
                             type="submit"
                             sx={{
@@ -132,7 +132,7 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
                 <Form className="VerifyOTPForm">
 
                     <ThemeFInputDiv>
-                        <ThemeLabel LableFor="otp" LableText="OTP" />
+                        <ThemeLabel LableFor="otp" LableText="OTP *" />
                         <Field
                             error={errors.otp && touched.otp}
                             id="otp"

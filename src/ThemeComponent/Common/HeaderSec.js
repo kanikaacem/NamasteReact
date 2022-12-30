@@ -1,6 +1,6 @@
 import { Box, Typography, Stack, Button } from "@mui/material";
 
-const HeaderSec = () => {
+const HeaderSec = ({ color, background, border }) => {
     return (<>
         <Stack direction="row" justifyContent="space-between">
             <Box>
@@ -31,15 +31,16 @@ const HeaderSec = () => {
                         width: "247px",
                         borderRadius: "44px",
                         fontSize: "24px",
-                        border: "2px solid rgba(255, 255, 255, 0.25)",
-                        color: "#FFFFFF",
+                        border: { border },
+                        color: { color },
                         textTransform: "capitalize",
                         fontWeight: "600",
-                        background: "#432C60",
+                        background: { background },
                         "&:hover": {
-                            border: "2px solid rgba(255, 255, 255, 0.25)",
-                            color: "#FFFFFF",
-                            background: "#432C60"
+                            border: { border },
+                            color: { color },
+                            background: { background }
+
                         }
                     }}>
                     Contact us

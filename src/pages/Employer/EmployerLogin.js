@@ -242,7 +242,10 @@ const EmployerLogin = () => {
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
-                <HeaderSec />
+                <HeaderSec
+                    border="2px solid rgba(255, 255, 255, 0.25)"
+                    color="#FFFFFF"
+                    background="#432C60" />
                 <Stack alignItems="flex-end" sx={{ position: "relative" }}>
 
                     <Box sx={{
@@ -321,7 +324,7 @@ const EmployerLogin = () => {
                                 <Form className="EmployerLoginForm">
                                     <ThemeFInputDiv >
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="email_address" LableText="Email Address" />
+                                            <ThemeLabel LableFor="email_address" LableText="Email Address * " />
                                             <Field
                                                 error={errors.email_address && touched.email_address}
                                                 as={TextField}
@@ -331,7 +334,7 @@ const EmployerLogin = () => {
 
                                         </ThemeFInputDiv>
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="password" LableText="Password" />
+                                            <ThemeLabel LableFor="password" LableText="Password *" />
                                             <Field
                                                 error={errors.password && touched.password}
                                                 id="password"
@@ -351,7 +354,7 @@ const EmployerLogin = () => {
                         <Typography component="span" sx={{ fontSize: "16px", display: "flex" }}>
                             <hr style={{ width: "150px", height: "0px", color: "#DAD9D9" }}></hr> or login in with <hr style={{ width: "150px", height: "0px" }}></hr>
                         </Typography>
-                        <Stack direction="row" gap={1} justifyContent="center">
+                        <Stack direction="row" gap={3} justifyContent="center">
                             {
                                 socialLogin.map((item) => {
                                     return (<>

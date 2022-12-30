@@ -68,7 +68,7 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                     <Form className="EmailSignupForm">
                         <ThemeFInputDiv>
                             <ThemeFInputDiv>
-                                <ThemeLabel LableFor="email_address" LableText="Email Address" />
+                                <ThemeLabel LableFor="email_address" LableText="Email Address *" />
                                 <Field
                                     id="email_address"
                                     error={errors.email_address && touched.email_address}
@@ -84,7 +84,7 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                                 <hr style={{ width: "150px", height: "0px", color: "#DAD9D9" }}></hr> or login in with <hr style={{ width: "150px", height: "0px" }}></hr>
                             </Typography>
 
-                            <Stack direction="row" gap={1} justifyContent="center">
+                            <Stack direction="row" gap={3} justifyContent="center">
                                 <LoginSocialGoogle
                                     client_id={CLIENT_ID}
                                     scope="openid profile email"

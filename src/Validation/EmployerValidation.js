@@ -50,6 +50,21 @@ export const companyInfoValidationSchema = yup.object().shape({
 
 })
 
+export const companyInfoValidationSchema1 = yup.object().shape({
+    company_email: yup.string().required("Company Email is required").email("Email is not valid"),
+    company_website: yup.string().required("Company website is required"),
+    company_lan_number: yup.string().required("Company Lan Number is required").max(8),
+})
+
+export const companyInfoValidationSchema2 = yup.object().shape({
+    state: yup.string().required("State is required"),
+    city: yup.string().required("City website is required"),
+    company_address: yup.string().required("Company Address is required"),
+    company_pincode: yup.number().min(6).required("Company Pincode is required"),
+    company_pan_number: yup.string().matches(/[A-Z]{5}[0-9]{4}[A-Z]{1}$/, "Please Provide a valid Pan Number ").required("Pan Number is required"),
+    company_gst_number: yup.string().required("GST Number is required"),
+    area: yup.string().required("Company Address is required")
+})
 //Forgot Password Validation
 export const ForgotPasswordValidation = yup.object().shape({
     old_password: yup.string().required("Old Password is required"),

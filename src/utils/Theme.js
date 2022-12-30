@@ -82,3 +82,23 @@ export const SocialBox = styled(Box)({
     alignItems: "center",
     justifyContent: "center"
 })
+
+export const NextButton = styled(Button)({
+    height: "65px",
+    width: "64px",
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "#FC9A7E",
+    "&:hover": {
+        height: "65px",
+        width: "64px",
+        borderRadius: "50%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#FC9A7E"
+    }
+
+})

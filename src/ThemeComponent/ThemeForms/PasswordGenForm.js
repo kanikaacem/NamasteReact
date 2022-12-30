@@ -59,7 +59,7 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
                 <Form className="PasswordGenerationForm" >
                     <ThemeFInputDiv>
                         <ThemeFInputDiv sx={{ position: "relative" }}>
-                            <ThemeLabel LableFor="password" LableText="Password" />
+                            <ThemeLabel LableFor="password" LableText="Password *" />
                             <Field
                                 id="password"
                                 as={TextField}
@@ -88,7 +88,7 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
                         </ThemeFInputDiv>
 
                         <ThemeFInputDiv sx={{ position: "relative" }}>
-                            <ThemeLabel LableFor="confirm_password" LableText="Confirm Password" />
+                            <ThemeLabel LableFor="confirm_password" LableText="Confirm Password *" />
                             <Field
                                 id="confirm_password"
                                 as={TextField}
