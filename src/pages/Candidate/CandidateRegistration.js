@@ -1,3 +1,6 @@
+import { postRequest } from "../../utils/ApiRequests";
+import { saveCandidateUserNameAndPasswordURL } from "../../utils/ApiUrls";
+
 import { Box, Container, Stack, Typography, TextField, Button } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
@@ -11,14 +14,10 @@ import { LoginSocialGoogle } from 'reactjs-social-login';
 
 import { CandidateRegistrationSchema } from "../../Validation/CandidateValidation";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
-import RegistrationSeperator from "../../ThemeComponent/Common/RegistrationSeperator";
 import Error from '../../ThemeComponent/Common/Error';
-import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
-import ButtonType2 from "../../ThemeComponent/Common/ButtonType2";
+import { ThemeButtontype1 } from "../../utils/Theme";
 
 import { useDispatch } from "react-redux";
-// const CLIENT_ID = "346122009616-5gsdqla59hflt7sg5f8n38valqs6p1q8.apps.googleusercontent.com";
-
 const CandidateRegistration = () => {
     const api_url = useSelector(state => state.api_url);
     const CandidateRegistration = useSelector(state => state.CandidateRegistration);
@@ -153,28 +152,17 @@ const CandidateRegistration = () => {
     // }
 
     const handleSubmit = async (values, { setFieldError }) => {
-        // dispatch({ type: 'USER_REGISTRATION', payload: JSON.stringify("hlleo") });
-
         let CandidateLoginForm = new FormData();
         CandidateLoginForm = {
             email: values.email_id,
             password: values.password
         }
-        let response = await fetch(api_url + "/api/users/saveusernameandpassword", {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify(CandidateLoginForm)
-        })
 
-        if (response.ok) {
-            response = await response.json();
-            console.log(response);
-            if (response.status == '1') {
-                dispatch({ type: 'USER_REGISTRATION', payload: JSON.stringify(response) });
-            }
+        let response = await postRequest(saveCandidateUserNameAndPasswordURL, CandidateLoginForm);
+
+        if (response.status == '1') {
+            localStorage.setItem("user_registration_token", response);
+            dispatch({ type: 'USER_REGISTRATION', payload: JSON.stringify(response) });
         }
     }
     return (<>
@@ -290,7 +278,8 @@ const CandidateRegistration = () => {
                                                 </Box>
                                             </Stack>
                                             <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                                <ButtonType1 ButtonText="Continue" />
+                                                {/* <ButtonType1 ButtonText="Continue" /> */}
+                                                <ThemeButtontype1 type="submit" variant="contained"> Continue</ThemeButtontype1>
                                             </Box>
                                         </Form>
                                     )}

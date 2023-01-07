@@ -14,6 +14,11 @@ export const PostJobURL = "http://13.126.115.3:3001/api/job/postjob";
 /* Api for getting the data of the posted jobs*/
 export const getAllPostedJobs = "http://13.126.115.3:3001/api/job/getpostedjobs";
 
+
+
+
 /*----------------------Candidate----------------------------------------*/
 /*Candidate Registration*/
 
+/*STEP 1 */
+export const saveCandidateUserNameAndPasswordURL = "http://13.126.115.3:3001/api/users/saveusernameandpassword";
