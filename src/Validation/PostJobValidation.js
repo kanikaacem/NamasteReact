@@ -1,9 +1,11 @@
 import * as yup from "yup";
 
+/* Regular Job Validation */
 export const postJobValidationSchema = yup.object().shape({
     job_title: yup.string().required("Job Titlte is required"),
+    job_type: yup.string().required("Job Type is required"),
     role: yup.string().required("Job role is required"),
-    experience: yup.number("Experience should be a number.").required("Job experience is required"),
+    experience: yup.string().required("Job experience is required"),
     opening: yup.number("Opening should be a number").required("Opening is required"),
     skills: yup.string().required("Skills is required"),
     salary: yup.number("Salary should be a number").min(10000).required("Salary is required"),

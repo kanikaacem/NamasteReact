@@ -4,6 +4,7 @@ import { Box, Container, Stack, Typography, TextField, Button, Stepper, Step, St
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 
+import Header from "../../ThemeComponent/Common/Header";
 import PersonalInformation from "../../ThemeComponent/ThemeForms/PersonalInformation";
 import ProfessionalDetail from "../../ThemeComponent/ThemeForms/ProfessionalDetail";
 import WorkHistory from "../../ThemeComponent/ThemeForms/WorkHistory";
@@ -39,6 +40,8 @@ const CandidateProfile = () => {
     const steps = getSteps();
 
     return (<>
+        <Header />
+
         <Box sx={{ padding: "20px", background: "#FAFAFA", minHeight: "100vh" }}>
             <Container>
                 <Box>

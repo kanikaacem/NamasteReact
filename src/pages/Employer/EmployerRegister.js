@@ -1,24 +1,7 @@
-import { Box, Stack, Typography, Container, Snackbar, IconButton } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
-import { Formik, Field, Form, ErrorMessage } from "formik";
-
-
-import CustomizeSelect from '../../ThemeComponent/CustomizeSelect';
-import FormInformation from '../../ThemeComponent/FormInformation';
-
-import { company_type } from '../../utils/Data';
-import { profile_type } from '../../utils/Data';
-import { cities } from "../../utils/Data";
-
+import { Box, Stack, Typography, Container } from "@mui/material";
 import { useState, useRef } from "react";
-import { LoginSocialGoogle } from 'reactjs-social-login';
-import FileBase64 from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-
-import ThemeInput from "../../ThemeComponent/ThemeInput";
-import Loader from "react-js-loader";
-import ButtonType1 from '../../ThemeComponent/Common/ButtonType1';
 
 import Header from "../../ThemeComponent/Common/Header";
 
@@ -43,8 +26,6 @@ const EmployerRegister = () => {
     const mobileoptverificationwrapper = useRef(null);
     const hrinformationwrapper = useRef(null);
     const companyinformationwrapper = useRef(null);
-    const email_regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    const mobile_regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
 
     const [formErrors, setformErrors] = useState({
         email_error: "",

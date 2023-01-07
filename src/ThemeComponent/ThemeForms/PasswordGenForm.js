@@ -1,13 +1,13 @@
-import { Box, Input, Stack, styled, Typography } from "@mui/material";
+import { Box, TextField, Stack, styled, Typography } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { PasswordGenFormValidationSchema } from "../../Validation/EmployerValidation";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
-import ButtonType1 from "../Common/ButtonType1";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { gridColumnPositionsSelector, gridColumnsTotalWidthSelector } from "@mui/x-data-grid";
+import { ThemeButtontype1 } from "../../utils/Theme";
+
+import { useSelector } from "react-redux";
 
 const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobileForm }) => {
     const api_url = useSelector(state => state.api_url);
@@ -52,29 +52,31 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
         >
             {({ errors, touched, values, setFieldValue }) => (
                 <Form className="PasswordGenerationForm" >
+                    <Stack direction="column" gap={2} >
 
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="password" LableText="Password" />
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="password" LableText="Password" />
+                            <Field
+                                variant="standard"
+                                id="password"
+                                as={TextField}
+                                placeholder="Enter Password ( eg.KDHI@1234Jkhd )" type="password" name="password" fullWidth />
+                            {errors.password && touched.password && <Error text={errors.password} />}
+                        </Box>
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="confirm_password" LableText="Confirm Password" />
+                            <Field
+                                variant="standard"
+                                id="confirm_password"
+                                as={TextField}
+                                placeholder="Enter Confirm Password ( eg.KDHI@1234Jkhd )" type="password" name="confirm_password" fullWidth />
+                            {errors.confirm_password && touched.confirm_password && <Error text={errors.confirm_password} />}
 
-                        <Field
-                            id="password"
-                            as={Input}
-                            placeholder="Enter Password" type="password" name="password" fullWidth />
-                        {errors.password && touched.password && <Error text={errors.password} />}
-                    </Box>
-                    <Box className="input-item">
-
-                        <ThemeLabel LableFor="confirm_password" LableText="Confirm Password" />
-                        <Field
-                            id="confirm_password"
-                            as={Input}
-                            placeholder="Enter Confirm Password" type="password" name="confirm_password" fullWidth />
-                        {errors.confirm_password && touched.confirm_password && <Error text={errors.confirm_password} />}
-
-                    </Box>
+                        </Box>
+                    </Stack>
 
                     <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                        <ButtonType1 ButtonText="Next" />
+                        <ThemeButtontype1 variant="contained" type="submit">Next</ThemeButtontype1>
                     </Box>
                 </Form>
             )}

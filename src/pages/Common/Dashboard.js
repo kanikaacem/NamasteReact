@@ -34,109 +34,21 @@ const Dashboard = () => {
 
     const api_url = useSelector(state => state.api_url);
 
-
-    //Employer Menu 
-
-    // useEffect(() => {
-    //     const getpostedjobs = async () => {
-    //         let data = await fetch(api_url + "/api/job/getpostedjobs", {
-    //             // Adding method type
-    //             method: "POST",
-    //             // Adding body or contents to send
-    //             headers: {
-    //                 'Access-Control-Allow-Origin': '*',
-    //                 'Content-Type': 'application/json; charset=UTF-8'
-    //             },
-    //             body: JSON.stringify({
-    //                 userid: user._id
-
-    //             }),
-    //         });
-    //         if (data.ok) {
-    //             data = await data.json();
-    //             console.log(data.data);
-    //             setdata(data.data);
-    //             setcompany(data.companyinfo[0]);
-
-    //         }
-    //     };
-
-    //     const getCandidateSavedJobs = async () => {
-    //         let data = await fetch(api_url + "/api/job/viewsavedjobslist", {
-    //             // Adding method type
-    //             method: "POST",
-    //             // Adding body or contents to send
-    //             headers: {
-    //                 'Access-Control-Allow-Origin': '*',
-    //                 'Content-Type': 'application/json; charset=UTF-8'
-    //             },
-    //             body: JSON.stringify({
-    //                 userid: user._id
-
-    //             }),
-    //         });
-    //         if (data.ok) {
-    //             data = await data.json();
-    //             console.log(data.message);
-    //             // console.log(data.data);
-    //             setdata(data.message);
-    //             // setcompany(data.companyinfo[0]);
-
-    //         }
-    //     };
-
-    //     const getCandidateAppliedJobs = async () => {
-    //         let data = await fetch(api_url + "/api/job/viewapplyjobslist", {
-    //             // Adding method type
-    //             method: "POST",
-    //             // Adding body or contents to send
-    //             headers: {
-    //                 'Access-Control-Allow-Origin': '*',
-    //                 'Content-Type': 'application/json; charset=UTF-8'
-    //             },
-    //             body: JSON.stringify({
-    //                 userid: user._id
-
-    //             }),
-    //         });
-    //         if (data.ok) {
-    //             data = await data.json();
-    //             console.log(data.message);
-    //             setdata(data.message);
-    //             // setcompany(data.companyinfo[0]);
-
-    //         }
-    //     };
-
-    //     if (user.type == 'candidate') {
-    //         if (CandidateMenuSelected == 'saved_jobs') getCandidateSavedJobs();
-    //         if (CandidateMenuSelected == 'applied_jobs') getCandidateAppliedJobs();
-    //     } else {
-    //         getpostedjobs();
-    //     }
-
-
-
-
-    // }, [CandidateMenuSelected, EmployeeMenuSelected]);
-
     return (<>
-
         <Box
-            className="employer-dashboard"
+            className="dashboard"
             sx={{
                 background: "#FAFAFA",
                 width: "100%",
             }}
         >
-            <Stack direction="row"
+            <Stack direction={user && user.type == "employer" ? "column" : "row"}
                 sx={{
-                    width: "inherit",
+                    width: "100%",
                     height: "inherit"
                 }}>
 
-                <Box sx={{ width: "100%" }}>
-
+                {user && user.type == "employer" && (<>
                     <Stack direction="row" gap={3} sx={{ height: "50px", padding: "10px 50px", alignItems: "center" }}>
                         <Box sx={{ width: "5%" }}>
                             <Box sx={{ width: "50px", height: "50px" }} >
@@ -145,11 +57,10 @@ const Dashboard = () => {
                                 </Link>
                             </Box>
                         </Box>
-
                         <Box direction="row" sx={{ width: "75%" }}>
                             <List sx={{ display: "flex" }}>
 
-                                {user && user.type == "employer" && EmployerMenu.map((item) => {
+                                {EmployerMenu.map((item) => {
                                     return (<>
                                         <ListItem sx={{ width: "fit-content" }}
                                             button key={item.id} to={item.url} component={NavLink}
@@ -160,38 +71,18 @@ const Dashboard = () => {
                                         </ListItem>
                                     </>)
                                 })}
-
-                                {user && user.type == "candidate" && CandidateMenu.map((item) => {
-                                    return (<>
-                                        <ListItem sx={{ width: "fit-content" }}
-                                            button key={item.id} to={item.url} component={NavLink}
-                                            className="menu"
-                                            id={item.id}
-                                            onClick={() => { dispatch({ type: "CHANGE_CANDIDATE_MENU", payload: item.value }) }} >
-                                            <ListItemText className={CandidateMenuSelected === item.value && "CandidateMenuSelected"} primary={item.MenuName} />
-                                        </ListItem>
-                                    </>)
-                                })}
-
-
-
                             </List>
                         </Box>
-
                         <Stack direction="row" gap={3} justifyContent="flex-end" alignItems="center" sx={{ width: "20%" }}>
                             <Badge badgeContent={4} color="primary" sx={{ cursor: "pointer" }}
                                 onClick={() => window.location.href = window.location.origin + '/employer-dashboard/chats'}>
                                 <MailOutlineIcon></MailOutlineIcon>
                             </Badge>
-                            {/* <Badge badgeContent={4} color="primary">
-                                <NotificationsNoneIcon></NotificationsNoneIcon>
-                            </Badge> */}
+
                             <Box sx={{ cursor: "pointer" }} onClick={() => setOpenProfile(!openProfile)}>
-                                {/* <Avatar alt="Remy Sharp" src="./assets/companyLogo.png" /> */}
                                 <Avatar alt={user.fullname} />
                             </Box>
                         </Stack>
-
                         {openProfile && (<>
                             <Box sx={{
                                 position: "absolute",
@@ -280,12 +171,76 @@ const Dashboard = () => {
                         </>
                         )}
 
+                    </Stack></>)
+                }
 
+                {user && user.type == "candidate" && (<>
+
+                    <Stack direction="column"  >
+
+                        <Box sx={{ width: "50px", margin: "10px auto" }} >
+                            <Link to="/">
+                                <img src={window.location.origin + "/assets/companyLogo.png"} width="100%" height="100%" alt="companyLogo" />
+                            </Link>
+                        </Box>
+
+                        <Stack direction="column" gap={2}>
+                            {user && CandidateMenu.map((item) => {
+                                return (<>
+                                    <ListItem sx={{
+                                        width: "fit-content",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        width: '100%',
+                                        padding: "0px",
+                                        alignItems: "center",
+                                        justifyContent: 'center',
+                                        margin: "8px 0px",
+
+                                    }}
+                                        button key={item.id} to={item.url} component={NavLink}
+                                        className={CandidateMenuSelected === item.value && "CandidateMenuSelected"}
+                                        id={item.id}
+                                        onClick={() => { dispatch({ type: "CHANGE_CANDIDATE_MENU", payload: item.value }) }} >
+                                        <ListItemIcon sx={{ width: "20px", minWidth: "20px" }}>
+                                            <img src={window.location.origin + `/assets/${item.image}`} width="100%" alt={item.value} />
+                                        </ListItemIcon>
+                                        <ListItemText
+                                            primaryTypographyProps={{ fontSize: '12px', textAlign: "center" }}
+                                            primary={item.MenuName} />
+                                    </ListItem>
+
+                                </>
+                                )
+                            })}
+                            <ListItem sx={{
+                                width: "fit-content",
+                                display: "flex",
+                                flexDirection: "column",
+                                width: '100%',
+                                padding: "0px",
+                                alignItems: "center",
+                                justifyContent: 'center',
+                                margin: "8px 0px"
+
+                            }}
+                                className={CandidateMenuSelected === "logout" && "CandidateMenuSelected"}
+                                onClick={() => dispatch({ type: "LOGOUT" })} >
+                                <ListItemIcon sx={{ width: "20px", minWidth: "20px" }}>
+                                    <LogoutIcon />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primaryTypographyProps={{ fontSize: '12px', textAlign: "center" }}
+                                    primary="Logout" />
+                            </ListItem>
+
+                        </Stack>
 
                     </Stack>
-                    <Box sx={{ background: "#f2f5fa", minHeight: `calc(100vh - 50px)` }}>
-                        <Outlet context={user}></Outlet>
-                    </Box>
+                </>)}
+
+                <Box sx={{ background: "#f2f5fa", minHeight: `calc(100vh - 50px)`, width: '100%' }}>
+                    <Outlet context={user}></Outlet>
                 </Box>
 
             </Stack>

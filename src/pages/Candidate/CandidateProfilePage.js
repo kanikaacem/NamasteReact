@@ -1,33 +1,180 @@
-import { Box, Container, Stack, Typography, TextField, Button, Divider } from "@mui/material";
+import { Box, Stack, Typography, Button } from "@mui/material";
 
-import { Formik, Field, Form } from "formik";
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import EditIcon from '@mui/icons-material/Edit';
+import ProgressBar from "@ramonak/react-progress-bar";
 
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-
-import { NewEmailValidation } from "../../Validation/CandidateValidation";
-import Error from '../../ThemeComponent/Common/Error';
-import ThemeLabel from '../../ThemeComponent/ThemeForms/ThemeLabel';
-import ButtonType1 from '../../ThemeComponent/Common/ButtonType1';
-import ButtonType3 from "../../ThemeComponent/Common/ButtonType3";
+import { CustomizeStackCanProfile, CustomizeBoxProfileHeading, WhiteBox } from "../../utils/Theme";
 
 import { useOutletContext } from "react-router-dom";
+
+import UpdateCandidateBasicInfo from "../../ThemeComponent/ThemeForms/UpdateCandidateBasicInfo";
+import { useState } from "react";
 const CandidateProfilePage = () => {
     const user = useOutletContext();
-    const defaultValue = {
-        email_address: ""
-    }
-    const handleSubmit = async (values) => {
-        console.log(values);
-    }
-    // console.log(user.email);
+    const [showEditBasicInfo, setShowEditBasicInfo] = useState(true);
+
     return (<>
-        <Stack direction="row" gap={3} sx={{ background: "#FFFFFF" }}>
-            <Stack direction="column" gap={1} alignItems="center"
+        <Box className="CandidateProfilePage" sx={{ padding: "20px" }}>
+            {/* <Typography component="h3" sx={{ fontSize: "18px", color: "#2B1E44" }}>
+                Profile
+            </Typography> */}
+            <Stack direction="row" gap={2}>
+                <Stack direction="column" gap={2} sx={{ width: "65%", padding: "20px" }}>
+                    <WhiteBox>
+                        <Stack direction="row" justifyContent="space-between">
+                            <Typography component="h3" sx={{ fontSize: "18px", color: "#2B1E44" }}>
+                                Basic Info
+                            </Typography>
+                            {showEditBasicInfo ?
+                                <Button variant="text" onClick={() => setShowEditBasicInfo(false)}>Cancel</Button>
+                                :
+                                <Box sx={{ cursor: "pointer" }}><EditIcon onClick={() => setShowEditBasicInfo(true)} /></Box>}
+
+                        </Stack>
+                        <Stack direction="column" gap={1} alignItems="center" justifyContent="center">
+                            <Box sx={{
+                                width: "80px", height: "80px",
+                                left: "291px", zIndex: "3432",
+                            }}>
+                                <img src={window.location.origin + "/assets/Company.png"} width="100%" alt="CandidateImage" ></img>
+
+                            </Box>
+                            <Box> {user && user.email}</Box>
+                            <Box sx={{
+                                width: "300px",
+                            }}>
+                                <ProgressBar height="10px" labelSize="12px" completed={user && user.profilecomplete} />
+                            </Box>
+                        </Stack>
+
+                        {showEditBasicInfo ? <UpdateCandidateBasicInfo user={user} /> : <>
+                            <CustomizeStackCanProfile >
+                                <CustomizeBoxProfileHeading>Name</CustomizeBoxProfileHeading>
+                                <Box> {user && user.fullname}</Box>
+                            </CustomizeStackCanProfile>
+
+                            {/* <CustomizeStackCanProfile >
+                                <CustomizeBoxProfileHeading>Email Address</CustomizeBoxProfileHeading>
+                                <Box> {user && user.email}</Box>
+                            </CustomizeStackCanProfile> */}
+
+                            <CustomizeStackCanProfile >
+                                <CustomizeBoxProfileHeading>Date of Birth</CustomizeBoxProfileHeading>
+                                <Box> {user && user.dob}</Box>
+                            </CustomizeStackCanProfile>
+
+                            <CustomizeStackCanProfile >
+                                <CustomizeBoxProfileHeading>Mobile Number</CustomizeBoxProfileHeading>
+                                <Box> {user && user.mobile}</Box>
+                            </CustomizeStackCanProfile>
+
+                            <CustomizeStackCanProfile >
+                                <CustomizeBoxProfileHeading>Gender</CustomizeBoxProfileHeading>
+                                <Box> {user && user.gender}</Box>
+                            </CustomizeStackCanProfile>
+
+                            <CustomizeStackCanProfile >
+                                <CustomizeBoxProfileHeading>Marital Status</CustomizeBoxProfileHeading>
+                                <Box> {user && user.marital_status}</Box>
+                            </CustomizeStackCanProfile>
+
+                            <CustomizeStackCanProfile >
+                                <CustomizeBoxProfileHeading>Current Address</CustomizeBoxProfileHeading>
+                                <Box> {user && user.address}</Box>
+                            </CustomizeStackCanProfile>
+
+                            <CustomizeStackCanProfile >
+                                <CustomizeBoxProfileHeading>Perferred Location</CustomizeBoxProfileHeading>
+                                <Box> {user && user.address}</Box>
+                            </CustomizeStackCanProfile>
+
+                            <CustomizeStackCanProfile >
+                                <CustomizeBoxProfileHeading>Total Work Experience</CustomizeBoxProfileHeading>
+                                <Box> {user && user.total_work_experience}</Box>
+                            </CustomizeStackCanProfile>
+
+                        </>
+                        }
+
+
+                    </WhiteBox>
+
+
+                </Stack>
+
+                <Stack direction="column" gap={1} sx={{ padding: "20px", width: "35%" }}>
+                    <WhiteBox>
+                        <Typography component="h3" sx={{ fontSize: "18px", color: "#2B1E44" }}>
+                            Qualifications
+                        </Typography>
+
+                        <CustomizeBoxProfileHeading>Skills</CustomizeBoxProfileHeading>
+
+                        <Stack direction="column" gap={1}>
+                            {
+                                user.skills.map((item) => { return (<Box sx={{ textTransform: "capitalize" }}>{item.replaceAll("_", " ")}</Box>) })
+                            }
+                        </Stack>
+
+                        <CustomizeBoxProfileHeading>Qualifications</CustomizeBoxProfileHeading>
+                        <Stack direction="column" gap={1}>
+                            {
+                                user.education.map((item) => {
+                                    return (<Stack direction="row" gap={2}>
+                                        <Stack justifyContent="center" alignItems="center"><FiberManualRecordIcon sx={{ fontSize: "10px" }} /></Stack>
+                                        <Box>
+                                            <Typography component="h3" sx={{ fontSize: "14px", marginTop: "10px", fontWeight: "600", textTransform: "capitalize" }}>
+                                                {item.qualification.replaceAll("_", " ")}
+                                            </Typography>
+                                            <Typography component="h3" sx={{ fontSize: "14px", marginTop: "10px", textTransform: "capitalize" }}>
+                                                {item.institute}
+                                            </Typography>
+                                        </Box>
+                                    </Stack>)
+                                })
+                            }
+                        </Stack>
+
+
+                    </WhiteBox>
+
+                    <WhiteBox>
+                        <Typography component="h3" sx={{ fontSize: "18px", color: "#2B1E44" }}>
+                            Work Experience
+                        </Typography>
+
+                        <Stack direction="column" gap={1}>
+                            {
+                                user.workhistory.map((item) => {
+                                    return (<>
+                                        {
+                                            item != null && (
+                                                <Stack direction="row" gap={2}>
+                                                    <Stack justifyContent="center" alignItems="center"><FiberManualRecordIcon sx={{ fontSize: "10px" }} /></Stack>
+                                                    <Box>
+                                                        <Typography component="h3" sx={{ fontSize: "14px", marginTop: "10px", fontWeight: "600", textTransform: "capitalize" }}>
+                                                            {item.designation}
+                                                        </Typography>
+                                                        <Typography component="h3" sx={{ fontSize: "14px", marginTop: "10px", textTransform: "capitalize" }}>
+                                                            {item.department}
+                                                        </Typography>
+                                                    </Box>
+                                                </Stack>
+                                            )
+                                        }</>)
+                                })
+                            }
+
+
+                        </Stack>
+                    </WhiteBox>
+                </Stack>
+
+
+
+
+                {/* <Stack direction="column" gap={1} alignItems="center"
                 sx={{ width: "20%", background: "#e5e6e7", height: "100vh", padding: "20px", overflow: "hidden" }}>
                 <Box sx={{ width: "150px" }}>
                     <img src={window.location.origin + "/assets/ProfileImage.png"} alt="ProfileImage" width="100%"></img>
@@ -59,8 +206,7 @@ const CandidateProfilePage = () => {
                                         <img src={window.location.origin + "/assets/ProfileImage.png"} alt="ProfileImage" width="100%"></img>
                                     </Box>
                                     <Typography component="div" sx={{ fontSize: "14px" }}>
-                                        {/* {user && user.email } */} userName
-                                        {/* user@gmail.com */}
+                                       userName
                                     </Typography>
 
                                 </Stack>
@@ -104,6 +250,7 @@ const CandidateProfilePage = () => {
 
 
             </Stack>
+            
             <Box sx={{ width: "60%" }}>
                 <Typography component="h3" sx={{ fontSize: "20px", margin: "20px 0px" }}>
                     PROFILE
@@ -189,6 +336,7 @@ const CandidateProfilePage = () => {
                 </Stack>
 
             </Box>
+            
             <Box sx={{ width: "20%", padding: "20px" }}>
                 <Stack direction="row" gap={1} >
                     <MailOutlineIcon /> Send a Recommendation
@@ -230,7 +378,9 @@ const CandidateProfilePage = () => {
                         </Form>
                     )}
                 </Formik>
-            </Box>
-        </Stack></>)
+            </Box> */}
+            </Stack >
+        </Box >
+    </>)
 }
 export default CandidateProfilePage;

@@ -1,4 +1,4 @@
-import { Input, Box, Typography, Container, Stack } from "@mui/material";
+import { Box, TextField, Typography, Container, Stack, Button } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,7 +9,8 @@ import { useState } from "react";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import { candidateLoginValidationSchema } from "../../Validation/CandidateValidation";
 import Error from "../../ThemeComponent/Common/Error";
-import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
+import { ThemeButtontype1 } from "../../utils/Theme";
+
 const CandidateLogin = () => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const api_url = useSelector(state => state.api_url);
@@ -38,6 +39,7 @@ const CandidateLogin = () => {
         })
 
         if (response.ok) {
+            console.log("getting the data");
             response = await response.json();
             // console.log(response);
             if (response.status == '1') {
@@ -117,33 +119,37 @@ const CandidateLogin = () => {
                                 onSubmit={handleSubmit}
                             >
                                 {({ errors, touched }) => (
-                                    <Form >
+                                    <Form className="candidateLogin">
 
-                                        <Box className="input-item">
-                                            <ThemeLabel LableFor="email_address" LableText="Email Address" />
-                                            <Field
-                                                error={errors.email_address && touched.email_address}
-                                                as={Input}
-                                                id="email_address"
-                                                placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
-                                            {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
+                                        <Stack direction="column" gap={2} >
+                                            <Box className="input-item">
+                                                <ThemeLabel LableFor="email_address" LableText="Email Address" />
+                                                <Field
+                                                    variant="standard"
+                                                    error={errors.email_address && touched.email_address}
+                                                    as={TextField}
+                                                    id="email_address"
+                                                    placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
+                                                {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
 
-                                        </Box>
+                                            </Box>
 
-                                        <Box className="input-item">
-                                            <ThemeLabel LableFor="password" LableText="Password" />
-                                            <Field
-                                                error={errors.password && touched.password}
-                                                id="password"
-                                                as={Input}
-                                                placeholder="Enter Password" type="password" name="password" fullWidth />
-                                            {errors.password && touched.password && <Error text={errors.password} />}
+                                            <Box className="input-item">
+                                                <ThemeLabel LableFor="password" LableText="Password" />
+                                                <Field
+                                                    variant="standard"
+                                                    error={errors.password && touched.password}
+                                                    id="password"
+                                                    as={TextField}
+                                                    placeholder="Enter Password" type="password" name="password" fullWidth />
+                                                {errors.password && touched.password && <Error text={errors.password} />}
 
 
-                                        </Box>
+                                            </Box>
+                                        </Stack>
 
                                         <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                            <ButtonType1 ButtonText="Sign In" />
+                                            <ThemeButtontype1 variant="contained" type="submit">Sign In</ThemeButtontype1>
                                         </Box>
                                     </Form>
                                 )}

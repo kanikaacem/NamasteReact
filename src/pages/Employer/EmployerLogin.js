@@ -1,25 +1,28 @@
-import { Input, Box, Typography, Container, Stack } from "@mui/material";
+import { postRequest } from "../../utils/ApiRequests";
+import { EmployerLoginURL } from "../../utils/ApiUrls";
+
+import { TextField, Box, Typography, Container, Stack, Button, styled } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { Navigate } from 'react-router-dom';
-import { useState } from "react";
 
 import Header from "../../ThemeComponent/Common/Header";
 
+import { ThemeButtontype1 } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import { employerLoginValidationSchema } from "../../Validation/EmployerValidation";
 import Error from "../../ThemeComponent/Common/Error";
-import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
 
 const EmployerLogin = () => {
 
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const api_url = useSelector(state => state.api_url);
     const dispatch = useDispatch();
-    const [authenticationError, setauthenticationError] = useState("");
-    const [showPassword, setshowPassword] = useState(false);
+    const user = localStorage.user && JSON.parse(localStorage.user);
+
+
     const defaultValue = {
         email_address: "",
         password: ""
@@ -32,30 +35,16 @@ const EmployerLogin = () => {
             email: values.email_address,
             password: values.password
         }
-        let response = await fetch(api_url + "/api/employer/loginemployer", {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify(EmployerLoginForm)
-        })
+        let response = await postRequest(EmployerLoginURL, EmployerLoginForm);
+        if (response.status == '1')
+            dispatch({ type: 'LOGIN', payload: JSON.stringify(response.user) });
+        if (response.status == '0')
+            setFieldError("password", "Invalid Credentials")
 
-        if (response.ok) {
-            response = await response.json();
-            console.log(response);
-            if (response.status == '1') {
-                dispatch({ type: 'LOGIN', payload: JSON.stringify(response.user) });
-            }
-            if (response.status == '0') {
-                setFieldError("password", "Invalid Credentials")
-            }
-
-        }
     }
 
     return (<>
-        {isLoggedIn == 'true' && <Navigate to="/employer-dashboard"></Navigate>}
+        {isLoggedIn == 'true' && user.type == "employer" && <Navigate to="/employer-dashboard"></Navigate>}
 
         <Header />
 
@@ -113,31 +102,35 @@ const EmployerLogin = () => {
                                     {({ errors, touched }) => (
                                         <Form className="EmployerLoginForm">
 
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="email_address" LableText="Email Address" />
-                                                <Field
-                                                    error={errors.email_address && touched.email_address}
-                                                    as={Input}
-                                                    id="email_address"
-                                                    placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
-                                                {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
+                                            <Stack direction="column" gap={2} >
+                                                <Box className="input-item">
+                                                    <ThemeLabel LableFor="email_address" LableText="Email Address" />
+                                                    <Field
+                                                        variant="standard"
+                                                        error={errors.email_address && touched.email_address}
+                                                        as={TextField}
+                                                        id="email_address"
+                                                        placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
+                                                    {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
 
-                                            </Box>
+                                                </Box>
 
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="password" LableText="Password" />
-                                                <Field
-                                                    error={errors.password && touched.password}
-                                                    id="password"
-                                                    as={Input}
-                                                    placeholder="Enter Password" type="password" name="password" fullWidth />
-                                                {errors.password && touched.password && <Error text={errors.password} />}
+                                                <Box className="input-item">
+                                                    <ThemeLabel LableFor="password" LableText="Password" />
+                                                    <Field
+                                                        variant="standard"
+                                                        error={errors.password && touched.password}
+                                                        id="password"
+                                                        as={TextField}
+                                                        placeholder="Enter Password" type="password" name="password" fullWidth />
+                                                    {errors.password && touched.password && <Error text={errors.password} />}
 
 
-                                            </Box>
+                                                </Box>
+                                            </Stack>
 
                                             <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                                <ButtonType1 ButtonText="Sign In" />
+                                                <ThemeButtontype1 variant="contained" type="submit">Sign In</ThemeButtontype1>
                                             </Box>
                                         </Form>
                                     )}

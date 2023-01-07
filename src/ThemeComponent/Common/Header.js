@@ -57,6 +57,7 @@ const Header = () => {
                                     style={{ textTransform: "capitalize", background: "#2B1E44", color: "#FFFFFF", border: "2px solid #2B1E44" }}>
                                     Candidate Login
                                 </Button>
+
                                 <Button variant="outlined" href="/candidate-register"
                                     style={{ textTransform: "capitalize", background: "#2B1E44", color: "#FFFFFF", border: "2px solid #2B1E44" }}>
                                     Candidate Signup

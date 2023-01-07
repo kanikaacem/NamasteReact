@@ -5,7 +5,9 @@ import { emailFormValidationSchema } from "../../Validation/EmployerValidation";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
-import ButtonType1 from "../Common/ButtonType1";
+
+import { ThemeButtontype1 } from "../../utils/Theme";
+
 import { LoginSocialGoogle } from 'reactjs-social-login';
 
 import { useSelector } from "react-redux";
@@ -73,12 +75,12 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                                 error={errors.email_address && touched.email_address}
                                 variant="standard"
                                 as={TextField}
-                                placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
+                                placeholder="Enter Email ID/ Username ( eg. email@gmail.com )" type="text" name="email_address" fullWidth />
                             {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
                         </Box>
 
                         <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                            <ButtonType1 ButtonText="Next" />
+                            <ThemeButtontype1 variant="contained" type="submit">Next</ThemeButtontype1>
                         </Box>
 
                         <Typography component="h4" sx={{ fontSize: "16px", textAlign: "center", color: "#2B1E44", margin: "30px 0px" }}>

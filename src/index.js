@@ -13,13 +13,13 @@ const initialState = {
   },
   api_url: 'http://13.126.115.3:3001',
   // api_url : 'http://192.168.1.32:8000',
-  // api_url: 'http://192.168.1.16:8000',
-  // api_url:'http://192.168.1.7:8000',
+  // api_url: 'http://192.168.1.62:3000',
+  // api_url:'http://192.168.1.4:8000',
 
   // api_url:'http://65.0.98.87:3001',
   showProfile : false,
   EmployeeMenuSelected : "dashboard",
-  CandidateMenuSelected : "dashboard",
+  CandidateMenuSelected : "applied_jobs",
   activeJob : '',
   candidateInfo: '',
   CandidateRegistration:false,
@@ -239,3 +239,8 @@ root.render(
 //https://express.adobe.com/tools/remove-background
 //https://www.geeksforgeeks.org/how-to-create-tabs-in-reactjs/
 //https://www.npmjs.com/package/reactjs-pdf-reader
+//https://www.npmjs.com/package/react-weekly-schedule
+//https://stackoverflow.com/questions/71644312/nested-route-not-working-in-react-router-dom-for-my-admin-dashboard
+//https://www.npmjs.com/package/react-share
+
+//https://stackoverflow.com/questions/70165035/how-to-use-material-ui-checkbox-with-formik

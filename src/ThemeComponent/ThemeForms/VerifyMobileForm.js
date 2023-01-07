@@ -1,4 +1,4 @@
-import { Box, Input, Stack, styled, Typography, Snackbar, IconButton } from "@mui/material";
+import { Box, TextField, Typography, Snackbar, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { Formik, Field, Form } from "formik";
 
@@ -6,7 +6,8 @@ import { OTPValidationSchema, MobileVerifyFormValidationSchema } from "../../Val
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
-import ButtonType1 from "../Common/ButtonType1";
+
+import { ThemeButtontype1 } from "../../utils/Theme";
 
 import { useState } from "react";
 
@@ -68,26 +69,30 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
             validationSchema={MobileVerifyFormValidationSchema}
             onSubmit={handleSubmit1}
         >
-            {({ errors, touched, values, setFieldValue }) => (<Form >
+            {({ errors, touched, values, setFieldValue }) => (
+                <Form className="SendOTPForm">
 
-                <Box className="input-item">
-                    <ThemeLabel LableFor="mobile_number" LableText="Mobile Number" />
+                    <Box className="input-item">
+                        <ThemeLabel LableFor="mobile_number" LableText="Mobile Number" />
 
-                    <Field
-                        error={errors.mobile_number && touched.mobile_number}
-                        id="mobile_number"
-                        as={Input}
-                        placeholder="Enter Mobile Number" type="text" name="mobile_number" fullWidth />
-                    {errors.mobile_number && touched.mobile_number && <Error text={errors.mobile_number} />}
-                </Box>
+                        <Field
+                            variant="standard"
+                            error={errors.mobile_number && touched.mobile_number}
+                            id="mobile_number"
+                            as={TextField}
+                            placeholder="Enter Mobile Number ( eg. 9898989898 )" type="text" name="mobile_number" fullWidth />
+                        {errors.mobile_number && touched.mobile_number && <Error text={errors.mobile_number} />}
+                    </Box>
 
-                <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                    <ButtonType1 id="sendOtpButton" ButtonText="Send Otp" />
-                </Box>
-            </Form>
+                    <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
+                        <ThemeButtontype1 variant="contained" type="submit">Send OTP</ThemeButtontype1>
+                    </Box>
+                </Form>
             )}
         </Formik>
+
         <br></br><br></br>
+
         <Formik
 
             initialValues={defaultValue2}
@@ -95,22 +100,23 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
             onSubmit={handleSubmit2}
         >
             {({ errors, touched, values, setFieldValue }) => (
-                <Form >
+                <Form className="VerifyOTPForm">
 
                     <Box className="input-item">
                         <ThemeLabel LableFor="otp" LableText="OTP" />
 
                         <Field
+                            variant="standard"
                             error={errors.otp && touched.otp}
                             id="otp"
-                            as={Input}
-                            placeholder="Enter Otp" type="text" name="otp" fullWidth />
+                            as={TextField}
+                            placeholder="Enter Otp ( eg. 1234 )" type="text" name="otp" fullWidth />
                         {errors.otp && touched.otp && <Error text={errors.otp} />}
 
                     </Box>
 
                     <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                        <ButtonType1 ButtonText="Verify Otp" />
+                        <ThemeButtontype1 variant="contained" type="submit">Verify OTP</ThemeButtontype1>
                     </Box>
                 </Form>
             )}

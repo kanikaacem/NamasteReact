@@ -24,15 +24,15 @@ function Home() {
         <Header />
         <HomeSection />
 
-        <Box sx={{
+        {/* <Box sx={{
             padding: { lg: "20px 50px", md: "20px", xs: "20px" },
             background: "#D9D9D9"
 
         }}>
             <Filter />
-        </Box>
+        </Box> */}
 
-        <RecommendedJobs />
+        {/* <RecommendedJobs /> */}
         <AboutUs />
         <WhyJobYahan />
         <Reviews />

@@ -1,3 +1,6 @@
+/*getting Api Url and sending the data */
+import { getAllPostedJobs } from "../../utils/ApiUrls";
+import { postRequest } from "../../utils/ApiRequests";
 import { Box, Stack, Container, Typography, Divider, Pagination, TextField, AvatarGroup, Avatar, Button } from "@mui/material";
 
 import MessageIcon from '@mui/icons-material/Message';
@@ -25,7 +28,7 @@ const EmployerDashboard = () => {
 
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [dataPerPage, setDataPerPage] = useState(2);
+    const [dataPerPage, setDataPerPage] = useState(4);
     const [dayMessage, setDayMessage] = useState("");
     const DashboardValues = [
         {
@@ -68,26 +71,14 @@ const EmployerDashboard = () => {
 
     useEffect(() => {
         const getpostedjobs = async () => {
-            let data = await fetch(api_url + "/api/job/getpostedjobs", {
-                method: "POST",
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-Type': 'application/json; charset=UTF-8'
-                },
-                body: JSON.stringify({
-                    userid: user._id
-
-                }),
-            });
-            if (data.ok) {
-                data = await data.json();
-                // console.log("data" + data)
-                setData(data.data)
-                console.log(data);
-                // console.log(data.length)
-
+            let body = new FormData();
+            body = {
+                userid: user._id
             }
+            let data = await postRequest(getAllPostedJobs, body, user.token);
+            setData(data.data);
         };
+
         getpostedjobs();
 
     }, []);
@@ -161,7 +152,7 @@ const EmployerDashboard = () => {
 
                         <Stack gap={1} sx={{ minWidth: "100px" }}>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
-                                3
+
                             </Typography>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
                                 Saved Candidate
@@ -171,7 +162,7 @@ const EmployerDashboard = () => {
                         {DashboardValues.map((item) => {
                             return (<Stack gap={1} sx={{ minWidth: "100px" }}>
                                 <Typography component="div" sx={{ fontSize: "14px" }}>
-                                    {item.count}
+
                                 </Typography>
                                 <Typography component="div" sx={{ fontSize: "14px" }}>
                                     {item.name}
@@ -253,12 +244,12 @@ const EmployerDashboard = () => {
 
 
                 <Stack gap={2} direction="row" sx={{ minHeight: "600px" }}>
-                    <Stack direction="column" gap={2} sx={{ width: "60%", height: "300px" }}>
+                    <Stack direction="column" gap={2} sx={{ width: "60%", height: "600" }}>
                         <Box>
                             <Typography component="span" sx={{ fontSize: "18px", fontWeight: "600" }}>
                                 Recent Jobs
                             </Typography>
-                            <Box sx={{ height: "200px" }}>
+                            <Box sx={{ height: "500px" }}>
                                 {
                                     jobs.length > 0 ? jobs.map((item) => {
                                         return (<>
@@ -273,17 +264,6 @@ const EmployerDashboard = () => {
                             </Box>
                         </Box>
 
-                        <Box >
-                            <Typography component="span" sx={{ fontSize: "18px", fontWeight: "600" }}>
-                                Hiring for other roles
-                            </Typography>
-                            <Stack direction="column" gap={2} sx={{ background: "#FFFFFF", height: "200px", padding: "10px" }}>
-                                <Box> Hello 1</Box>
-                                <Box> Hello 1</Box>
-                                <Box> Hello 1</Box>
-
-                            </Stack>
-                        </Box>
                     </Stack>
 
                     <Box sx={{ width: "40%", borderRadius: "10px" }}>
@@ -349,11 +329,6 @@ const EmployerDashboard = () => {
                                     </Typography>
 
                                 </Stack>
-
-
-
-
-
                             </Carousel>
 
                             <Box sx={{ textAlign: "center" }}>

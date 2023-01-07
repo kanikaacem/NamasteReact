@@ -1,4 +1,7 @@
-import { Box, TextField, Typography, MenuItem, Select } from "@mui/material";
+import { EmployerCompanyInformationURL, UplaodImageURL } from "../../utils/ApiUrls";
+import { postRequest, PostImageRequest } from "../../utils/ApiRequests";
+
+import { Box, Stack, TextField, Typography, MenuItem, Select } from "@mui/material";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { companyInfoValidationSchema } from "../../Validation/EmployerValidation";
 
@@ -6,8 +9,9 @@ import { cities, ProfileType, CompanyType } from "../../utils/Data";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
-import ButtonType1 from "../Common/ButtonType1";
-import ButtonType2 from "../Common/ButtonType2";
+import ButtonType3 from "../Common/ButtonType3";
+
+import { ThemeButtontype1 } from "../../utils/Theme";
 
 import { useState, useRef } from "react";
 import { Navigate } from 'react-router-dom';
@@ -52,29 +56,25 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const uploadCompanyLogo = async (event) => {
         let file = event.target.files[0];
         let file_size = file.size;
-        // setCompanyLogoImage(file);
-        // console.log(companyLogoImage);
+
         var output = document.getElementById('companyLogo');
         output.src = URL.createObjectURL(event.target.files[0]);
 
-        // if (file != 'png' && file != 'jpeg' && file != 'jpg')
-        //     setcompanyLogoError("File type should be JPEG and PNG.")
-        // else if (file_size > 3000000) {
-        //     setcompanyLogoError("File Size should be less than and equal to 3MB.")
-        // }
-        // else {
+
         let formData = new FormData();
         formData.append('image', event.target.files[0]);
         formData.append('imagetype', "comlogo");
         formData.append('userid', userId);
-        let response = await fetch(api_url + "/api/employer/updateimage", {
-            method: "POST",
-            body: formData,
-        })
-        if (response.ok) {
-            response = await response.json();
-            console.log(response);
-        }
+        let response = await PostImageRequest(UplaodImageURL, formData);
+        console.log(response);
+        // let response = await fetch("http://192.168.1.62:3001/api/employer/updateimage", {
+        //     method: "POST",
+        //     body: formData,
+        // })
+        // if (response.ok) {
+        //     response = await response.json();
+        //     console.log(response);
+        // }
     }
 
     const uploadCompanyPan = async (event) => {
@@ -84,14 +84,16 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         formData.append('image', event.target.files[0]);
         formData.append('imagetype', "panimage");
         formData.append('userid', userId);
-        let response = await fetch(api_url + "/api/employer/updateimage", {
-            method: "POST",
-            body: formData,
-        })
-        if (response.ok) {
-            response = await response.json();
-            console.log(response);
-        }
+        let response = await PostImageRequest(UplaodImageURL, formData);
+        console.log(response);
+        // let response = await fetch("http://192.168.1.62:3001/api/employer/updateimage", {
+        //     method: "POST",
+        //     body: formData,
+        // })
+        // if (response.ok) {
+        //     response = await response.json();
+        //     console.log(response);
+        // }
 
 
 
@@ -104,24 +106,24 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         formData.append('image', event.target.files[0]);
         formData.append('imagetype', "gstimage");
         formData.append('userid', userId);
-        let response = await fetch(api_url + "/api/employer/updateimage", {
-            method: "POST",
-            body: formData,
-        })
-        if (response.ok) {
-            response = await response.json();
-            console.log(response);
-        }
+        let response = await PostImageRequest(UplaodImageURL, formData);
+        console.log(response);
+        // let response = await fetch("http://192.168.1.62:3001/api/employer/updateimage", {
+        //     method: "POST",
+        //     body: formData,
+        // })
+        // if (response.ok) {
+        //     response = await response.json();
+        //     console.log(response);
+        // }
 
     }
     const handleSubmit = async (values) => {
         let data = new FormData();
         data = {
             userid: userId,
-            // userid: "63a69a19d990bbac7fc42042",
             employername: values.hr_name,
             mobile: mobile_number,
-            companyprofiletype: values.profile_type,
             companytype: values.company_type,
             companyname: values.company_name,
             companyemail: values.company_email,
@@ -132,23 +134,25 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
             companypincode: values.company_pincode,
             companypancard: values.company_pan_number,
             companygstnumber: values.company_gst_number,
-            // userid: "63a040c3e45cb1872e2e7cc6"
 
         }
-        let response = await fetch(api_url + "/api/employer/postemployer", {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify(data),
-        })
-        if (response.ok) {
-            response = await response.json();
-            // console.log(response.user);
+        // let response = await fetch(EmployerCompanyInformationURL, {
+        //     method: "POST",
+        //     headers: {
+        //         'Access-Control-Allow-Origin': '*',
+        //         'Content-Type': 'application/json; charset=UTF-8'
+        //     },
+        //     body: JSON.stringify(data),
+        // })
+        let response = await postRequest(EmployerCompanyInformationURL, data);
+        if (response.status == 1) {
             dispatch({ type: 'LOGIN', payload: JSON.stringify(response.user) });
-            // window.location.href = "http://localhost:3000/employer-login";
         }
+        // console.log(response);
+        // if (response.ok) {
+        //     response = await response.json();
+        //     dispatch({ type: 'LOGIN', payload: JSON.stringify(response.user) });
+        // }
 
     }
     return (<>
@@ -166,231 +170,229 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         >
             {({ errors, touched, values, setFieldValue }) => (
                 <Form className="CompanyInformationForm">
+                    <Stack direction="column" gap={2}>
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="hr_name" LableText="Hr Name" />
+                            <Field
+                                error={errors.hr_name && touched.hr_name}
+                                id="hr_name"
+                                variant="standard"
+                                as={TextField}
+                                placeholder="Enter HR Name ( eg. Aniket )" type="text" name="hr_name" fullWidth />
+                            {errors.hr_name && touched.hr_name && <Error text={errors.hr_name} />}
 
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="hr_name" LableText="Hr Name" />
-                        <Field
-                            error={errors.hr_name && touched.hr_name}
-                            id="hr_name"
-                            variant="standard"
-                            as={TextField}
-                            placeholder="Enter HR fullName" type="text" name="hr_name" fullWidth />
-                        {errors.hr_name && touched.hr_name && <Error text={errors.hr_name} />}
+                        </Box>
 
-                    </Box>
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="company_name" LableText="Company Name" />
+                            <Field
+                                error={errors.company_name && touched.company_name}
+                                id="company_name"
+                                variant="standard"
+                                as={TextField}
+                                placeholder="Enter Company Name (eg. XYZ Company )" type="text" name="company_name" fullWidth />
+                            {errors.company_name && touched.company_name && <Error text={errors.company_name} />}
 
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="profile_type" LableText="Profile Type" />
-                        <Select
-                            variant="standard"
-                            labelId="demo-simple-select-label"
-                            name="profile_type"
-                            value={profileType}
-                            label="Age"
-                            onChange={(event) => {
-                                setProfileType(event.target.value);
-                                setFieldValue("profile_type", event.target.value);
-                            }}
-                            sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                            disableUnderline
-                        >
-                            <MenuItem value=" ">Select Profile Type</MenuItem>
-                            {ProfileType.map((item) =>
-                                <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                            )}
-                        </Select>
+                        </Box>
 
-                        {errors.profile_type && touched.profile_type && <Error text={errors.profile_type} />}
-                    </Box>
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="company_type" LableText="Company Type" />
+                            <Select
+                                classNamePrefix="react-select"
+                                variant="standard"
+                                labelId="demo-simple-select-label"
+                                name="company_type"
+                                value={companyType}
+                                label="Age"
+                                onChange={(event) => {
+                                    setCompanyType(event.target.value);
+                                    setFieldValue("company_type", event.target.value);
+                                }}
+                                sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
+                                disableUnderline
+                            >
+                                <MenuItem value=" ">Select Company Type</MenuItem>
+                                {CompanyType.map((item) =>
+                                    <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
+                                )}
+                            </Select>
 
+                            {errors.company_type && touched.company_type && <Error text={errors.company_type} />}
+                        </Box>
 
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="company_name" LableText="Company Name" />
-                        <Field
-                            error={errors.company_name && touched.company_name}
-                            id="company_name"
-                            variant="standard"
-                            as={TextField}
-                            placeholder="Enter Company Name" type="text" name="company_name" fullWidth />
-                        {errors.company_name && touched.company_name && <Error text={errors.company_name} />}
+                        <Box sx={{ width: "80px" }}>
+                            <img id="companyLogo" width="100%" />
+                        </Box>
 
-                    </Box>
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="company_type" LableText="Company Type" />
-                        <Select
-                            variant="standard"
-                            labelId="demo-simple-select-label"
-                            name="company_type"
-                            value={companyType}
-                            label="Age"
-                            onChange={(event) => {
-                                setCompanyType(event.target.value);
-                                setFieldValue("company_type", event.target.value);
-                            }}
-                            sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                            disableUnderline
-                        >
-                            <MenuItem value=" ">Select Company Type</MenuItem>
-                            {CompanyType.map((item) =>
-                                <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                            )}
-                        </Select>
+                        <Box className="input-item">
 
-                        {errors.company_type && touched.company_type && <Error text={errors.company_type} />}
-                    </Box>
+                            <ThemeLabel LableFor="upload_company_logo" LableText="Upload Company Logo" />
+
+                            <Field
+                                id="upload_company_logo"
+                                style={{ display: "none", outline: "none" }}
+                                type="file" name="upload_company_logo"
+                                onChange={
+                                    uploadCompanyLogo
+                                }
+                                fullWidth />
 
 
-                    <Box sx={{ width: "80px" }}>
-                        <img id="companyLogo" width="100%" />
-                    </Box>
+                            <ButtonType3 ButtonText="Upload Company Logo" ClickEvent={() => document.getElementById("upload_company_logo").click()}></ButtonType3>
+                        </Box>
 
-                    <Box className="input-item">
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="company_email" LableText="Company Email" />
+                            <Field
+                                error={errors.company_email && touched.company_email}
+                                id="company_email"
+                                variant="standard"
+                                as={TextField}
+                                placeholder="Enter Company Email ( eg. xyz@company.com )" type="text" name="company_email" fullWidth />
+                            {errors.company_email && touched.company_email && <Error text={errors.company_email} />}
 
-                        <ThemeLabel LableFor="upload_company_logo" LableText="Upload Company Logo" />
+                        </Box>
 
-                        <Field
-                            id="upload_company_logo"
-                            style={{ display: "none", outline: "none" }}
-                            type="file" name="upload_company_logo"
-                            onChange={
-                                uploadCompanyLogo
-                            }
-                            fullWidth />
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="company_lan_number" LableText="Company Landline Number" />
+                            <Field
+                                error={errors.company_lan_number && touched.company_lan_number}
+                                id="company_lan_number"
+                                variant="standard"
+                                as={TextField}
+                                placeholder="Enter Company Landline Number ( eg. 9898989898 )" type="text" name="company_lan_number" fullWidth />
+                            {errors.company_lan_number && touched.company_lan_number && <Error text={errors.company_lan_number} />}
+                        </Box>
+
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="company_website" LableText="Company Website" />
+                            <Field
+                                error={errors.company_website && touched.company_website}
+                                id="company_website"
+                                variant="standard"
+                                as={TextField}
+                                placeholder="Enter Company Website ( eg. xyz.com )" type="text" name="company_website" fullWidth />
+                            {errors.company_website && touched.company_website && <Error text={errors.company_website} />}
+
+                        </Box>
+
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="company_pincode" LableText="Company Pincode" />
+                            <Field
+                                error={errors.company_pincode && touched.company_pincode}
+                                id="company_pincode"
+                                variant="standard"
+                                as={TextField}
+                                placeholder="Enter Company Pincode ( eg. 23123 )" type="text" name="company_pincode" fullWidth />
+                            {errors.company_pincode && touched.company_pincode && <Error text={errors.company_pincode} />}
+
+                        </Box>
+
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="company_address" LableText="Company Address" />
+                            <Box sx={{ width: "100%", margin: "10px 0px" }}>
+                                <TextField
+                                    error={errors.company_address && touched.company_address}
+                                    sx={{ width: "100%" }}
+                                    variant="standard"
+                                    placeholder="Company Address"
+                                    multiline
+                                    rows={4}
+                                    maxRows={4}
+                                    onChange={(event) => setFieldValue("company_address", event.target.value)}
+                                />
+                            </Box>
+
+                            {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
+
+                        </Box>
+
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="city" LableText="City" />
+                            <Select
+                                classNamePrefix="react-select"
+                                variant="standard"
+                                labelId="demo-simple-select-label"
+                                name="city"
+                                value={city}
+                                label="Age"
+                                onChange={(event) => {
+                                    setCity(event.target.value);
+                                    setFieldValue("city", event.target.value);
+                                }}
+                                sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
+                                disableUnderline
+                            >
+                                <MenuItem value=" ">Select City</MenuItem>
+                                {cities.map((item) =>
+                                    <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
+                                )}
+                            </Select>
+
+                            {errors.city && touched.city && <Error text={errors.city} />}
+                        </Box>
+
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="company_pan_number" LableText="Company Pan Number" />
+                            <Field
+                                error={errors.company_pan_number && touched.company_pan_number}
+                                id="company_pan_number"
+                                variant="standard"
+                                as={TextField}
+                                placeholder="Enter Company Pan Number" type="text" name="company_pan_number" fullWidth />
+                            {errors.company_pan_number && touched.company_pan_number && <Error text={errors.company_pan_number} />}
+
+                        </Box>
+
+                        <Box sx={{ width: "80px" }}>
+                            <img id="PanImage" width="100%" />
+                        </Box>
+
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="company_pan_image" LableText="Upload Company Pan Number Image" />
+
+                            <Field
+                                id="company_pan_image"
+                                style={{ display: "none", outline: "none" }}
+                                as={TextField}
+                                type="file" name="company_pan_image"
+                                onChange={uploadCompanyPan} fullWidth />
+
+                            <ButtonType3 ButtonText="Upload Company Pan Number Image" ClickEvent={() => document.getElementById("company_pan_image").click()}></ButtonType3>
+                        </Box>
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="company_gst_number" LableText="Company GST Number" />
+                            <Field
+                                error={errors.company_gst_number && touched.company_gst_number}
+                                id="company_gst_number"
+                                variant="standard"
+                                as={TextField}
+                                placeholder="Enter Company GST Number" type="text" name="company_gst_number" fullWidth />
+                            {errors.company_gst_number && touched.company_gst_number && <Error text={errors.company_gst_number} />}
+
+                        </Box>
+                        <Box sx={{ width: "80px" }}>
+                            <img id="GSTImage" width="100%" />
+                        </Box>
+
+                        <Box className="input-item">
+                            <ThemeLabel LableFor="company_gst_image" LableText="Upload Company GST Image" />
+
+                            <Field
+                                id="company_gst_image"
+                                style={{ display: "none", outline: "none" }}
+                                as={TextField}
+                                type="file" name="company_gst_image"
+                                onChange={uploadCompanyGST} fullWidth />
+
+                            <ButtonType3 ButtonText="Upload Company GST Image" ClickEvent={() => document.getElementById("company_gst_image").click()}></ButtonType3>
+                        </Box>
 
 
-                        <ButtonType2 ButtonText="Upload Company Logo" ClickEvent={() => document.getElementById("upload_company_logo").click()}></ButtonType2>
-                    </Box>
-
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="company_email" LableText="Company Email" />
-                        <Field
-                            error={errors.company_email && touched.company_email}
-                            id="company_email"
-                            variant="standard"
-                            as={TextField}
-                            placeholder="Enter Company Email" type="text" name="company_email" fullWidth />
-                        {errors.company_email && touched.company_email && <Error text={errors.company_email} />}
-
-                    </Box>
-
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="company_lan_number" LableText="Company Lan Number" />
-                        <Field
-                            error={errors.company_lan_number && touched.company_lan_number}
-                            id="company_lan_number"
-                            variant="standard"
-                            as={TextField}
-                            placeholder="Enter Company Lan Number" type="text" name="company_lan_number" fullWidth />
-                        {errors.company_lan_number && touched.company_lan_number && <Error text={errors.company_lan_number} />}
-                    </Box>
-
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="company_website" LableText="Company Website" />
-                        <Field
-                            error={errors.company_website && touched.company_website}
-                            id="company_website"
-                            variant="standard"
-                            as={TextField}
-                            placeholder="Enter Company Website" type="text" name="company_website" fullWidth />
-                        {errors.company_website && touched.company_website && <Error text={errors.company_website} />}
-
-                    </Box>
-
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="company_pincode" LableText="Company Pincode" />
-                        <Field
-                            error={errors.company_pincode && touched.company_pincode}
-                            id="company_pincode"
-                            variant="standard"
-                            as={TextField}
-                            placeholder="Enter Company Pincode" type="text" name="company_pincode" fullWidth />
-                        {errors.company_pincode && touched.company_pincode && <Error text={errors.company_pincode} />}
-
-                    </Box>
-
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="city" LableText="City" />
-                        <Select
-                            variant="standard"
-                            labelId="demo-simple-select-label"
-                            name="city"
-                            value={city}
-                            label="Age"
-                            onChange={(event) => {
-                                setCity(event.target.value);
-                                setFieldValue("city", event.target.value);
-                            }}
-                            sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                            disableUnderline
-                        >
-                            <MenuItem value=" ">Select City</MenuItem>
-                            {cities.map((item) =>
-                                <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                            )}
-                        </Select>
-
-                        {errors.city && touched.city && <Error text={errors.city} />}
-                    </Box>
-
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="company_pan_number" LableText="Company Pan Number" />
-                        <Field
-                            error={errors.company_pan_number && touched.company_pan_number}
-                            id="company_pan_number"
-                            variant="standard"
-                            as={TextField}
-                            placeholder="Enter Company Pan Number" type="text" name="company_pan_number" fullWidth />
-                        {errors.company_pan_number && touched.company_pan_number && <Error text={errors.company_pan_number} />}
-
-                    </Box>
-                    <Box sx={{ width: "80px" }}>
-                        <img id="PanImage" width="100%" />
-                    </Box>
-
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="company_pan_image" LableText="Upload Company Pan Number Image" />
-
-                        <Field
-                            id="company_pan_image"
-                            style={{ display: "none", outline: "none" }}
-                            as={TextField}
-                            type="file" name="company_pan_image"
-                            onChange={uploadCompanyPan} fullWidth />
-
-                        <ButtonType2 ButtonText="Upload Company Pan Number Image" ClickEvent={() => document.getElementById("company_pan_image").click()}></ButtonType2>
-                    </Box>
-
-
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="company_gst_number" LableText="Company GST Number" />
-                        <Field
-                            error={errors.company_gst_number && touched.company_gst_number}
-                            id="company_gst_number"
-                            variant="standard"
-                            as={TextField}
-                            placeholder="Enter Company GST Number" type="text" name="company_gst_number" fullWidth />
-                        {errors.company_gst_number && touched.company_gst_number && <Error text={errors.company_gst_number} />}
-
-                    </Box>
-                    <Box sx={{ width: "80px" }}>
-                        <img id="GSTImage" width="100%" />
-                    </Box>
-
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="company_gst_image" LableText="Upload Company GST Image" />
-
-                        <Field
-                            id="company_gst_image"
-                            style={{ display: "none", outline: "none" }}
-                            as={TextField}
-                            type="file" name="company_gst_image"
-                            onChange={uploadCompanyGST} fullWidth />
-
-                        <ButtonType2 ButtonText="Upload Company GST Image" ClickEvent={() => document.getElementById("company_gst_image").click()}></ButtonType2>
-                    </Box>
+                    </Stack>
 
                     <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                        <ButtonType1 ButtonText="Save" />
+                        <ThemeButtontype1 variant="contained" type="submit">Save</ThemeButtontype1>
                     </Box>
                 </Form>)}
         </Formik>

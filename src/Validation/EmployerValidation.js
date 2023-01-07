@@ -1,4 +1,5 @@
 import * as yup from "yup";
+
 //Employer Login Validation
 export const employerLoginValidationSchema = yup.object().shape({
     email_address: yup.string().required("Email Address is required").email("Please enter a valid email Address"),
@@ -24,7 +25,7 @@ export const PasswordGenFormValidationSchema = yup.object().shape({
 //STEP 3
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 export const MobileVerifyFormValidationSchema = yup.object().shape({
-    mobile_number: yup.string().required("Phone number is required")
+    mobile_number: yup.string().required("Phone number is required").matches(phoneRegExp, 'Phone number is not valid')
 })
 
 export const OTPValidationSchema = yup.object().shape({
@@ -32,18 +33,18 @@ export const OTPValidationSchema = yup.object().shape({
 })
 
 //STEP 4 
+const PincodeRegExp = /^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$/;
 export const companyInfoValidationSchema = yup.object().shape({
     hr_name: yup.string().required("Hr Name is required"),
-    profile_type: yup.string().required("Profile Type is required"),
     company_type: yup.string().required("Company Type is required"),
     company_name: yup.string().required("Company Name is required"),
     company_email: yup.string().required("Company Email is required").email("Email is not valid"),
     company_website: yup.string().required("Company website is required"),
-    // company_address: yup.string().required("Company Address is requried"),
+    company_address: yup.string().required("Company Address is requried"),
     city: yup.string().required("Company City is required"),
-    company_lan_number: yup.string().required("Company Lan Number is required"),
-    company_pincode: yup.number("Company Pincode should be a number").min(5).required("Company Pincode is required"),
-    company_pan_number: yup.string().required("Pan Number is required"),
+    company_lan_number: yup.string().required("Company Lan Number is required").max(8),
+    company_pincode: yup.number().min(6).required("Company Pincode is required"),
+    company_pan_number: yup.string().matches(/[A-Z]{5}[0-9]{4}[A-Z]{1}$/, "Please Provide a valid Pan Number ").required("Pan Number is required"),
     company_gst_number: yup.string().required("GST Number is required")
 
 
@@ -57,3 +58,12 @@ export const ForgotPasswordValidation = yup.object().shape({
         .oneOf([yup.ref('password'), null], 'Passwords must match')
 })
 
+//creating the subuser
+export const CreateSubUserValidationSchema = yup.object().shape({
+    email_address: yup.string().email("Email id is not valid").required("Email ID is required"),
+    password: yup.string().required("Password is required").matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    ),
+    mobile_number: yup.string().required("Phone number is required").matches(phoneRegExp, 'Phone number is not valid')
+})

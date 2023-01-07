@@ -264,13 +264,13 @@ nav {
   width: 100%;
 }
 
-.input-item input,
+/* .input-item input,
 textarea {
   border: none;
   margin: 10px 0px;
   font-size: 14px;
   outline: none;
-}
+} */
 
 .signup-with-google,
 .signin-with-google {
@@ -633,13 +633,20 @@ textarea {
 #mui-component-select-experience,
 #mui-component-select-city,
 #mui-component-select-profile_type,
-#mui-component-select-company_type {
+#mui-component-select-company_type,
+#mui-component-select-job_type,
+#mui-component-select-job_working_type,
+#mui-component-select-payment_type {
   width: 100%;
   font-size: 14px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.42);
   padding: 10px 0px;
-  color: black;
+  /* color: #bebbbb; */
 }
+
+/* .react-select__placeholder {
+  color: #bebbbb !important;
+} */
 
 #mui-component-select-role,
 #mui-component-select-experience,
@@ -670,18 +677,23 @@ textarea {
 /*Employer Dashboard account setting */
 .EmployeeMenuSelected,
 .AccountMenu,
-.SettingMenu,
-.CandidateMenuSelected {
+.SettingMenu {
   /* color: #62459b; */
   color: #445578;
   font-weight: 600 !important;
+}
+
+.CandidateMenuSelected {
+  border-right: 3px solid #007FFF !important;
 }
 
 #permanant_address,
 #current_location,
 #date_of_birth,
 #starting_year,
-#ending_year {
+#ending_year,
+#address,
+#currAddress {
   width: 97%;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   border: 1px solid #d0d0d0;
@@ -693,8 +705,6 @@ textarea {
 /* User Perferences page */
 .JOBPERFERENCES {
   padding: 10px;
-  /* border-radius: 10px; */
-  /* border: 1px solid #445578; */
   border: 2px solid #E2E2E2;
   width: fit-content;
   cursor: pointer;
@@ -703,4 +713,113 @@ textarea {
 .perferencesactive {
   background: #445578;
   color: #FFFFFF;
+}
+
+.CandidateJob::-webkit-scrollbar {
+  width: 5px;
+}
+
+.CandidateJob::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.CandidateJob::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+#mui-component-select-marital_status {
+  margin: 10px 0px;
+  width: 97%;
+  padding: 10px;
+  border: 1px solid #d0d0d0;
+
+}
+
+/* Registration and Login Form */
+.EmployerLoginForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.EmailSignupForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.PasswordGenerationForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.SendOTPForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.VerifyOTPForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.CompanyInformationForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.candidateLogin .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.CandidateRegistration .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.PostJobForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.updateCompanyInformationForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.HrInformationUpdateForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.ChangePasswordForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 10px !important;
 }

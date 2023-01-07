@@ -1,9 +1,7 @@
-import { Box, Container, Stack, Typography, TextField, Input, Button } from "@mui/material";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Box, Container, Stack, Typography, TextField, Button } from "@mui/material";
+import { Formik, Field, Form } from "formik";
 
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import FileBase64 from 'react-file-base64';
 import { useSelector } from 'react-redux';
 
 import { Link } from "react-router-dom";
@@ -251,43 +249,46 @@ const CandidateRegistration = () => {
                                     onSubmit={handleSubmit}
                                 >
                                     {({ errors, touched }) => (
-                                        <Form >
+                                        <Form className="CandidateRegistration">
+                                            <Stack direction="column" gap={2}>
+                                                <Box className="input-item">
+                                                    <ThemeLabel LableFor="email_id" LableText="Email Address" />
+                                                    <Field
+                                                        variant="standard"
+                                                        error={errors.email_id && touched.email_id}
+                                                        as={TextField}
+                                                        id="email_id"
+                                                        placeholder="Enter Email ID/ Username" type="text" name="email_id" fullWidth />
+                                                    {errors.email_id && touched.email_id && <Error text={errors.email_id} />}
 
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="email_id" LableText="Email Address" />
-                                                <Field
-                                                    error={errors.email_id && touched.email_id}
-                                                    as={Input}
-                                                    id="email_id"
-                                                    placeholder="Enter Email ID/ Username" type="text" name="email_id" fullWidth />
-                                                {errors.email_id && touched.email_id && <Error text={errors.email_id} />}
+                                                </Box>
 
-                                            </Box>
-
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="password" LableText="Password" />
-                                                <Field
-                                                    error={errors.password && touched.password}
-                                                    id="password"
-                                                    as={Input}
-                                                    placeholder="Enter Password" type="password" name="password" fullWidth />
-                                                {errors.password && touched.password && <Error text={errors.password} />}
-
-
-                                            </Box>
-
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="confirm_password" LableText="Confirm Password" />
-                                                <Field
-                                                    error={errors.confirm_password && touched.confirm_password}
-                                                    id="confirm_password"
-                                                    as={Input}
-                                                    placeholder="Enter Confirm Password" type="password" name="confirm_password" fullWidth />
-                                                {errors.confirm_password && touched.confirm_password && <Error text={errors.confirm_password} />}
+                                                <Box className="input-item">
+                                                    <ThemeLabel LableFor="password" LableText="Password" />
+                                                    <Field
+                                                        variant="standard"
+                                                        error={errors.password && touched.password}
+                                                        id="password"
+                                                        as={TextField}
+                                                        placeholder="Enter Password" type="password" name="password" fullWidth />
+                                                    {errors.password && touched.password && <Error text={errors.password} />}
 
 
-                                            </Box>
+                                                </Box>
 
+                                                <Box className="input-item">
+                                                    <ThemeLabel LableFor="confirm_password" LableText="Confirm Password" />
+                                                    <Field
+                                                        variant="standard"
+                                                        error={errors.confirm_password && touched.confirm_password}
+                                                        id="confirm_password"
+                                                        as={TextField}
+                                                        placeholder="Enter Confirm Password" type="password" name="confirm_password" fullWidth />
+                                                    {errors.confirm_password && touched.confirm_password && <Error text={errors.confirm_password} />}
+
+
+                                                </Box>
+                                            </Stack>
                                             <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
                                                 <ButtonType1 ButtonText="Continue" />
                                             </Box>
