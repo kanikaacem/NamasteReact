@@ -16,30 +16,30 @@ import { AccountSettingMenu } from "../../utils/Data";
 
 import { useState, useEffect } from "react";
 const AccountSetting = () => {
-    const [currentMenu, setCurrentMenu] = useState("account_setting");
+    const [currentMenu, setCurrentMenu] = useState("create_sub_user");
     const user = useOutletContext();
 
-    useEffect(() => {
-        const userProfile = async () => {
-            let response = await fetch("http://192.168.1.6:8000/api/users/getuserById", {
-                method: "POST",
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-Type': 'application/json; charset=UTF-8'
-                },
-                body: JSON.stringify({
-                    userid: "6384af6b9a60e4be920f13d3"
+    // useEffect(() => {
+    //     const userProfile = async () => {
+    //         let response = await fetch("http://192.168.1.6:8000/api/users/getuserById", {
+    //             method: "POST",
+    //             headers: {
+    //                 'Access-Control-Allow-Origin': '*',
+    //                 'Content-Type': 'application/json; charset=UTF-8'
+    //             },
+    //             body: JSON.stringify({
+    //                 userid: "6384af6b9a60e4be920f13d3"
 
-                }),
-            })
-            if (response.ok) {
-                response = await response.json();
-                console.log(response)
-                // setdata(response.message);
-            }
-        }
-        // userProfile();
-    }, []);
+    //             }),
+    //         })
+    //         if (response.ok) {
+    //             response = await response.json();
+    //             console.log(response)
+    //             // setdata(response.message);
+    //         }
+    //     }
+    //     // userProfile();
+    // }, []);
 
 
     /*Creating Sub User*/
@@ -163,6 +163,7 @@ const AccountSetting = () => {
 
 
     return (<>
+        {console.log(user)}
         <Stack direction="row" gap={2} sx={{ padding: "20px" }}>
             <Stack direction="column" gap={2} sx={{ width: "20%", padding: "0px 50px" }}>
                 <Box >
@@ -175,7 +176,7 @@ const AccountSetting = () => {
 
                         {AccountSettingMenu && AccountSettingMenu.map((item) => {
                             return (<Typography key={item.id} className={currentMenu == item.menu_name && "AccountMenu "} component="div"
-                                sx={{ fontSize: "16px", margin: "5 0px", cursor: "pointer", textTransform: "capitalize" }} onClick={() => setCurrentMenu("create_sub_user")}>
+                                sx={{ fontSize: "16px", margin: "5 0px", cursor: "pointer", textTransform: "capitalize" }} onClick={() => setCurrentMenu(item.menu_name)}>
                                 {item.menu_name.replaceAll("_", " ")}
                             </Typography>
                             )

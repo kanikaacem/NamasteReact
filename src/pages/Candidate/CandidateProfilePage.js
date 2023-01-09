@@ -12,7 +12,7 @@ import UpdateCandidateBasicInfo from "../../ThemeComponent/ThemeForms/UpdateCand
 import { useState } from "react";
 const CandidateProfilePage = () => {
     const user = useOutletContext();
-    const [showEditBasicInfo, setShowEditBasicInfo] = useState(true);
+    const [showEditBasicInfo, setShowEditBasicInfo] = useState(false);
 
     return (<>
         <Box className="CandidateProfilePage" sx={{ padding: "20px" }}>

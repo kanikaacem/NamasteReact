@@ -44,7 +44,7 @@ const EmployerLogin = () => {
     }
 
     return (<>
-        {isLoggedIn == 'true' && user.type == "employer" && <Navigate to="/employer-dashboard"></Navigate>}
+        {isLoggedIn == 'true' && (user && user.type == "employer") && <Navigate to="/employer-dashboard"></Navigate>}
 
         <Header />
 

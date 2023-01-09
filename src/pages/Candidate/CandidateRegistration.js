@@ -1,7 +1,7 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { saveCandidateUserNameAndPasswordURL } from "../../utils/ApiUrls";
 
-import { Box, Container, Stack, Typography, TextField, Button } from "@mui/material";
+import { Box, Stack, Typography, TextField } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,7 +10,6 @@ import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { Navigate } from 'react-router-dom';
 
-import { LoginSocialGoogle } from 'reactjs-social-login';
 
 import { CandidateRegistrationSchema } from "../../Validation/CandidateValidation";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";

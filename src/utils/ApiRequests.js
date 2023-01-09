@@ -1,12 +1,19 @@
 /* Post Request */
+let header = {
+    'Access-Control-Allow-Origin': "*",
+    'Content-Type': 'application/json; charset=UTF-8'
+};
 
-export const postRequest = async (api_url, bodyData, Token) => {
-    console.log(api_url, bodyData, Token)
-    let header = {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json; charset=UTF-8'
-    }
-    // if (typeof (Token) != 'undefined') header.append("Auth_token", 'k')
+export const postRequest = async (api_url, bodyData) => {
+    let token = localStorage.getItem("auth_token");
+
+    if (token != null)
+        header = {
+            'Access-Control-Allow-Origin': "*",
+            'Content-Type': 'application/json; charset=UTF-8',
+            'authorization': 'Bearer ' + token
+        };
+    console.log(token)
     let data = await fetch(api_url, {
         method: "POST",
         headers: header,
@@ -19,12 +26,19 @@ export const postRequest = async (api_url, bodyData, Token) => {
 }
 
 /*Post Request for image uploading */
-export const PostImageRequest = async (api_url, bodyData, Token) => {
+export const PostImageRequest = async (api_url, bodyData) => {
+    let token = localStorage.getItem("auth_token");
 
-    // if (typeof (Token) != 'undefined') header.append("Auth_token", 'k')
+    if (token != null)
+        header = {
+            'Access-Control-Allow-Origin': "*",
+            'authorization': 'Bearer ' + token
+        };
+
     let data = await fetch(api_url, {
         method: "POST",
-        body: bodyData,
+        headers: header,
+        body: bodyData
     });
     if (data.ok) {
         data = await data.json();
@@ -32,12 +46,10 @@ export const PostImageRequest = async (api_url, bodyData, Token) => {
     }
 }
 /* Get Request */
-export const getRequest = async (api_url, Token) => {
-    let header = {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json; charset=UTF-8'
-    }
-    // if (typeof (Token) != 'undefined') header.append("Auth_token", 'k')
+export const getRequest = async (api_url) => {
+    let token = localStorage.getItem("auth_token");
+
+    if (token != null) header.append('authorization', 'Bearer' + token);
     let data = await fetch(api_url, {
         method: "GET",
         headers: header,

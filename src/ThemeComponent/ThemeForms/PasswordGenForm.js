@@ -1,3 +1,6 @@
+import { postRequest } from "../../utils/ApiRequests";
+import { EmployerSaveEmailAndPassword } from "../../utils/ApiUrls";
+
 import { Box, TextField, Stack, styled, Typography } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { PasswordGenFormValidationSchema } from "../../Validation/EmployerValidation";
@@ -8,6 +11,7 @@ import Error from "../../ThemeComponent/Common/Error";
 import { ThemeButtontype1 } from "../../utils/Theme";
 
 import { useSelector } from "react-redux";
+import { gridColumnsTotalWidthSelector } from "@mui/x-data-grid";
 
 const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobileForm }) => {
     const api_url = useSelector(state => state.api_url);
@@ -24,21 +28,21 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
             password: values.password,
         }
 
-        let response = await fetch(api_url + "/api/employer/savelogindetail", {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify(formData),
-        })
-        if (response.ok) {
-            response = await response.json();
-            // console.log(response);
-            setUserId(response.data);
+        let response = await postRequest(EmployerSaveEmailAndPassword, formData);
+        if (response.status == 1) {
+            console.log(response);
+            localStorage.setItem("auth_token", response.data);
             setPasswordGenForm(false);
             setVerifyMobileForm(true);
         }
+        // console.log(response);
+        //    if(response.)
+        //     console.log(response.data);
+        //     localStorage.setItem("auth_token", response.data);
+        //     // setUserId(response.data);
+        //     // localStorage.setItem("auth_token", response.data);
+        //     
+        // }
     }
     return (<>
         <Typography component="h3" sx={{ fontSize: "30px", fontWeight: "600", textAlign: "center", color: "#2B1E44", margin: "30px 0px" }}>

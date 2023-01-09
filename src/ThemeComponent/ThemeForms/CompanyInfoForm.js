@@ -64,17 +64,9 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         let formData = new FormData();
         formData.append('image', event.target.files[0]);
         formData.append('imagetype', "comlogo");
-        formData.append('userid', userId);
         let response = await PostImageRequest(UplaodImageURL, formData);
         console.log(response);
-        // let response = await fetch("http://192.168.1.62:3001/api/employer/updateimage", {
-        //     method: "POST",
-        //     body: formData,
-        // })
-        // if (response.ok) {
-        //     response = await response.json();
-        //     console.log(response);
-        // }
+
     }
 
     const uploadCompanyPan = async (event) => {
@@ -83,17 +75,9 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         let formData = new FormData();
         formData.append('image', event.target.files[0]);
         formData.append('imagetype', "panimage");
-        formData.append('userid', userId);
         let response = await PostImageRequest(UplaodImageURL, formData);
         console.log(response);
-        // let response = await fetch("http://192.168.1.62:3001/api/employer/updateimage", {
-        //     method: "POST",
-        //     body: formData,
-        // })
-        // if (response.ok) {
-        //     response = await response.json();
-        //     console.log(response);
-        // }
+
 
 
 
@@ -105,23 +89,14 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         let formData = new FormData();
         formData.append('image', event.target.files[0]);
         formData.append('imagetype', "gstimage");
-        formData.append('userid', userId);
         let response = await PostImageRequest(UplaodImageURL, formData);
         console.log(response);
-        // let response = await fetch("http://192.168.1.62:3001/api/employer/updateimage", {
-        //     method: "POST",
-        //     body: formData,
-        // })
-        // if (response.ok) {
-        //     response = await response.json();
-        //     console.log(response);
-        // }
+
 
     }
     const handleSubmit = async (values) => {
         let data = new FormData();
         data = {
-            userid: userId,
             employername: values.hr_name,
             mobile: mobile_number,
             companytype: values.company_type,
@@ -134,25 +109,15 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
             companypincode: values.company_pincode,
             companypancard: values.company_pan_number,
             companygstnumber: values.company_gst_number,
+            companylan: values.company_lan_number
 
         }
-        // let response = await fetch(EmployerCompanyInformationURL, {
-        //     method: "POST",
-        //     headers: {
-        //         'Access-Control-Allow-Origin': '*',
-        //         'Content-Type': 'application/json; charset=UTF-8'
-        //     },
-        //     body: JSON.stringify(data),
-        // })
+
         let response = await postRequest(EmployerCompanyInformationURL, data);
         if (response.status == 1) {
-            dispatch({ type: 'LOGIN', payload: JSON.stringify(response.user) });
+            dispatch({ type: 'LOGIN', payload: JSON.stringify(response.data) });
         }
-        // console.log(response);
-        // if (response.ok) {
-        //     response = await response.json();
-        //     dispatch({ type: 'LOGIN', payload: JSON.stringify(response.user) });
-        // }
+
 
     }
     return (<>

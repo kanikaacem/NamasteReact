@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux';
 
 import { useState } from "react";
 
-import { postJobValidationSchema } from "../../Validation/PostJobValidation";
+import { postJobValidationSchema, postPartTimeJobValidationSchema } from "../../Validation/PostJobValidation";
 import { cities, Experience, Role, Skills, JobType, JobWorkingType, PaymentType } from "../../utils/Data";
 
 
@@ -33,9 +33,8 @@ const PostJob = () => {
     const [role, setRole] = useState(" ");
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const [jobType, setJobType] = useState("regular");
+    const [jobType, setJobType] = useState("part-time");
     const [experience, setExperience] = useState(" ");
-    // const [jobType, setJobType] = useState("regular");
     const [jobWorkingType, setJobWorkingType] = useState(" ");
     const [paymentType, setPaymentType] = useState(" ");
 
@@ -130,15 +129,24 @@ const PostJob = () => {
             description: values.long_description,
             location: values.city
         }
+        if (jobType == "regular") {
 
-        let response = await postRequest(PostJobURL, formData);
-        if (response.status == 1) {
-            setFormSubmitted(true);
-            resetForm();
-            setCity(" ");
-            setRole(" ");
-            setSelectedOptions([]);
+            let response = await postRequest(PostJobURL, formData);
+            if (response.status == 1) {
+                setFormSubmitted(true);
+                resetForm();
+                setCity(" ");
+                setRole(" ");
+                setSelectedOptions("");
+            }
         }
+        else {
+            console.log(values);
+            console.log(formData);
+        }
+
+
+
     }
 
 
@@ -176,7 +184,7 @@ const PostJob = () => {
                 <Formik
 
                     initialValues={defaultValue}
-                    validationSchema={jobType == "regular" && postJobValidationSchema}
+                    validationSchema={jobType == "regular" ? postJobValidationSchema : postPartTimeJobValidationSchema}
                     onSubmit={handleSubmit}
                 >
                     {({ values, errors, touched, setFieldValue }) => (
@@ -246,26 +254,26 @@ const PostJob = () => {
                                         </Box>
 
                                         <Box className="input-item">
-                                            <ThemeLabel LableFor="payment_type" LableText="Payment Type" />
+                                            <ThemeLabel LableFor="salary_type" LableText="Salary Type" />
                                             <SelectField
                                                 variant="standard"
                                                 labelId="demo-simple-select-label"
-                                                name="payment_type"
+                                                name="salary_type"
                                                 value={paymentType}
                                                 onChange={(event) => {
                                                     setPaymentType(event.target.value);
-                                                    setFieldValue("payment_type", event.target.value);
+                                                    setFieldValue("salary_type", event.target.value);
                                                 }}
                                                 sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
                                                 disableUnderline
                                             >
-                                                <MenuItem value=" ">Select Payment Type</MenuItem>
+                                                <MenuItem value=" ">Select Salary Type</MenuItem>
                                                 {PaymentType.map((item) =>
                                                     <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
                                                 )}
                                             </SelectField>
 
-                                            {errors.payment_type && touched.payment_type && <Error text={errors.payment_type} />}
+                                            {errors.salary_type && touched.salary_type && <Error text={errors.salary_type} />}
                                         </Box>
 
                                         <ThemeLabel LableFor="working_time" LableText="Working Timing" />
@@ -497,6 +505,7 @@ const PostJob = () => {
                                             })
                                             setFieldValue("skills", optionvalue.join(","));
                                         }}
+                                        value={selectedOptions}
                                         isMulti
                                         id_data={(errors.skills && touched.skills) ? "skills-error" : "skills"}
                                         placeholder="Select Skills" data={Experience} fullWidth />

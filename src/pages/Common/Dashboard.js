@@ -1,3 +1,6 @@
+import { UserInformationURL } from "../../utils/ApiUrls";
+import { postRequest } from "../../utils/ApiRequests";
+
 import { NavLink, Link, Outlet } from "react-router-dom";
 import { Avatar, Box, Stack, Badge, Typography, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 
@@ -10,8 +13,6 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 
 import { EmployerMenu, CandidateMenu } from "../../utils/Data.js";
-
-
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -25,14 +26,24 @@ import Footer from "../../ThemeComponent/Common/Footer";
 const Dashboard = () => {
     const user = localStorage.user && JSON.parse(localStorage.user);
 
-    const [data, setdata] = useState([]);
     const [openProfile, setOpenProfile] = useState(false);
+    const [userInformation, setUserInformation] = useState({});
     const dispatch = useDispatch();
-    const [company, setcompany] = useState("");
     const EmployeeMenuSelected = useSelector(state => state.EmployeeMenuSelected);
     const CandidateMenuSelected = useSelector(state => state.CandidateMenuSelected);
+    useEffect(() => {
+        const getUserInformation = async () => {
+            console.log("I runnde")
+            let response = await postRequest(UserInformationURL);
+            if (response.status == 1) {
+                let userInformation = response.data;
+                setUserInformation(userInformation);
+            }
 
-    const api_url = useSelector(state => state.api_url);
+        }
+        getUserInformation();
+
+    }, []);
 
     return (<>
         <Box
@@ -42,13 +53,13 @@ const Dashboard = () => {
                 width: "100%",
             }}
         >
-            <Stack direction={user && user.type == "employer" ? "column" : "row"}
+            <Stack direction={userInformation && userInformation.type == "employer" ? "column" : "row"}
                 sx={{
                     width: "100%",
                     height: "inherit"
                 }}>
 
-                {user && user.type == "employer" && (<>
+                {userInformation && userInformation.type == "employer" && (<>
                     <Stack direction="row" gap={3} sx={{ height: "50px", padding: "10px 50px", alignItems: "center" }}>
                         <Box sx={{ width: "5%" }}>
                             <Box sx={{ width: "50px", height: "50px" }} >
@@ -240,7 +251,7 @@ const Dashboard = () => {
                 </>)}
 
                 <Box sx={{ background: "#f2f5fa", minHeight: `calc(100vh - 50px)`, width: '100%' }}>
-                    <Outlet context={user}></Outlet>
+                    <Outlet context={userInformation}></Outlet>
                 </Box>
 
             </Stack>

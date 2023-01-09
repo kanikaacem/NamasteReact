@@ -20,7 +20,7 @@ function Home() {
     const user = localStorage.user && JSON.parse(localStorage.user);
 
     return (<>
-        {isLoggedIn == 'true' && user.type == 'employer' && <Navigate to="/employer-dashboard"></Navigate>}
+        {isLoggedIn == 'true' && (user && user.type == 'employer') && <Navigate to="/employer-dashboard"></Navigate>}
         <Header />
         <HomeSection />
 

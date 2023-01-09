@@ -12,11 +12,6 @@ const initialState = {
     "title" : "Mobile Applications"
   },
   api_url: 'http://13.126.115.3:3001',
-  // api_url : 'http://192.168.1.32:8000',
-  // api_url: 'http://192.168.1.62:3000',
-  // api_url:'http://192.168.1.4:8000',
-
-  // api_url:'http://65.0.98.87:3001',
   showProfile : false,
   EmployeeMenuSelected : "dashboard",
   CandidateMenuSelected : "applied_jobs",
@@ -41,13 +36,9 @@ const reducer = (state, action) =>{
     case "SHOW_HIDE_PROFILE":
        return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),showProfile: ! state.showProfile}
 
-    // case "ACTIVE_CATEGORY":
-    //   let {id ,title} = action.payload;
-    //   return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),categoryActive:{'id': id, 'title' : title}}
-
     case "CHANGE_EMPLOYEE_MENU" :
       let selected_menu= action.payload;
-      return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),EmployeeMenuSelected:selected_menu}
+      return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),EmployeeMenuSelected:selected_menu }
     
     case "CHANGE_CANDIDATE_MENU":
       let candidate_selected_menu = action.payload;
@@ -60,6 +51,8 @@ const reducer = (state, action) =>{
     case "USER_REGISTRATION":
       let candidateInfo = action.payload;
       return {...initialState,candidateInfo:candidateInfo,CandidateRegistration:true}
+
+   
     default:
       return state;
   }
@@ -244,3 +237,4 @@ root.render(
 //https://www.npmjs.com/package/react-share
 
 //https://stackoverflow.com/questions/70165035/how-to-use-material-ui-checkbox-with-formik
+//https://stackoverflow.com/questions/59721035/usestate-only-update-component-when-values-in-object-change
