@@ -394,6 +394,29 @@ textarea {
   margin: 0 auto;
 }
 
+/*tags */
+.tag-wrapper.ReactTags__tag {
+  opacity: 1;
+  cursor: move;
+  background: #2B1E44;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+
+}
+
+.ReactTags__remove {
+  background: none;
+  border: none;
+  color: white;
+}
+
+.ReactTags__selected {
+  padding: "10px 0px" !important;
+  margin: "20px 0px" !important;
+}
+
 /* .css-1s2u09g-control {
   border: none !important;
   width: 97% !important;
@@ -636,7 +659,9 @@ textarea {
 #mui-component-select-company_type,
 #mui-component-select-job_type,
 #mui-component-select-job_working_type,
-#mui-component-select-salary_type {
+#mui-component-select-salary_type,
+#mui-component-select-association_type,
+#mui-component-select-industry_type {
   width: 100%;
   font-size: 14px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.42);

@@ -36,8 +36,9 @@ const EmployerLogin = () => {
             password: values.password
         }
         let response = await postRequest(EmployerLoginURL, EmployerLoginForm);
-        if (response.status == '1')
-            dispatch({ type: 'LOGIN', payload: JSON.stringify(response.user) });
+        if (response.status == '1') {
+            dispatch({ type: 'LOGIN', payload: response });
+        }
         if (response.status == '0')
             setFieldError("password", "Invalid Credentials")
 

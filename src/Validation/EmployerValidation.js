@@ -67,3 +67,15 @@ export const CreateSubUserValidationSchema = yup.object().shape({
     ),
     mobile_number: yup.string().required("Phone number is required").matches(phoneRegExp, 'Phone number is not valid')
 })
+
+//updating the company Information Validation 
+export const CompanyUpdateInformationSchema = yup.object().shape({
+    company_name: yup.string().required("Company Name  is required"),
+    company_email: yup.string().email("Company Email  is not valid").required("Company Name is required"),
+    company_lan_number: yup.string().required("Company Lan Number is required").max(8),
+    company_website: yup.string().required("Company Website is required"),
+    company_pincode: yup.string().required("Company Lan Number is required").max(6),
+    company_address: yup.string().required("Company Address is required"),
+    company_pan_number: yup.string().matches(/[A-Z]{5}[0-9]{4}[A-Z]{1}$/, "Please Provide a valid Pan Number ").required("Pan Number is required"),
+    company_gst_number: yup.string().required("GST Number is required")
+})

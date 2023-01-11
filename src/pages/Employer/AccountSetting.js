@@ -11,36 +11,13 @@ import SubscriptionPlan from "./SubscriptionPlan";
 import { ThemeButtontype1 } from "../../utils/Theme";
 import { useOutletContext } from "react-router-dom";
 
-import { ForgotPasswordValidation, CreateSubUserValidationSchema } from "../../Validation/EmployerValidation";
+import { CompanyUpdateInformationSchema, CreateSubUserValidationSchema } from "../../Validation/EmployerValidation";
 import { AccountSettingMenu } from "../../utils/Data";
 
 import { useState, useEffect } from "react";
 const AccountSetting = () => {
     const [currentMenu, setCurrentMenu] = useState("create_sub_user");
     const user = useOutletContext();
-
-    // useEffect(() => {
-    //     const userProfile = async () => {
-    //         let response = await fetch("http://192.168.1.6:8000/api/users/getuserById", {
-    //             method: "POST",
-    //             headers: {
-    //                 'Access-Control-Allow-Origin': '*',
-    //                 'Content-Type': 'application/json; charset=UTF-8'
-    //             },
-    //             body: JSON.stringify({
-    //                 userid: "6384af6b9a60e4be920f13d3"
-
-    //             }),
-    //         })
-    //         if (response.ok) {
-    //             response = await response.json();
-    //             console.log(response)
-    //             // setdata(response.message);
-    //         }
-    //     }
-    //     // userProfile();
-    // }, []);
-
 
     /*Creating Sub User*/
     const defaultValue2 = {
@@ -63,7 +40,7 @@ const AccountSetting = () => {
     const defaultValue1 = {
         company_name: user.companyName,
         company_email: user.companyEmail,
-        company_lan_number: user.company_lan_number,
+        company_lan_number: user.companyLanNumber,
         company_website: user.companyWebsite,
         company_pincode: user.companyPincode,
         company_address: user.companyAddress,
@@ -105,7 +82,7 @@ const AccountSetting = () => {
 
         formData = {
             company_name: values.company_name,
-            company_email: values.company_email,
+            company_email: values.companyEmail,
             compan_lan_number: values.company_lan_number,
             company_website: values.company_website,
             company_pincode: values.company_pincode,
@@ -118,9 +95,9 @@ const AccountSetting = () => {
 
     //changing the Hr Information
     const defaultValue3 = {
-        full_name: "",
-        password: "",
-        mobile_number: ""
+        full_name: user.employername,
+        email_address: user.email_address,
+        mobile_number: user.mobile
     }
 
     /* updating the Hr Logo */
@@ -163,7 +140,6 @@ const AccountSetting = () => {
 
 
     return (<>
-        {console.log(user)}
         <Stack direction="row" gap={2} sx={{ padding: "20px" }}>
             <Stack direction="column" gap={2} sx={{ width: "20%", padding: "0px 50px" }}>
                 <Box >
@@ -296,7 +272,7 @@ const AccountSetting = () => {
                             <Formik
 
                                 initialValues={defaultValue1}
-                                // validationSchema={ForgotPasswordValidation}
+                                validationSchema={CompanyUpdateInformationSchema}
                                 onSubmit={handleCompanyInformation}
                             >
                                 {({ errors, touched, values, setFieldValue }) => (
@@ -381,6 +357,7 @@ const AccountSetting = () => {
                                                 <ThemeLabel LableFor="company_address" LableText="Company Address" />
                                                 <Box sx={{ width: "100%", margin: "10px 0px" }}>
                                                     <TextField
+                                                        value={values.company_address}
                                                         error={errors.company_address && touched.company_address}
                                                         sx={{ width: "100%" }}
                                                         variant="standard"

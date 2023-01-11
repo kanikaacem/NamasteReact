@@ -35,8 +35,10 @@ const Dashboard = () => {
         const getUserInformation = async () => {
             console.log("I runnde")
             let response = await postRequest(UserInformationURL);
+            console.log(response);
             if (response.status == 1) {
                 let userInformation = response.data;
+                console.log(userInformation);
                 setUserInformation(userInformation);
             }
 

@@ -622,19 +622,39 @@ export const JobType = [
         Name: "Part Time"
     }
 ]
-/*Job Working Type */
-export const JobWorkingType = [
+
+/* Association Type */
+export const AssociationType = [
     {
         id: 1,
-        value: "work_from_home",
-        Name: "Work From Home"
+        value: "regular",
+        Name: "Regular"
     },
     {
         id: 2,
-        value: "Office",
-        Name: "Office"
+        value: "part-time",
+        Name: "Part Time"
+    },
+    {
+        id: 3,
+        value: "freelancing",
+        Name: "Freelancing"
     }
 ]
+/*
+/*Job Working Type */
+// export const JobWorkingType = [
+//     {
+//         id: 1,
+//         value: "work_from_home",
+//         Name: "Work From Home"
+//     },
+//     {
+//         id: 2,
+//         value: "Office",
+//         Name: "Office"
+//     }
+// ]
 /* Job Payment Type */
 export const PaymentType = [
     {

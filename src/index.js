@@ -23,9 +23,14 @@ const initialState = {
 const reducer = (state, action) =>{
   switch(action.type){
     case "LOGIN":
-      let user = action.payload;
+      let {data,token} = action.payload;
+      // console.log(data);
+      // console.log(user);
+      // console.log(token);
       localStorage.setItem('isLoggedIn',true);
-      localStorage.setItem('user',user);
+      localStorage.setItem('user',JSON.stringify(data));
+      localStorage.setItem('auth_token',token);
+
       return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:localStorage.getItem('user')};
 
     case "LOGOUT":
@@ -238,3 +243,4 @@ root.render(
 
 //https://stackoverflow.com/questions/70165035/how-to-use-material-ui-checkbox-with-formik
 //https://stackoverflow.com/questions/59721035/usestate-only-update-component-when-values-in-object-change
+//https://www.npmjs.com/package/react-tag-input
