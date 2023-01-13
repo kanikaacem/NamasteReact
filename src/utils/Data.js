@@ -797,3 +797,22 @@ export const EmailNotifications = [
         value: "unpublished_job_notification"
     }
 ]
+
+/*Social Login */
+export const socialLogin = [
+    {
+        id: 1,
+        value: "Google Login",
+        image_url: "../assets/image_10.png"
+    },
+    {
+        id: 2,
+        value: "Linkedin Login",
+        image_url: "../assets/image_11.png"
+    },
+    {
+        id: 3,
+        value: "facebook Login",
+        image_url: "../assets/image_12.png"
+    }
+]

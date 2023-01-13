@@ -5,7 +5,7 @@ const Error = ({ text }) => {
                 color: "#c72929",
                 fontSize: "14px",
                 fontWeight: "500",
-                margin: "10px 0px",
+                // margin: "10px 0px",
                 display: "block"
             }}> {text}</span></>)
 }

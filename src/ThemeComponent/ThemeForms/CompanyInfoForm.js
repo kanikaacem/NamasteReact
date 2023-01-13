@@ -11,7 +11,7 @@ import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
 import ButtonType3 from "../Common/ButtonType3";
 
-import { ThemeButtontype1 } from "../../utils/Theme";
+import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
 
 import { useState, useRef } from "react";
 import { Navigate } from 'react-router-dom';
@@ -123,10 +123,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     return (<>
         {isLoggedIn == 'true' && <Navigate to="/employer-dashboard"></Navigate>}
 
-        <Typography component="h3" sx={{ fontSize: "30px", fontWeight: "600", textAlign: "center", color: "#2B1E44", margin: "30px 0px" }}>
-            Company Information
-        </Typography>
-
         <Formik
 
             initialValues={defaultValue}
@@ -135,36 +131,33 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         >
             {({ errors, touched, values, setFieldValue }) => (
                 <Form className="CompanyInformationForm">
-                    <Stack direction="column" gap={2}>
-                        <Box className="input-item">
-                            <ThemeLabel LableFor="hr_name" LableText="Hr Name" />
+                    <ThemeFInputDiv>
+                        <ThemeFInputDiv>
+                            <ThemeLabel LableFor="hr_name" LableText="HR Name" />
                             <Field
                                 error={errors.hr_name && touched.hr_name}
                                 id="hr_name"
-                                variant="standard"
                                 as={TextField}
-                                placeholder="Enter HR Name ( eg. Aniket )" type="text" name="hr_name" fullWidth />
+                                placeholder="Enter HR Name" type="text" name="hr_name" fullWidth />
                             {errors.hr_name && touched.hr_name && <Error text={errors.hr_name} />}
 
-                        </Box>
+                        </ThemeFInputDiv>
 
-                        <Box className="input-item">
+                        <ThemeFInputDiv>
                             <ThemeLabel LableFor="company_name" LableText="Company Name" />
                             <Field
                                 error={errors.company_name && touched.company_name}
                                 id="company_name"
-                                variant="standard"
                                 as={TextField}
                                 placeholder="Enter Company Name (eg. XYZ Company )" type="text" name="company_name" fullWidth />
                             {errors.company_name && touched.company_name && <Error text={errors.company_name} />}
 
-                        </Box>
+                        </ThemeFInputDiv>
 
-                        <Box className="input-item">
+                        <ThemeFInputDiv>
                             <ThemeLabel LableFor="company_type" LableText="Company Type" />
                             <Select
                                 classNamePrefix="react-select"
-                                variant="standard"
                                 labelId="demo-simple-select-label"
                                 name="company_type"
                                 value={companyType}
@@ -183,13 +176,13 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                             </Select>
 
                             {errors.company_type && touched.company_type && <Error text={errors.company_type} />}
-                        </Box>
+                        </ThemeFInputDiv>
 
-                        <Box sx={{ width: "80px" }}>
+                        <ThemeFInputDiv sx={{ width: "80px" }}>
                             <img id="companyLogo" width="100%" />
-                        </Box>
+                        </ThemeFInputDiv>
 
-                        <Box className="input-item">
+                        <ThemeFInputDiv>
 
                             <ThemeLabel LableFor="upload_company_logo" LableText="Upload Company Logo" />
 
@@ -204,8 +197,8 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
 
                             <ButtonType3 ButtonText="Upload Company Logo" ClickEvent={() => document.getElementById("upload_company_logo").click()}></ButtonType3>
-                        </Box>
-
+                        </ThemeFInputDiv>
+                        {/* 
                         <Box className="input-item">
                             <ThemeLabel LableFor="company_email" LableText="Company Email" />
                             <Field
@@ -325,6 +318,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                             <ButtonType3 ButtonText="Upload Company Pan Number Image" ClickEvent={() => document.getElementById("company_pan_image").click()}></ButtonType3>
                         </Box>
+                        
                         <Box className="input-item">
                             <ThemeLabel LableFor="company_gst_number" LableText="Company GST Number" />
                             <Field
@@ -351,10 +345,10 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 onChange={uploadCompanyGST} fullWidth />
 
                             <ButtonType3 ButtonText="Upload Company GST Image" ClickEvent={() => document.getElementById("company_gst_image").click()}></ButtonType3>
-                        </Box>
+                        </Box> */}
 
 
-                    </Stack>
+                    </ThemeFInputDiv>
 
                     <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
                         <ThemeButtontype1 variant="contained" type="submit">Save</ThemeButtontype1>
