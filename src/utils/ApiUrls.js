@@ -1,7 +1,7 @@
 /*-----------------------Employer ----------------------------*/
 /* Api for employer Login */
 // export const EmployerLoginURL = "http://13.126.115.3:3001/api/employer/loginemployer";
-export const EmployerLoginURL = "http://192.168.1.62:3001/api/employer/loginemployer";
+export const EmployerLoginURL = "http://192.168.1.4:3001/api/employer/loginEmployer";
 /*Employer Registration */
 /*Step 1 - Email and Password saving*/
 export const EmployerSaveEmailAndPassword = "http://192.168.1.62:3001/api/employer/savelogindetail";
@@ -11,7 +11,7 @@ export const EmployerCompanyInformationURL = "http://192.168.1.62:3001/api/emplo
 export const UplaodImageURL = "http://192.168.1.62:3001/api/employer/updateimage";
 
 /*Getting the Employer Information */
-export const UserInformationURL = "http://192.168.1.62:3001/api/employer/getemployerbyid";
+export const UserInformationURL = "http://192.168.1.4:3001/api/employer/getemployerbyid";
 
 /*Getting the Job */
 export const getAllJobs = "http://13.126.115.3:3001/api/job/getalljobs";

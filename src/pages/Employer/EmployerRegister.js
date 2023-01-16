@@ -16,10 +16,10 @@ const EmployerRegister = () => {
     const api_url = useSelector(state => state.api_url);
     const dispatch = useDispatch();
 
-    const [emailSignupForm, setEmailSignupForm] = useState(true);
+    const [emailSignupForm, setEmailSignupForm] = useState(false);
     const [passwordGenForm, setPasswordGenForm] = useState(false);
     const [verifyMobileForm, setVerifyMobileForm] = useState(false);
-    const [companyInfoForm, setCompanyInfoForm] = useState(false);
+    const [companyInfoForm, setCompanyInfoForm] = useState(true);
 
     const emailsignupwrapper = useRef(null);
     const passwordgenerationForm = useRef(null);

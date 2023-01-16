@@ -417,7 +417,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                     fullWidth />
 
 
-                                                <ButtonType3 ButtonText="Upload Company Logo" ClickEvent={() => document.getElementById("upload_company_logo").click()}></ButtonType3>
+                                                <ButtonType3 ButtonText="Upload Company Logo" imageURL="/assets/InsertPicture.png" ClickEvent={() => document.getElementById("upload_company_logo").click()}></ButtonType3>
                                             </ThemeFInputDiv>
 
 
@@ -1138,7 +1138,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                         type="file" name="company_pan_image"
                                                         onChange={uploadCompanyPan} fullWidth />
 
-                                                    <ButtonType3 ButtonText="Upload Image" ClickEvent={() => document.getElementById("company_pan_image").click()}></ButtonType3>
+                                                    <ButtonType3 imageURL="/assets/InsertPicture.png" ButtonText="Upload Image" ClickEvent={() => document.getElementById("company_pan_image").click()}></ButtonType3>
                                                 </ThemeFInputDiv>
 
                                                 <ThemeFInputDiv>
@@ -1165,7 +1165,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                         type="file" name="company_gst_image"
                                                         onChange={uploadCompanyGST} fullWidth />
 
-                                                    <ButtonType3 ButtonText="Upload Image" ClickEvent={() => document.getElementById("company_gst_image").click()}></ButtonType3>
+                                                    <ButtonType3 imageURL="/assets/InsertPicture.png" ButtonText="Upload Image" ClickEvent={() => document.getElementById("company_gst_image").click()}></ButtonType3>
                                                 </ThemeFInputDiv>
                                             </ ThemeFInputDiv>
 

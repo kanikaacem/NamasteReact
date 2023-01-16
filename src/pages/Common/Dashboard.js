@@ -48,6 +48,7 @@ const Dashboard = () => {
     }, []);
 
     return (<>
+        {console.log(userInformation)}
         <Box
             className="dashboard"
             sx={{
@@ -55,13 +56,13 @@ const Dashboard = () => {
                 width: "100%",
             }}
         >
-            <Stack direction={userInformation && userInformation.type == "employer" ? "column" : "row"}
+            <Stack direction={userInformation && userInformation.employer_type == "employer" ? "column" : "row"}
                 sx={{
                     width: "100%",
                     height: "inherit"
                 }}>
 
-                {userInformation && userInformation.type == "employer" && (<>
+                {userInformation && userInformation.employer_type == "employer" && (<>
                     <Stack direction="row" gap={3} sx={{ height: "50px", padding: "10px 50px", alignItems: "center" }}>
                         <Box sx={{ width: "5%" }}>
                             <Box sx={{ width: "50px", height: "50px" }} >
@@ -127,7 +128,7 @@ const Dashboard = () => {
 
 
                                 {
-                                    user && user.type == "employer" && (<>
+                                    user && user.employer_type == "employer" && (<>
                                         <Stack gap={2} direction="column" sx={{ background: "#FFFFFF", padding: "20px" }}>
                                             <Typography component="div" sx={{ fontSize: "14px" }}>
                                                 Basic Postings : Unlimited

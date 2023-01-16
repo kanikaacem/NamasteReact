@@ -14,6 +14,7 @@ import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import { socialLogin } from "../../utils/Data";
 import { employerLoginValidationSchema } from "../../Validation/EmployerValidation";
 import Error from "../../ThemeComponent/Common/Error";
+import { gridColumnsTotalWidthSelector } from "@mui/x-data-grid";
 
 const EmployerLogin = () => {
 
@@ -46,8 +47,10 @@ const EmployerLogin = () => {
 
 
 
+
     return (<>
-        {isLoggedIn == 'true' && (user && user.type == "employer") && <Navigate to="/employer-dashboard"></Navigate>}
+
+        {isLoggedIn == 'true' && (user && user.employer_type == "employer") && <Navigate to="/employer-dashboard"></Navigate>}
         {/* <div className="bg-bluegray_900 flex flex-col font-worksans items-center justify-end mx-[auto] md:pr-[11px] sm:pr-[15px] pr-[22px] md:pt-[11px] sm:pt-[15px] pt-[22px] w-[100%]">
             <div className="flex flex-col items-center justify-start max-w-[1849px] ml-[auto] mr-[auto] sm:pl-[15px] sm:pr-[15px] w-[100%]">
                 <div className="flex flex-row md:flex-wrap sm:flex-wrap items-center sm:mx-[0] sm:px-[0] sm:w-[100%] w-[98%]">
@@ -345,8 +348,12 @@ const EmployerLogin = () => {
                                     </ThemeFInputDiv>
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
                                         <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
-                                        <ThemeButtonType3 variant="outlined" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Sign up</ThemeButtonType3>
-
+                                        <ThemeButtonType3 variant="outlined" type="button"
+                                            sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
+                                            onClick={() => {
+                                                window.location.href = window.location.origin + "/employer-register"
+                                            }}
+                                        >Sign up</ThemeButtonType3>
                                     </Stack>
                                 </Form>
                             )}

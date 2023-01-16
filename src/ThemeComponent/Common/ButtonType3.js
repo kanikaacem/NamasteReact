@@ -1,6 +1,6 @@
 import { Button, Box, styled } from "@mui/material";
 
-const ButtonType3 = ({ ButtonText, ClickEvent }) => {
+const ButtonType3 = ({ ButtonText, ClickEvent, imageURL }) => {
     const ThemeButtontype3 = styled(Button)({
         textTransform: "capitalize",
         background: "#2B1E44",
@@ -18,7 +18,7 @@ const ButtonType3 = ({ ButtonText, ClickEvent }) => {
     return (<>
         <Box>
             <ThemeButtontype3 variant="contained" type="button" onClick={ClickEvent}><img
-                style={{ marginRight: "20px" }} src={window.location.origin + "/assets/InsertPicture.png"} alt="InsertPicture" ></img>{ButtonText} </ThemeButtontype3>
+                style={{ marginRight: "20px" }} src={window.location.origin + imageURL} alt="uploadData" ></img>{ButtonText} </ThemeButtontype3>
         </Box>
 
 
