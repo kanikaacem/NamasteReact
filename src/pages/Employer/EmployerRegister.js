@@ -1,26 +1,9 @@
-import { Box, Stack, Typography, Container, Snackbar, IconButton } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
-import { Formik, Field, Form, ErrorMessage } from "formik";
-
-
-import CustomizeSelect from '../../ThemeComponent/CustomizeSelect';
-import FormInformation from '../../ThemeComponent/FormInformation';
-
-import { company_type } from '../../utils/Data';
-import { profile_type } from '../../utils/Data';
-import { cities } from "../../utils/Data";
-
+import { Box, Stack, Typography, Container } from "@mui/material";
 import { useState, useRef } from "react";
-import { LoginSocialGoogle } from 'reactjs-social-login';
-import FileBase64 from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import ThemeInput from "../../ThemeComponent/ThemeInput";
-import Loader from "react-js-loader";
-import ButtonType1 from '../../ThemeComponent/Common/ButtonType1';
-
-import Header from "../../ThemeComponent/Common/Header";
+import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 
 import EmailSignupForm from "../../ThemeComponent/ThemeForms/EmailSignupForm";
 import PasswordGenForm from "../../ThemeComponent/ThemeForms/PasswordGenForm";
@@ -43,8 +26,6 @@ const EmployerRegister = () => {
     const mobileoptverificationwrapper = useRef(null);
     const hrinformationwrapper = useRef(null);
     const companyinformationwrapper = useRef(null);
-    const email_regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    const mobile_regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
 
     const [formErrors, setformErrors] = useState({
         email_error: "",
@@ -90,15 +71,100 @@ const EmployerRegister = () => {
 
         {isLoggedIn == 'true' && <Navigate to="/"></Navigate>}
 
-        <Header />
+        {!companyInfoForm ?
+            <Box className="EmployerRegisterPage"
+                sx={{
+                    height: "100vh",
+                    background: !companyInfoForm ? "#2B1E44" : "#FFFFFF",
+                    backgroundImage: !companyInfoForm &&
+                        "url('../assets/g10.png')",
+                    backgroundRepeat: " no-repeat",
+                    backgroundPosition: !companyInfoForm ? " left 0px bottom 0px" : "left 100px bottom 0px"
+                }}>
+                <Stack className="EmployerRegisterPageWrapper"
+                    sx=
+                    {{
+                        padding: "20px 50px",
+                        gap: "24px"
+                    }}>
+                    <HeaderSec
+                        border="2px solid rgba(255, 255, 255, 0.25)"
+                        color="#FFFFFF"
+                        background="#432C60"
+                    />
+                    <Stack alignItems="flex-end" sx={{ position: "relative" }}>
 
-        <Box className="EmployerRegisterPage"
-            sx={{
-                width: "100%",
-                minHeight: "100vh",
-                background: "#FAFAFA"
-            }}>
-            <Container
+                        <Box sx={{
+                            position: "absolute",
+                            top: "236px",
+                            left: "204px"
+                        }}>
+                            <Typography component="box" sx={{
+                                fontSize: "36px",
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#FFFFFF",
+                                display: "block",
+                                marginTop: "20px"
+                            }}>
+                                Direct Hiring App for
+                            </Typography>
+
+                            <Typography component="box" sx={{
+                                fontSize: "64px",
+                                fontFamily: "Work Sans, sans-serif",
+                                fontWeight: "700",
+                                color: "#FC9A7E",
+                                display: "block",
+                                lineHeight: "40px"
+                            }}>
+                                Founders, Business
+
+                                <Typography component="box" sx={{
+                                    fontSize: "64px",
+                                    fontFamily: "Work Sans, sans-serif",
+                                    fontWeight: "700",
+                                    color: "#FC9A7E",
+                                    display: "block"
+                                }}>
+                                    Owners and HRs.
+                                </Typography>
+                            </Typography>
+                        </Box>
+
+                        <Stack gap={2} sx={{
+                            width: "449px",
+                            height: "730px",
+                            background: "#FBF8FF",
+                            boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
+                            borderRadius: "19px",
+                            padding: "50px 100px"
+                        }}>
+
+                            {emailSignupForm && <EmailSignupForm
+                                email={email} setEmail={setEmail}
+                                setEmailSignupForm={setEmailSignupForm}
+                                setPasswordGenForm={setPasswordGenForm} />}
+
+                            {passwordGenForm && <PasswordGenForm email={email}
+                                setUserId={setUserId}
+                                setPasswordGenForm={setPasswordGenForm}
+                                setVerifyMobileForm={setVerifyMobileForm} />}
+
+                            {verifyMobileForm && <VerifyMobileForm
+                                setMobileNumber={setMobileNumber}
+                                setVerifyMobileForm={setVerifyMobileForm}
+                                setCompanyInfoForm={setCompanyInfoForm} />}
+
+                        </Stack>
+
+                    </Stack>
+                </Stack>
+            </Box>
+            :
+            <CompanyInfoForm email={email} userId={userId} mobile={mobile_number}></CompanyInfoForm>
+        }
+        {/* <Container
                 sx={{
                     height: "inherit"
                 }}>
@@ -152,8 +218,7 @@ const EmployerRegister = () => {
 
                 </Stack>
 
-            </Container>
-        </Box>
+            </Container> */}
 
     </>)
 }

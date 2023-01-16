@@ -26,7 +26,21 @@ export const CandidateRegistrationSchema = yup.object().shape({
     // work_status: yup.string().required("Work status is required")
 })
 
-//Candidate Registration Step 2
+//Candidate Registration Step 2 ->Step 1
+export const PersonalRegistrationSchema1 = yup.object().shape({
+    current_title: yup.string().required("Current Title is required"),
+    current_salary: yup.number("Current Salary should be a number")
+        .positive("Current Salary should be positive").required("Current Salary is required"),
+    excepted_salary: yup.number("Excepted Salary should be a number")
+        .positive("Excepted Salary should be positive").required("Excepted Salary is required"),
+    current_industry: yup.string().required("Current Industry is required"),
+    skills: yup.string().required("Skills is required"),
+    perferred_location: yup.string().required("Perferred Location is required"),
+    total_work_experience: yup.number("Total Work Experience should be a number")
+        .positive("Total Work Experience should be positive").required("Total Work Experience is required"),
+})
+
+//Candidate Registration Step 2 ->step 2
 export const PersonalRegistrationSchema = yup.object().shape({
     full_name: yup.string().required("FullName is required"),
     date_of_birth: yup.string().required("Date of Birth is required"),
@@ -56,4 +70,16 @@ export const WorkHistorySchema = yup.object().shape({
     department: yup.string().required("Department is required"),
     starting_year: yup.string().required("Staring Year is required"),
     ending_year: yup.string().required("Ending Year is required"),
+})
+
+//Updating the Candidate Basic Info
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+export const updateCandidateBasicInfoSchema = yup.object().shape({
+    fullname: yup.string().required("Full Name is required"),
+    mobile: yup.string().required("Mobile number is required").matches(phoneRegExp, 'Mobile number is not valid'),
+    dob: yup.string().required("Date of Birth is required"),
+    gender: yup.string().required("Gender is required"),
+    marital_status: yup.string().required("Martial Status is required"),
+    address: yup.string().required("Address is required"),
+    currAddress: yup.string().required("Current Address is required")
 })

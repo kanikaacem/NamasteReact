@@ -12,14 +12,9 @@ const initialState = {
     "title" : "Mobile Applications"
   },
   api_url: 'http://13.126.115.3:3001',
-  // api_url : 'http://192.168.1.32:8000',
-  // api_url: 'http://192.168.1.16:8000',
-  // api_url:'http://192.168.1.7:8000',
-
-  // api_url:'http://65.0.98.87:3001',
   showProfile : false,
   EmployeeMenuSelected : "dashboard",
-  CandidateMenuSelected : "dashboard",
+  CandidateMenuSelected : "applied_jobs",
   activeJob : '',
   candidateInfo: '',
   CandidateRegistration:false,
@@ -28,9 +23,14 @@ const initialState = {
 const reducer = (state, action) =>{
   switch(action.type){
     case "LOGIN":
-      let user = action.payload;
+      let {data,token} = action.payload;
+      // console.log(data);
+      // console.log(user);
+      // console.log(token);
       localStorage.setItem('isLoggedIn',true);
-      localStorage.setItem('user',user);
+      localStorage.setItem('user',JSON.stringify(data));
+      localStorage.setItem('auth_token',token);
+
       return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:localStorage.getItem('user')};
 
     case "LOGOUT":
@@ -41,13 +41,9 @@ const reducer = (state, action) =>{
     case "SHOW_HIDE_PROFILE":
        return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),showProfile: ! state.showProfile}
 
-    // case "ACTIVE_CATEGORY":
-    //   let {id ,title} = action.payload;
-    //   return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),categoryActive:{'id': id, 'title' : title}}
-
     case "CHANGE_EMPLOYEE_MENU" :
       let selected_menu= action.payload;
-      return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),EmployeeMenuSelected:selected_menu}
+      return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),EmployeeMenuSelected:selected_menu }
     
     case "CHANGE_CANDIDATE_MENU":
       let candidate_selected_menu = action.payload;
@@ -60,6 +56,8 @@ const reducer = (state, action) =>{
     case "USER_REGISTRATION":
       let candidateInfo = action.payload;
       return {...initialState,candidateInfo:candidateInfo,CandidateRegistration:true}
+
+   
     default:
       return state;
   }
@@ -239,3 +237,10 @@ root.render(
 //https://express.adobe.com/tools/remove-background
 //https://www.geeksforgeeks.org/how-to-create-tabs-in-reactjs/
 //https://www.npmjs.com/package/reactjs-pdf-reader
+//https://www.npmjs.com/package/react-weekly-schedule
+//https://stackoverflow.com/questions/71644312/nested-route-not-working-in-react-router-dom-for-my-admin-dashboard
+//https://www.npmjs.com/package/react-share
+
+//https://stackoverflow.com/questions/70165035/how-to-use-material-ui-checkbox-with-formik
+//https://stackoverflow.com/questions/59721035/usestate-only-update-component-when-values-in-object-change
+//https://www.npmjs.com/package/react-tag-input

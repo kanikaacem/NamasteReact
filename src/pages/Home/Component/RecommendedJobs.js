@@ -1,4 +1,4 @@
-import { Box, Stack, styled, Typography, Pagination } from "@mui/material";
+import { Box, Stack, styled, Typography, Pagination, Container } from "@mui/material";
 
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -19,21 +19,26 @@ const RecommendedJobs = () => {
     const [dataPerPage, setDataPerPage] = useState(5);
 
     useEffect(() => {
+        const myHeaders = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': 'your-token'
+        });
         const getData = async () => {
             let response = await fetch(api_url + "/api/job/getalljobs",
                 {
                     method: "GET",
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Content-Type': 'application/json; charset=UTF-8'
-                    },
-
-
+                    headers: myHeaders,
                 });
             if (response.ok) {
                 response = await response.json();
-                if (response.status == 1)
-                    setData(response.data);
+                if (response.status == 1) {
+                    let rows = response.data.reduce(function (rows, key, index) {
+                        return (index % 2 == 0 ? rows.push([key])
+                            : rows[rows.length - 1].push(key)) && rows;
+                    }, []);
+                    // console.log(rows)
+                    setData(rows)
+                }
 
             }
         };
@@ -48,37 +53,47 @@ const RecommendedJobs = () => {
 
     return (<>
         <Box sx={{
-            padding: { lg: "0px 50px", md: "15px", xs: "15px" },
             minHeight: "700px",
             overflow: "hidden",
             position: "relative",
-            background: "#D9D9D9"
+            width: "100%",
+            padding: "0px"
         }}
         >
             <Box
                 sx={{
                     position: "relative",
                     top: '0px',
-                    // padding: '0px 100px',
                     zIndex: "4545",
                 }}>
                 <Stack
                     direction={{ lg: "row", md: "column", xs: "column" }}
                     gap={10}>
 
-                    <Box sx={{ minWidth: "60%" }}>
-                        <Typography component="h3" sx={{ fontSize: "30px", fontWeight: "600", color: "#2B1E44", margin: "10px 0px", marginLeft: "70px" }}>
-                            Recommended Jobs
+                    <Box >
+                        <Typography component="h3" sx={{ fontSize: "30px", fontWeight: "600", color: "#2B1E44", margin: "10px 0px" }}>
+                            Jobs
                         </Typography>
                         <Stack>
-                            <Box sx={{ height: "500px" }}>
+                            <Box >
                                 {
                                     RecommendedJobs.length > 0 ? RecommendedJobs.map((item) => {
+
                                         return (<>
-                                            <JobComponent key={item.id} data={item} />
+                                            <Stack direction="row" gap={2} >
+                                                <Box sx={{ width: "630px" }}>
+                                                    <JobComponent key={item[0].id} data={item[0]} />
+                                                </Box>
+                                                <Box sx={{ width: "630px" }}>
+                                                    {item[1] && <JobComponent key={item[1].id} data={item[1]} />}
+                                                </Box>
+                                            </Stack>
                                         </>)
                                     })
-                                        : " There is no data present"
+                                        : <Stack>
+                                            NO DATA FOUND
+                                            {/* <img src={window.location.origin + "/assets/data_not_found.png"} alt="data_not_found" /> */}
+                                        </Stack>
                                 }
                             </Box>
                         </Stack>
@@ -88,7 +103,7 @@ const RecommendedJobs = () => {
                         </Box>
 
                     </Box>
-                    <Box sx={{ width: "400px" }}>
+                    {/* <Box sx={{ width: "400px" }}>
                         <Typography component="h3" sx={{ fontSize: "30px", fontWeight: "600", color: "#2B1E44", margin: "10px 0px" }}>
                             Featured Company
                         </Typography>
@@ -145,7 +160,7 @@ const RecommendedJobs = () => {
 
                             </Stack>
                         </Box>
-                    </Box>
+                    </Box> */}
                 </Stack>
             </Box>
         </Box >

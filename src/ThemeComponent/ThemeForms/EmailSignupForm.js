@@ -1,11 +1,14 @@
-import { Box, Typography, TextField } from "@mui/material";
+import { Box, Typography, TextField, Stack } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
 import { emailFormValidationSchema } from "../../Validation/EmployerValidation";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
-import ButtonType1 from "../Common/ButtonType1";
+
+import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
+import { socialLogin } from "../../utils/Data";
+
 import { LoginSocialGoogle } from 'reactjs-social-login';
 
 import { useSelector } from "react-redux";
@@ -52,62 +55,109 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
     }
 
     return (<>
-
+        <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
+            Create Account
+        </Typography>
         <Box>
-            <Typography component="h3" sx={{ fontSize: "30px", fontWeight: "600", textAlign: "center", color: "#2B1E44", margin: "30px 0px" }}>
-                Create Account
-            </Typography>
             <Formik
-
                 initialValues={defaultValue}
                 validationSchema={emailFormValidationSchema}
                 onSubmit={handleSubmit}
             >
                 {({ errors, touched, values, setFieldValue }) => (
                     <Form className="EmailSignupForm">
+                        <ThemeFInputDiv>
+                            <ThemeFInputDiv>
+                                <ThemeLabel LableFor="email_address" LableText="Email Address *" />
+                                <Field
+                                    id="email_address"
+                                    error={errors.email_address && touched.email_address}
+                                    as={TextField}
+                                    placeholder="Enter Email ID/ Username " type="text" name="email_address" fullWidth />
+                                {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
+                            </ThemeFInputDiv>
+                            <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                                <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Next</ThemeButtonType2>
+                            </Stack>
 
-                        <Box className="input-item">
-                            <ThemeLabel LableFor="email_address" LableText="Email Address" />
-                            <Field
-                                id="email_address"
-                                error={errors.email_address && touched.email_address}
-                                variant="standard"
-                                as={TextField}
-                                placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
-                            {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
-                        </Box>
+                            <Typography component="span" sx={{ fontSize: "16px", display: "flex" }}>
+                                <hr style={{ width: "150px", height: "0px", color: "#DAD9D9" }}></hr> or login in with <hr style={{ width: "150px", height: "0px" }}></hr>
+                            </Typography>
 
-                        <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                            <ButtonType1 ButtonText="Next" />
-                        </Box>
+                            <Stack direction="row" gap={3} justifyContent="center">
+                                <LoginSocialGoogle
+                                    client_id={CLIENT_ID}
+                                    scope="openid profile email"
+                                    discoveryDocs="claims_supported"
+                                    access_type="offline"
+                                    onResolve={({ provider, data }) => {
+                                        setFieldValue("email_address", data.email)
+                                    }}
+                                    onReject={err => {
+                                        console.log(err);
+                                    }}
 
-                        <Typography component="h4" sx={{ fontSize: "16px", textAlign: "center", color: "#2B1E44", margin: "30px 0px" }}>
-                            OR
-                        </Typography>
+                                >  <SocialBox >
+                                        <img src={socialLogin[0].image_url} alt={socialLogin[0].value} />
+                                    </SocialBox>
 
-                        <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                            <LoginSocialGoogle
-                                client_id={CLIENT_ID}
-                                scope="openid profile email"
-                                discoveryDocs="claims_supported"
-                                access_type="offline"
-                                onResolve={({ provider, data }) => {
-                                    setFieldValue("email_address", data.email)
-                                }}
-                                onReject={err => {
-                                    console.log(err);
-                                }}
-                            >
-                                <button type="button" class="signup-with-google-btn" >
-                                    Sign up with Google
-                                </button>
+                                </LoginSocialGoogle>
 
-                            </LoginSocialGoogle>
+                                <SocialBox>
+                                    <img src={socialLogin[1].image_url} alt={socialLogin[1].value} />
+                                </SocialBox>
 
-                        </Box>
+                                <SocialBox>
+                                    <img src={socialLogin[2].image_url} alt={socialLogin[2].value} />
+                                </SocialBox>
+
+                            </Stack>
+
+                            {/* <Stack direction="row" gap={1} justifyContent="center">
+                                {
+                                    socialLogin.map((item) => {
+                                        return (<>
+                                            <SocialBox key={item.id}>
+                                                <img src={item.image_url} alt={item.value} />
+                                            </SocialBox>
+                                        </>)
+                                    })
+                                }
+                            </Stack> */}
+
+                        </ThemeFInputDiv>
                     </Form>
                 )}
             </Formik>
+
+            {/* <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
+                <ThemeButtontype1 variant="contained" type="submit">Next</ThemeButtontype1>
+            </Box> */}
+
+            {/* <Typography component="h4" sx={{ fontSize: "16px", textAlign: "center", color: "#2B1E44", margin: "30px 0px" }}>
+                OR
+            </Typography> */}
+
+            {/* <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
+                <LoginSocialGoogle
+                    client_id={CLIENT_ID}
+                    scope="openid profile email"
+                    discoveryDocs="claims_supported"
+                    access_type="offline"
+                    onResolve={({ provider, data }) => {
+                        setFieldValue("email_address", data.email)
+                    }}
+                    onReject={err => {
+                        console.log(err);
+                    }}
+                >
+                    <button type="button" class="signup-with-google-btn" >
+                        Sign up with Google
+                    </button>
+
+                </LoginSocialGoogle>
+
+            </Box> */}
         </Box>
     </>)
 }

@@ -1,6 +1,10 @@
 const ThemeLabel = ({ LableText, LableFor }) => {
     return (<>
-        <label for={LableFor} style={{ color: "#445578", fontWeight: "500" }}> {LableText}</label>
+        <label for={LableFor} style={{
+            fontWeight: "500",
+            fontSize: "24px",
+            fontFamily: "Montserrat"
+        }}> {LableText}</label>
     </>)
 }
 

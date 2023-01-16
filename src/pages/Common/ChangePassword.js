@@ -1,4 +1,4 @@
-import { Box, Typography, Input, Snackbar, Alert } from "@mui/material";
+import { Box, Typography, Stack, Input, Snackbar, Alert } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { ForgotPasswordValidation } from "../../Validation/EmployerValidation";
 
@@ -60,9 +60,6 @@ const ChangePassword = () => {
     }, []);
 
     return (<>
-        {/* <Typography component="div" sx={{ fontWeight: "600", fontSize: "30px", margin: "30px" }}>
-                Change Password
-            </Typography> */}
 
         <Snackbar
             open={formSubmitted}
@@ -82,6 +79,10 @@ const ChangePassword = () => {
             borderRadius: "10px",
             borderTop: "4px solid #2B1E44"
         }}>
+            <Typography component="div" sx={{ color: "#2B1E44", fontWeight: "600", fontSize: "20px", textTransform: "capitalize", margin: "10px 0px" }}>
+                Change Password
+            </Typography>
+
             <Formik
 
                 initialValues={defaultValue}
@@ -89,37 +90,38 @@ const ChangePassword = () => {
                 onSubmit={handleSubmit}
             >
                 {({ errors, touched, values, setFieldValue }) => (
-                    <Form >
+                    <Form className="ChangePasswordForm">
+                        <Stack direction="column" gap={2}>
+                            <Box className="input-item">
+                                <ThemeLabel LableFor="old_password" LableText=" Old Password" />
 
-                        <Box className="input-item">
-                            <ThemeLabel LableFor="old_password" LableText=" Old Password" />
+                                <Field
+                                    id="old_password"
+                                    as={Input}
+                                    placeholder="Enter Old Password" type="password" name="old_password" fullWidth />
+                                {errors.old_password && touched.old_password && <Error text={errors.old_password} />}
+                            </Box>
 
-                            <Field
-                                id="old_password"
-                                as={Input}
-                                placeholder="Enter Old Password" type="password" name="old_password" fullWidth />
-                            {errors.old_password && touched.old_password && <Error text={errors.old_password} />}
-                        </Box>
+                            <Box className="input-item">
+                                <ThemeLabel LableFor="password" LableText=" New Password" />
 
-                        <Box className="input-item">
-                            <ThemeLabel LableFor="password" LableText=" New Password" />
+                                <Field
+                                    id="password"
+                                    as={Input}
+                                    placeholder="Enter Password" type="password" name="password" fullWidth />
+                                {errors.password && touched.password && <Error text={errors.password} />}
+                            </Box>
+                            <Box className="input-item">
 
-                            <Field
-                                id="password"
-                                as={Input}
-                                placeholder="Enter Password" type="password" name="password" fullWidth />
-                            {errors.password && touched.password && <Error text={errors.password} />}
-                        </Box>
-                        <Box className="input-item">
+                                <ThemeLabel LableFor="confirm_password" LableText="Confirm Password" />
+                                <Field
+                                    id="confirm_password"
+                                    as={Input}
+                                    placeholder="Enter Confirm Password" type="password" name="confirm_password" fullWidth />
+                                {errors.confirm_password && touched.confirm_password && <Error text={errors.confirm_password} />}
 
-                            <ThemeLabel LableFor="confirm_password" LableText="Confirm Password" />
-                            <Field
-                                id="confirm_password"
-                                as={Input}
-                                placeholder="Enter Confirm Password" type="password" name="confirm_password" fullWidth />
-                            {errors.confirm_password && touched.confirm_password && <Error text={errors.confirm_password} />}
-
-                        </Box>
+                            </Box>
+                        </Stack>
 
                         <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
                             <ButtonType1 ButtonText="Update Password" />

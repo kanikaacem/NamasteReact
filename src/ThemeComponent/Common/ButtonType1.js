@@ -12,7 +12,7 @@ const ButtonType1 = ({ ButtonText }) => {
         }
     })
     return (<>
-        <ThemeButtontype1 variant="contained" type="submit">{ButtonText} </ThemeButtontype1>
+        <ThemeButtontype1 variant="contained">{ButtonText} </ThemeButtontype1>
 
     </>)
 }

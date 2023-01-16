@@ -37,6 +37,7 @@ import NotFound from "./Pages/NotFound";
 import PrivateRoute from "./utils/PrivateRoute";
 import Dashboard from './Pages/Common/Dashboard';
 import JobDescription from './Pages/JobDescription';
+import JobSearch from './ThemeComponent/Common/JobSearch';
 
 function App() {
 
@@ -55,7 +56,8 @@ function App() {
           <Route path="/candidate-login" element={<CandidateLogin></CandidateLogin>}></Route>
           <Route path="/candidate-register" element={<CandidateRegistration />} />
           <Route path="/profile/:step" element={<CandidateProfile></CandidateProfile>} />
-
+          <Route path="/post-a-job" element={<PostJob></PostJob>} />
+          <Route path="/job" element={<JobSearch></JobSearch>} />
 
           <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
@@ -70,10 +72,10 @@ function App() {
             <Route path="chats" element={<Chat></Chat>} />
           </Route>
           {/* <Route path="/perferences" element={<CandidateJobPerferences></CandidateJobPerferences>} /> */}
-          <Route path="/view-profile" element={<ViewProfile></ViewProfile>} />
+          {/* <Route path="/view-profile" element={<ViewProfile></ViewProfile>} />
 
           <Route path="/update-profile" element={<UpdateProfile></UpdateProfile>} />
-          <Route path="/candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route>
+          <Route path="/candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route> */}
 
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             {/* <Route path="/candidate-dashboard" element={<Dashboard />} > */}

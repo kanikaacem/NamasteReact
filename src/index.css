@@ -1,15 +1,9 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
 
 /* Header */
@@ -21,16 +15,7 @@ nav {
   justify-content: space-between;
 }
 
-nav {
-  /* width: 70%;
-  position: sticky;
-  top: 0px;
-  background: white;
-  margin: 0 auto;
-  z-index: 348;
-  border-radius: 20px; */
-  /* box-shadow: 0px 0px 25px rgb(56 152 226 / 30%); */
-}
+
 
 .HeaderMenus {
   display: flex;
@@ -264,13 +249,13 @@ nav {
   width: 100%;
 }
 
-.input-item input,
+/* .input-item input,
 textarea {
   border: none;
   margin: 10px 0px;
   font-size: 14px;
   outline: none;
-}
+} */
 
 .signup-with-google,
 .signin-with-google {
@@ -392,6 +377,29 @@ textarea {
 .postjobForm Button {
   display: block;
   margin: 0 auto;
+}
+
+/*tags */
+.tag-wrapper.ReactTags__tag {
+  opacity: 1;
+  cursor: move;
+  background: #2B1E44;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+
+}
+
+.ReactTags__remove {
+  background: none;
+  border: none;
+  color: white;
+}
+
+.ReactTags__selected {
+  padding: "10px 0px" !important;
+  margin: "20px 0px" !important;
 }
 
 /* .css-1s2u09g-control {
@@ -631,15 +639,22 @@ textarea {
 
 #mui-component-select-role,
 #mui-component-select-experience,
-#mui-component-select-city,
 #mui-component-select-profile_type,
-#mui-component-select-company_type {
+#mui-component-select-job_type,
+#mui-component-select-job_working_type,
+#mui-component-select-salary_type,
+#mui-component-select-association_type,
+#mui-component-select-industry_type {
   width: 100%;
   font-size: 14px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.42);
   padding: 10px 0px;
-  color: black;
+  /* color: #bebbbb; */
 }
+
+/* .react-select__placeholder {
+  color: #bebbbb !important;
+} */
 
 #mui-component-select-role,
 #mui-component-select-experience,
@@ -670,18 +685,23 @@ textarea {
 /*Employer Dashboard account setting */
 .EmployeeMenuSelected,
 .AccountMenu,
-.SettingMenu,
-.CandidateMenuSelected {
+.SettingMenu {
   /* color: #62459b; */
   color: #445578;
   font-weight: 600 !important;
+}
+
+.CandidateMenuSelected {
+  border-right: 3px solid #007FFF !important;
 }
 
 #permanant_address,
 #current_location,
 #date_of_birth,
 #starting_year,
-#ending_year {
+#ending_year,
+#address,
+#currAddress {
   width: 97%;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   border: 1px solid #d0d0d0;
@@ -693,8 +713,6 @@ textarea {
 /* User Perferences page */
 .JOBPERFERENCES {
   padding: 10px;
-  /* border-radius: 10px; */
-  /* border: 1px solid #445578; */
   border: 2px solid #E2E2E2;
   width: fit-content;
   cursor: pointer;
@@ -703,4 +721,145 @@ textarea {
 .perferencesactive {
   background: #445578;
   color: #FFFFFF;
+}
+
+.CandidateJob::-webkit-scrollbar {
+  width: 5px;
+}
+
+.CandidateJob::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.CandidateJob::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+#mui-component-select-marital_status {
+  margin: 10px 0px;
+  width: 97%;
+  padding: 10px;
+  border: 1px solid #d0d0d0;
+
+}
+
+/* Registration and Login Form */
+/* .EmployerLoginForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+} */
+
+/* .EmailSignupForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+} */
+/* 
+.PasswordGenerationForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+} */
+
+/* .SendOTPForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.VerifyOTPForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+} */
+
+/* .CompanyInformationForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+} */
+
+.candidateLogin .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.CandidateRegistration .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.PostJobForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.updateCompanyInformationForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.HrInformationUpdateForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.ChangePasswordForm .input-item input {
+  border: none;
+  margin: 10px 0px;
+  font-size: 14px;
+  outline: none;
+}
+
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 10px !important;
+}
+
+/*form font-family */
+.MuiInputBase-input .MuiOutlinedInput-input .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  font-family: 'Montserrat';
+  font-size: 16px;
+  font-weight: 500
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  border-radius: 7px;
+  font-size: 16px !important;
+  font-family: 'Montserrat' !important;
+  font-weight: 500 !important;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input::placeholder {
+  color: #B1B1B1 !important;
+}
+
+.CompanyInformationForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  background: #EAEAEA;
+
+}
+
+#mui-component-select-company_type,
+#mui-component-select-city {
+  font-family: "Montserrat";
+}
+
+.CompanyInformationForm .css-14lo706 {
+  display: none !important;
 }

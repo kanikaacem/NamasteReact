@@ -1,26 +1,22 @@
-import { Box, Container, Stack, Typography, TextField, Input, Button } from "@mui/material";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { postRequest } from "../../utils/ApiRequests";
+import { saveCandidateUserNameAndPasswordURL } from "../../utils/ApiUrls";
 
-import DatePicker from "react-datepicker";
+import { Box, Stack, Typography, TextField } from "@mui/material";
+import { Formik, Field, Form } from "formik";
+
 import "react-datepicker/dist/react-datepicker.css";
-import FileBase64 from 'react-file-base64';
 import { useSelector } from 'react-redux';
 
 import { Link } from "react-router-dom";
 import { Navigate } from 'react-router-dom';
 
-import { LoginSocialGoogle } from 'reactjs-social-login';
 
 import { CandidateRegistrationSchema } from "../../Validation/CandidateValidation";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
-import RegistrationSeperator from "../../ThemeComponent/Common/RegistrationSeperator";
 import Error from '../../ThemeComponent/Common/Error';
-import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
-import ButtonType2 from "../../ThemeComponent/Common/ButtonType2";
+import { ThemeButtontype1 } from "../../utils/Theme";
 
 import { useDispatch } from "react-redux";
-// const CLIENT_ID = "346122009616-5gsdqla59hflt7sg5f8n38valqs6p1q8.apps.googleusercontent.com";
-
 const CandidateRegistration = () => {
     const api_url = useSelector(state => state.api_url);
     const CandidateRegistration = useSelector(state => state.CandidateRegistration);
@@ -155,28 +151,17 @@ const CandidateRegistration = () => {
     // }
 
     const handleSubmit = async (values, { setFieldError }) => {
-        // dispatch({ type: 'USER_REGISTRATION', payload: JSON.stringify("hlleo") });
-
         let CandidateLoginForm = new FormData();
         CandidateLoginForm = {
             email: values.email_id,
             password: values.password
         }
-        let response = await fetch(api_url + "/api/users/saveusernameandpassword", {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify(CandidateLoginForm)
-        })
 
-        if (response.ok) {
-            response = await response.json();
-            console.log(response);
-            if (response.status == '1') {
-                dispatch({ type: 'USER_REGISTRATION', payload: JSON.stringify(response) });
-            }
+        let response = await postRequest(saveCandidateUserNameAndPasswordURL, CandidateLoginForm);
+
+        if (response.status == '1') {
+            localStorage.setItem("user_registration_token", response);
+            dispatch({ type: 'USER_REGISTRATION', payload: JSON.stringify(response) });
         }
     }
     return (<>
@@ -251,45 +236,49 @@ const CandidateRegistration = () => {
                                     onSubmit={handleSubmit}
                                 >
                                     {({ errors, touched }) => (
-                                        <Form >
+                                        <Form className="CandidateRegistration">
+                                            <Stack direction="column" gap={2}>
+                                                <Box className="input-item">
+                                                    <ThemeLabel LableFor="email_id" LableText="Email Address" />
+                                                    <Field
+                                                        variant="standard"
+                                                        error={errors.email_id && touched.email_id}
+                                                        as={TextField}
+                                                        id="email_id"
+                                                        placeholder="Enter Email ID/ Username" type="text" name="email_id" fullWidth />
+                                                    {errors.email_id && touched.email_id && <Error text={errors.email_id} />}
 
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="email_id" LableText="Email Address" />
-                                                <Field
-                                                    error={errors.email_id && touched.email_id}
-                                                    as={Input}
-                                                    id="email_id"
-                                                    placeholder="Enter Email ID/ Username" type="text" name="email_id" fullWidth />
-                                                {errors.email_id && touched.email_id && <Error text={errors.email_id} />}
+                                                </Box>
 
-                                            </Box>
-
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="password" LableText="Password" />
-                                                <Field
-                                                    error={errors.password && touched.password}
-                                                    id="password"
-                                                    as={Input}
-                                                    placeholder="Enter Password" type="password" name="password" fullWidth />
-                                                {errors.password && touched.password && <Error text={errors.password} />}
-
-
-                                            </Box>
-
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="confirm_password" LableText="Confirm Password" />
-                                                <Field
-                                                    error={errors.confirm_password && touched.confirm_password}
-                                                    id="confirm_password"
-                                                    as={Input}
-                                                    placeholder="Enter Confirm Password" type="password" name="confirm_password" fullWidth />
-                                                {errors.confirm_password && touched.confirm_password && <Error text={errors.confirm_password} />}
+                                                <Box className="input-item">
+                                                    <ThemeLabel LableFor="password" LableText="Password" />
+                                                    <Field
+                                                        variant="standard"
+                                                        error={errors.password && touched.password}
+                                                        id="password"
+                                                        as={TextField}
+                                                        placeholder="Enter Password" type="password" name="password" fullWidth />
+                                                    {errors.password && touched.password && <Error text={errors.password} />}
 
 
-                                            </Box>
+                                                </Box>
 
+                                                <Box className="input-item">
+                                                    <ThemeLabel LableFor="confirm_password" LableText="Confirm Password" />
+                                                    <Field
+                                                        variant="standard"
+                                                        error={errors.confirm_password && touched.confirm_password}
+                                                        id="confirm_password"
+                                                        as={TextField}
+                                                        placeholder="Enter Confirm Password" type="password" name="confirm_password" fullWidth />
+                                                    {errors.confirm_password && touched.confirm_password && <Error text={errors.confirm_password} />}
+
+
+                                                </Box>
+                                            </Stack>
                                             <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                                <ButtonType1 ButtonText="Continue" />
+                                                {/* <ButtonType1 ButtonText="Continue" /> */}
+                                                <ThemeButtontype1 type="submit" variant="contained"> Continue</ThemeButtontype1>
                                             </Box>
                                         </Form>
                                     )}

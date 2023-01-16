@@ -93,32 +93,36 @@ const UploadResume = ({ setActiveStep }) => {
 
         </Snackbar>
 
-        <Box sx={{
-            width: "60%",
-            margin: "50px auto",
-            borderRadius: "10px",
-            padding: "30px",
-            background: "#FFFFFF",
-            boxShadow: "0px 3px 17px 0px rgba(99, 99, 99, 1)"
-        }}>
-            <Typography component="h3" sx={{ fontSize: "25px", color: "#2B1E44", marginBottom: "20px" }}>
-                Upload Resume
-            </Typography>
-            <form>
-                <Box className="input-item">
-                    <ThemeLabel LableFor="upload_resume" LableText="Upload Resume" />
-                    <Box sx={{ margin: "20px 0px" }}>
-                        <input type="file" name="upload_resume" id="upload_resume" onChange={uploadFile} />
-                        {/* <ButtonType2 ButtonText="Upload Resume" ClickEvent={() => document.getElementById("upload_resume").click()}></ButtonType2> */}
+        <Stack direction="row" gap={2}>
+            <Box sx={{ width: "40%" }}></Box>
+            <Box sx={{
+                width: "60%",
+                margin: "50px",
+                borderRadius: "10px",
+                padding: "30px",
+                background: "#FFFFFF",
+                borderTop: "4px solid #2B1E44"
+            }}>
+                <Typography component="h3" sx={{ fontSize: "25px", color: "#2B1E44", marginBottom: "20px" }}>
+                    Upload Resume
+                </Typography>
+                <form>
+                    <Box className="input-item">
+                        <ThemeLabel LableFor="upload_resume" LableText="Upload Resume" />
+                        <Box sx={{ margin: "20px 0px" }}>
+                            <input type="file" name="upload_resume" id="upload_resume" onChange={uploadFile} />
+                        </Box>
                     </Box>
+
+                </form>
+                <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
+                    <Button variant="contained" sx={{ background: "#2B1E44" }} onClick={goToDashboard} >Go to Dashboard</Button>
                 </Box>
 
-            </form>
-            <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                <Button variant="contained" sx={{ background: "#2B1E44" }} onClick={goToDashboard} >Go to Dashboard</Button>
             </Box>
+        </Stack>
 
-        </Box></>)
+    </>)
 }
 
 export default UploadResume;

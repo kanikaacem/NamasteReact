@@ -1,13 +1,12 @@
-import { Box, Input, Stack, styled, Typography, Snackbar, IconButton } from "@mui/material";
+import { Box, TextField, Typography, Snackbar, IconButton, Stack, Button } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { Formik, Field, Form } from "formik";
 
 import { OTPValidationSchema, MobileVerifyFormValidationSchema } from "../../Validation/EmployerValidation";
 
+import { ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
-import ButtonType1 from "../Common/ButtonType1";
-
 import { useState } from "react";
 
 const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNumber }) => {
@@ -59,8 +58,8 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
             action={action}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         />
-        <Typography component="h3" sx={{ fontSize: "30px", fontWeight: "600", textAlign: "center", color: "#2B1E44", margin: "30px 0px" }}>
-            Verify Mobile Number
+        <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
+            Verify Mobile No.
         </Typography>
         <Formik
 
@@ -68,26 +67,61 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
             validationSchema={MobileVerifyFormValidationSchema}
             onSubmit={handleSubmit1}
         >
-            {({ errors, touched, values, setFieldValue }) => (<Form >
+            {({ errors, touched, values, setFieldValue }) => (
+                <Form className="SendOTPForm">
+                    <ThemeFInputDiv sx={{ position: "relative" }}>
+                        <ThemeLabel LableFor="mobile_number" LableText="Mobile Number" />
+                        <Field
+                            style={{ width: "80%" }}
+                            error={errors.mobile_number && touched.mobile_number}
+                            id="mobile_number"
+                            as={TextField}
+                            placeholder="Enter Mobile Number" type="text" name="mobile_number *" />
+                        <Button
+                            type="submit"
+                            sx={{
+                                position: "absolute",
+                                top: "50px",
+                                right: "0px",
+                                width: "59px",
+                                height: "59px",
+                                background: "#FC9A7E",
+                                borderRadius: "7px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                cursor: "pointer",
+                                "&:hover": {
+                                    position: "absolute",
+                                    top: "50px",
+                                    right: "0px",
+                                    width: "59px",
+                                    height: "59px",
+                                    background: "#FC9A7E",
+                                    borderRadius: "7px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    cursor: "pointer"
+                                }
 
-                <Box className="input-item">
-                    <ThemeLabel LableFor="mobile_number" LableText="Mobile Number" />
+                            }}
+                        > <img src={window.location.origin + "/assets/SendOtp.png"} alt="SendOTP" />
+                        </Button>
+                        {errors.mobile_number && touched.mobile_number && <Error text={errors.mobile_number} />}
 
-                    <Field
-                        error={errors.mobile_number && touched.mobile_number}
-                        id="mobile_number"
-                        as={Input}
-                        placeholder="Enter Mobile Number" type="text" name="mobile_number" fullWidth />
-                    {errors.mobile_number && touched.mobile_number && <Error text={errors.mobile_number} />}
-                </Box>
+                    </ThemeFInputDiv>
 
-                <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                    <ButtonType1 id="sendOtpButton" ButtonText="Send Otp" />
-                </Box>
-            </Form>
+                    {/* <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Next</ThemeButtonType2>
+                    </Stack> */}
+                    {/* <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
+                        <ThemeButtontype1 variant="contained" type="submit">Send OTP</ThemeButtontype1>
+                    </Box> */}
+                </Form>
             )}
         </Formik>
-        <br></br><br></br>
+
         <Formik
 
             initialValues={defaultValue2}
@@ -95,23 +129,25 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
             onSubmit={handleSubmit2}
         >
             {({ errors, touched, values, setFieldValue }) => (
-                <Form >
+                <Form className="VerifyOTPForm">
 
-                    <Box className="input-item">
-                        <ThemeLabel LableFor="otp" LableText="OTP" />
-
+                    <ThemeFInputDiv>
+                        <ThemeLabel LableFor="otp" LableText="OTP *" />
                         <Field
                             error={errors.otp && touched.otp}
                             id="otp"
-                            as={Input}
-                            placeholder="Enter Otp" type="text" name="otp" fullWidth />
+                            as={TextField}
+                            placeholder="Verify OTP" type="text" name="otp" fullWidth />
                         {errors.otp && touched.otp && <Error text={errors.otp} />}
+                    </ThemeFInputDiv>
 
-                    </Box>
+                    <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Verify</ThemeButtonType2>
+                    </Stack>
 
-                    <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                        <ButtonType1 ButtonText="Verify Otp" />
-                    </Box>
+                    {/* <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
+                        <ThemeButtontype1 variant="contained" type="submit">Verify OTP</ThemeButtontype1>
+                    </Box> */}
                 </Form>
             )}
         </Formik>
