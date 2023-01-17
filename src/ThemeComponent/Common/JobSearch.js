@@ -1,5 +1,5 @@
 import { Box, Container, Badge, Stack, Typography } from "@mui/material";
-import Header from "../../ThemeComponent/Common/Header";
+import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import SearchBar from "../SearchBar";
 import Filter from "../Filter";
 import RecommendedJobs from "../../Pages/Home/Component/RecommendedJobs";
@@ -9,18 +9,17 @@ const JobSearch = () => {
     return (<>
         <Box className="jobSearchPage"
             sx={{ background: "#FAFAFA" }}>
-            <Header></Header>
+            <Box sx={{ padding: "20px" }}>
+                <HeaderSec />
+            </Box>
             <SearchBar></SearchBar>
-            <Container
+            {/* <Container
                 sx={{
                     maxWidth: "1333px !important",
                     padding: "20px",
                     background: "#D9D9D9"
-                }}> <Filter></Filter></Container>
-            <Container
-                sx={{
-                    maxWidth: "1333px !important",
-                }}>
+                }}> <Filter></Filter></Container> */}
+            <Container>
                 <RecommendedJobs></RecommendedJobs>
             </Container>
             <Footer />

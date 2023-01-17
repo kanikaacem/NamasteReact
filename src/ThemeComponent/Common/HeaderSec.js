@@ -1,6 +1,6 @@
 import { Box, Typography, Stack, Button } from "@mui/material";
-
-const HeaderSec = ({ color, background, border }) => {
+import { NavButton2 } from "../../utils/Theme";
+const HeaderSec = ({ color, background, border, buttonText }) => {
     return (<>
         <Stack direction="row" justifyContent="space-between">
             <Box>
@@ -35,6 +35,7 @@ const HeaderSec = ({ color, background, border }) => {
                         color: { color },
                         textTransform: "capitalize",
                         fontWeight: "600",
+                        fontFamily: "Work Sans, sans-serif !important",
                         background: { background },
                         "&:hover": {
                             border: { border },
@@ -56,11 +57,12 @@ const HeaderSec = ({ color, background, border }) => {
                         borderRadius: "44px",
                         fontSize: "24px",
                         fontWeight: "600",
+                        fontFamily: "Work Sans, sans-serif !important",
                         "&:hover": {
                             background: "#FC9A7E"
                         }
                     }}>
-                    About us
+                    {buttonText ? buttonText : "About Us"}
                 </Button>
             </Stack>
         </Stack>

@@ -24,7 +24,7 @@ const RecommendedJobs = () => {
             'Authorization': 'your-token'
         });
         const getData = async () => {
-            let response = await fetch(api_url + "/api/job/getalljobs",
+            let response = await fetch("http://192.168.1.4:3001/api/job/getalljobs",
                 {
                     method: "GET",
                     headers: myHeaders,
@@ -36,8 +36,8 @@ const RecommendedJobs = () => {
                         return (index % 2 == 0 ? rows.push([key])
                             : rows[rows.length - 1].push(key)) && rows;
                     }, []);
-                    // console.log(rows)
-                    setData(rows)
+                    console.log(rows)
+                    // setData(rows)
                 }
 
             }
@@ -52,7 +52,32 @@ const RecommendedJobs = () => {
     const RecommendedJobs = data.slice(IndexOfFirstData, IndexOfLastData);
 
     return (<>
-        <Box sx={{
+        <Stack direction="column" gap={2}>
+            <Box>
+                {
+                    RecommendedJobs.length > 0 ? RecommendedJobs.map((item) => {
+
+                        return (<>
+                            <Stack direction="row" gap={2} >
+                                <Box sx={{ width: "630px" }}>
+                                    <JobComponent key={item[0].id} data={item[0]} />
+                                </Box>
+                                <Box sx={{ width: "630px" }}>
+                                    {item[1] && <JobComponent key={item[1].id} data={item[1]} />}
+                                </Box>
+                            </Stack>
+                        </>)
+                    })
+                        : <Stack>
+                            NO DATA FOUND
+                        </Stack>
+                }
+            </Box>
+            <Box sx={{ position: "relative", top: "30px" }}>
+                <Pagination count={Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
+            </Box>
+        </Stack>
+        {/* <Box sx={{
             minHeight: "700px",
             overflow: "hidden",
             position: "relative",
@@ -92,7 +117,6 @@ const RecommendedJobs = () => {
                                     })
                                         : <Stack>
                                             NO DATA FOUND
-                                            {/* <img src={window.location.origin + "/assets/data_not_found.png"} alt="data_not_found" /> */}
                                         </Stack>
                                 }
                             </Box>
@@ -161,9 +185,9 @@ const RecommendedJobs = () => {
                             </Stack>
                         </Box>
                     </Box> */}
-                </Stack>
-            </Box>
-        </Box >
+        {/* </Stack>
+            </Box >
+        </Box > * /} */}
 
     </>)
 }

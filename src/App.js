@@ -72,10 +72,10 @@ function App() {
             <Route path="chats" element={<Chat></Chat>} />
           </Route>
           {/* <Route path="/perferences" element={<CandidateJobPerferences></CandidateJobPerferences>} /> */}
-          {/* <Route path="/view-profile" element={<ViewProfile></ViewProfile>} />
+          <Route path="/view-profile" element={<ViewProfile></ViewProfile>} />
 
           <Route path="/update-profile" element={<UpdateProfile></UpdateProfile>} />
-          <Route path="/candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route> */}
+          <Route path="/candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route>
 
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             {/* <Route path="/candidate-dashboard" element={<Dashboard />} > */}

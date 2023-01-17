@@ -3,20 +3,17 @@ import { useSelector } from "react-redux";
 import { Navigate } from 'react-router-dom';
 
 /* Site Header */
-import Header from "../../ThemeComponent/Common/Header";
-
-import RecommendedJobs from "./Component/RecommendedJobs";
+import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
+import JobCategory from "./Component/JobCategory";
 import AboutUs from "./Component/AboutUs";
 import WhyJobYahan from "./Component/WhyJobYahan";
 import Reviews from "./Component/Reviews";
-import Filter from "../../ThemeComponent/Filter";
 import HomeSection from './Component/HomeSection';
 import Footer from "../../ThemeComponent/Common/Footer";
 
 import "./Home.css";
 
 import { useState } from "react"
-import { gridColumnsTotalWidthSelector } from "@mui/x-data-grid";
 function Home() {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const user = localStorage.user && JSON.parse(localStorage.user);
@@ -43,20 +40,19 @@ function Home() {
     })
     return (<>
         {isLoggedIn == 'true' && (user && user.type == 'employer') && <Navigate to="/employer-dashboard"></Navigate>}
-        <Header />
+        {/* <Header /> */}
+        <Box sx={{ padding: "20px" }}>
+            <HeaderSec
+                color="black"
+                border="2px solid #8E8E8E"
+                buttonText="Sign Up" />
+        </Box>
         <HomeSection />
-
-        {/* <Box sx={{
-            padding: { lg: "20px 50px", md: "20px", xs: "20px" },
-            background: "#D9D9D9"
-
-        }}>
-            <Filter />
-        </Box> */}
+        <JobCategory />
 
         {/* <RecommendedJobs /> */}
-        <AboutUs />
         <WhyJobYahan />
+        <AboutUs />
         <Reviews />
         <Footer />
 
