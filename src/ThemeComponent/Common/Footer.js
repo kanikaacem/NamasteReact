@@ -1,6 +1,15 @@
-import { Box, Container, Typography, Stack } from "@mui/material";
+import { Box, Container, Typography, Stack, styled } from "@mui/material";
 
 const Footer = () => {
+    const SocialIcon = styled(Box)({
+        width: "51px",
+        height: "51px",
+        background: "#4E3A67",
+        borderRadius: "50%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+    })
     return (<>
         <Box sx={{ background: "#2B1E44", minheight: "400px", padding: "50px 150px" }}>
             <Stack direction={{ lg: "row", md: "column", xs: "column" }} gap={5} sx={{ padding: "50px 0px" }}>
@@ -39,7 +48,8 @@ const Footer = () => {
                             fontSize: "20px",
                             color: "#FFFFFF",
                             width: "150px",
-                            fontWeight: '100'
+                            fontWeight: '100',
+                            fontFamily: "Montserrat"
                         }}>
                         Trusted by 3.8M+ verified job seekers and
                         190K+ verified recruiters.
@@ -83,6 +93,17 @@ const Footer = () => {
                         Support
                     </Typography>
                     <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> jobyahan@gmail.com</Box>
+                    <Stack direction="row" gap={2}>
+                        <SocialIcon>
+                            <img src={window.location.origin + "/assets/FG1.png"} alt="FG1" />
+                        </SocialIcon>
+                        <SocialIcon>
+                            <img src={window.location.origin + "/assets/FG2.png"} alt="FG2" />
+                        </SocialIcon>
+                        <SocialIcon>
+                            <img src={window.location.origin + "/assets/FG3.png"} alt="FG3" />
+                        </SocialIcon>
+                    </Stack>
 
                 </Box>
                 <Box sx={{ width: { lg: "35%", md: "100%", xs: "100%" } }}>
@@ -101,8 +122,29 @@ const Footer = () => {
                 </Box>
 
             </Stack>
-            <hr></hr>
+            <hr style={{
+                margin: "10px 0px"
+            }}></hr>
 
+            <Stack direction="row" gap={2}>
+                <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Terms and Conditions</Box>
+                <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Privacy Policy</Box>
+                <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Cookies Policy</Box>
+                <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Copyright Notifications</Box>
+                <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Cookies Settings</Box>
+            </Stack>
+
+            <Typography component="span"
+                sx={{
+                    display: "block",
+                    fontSize: "16px",
+                    color: "#FFFFFF",
+                    margin: "10px 0px",
+                    fontWeight: "100",
+                    fontFamily: "Montserrat"
+                }}>
+                Copyright © 2010-2023 Freepik Company S.L. All rights reserved.
+            </Typography>
         </Box >
     </>)
 }

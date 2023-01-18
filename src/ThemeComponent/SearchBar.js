@@ -74,7 +74,14 @@ const SearchBar = () => {
                         width: "56px",
                         height: "56px",
                         background: "#4E3A67",
-                        borderRadius: "11px"
+                        borderRadius: "11px",
+                        "&:hover": {
+                            background: "#2B1E44",
+                            width: "56px",
+                            height: "56px",
+                            background: "#4E3A67",
+                            borderRadius: "11px"
+                        }
                     }}
                     type="button" onClick={searchJob}>
                     <img src={window.location.origin + "/assets/g2.png"} alt="g2" />

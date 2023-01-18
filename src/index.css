@@ -290,7 +290,7 @@ textarea {
 
 
 .company-information-form .input-item .css-1869usk-MuiFormControl-root,
-.postjobForm .input-item .css-1869usk-MuiFormControl-root {
+.postjobForm1 .input-item .css-1869usk-MuiFormControl-root {
   padding: 7px 10px;
   margin: 10px 0px;
   width: 93%;
@@ -849,6 +849,13 @@ textarea {
   color: #B1B1B1 !important;
 }
 
+.Search::placeholder {
+  color: #AEA4BB;
+  font-size: 24px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+}
+
 .CompanyInformationForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   background: #EAEAEA;
 }
@@ -858,6 +865,10 @@ textarea {
 }
 
 .workHistoryForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  background: #EAEAEA;
+}
+
+.PostJobForm1 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   background: #EAEAEA;
 }
 
@@ -884,4 +895,26 @@ textarea {
 
 .ProfessionalDetailForm .css-14lo706 {
   display: none !important;
+}
+
+.JobSearchMenu .css-10hburv-MuiTypography-root {
+  font-size: 20px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700;
+  width: max-content;
+  color: #BDB5C7
+}
+
+.SalarySlider .css-14pt78w-MuiSlider-rail {
+  background-color: #E7D4FF;
+  height: 2px;
+}
+
+.SalarySlider .css-eg0mwd-MuiSlider-thumb {
+  background-color: #4E3A67;
+}
+
+.SalarySlider .css-1gv0vcd-MuiSlider-track {
+  background-color: #E7D4FF;
+
 }

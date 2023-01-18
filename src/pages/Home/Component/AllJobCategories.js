@@ -4,14 +4,16 @@ const AllJobCategories = () => {
         width: "300px"
     })
     const CategoryAlphabet = styled(Box)({
-        background: "#DAE8FA",
+        background: "#FC9A7E",
         fontWeight: "600",
-        padding: "0px 5px"
+        padding: "0px 5px",
+        fontSize: "24px"
     })
     return (<>
-        <span> Browse All Categories</span>
+        {/* <span> Browse All Categories</span> */}
         <Stack direction="row"
-            gap={3}>
+            gap={3}
+            sx={{ margin: "0 auto" }}>
 
             <CustomizeDiv gap={2} >
                 <Stack gap={2}>
