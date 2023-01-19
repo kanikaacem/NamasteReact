@@ -162,12 +162,15 @@ const CandidateRegistration = () => {
         }
 
         let response = await postRequest(saveCandidateUserNameAndPasswordURL, CandidateLoginForm);
-        console.log(response);
+        // console.log(response.status);
 
-        // if (response.status == '1') {
-        //     localStorage.setItem("user_registration_token", response);
-        //     dispatch({ type: 'USER_REGISTRATION', payload: JSON.stringify(response) });
-        // }
+        if (response.status == '1') {
+            localStorage.setItem("user_registration_token", response);
+            dispatch({ type: 'USER_REGISTRATION', payload: JSON.stringify(response) });
+        }
+        else {
+            setFieldError("email_id", "Email Id Already Present.");
+        }
     }
     return (<>
         {CandidateRegistration == true && <Navigate to="/profile/0"></Navigate>}

@@ -20,7 +20,7 @@ import { useState } from "react";
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import { postJobValidationSchema, postPartTimeJobValidationSchema } from "../../Validation/PostJobValidation";
-import { cities, Experience, Role, Skills, JobType, AssociationType, PaymentType } from "../../utils/Data";
+import { cities, Experience, Role, Skills, JobType, AssociationType, PaymentType, WorkingDays } from "../../utils/Data";
 
 import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv, NextButton } from "../../utils/Theme";
 
@@ -58,6 +58,8 @@ const PostJob = () => {
     const [experience, setExperience] = useState(" ");
     const [jobWorkingType, setJobWorkingType] = useState(" ");
     const [paymentType, setPaymentType] = useState(" ");
+
+    const [workingDays, setWorkingDays] = useState(" ");
 
     const [monStartTime, setMonStartTime] = useState("");
     const [monEndTime, setMonEndTime] = useState("");
@@ -572,10 +574,10 @@ const PostJob = () => {
                                                 <SelectField
                                                     labelId="demo-simple-select-label"
                                                     name="association_type"
-                                                    value={associationType}
+                                                    value={workingDays}
                                                     label="role"
                                                     onChange={(event) => {
-                                                        setAssociationType(event.target.value);
+                                                        setWorkingDays(event.target.value);
                                                         setFieldValue("working_days", event.target.value);
                                                     }}
                                                     sx={{
@@ -593,8 +595,8 @@ const PostJob = () => {
                                                     disableUnderline
                                                 >
                                                     <MenuItem value=" ">Select Working Days</MenuItem>
-                                                    {AssociationType.map((item) =>
-                                                        <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                    {WorkingDays.map((item) =>
+                                                        <MenuItem value={item.value} key={item.id}>{item.value}</MenuItem>
                                                     )}
                                                 </SelectField>
 

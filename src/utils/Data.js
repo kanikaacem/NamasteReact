@@ -816,3 +816,34 @@ export const socialLogin = [
         image_url: "../assets/image_12.png"
     }
 ]
+
+export const WorkingDays = [
+    {
+        id: 1,
+        value: 'Sunday'
+    },
+    {
+        id: 2,
+        value: 'Monday'
+    },
+    {
+        id: 3,
+        value: 'Tuesday'
+    },
+    {
+        id: 4,
+        value: 'Wednesday'
+    },
+    {
+        id: 5,
+        value: 'Thursday'
+    },
+    {
+        id: 6,
+        value: 'Friday'
+    },
+    {
+        id: 7,
+        value: 'Saturday'
+    }
+]

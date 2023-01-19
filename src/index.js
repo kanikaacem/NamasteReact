@@ -58,7 +58,10 @@ const reducer = (state, action) =>{
 
     case "USER_REGISTRATION":
       let candidateInfo = action.payload;
-      return {...initialState,candidateInfo:candidateInfo,CandidateRegistration:true}
+      // console.log(candidateInfo);
+      localStorage.setItem('user',candidateInfo._id);
+
+      // return {...initialState,candidateInfo:candidateInfo,CandidateRegistration:true}
 
    
     default:
