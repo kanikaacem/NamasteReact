@@ -1,13 +1,18 @@
 /*-----------------------Employer ----------------------------*/
 /* Api for employer Login */
-// export const EmployerLoginURL = "http://13.126.115.3:3001/api/employer/loginemployer";
-export const EmployerLoginURL = "http://192.168.1.4:3001/api/employer/loginEmployer";
+export const EmployerLoginURL = "http://13.235.183.204:3001/api/employer/loginemployer";
+// export const EmployerLoginURL = "http://192.168.1.4:3001/api/employer/loginEmployer";
 /*Employer Registration */
+/*Checking if the Email Present or not */
+export const CheckEmployerEmailExist = "http://13.235.183.204:3001/api/employer/checkemail"
+
 /*Step 1 - Email and Password saving*/
-export const EmployerSaveEmailAndPassword = "http://192.168.1.62:3001/api/employer/savelogindetail";
+export const EmployerSaveEmailAndPassword = "http://13.235.183.204:3001/api/employer/savelogindetail";
 /*Step 2- Mobile Verification */
 /*Step 3 - Company Information Saving */
-export const EmployerCompanyInformationURL = "http://192.168.1.62:3001/api/employer/postemployer";
+/*Getting all the state and cities */
+export const StatesURL = "http://13.235.183.204:3001/api/map/states";
+export const EmployerCompanyInformationURL = "http://13.235.183.204:3001/api/employer/postemployer";
 export const UplaodImageURL = "http://192.168.1.62:3001/api/employer/updateimage";
 
 /*Getting the Employer Information */
@@ -27,5 +32,7 @@ export const getAllPostedJobs = "http://13.126.115.3:3001/api/job/getpostedjobs"
 /*----------------------Candidate----------------------------------------*/
 /*Candidate Registration*/
 
+/*Candidate Login */
+export const CandidateLoginURL = "http://13.235.183.204:3001/api/users/login";
 /*STEP 1 */
 export const saveCandidateUserNameAndPasswordURL = "http://13.126.115.3:3001/api/users/saveusernameandpassword";

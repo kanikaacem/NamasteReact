@@ -128,7 +128,7 @@ const EmployerDashboard = () => {
                         <Stack direction="row" alignItems="center" justifyContent="space-between">
                             <Box>
                                 <Typography component="span" sx={{ fontSize: "30px" }}>
-                                    {dayMessage}, {user && user.employername}
+                                    {dayMessage}, {user && user.employer_name}
                                 </Typography>
                             </Box>
                             <Box>
@@ -266,7 +266,7 @@ const EmployerDashboard = () => {
 
                     </Stack>
 
-                    <Box sx={{ width: "40%", borderRadius: "10px" }}>
+                    {/* <Box sx={{ width: "40%", borderRadius: "10px" }}>
                         <Typography component="span" sx={{ fontSize: "18px", fontWeight: "600" }}>
                             Explore
                         </Typography>
@@ -336,7 +336,7 @@ const EmployerDashboard = () => {
                             </Box>
                         </Box>
 
-                    </Box>
+                    </Box> */}
 
                 </Stack>
 

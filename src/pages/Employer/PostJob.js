@@ -1073,397 +1073,399 @@ const PostJob = () => {
         </Box>}
 
 
-        {postJobStep == 2 && <Box className="PostJobPage"
-            sx={{
-                height: "100vh",
-                background: "#FFFFFF"
-            }}>
-            <Stack className="PosrJobWrapper"
-                sx=
-                {{
-                    padding: "20px 50px",
-                    gap: "24px"
+        {
+            postJobStep == 2 && <Box className="PostJobPage"
+                sx={{
+                    height: "100vh",
+                    background: "#FFFFFF"
                 }}>
-                <HeaderSec
-                    color="black"
-                    border="2px solid #8E8E8E" />
-                <Stack alignItems="flex-end" sx={{ position: "relative" }}>
-                    <Stack direction="column" sx={{
-                        position: "absolute",
-                        top: "111px",
-                        left: "152px",
-                        width: "573px",
-                        zIndex: "78798",
-                        gap: "50px"
-
+                <Stack className="PosrJobWrapper"
+                    sx=
+                    {{
+                        padding: "20px 50px",
+                        gap: "24px"
                     }}>
-                        <Box>
+                    <HeaderSec
+                        color="black"
+                        border="2px solid #8E8E8E" />
+                    <Stack alignItems="flex-end" sx={{ position: "relative" }}>
+                        <Stack direction="column" sx={{
+                            position: "absolute",
+                            top: "111px",
+                            left: "152px",
+                            width: "573px",
+                            zIndex: "78798",
+                            gap: "50px"
+
+                        }}>
+                            <Box>
+                                <Typography component="box" sx={{
+                                    fontSize: "64px",
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#4E3A67",
+                                    display: "block",
+                                    marginTop: "20px",
+                                    width: "600px"
+                                }}>
+                                    Free job posting facility
+                                </Typography>
+                                <img src={window.location.origin + "/assets/g12.png"} alt="g12" />
+                            </Box>
+
+
+                        </Stack>
+                        <Box sx={{
+                            height: "31px",
+                            width: "352px",
+                            left: "148px",
+                            top: "266px",
+                            borderRadius: "0px",
+                            background: "#FFD5C9",
+                            position: "absolute"
+                        }}></Box>
+                        <Box sx={{
+                            width: "763px",
+                            height: "153px",
+                            background: "#F8F8F8",
+                            border: "1px solid #EAEAEA",
+                            boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
+                            borderRadius: "19px",
+                            padding: "35px 50px"
+                        }}>
                             <Typography component="box" sx={{
-                                fontSize: "64px",
+                                fontSize: "40px",
                                 fontFamily: "Montserrat",
                                 fontWeight: "600",
                                 color: "#4E3A67",
                                 display: "block",
-                                marginTop: "20px",
-                                width: "600px"
+                                marginTop: "20px"
                             }}>
-                                Free job posting facility
+                                Job Details
                             </Typography>
-                            <img src={window.location.origin + "/assets/g12.png"} alt="g12" />
+
+                            <Stack direction="row" gap={2} sx={{ margin: "25px 0px" }}>
+                                <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }} >
+                                    <Box sx={{
+                                        width: "27px",
+                                        height: "27px",
+                                        background: "#FC9A7E",
+                                        borderRadius: "50%",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center"
+                                    }}>1</Box>
+                                    <Typography component="box" sx={{
+                                        fontSize: "19px",
+                                        fontFamily: "Montserrat",
+                                        fontWeight: "600",
+                                        display: "block",
+
+                                    }}>
+                                        Company Information
+                                    </Typography>
+                                    <Box>
+                                        <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
+                                    </Box>
+                                </Stack>
+
+
+                                <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
+                                    <Box sx={{
+                                        width: "27px",
+                                        height: "27px",
+                                        background: "#FC9A7E",
+                                        borderRadius: "50%",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center"
+                                    }}>2</Box>
+                                    <Typography component="box" sx={{
+                                        fontSize: "19px",
+                                        fontFamily: "Montserrat",
+                                        fontWeight: "600",
+                                        color: "#4E3A67",
+                                        display: "block"
+                                    }}>
+                                        Employee Requirements
+                                    </Typography>
+                                    <Box>
+                                        <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
+                                    </Box>
+                                </Stack>
+                            </Stack>
+
+                        </Box>
+                        <Box sx={{
+                            boxSizing: "border-box",
+                            width: "865px",
+                            height: "647",
+                            background: "#FFFFFF",
+                            border: "1px solid #EDEDED",
+                            borderRadius: "19px",
+                            position: "absolute",
+                            top: "197px",
+                            padding: "30px 50px"
+
+                        }}>
+
+                            <Typography component="box" sx={{
+                                fontSize: "32px",
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                                margin: "20px 0px"
+                            }}>
+                                Employee Requirements
+                            </Typography>
+                            <Formik
+
+                                initialValues={defaultValue}
+                                validationSchema={jobType == "regular" ? postJobValidationSchema : postPartTimeJobValidationSchema}
+                                onSubmit={handleSubmit}
+                            >
+                                {({ values, errors, touched, setFieldValue }) => (
+                                    <Form className="PostJobForm1" >
+
+                                        <ThemeFInputDiv >
+
+                                            <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="experienced_required" LableText="Experience Required" />
+                                                <Field
+                                                    error={errors.experienced_required && touched.experienced_required}
+                                                    as={TextField}
+                                                    id="experienced_required"
+                                                    placeholder="Enter Experienced Required" type="text" name="experienced_required" fullWidth />
+                                                {errors.experienced_required && touched.experienced_required && <Error text={errors.experienced_required} />}
+                                            </ThemeFInputDiv>
+
+                                            <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="age" LableText="AGe" />
+                                                <Field
+                                                    error={errors.age && touched.age}
+                                                    as={TextField}
+                                                    id="age"
+                                                    placeholder="Enter Age" type="text" name="age" fullWidth />
+                                                {errors.age && touched.age && <Error text={errors.age} />}
+                                            </ThemeFInputDiv>
+
+                                            <Stack direction="row" gap={5}>
+                                                <ThemeFInputDiv sx={{ width: "30%" }}>
+                                                    <ThemeLabel LableFor="working_days" LableText="Working Days" />
+                                                    <SelectField
+                                                        labelId="demo-simple-select-label"
+                                                        name="association_type"
+                                                        value={associationType}
+                                                        label="role"
+                                                        onChange={(event) => {
+                                                            setAssociationType(event.target.value);
+                                                            setFieldValue("working_days", event.target.value);
+                                                        }}
+                                                        sx={{
+                                                            background: " #FFFFFF",
+                                                            border: "1px solid #EAEAEA",
+                                                            boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                            borderRadius: "7px",
+                                                            width: "101%",
+                                                            fontSize: "16px",
+                                                            fontamily: 'Montserrat',
+                                                            BorderBottom: 'none !important',
+
+                                                            padding: "8px"
+                                                        }}
+                                                        disableUnderline
+                                                    >
+                                                        <MenuItem value=" ">Select Working Days</MenuItem>
+                                                        {AssociationType.map((item) =>
+                                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                        )}
+                                                    </SelectField>
+
+                                                    {errors.association_type && touched.association_type && <Error text={errors.association_type} />}
+                                                </ThemeFInputDiv>
+
+                                                <ThemeFInputDiv sx={{ width: "30%" }}>
+                                                    <ThemeLabel LableFor="work_shift" LableText="Work Shift" />
+                                                    <SelectField
+                                                        labelId="demo-simple-select-label"
+                                                        name="work_shift"
+                                                        value={associationType}
+                                                        label="role"
+                                                        onChange={(event) => {
+                                                            setAssociationType(event.target.value);
+                                                            setFieldValue("work_shift", event.target.value);
+                                                        }}
+                                                        sx={{
+                                                            background: " #FFFFFF",
+                                                            border: "1px solid #EAEAEA",
+                                                            boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                            borderRadius: "7px",
+                                                            width: "101%",
+                                                            fontSize: "16px",
+                                                            fontamily: 'Montserrat',
+                                                            BorderBottom: 'none !important',
+
+                                                            padding: "8px"
+                                                        }}
+                                                        disableUnderline
+                                                    >
+                                                        <MenuItem value=" ">Work Shift</MenuItem>
+                                                        {AssociationType.map((item) =>
+                                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                        )}
+                                                    </SelectField>
+
+                                                    {errors.work_shift && touched.work_shift && <Error text={errors.work_shift} />}
+                                                </ThemeFInputDiv>
+
+                                                <ThemeFInputDiv sx={{ width: "30%" }}>
+                                                    <ThemeLabel LableFor="shift_timing" LableText="Shift Timing" />
+                                                    <SelectField
+                                                        labelId="demo-simple-select-label"
+                                                        name="association_type"
+                                                        value={associationType}
+                                                        label="role"
+                                                        onChange={(event) => {
+                                                            setAssociationType(event.target.value);
+                                                            setFieldValue("shift_timing", event.target.value);
+                                                        }}
+                                                        sx={{
+                                                            background: " #FFFFFF",
+                                                            border: "1px solid #EAEAEA",
+                                                            boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                            borderRadius: "7px",
+                                                            width: "101%",
+                                                            fontSize: "16px",
+                                                            fontamily: 'Montserrat',
+                                                            BorderBottom: 'none !important',
+
+                                                            padding: "8px"
+                                                        }}
+                                                        disableUnderline
+                                                    >
+                                                        <MenuItem value=" ">Shift Timing</MenuItem>
+                                                        {AssociationType.map((item) =>
+                                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                        )}
+                                                    </SelectField>
+
+                                                    {errors.shift_timing && touched.shift_timing && <Error text={errors.shift_timing} />}
+                                                </ThemeFInputDiv>
+
+                                            </Stack>
+
+
+                                            <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="skills_required" LableText="Skill Required" />
+                                                <Field
+                                                    error={errors.skills_required && touched.skills_required}
+                                                    as={TextField}
+                                                    id="skills_required"
+                                                    placeholder="Enter Skill Required" type="text" name="skills_required" fullWidth />
+                                                {errors.skills_required && touched.skills_required && <Error text={errors.skills_required} />}
+                                            </ThemeFInputDiv>
+
+                                            <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="mandatory_local_language" LableText="Mandatory Local Language" />
+                                                <Field
+                                                    error={errors.mandatory_local_language && touched.mandatory_local_language}
+                                                    as={TextField}
+                                                    id="experienced_required"
+                                                    placeholder="Enter Mandatory Local Language" type="text" name="mandatory_local_language" fullWidth />
+                                                {errors.mandatory_local_language && touched.mandatory_local_language && <Error text={errors.mandatory_local_language} />}
+                                            </ThemeFInputDiv>
+
+                                            <Stack direction="row" gap={5}>
+                                                <ThemeFInputDiv sx={{ width: "50%" }}>
+                                                    <ThemeLabel LableFor="working_days" LableText="Working Days" />
+                                                    <SelectField
+                                                        labelId="demo-simple-select-label"
+                                                        name="association_type"
+                                                        value={associationType}
+                                                        label="role"
+                                                        onChange={(event) => {
+                                                            setAssociationType(event.target.value);
+                                                            setFieldValue("working_days", event.target.value);
+                                                        }}
+                                                        sx={{
+                                                            background: " #FFFFFF",
+                                                            border: "1px solid #EAEAEA",
+                                                            boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                            borderRadius: "7px",
+                                                            width: "101%",
+                                                            fontSize: "16px",
+                                                            fontamily: 'Montserrat',
+                                                            BorderBottom: 'none !important',
+
+                                                            padding: "8px"
+                                                        }}
+                                                        disableUnderline
+                                                    >
+                                                        <MenuItem value=" ">Select Working Days</MenuItem>
+                                                        {AssociationType.map((item) =>
+                                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                        )}
+                                                    </SelectField>
+
+                                                    {errors.association_type && touched.association_type && <Error text={errors.association_type} />}
+                                                </ThemeFInputDiv>
+
+                                                <ThemeFInputDiv sx={{ width: "50%" }}>
+                                                    <ThemeLabel LableFor="work_shift" LableText="Work Shift" />
+                                                    <SelectField
+                                                        labelId="demo-simple-select-label"
+                                                        name="work_shift"
+                                                        value={associationType}
+                                                        label="role"
+                                                        onChange={(event) => {
+                                                            setAssociationType(event.target.value);
+                                                            setFieldValue("work_shift", event.target.value);
+                                                        }}
+                                                        sx={{
+                                                            background: " #FFFFFF",
+                                                            border: "1px solid #EAEAEA",
+                                                            boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                            borderRadius: "7px",
+                                                            width: "101%",
+                                                            fontSize: "16px",
+                                                            fontamily: 'Montserrat',
+                                                            BorderBottom: 'none !important',
+
+                                                            padding: "8px"
+                                                        }}
+                                                        disableUnderline
+                                                    >
+                                                        <MenuItem value=" ">Work Shift</MenuItem>
+                                                        {AssociationType.map((item) =>
+                                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                        )}
+                                                    </SelectField>
+
+                                                    {errors.work_shift && touched.work_shift && <Error text={errors.work_shift} />}
+                                                </ThemeFInputDiv>
+
+
+
+                                            </Stack>
+
+                                        </ThemeFInputDiv>
+
+                                        <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                                            <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Save</ThemeButtonType2>
+                                        </Stack>
+
+                                    </Form>
+                                )}
+                            </Formik>
+
+
                         </Box>
 
-
                     </Stack>
-                    <Box sx={{
-                        height: "31px",
-                        width: "352px",
-                        left: "148px",
-                        top: "266px",
-                        borderRadius: "0px",
-                        background: "#FFD5C9",
-                        position: "absolute"
-                    }}></Box>
-                    <Box sx={{
-                        width: "763px",
-                        height: "153px",
-                        background: "#F8F8F8",
-                        border: "1px solid #EAEAEA",
-                        boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
-                        borderRadius: "19px",
-                        padding: "35px 50px"
-                    }}>
-                        <Typography component="box" sx={{
-                            fontSize: "40px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                            marginTop: "20px"
-                        }}>
-                            Job Details
-                        </Typography>
-
-                        <Stack direction="row" gap={2} sx={{ margin: "25px 0px" }}>
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }} >
-                                <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>1</Box>
-                                <Typography component="box" sx={{
-                                    fontSize: "19px",
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    display: "block",
-
-                                }}>
-                                    Company Information
-                                </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                </Box>
-                            </Stack>
-
-
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
-                                <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>2</Box>
-                                <Typography component="box" sx={{
-                                    fontSize: "19px",
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block"
-                                }}>
-                                    Employee Requirements
-                                </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                </Box>
-                            </Stack>
-                        </Stack>
-
-                    </Box>
-                    <Box sx={{
-                        boxSizing: "border-box",
-                        width: "865px",
-                        height: "647",
-                        background: "#FFFFFF",
-                        border: "1px solid #EDEDED",
-                        borderRadius: "19px",
-                        position: "absolute",
-                        top: "197px",
-                        padding: "30px 50px"
-
-                    }}>
-
-                        <Typography component="box" sx={{
-                            fontSize: "32px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                            margin: "20px 0px"
-                        }}>
-                            Employee Requirements
-                        </Typography>
-                        <Formik
-
-                            initialValues={defaultValue}
-                            validationSchema={jobType == "regular" ? postJobValidationSchema : postPartTimeJobValidationSchema}
-                            onSubmit={handleSubmit}
-                        >
-                            {({ values, errors, touched, setFieldValue }) => (
-                                <Form className="PostJobForm1" >
-
-                                    <ThemeFInputDiv >
-
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="experienced_required" LableText="Experience Required" />
-                                            <Field
-                                                error={errors.experienced_required && touched.experienced_required}
-                                                as={TextField}
-                                                id="experienced_required"
-                                                placeholder="Enter Experienced Required" type="text" name="experienced_required" fullWidth />
-                                            {errors.experienced_required && touched.experienced_required && <Error text={errors.experienced_required} />}
-                                        </ThemeFInputDiv>
-
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="age" LableText="AGe" />
-                                            <Field
-                                                error={errors.age && touched.age}
-                                                as={TextField}
-                                                id="age"
-                                                placeholder="Enter Age" type="text" name="age" fullWidth />
-                                            {errors.age && touched.age && <Error text={errors.age} />}
-                                        </ThemeFInputDiv>
-
-                                        <Stack direction="row" gap={5}>
-                                            <ThemeFInputDiv sx={{ width: "30%" }}>
-                                                <ThemeLabel LableFor="working_days" LableText="Working Days" />
-                                                <SelectField
-                                                    labelId="demo-simple-select-label"
-                                                    name="association_type"
-                                                    value={associationType}
-                                                    label="role"
-                                                    onChange={(event) => {
-                                                        setAssociationType(event.target.value);
-                                                        setFieldValue("working_days", event.target.value);
-                                                    }}
-                                                    sx={{
-                                                        background: " #FFFFFF",
-                                                        border: "1px solid #EAEAEA",
-                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                        borderRadius: "7px",
-                                                        width: "101%",
-                                                        fontSize: "16px",
-                                                        fontamily: 'Montserrat',
-                                                        BorderBottom: 'none !important',
-
-                                                        padding: "8px"
-                                                    }}
-                                                    disableUnderline
-                                                >
-                                                    <MenuItem value=" ">Select Working Days</MenuItem>
-                                                    {AssociationType.map((item) =>
-                                                        <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                                    )}
-                                                </SelectField>
-
-                                                {errors.association_type && touched.association_type && <Error text={errors.association_type} />}
-                                            </ThemeFInputDiv>
-
-                                            <ThemeFInputDiv sx={{ width: "30%" }}>
-                                                <ThemeLabel LableFor="work_shift" LableText="Work Shift" />
-                                                <SelectField
-                                                    labelId="demo-simple-select-label"
-                                                    name="work_shift"
-                                                    value={associationType}
-                                                    label="role"
-                                                    onChange={(event) => {
-                                                        setAssociationType(event.target.value);
-                                                        setFieldValue("work_shift", event.target.value);
-                                                    }}
-                                                    sx={{
-                                                        background: " #FFFFFF",
-                                                        border: "1px solid #EAEAEA",
-                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                        borderRadius: "7px",
-                                                        width: "101%",
-                                                        fontSize: "16px",
-                                                        fontamily: 'Montserrat',
-                                                        BorderBottom: 'none !important',
-
-                                                        padding: "8px"
-                                                    }}
-                                                    disableUnderline
-                                                >
-                                                    <MenuItem value=" ">Work Shift</MenuItem>
-                                                    {AssociationType.map((item) =>
-                                                        <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                                    )}
-                                                </SelectField>
-
-                                                {errors.work_shift && touched.work_shift && <Error text={errors.work_shift} />}
-                                            </ThemeFInputDiv>
-
-                                            <ThemeFInputDiv sx={{ width: "30%" }}>
-                                                <ThemeLabel LableFor="shift_timing" LableText="Shift Timing" />
-                                                <SelectField
-                                                    labelId="demo-simple-select-label"
-                                                    name="association_type"
-                                                    value={associationType}
-                                                    label="role"
-                                                    onChange={(event) => {
-                                                        setAssociationType(event.target.value);
-                                                        setFieldValue("shift_timing", event.target.value);
-                                                    }}
-                                                    sx={{
-                                                        background: " #FFFFFF",
-                                                        border: "1px solid #EAEAEA",
-                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                        borderRadius: "7px",
-                                                        width: "101%",
-                                                        fontSize: "16px",
-                                                        fontamily: 'Montserrat',
-                                                        BorderBottom: 'none !important',
-
-                                                        padding: "8px"
-                                                    }}
-                                                    disableUnderline
-                                                >
-                                                    <MenuItem value=" ">Shift Timing</MenuItem>
-                                                    {AssociationType.map((item) =>
-                                                        <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                                    )}
-                                                </SelectField>
-
-                                                {errors.shift_timing && touched.shift_timing && <Error text={errors.shift_timing} />}
-                                            </ThemeFInputDiv>
-
-                                        </Stack>
-
-
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="skills_required" LableText="Skill Required" />
-                                            <Field
-                                                error={errors.skills_required && touched.skills_required}
-                                                as={TextField}
-                                                id="skills_required"
-                                                placeholder="Enter Skill Required" type="text" name="skills_required" fullWidth />
-                                            {errors.skills_required && touched.skills_required && <Error text={errors.skills_required} />}
-                                        </ThemeFInputDiv>
-
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="mandatory_local_language" LableText="Mandatory Local Language" />
-                                            <Field
-                                                error={errors.mandatory_local_language && touched.mandatory_local_language}
-                                                as={TextField}
-                                                id="experienced_required"
-                                                placeholder="Enter Mandatory Local Language" type="text" name="mandatory_local_language" fullWidth />
-                                            {errors.mandatory_local_language && touched.mandatory_local_language && <Error text={errors.mandatory_local_language} />}
-                                        </ThemeFInputDiv>
-
-                                        <Stack direction="row" gap={5}>
-                                            <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                <ThemeLabel LableFor="working_days" LableText="Working Days" />
-                                                <SelectField
-                                                    labelId="demo-simple-select-label"
-                                                    name="association_type"
-                                                    value={associationType}
-                                                    label="role"
-                                                    onChange={(event) => {
-                                                        setAssociationType(event.target.value);
-                                                        setFieldValue("working_days", event.target.value);
-                                                    }}
-                                                    sx={{
-                                                        background: " #FFFFFF",
-                                                        border: "1px solid #EAEAEA",
-                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                        borderRadius: "7px",
-                                                        width: "101%",
-                                                        fontSize: "16px",
-                                                        fontamily: 'Montserrat',
-                                                        BorderBottom: 'none !important',
-
-                                                        padding: "8px"
-                                                    }}
-                                                    disableUnderline
-                                                >
-                                                    <MenuItem value=" ">Select Working Days</MenuItem>
-                                                    {AssociationType.map((item) =>
-                                                        <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                                    )}
-                                                </SelectField>
-
-                                                {errors.association_type && touched.association_type && <Error text={errors.association_type} />}
-                                            </ThemeFInputDiv>
-
-                                            <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                <ThemeLabel LableFor="work_shift" LableText="Work Shift" />
-                                                <SelectField
-                                                    labelId="demo-simple-select-label"
-                                                    name="work_shift"
-                                                    value={associationType}
-                                                    label="role"
-                                                    onChange={(event) => {
-                                                        setAssociationType(event.target.value);
-                                                        setFieldValue("work_shift", event.target.value);
-                                                    }}
-                                                    sx={{
-                                                        background: " #FFFFFF",
-                                                        border: "1px solid #EAEAEA",
-                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                        borderRadius: "7px",
-                                                        width: "101%",
-                                                        fontSize: "16px",
-                                                        fontamily: 'Montserrat',
-                                                        BorderBottom: 'none !important',
-
-                                                        padding: "8px"
-                                                    }}
-                                                    disableUnderline
-                                                >
-                                                    <MenuItem value=" ">Work Shift</MenuItem>
-                                                    {AssociationType.map((item) =>
-                                                        <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                                    )}
-                                                </SelectField>
-
-                                                {errors.work_shift && touched.work_shift && <Error text={errors.work_shift} />}
-                                            </ThemeFInputDiv>
-
-
-
-                                        </Stack>
-
-                                    </ThemeFInputDiv>
-
-                                    <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Save</ThemeButtonType2>
-                                    </Stack>
-
-                                </Form>
-                            )}
-                        </Formik>
-
-
-                    </Box>
-
                 </Stack>
-            </Stack>
-        </Box>}
+            </Box>
+        }
         {/* <Box sx={{ paddingBottom: "30px" }}>
             <Box sx={{
                 borderRadius: "20px",

@@ -38,10 +38,10 @@ const EmployerLogin = () => {
         }
         let response = await postRequest(EmployerLoginURL, EmployerLoginForm);
         if (response.status == '1') {
-            dispatch({ type: 'LOGIN', payload: response });
+            dispatch({ type: 'LOGIN', payload: response.data });
         }
         if (response.status == '0')
-            setFieldError("password", "Invalid Credentials")
+            setFieldError("password", "Invalid Credentials");
 
     }
 

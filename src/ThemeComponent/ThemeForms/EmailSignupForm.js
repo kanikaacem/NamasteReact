@@ -1,3 +1,6 @@
+import { postRequest } from "../../utils/ApiRequests";
+import { CheckEmployerEmailExist } from "../../utils/ApiUrls";
+
 import { Box, Typography, TextField, Stack } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
@@ -24,33 +27,24 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
     }
 
     const CheckEmail = async (email) => {
-        let response = await fetch(api_url + "/api/employer/checkemail", {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify({
-                email: email
-            }),
-        })
+        let formData = new FormData();
+        formData = {
+            email: email
+        }
+        let response = await postRequest(CheckEmployerEmailExist, formData);
 
         return response;
 
     }
     const handleSubmit = async (values, { setFieldError }) => {
         let response = await CheckEmail(values.email_address);
-        if (response.ok) {
-            response = await response.json();
-            let status = response.status;
-            if (status == 1) {
-                setFieldError("email_address", "Email Address is already present.");
-            }
-            else {
-                setEmail(values.email_address);
-                setEmailSignupForm(false);
-                setPasswordGenForm(true);
-            }
+        let status = response.status;
+        if (status == 1) {
+            setFieldError("email_address", "Email Address is already present.");
+        } else {
+            setEmail(values.email_address);
+            setEmailSignupForm(false);
+            setPasswordGenForm(true);
         }
     }
 
@@ -112,18 +106,6 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                                 </SocialBox>
 
                             </Stack>
-
-                            {/* <Stack direction="row" gap={1} justifyContent="center">
-                                {
-                                    socialLogin.map((item) => {
-                                        return (<>
-                                            <SocialBox key={item.id}>
-                                                <img src={item.image_url} alt={item.value} />
-                                            </SocialBox>
-                                        </>)
-                                    })
-                                }
-                            </Stack> */}
 
                         </ThemeFInputDiv>
                     </Form>

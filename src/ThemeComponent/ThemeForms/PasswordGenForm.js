@@ -33,19 +33,13 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
         if (response.status == 1) {
             console.log(response);
             localStorage.setItem("auth_token", response.data);
+            localStorage.setItem("userid", response._id);
             setPasswordGenForm(false);
             setVerifyMobileForm(true);
         }
-        // console.log(response);
-        //    if(response.)
-        //     console.log(response.data);
-        //     localStorage.setItem("auth_token", response.data);
-        //     // setUserId(response.data);
-        //     // localStorage.setItem("auth_token", response.data);
-        //     
-        // }
     }
     return (<>
+        {console.log(email)}
         <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
             Create Password
         </Typography>
@@ -122,9 +116,7 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
                         <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Next</ThemeButtonType2>
                     </Stack>
 
-                    {/* <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                        <ThemeButtontype1 variant="contained" type="submit">Next</ThemeButtontype1>
-                    </Box> */}
+
                 </Form>
             )}
         </Formik>

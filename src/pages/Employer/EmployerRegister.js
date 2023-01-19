@@ -69,7 +69,7 @@ const EmployerRegister = () => {
 
     return (<>
 
-        {isLoggedIn == 'true' && <Navigate to="/"></Navigate>}
+        {isLoggedIn == 'true' && <Navigate to="/employer-dashboard"></Navigate>}
 
         {!companyInfoForm ?
             <Box className="EmployerRegisterPage"

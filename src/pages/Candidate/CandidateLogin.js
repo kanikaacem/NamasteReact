@@ -1,3 +1,6 @@
+import { postRequest } from "../../utils/ApiRequests";
+import { CandidateLoginURL } from "../../utils/ApiUrls";
+
 import { Box, TextField, Typography, Container, Stack, Button } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
@@ -32,27 +35,13 @@ const CandidateLogin = () => {
             email: values.email_address,
             password: values.password
         }
-        let response = await fetch(api_url + "/api/users/login", {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify(CandidateLoginForm)
-        })
-
-        if (response.ok) {
-            console.log("getting the data");
-            response = await response.json();
-            // console.log(response);
-            if (response.status == '1') {
-                dispatch({ type: 'LOGIN', payload: JSON.stringify(response.data) });
-            }
-            if (response.status == '0') {
-                setFieldError("password", "Invalid Credentials")
-            }
-
+        let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
+        console.log(response)
+        if (response.status == '1') {
+            dispatch({ type: 'LOGIN', payload: response });
         }
+        if (response.status == '0')
+            setFieldError("password", "Invalid Credentials");
     }
 
     return (<>

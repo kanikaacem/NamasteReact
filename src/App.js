@@ -56,12 +56,13 @@ function App() {
           <Route path="/candidate-login" element={<CandidateLogin></CandidateLogin>}></Route>
           <Route path="/candidate-register" element={<CandidateRegistration />} />
           <Route path="/profile/:step" element={<CandidateProfile></CandidateProfile>} />
-          <Route path="/post-a-job" element={<PostJob></PostJob>} />
+          {/* <Route path="/post-a-job" element={<PostJob></PostJob>} /> */}
           <Route path="/job" element={<JobSearch></JobSearch>} />
 
+          <Route path="/employer-dashboard/post-a-job" element={<PostJob></PostJob>} />
           <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
-            <Route path="post-a-job" element={<PostJob></PostJob>} />
+            {/* <Route path="post-a-job" element={<PostJob></PostJob>} /> */}
             <Route path="posted-jobs" element={<PostedJobs></PostedJobs>} />
             <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
             <Route path="job/:id/recommedations" element={<CandidateRecommendation></CandidateRecommendation>} />

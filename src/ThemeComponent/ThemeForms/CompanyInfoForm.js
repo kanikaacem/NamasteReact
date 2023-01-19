@@ -1,5 +1,5 @@
-import { EmployerCompanyInformationURL, UplaodImageURL } from "../../utils/ApiUrls";
-import { postRequest, PostImageRequest } from "../../utils/ApiRequests";
+import { StatesURL, EmployerCompanyInformationURL, UplaodImageURL } from "../../utils/ApiUrls";
+import { postRequest, PostImageRequest, getRequest } from "../../utils/ApiRequests";
 
 import { Box, Stack, TextField, Typography, MenuItem, Select } from "@mui/material";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -14,14 +14,13 @@ import ButtonType3 from "../Common/ButtonType3";
 
 import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv, NextButton } from "../../utils/Theme";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { set } from "react-hook-form";
-import { BorderBottom } from "@mui/icons-material";
-import { gridColumnPositionsSelector } from "@mui/x-data-grid";
 
 const CompanyInfoForm = ({ email, userId, mobile_number }) => {
+
+
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const api_url = useSelector(state => state.api_url);
     const dispatch = useDispatch();
@@ -38,6 +37,8 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
     const [city, setCity] = useState(" ");
     const [state, setState] = useState(" ");
+    const [CountryState, setCountryState] = useState([]);
+    const [District, setDistrict] = useState([]);
     const [profileType, setProfileType] = useState(" ");
     const [companyType, setCompanyType] = useState(" ");
 
@@ -120,7 +121,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         setHRName(values.hr_name);
         setCompanyName(values.company_name);
 
-        /* Form State*/
 
         console.log(values);
         console.log(hrName, companyName, companyType);
@@ -134,49 +134,83 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
         setCompanyEmail(company_email);
         setCompanyWebsite(company_website);
-        setCompanyLanNumber(company_website);
+        setCompanyLanNumber(company_lan_number);
         setCompanyInfoForm(3);
 
 
     }
 
     const handleSubmit2 = async (values) => {
-        // values.area
-        // values.city
+        let area = values.area;
+        let company_address = values.company_address;
+        let company_gst_number = values.company_gst_number;
+        let company_pan_number = values.company_pan_number;
+        let company_pincode = values.company_pincode;
+        let state = values.state;
+        let city = values.city;
+        let userid = "";
+        if (localStorage["userid"]) {
+            userid = localStorage.getItem("userid");
+        }
+        // console.log(hrName, companyName, companyType);
+        // console.log(companyEmail, companyWebsite, companyLanNumber);
+        // // values.area
+        // // values.city
 
-        // values.company_address
-        // values.company_gst_number
+        // // values.company_address
+        // // values.company_gst_number
 
-        // values.company_pan_number
-        // values.company_pincode
-        // values.state
-        // let data = new FormData();
-        // data = {
-        //     employername: hrName,
-        //     companynumber: companyLanNumber,
-        //     companytype: companyType,
-        //     companyname: companyName,
-        //     companyemail: companyEmail,
-        //     companywebsite: companyWebsite,
-        //     companyaddress: values.company_address,
-        //     companycity: values.company_city,
-        //     companypincode: values.company_pincode,
-        //     companypancard: values.company_pan_number,
-        //     companygstnumber: values.company_gst_number,
-        //     companylan: values.company_lan_number
+        // // values.company_pan_number
+        // // values.company_pincode
+        // // values.state
+        let data = new FormData();
+        data = {
+            _id: userid,
+            employername: hrName,
+            companyname: companyName,
+            companytype: companyType,
+            company_email: companyEmail,
+            companywebsite: companyWebsite,
+            companylannumber: companyLanNumber,
+            companynumber: companyLanNumber,
+            company_state: state,
+            companycity: city,
+            companyaddres: company_address,
+            companypincode: company_pincode,
+            companypancard: company_pan_number,
+            companygstnumber: company_gst_number,
+            company_gstnumber: company_gst_number,
+        }
 
-        // }
+        let response = await postRequest(EmployerCompanyInformationURL, data);
+        console.log(response);
+        if (response.status == 1) {
+            console.log(response.data);
+            dispatch({ type: 'LOGIN', payload: response.data });
+        }
+        // http://13.235.183.204:3001/
 
-        // let response = await postRequest(EmployerCompanyInformationURL, data);
-        // if (response.status == 1) {
-        //     dispatch({ type: 'LOGIN', payload: JSON.stringify(response.data) });
-        // }
+    }
 
+    useEffect(() => {
+        const getState = async () => {
+            let response = await getRequest(StatesURL);
+            setCountryState(response.data);
 
+        }
+        getState();
+    }, [])
+
+    const getDistrictByState = async (statefilter) => {
+        // console.log(statefilter);
+        let response = await getRequest("http://13.235.183.204:3001/api/map/districts?states=" + statefilter);
+        // console.log(response.data[0].districts);
+        setDistrict(response.data[0].districts);
+        // console.log(response);
     }
     return (<>
         {isLoggedIn == 'true' && <Navigate to="/employer-dashboard"></Navigate>}
-
+        {console.log(District)}
         {companyInfoForm == 1 && <>
             <Box className="EmployerRegisterPage"
                 sx={{
@@ -1016,8 +1050,11 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                             value={state}
                                                             label="Age"
                                                             onChange={(event) => {
-                                                                setState(event.target.value);
+                                                                let stateValue = event.target.value;
+                                                                // console.log(event.target.value);
+                                                                setState(stateValue);
                                                                 setFieldValue("state", event.target.value);
+                                                                getDistrictByState(event.target.value);
                                                             }}
                                                             sx={{
                                                                 background: " #FFFFFF",
@@ -1031,8 +1068,8 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                             disableUnderline
                                                         >
                                                             <MenuItem value=" ">Select State</MenuItem>
-                                                            {cities.map((item) =>
-                                                                <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
+                                                            {CountryState && CountryState.map((item) =>
+                                                                <MenuItem value={item} key={item}>{item}</MenuItem>
                                                             )}
                                                         </Select>
                                                         {errors.state && touched.state && <Error text={errors.state} />}
@@ -1050,6 +1087,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                             onChange={(event) => {
                                                                 setCity(event.target.value);
                                                                 setFieldValue("city", event.target.value);
+                                                                setFieldValue("area", event.target.value);
                                                             }}
                                                             sx={{
                                                                 background: " #FFFFFF",
@@ -1063,8 +1101,8 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                             disableUnderline
                                                         >
                                                             <MenuItem value=" ">Select City</MenuItem>
-                                                            {cities.map((item) =>
-                                                                <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
+                                                            {District && District.map((item) =>
+                                                                <MenuItem value={item.name} key={item._id}>{item.name}</MenuItem>
                                                             )}
                                                         </Select>
 
@@ -1076,7 +1114,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                     <ThemeLabel LableFor="area" LableText="Company Area *" />
                                                     <Box sx={{ width: "100%", margin: "10px 0px" }}>
                                                         <Field
-                                                            error={errors.company_address && touched.company_address}
+                                                            error={errors.area && touched.area}
                                                             id="area"
                                                             as={TextField}
                                                             placeholder="Area" type="text" name="area" fullWidth />

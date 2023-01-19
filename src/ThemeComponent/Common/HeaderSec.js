@@ -1,29 +1,12 @@
-import { Box, Typography, Stack, Button } from "@mui/material";
-import { NavButton2 } from "../../utils/Theme";
+import { Stack, Button } from "@mui/material";
+import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
+
 const HeaderSec = ({ color, background, border, buttonText }) => {
     return (<>
+
         <Stack direction="row" justifyContent="space-between">
-            <Box>
-                <Typography component="span"
-                    sx={{
-                        fontSize: "24px",
-                        fontWeight: "600",
-                        color: "#ffffff",
-                        fontFamily: "Work Sans, sans-serif"
-                    }}>
-                    Job
-                </Typography>
-                <Typography component="span"
-                    sx={{
-                        fontSize: "24px",
-                        color: "#ffffff",
-                        fontFamily: "Work Sans, sans-serif"
-                    }}>
-                    Yahan
-                </Typography>
+            <CompanyLogo color={color} />
 
-
-            </Box>
             <Stack direction="row" gap={2}>
                 <Button type="button" variant="outlined"
                     sx={{
@@ -47,6 +30,12 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                     Contact us
                 </Button>
                 <Button type="button" variant="filled"
+                    onClick={
+                        () => {
+                            if (buttonText === 'Sign Up')
+                                window.location.href = window.location.origin + "/employer-register"
+                        }
+                    }
                     sx={{
                         background: "#FC9A7E",
                         border: "none",

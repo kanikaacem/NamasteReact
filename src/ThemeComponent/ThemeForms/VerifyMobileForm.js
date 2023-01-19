@@ -111,13 +111,6 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
                         {errors.mobile_number && touched.mobile_number && <Error text={errors.mobile_number} />}
 
                     </ThemeFInputDiv>
-
-                    {/* <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Next</ThemeButtonType2>
-                    </Stack> */}
-                    {/* <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                        <ThemeButtontype1 variant="contained" type="submit">Send OTP</ThemeButtontype1>
-                    </Box> */}
                 </Form>
             )}
         </Formik>
@@ -144,10 +137,6 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
                         <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Verify</ThemeButtonType2>
                     </Stack>
-
-                    {/* <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                        <ThemeButtontype1 variant="contained" type="submit">Verify OTP</ThemeButtontype1>
-                    </Box> */}
                 </Form>
             )}
         </Formik>
