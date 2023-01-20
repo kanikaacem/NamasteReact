@@ -847,3 +847,14 @@ export const WorkingDays = [
         value: 'Saturday'
     }
 ]
+
+export const WorkingShift = [
+    {
+        id: 1,
+        value: "12a.m to 1a.m"
+    },
+    {
+        id: 2,
+        value: "1a.m to 2a.m"
+    }
+]
