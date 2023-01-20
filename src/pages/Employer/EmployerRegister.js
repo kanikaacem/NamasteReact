@@ -152,6 +152,7 @@ const EmployerRegister = () => {
                                 setVerifyMobileForm={setVerifyMobileForm} />}
 
                             {verifyMobileForm && <VerifyMobileForm
+                                email={email}
                                 setMobileNumber={setMobileNumber}
                                 setVerifyMobileForm={setVerifyMobileForm}
                                 setCompanyInfoForm={setCompanyInfoForm} />}

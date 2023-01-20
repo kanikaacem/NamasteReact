@@ -17,6 +17,7 @@ import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeF
 import { useState, useRef, useEffect } from "react";
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { set } from "date-fns";
 
 const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
@@ -51,6 +52,10 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const [companyLanNumber, setCompanyLanNumber] = useState("");
 
     const [companyInfoForm, setCompanyInfoForm] = useState(1);
+
+    const [companyAddress, setCompanyAddress] = useState("");
+    const [autoData, setAutoData] = useState([]);
+    const [menubar, setMenuBar] = useState(false);
 
     const defaultValue = {
         hr_name: hrName,
@@ -152,20 +157,10 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         if (localStorage["userid"]) {
             userid = localStorage.getItem("userid");
         }
-        // console.log(hrName, companyName, companyType);
-        // console.log(companyEmail, companyWebsite, companyLanNumber);
-        // // values.area
-        // // values.city
 
-        // // values.company_address
-        // // values.company_gst_number
-
-        // // values.company_pan_number
-        // // values.company_pincode
-        // // values.state
         let data = new FormData();
         data = {
-            _id: userid,
+            // _id: userid,
             employername: hrName,
             companyname: companyName,
             companytype: companyType,
@@ -185,10 +180,8 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         let response = await postRequest(EmployerCompanyInformationURL, data);
         console.log(response);
         if (response.status == 1) {
-            console.log(response.data);
             dispatch({ type: 'LOGIN', payload: response.data });
         }
-        // http://13.235.183.204:3001/
 
     }
 
@@ -196,7 +189,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         const getState = async () => {
             let response = await getRequest(StatesURL);
             setCountryState(response.data);
-
         }
         getState();
     }, [])
@@ -208,9 +200,14 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         setDistrict(response.data[0].districts);
         // console.log(response);
     }
+
+    const getAddress = async (value) => {
+        let response = await getRequest("http://13.235.183.204:3001/api/map/autocompleteplaces?input=" + value);
+        setAutoData(response.data);
+        // console.log(response.data);
+    }
     return (<>
         {isLoggedIn == 'true' && <Navigate to="/employer-dashboard"></Navigate>}
-        {console.log(District)}
         {companyInfoForm == 1 && <>
             <Box className="EmployerRegisterPage"
                 sx={{
@@ -910,6 +907,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 }}>
                                     Get candidates for local-level jobs
                                 </Typography>
+                                <img src={window.location.origin + "/assets/g52.png"} alt="g52" />
                             </Box>
                             <Box sx={{
                                 position: "absolute",
@@ -1125,17 +1123,64 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                                 </ThemeFInputDiv>
 
-                                                <ThemeFInputDiv>
+                                                <ThemeFInputDiv sx={{ position: "relative" }}>
                                                     <ThemeLabel LableFor="company_address" LableText="Company Address *" />
                                                     <Box sx={{ width: "100%", margin: "10px 0px" }}>
-                                                        <Field
+                                                        {/* <Field
                                                             error={errors.company_address && touched.company_address}
                                                             id="company_address"
                                                             as={TextField}
-                                                            placeholder="Company Address" type="text" name="company_address" fullWidth />
+                                                            placeholder="Company Address" type="text" name="company_address" fullWidth /> */}
+                                                        {/* <TextField
+                                                            id="company_address"
+                                                            variant="contained"
+
+                                                            value={companyAddress}
+                                                            onChange={(event) => {
+                                                                setCompanyAddress(event.target.value)
+                                                            }}
+                                                            fullWidth /> */}
+                                                        <TextField id="outlined-basic"
+                                                            placeholder="Enter Company Address (eg.Haridwar, Uttarakhand, India)"
+                                                            value={companyAddress}
+                                                            onChange={(event) => {
+                                                                setCompanyAddress(event.target.value);
+                                                                setFieldValue("company_address", event.target.value);
+                                                                getAddress(event.target.value);
+                                                                setMenuBar(true)
+                                                            }}
+                                                            variant="outlined" fullWidth />
+
 
                                                     </Box>
 
+                                                    {menubar && autoData && autoData.length > 0 && <>
+                                                        <Box
+                                                            sx={{
+                                                                position: "absolute",
+                                                                top: "110px",
+                                                                background: "#FFFFFF",
+                                                                width: "94%",
+                                                                padding: "20px",
+                                                                height: "fit-content",
+                                                                zIndex: "34",
+                                                                boxShadow: "0px 47px 52px #f4ecff",
+                                                                border: "3px solid #E1D4F2",
+                                                                borderRadius: "11px"
+                                                            }}>
+                                                            {autoData && autoData.map((item) => {
+                                                                return (<>
+                                                                    <Box sx={{
+                                                                        padding: "20px",
+                                                                        borderBottom: "1px solid #E1D4F2",
+                                                                        cursor: "pointer"
+                                                                    }}
+                                                                        onClick={(event) => {
+                                                                            setCompanyAddress(item.description);
+                                                                            setFieldValue("company_address", item.description)
+                                                                            setMenuBar(false)
+                                                                        }}> {item.description}</Box></>)
+                                                            })}</Box></>}
                                                     {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
 
                                                 </ThemeFInputDiv>

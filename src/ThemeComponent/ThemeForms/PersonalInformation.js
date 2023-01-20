@@ -5,6 +5,8 @@ import { Formik, Field, Form } from "formik";
 
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import Moment from 'react-moment';
+
 // import DatePicker from "react-datepicker";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -69,7 +71,6 @@ const PersonalInformation = ({ setActiveStep }) => {
         let formData = new FormData();
         formData = {
             current_location: values.current_location,
-            current_salary: values.current_salary,
             current_salary: values.current_salary,
             current_title: values.current_title,
             date_of_birth: values.date_of_birth,
@@ -369,7 +370,7 @@ const PersonalInformation = ({ setActiveStep }) => {
                         <Formik
 
                             initialValues={defaultValue}
-                            // validationSchema={PersonalRegistrationSchema}
+                            validationSchema={PersonalRegistrationSchema}
                             onSubmit={handleSubmit}
                         >
                             {({ errors, touched, values, setFieldValue }) => (
@@ -381,7 +382,7 @@ const PersonalInformation = ({ setActiveStep }) => {
                                                 error={errors.current_title && touched.current_title}
                                                 as={TextField}
                                                 id="current_title"
-                                                placeholder="Enter Company Title" type="text" name="current_industry" fullWidth />
+                                                placeholder="Enter Company Title" type="text" name="current_title" fullWidth />
                                             {errors.current_title && touched.current_title && <Error text={errors.current_title} />}
 
                                         </ThemeFInputDiv>
@@ -449,7 +450,7 @@ const PersonalInformation = ({ setActiveStep }) => {
                                             </ThemeFInputDiv>
 
                                             <ThemeFInputDiv sx={{ width: "370px" }}>
-                                                <ThemeLabel LableFor="perferred_location" LableText="Excepted Salary" />
+                                                <ThemeLabel LableFor="perferred_location" LableText="Perferred Location" />
                                                 <Field
                                                     error={errors.excepted_salary && touched.excepted_salary}
                                                     as={TextField}
@@ -548,7 +549,7 @@ const PersonalInformation = ({ setActiveStep }) => {
                                                     value={date}
                                                     onChange={(newValue) => {
                                                         setDate(newValue);
-                                                        setFieldValue("date_of_birth", newValue)
+                                                        setFieldValue("date_of_birth", new Date(newValue))
                                                     }}
                                                     renderInput={(params) => <TextField
 

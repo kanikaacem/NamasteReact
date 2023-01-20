@@ -13,7 +13,7 @@ export const EmployerSaveEmailAndPassword = "http://13.235.183.204:3001/api/empl
 /*Getting all the state and cities */
 export const StatesURL = "http://13.235.183.204:3001/api/map/states";
 export const EmployerCompanyInformationURL = "http://13.235.183.204:3001/api/employer/postemployer";
-export const UplaodImageURL = "http://192.168.1.62:3001/api/employer/updateimage";
+export const UplaodImageURL = "http://13.235.183.204:3001/api/employer/updateimage";
 
 /*Getting the Employer Information */
 export const UserInformationURL = "http://192.168.1.4:3001/api/employer/getemployerbyid";

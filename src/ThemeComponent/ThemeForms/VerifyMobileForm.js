@@ -9,13 +9,17 @@ import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
 import { useState } from "react";
 
-const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNumber }) => {
+const VerifyMobileForm = ({ email, setVerifyMobileForm, setCompanyInfoForm, setMobileNumber }) => {
     const [sendOtp, setSendOtp] = useState(false);
+    const [verifyEmail, setVerifyEmail] = useState(true);
 
     const handleClose = (event) => {
         setSendOtp(false);
     };
 
+    const handleClose2 = (event) => {
+        setVerifyEmail(false)
+    }
     const action = (
         <>
             <IconButton
@@ -28,6 +32,16 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
             </IconButton>
         </>
     );
+
+    const action2 = (
+        <> OK
+            {/* <a
+                style={{
+                    color: "#FFFFFF"
+                }} href={window.location.origin + "/verification/kanika.np@acem.edu.in"} target="_blank" > OK </a> */}
+
+        </>
+    )
     const defaultValue1 = {
         mobile_number: ""
     }
@@ -50,6 +64,16 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
 
     }
     return (<>
+        <Snackbar
+            open={verifyEmail}
+            autoHideDuration={6000}
+            onClose={handleClose2}
+            message="Please verify the Email address"
+            action={action2}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        />
+
+
         <Snackbar
             open={sendOtp}
             autoHideDuration={6000}

@@ -27,7 +27,7 @@ export const CandidateRegistrationSchema = yup.object().shape({
 })
 
 //Candidate Registration Step 2 ->Step 1
-export const PersonalRegistrationSchema1 = yup.object().shape({
+export const PersonalRegistrationSchema = yup.object().shape({
     current_title: yup.string().required("Current Title is required"),
     current_salary: yup.number("Current Salary should be a number")
         .positive("Current Salary should be positive").required("Current Salary is required"),
@@ -38,10 +38,6 @@ export const PersonalRegistrationSchema1 = yup.object().shape({
     perferred_location: yup.string().required("Perferred Location is required"),
     total_work_experience: yup.number("Total Work Experience should be a number")
         .positive("Total Work Experience should be positive").required("Total Work Experience is required"),
-})
-
-//Candidate Registration Step 2 ->step 2
-export const PersonalRegistrationSchema = yup.object().shape({
     full_name: yup.string().required("FullName is required"),
     date_of_birth: yup.string().required("Date of Birth is required"),
     permanant_address: yup.string().required("Permanant address is required"),
@@ -50,6 +46,17 @@ export const PersonalRegistrationSchema = yup.object().shape({
     marital_status: yup.string().required("Martial Status is required"),
     gender: yup.string().required("Gender is required")
 })
+
+//Candidate Registration Step 2 ->step 2
+// export const PersonalRegistrationSchema = yup.object().shape({
+//     full_name: yup.string().required("FullName is required"),
+//     date_of_birth: yup.string().required("Date of Birth is required"),
+//     permanant_address: yup.string().required("Permanant address is required"),
+//     current_location: yup.string().required("Current Location is required"),
+//     phone_number: yup.number().min(10).required("Phone Number is required"),
+//     marital_status: yup.string().required("Martial Status is required"),
+//     gender: yup.string().required("Gender is required")
+// })
 
 //Candidate Registration Step 3
 export const ProfessionalDetailSchema = yup.object().shape({
