@@ -162,11 +162,11 @@ const CandidateRegistration = () => {
         }
 
         let response = await postRequest(saveCandidateUserNameAndPasswordURL, CandidateLoginForm);
-        // console.log(response.status);
+        console.log(response);
 
         if (response.status == '1') {
-            localStorage.setItem("user_registration_token", response);
-            dispatch({ type: 'USER_REGISTRATION', payload: JSON.stringify(response) });
+            // localStorage.setItem("user_registration_token", response);
+            dispatch({ type: 'USER_REGISTRATION', payload: response });
         }
         else {
             setFieldError("email_id", "Email Id Already Present.");

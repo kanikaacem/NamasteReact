@@ -5,6 +5,7 @@ import App from './App';
 //redux 
 import {createStore} from "redux";
 import {Provider} from "react-redux";
+import { json } from 'react-router-dom';
 const initialState = {
   isLoggedIn : localStorage.getItem("isLoggedIn") == null ? false : localStorage.getItem("isLoggedIn"),
   categoryActive : {
@@ -58,10 +59,11 @@ const reducer = (state, action) =>{
 
     case "USER_REGISTRATION":
       let candidateInfo = action.payload;
-      // console.log(candidateInfo);
-      localStorage.setItem('user',candidateInfo._id);
+      console.log(candidateInfo.data);
+      localStorage.setItem('auth_token',candidateInfo.token);
+      localStorage.setItem('user',JSON.stringify(candidateInfo.data));
 
-      // return {...initialState,candidateInfo:candidateInfo,CandidateRegistration:true}
+      return {...initialState,candidateInfo:candidateInfo,CandidateRegistration:true}
 
    
     default:

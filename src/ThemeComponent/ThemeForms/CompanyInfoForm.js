@@ -1,6 +1,7 @@
 import { StatesURL, EmployerCompanyInformationURL, UplaodImageURL } from "../../utils/ApiUrls";
 import { postRequest, PostImageRequest, getRequest } from "../../utils/ApiRequests";
 
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { Box, Stack, TextField, Typography, MenuItem, Select } from "@mui/material";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { companyInfoValidationSchema, companyInfoValidationSchema1, companyInfoValidationSchema2 } from "../../Validation/EmployerValidation";
@@ -1154,33 +1155,41 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                                     </Box>
 
-                                                    {menubar && autoData && autoData.length > 0 && <>
-                                                        <Box
-                                                            sx={{
-                                                                position: "absolute",
-                                                                top: "110px",
-                                                                background: "#FFFFFF",
-                                                                width: "94%",
-                                                                padding: "20px",
-                                                                height: "fit-content",
-                                                                zIndex: "34",
-                                                                boxShadow: "0px 47px 52px #f4ecff",
-                                                                border: "3px solid #E1D4F2",
-                                                                borderRadius: "11px"
-                                                            }}>
-                                                            {autoData && autoData.map((item) => {
-                                                                return (<>
-                                                                    <Box sx={{
-                                                                        padding: "20px",
-                                                                        borderBottom: "1px solid #E1D4F2",
-                                                                        cursor: "pointer"
-                                                                    }}
-                                                                        onClick={(event) => {
-                                                                            setCompanyAddress(item.description);
-                                                                            setFieldValue("company_address", item.description)
-                                                                            setMenuBar(false)
-                                                                        }}> {item.description}</Box></>)
-                                                            })}</Box></>}
+                                                    {menubar && autoData && autoData != "no record please enter some word" && <>
+                                                        <ClickAwayListener onClickAway={() => setAutoData(false)}>
+
+                                                            <Box
+                                                                sx={{
+                                                                    position: "absolute",
+                                                                    top: "110px",
+                                                                    background: "#FFFFFF",
+                                                                    width: "94%",
+                                                                    padding: "20px",
+                                                                    height: "fit-content",
+                                                                    zIndex: "34",
+                                                                    boxShadow: "0px 47px 52px #f4ecff",
+                                                                    border: "3px solid #E1D4F2",
+                                                                    borderRadius: "11px"
+                                                                }}>
+                                                                {autoData && autoData != "no record please enter some word" && autoData.map((item) => {
+                                                                    return (<>
+                                                                        <Box sx={{
+                                                                            padding: "20px",
+                                                                            borderBottom: "1px solid #E1D4F2",
+                                                                            cursor: "pointer"
+                                                                        }}
+                                                                            onClick={(event) => {
+                                                                                setCompanyAddress(item.description);
+                                                                                setFieldValue("company_address", item.description)
+                                                                                setMenuBar(false)
+                                                                            }}> {item.description}</Box></>)
+                                                                })}
+
+                                                            </Box>
+                                                        </ClickAwayListener>
+                                                    </>
+
+                                                    }
                                                     {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
 
                                                 </ThemeFInputDiv>

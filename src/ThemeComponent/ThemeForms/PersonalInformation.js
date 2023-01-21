@@ -85,6 +85,7 @@ const PersonalInformation = ({ setActiveStep }) => {
             skills: values.skills,
             total_work_experience: values.total_work_experience
         }
+        console.log(formData);
         // let formData = new FormData();
 
         // formData = {
