@@ -49,7 +49,6 @@ const Dashboard = () => {
     //http://13.235.183.204:3001/demouser
     //http://13.235.183.204:3001/api/
     return (<>
-        {console.log(userInformation)}
         <Box
             className="dashboard"
             sx={{
@@ -189,7 +188,7 @@ const Dashboard = () => {
                     </Stack></>)
                 }
 
-                {user && user.type == "candidate" && (<>
+                {user && user.type != "candidate" && (<>
 
                     <Stack direction="column"  >
 

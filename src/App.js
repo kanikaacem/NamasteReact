@@ -81,7 +81,7 @@ function App() {
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             {/* <Route path="/candidate-dashboard" element={<Dashboard />} > */}
             <Route path="" element={<CandidateDashboard></CandidateDashboard>} />
-            <Route path="candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route>
+            {/* <Route path="candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route> */}
             <Route path="update-profile" element={<UpdateProfile></UpdateProfile>} />
             <Route path="saved-jobs" element={<SavedJobs></SavedJobs>} />
             <Route path="perferences" element={<CandidateJobPerferences></CandidateJobPerferences>} />

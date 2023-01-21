@@ -1,9 +1,8 @@
+import { postRequest } from "../../utils/ApiRequests";
+import { SaveCandidateWorkInformation } from "../../utils/ApiUrls";
+
 import { Box, Stack, Typography, Button, Input, TextField, Radio, RadioGroup, FormControlLabel, FormControl, Snackbar, Alert } from "@mui/material";
-
 import { Formik, Field, Form } from "formik";
-// import DatePicker from "react-datepicker";
-
-
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -45,37 +44,25 @@ const WorkHistory = ({ setActiveStep }) => {
     const handleSubmit = async (values, { resetForm }) => {
         console.log(values);
 
-        // let formData = new FormData();
+        let formData = new FormData();
+        formData = {
+            company_name: values.company_name,
+            designation: values.designation,
+            department: values.department,
+            starting_year: values.starting_year,
+            ending_year: values.ending_year,
+        }
 
-        // formData = {
-        //     userid: userid,
-        //     companyname: values.company_name,
-        //     designation: values.designation,
-        //     department: values.department,
-        //     startdate: values.starting_year,
-        //     enddate: values.ending_year,
-        // }
-        // console.log(formData);
+        let response = await postRequest(SaveCandidateWorkInformation, formData);
+        console.log(response);
+        if (response.status == 1) {
+            localStorage.setItem("user", JSON.stringify(response.data));
+            resetForm("");
+            startingDate("");
+            endingDate("");
+            setFormSubmitted(true)
+        }
 
-        // let response = await fetch(api_url + "/api/users/createworkhistory", {
-        //     method: "POST",
-        //     headers: {
-        //         'Access-Control-Allow-Origin': '*',
-        //         'Content-Type': 'application/json; charset=UTF-8'
-        //     },
-        //     body: JSON.stringify(formData)
-        // })
-
-        // if (response.ok) {
-        //     response = await response.json();
-        //     if (response.status == '1') {
-        //         console.log(response);
-        //         resetForm("");
-        //         setStartingDate("");
-        //         setEndingDate("");
-        //         setFormSubmitted(true);
-        //     }
-        // }
     }
 
     return (<>
@@ -346,7 +333,7 @@ const WorkHistory = ({ setActiveStep }) => {
                                                         value={startingDate}
                                                         onChange={(newValue) => {
                                                             setStartingDate(newValue);
-                                                            setFieldValue("starting_year", newValue)
+                                                            setFieldValue("starting_year", new Date(newValue))
                                                         }}
                                                         renderInput={(params) => <TextField
 
@@ -367,7 +354,7 @@ const WorkHistory = ({ setActiveStep }) => {
                                                         value={endingDate}
                                                         onChange={(newValue) => {
                                                             setEndingDate(newValue);
-                                                            setFieldValue("ending_year", newValue)
+                                                            setFieldValue("ending_year", new Date(newValue))
                                                         }}
                                                         renderInput={(params) => <TextField
 
@@ -383,10 +370,10 @@ const WorkHistory = ({ setActiveStep }) => {
                                         <Stack direction="row" sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
                                             <ThemeButtonType3 variant="outlined" type="submit"
                                                 sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
-                                            > Continue</ThemeButtonType3>
+                                            > Save</ThemeButtonType3>
                                             <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
                                                 onClick={() => {
-                                                    setActiveStep(3)
+                                                    window.location.href = window.location.origin + '/profile/3';
                                                 }}>Next Step</ThemeButtonType2>
 
                                         </Stack>

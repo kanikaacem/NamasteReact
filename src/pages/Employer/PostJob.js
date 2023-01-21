@@ -20,7 +20,7 @@ import { useState } from "react";
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import { postJobValidationSchema, postPartTimeJobValidationSchema } from "../../Validation/PostJobValidation";
-import { cities, Experience, Role, Skills, JobType, AssociationType, PaymentType, WorkingDays } from "../../utils/Data";
+import { cities, Experience, Role, Skills, JobType, AssociationType, PaymentType, WorkingDays, WorkingShift } from "../../utils/Data";
 
 import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv, NextButton } from "../../utils/Theme";
 
@@ -127,7 +127,7 @@ const PostJob = () => {
         role: "",
         experience: "",
         opening: "",
-        salary: "",
+        salary_type: "",
         short_description: "",
         job_description: "",
         city: "",
@@ -558,7 +558,7 @@ const PostJob = () => {
                                             {errors.job_description && touched.job_description && <Error text={errors.job_description} />}
                                         </ThemeFInputDiv>
 
-                                        <ThemeFInputDiv>
+                                        {/* <ThemeFInputDiv>
                                             <ThemeLabel LableFor="skills" LableText="Skills" />
                                             <Field
                                                 error={errors.company_name && touched.company_name}
@@ -566,7 +566,28 @@ const PostJob = () => {
                                                 id="skills"
                                                 placeholder="Enter Skills" type="text" name="skills" fullWidth />
                                             {errors.skills && touched.skills && <Error text={errors.skills} />}
-                                        </ThemeFInputDiv>
+                                        </ThemeFInputDiv> */}
+                                        <Field
+
+                                            variant="standard"
+                                            error={errors.skills && touched.skills}
+                                            component={Select}
+                                            name="skills"
+                                            options={Skills}
+                                            components={animatedComponents}
+                                            onChange={(options) => {
+                                                let optionvalue = [];
+                                                setSelectedOptions(options);
+                                                options.map((item) => {
+                                                    optionvalue.push(item.value);
+                                                })
+                                                setFieldValue("skills", optionvalue.join(","));
+                                            }}
+                                            isMulti
+                                            id_data={(errors.skills && touched.skills) ? "skills-error" : "skills"}
+                                            placeholder="Select Skills" data={Skills} fullWidth />
+
+                                        {errors.skills && touched.skills && <Error text={errors.skills} />}
 
                                         <Stack direction="row" gap={5}>
                                             <ThemeFInputDiv sx={{ width: "30%" }}>
@@ -629,8 +650,8 @@ const PostJob = () => {
                                                     disableUnderline
                                                 >
                                                     <MenuItem value=" ">Work Shift</MenuItem>
-                                                    {AssociationType.map((item) =>
-                                                        <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                    {WorkingShift.map((item) =>
+                                                        <MenuItem value={item.value} key={item.id}>{item.value}</MenuItem>
                                                     )}
                                                 </SelectField>
 
@@ -679,7 +700,7 @@ const PostJob = () => {
                                                 error={errors.salary_type && touched.salary_type}
                                                 as={TextField}
                                                 id="salary_type"
-                                                placeholder="Enter Salary Type" type="text" name="skills" fullWidth />
+                                                placeholder="Enter Salary Type" type="text" name="salary_type" fullWidth />
                                             {errors.salary_type && touched.salary_type && <Error text={errors.salary_type} />}
                                         </ThemeFInputDiv>
 

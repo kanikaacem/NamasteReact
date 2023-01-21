@@ -202,7 +202,7 @@ export const CandidateMenu = [
         id: 1,
         MenuName: "Profile",
         value: "profile",
-        url: "candidate-profile",
+        url: "",
         image: "profile.png"
     },
     // {
@@ -223,14 +223,14 @@ export const CandidateMenu = [
         id: 4,
         MenuName: "Recommend Jobs",
         value: "recommend_jobs",
-        url: "/",
+        url: "",
         image: "Job.png"
     },
     {
         id: 5,
         MenuName: "Applied Jobs",
         value: "applied_jobs",
-        url: "/",
+        url: "",
         image: "AllJob.png"
     },
     // {
@@ -244,14 +244,14 @@ export const CandidateMenu = [
         id: 7,
         MenuName: "Messages",
         value: "messages",
-        url: "/",
+        url: "",
         image: "chat.png"
     },
     {
         id: 8,
         MenuName: "Saved Jobs",
         value: "saved_jobs",
-        url: "/",
+        url: "",
         image: "SavedJob.png"
     },
 
@@ -259,7 +259,7 @@ export const CandidateMenu = [
         id: 9,
         MenuName: "Top company jobs",
         value: "top_company_jobs",
-        url: "/",
+        url: "",
         image: "SavedJob.png"
     },
     // {
@@ -820,41 +820,30 @@ export const socialLogin = [
 export const WorkingDays = [
     {
         id: 1,
-        value: 'Sunday'
+        value: '5 Days'
     },
     {
         id: 2,
-        value: 'Monday'
+        value: '6 Days'
     },
     {
         id: 3,
-        value: 'Tuesday'
+        value: '7 Days'
     },
-    {
-        id: 4,
-        value: 'Wednesday'
-    },
-    {
-        id: 5,
-        value: 'Thursday'
-    },
-    {
-        id: 6,
-        value: 'Friday'
-    },
-    {
-        id: 7,
-        value: 'Saturday'
-    }
+
 ]
 
 export const WorkingShift = [
     {
         id: 1,
-        value: "12a.m to 1a.m"
+        value: "Morning"
     },
     {
         id: 2,
-        value: "1a.m to 2a.m"
+        value: "Evening"
+    },
+    {
+        id: 3,
+        value: "Night"
     }
 ]

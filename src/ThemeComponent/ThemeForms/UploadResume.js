@@ -64,23 +64,24 @@ const UploadResume = ({ setActiveStep }) => {
     }
 
     const goToDashboard = async () => {
-        let response = await fetch(api_url + "/api/users/getuserbyid", {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify({
-                userid: userid
-            }),
-        })
-        if (response.ok) {
-            response = await response.json();
-            console.log(response);
-            dispatch({ type: 'LOGIN', payload: JSON.stringify(response.data) });
-            // setFormSubmitted(true);
-            // window.location.href = "http://localhost:3000/employer-login";
-        }
+        dispatch({ type: 'LOGIN', payload: JSON.parse(localStorage.getItem("user")) });
+        // let response = await fetch(api_url + "/api/users/getuserbyid", {
+        //     method: "POST",
+        //     headers: {
+        //         'Access-Control-Allow-Origin': '*',
+        //         'Content-Type': 'application/json; charset=UTF-8'
+        //     },
+        //     body: JSON.stringify({
+        //         userid: userid
+        //     }),
+        // })
+        // if (response.ok) {
+        //     response = await response.json();
+        //     console.log(response);
+        //     dispatch({ type: 'LOGIN', payload: JSON.stringify(response.data) });
+        //     // setFormSubmitted(true);
+        //     // window.location.href = "http://localhost:3000/employer-login";
+        // }
     }
 
     return (<>
@@ -310,7 +311,8 @@ const UploadResume = ({ setActiveStep }) => {
                             </Box>
 
                             <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Go To Dashboard</ThemeButtonType2>
+                                <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
+                                    onClick={goToDashboard}>Go To Dashboard</ThemeButtonType2>
 
                             </Stack>
 

@@ -1,3 +1,6 @@
+import { postRequest } from "../../utils/ApiRequests";
+import { SaveCandidateProfessionalInformation } from "../../utils/ApiUrls";
+
 import { Box, Select, Stack, Typography, Button, TextField, Radio, RadioGroup, FormControlLabel, FormControl, Snackbar, Alert, MenuItem } from "@mui/material";
 
 import { Formik, Field, Form } from "formik";
@@ -19,13 +22,7 @@ import HeaderSec from "../Common/HeaderSec";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 const ProfessionalDetail = ({ setActiveStep }) => {
-    let api_url = useSelector(state => state.api_url);
-    let userid = useSelector(state => state.candidateInfo);
 
-    if (userid != '') {
-        userid = JSON.parse(userid);
-        userid = userid.data;
-    }
 
     const defaultValue = {
         institue_name: "",
@@ -51,36 +48,25 @@ const ProfessionalDetail = ({ setActiveStep }) => {
 
         let formData = new FormData();
         formData = {
-            userid: userid,
-            // userid: "63ac1e7ffe81366e8caeabdd",
-            universityname: values.institue_name,
+            institude_name: values.institue_name,
             qualification: values.qualification,
-            coursetype: values.course_type,
+            course_type: values.course_type,
             starting_year: values.starting_year,
-            passing_year: values.ending_year,
+            ending_year: values.ending_year,
             percentage: values.percentage
         }
-        console.log(formData);
-        // let response = await fetch(api_url + "/api/users/createeducation", {
-        //     method: "POST",
-        //     headers: {
-        //         'Access-Control-Allow-Origin': '*',
-        //         'Content-Type': 'application/json; charset=UTF-8'
-        //     },
-        //     body: JSON.stringify(formData)
-        // })
 
-        // if (response.ok) {
-        //     response = await response.json();
-        //     if (response.status == '1') {
-        //         console.log(response);
-        resetForm("");
-        setStartingDate("");
-        setEndingDate("");
-        setQualification(" ");
-        setFormSubmitted(true);
-        //     }
-        // }
+        let response = await postRequest(SaveCandidateProfessionalInformation, formData);
+        console.log(response);
+        if (response.status == 1) {
+            localStorage.setItem("user", JSON.stringify(response.data));
+            resetForm("");
+            setStartingDate("");
+            setEndingDate("");
+            setQualification(" ");
+            setFormSubmitted(true);
+        }
+
     }
 
     return (<>
@@ -417,7 +403,7 @@ const ProfessionalDetail = ({ setActiveStep }) => {
                                                         value={startingDate}
                                                         onChange={(newValue) => {
                                                             setStartingDate(newValue);
-                                                            setFieldValue("starting_year", newValue)
+                                                            setFieldValue("starting_year", new Date(newValue))
                                                         }}
                                                         renderInput={(params) => <TextField
 
@@ -439,7 +425,7 @@ const ProfessionalDetail = ({ setActiveStep }) => {
                                                         value={endingDate}
                                                         onChange={(newValue) => {
                                                             setEndingDate(newValue);
-                                                            setFieldValue("ending_year", newValue)
+                                                            setFieldValue("ending_year", new Date(newValue))
                                                         }}
                                                         renderInput={(params) => <TextField
 
@@ -468,10 +454,11 @@ const ProfessionalDetail = ({ setActiveStep }) => {
                                     <Stack direction="row" sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
                                         <ThemeButtonType3 variant="outlined" type="submit"
                                             sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
-                                        > Continue</ThemeButtonType3>
+                                        > Save</ThemeButtonType3>
                                         <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
                                             onClick={() => {
-                                                setActiveStep(2)
+                                                window.location.href = window.location.origin + '/profile/2';
+
                                             }}>Next Step</ThemeButtonType2>
 
                                     </Stack>

@@ -61,7 +61,7 @@ const reducer = (state, action) =>{
       let candidateInfo = action.payload;
       console.log(candidateInfo.data);
       localStorage.setItem('auth_token',candidateInfo.token);
-      localStorage.setItem('user',JSON.stringify(candidateInfo.data));
+      localStorage.setItem('user',JSON.stringify(candidateInfo.data['personalInfo']));
 
       return {...initialState,candidateInfo:candidateInfo,CandidateRegistration:true}
 

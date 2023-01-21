@@ -33,7 +33,6 @@ export const PersonalRegistrationSchema = yup.object().shape({
         .positive("Current Salary should be positive").required("Current Salary is required"),
     excepted_salary: yup.number("Excepted Salary should be a number")
         .positive("Excepted Salary should be positive").required("Excepted Salary is required"),
-    current_industry: yup.string().required("Current Industry is required"),
     skills: yup.string().required("Skills is required"),
     perferred_location: yup.string().required("Perferred Location is required"),
     total_work_experience: yup.number("Total Work Experience should be a number")

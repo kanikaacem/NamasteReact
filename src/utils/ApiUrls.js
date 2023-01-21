@@ -36,3 +36,9 @@ export const getAllPostedJobs = "http://13.126.115.3:3001/api/job/getpostedjobs"
 export const CandidateLoginURL = "http://13.235.183.204:3001/api/users/login";
 /*STEP 1 */
 export const saveCandidateUserNameAndPasswordURL = "http://13.235.183.204:3001/api/users/createuser";
+/*STEP 2 */
+export const SaveCandidatePersonalInformation = "http://13.235.183.204:3001/api/users/updateuserpersonalinfo";
+/*STEP 3 */
+export const SaveCandidateProfessionalInformation = "http://13.235.183.204:3001/api/users/updateusereducationalinfo";
+/*STEP 4 */
+export const SaveCandidateWorkInformation = "http://13.235.183.204:3001/api/users/updateuserworkhistoryinfo"

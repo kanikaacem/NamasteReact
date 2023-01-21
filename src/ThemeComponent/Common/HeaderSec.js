@@ -10,10 +10,9 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
             <Stack direction="row" gap={2}>
                 <Button type="button" variant="outlined"
                     sx={{
-                        height: "59px",
-                        width: "247px",
+                        width: "200px",
                         borderRadius: "44px",
-                        fontSize: "24px",
+                        fontSize: "18px",
                         border: { border },
                         color: { color },
                         textTransform: "capitalize",
@@ -29,6 +28,7 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                     }}>
                     Contact us
                 </Button>
+
                 <Button type="button" variant="filled"
                     onClick={
                         () => {
@@ -41,10 +41,9 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                         border: "none",
                         color: "#2B1E44",
                         textTransform: "capitalize",
-                        height: "59px",
-                        width: "283px",
+                        width: "200px",
                         borderRadius: "44px",
-                        fontSize: "24px",
+                        fontSize: "18px",
                         fontWeight: "600",
                         fontFamily: "Work Sans, sans-serif !important",
                         "&:hover": {
@@ -53,6 +52,34 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                     }}>
                     {buttonText ? buttonText : "About Us"}
                 </Button>
+                {
+                    buttonText === "Sign Up" && <>
+                        <Button type="button" variant="filled"
+                            onClick={
+                                () => {
+                                    if (buttonText === 'Sign Up')
+                                        window.location.href = window.location.origin + "/candidate-register"
+                                }
+                            }
+                            sx={{
+                                background: "#FC9A7E",
+                                border: "none",
+                                color: "#2B1E44",
+                                textTransform: "capitalize",
+                                width: "250px",
+                                borderRadius: "44px",
+                                fontSize: "18px",
+                                fontWeight: "600",
+                                fontFamily: "Work Sans, sans-serif !important",
+                                "&:hover": {
+                                    background: "#FC9A7E"
+                                }
+                            }}>
+                            Candidate Sign Up
+                        </Button></>
+                }
+
+
             </Stack>
         </Stack>
     </>)

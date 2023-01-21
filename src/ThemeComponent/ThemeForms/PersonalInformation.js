@@ -1,3 +1,5 @@
+import { postRequest } from "../../utils/ApiRequests";
+import { SaveCandidatePersonalInformation } from "../../utils/ApiUrls";
 
 import { Box, Container, Stack, Typography, TextField, Select as SelectField, MenuItem, Button, Radio, RadioGroup, FormControlLabel, FormControl } from "@mui/material";
 
@@ -31,13 +33,12 @@ import { useState } from "react";
 const PersonalInformation = ({ setActiveStep }) => {
     const animatedComponents = makeAnimated();
 
-    let api_url = useSelector(state => state.api_url);
 
-    let userid = useSelector(state => state.candidateInfo);
-    if (userid != '') {
-        userid = JSON.parse(userid);
-        userid = userid.data;
-    }
+    // let userid = useSelector(state => state.candidateInfo);
+    // if (userid != '') {
+    //     userid = JSON.parse(userid);
+    //     userid = userid.data;
+    // }
     // userid = userid && userid.data;
 
     const [personalInfoForm, setPersonalInfoForm] = useState(1);
@@ -65,58 +66,36 @@ const PersonalInformation = ({ setActiveStep }) => {
     }
 
 
-
     const handleSubmit = async (values) => {
-        console.log(values);
+        // console.log(values);
         let formData = new FormData();
         formData = {
-            current_location: values.current_location,
-            current_salary: values.current_salary,
             current_title: values.current_title,
-            date_of_birth: values.date_of_birth,
-            excepted_salary: values.excepted_salary,
-            full_name: values.full_name,
+            current_salary: values.current_salary,
+            expected_salary: values.excepted_salary,
+            skills: values.skills.split(","),
+            preffered_pincode: values.perferred_pincode,
+            preffered_location: values.perferred_location,
+            total_work_experience: values.total_work_experience,
+            fullname: values.full_name,
             gender: values.gender,
+            dob: values.date_of_birth,
+            phoneNumber: values.phone_number,
             marital_status: values.marital_status,
-            perferred_location: values.perferred_location,
-            perferred_pincode: values.perferred_pincode,
-            permanant_address: values.permanant_address,
-            phone_number: values.phone_number,
-            skills: values.skills,
-            total_work_experience: values.total_work_experience
+            permanent_address: values.permanant_address,
+            current_address: values.current_location
         }
-        console.log(formData);
-        // let formData = new FormData();
 
-        // formData = {
-        //     userid: userid,
-        //     fullname: values.full_name,
-        //     mobile: values.phone_number,
-        //     gender: values.gender,
-        //     marital_status: values.marital_status,
-        //     address: values.permanant_address,
-        //     currAddress: values.current_location,
-
-        // }
-        // let response = await fetch(api_url + "/api/users/updateuserinfo", {
-        //     method: "POST",
-        //     headers: {
-        //         'Access-Control-Allow-Origin': '*',
-        //         'Content-Type': 'application/json; charset=UTF-8'
-        //     },
-        //     body: JSON.stringify(formData)
-        // })
-
-        // if (response.ok) {
-        //     response = await response.json();
-        //     if (response.status == '1') {
-        //         console.log(response);
-        //         setActiveStep(1);
-
-        //     }
+        let response = await postRequest(SaveCandidatePersonalInformation, formData);
+        console.log(response);
+        if (response.status == 1) {
+            localStorage.setItem("user", JSON.stringify(response.data));
+            window.location.href = window.location.origin + '/profile/1';
+            // setActiveStep(1)
+        }
 
 
-        // }
+
     }
 
 
