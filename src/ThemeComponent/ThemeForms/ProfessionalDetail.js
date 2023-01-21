@@ -157,7 +157,7 @@ const ProfessionalDetail = ({ setActiveStep }) => {
                             display: "block",
                             marginTop: "20px"
                         }}>
-                            Company Details
+                            Professional Details
                         </Typography>
 
                         <Stack direction="row" gap={1} sx={{ margin: "25px 0px" }}>

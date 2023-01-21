@@ -1,5 +1,7 @@
-import { postRequest } from "../../utils/ApiRequests";
-import { SaveCandidatePersonalInformation } from "../../utils/ApiUrls";
+import { postRequest, getRequest } from "../../utils/ApiRequests";
+import { SaveCandidatePersonalInformation, StatesURL } from "../../utils/ApiUrls";
+
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 import { Box, Container, Stack, Typography, TextField, Select as SelectField, MenuItem, Button, Radio, RadioGroup, FormControlLabel, FormControl } from "@mui/material";
 
@@ -28,7 +30,7 @@ import Error from '../../ThemeComponent/Common/Error';
 import HeaderSec from "../Common/HeaderSec";
 // import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const PersonalInformation = ({ setActiveStep }) => {
     const animatedComponents = makeAnimated();
@@ -46,8 +48,15 @@ const PersonalInformation = ({ setActiveStep }) => {
     const [perferredLocation, setPerferredLocation] = useState([]);
     const [date, setDate] = useState();
     const [gender, setGender] = useState("");
+    const [city, setCity] = useState(" ");
+    const [state, setState] = useState(" ");
+    const [CountryState, setCountryState] = useState([]);
+    const [District, setDistrict] = useState([]);
+    const [autoData, setAutoData] = useState([]);
+    const [menubar, setMenuBar] = useState(false);
 
     const [martialStatus, setMaritalStatus] = useState(" ");
+    const [currentAddress, setCurrentAddress] = useState("");
 
     const defaultValue = {
         full_name: "",
@@ -99,7 +108,28 @@ const PersonalInformation = ({ setActiveStep }) => {
     }
 
 
+    useEffect(() => {
+        const getState = async () => {
+            let response = await getRequest(StatesURL);
+            setCountryState(response.data);
+        }
+        getState();
+    }, [])
 
+    const getDistrictByState = async (statefilter) => {
+        // console.log(statefilter);
+        let response = await getRequest("http://13.235.183.204:3001/api/map/districts?states=" + statefilter);
+        // console.log(response.data[0].districts);
+        setDistrict(response.data[0].districts);
+        // console.log(response);
+    }
+
+    const getAddress = async (value) => {
+        let response = await getRequest("http://13.235.183.204:3001/api/map/autocompleteplaces?input=" + value);
+        console.log(response)
+        setAutoData(response.data);
+        // console.log(response.data);
+    }
 
 
     return (<>
@@ -213,7 +243,7 @@ const PersonalInformation = ({ setActiveStep }) => {
                             display: "block",
                             marginTop: "20px"
                         }}>
-                            Company Details
+                            Personal Details
                         </Typography>
 
                         <Stack direction="row" gap={1} sx={{ margin: "25px 0px" }}>
@@ -584,8 +614,139 @@ const PersonalInformation = ({ setActiveStep }) => {
                                             {errors.marital_status && touched.marital_status && <Error text={errors.marital_status} />}
                                         </ThemeFInputDiv>
 
+                                        <Stack direction="row" gap={2}>
+                                            <ThemeFInputDiv sx={{ width: "50%" }}>
+                                                <ThemeLabel LableFor="state" LableText="State *" />
+                                                <SelectField
+                                                    classNamePrefix="react-select"
+                                                    labelId="demo-simple-select-label"
+                                                    name="state"
+                                                    value={state}
+                                                    label="Age"
+                                                    onChange={(event) => {
+                                                        let stateValue = event.target.value;
+                                                        // console.log(event.target.value);
+                                                        setState(stateValue);
+                                                        setFieldValue("state", event.target.value);
+                                                        getDistrictByState(event.target.value);
+                                                    }}
+                                                    sx={{
+                                                        background: " #FFFFFF",
+                                                        border: "1px solid #EAEAEA",
+                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                        borderRadius: "7px",
+                                                        fontSize: "16px",
+                                                        fontamily: 'Montserrat',
+                                                        BorderBottom: 'none'
+                                                    }}
+                                                    disableUnderline
+                                                >
+                                                    <MenuItem value=" ">Select State</MenuItem>
+                                                    {CountryState && CountryState.map((item) =>
+                                                        <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                    )}
+                                                </SelectField>
+                                                {errors.state && touched.state && <Error text={errors.state} />}
+                                            </ThemeFInputDiv>
+
+                                            <ThemeFInputDiv sx={{ width: "50%" }}>
+
+                                                <ThemeLabel LableFor="city" LableText="City *" />
+                                                <SelectField
+                                                    classNamePrefix="react-select"
+                                                    labelId="demo-simple-select-label"
+                                                    name="city"
+                                                    value={city}
+                                                    label="Age"
+                                                    onChange={(event) => {
+                                                        setCity(event.target.value);
+                                                        setFieldValue("city", event.target.value);
+                                                        setFieldValue("area", event.target.value);
+                                                    }}
+                                                    sx={{
+                                                        background: " #FFFFFF",
+                                                        border: "1px solid #EAEAEA",
+                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                        borderRadius: "7px",
+                                                        fontSize: "16px",
+                                                        fontamily: 'Montserrat',
+                                                        BorderBottom: 'none'
+                                                    }}
+                                                    disableUnderline
+                                                >
+                                                    <MenuItem value=" ">Select City</MenuItem>
+                                                    {District && District.map((item) =>
+                                                        <MenuItem value={item.name} key={item._id}>{item.name}</MenuItem>
+                                                    )}
+                                                </SelectField>
+
+                                                {errors.city && touched.city && <Error text={errors.city} />}
+                                            </ThemeFInputDiv>
+                                        </Stack>
+                                        <ThemeFInputDiv sx={{ position: "relative" }}>
+                                            <ThemeLabel LableFor="current_location" LableText="Area" />
+
+                                            {/* <Field
+                                                style={{
+                                                    background: "#EAEAEA",
+                                                    borderRadius: "11px"
+
+                                                }}
+                                                error={errors.current_location && touched.current_location}
+                                                as="textarea"
+                                                rows="8"
+                                                id="current_location"
+                                                placeholder="Enter Current Address" type="text" name="current_location" fullWidth /> */}
+                                            <TextField id="outlined-basic"
+                                                placeholder="Enter Area (eg.Haridwar, Uttarakhand, India)"
+                                                value={currentAddress}
+                                                onChange={(event) => {
+                                                    setCurrentAddress(event.target.value);
+                                                    setFieldValue("current_location", event.target.value);
+                                                    getAddress(event.target.value);
+                                                    setMenuBar(true)
+                                                }}
+                                                variant="outlined" fullWidth />
+
+                                            {menubar && autoData && autoData != "no record please enter some word" && <>
+                                                <ClickAwayListener onClickAway={() => setAutoData(false)}>
+
+                                                    <Box
+                                                        sx={{
+                                                            position: "absolute",
+                                                            top: "110px",
+                                                            background: "#FFFFFF",
+                                                            width: "94%",
+                                                            padding: "20px",
+                                                            height: "fit-content",
+                                                            zIndex: "34",
+                                                            boxShadow: "0px 47px 52px #f4ecff",
+                                                            border: "3px solid #E1D4F2",
+                                                            borderRadius: "11px"
+                                                        }}>
+                                                        {autoData && autoData != "no record please enter some word" && autoData.map((item) => {
+                                                            return (<>
+                                                                <Box sx={{
+                                                                    padding: "20px",
+                                                                    borderBottom: "1px solid #E1D4F2",
+                                                                    cursor: "pointer"
+                                                                }}
+                                                                    onClick={(event) => {
+                                                                        setCurrentAddress(item.description);
+                                                                        setFieldValue("current_location", item.description)
+                                                                        setMenuBar(false)
+                                                                    }}> {item.description}</Box></>)
+                                                        })}
+
+                                                    </Box>
+                                                </ClickAwayListener>
+                                            </>}
+                                            {errors.current_location && touched.current_location && <Error text={errors.current_location} />}
+
+                                        </ThemeFInputDiv>
+
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="permanant_address" LableText="Permanant Address" />
+                                            <ThemeLabel LableFor="permanant_address" LableText="Complete Address" />
                                             <Field
                                                 style={{
                                                     background: "#EAEAEA",
@@ -596,27 +757,13 @@ const PersonalInformation = ({ setActiveStep }) => {
                                                 as="textarea"
                                                 rows="8"
                                                 id="permanant_address"
-                                                placeholder="Enter Permanant Address" type="text" name="permanant_address" fullWidth />
+                                                placeholder="Enter Complete Address" type="text" name="permanant_address" fullWidth />
+
                                             {errors.permanant_address && touched.permanant_address && <Error text={errors.permanant_address} />}
 
                                         </ThemeFInputDiv>
 
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="current_location" LableText="Current Address" />
-                                            <Field
-                                                style={{
-                                                    background: "#EAEAEA",
-                                                    borderRadius: "11px"
 
-                                                }}
-                                                error={errors.current_location && touched.current_location}
-                                                as="textarea"
-                                                rows="8"
-                                                id="current_location"
-                                                placeholder="Enter Current Address" type="text" name="current_location" fullWidth />
-                                            {errors.current_location && touched.current_location && <Error text={errors.current_location} />}
-
-                                        </ThemeFInputDiv>
 
 
                                     </ThemeFInputDiv>

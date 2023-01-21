@@ -918,3 +918,7 @@ textarea {
   background-color: #E7D4FF;
 
 }
+
+#mui-component-select-association_type {
+  border-bottom: none;
+}
