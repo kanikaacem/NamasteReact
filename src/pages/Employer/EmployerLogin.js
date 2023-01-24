@@ -62,12 +62,10 @@ const EmployerLogin = () => {
                 password: localStorage.getItem("password")
             })
             if (response.status == '1') {
-
-
-                if (response.data.isemailverified) {
+                if (response.data.isemailverified && response.data.stage != "hrpage") {
                     window.location.href = window.location.origin + "/employer-register";
                 }
-                else {
+                if (!response.data.isEmailVerified && response.data.stage != "hrpage") {
                     if (localStorage.getItem("useremail")) {
                         setIsEmailVerified(true)
                     }

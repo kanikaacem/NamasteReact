@@ -64,7 +64,7 @@ const CandidateRegistration = () => {
                 password: localStorage.getItem("password")
             })
             if (response.status == '1') {
-                if (response.isemailverified) {
+                if (response.data.isemailverified) {
                     dispatch({ type: 'USER_REGISTRATION', payload: response });
                 }
                 else {

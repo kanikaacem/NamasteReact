@@ -7,19 +7,23 @@ import { Formik, Field, Form } from "formik";
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { Navigate } from 'react-router-dom';
-import { useState } from "react";
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import { candidateLoginValidationSchema } from "../../Validation/CandidateValidation";
 import { socialLogin } from "../../utils/Data";
 
+import ShowMessageToastr from "../../ThemeComponent/Common/ShowMessageToastr";
 import Error from "../../ThemeComponent/Common/Error";
 import { SocialBox, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
 
+import { useState, useEffect } from "react";
+
 const CandidateLogin = () => {
+    const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
+    const [isEmailVerified, setIsEmailVerified] = useState(false);
     const isLoggedIn = useSelector(state => state.isLoggedIn);
-    const api_url = useSelector(state => state.api_url);
+
     const dispatch = useDispatch();
     const [authenticationError, setauthenticationError] = useState("");
     const [showPassword, setshowPassword] = useState(false);
@@ -35,21 +39,49 @@ const CandidateLogin = () => {
             email: values.email_address,
             password: values.password
         }
+        localStorage.setItem("useremail", values.email_address);
+        localStorage.setItem("password", values.password);
         let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
-        console.log(response)
         if (response.status == '1') {
-            dispatch({ type: 'LOGIN', payload: response });
+            if (response.data.isemailverified)
+                dispatch({ type: 'LOGIN', payload: response });
+            else {
+                setShowEmailVerifiedMessage(true);
+                setIsEmailVerified(true);
+            }
         }
         if (response.status == '0')
             setFieldError("password", "Invalid Credentials");
     }
+    useEffect(() => {
+        let userData = localStorage.getItem("auth_token");
+        const getUserData = async () => {
+            let response = await postRequest(CandidateLoginURL, {
+                email: localStorage.getItem("useremail"),
+                password: localStorage.getItem("password")
+            })
+            if (response.status == '1') {
+                if (response.data.isemailverified && response.data.profilecompleted < 50) {
+                    window.location.href = window.location.origin + "/profile/0";
+                }
+                if (!response.data.isEmailVerified && response.data.profilecompleted < 50) {
+                    if (localStorage.getItem("useremail")) {
+                        setIsEmailVerified(true)
+                    }
+                }
+            }
+        }
 
+        (userData != " " && userData != null) && getUserData();
+
+    }, []);
     return (<>
         {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>}
+        <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)} message="Email Address is not verified. Please Verify your email First" messageType="success" />
 
         <Box className="CandidateLoginPage"
             sx={{
-                height: "100vh",
+                minHeight: "100vh",
                 background: "#2B1E44",
                 backgroundImage:
                     "url('../assets/g50.png')",
@@ -189,6 +221,9 @@ const CandidateLogin = () => {
                                     </ThemeFInputDiv>
 
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                                        {isEmailVerified &&
+                                            <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
+                                        }
                                         <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
                                         <ThemeButtonType3 variant="outlined"
                                             type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}

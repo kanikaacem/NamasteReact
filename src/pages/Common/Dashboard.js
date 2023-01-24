@@ -31,23 +31,7 @@ const Dashboard = () => {
     const dispatch = useDispatch();
     const EmployeeMenuSelected = useSelector(state => state.EmployeeMenuSelected);
     const CandidateMenuSelected = useSelector(state => state.CandidateMenuSelected);
-    // useEffect(() => {
-    //     const getUserInformation = async () => {
-    //         console.log("I runnde")
-    //         let response = await postRequest(UserInformationURL);
-    //         console.log(response);
-    //         if (response.status == 1) {
-    //             let userInformation = response.data;
-    //             console.log(userInformation);
-    //             setUserInformation(userInformation);
-    //         }
 
-    //     }
-    //     getUserInformation();
-
-    // }, []);
-    //http://13.235.183.204:3001/demouser
-    //http://13.235.183.204:3001/api/
     return (<>
         <Box
             className="dashboard"
@@ -188,7 +172,7 @@ const Dashboard = () => {
                     </Stack></>)
                 }
 
-                {user && user.type != "candidate" && user.employer_type != "employer" && (<>
+                {user && user.data.type == "candidate" && (<>
 
                     <Stack direction="column"  >
 
