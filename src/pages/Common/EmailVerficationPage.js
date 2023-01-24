@@ -10,15 +10,20 @@ const EmployerVerficationPage = () => {
 
     const VerifyEmail = async () => {
         let api_url = "";
+        let redirect_url = "";
         if (employerEmail != undefined) {
-            api_url = `http://13.235.183.204:3001/api/verificationthroughmail/employer?email=${employerEmail}`
+            api_url = `http://13.235.183.204:3001/api/verificationthroughmail/employer?email=${employerEmail}`;
+            redirect_url = "http://13.235.183.204:3000/employer-register";
         }
         if (candidateEmail != undefined) {
-            api_url = `http://13.235.183.204:3001/api/verificationthroughmail/candidate?email=${candidateEmail}`
+            api_url = `http://13.235.183.204:3001/api/verificationthroughmail/candidate?email=${candidateEmail}`;
+            redirect_url = "http://13.235.183.204:3000/candidate-register";
         }
         let response = await getRequest(api_url);
-        if (response.ok) {
-            setEmailVerified(true);
+
+        // console.log(response.status)
+        if (response.status == '1') {
+            window.location.href = redirect_url;
         }
 
     }
