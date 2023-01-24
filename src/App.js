@@ -49,7 +49,8 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home></Home>} />
 
-          <Route path="/verification/:email" element={<EmployerVerficationPage />} />
+          <Route path="/verificationthroughmail/candidate/:candidateEmail" element={<EmployerVerficationPage />} />
+          <Route path="/verificationthroughmail/employer/:employerEmail" element={<EmployerVerficationPage />} />
 
           <Route path="/employer-register" element={<EmployerRegister></EmployerRegister>} />
           <Route path="/employer-login" element={<EmployerLogin></EmployerLogin>} />

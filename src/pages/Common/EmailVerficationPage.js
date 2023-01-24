@@ -4,9 +4,12 @@ import { useSelector } from 'react-redux';
 
 import { useState } from "react";
 const EmployerVerficationPage = () => {
-    const { email } = useParams();
+    const { employerEmail, candidateEmail } = useParams();
+    let email = '';
+    // const query = useSearchParams();
+    // const email = "kanika.np@acem.edu.in"
     const [emailVerified, setEmailVerified] = useState(false);
-    // console.log(email);
+
     const api_url = useSelector(state => state.api_url);
     const VerifyEmail = async () => {
         let formData = new FormData();
@@ -32,6 +35,7 @@ const EmployerVerficationPage = () => {
         }
     }
     return (<>
+
         <Snackbar
             open={emailVerified}
             autoHideDuration={6000} onClose={() => setEmailVerified(false)}
@@ -52,7 +56,7 @@ const EmployerVerficationPage = () => {
                         Verify your email address
                     </Typography>
                     <Typography component="div" sx={{ fontSize: "16px", color: "#2B1E44", textAlign: "center" }}>
-                        You've entered {email} as the email address for your account.
+                        You've entered  {employerEmail || candidateEmail} as the email address for your account.
                     </Typography>
                     <Typography component="div" sx={{ fontSize: "16px", color: "#2B1E44", textAlign: "center" }}>
                         Please verify this email address by clicking button below.
