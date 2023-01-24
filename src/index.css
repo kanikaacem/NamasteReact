@@ -799,12 +799,12 @@ textarea {
   outline: none;
 } */
 
-.PostJobForm .input-item input {
+/* .PostJobForm .input-item input {
   border: none;
   margin: 10px 0px;
   font-size: 14px;
   outline: none;
-}
+} */
 
 .updateCompanyInformationForm .input-item input {
   border: none;
@@ -889,6 +889,7 @@ textarea {
   font-family: "Montserrat";
 }
 
+/*Removing the above hint form the input text */
 .CompanyInformationForm .css-14lo706 {
   display: none !important;
 }
@@ -896,6 +897,16 @@ textarea {
 .ProfessionalDetailForm .css-14lo706 {
   display: none !important;
 }
+
+.PostJobForm1 .css-14lo706 {
+  display: none !important;
+}
+
+.PersonalInformationForm .css-14lo706 {
+  display: none !important;
+}
+
+/*--------------------------------------------*/
 
 .JobSearchMenu .css-10hburv-MuiTypography-root {
   font-size: 20px !important;
@@ -919,6 +930,8 @@ textarea {
 
 }
 
-#mui-component-select-association_type {
+#mui-component-select-association_type,
+#mui-component-select-job_type,
+#mui-component-select-industry_type {
   border-bottom: none;
 }

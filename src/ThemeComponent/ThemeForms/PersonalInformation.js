@@ -61,8 +61,10 @@ const PersonalInformation = ({ setActiveStep }) => {
     const defaultValue = {
         full_name: "",
         date_of_birth: "",
-        permanant_address: "",
-        current_location: "",
+        state: "",
+        city: "",
+        area: "",
+        complete_address: "",
         phone_number: "",
         marital_status: "",
         gender: "",
@@ -76,7 +78,6 @@ const PersonalInformation = ({ setActiveStep }) => {
 
 
     const handleSubmit = async (values) => {
-        // console.log(values);
         let formData = new FormData();
         formData = {
             current_title: values.current_title,
@@ -91,8 +92,11 @@ const PersonalInformation = ({ setActiveStep }) => {
             dob: values.date_of_birth,
             phoneNumber: values.phone_number,
             marital_status: values.marital_status,
-            permanent_address: values.permanant_address,
-            current_address: values.current_location
+            permanent_address: values.area,
+            current_address: values.current_address,
+            state: values.state,
+            city: values.city
+
         }
 
         let response = await postRequest(SaveCandidatePersonalInformation, formData);
@@ -686,23 +690,13 @@ const PersonalInformation = ({ setActiveStep }) => {
                                         <ThemeFInputDiv sx={{ position: "relative" }}>
                                             <ThemeLabel LableFor="current_location" LableText="Area" />
 
-                                            {/* <Field
-                                                style={{
-                                                    background: "#EAEAEA",
-                                                    borderRadius: "11px"
 
-                                                }}
-                                                error={errors.current_location && touched.current_location}
-                                                as="textarea"
-                                                rows="8"
-                                                id="current_location"
-                                                placeholder="Enter Current Address" type="text" name="current_location" fullWidth /> */}
                                             <TextField id="outlined-basic"
                                                 placeholder="Enter Area (eg.Haridwar, Uttarakhand, India)"
                                                 value={currentAddress}
                                                 onChange={(event) => {
                                                     setCurrentAddress(event.target.value);
-                                                    setFieldValue("current_location", event.target.value);
+                                                    setFieldValue("area", event.target.value);
                                                     getAddress(event.target.value);
                                                     setMenuBar(true)
                                                 }}
@@ -741,12 +735,12 @@ const PersonalInformation = ({ setActiveStep }) => {
                                                     </Box>
                                                 </ClickAwayListener>
                                             </>}
-                                            {errors.current_location && touched.current_location && <Error text={errors.current_location} />}
+                                            {errors.area && touched.area && <Error text={errors.area} />}
 
                                         </ThemeFInputDiv>
 
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="permanant_address" LableText="Complete Address" />
+                                            <ThemeLabel LableFor="complete_address" LableText="Complete Address" />
                                             <Field
                                                 style={{
                                                     background: "#EAEAEA",
@@ -757,18 +751,13 @@ const PersonalInformation = ({ setActiveStep }) => {
                                                 as="textarea"
                                                 rows="8"
                                                 id="permanant_address"
-                                                placeholder="Enter Complete Address" type="text" name="permanant_address" fullWidth />
+                                                placeholder="Enter Complete Address" type="text" name="complete_address" fullWidth />
 
-                                            {errors.permanant_address && touched.permanant_address && <Error text={errors.permanant_address} />}
+                                            {errors.complete_address && touched.complete_address && <Error text={errors.complete_address} />}
 
                                         </ThemeFInputDiv>
 
-
-
-
                                     </ThemeFInputDiv>
-
-
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
                                         <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue and Next</ThemeButtonType2>
 
@@ -781,278 +770,7 @@ const PersonalInformation = ({ setActiveStep }) => {
                 </Stack>
             </Stack>
         </Box>
-        {/* <Stack direction="row" gap={2}>
-            <Box sx={{ width: "40%" }}></Box>
-            <Box sx={{
-                width: "60%",
-                margin: "50px auto",
-                borderRadius: "20px",
-                padding: "30px",
-                background: "#FFFFFF",
-                borderTop: "4px solid #2B1E44"
-            }}>
-                <Typography component="h3" sx={{ fontSize: "25px", color: "#2B1E44", marginBottom: "20px" }}>
-                    Personal Details
-                </Typography> */}
-        {/* {personalInfoForm == 1 && <>
-                    <Formik
 
-                        initialValues={defaultValue1}
-                        validationSchema={PersonalRegistrationSchema1}
-                        onSubmit={handleSubmit1}
-                    >
-                        {({ errors, touched, values, setFieldValue }) => (
-                            <Form className="PersonalInformationForm">
-                                <Stack direction="column" gap={2}>
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="current_title" LableText="Current Title" />
-                                        <Field
-                                            size="small"
-                                            error={errors.current_title && touched.current_title}
-                                            as={TextField}
-                                            id="current_title"
-                                            placeholder="Enter Company Title" type="text" name="current_title" fullWidth />
-                                        {errors.current_title && touched.current_title && <Error text={errors.current_title} />}
-
-                                    </Stack>
-
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="current_salary" LableText="Current Salary" />
-                                        <Field
-                                            size="small"
-                                            error={errors.current_salary && touched.current_salary}
-                                            as={TextField}
-                                            id="current_salary"
-                                            placeholder="Enter Current Salary" type="text" name="current_salary" fullWidth />
-                                        {errors.current_salary && touched.current_salary && <Error text={errors.current_salary} />}
-
-                                    </Stack>
-
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="excepted_salary" LableText="Excepted Salary" />
-                                        <Field
-                                            size="small"
-                                            error={errors.excepted_salary && touched.excepted_salary}
-                                            as={TextField}
-                                            id="excepted_salary"
-                                            placeholder="Enter Excepted Salary" type="text" name="excepted_salary" fullWidth />
-                                        {errors.excepted_salary && touched.excepted_salary && <Error text={errors.excepted_salary} />}
-
-                                    </Stack>
-
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="current_industry" LableText="Current Industry" />
-                                        <Field
-                                            size="small"
-                                            error={errors.current_industry && touched.current_industry}
-                                            as={TextField}
-                                            id="current_industry"
-                                            placeholder="Enter Current Industry" type="text" name="current_industry" fullWidth />
-                                        {errors.current_industry && touched.current_industry && <Error text={errors.current_industry} />}
-
-                                    </Stack>
-
-                                    <Box className="input-item">
-                                        <ThemeLabel LableFor="skills" LableText="Skills" />
-                                        <Field
-                                            variant="standard"
-                                            error={errors.skills && touched.skills}
-                                            component={Select}
-                                            name="skills"
-                                            options={Skills}
-                                            components={animatedComponents}
-                                            onChange={(options) => {
-                                                let optionvalue = [];
-                                                setSelectedOptions(options);
-                                                options.map((item) => {
-                                                    optionvalue.push(item.value);
-                                                })
-                                                setFieldValue("skills", optionvalue.join(","));
-                                            }}
-                                            isMulti
-                                            id_data={(errors.skills && touched.skills) ? "skills-error" : "skills"}
-                                            placeholder="Select Skills" data={Skills} fullWidth />
-
-                                        {errors.skills && touched.skills && <Error text={errors.skills} />}
-                                    </Box>
-
-                                    <Box className="input-item">
-                                        <ThemeLabel LableFor="perferred_location" LableText="Perferred Location" />
-                                        <Field
-                                            variant="standard"
-                                            error={errors.perferred_location && touched.perferred_location}
-                                            component={Select}
-                                            name="perferred_location"
-                                            options={PerferredLocation}
-                                            components={animatedComponents}
-                                            onChange={(options) => {
-                                                let optionvalue = [];
-                                                setPerferredLocation(options);
-                                                options.map((item) => {
-                                                    optionvalue.push(item.value);
-                                                })
-                                                setFieldValue("perferred_location", optionvalue.join(","));
-                                            }}
-                                            isMulti
-                                            id_data={(errors.perferred_location && touched.perferred_location) ? "perferredlocation-error" : "perferredlocation"}
-                                            placeholder="Select Perferred Location" data={PerferredLocation} fullWidth />
-
-                                        {errors.perferred_location && touched.perferred_location && <Error text={errors.perferred_location} />}
-                                    </Box>
-
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="total_work_experience" LableText="Total Work Experience" />
-                                        <Field
-                                            size="small"
-                                            error={errors.full_name && touched.full_name}
-                                            as={TextField}
-                                            id="total_work_experience"
-                                            placeholder="Enter Total Work Experience" type="text" name="total_work_experience" fullWidth />
-                                        {errors.total_work_experience && touched.total_work_experience && <Error text={errors.total_work_experience} />}
-
-                                    </Stack>
-
-                                    <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                        {/* <ButtonType1 ButtonText="Continue And Next" /> */}
-        {/* <ThemeButtontype1 variant="contained" type="submit">Continue And Next</ThemeButtontype1>
-    </Box>
-        </Stack >
-    </Form >
-    )
-}
-                    </Formik ></>} * /} */}
-        {/* {personalInfoForm == 2 && <>
-                    <Formik
-
-                        initialValues={defaultValue}
-                        validationSchema={PersonalRegistrationSchema}
-                        onSubmit={handleSubmit}
-                    >
-                        {({ errors, touched, values, setFieldValue }) => (
-                            <Form className="PersonalInformationForm">
-                                <Stack direction="column" gap={2}>
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="full_name" LableText="Full Name" />
-                                        <Field
-                                            size="small"
-                                            error={errors.full_name && touched.full_name}
-                                            as={TextField}
-                                            id="full_name"
-                                            placeholder="Enter Full Name" type="text" name="full_name" fullWidth />
-                                        {errors.full_name && touched.full_name && <Error text={errors.full_name} />}
-
-                                    </Stack>
-                                    <Box className="profile-input-item">
-                                        <ThemeLabel LableFor="gender" LableText="Gender" />
-                                        <Box>
-                                            <FormControl>
-                                                <RadioGroup
-                                                    aria-labelledby="demo-controlled-radio-buttons-group"
-                                                    name="controlled-radio-buttons-group"
-                                                    value={gender}
-                                                    onChange={(event) => {
-                                                        setGender(event.target.value)
-                                                        setFieldValue("gender", event.target.value)
-                                                    }}
-                                                >
-                                                    <Stack direction="row" gap={3}>
-                                                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                                        <FormControlLabel value="other" control={<Radio />} label="Other" />
-                                                    </Stack>
-
-                                                </RadioGroup>
-                                            </FormControl>
-                                        </Box>
-                                        {errors.gender && touched.gender && <Error text={errors.gender} />}
-                                    </Box>
-
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="date_of_birth" LableText="Date of Birth" />
-                                        <DatePicker
-                                            autoComplete="off"
-                                            size="small"
-                                            id="date_of_birth"
-                                            placeholderText={'Date of Birth'}
-                                            name="date_of_birth"
-                                            selected={date} onChange={(date) => { setDate(date); setFieldValue("date_of_birth", date) }} />
-                                        {errors.date_of_birth && touched.date_of_birth && <Error text={errors.date_of_birth} />}
-
-                                    </Stack>
-
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="
-                                        phone_number" LableText="Phone Number" />
-                                        <Field
-                                            size="small"
-                                            error={errors.phone_number && touched.phone_number}
-                                            as={TextField}
-                                            id="phone_number"
-                                            placeholder="Enter Current Address" type="text" name="phone_number" fullWidth />
-                                        {errors.phone_number && touched.phone_number && <Error text={errors.phone_number} />}
-
-                                    </Stack>
-
-                                    <Box className="input-item">
-                                        <ThemeLabel LableFor="marital_status" LableText="Marital Status" />
-                                        <SelectField
-                                            labelId="demo-simple-select-label"
-                                            name="marital_status"
-                                            value={martialStatus}
-                                            onChange={(event) => {
-                                                setMaritalStatus(event.target.value);
-                                                setFieldValue("marital_status", event.target.value);
-                                            }}
-                                            sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                            disableUnderline
-                                        >
-                                            <MenuItem value=" ">Select Martial Status</MenuItem>
-                                            {MaritalStatus.map((item) =>
-                                                <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                            )}
-                                        </SelectField>
-
-                                        {errors.marital_status && touched.marital_status && <Error text={errors.marital_status} />}
-                                    </Box>
-
-                                    <Box className="profile-input-item">
-                                        <ThemeLabel LableFor="permanant_address" LableText="Permanant Address" />
-                                        <Field
-                                            size="small"
-                                            error={errors.permanant_address && touched.permanant_address}
-                                            as="textarea"
-                                            rows="4"
-                                            id="permanant_address"
-                                            placeholder="Enter Permanant Address" type="text" name="permanant_address" fullWidth />
-                                        {errors.permanant_address && touched.permanant_address && <Error text={errors.permanant_address} />}
-
-                                    </Box>
-
-                                    <Box className="profile-input-item">
-                                        <ThemeLabel LableFor="current_location" LableText="Current Address" />
-                                        <Field
-                                            size="small"
-                                            error={errors.current_location && touched.current_location}
-                                            as="textarea"
-                                            rows="4"
-                                            id="current_location"
-                                            placeholder="Enter Current Address" type="text" name="current_location" fullWidth />
-                                        {errors.current_location && touched.current_location && <Error text={errors.current_location} />}
-
-                                    </Box>
-
-                                    <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                        <ThemeButtontype1 variant="contained" type="submit">Continue And Next</ThemeButtontype1>
-                                    </Box>
-                                </Stack>
-                            </Form>
-                        )}
-                    </Formik>
-                </>} */}
-
-
-        {/* </Box >
-        </Stack > */}
     </>)
 }
 

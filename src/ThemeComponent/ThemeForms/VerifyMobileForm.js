@@ -64,14 +64,14 @@ const VerifyMobileForm = ({ email, setVerifyMobileForm, setCompanyInfoForm, setM
 
     }
     return (<>
-        <Snackbar
+        {/* <Snackbar
             open={verifyEmail}
             autoHideDuration={6000}
             onClose={handleClose2}
             message="Please verify the Email address"
             action={action2}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        />
+        /> */}
 
 
         <Snackbar

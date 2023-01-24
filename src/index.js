@@ -39,7 +39,10 @@ const reducer = (state, action) =>{
 
     case "LOGOUT":
       localStorage.setItem("user","")
+      localStorage.setItem("auth_token","")
       localStorage.setItem("isLoggedIn", false);
+      localStorage.setItem("useremail","");
+      localStorage.setItem("password","");
       return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn")};
 
     case "SHOW_HIDE_PROFILE":
@@ -61,7 +64,7 @@ const reducer = (state, action) =>{
       let candidateInfo = action.payload;
       console.log(candidateInfo.data);
       localStorage.setItem('auth_token',candidateInfo.token);
-      localStorage.setItem('user',JSON.stringify(candidateInfo.data['personalInfo']));
+      // localStorage.setItem('user',JSON.stringify(candidateInfo.data['personalInfo']));
 
       return {...initialState,candidateInfo:candidateInfo,CandidateRegistration:true}
 

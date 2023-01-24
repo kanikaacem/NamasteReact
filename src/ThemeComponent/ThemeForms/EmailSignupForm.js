@@ -16,7 +16,7 @@ import { LoginSocialGoogle } from 'reactjs-social-login';
 
 import { useSelector } from "react-redux";
 
-const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenForm }) => {
+const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenForm, isEmailVerified }) => {
 
     const api_url = useSelector(state => state.api_url);
 
@@ -72,6 +72,9 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                             </ThemeFInputDiv>
                             <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
                                 <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Next</ThemeButtonType2>
+                                {isEmailVerified &&
+                                    <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
+                                }
                             </Stack>
 
                             <Typography component="span" sx={{ fontSize: "16px", display: "flex" }}>

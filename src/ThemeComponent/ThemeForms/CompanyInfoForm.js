@@ -147,6 +147,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     }
 
     const handleSubmit2 = async (values) => {
+        console.log(hrName, companyName, companyType, companyEmail, companyWebsite, companyLanNumber);
         let area = values.area;
         let company_address = values.company_address;
         let company_gst_number = values.company_gst_number;
@@ -162,16 +163,17 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         let data = new FormData();
         data = {
             // _id: userid,
-            employername: hrName,
-            companyname: companyName,
-            companytype: companyType,
+            employer_name: hrName,
+            company_name: companyName,
+            company_type: companyType,
             company_email: companyEmail,
-            companywebsite: companyWebsite,
-            companylannumber: companyLanNumber,
+            company_website: companyWebsite,
+            company_lanNumber: companyLanNumber,
             companynumber: companyLanNumber,
             company_state: state,
-            companycity: city,
-            companyaddres: company_address,
+            company_city: city,
+            company_area: values.area,
+            company_address: company_address,
             companypincode: company_pincode,
             companypancard: company_pan_number,
             companygstnumber: company_gst_number,

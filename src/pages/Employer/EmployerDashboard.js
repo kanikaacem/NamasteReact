@@ -128,7 +128,7 @@ const EmployerDashboard = () => {
                         <Stack direction="row" alignItems="center" justifyContent="space-between">
                             <Box>
                                 <Typography component="span" sx={{ fontSize: "30px" }}>
-                                    {dayMessage}, {user && user.employer_name}
+                                    {dayMessage}, {user && user.employer_email}
                                 </Typography>
                             </Box>
                             <Box>

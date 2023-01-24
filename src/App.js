@@ -30,6 +30,7 @@ import Settings from './Pages/Candidate/Settings';
 import Profile from "./Pages/Candidate/CandidateProfilePage";
 import CandidateJobPerferences from "./Pages/Candidate/CandidateJobPerferences";
 import SavedJobs from './Pages/Candidate/SavedJobs';
+import CandidateDashboard2 from "./Pages/Candidate/CandidateDashboard2";
 
 /*Website Page*/
 import Home from "./Pages/Home/Home";
@@ -58,7 +59,7 @@ function App() {
           <Route path="/profile/:step" element={<CandidateProfile></CandidateProfile>} />
           {/* <Route path="/post-a-job" element={<PostJob></PostJob>} /> */}
           <Route path="/job" element={<JobSearch></JobSearch>} />
-
+          <Route path="/candidate-new" element={<CandidateDashboard2></CandidateDashboard2>} />
           <Route path="/employer-dashboard/post-a-job" element={<PostJob></PostJob>} />
           <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             <Route path="" element={<EmployerDashboard></EmployerDashboard>} />

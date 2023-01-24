@@ -74,7 +74,7 @@ const RecommendedJobs = () => {
                             </Typography>
 
                             <Box sx={{ padding: "20px" }}>
-                                <Stack direction="row" gap={2}>
+                                <Stack direction="row" gap={2} sx={{ flexWrap: "wrap" }}>
                                     <Stack direction="row" sx={{
                                         background: "#FFFFFF",
                                         border: "1px solid #E2D7F0",
@@ -139,7 +139,7 @@ const RecommendedJobs = () => {
                                             Graduate
                                         </Typography>
                                     </Stack>
-                                </Stack>
+                                </Stack>`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           `
                                 <Typography component="div" sx={{ fontSize: "20px", fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
                                     50 Applicants Applied / 10 Applicants Rejected
                                 </Typography>

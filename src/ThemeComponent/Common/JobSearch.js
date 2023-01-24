@@ -2,9 +2,10 @@ import { Box, Container, Badge, Stack, Typography, Button, List, ListItem, ListI
 import RecommendedJobs from "../../Pages/Home/Component/RecommendedJobs";
 import Footer from "../../ThemeComponent/Common/Footer";
 import SearchIcon from '@mui/icons-material/Search';
-import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv, NextButton } from "../../utils/Theme";
+import { ThemeFInputDiv } from "../../utils/Theme";
 
 import ThemeLabel from "../ThemeForms/ThemeLabel";
+import CompanyLogo from "./CompanyLogo";
 import { EmployerMenu, cities } from "../../utils/Data";
 
 import { useParams } from "react-router-dom";
@@ -22,28 +23,8 @@ const JobSearch = () => {
             sx={{ background: "#FAFAFA" }}>
             <Box sx={{ padding: "20px" }}>
                 <Stack direction="row" justifyContent="space-between" alignItems="center" >
-                    <Box sx={{ widht: "35%" }}>
-                        <Typography component="span"
-                            sx={{
-                                fontSize: "24px",
-                                fontWeight: "600",
-                                color: "#000000",
-                                fontFamily: "Work Sans, sans-serif"
-                            }}>
-                            Job
-                        </Typography>
-                        <Typography component="span"
-                            sx={{
-                                fontSize: "24px",
-                                color: "#000000",
-                                fontFamily: "Work Sans, sans-serif"
-                            }}>
-                            Yahan
-                        </Typography>
-
-
-                    </Box>
-                    <Box sx={{ width: "50%" }} className="JobSearchMenu">
+                    < CompanyLogo color="#000000" />
+                    {/* <Box sx={{ width: "50%" }} className="JobSearchMenu">
                         <List sx={{ display: "flex" }}>
 
                             {EmployerMenu.map((item) => {
@@ -62,8 +43,8 @@ const JobSearch = () => {
                             })}
 
                         </List>
-                    </Box>
-                    <Stack direction="row" gap={2} sx={{ width: "15%" }}>
+                    </Box> */}
+                    {/* <Stack direction="row" gap={2} sx={{ width: "15%" }}>
                         <Box sx={{
                             width: "59px",
                             height: "59px",
@@ -87,7 +68,7 @@ const JobSearch = () => {
                         </Box>
 
 
-                    </Stack>
+                    </Stack> */}
                 </Stack>
             </Box>
 

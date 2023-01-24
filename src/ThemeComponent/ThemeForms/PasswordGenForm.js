@@ -1,21 +1,22 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { EmployerSaveEmailAndPassword } from "../../utils/ApiUrls";
 
-import { Box, TextField, Stack, styled, Typography } from "@mui/material";
+import { TextField, Stack, Typography } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { PasswordGenFormValidationSchema } from "../../Validation/EmployerValidation";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
+import ShowMessageToastr from "../../ThemeComponent/Common/ShowMessageToastr";
 import Error from "../../ThemeComponent/Common/Error";
 
-import { ThemeButtontype1, ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
-
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
+import { useEffect, useState } from "react";
 const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobileForm }) => {
     const [sHPassword, setSHPassword] = useState(false);
     const [sHConfirmPassword, setSHConfirmPassword] = useState(false);
-    const api_url = useSelector(state => state.api_url);
+
+    const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
+    const [isEmailVerified, setIsEmailVerified] = useState(false);
 
     const defaultValue = {
         password: "",
@@ -31,15 +32,22 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
 
         let response = await postRequest(EmployerSaveEmailAndPassword, formData);
         if (response.status == 1) {
-            console.log(response);
-            localStorage.setItem("auth_token", response.data);
+            localStorage.setItem("useremail", email);
+            localStorage.setItem("password", values.password)
+            localStorage.setItem('auth_token', response.data);
             localStorage.setItem("userid", response._id);
-            setPasswordGenForm(false);
-            setVerifyMobileForm(true);
+            setShowEmailVerifiedMessage(true);
+
         }
     }
+
+
     return (<>
-        {console.log(email)}
+
+        <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)}
+            message="Email Verification Link is send . Please verify the Email before going further "
+            messageType="success" />
+
         <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
             Create Password
         </Typography>
@@ -113,6 +121,9 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
 
                     </ThemeFInputDiv>
                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                        {
+                            isEmailVerified && <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
+                        }
                         <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Next</ThemeButtonType2>
                     </Stack>
 

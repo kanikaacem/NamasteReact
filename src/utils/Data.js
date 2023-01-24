@@ -847,3 +847,70 @@ export const WorkingShift = [
         value: "Night"
     }
 ]
+
+export const SalaryType = [
+    {
+        id: 1,
+        value: "Montly"
+    },
+    {
+        id: 2,
+        value: "Per Day"
+    },
+    {
+        id: 3,
+        value: "Per Hour"
+    }
+]
+
+export const SalaryCTC = [
+    {
+        id: 1,
+        value: "0 - 1 Lakhs"
+    },
+    {
+        id: 2,
+        value: "1 - 2 Lakhs"
+    },
+    {
+        id: 3,
+        value: "2 - 3 Lakhs"
+    },
+    {
+        id: 4,
+        value: " 3 - 4 Lakhs"
+    },
+    {
+        id: 5,
+        value: " 4 - 5 Lakhs"
+    },
+    {
+        id: 6,
+        value: " 5 - 6 Lakhs"
+    },
+    {
+        id: 7,
+        value: " 6 - 7 Lakhs"
+    }, {
+        id: 8,
+        value: " 7 - 8 Lakhs"
+    }, {
+        id: 9,
+        value: " 8 - 9 Lakhs"
+    }, {
+        id: 10,
+        value: " 9 - 10 Lakhs"
+    }, {
+        id: 11,
+        value: " 10 - 11 Lakhs"
+    }, {
+        id: 12,
+        value: " 11 - 12 Lakhs"
+    }, {
+        id: 12,
+        value: " 12 - 13 Lakhs"
+    }, {
+        id: 13,
+        value: " above 13 Lakhs"
+    }
+]
