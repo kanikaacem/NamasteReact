@@ -24,6 +24,7 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
     }
 
     const handleSubmit = async (values) => {
+        document.getElementById("next").disabled = "true";
         let formData = new FormData();
         formData = {
             email: email,
@@ -124,7 +125,7 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
                         {
                             isEmailVerified && <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
                         }
-                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Next</ThemeButtonType2>
+                        <ThemeButtonType2 variant="contained" id="next" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Next</ThemeButtonType2>
                     </Stack>
 
 

@@ -87,6 +87,15 @@ const PostJob = () => {
     const [CountryState, setCountryState] = useState([]);
     const [District, setDistrict] = useState([]);
     const [menubar, setMenuBar] = useState(false);
+    const [companyName, setCompanyName] = useState("");
+    const [salary, setSalary] = useState("");
+    const [extraBenefits, setExtraBenefits] = useState("");
+    const [jobDescription, setJobDescription] = useState("");
+    const [jobPlace, setJobPlace] = useState("");
+    const [jobTitle, setJobTitle] = useState("");
+    const [responsibilty, setResponsibilty] = useState("");
+    const [skills, setSkills] = useState("");
+    const [weeklyOff, setWeeklyOff] = useState("");
 
     let extra_benefits = [];
 
@@ -130,18 +139,24 @@ const PostJob = () => {
     const defaultValue = {
         company_name: "",
         job_title: "",
-        association_type: " ",
-        job_type: jobType,
-        industry_type: industryType,
-        role: "",
-        experience: "",
-        opening: "",
-        salary_type: "",
-        short_description: "",
+        job_type: "",
+        industry_type: "",
+        association_type: "",
+        job_place: "",
+        responsibilites: "",
         job_description: "",
+        skills: "",
+        working_days: "",
+        work_shift: "",
+        starting_time: "",
+        ending_time: "",
+        salary_type: "",
+        salary: "",
+        weekly_off: "",
+        state: "",
         city: "",
-        job_working_type: "",
-        responsibilites: ""
+        company_address: "",
+        extra_benefits: ""
     }
 
     const handleClose = (event) => {
@@ -159,9 +174,30 @@ const PostJob = () => {
         }
     }
 
-    const handleSubmit = async (values, { resetForm }) => {
-        console.log(values);
-        console.log(tags);
+    const handleSubmit1 = async (values, { resetForm }) => {
+        // associationType
+        // city
+        // state
+        // companyAddress
+        // industryType
+        // setCompanyName(values.company_name)
+        // setSalary(values.ctc_salary);
+        // setStartingTime(values.starting_time);
+        // setEndingTime(values.ending_time);
+        // setExtraBenefits(values.extra_benefits)
+        // setJobDescription(values.job_description);
+        // setJobPlace(values.job_place);
+        // setJobTitle(values.job_title)
+        // jobType;
+        // setResponsibilty(values.responsibilites);
+        // salaryType
+        // setCTCSalary(values.ctc_salary);
+        // setSkills(values.skills);
+        // startingTime
+        // endingTime
+        // setWeeklyOff(values.weekly_off)
+        // workShift
+        // jobWorkingDay
         // console.log(values);
         // console.log(extra_benefits)
         // let formData = new FormData();
@@ -333,7 +369,7 @@ const PostJob = () => {
                                     display: "block",
 
                                 }}>
-                                    Company Information
+                                    Job Information
                                 </Typography>
                                 <Box>
                                     <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
@@ -388,13 +424,13 @@ const PostJob = () => {
                             display: "block",
                             margin: "20px 0px"
                         }}>
-                            Company Information
+                            Job Information
                         </Typography>
                         <Formik
 
                             initialValues={defaultValue}
-                            validationSchema={jobType == "regular" ? postJobValidationSchema : postPartTimeJobValidationSchema}
-                            onSubmit={handleSubmit}
+                            validationSchema={postJobValidationSchema}
+                            onSubmit={handleSubmit1}
                         >
                             {({ values, errors, touched, setFieldValue }) => (
                                 <Form className="PostJobForm1" >
@@ -431,7 +467,7 @@ const PostJob = () => {
                                                     label="role"
                                                     onChange={(event) => {
                                                         setJobType(event.target.value);
-                                                        setFieldValue("role", event.target.value);
+                                                        setFieldValue("job_type", event.target.value);
                                                     }}
                                                     sx={{
                                                         background: " #FFFFFF",
@@ -460,7 +496,7 @@ const PostJob = () => {
                                             <SelectField
                                                 labelId="demo-simple-select-label"
                                                 name="industry_type"
-                                                value={jobType}
+                                                value={industryType}
                                                 label="role"
                                                 onChange={(event) => {
                                                     setIndustryType(event.target.value);
@@ -619,7 +655,7 @@ const PostJob = () => {
                                                     )}
                                                 </SelectField>
 
-                                                {errors.association_type && touched.association_type && <Error text={errors.association_type} />}
+                                                {errors.working_days && touched.working_days && <Error text={errors.working_days} />}
                                             </ThemeFInputDiv>
 
                                             <ThemeFInputDiv sx={{ width: "50%" }}>
@@ -650,7 +686,7 @@ const PostJob = () => {
                                                     )}
                                                 </SelectField>
 
-                                                {errors.job_type && touched.job_type && <Error text={errors.job_type} />}
+                                                {errors.work_shift && touched.work_shift && <Error text={errors.work_shift} />}
                                             </ThemeFInputDiv>
 
                                         </Stack>
@@ -664,7 +700,8 @@ const PostJob = () => {
                                                         <TimePicker
                                                             value={startingTime}
                                                             onChange={(newValue) => {
-                                                                setStartingTime(newValue)
+                                                                setStartingTime(new Date(newValue).getTime())
+                                                                setFieldValue("starting_time", new Date(newValue).getTime())
                                                             }}
                                                             renderInput={(params) => <TextField {...params} />}
                                                         />
@@ -674,12 +711,15 @@ const PostJob = () => {
                                                         <ThemeLabel LableFor="ending_time" LableText="Ending Time" />
                                                         <TimePicker
                                                             onChange={(newValue) => {
-                                                                setEndingTime(newValue)
+                                                                setEndingTime(new Date(newValue).getTime())
+                                                                setFieldValue("ending_time", new Date(newValue).getTime())
                                                             }}
                                                             renderInput={(params) => <TextField {...params} />}
                                                         />
 
-                                                        {errors.shift_timing && touched.shift_timing && <Error text={errors.shift_timing} />}
+                                                        {errors.starting_time && touched.starting_time && <Error text={errors.starting_time} />}
+                                                        {errors.ending_time && touched.ending_time && <Error text={errors.ending_time} />}
+
                                                     </ThemeFInputDiv>
                                                 </LocalizationProvider>
                                             </Stack>
@@ -695,7 +735,7 @@ const PostJob = () => {
                                                 label="role"
                                                 onChange={(event) => {
                                                     setSalaryType(event.target.value);
-                                                    // setFieldValue("salary_type", event.target.value);
+                                                    setFieldValue("salary_type", event.target.value);
                                                 }}
                                                 sx={{
                                                     background: " #FFFFFF",
@@ -718,8 +758,8 @@ const PostJob = () => {
                                                     <Field
                                                         error={errors.salary && touched.salary}
                                                         as={TextField}
-                                                        id="salary"
-                                                        placeholder="Enter Salary " type="text" name="salary" fullWidth />
+                                                        id="ctc_salary"
+                                                        placeholder="Enter Salary " type="text" name="ctc_salary" fullWidth />
                                                 </>
                                             }
 
@@ -763,111 +803,6 @@ const PostJob = () => {
                                             {errors.weekly_off && touched.weekly_off && <Error text={errors.weekly_off} />}
                                         </ThemeFInputDiv>
 
-                                        {/* <Stack direction="row" gap={5}>
-                                            <ThemeFInputDiv sx={{ width: "30%" }}>
-                                                <ThemeLabel LableFor="location_state" LableText="Location State" />
-                                                <SelectField
-                                                    labelId="demo-simple-select-label"
-                                                    name="work_shift"
-                                                    value={associationType}
-                                                    label="role"
-                                                    onChange={(event) => {
-                                                        setAssociationType(event.target.value);
-                                                        setFieldValue("location_state", event.target.value);
-                                                    }}
-                                                    sx={{
-                                                        background: " #FFFFFF",
-                                                        border: "1px solid #EAEAEA",
-                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                        borderRadius: "7px",
-                                                        width: "101%",
-                                                        fontSize: "16px",
-                                                        fontamily: 'Montserrat',
-                                                        BorderBottom: 'none !important',
-
-                                                        padding: "8px"
-                                                    }}
-                                                    disableUnderline
-                                                >
-                                                    <MenuItem value=" ">Work Shift</MenuItem>
-                                                    {AssociationType.map((item) =>
-                                                        <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                                    )}
-                                                </SelectField>
-
-                                                {errors.location_state && touched.location_state && <Error text={errors.location_state} />}
-                                            </ThemeFInputDiv>
-
-                                            <ThemeFInputDiv sx={{ width: "30%" }}>
-                                                <ThemeLabel LableFor="city" LableText="City" />
-                                                <SelectField
-                                                    labelId="demo-simple-select-label"
-                                                    name="association_type"
-                                                    value={associationType}
-                                                    label="role"
-                                                    onChange={(event) => {
-                                                        setAssociationType(event.target.value);
-                                                        setFieldValue("city", event.target.value);
-                                                    }}
-                                                    sx={{
-                                                        background: " #FFFFFF",
-                                                        border: "1px solid #EAEAEA",
-                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                        borderRadius: "7px",
-                                                        width: "101%",
-                                                        fontSize: "16px",
-                                                        fontamily: 'Montserrat',
-                                                        BorderBottom: 'none !important',
-
-                                                        padding: "8px"
-                                                    }}
-                                                    disableUnderline
-                                                >
-                                                    <MenuItem value=" ">Shift Timing</MenuItem>
-                                                    {AssociationType.map((item) =>
-                                                        <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                                    )}
-                                                </SelectField>
-
-                                                {errors.city && touched.city && <Error text={errors.city} />}
-                                            </ThemeFInputDiv>
-
-                                            <ThemeFInputDiv sx={{ width: "30%" }}>
-                                                <ThemeLabel LableFor="local_area" LableText="Local Area" />
-                                                <SelectField
-                                                    labelId="demo-simple-select-label"
-                                                    name="association_type"
-                                                    value={associationType}
-                                                    label="role"
-                                                    onChange={(event) => {
-                                                        setAssociationType(event.target.value);
-                                                        setFieldValue("local_area", event.target.value);
-                                                    }}
-                                                    sx={{
-                                                        background: " #FFFFFF",
-                                                        border: "1px solid #EAEAEA",
-                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                        borderRadius: "7px",
-                                                        width: "101%",
-                                                        fontSize: "16px",
-                                                        fontamily: 'Montserrat',
-                                                        BorderBottom: 'none !important',
-
-                                                        padding: "8px"
-                                                    }}
-                                                    disableUnderline
-                                                >
-                                                    <MenuItem value=" ">Select Working Days</MenuItem>
-                                                    {AssociationType.map((item) =>
-                                                        <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                                    )}
-                                                </SelectField>
-
-                                                {errors.local_area && touched.local_area && <Error text={errors.local_area} />}
-                                            </ThemeFInputDiv>
-
-                                        </Stack> */}
-
                                         <Stack direction="row" gap={2}>
                                             <ThemeFInputDiv sx={{ width: "50%" }}>
                                                 <ThemeLabel LableFor="state" LableText="State *" />
@@ -879,7 +814,6 @@ const PostJob = () => {
                                                     label="Age"
                                                     onChange={(event) => {
                                                         let stateValue = event.target.value;
-                                                        // console.log(event.target.value);
                                                         setState(stateValue);
                                                         setFieldValue("state", event.target.value);
                                                         getDistrictByState(event.target.value);
@@ -915,7 +849,7 @@ const PostJob = () => {
                                                     onChange={(event) => {
                                                         setCity(event.target.value);
                                                         setFieldValue("city", event.target.value);
-                                                        setFieldValue("area", event.target.value);
+                                                        // setFieldValue("area", event.target.value);
                                                     }}
                                                     sx={{
                                                         background: " #FFFFFF",
@@ -941,20 +875,7 @@ const PostJob = () => {
                                         <ThemeFInputDiv sx={{ position: "relative" }}>
                                             <ThemeLabel LableFor="company_address" LableText="Company Address *" />
                                             <Box sx={{ width: "100%", margin: "10px 0px" }}>
-                                                {/* <Field
-                                                            error={errors.company_address && touched.company_address}
-                                                            id="company_address"
-                                                            as={TextField}
-                                                            placeholder="Company Address" type="text" name="company_address" fullWidth /> */}
-                                                {/* <TextField
-                                                            id="company_address"
-                                                            variant="contained"
 
-                                                            value={companyAddress}
-                                                            onChange={(event) => {
-                                                                setCompanyAddress(event.target.value)
-                                                            }}
-                                                            fullWidth /> */}
                                                 <TextField id="outlined-basic"
                                                     placeholder="Enter Company Address (eg.Haridwar, Uttarakhand, India)"
                                                     value={companyAddress}
@@ -1017,7 +938,7 @@ const PostJob = () => {
                                             {errors.extra_benefits && touched.extra_benefits && <Error text={errors.extra_benefits} />}
                                         </ThemeFInputDiv>
 
-                                        <ThemeFInputDiv>
+                                        {/* <ThemeFInputDiv>
                                             <ThemeLabel LableFor="timestamp_job_post_timing" LableText="Timestamp Job Posting Timing" />
                                             <Field
                                                 error={errors.timestamp_job_post_timing && touched.timestamp_job_post_timing}
@@ -1025,247 +946,8 @@ const PostJob = () => {
                                                 id="timestamp_job_post_timing"
                                                 placeholder="Enter Extra Benefits" type="text" name="timestamp_job_post_timing" fullWidth />
                                             {errors.timestamp_job_post_timing && touched.timestamp_job_post_timing && <Error text={errors.timestamp_job_post_timing} />}
-                                        </ThemeFInputDiv>
-
-                                        {/* <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="skills" LableText="Skills" />
-                                            <Box sx={{ width: "100%", margin: "10px 0px" }}>
-                                                <ReactTags
-                                                    tags={tags}
-                                                    // suggestions={suggestions}
-                                                    delimiters={delimiters}
-                                                    handleDelete={handleDelete}
-                                                    handleAddition={handleAddition}
-                                                    handleDrag={handleDrag}
-                                                    handleTagClick={handleTagClick}
-                                                    inputFieldPosition="bottom"
-                                                    autocomplete
-                                                />
-                                            </Box>
-
-                                            {errors.skills && touched.skills && <Error text={errors.skills} />}
-
                                         </ThemeFInputDiv> */}
 
-
-
-                                        {/* <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="skills" LableText="Skills" />
-                                            <Stack direction="row" spacing={1}>
-                                                <Chip className="Chips" label="kNika" onClick={handleClick} />
-                                                <Chip className="Chips" label="kreeti" variant="outlined" onClick={handleClick} />
-                                            </Stack>
-                                        </ThemeFInputDiv> */}
-
-                                        {/* <Box className="input-item">
-                                            <ThemeLabel LableFor="shift_timing" LableText="Shift Time" />
-                                            <Stack direction="column" gap={2} sx={{ margin: "10px 0px" }} className="shift_timing">
-
-                                                <Stack direction="row" gap={3}>
-                                                    <Box sx={{ width: "80px" }} >
-                                                        <ThemeLabel LableFor="working_time" LableText="Monday" />
-                                                    </Box>
-                                                    <TimePickerComponent value={monStartTime} setValue={setMonStartTime} />
-                                                    <TimePickerComponent value={monEndTime} setValue={setMonEndTime} />
-                                                    <Box><Checkbox onClick={addTime} /> Check All</Box>
-                                                </Stack>
-                                                <Stack direction="row" gap={3}>
-                                                    <Box sx={{ width: "80px" }} >
-                                                        <ThemeLabel LableFor="working_time" LableText="Tuesday" />
-                                                    </Box>
-                                                    <TimePickerComponent value={tueStartTime} setValue={setTueStartTime} />
-                                                    <TimePickerComponent value={tueEndTime} setValue={setTueEndTime} />
-                                                    <Checkbox onClick={() => {
-                                                        setTueStartTime(monStartTime)
-                                                        setTueEndTime(monEndTime)
-
-                                                    }} />
-                                                </Stack>
-                                                <Stack direction="row" gap={3}>
-                                                    <Box sx={{ width: "80px" }} >
-                                                        <ThemeLabel LableFor="working_time" LableText="Wednesday" />
-                                                    </Box>
-                                                    <TimePickerComponent value={wedStartTime} setValue={setWedStartTime} />
-                                                    <TimePickerComponent value={wedEndTime} setValue={setWedEndTime} />
-                                                    <Checkbox onClick={() => {
-                                                        setWedStartTime(monStartTime)
-                                                        setWedEndTime(monEndTime)
-
-                                                    }} />
-                                                </Stack>
-                                                <Stack direction="row" gap={3}>
-                                                    <Box sx={{ width: "80px" }} >
-                                                        <ThemeLabel LableFor="working_time" LableText="Thrusday" />
-                                                    </Box>
-                                                    <TimePickerComponent value={thruStartTime} setValue={setThruStartTime} />
-                                                    <TimePickerComponent value={thruEndTime} setValue={setThruEndTime} />
-                                                    <Checkbox onClick={() => {
-                                                        setThruStartTime(monStartTime)
-                                                        setThruEndTime(monEndTime)
-                                                    }} />
-                                                </Stack>
-                                                <Stack direction="row" gap={3}>
-                                                    <Box sx={{ width: "80px" }} >
-                                                        <ThemeLabel LableFor="working_time" LableText="Friday" />
-                                                    </Box>
-                                                    <TimePickerComponent value={friStartTime} setValue={setFriStartTime} />
-                                                    <TimePickerComponent value={friEndTime} setValue={setFriEndTime} />
-                                                    <Checkbox onClick={() => {
-                                                        setFriStartTime(monStartTime)
-                                                        setFriEndTime(monEndTime)
-
-                                                    }} />
-                                                </Stack>
-                                                <Stack direction="row" gap={3}>
-                                                    <Box sx={{ width: "80px" }} >
-                                                        <ThemeLabel LableFor="working_time" LableText="Saturday" />
-                                                    </Box>
-                                                    <TimePickerComponent value={satStartTime} setValue={setSatStartTime} />
-                                                    <TimePickerComponent value={satEndTime} setValue={setSatEndTime} />
-                                                    <Checkbox onClick={() => {
-                                                        setSatStartTime(monStartTime)
-                                                        setSatEndTime(monEndTime)
-                                                    }} />
-                                                </Stack>
-                                            </Stack>
-                                        </Box> */}
-
-                                        {/* <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="role" LableText="Role" />
-                                            <SelectField
-                                                labelId="demo-simple-select-label"
-                                                name="role"
-                                                value={role}
-                                                label="role"
-                                                onChange={(event) => {
-                                                    setRole(event.target.value);
-                                                    setFieldValue("role", event.target.value);
-                                                }}
-                                                sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                                disableUnderline
-                                            >
-                                                <MenuItem value=" ">Select Role</MenuItem>
-                                                {Role.map((item) =>
-                                                    <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                                                )}
-                                            </SelectField>
-                                            {errors.role && touched.role && <Error text={errors.role} />}
-                                        </ThemeFInputDiv>
-
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="experience" LableText="Experience" />
-                                            <SelectField
-                                                labelId="demo-simple-select-label"
-                                                name="experience"
-                                                value={experience}
-                                                label="role"
-                                                onChange={(event) => {
-                                                    setExperience(event.target.value);
-                                                    setFieldValue("experience", event.target.value);
-                                                }}
-                                                sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                                disableUnderline
-                                            >
-                                                <MenuItem value=" ">Select Experience</MenuItem>
-                                                {Experience.map((item) =>
-                                                    <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                                                )}
-                                            </SelectField>
-                                            {errors.experience && touched.experience && <Error text={errors.experience} />}
-                                        </ThemeFInputDiv>
-
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="opening" LableText="Opening" />
-                                            <Field
-                                                error={errors.opening && touched.opening}
-                                                as={TextField}
-                                                id="opening"
-                                                placeholder="Enter Opening" type="text" name="opening" fullWidth />
-                                            {errors.opening && touched.opening && <Error text={errors.opening} />}
-                                        </ThemeFInputDiv>
-
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="salary" LableText="Salary" />
-                                            <Field
-                                                error={errors.opening && touched.opening}
-                                                as={TextField}
-                                                id="salary"
-                                                placeholder="Enter Salary" type="text" name="salary" fullWidth />
-                                            {errors.salary && touched.salary && <Error text={errors.salary} />}
-                                        </ThemeFInputDiv>
-
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="skills" LableText="Skills" />
-                                            <Field
-                                                error={errors.skills && touched.skills}
-                                                component={Select}
-                                                name="skills"
-                                                options={Skills}
-                                                components={animatedComponents}
-                                                onChange={(options) => {
-                                                    let optionvalue = [];
-                                                    setSelectedOptions(options);
-                                                    options.map((item) => {
-                                                        optionvalue.push(item.value);
-                                                    })
-                                                    setFieldValue("skills", optionvalue.join(","));
-                                                }}
-                                                value={selectedOptions}
-                                                isMulti
-                                                id_data={(errors.skills && touched.skills) ? "skills-error" : "skills"}
-                                                placeholder="Select Skills" data={Experience} fullWidth />
-
-                                            {errors.skills && touched.skills && <Error text={errors.skills} />}
-                                        </ThemeFInputDiv>
-
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="long_description" LableText="Long Description" />
-                                            <DefaultEditor
-                                                style={{
-                                                    minHeight: "300px",
-                                                    margin: "20px 0px !important",
-                                                    display: "block"
-                                                }}
-                                                name="long_description"
-                                                value={values['long_description']} onChange={(e) => { setFieldValue("long_description", e.target.value) }} />
-                                            {errors.long_description && touched.long_description && <Error text={errors.long_description} />}
-                                        </ThemeFInputDiv>
-
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="short_description" LableText="Short Description" />
-                                            <Field
-                                                variant="standard"
-                                                error={errors.short_description && touched.short_description}
-                                                as={TextField}
-                                                id="short_description"
-                                                placeholder="Enter Short Description" type="textarea" name="short_description" fullWidth />
-                                            {errors.short_description && touched.short_description && <Error text={errors.short_description} />}
-
-
-                                        </ThemeFInputDiv>
-
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="city" LableText="City" />
-                                            <SelectField
-                                                labelId="demo-simple-select-label"
-                                                name="city"
-                                                value={city}
-                                                label="Age"
-                                                onChange={(event) => {
-                                                    setCity(event.target.value);
-                                                    setFieldValue("city", event.target.value);
-                                                }}
-                                                sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                                disableUnderline
-                                            >
-                                                <MenuItem value=" ">Select City</MenuItem>
-                                                {cities.map((item) =>
-                                                    <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                                                )}
-                                            </SelectField>
-
-                                            {errors.city && touched.city && <Error text={errors.city} />}
-                                        </ThemeFInputDiv> */}
                                     </ThemeFInputDiv>
 
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
@@ -1434,7 +1116,7 @@ const PostJob = () => {
 
                                 initialValues={defaultValue}
                                 validationSchema={jobType == "regular" ? postJobValidationSchema : postPartTimeJobValidationSchema}
-                                onSubmit={handleSubmit}
+                            // onSubmit={handleSubmit}
                             >
                                 {({ values, errors, touched, setFieldValue }) => (
                                     <Form className="PostJobForm1" >
@@ -1677,595 +1359,6 @@ const PostJob = () => {
                 </Stack>
             </Box>
         }
-        {/* <Box sx={{ paddingBottom: "30px" }}>
-            <Box sx={{
-                borderRadius: "20px",
-                padding: "27px 40px 20px 35px",
-                background: "#FFFFFF",
-                width: "50%",
-                margin: "0px auto",
-                borderTop: "4px solid #2B1E44",
-            }}>
-                <Typography component="div" sx={{ fontWeight: "600" }}>
-                    Share some basic details about the role
-                </Typography>
-
-                <Typography component="div" sx={{ marginBottom: "20px" }}>
-                    This helps us find you the most relevant candidates
-                </Typography>
-                <Formik
-
-                    initialValues={defaultValue}
-                    validationSchema={jobType == "regular" ? postJobValidationSchema : postPartTimeJobValidationSchema}
-                    onSubmit={handleSubmit}
-                >
-                    {({ values, errors, touched, setFieldValue }) => (
-                        <Form className="PostJobForm" >
-
-                            <Stack direction="column" gap={2} >
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="company_name" LableText="Company Name" />
-                                    <Field
-                                        variant="standard"
-                                        error={errors.company_name && touched.company_name}
-                                        as={TextField}
-                                        id="company_name"
-                                        placeholder="Enter Company Name" type="text" name="company_name" fullWidth />
-                                    {errors.company_name && touched.company_name && <Error text={errors.company_name} />}
-                                </Box>
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="job_title" LableText="Job Title" />
-                                    <Field
-                                        variant="standard"
-                                        error={errors.job_title && touched.job_title}
-                                        as={TextField}
-                                        id="job_title"
-                                        placeholder="Enter Job Title" type="text" name="job_title" fullWidth />
-                                    {errors.job_title && touched.job_title && <Error text={errors.job_title} />}
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="job_type" LableText="Association Type" />
-                                    <SelectField
-                                        variant="standard"
-                                        labelId="demo-simple-select-label"
-                                        name="association_type"
-                                        value={associationType}
-                                        label="role"
-                                        onChange={(event) => {
-                                            setAssociationType(event.target.value);
-                                            setFieldValue("association_type", event.target.value);
-                                        }}
-                                        sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                        disableUnderline
-                                    >
-                                        <MenuItem value=" ">Select Association Type</MenuItem>
-                                        {AssociationType.map((item) =>
-                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                        )}
-                                    </SelectField>
-
-                                    {errors.association_type && touched.association_type && <Error text={errors.association_type} />}
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="job_type" LableText="Job Type" />
-                                    <SelectField
-                                        variant="standard"
-                                        labelId="demo-simple-select-label"
-                                        name="job_type"
-                                        value={jobType}
-                                        label="role"
-                                        onChange={(event) => {
-                                            setJobType(event.target.value);
-                                            setFieldValue("role", event.target.value);
-                                        }}
-                                        sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                        disableUnderline
-                                    >
-                                        <MenuItem value=" ">Select Job Type</MenuItem>
-                                        {JobType.map((item) =>
-                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                        )}
-                                    </SelectField>
-
-                                    {errors.job_type && touched.job_type && <Error text={errors.job_type} />}
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="industry_type" LableText="Industry Type" />
-                                    <SelectField
-                                        variant="standard"
-                                        labelId="demo-simple-select-label"
-                                        name="industry_type"
-                                        value={jobType}
-                                        label="role"
-                                        onChange={(event) => {
-                                            setIndustryType(event.target.value);
-                                            setFieldValue("industry_type", event.target.value);
-                                        }}
-                                        sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                        disableUnderline
-                                    >
-                                        <MenuItem value=" ">Select Industry Type</MenuItem>
-                                        {JobType.map((item) =>
-                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                        )}
-                                    </SelectField>
-
-                                    {errors.industry_type && touched.industry_type && <Error text={errors.industry_type} />}
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="skills" LableText="Skills" />
-                                    <Box sx={{ width: "100%", margin: "10px 0px" }}>
-                                        <ReactTags
-                                            tags={tags}
-                                            // suggestions={suggestions}
-                                            delimiters={delimiters}
-                                            handleDelete={handleDelete}
-                                            handleAddition={handleAddition}
-                                            handleDrag={handleDrag}
-                                            handleTagClick={handleTagClick}
-                                            inputFieldPosition="bottom"
-                                            autocomplete
-                                        />
-                                    </Box>
-
-                                    {errors.skills && touched.skills && <Error text={errors.skills} />}
-
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="responsibilites" LableText="Job Responsibilites" />
-                                    <Box sx={{ width: "100%", margin: "10px 0px" }}>
-                                        <TextField
-                                            error={errors.responsibilites && touched.responsibilites}
-                                            sx={{ width: "100%" }}
-                                            variant="standard"
-                                            placeholder="Job Responsibilites"
-                                            multiline
-                                            rows={4}
-                                            maxRows={4}
-                                            onChange={(event) => setFieldValue("responsibilites", event.target.value)}
-                                        />
-                                    </Box>
-
-                                    {errors.responsibilites && touched.responsibilites && <Error text={errors.responsibilites} />}
-
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="job_description" LableText="Job Description" />
-                                    <DefaultEditor
-                                        style={{
-                                            minHeight: "300px",
-                                            margin: "20px 0px !important",
-                                            display: "block"
-                                        }}
-                                        name="job_description"
-                                        value={values['job_description']} onChange={(e) => { setFieldValue("job_description", e.target.value) }} />
-                                    {errors.job_description && touched.job_description && <Error text={errors.job_description} />}
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="skills" LableText="Skills" />
-                                    <Stack direction="row" spacing={1}>
-                                        <Chip className="Chips" label="kNika" onClick={handleClick} />
-                                        <Chip className="Chips" label="kreeti" variant="outlined" onClick={handleClick} />
-                                    </Stack>
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="shift_timing" LableText="Shift Time" />
-                                    <Stack direction="column" gap={2} sx={{ margin: "10px 0px" }} className="shift_timing">
-
-                                        <Stack direction="row" gap={3}>
-                                            <Box sx={{ width: "80px" }} >
-                                                <ThemeLabel LableFor="working_time" LableText="Monday" />
-                                            </Box>
-                                            <TimePickerComponent value={monStartTime} setValue={setMonStartTime} />
-                                            <TimePickerComponent value={monEndTime} setValue={setMonEndTime} />
-                                            <Box><Checkbox onClick={addTime} /> Check All</Box>
-                                        </Stack>
-                                        <Stack direction="row" gap={3}>
-                                            <Box sx={{ width: "80px" }} >
-                                                <ThemeLabel LableFor="working_time" LableText="Tuesday" />
-                                            </Box>
-                                            <TimePickerComponent value={tueStartTime} setValue={setTueStartTime} />
-                                            <TimePickerComponent value={tueEndTime} setValue={setTueEndTime} />
-                                            <Checkbox onClick={() => {
-                                                setTueStartTime(monStartTime)
-                                                setTueEndTime(monEndTime)
-
-                                            }} />
-                                        </Stack>
-                                        <Stack direction="row" gap={3}>
-                                            <Box sx={{ width: "80px" }} >
-                                                <ThemeLabel LableFor="working_time" LableText="Wednesday" />
-                                            </Box>
-                                            <TimePickerComponent value={wedStartTime} setValue={setWedStartTime} />
-                                            <TimePickerComponent value={wedEndTime} setValue={setWedEndTime} />
-                                            <Checkbox onClick={() => {
-                                                setWedStartTime(monStartTime)
-                                                setWedEndTime(monEndTime)
-
-                                            }} />
-                                        </Stack>
-                                        <Stack direction="row" gap={3}>
-                                            <Box sx={{ width: "80px" }} >
-                                                <ThemeLabel LableFor="working_time" LableText="Thrusday" />
-                                            </Box>
-                                            <TimePickerComponent value={thruStartTime} setValue={setThruStartTime} />
-                                            <TimePickerComponent value={thruEndTime} setValue={setThruEndTime} />
-                                            <Checkbox onClick={() => {
-                                                setThruStartTime(monStartTime)
-                                                setThruEndTime(monEndTime)
-                                            }} />
-                                        </Stack>
-                                        <Stack direction="row" gap={3}>
-                                            <Box sx={{ width: "80px" }} >
-                                                <ThemeLabel LableFor="working_time" LableText="Friday" />
-                                            </Box>
-                                            <TimePickerComponent value={friStartTime} setValue={setFriStartTime} />
-                                            <TimePickerComponent value={friEndTime} setValue={setFriEndTime} />
-                                            <Checkbox onClick={() => {
-                                                setFriStartTime(monStartTime)
-                                                setFriEndTime(monEndTime)
-
-                                            }} />
-                                        </Stack>
-                                        <Stack direction="row" gap={3}>
-                                            <Box sx={{ width: "80px" }} >
-                                                <ThemeLabel LableFor="working_time" LableText="Saturday" />
-                                            </Box>
-                                            <TimePickerComponent value={satStartTime} setValue={setSatStartTime} />
-                                            <TimePickerComponent value={satEndTime} setValue={setSatEndTime} />
-                                            <Checkbox onClick={() => {
-                                                setSatStartTime(monStartTime)
-                                                setSatEndTime(monEndTime)
-                                            }} />
-                                        </Stack>
-                                    </Stack>
-                                </Box>
-
-
-
-
-
-
-                                {
-                                    jobType == "part-time" && <>
-
-                                        <Box className="input-item">
-                                            <ThemeLabel LableFor="job_working_type" LableText="Job Working Type" />
-                                            <SelectField
-                                                variant="standard"
-                                                labelId="demo-simple-select-label"
-                                                name="job_working_type"
-                                                value={jobWorkingType}
-                                                label="role"
-                                                onChange={(event) => {
-                                                    setJobWorkingType(event.target.value);
-                                                    setFieldValue("job_working_type", event.target.value);
-                                                }}
-                                                sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                                disableUnderline
-                                            >
-                                                <MenuItem value=" ">Select Job Type</MenuItem>
-                                                {JobWorkingType.map((item) =>
-                                                    <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                                )}
-                                            </SelectField>
-
-                                            {errors.job_working_type && touched.job_working_type && <Error text={errors.job_working_type} />}
-                                        </Box>
-
-                                        <Box className="input-item">
-                                            <ThemeLabel LableFor="salary_type" LableText="Salary Type" />
-                                            <SelectField
-                                                variant="standard"
-                                                labelId="demo-simple-select-label"
-                                                name="salary_type"
-                                                value={paymentType}
-                                                onChange={(event) => {
-                                                    setPaymentType(event.target.value);
-                                                    setFieldValue("salary_type", event.target.value);
-                                                }}
-                                                sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                                disableUnderline
-                                            >
-                                                <MenuItem value=" ">Select Salary Type</MenuItem>
-                                                {PaymentType.map((item) =>
-                                                    <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                                )}
-                                            </SelectField>
-
-                                            {errors.salary_type && touched.salary_type && <Error text={errors.salary_type} />}
-                                        </Box>
-
-                                        <ThemeLabel LableFor="working_time" LableText="Working Timing" />
-
-                                        <Stack direction="column" gap={2} sx={{ margin: "10px 0px" }} className="">
-                                            <Stack direction="row" gap={3}>
-                                                <Box sx={{ width: "80px" }}>
-                                                    <ThemeLabel LableFor="working_time" LableText="Sunday" />
-                                                </Box>
-                                                <TimePickerComponent value={sunStartTime} setValue={setSunStartTime} />
-                                                <TimePickerComponent value={sunEndTime} setValue={setSunEndTime} />
-                                                <Checkbox onClick={addTime} />
-
-                                            </Stack>
-                                            <Stack direction="row" gap={3}>
-                                                <Box sx={{ width: "80px" }} >
-                                                    <ThemeLabel LableFor="working_time" LableText="Monday" />
-                                                </Box>
-                                                <TimePickerComponent value={monStartTime} setValue={setMonStartTime} />
-                                                <TimePickerComponent value={monEndTime} setValue={setMonEndTime} />
-                                            </Stack>
-                                            <Stack direction="row" gap={3}>
-                                                <Box sx={{ width: "80px" }} >
-                                                    <ThemeLabel LableFor="working_time" LableText="Tuesday" />
-                                                </Box>
-                                                <TimePickerComponent value={tueStartTime} setValue={setTueStartTime} />
-                                                <TimePickerComponent value={tueEndTime} setValue={setTueEndTime} />
-                                            </Stack>
-                                            <Stack direction="row" gap={3}>
-                                                <Box sx={{ width: "80px" }} >
-                                                    <ThemeLabel LableFor="working_time" LableText="Wednesday" />
-                                                </Box>
-                                                <TimePickerComponent value={wedStartTime} setValue={setWedStartTime} />
-                                                <TimePickerComponent value={wedEndTime} setValue={setWedEndTime} />
-                                            </Stack>
-                                            <Stack direction="row" gap={3}>
-                                                <Box sx={{ width: "80px" }} >
-                                                    <ThemeLabel LableFor="working_time" LableText="Thrusday" />
-                                                </Box>
-                                                <TimePickerComponent value={thruStartTime} setValue={setThruStartTime} />
-                                                <TimePickerComponent value={thruEndTime} setValue={setThruEndTime} />
-                                            </Stack>
-                                            <Stack direction="row" gap={3}>
-                                                <Box sx={{ width: "80px" }} >
-                                                    <ThemeLabel LableFor="working_time" LableText="Friday" />
-                                                </Box>
-                                                <TimePickerComponent value={friStartTime} setValue={setFriStartTime} />
-                                                <TimePickerComponent value={friEndTime} setValue={setFriEndTime} />
-                                            </Stack>
-                                            <Stack direction="row" gap={3}>
-                                                <Box sx={{ width: "80px" }} >
-                                                    <ThemeLabel LableFor="working_time" LableText="Saturday" />
-                                                </Box>
-                                                <TimePickerComponent value={satStartTime} setValue={setSatStartTime} />
-                                                <TimePickerComponent value={satEndTime} setValue={setSatEndTime} />
-                                            </Stack>
-                                        </Stack>
-
-
-
-                                        <Box className="input-item">
-                                            <ThemeLabel LableFor="extra_benefits" LableText="Extra Benefits" />
-                                            <Stack direction="row" gap={1}>
-                                                <Field
-                                                    variant="standard"
-                                                    error={errors.extra_benefits && touched.extra_benefits}
-                                                    as={FormControlLabel}
-                                                    control={<Checkbox />}
-                                                    id="extra_benefits"
-                                                    label="Incentives"
-                                                    type="text" name="extra_benefits"
-                                                    fullWidth
-                                                    onChange={(event) => {
-                                                        handleExtraBenefit("incentive")
-                                                    }
-                                                    } />
-                                                <Field
-                                                    variant="standard"
-                                                    error={errors.extra_benefits && touched.extra_benefits}
-                                                    as={FormControlLabel}
-                                                    control={<Checkbox />}
-                                                    id="extra_benefits"
-                                                    label="Bonus"
-                                                    type="text" name="extra_benefits"
-                                                    fullWidth
-                                                    onChange={(event) => {
-                                                        handleExtraBenefit("bonus")
-                                                    }} />
-                                                <Field
-                                                    variant="standard"
-                                                    error={errors.extra_benefits && touched.extra_benefits}
-                                                    as={FormControlLabel}
-                                                    control={<Checkbox />}
-                                                    id="extra_benefits"
-                                                    label="Overtime"
-                                                    type="text" name="extra_benefits"
-                                                    fullWidth
-                                                    onChange={(event) => {
-                                                        handleExtraBenefit("overtime")
-
-                                                    }} />
-                                            </Stack>
-
-                                            {errors.extra_benefits && touched.extra_benefits && <Error text={errors.extra_benefits} />}
-                                        </Box>
-
-                                        <Box className="input-item">
-                                            <ThemeLabel LableFor="advantage" LableText="Advantage" />
-                                            <Stack>
-                                                <Field
-                                                    variant="standard"
-                                                    error={errors.advantage && touched.advantage}
-                                                    as={FormControlLabel}
-                                                    control={<Checkbox />}
-                                                    id="advantage"
-                                                    label="Health Insurances"
-                                                    type="text" name="advantage"
-                                                    fullWidth
-                                                    onChange={(event) => {
-                                                        setFieldValue("advantage", "health_insurance")
-                                                    }
-                                                    } />
-
-                                            </Stack>
-                                            {errors.advantage && touched.advantage && <Error text={errors.advantage} />}
-                                        </Box>
-                                    </>
-                                }
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="role" LableText="Role" />
-                                    <SelectField
-                                        variant="standard"
-                                        labelId="demo-simple-select-label"
-                                        name="role"
-                                        value={role}
-                                        label="role"
-                                        onChange={(event) => {
-                                            setRole(event.target.value);
-                                            setFieldValue("role", event.target.value);
-                                        }}
-                                        sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                        disableUnderline
-                                    >
-                                        <MenuItem value=" ">Select Role</MenuItem>
-                                        {Role.map((item) =>
-                                            <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                                        )}
-                                    </SelectField>
-                                    {errors.role && touched.role && <Error text={errors.role} />}
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="experience" LableText="Experience" />
-                                    <SelectField
-                                        variant="standard"
-                                        labelId="demo-simple-select-label"
-                                        name="experience"
-                                        value={experience}
-                                        label="role"
-                                        onChange={(event) => {
-                                            setExperience(event.target.value);
-                                            setFieldValue("experience", event.target.value);
-                                        }}
-                                        sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                        disableUnderline
-                                    >
-                                        <MenuItem value=" ">Select Experience</MenuItem>
-                                        {Experience.map((item) =>
-                                            <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                                        )}
-                                    </SelectField>
-                                    {errors.experience && touched.experience && <Error text={errors.experience} />}
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="opening" LableText="Opening" />
-                                    <Field
-                                        variant="standard"
-                                        error={errors.opening && touched.opening}
-                                        as={TextField}
-                                        id="opening"
-                                        placeholder="Enter Opening" type="text" name="opening" fullWidth />
-                                    {errors.opening && touched.opening && <Error text={errors.opening} />}
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="salary" LableText="Salary" />
-                                    <Field
-                                        variant="standard"
-                                        error={errors.opening && touched.opening}
-                                        as={TextField}
-                                        id="salary"
-                                        placeholder="Enter Salary" type="text" name="salary" fullWidth />
-                                    {errors.salary && touched.salary && <Error text={errors.salary} />}
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="skills" LableText="Skills" />
-                                    <Field
-                                        variant="standard"
-                                        error={errors.skills && touched.skills}
-                                        component={Select}
-                                        name="skills"
-                                        options={Skills}
-                                        components={animatedComponents}
-                                        onChange={(options) => {
-                                            let optionvalue = [];
-                                            setSelectedOptions(options);
-                                            options.map((item) => {
-                                                optionvalue.push(item.value);
-                                            })
-                                            setFieldValue("skills", optionvalue.join(","));
-                                        }}
-                                        value={selectedOptions}
-                                        isMulti
-                                        id_data={(errors.skills && touched.skills) ? "skills-error" : "skills"}
-                                        placeholder="Select Skills" data={Experience} fullWidth />
-
-                                    {errors.skills && touched.skills && <Error text={errors.skills} />}
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="long_description" LableText="Long Description" />
-                                    <DefaultEditor
-                                        style={{
-                                            minHeight: "300px",
-                                            margin: "20px 0px !important",
-                                            display: "block"
-                                        }}
-                                        name="long_description"
-                                        value={values['long_description']} onChange={(e) => { setFieldValue("long_description", e.target.value) }} />
-                                    {errors.long_description && touched.long_description && <Error text={errors.long_description} />}
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="short_description" LableText="Short Description" />
-                                    <Field
-                                        variant="standard"
-                                        error={errors.short_description && touched.short_description}
-                                        as={TextField}
-                                        id="short_description"
-                                        placeholder="Enter Short Description" type="textarea" name="short_description" fullWidth />
-                                    {errors.short_description && touched.short_description && <Error text={errors.short_description} />}
-
-
-                                </Box>
-
-                                <Box className="input-item">
-                                    <ThemeLabel LableFor="city" LableText="City" />
-                                    <SelectField
-                                        variant="standard"
-                                        labelId="demo-simple-select-label"
-                                        name="city"
-                                        value={city}
-                                        label="Age"
-                                        onChange={(event) => {
-                                            setCity(event.target.value);
-                                            setFieldValue("city", event.target.value);
-                                        }}
-                                        sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                        disableUnderline
-                                    >
-                                        <MenuItem value=" ">Select City</MenuItem>
-                                        {cities.map((item) =>
-                                            <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                                        )}
-                                    </SelectField>
-
-                                    {errors.city && touched.city && <Error text={errors.city} />}
-                                </Box>
-                            </Stack>
-
-                            <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                <ThemeButtontype1 variant="contained" type="submit">Save</ThemeButtontype1>
-                            </Box>
-
-                        </Form>
-                    )}
-                </Formik>
-
-            </Box>
-        </Box> */}
-
 
 
     </>)

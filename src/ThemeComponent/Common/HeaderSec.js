@@ -32,8 +32,8 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                 <Button type="button" variant="filled"
                     onClick={
                         () => {
-                            if (buttonText === 'Sign Up')
-                                window.location.href = window.location.origin + "/employer-register"
+                            if (buttonText === 'Employer SignIn')
+                                window.location.href = window.location.origin + "/employer-login"
                         }
                     }
                     sx={{
@@ -53,12 +53,12 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                     {buttonText ? buttonText : "About Us"}
                 </Button>
                 {
-                    buttonText === "Sign Up" && <>
+                    buttonText === "Employer SignIn" && <>
                         <Button type="button" variant="filled"
                             onClick={
                                 () => {
-                                    if (buttonText === 'Sign Up')
-                                        window.location.href = window.location.origin + "/candidate-register"
+                                    if (buttonText === 'Employer SignIn')
+                                        window.location.href = window.location.origin + "/candidate-login"
                                 }
                             }
                             sx={{
@@ -75,7 +75,7 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                                     background: "#FC9A7E"
                                 }
                             }}>
-                            Candidate Sign Up
+                            {localStorage.getItem("isLoggedIn") == 'true' ? "Dashboard" : "Candidate SignIn"}
                         </Button></>
                 }
 

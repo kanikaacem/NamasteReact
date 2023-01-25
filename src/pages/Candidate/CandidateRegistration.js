@@ -1,5 +1,5 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { saveCandidateUserNameAndPasswordURL, CandidateLoginURL } from "../../utils/ApiUrls";
+import { saveCandidateUserNameAndPasswordURL, CandidateLoginURL, EmailExist } from "../../utils/ApiUrls";
 
 import { Box, Stack, Typography, TextField } from "@mui/material";
 import { Formik, Field, Form } from "formik";
@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
 const CandidateRegistration = () => {
 
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
-    const [isEmailVerified, setIsEmailVerified] = useState(false);
+    const [showLoginButton, setShowLoginButton] = useState(false);
 
     const CandidateRegistration = useSelector(state => state.CandidateRegistration);
 
@@ -39,48 +39,52 @@ const CandidateRegistration = () => {
             password: values.password
         }
 
-        let response = await postRequest(saveCandidateUserNameAndPasswordURL, CandidateLoginForm);
-        console.log(response);
-
-        if (response.status == '1') {
-            // console.log(response);
-            // dispatch({ type: 'USER_REGISTRATION', payload: response });
-            localStorage.setItem("useremail", values.email_id);
-            localStorage.setItem("password", values.password)
-            localStorage.setItem('auth_token', response.token);
-            localStorage.setItem('user', JSON.stringify(response.data));
-            setShowEmailVerifiedMessage(true);
+        let response = await postRequest(EmailExist, {
+            email: values.email_id
+        });
+        if (response.status == '0') {
+            setShowLoginButton(true);
+            setFieldError("email_id", response.data);
         }
         else {
-            setFieldError("email_id", "Email Id Already Present.");
-        }
-    }
-
-    useEffect(() => {
-        let userData = localStorage.getItem("auth_token");
-        const getUserData = async () => {
-            let response = await postRequest(CandidateLoginURL, {
-                email: localStorage.getItem("useremail"),
-                password: localStorage.getItem("password")
-            })
+            response = await postRequest(saveCandidateUserNameAndPasswordURL, CandidateLoginForm);
             if (response.status == '1') {
-                if (response.data.isemailverified) {
-                    dispatch({ type: 'USER_REGISTRATION', payload: response });
-                }
-                else {
-                    setIsEmailVerified(true);
-                }
+                localStorage.setItem("useremail", values.email_id);
+                localStorage.setItem("password", values.password)
+                localStorage.setItem('auth_token', response.token);
+                localStorage.setItem('user', JSON.stringify(response.data));
+                document.getElementById("continue").disabled = "true"
+                setShowEmailVerifiedMessage(true);
             }
         }
 
-        userData != " " && getUserData();
+    }
 
-    })
+    // useEffect(() => {
+    //     let userData = localStorage.getItem("auth_token");
+    //     const getUserData = async () => {
+    //         let response = await postRequest(CandidateLoginURL, {
+    //             email: localStorage.getItem("useremail"),
+    //             password: localStorage.getItem("password")
+    //         })
+    //         if (response.status == '1') {
+    //             if (response.data.isemailverified) {
+    //                 dispatch({ type: 'USER_REGISTRATION', payload: response });
+    //             }
+    //             else {
+    //                 setIsEmailVerified(true);
+    //             }
+    //         }
+    //     }
+
+    //     userData != " " && getUserData();
+
+    // })
     return (<>
-        {CandidateRegistration == true && <Navigate to="/profile/0"></Navigate>}
+        {/* {CandidateRegistration == true && <Navigate to="/profile/0"></Navigate>} */}
 
         <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)}
-            message="Email Verification Link is send . Please verify the Email before going further "
+            message="Email Verification Link is send . "
             messageType="success" />
 
         <Box className="CandidateLoginPage"
@@ -171,7 +175,31 @@ const CandidateRegistration = () => {
                                                 as={TextField}
                                                 id="email_id"
                                                 placeholder="Enter Email ID/ Username" type="text" name="email_id" fullWidth />
-                                            {errors.email_id && touched.email_id && <Error text={errors.email_id} />}
+                                            {errors.email_id && touched.email_id && <Box sx={{
+                                                display: "flex",
+                                                flexDirection: "row",
+                                                alignItems: "center",
+                                                gap: "20px"
+                                            }}>
+                                                <Error text={errors.email_id} />
+                                                {showLoginButton &&
+                                                    <ThemeButtonType2
+
+                                                        onClick={() => {
+                                                            window.location.href = window.location.origin + "/candidate-login";
+                                                        }
+                                                        } id="login" variant="contained" type="button" sx={{
+                                                            fontFamily: "Work Sans, sans-serif",
+                                                            fontWeight: "600",
+                                                            width: "fit-content",
+                                                            padding: "5px",
+                                                            fontSize: "16px"
+                                                        }}>Login</ThemeButtonType2>
+
+                                                }
+                                            </Box>
+                                            }
+
 
                                         </ThemeFInputDiv>
 
@@ -201,10 +229,15 @@ const CandidateRegistration = () => {
                                     </ThemeFInputDiv>
 
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                        {isEmailVerified &&
-                                            <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
-                                        }
-                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue</ThemeButtonType2>
+                                        {/* {showLoginButton &&
+                                            <ThemeButtonType2
+                                                onClick={() => {
+                                                    window.location.href = window.location.origin + "/candidate-login";
+                                                }
+                                                } id="login" variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Login</ThemeButtonType2>
+
+                                        } */}
+                                        <ThemeButtonType2 id="continue" variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue</ThemeButtonType2>
                                     </Stack>
 
                                 </Form>
@@ -217,7 +250,7 @@ const CandidateRegistration = () => {
                 </Stack>
             </Stack>
 
-        </Box>
+        </Box >
 
 
     </>)

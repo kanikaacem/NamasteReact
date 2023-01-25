@@ -33,7 +33,7 @@ const CandidateLogin = () => {
     }
 
     const handleSubmit = async (values, { setFieldError }) => {
-
+        // document.getElementById("login").disabled = "true";
         let CandidateLoginForm = new FormData();
         CandidateLoginForm = {
             email: values.email_address,
@@ -43,15 +43,20 @@ const CandidateLogin = () => {
         localStorage.setItem("password", values.password);
         let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
         if (response.status == '1') {
+            localStorage.setItem("auth_token", response.token);
             if (response.data.isemailverified)
                 dispatch({ type: 'LOGIN', payload: response });
+            // else if (response.data.isemailverified && response.data.profilecompleted < 50)
+            //     window.location.href = window.location.origin + "/profile/0";
             else {
                 setShowEmailVerifiedMessage(true);
                 setIsEmailVerified(true);
+                document.getElementById("log_in").disabled = "true";
+
             }
         }
         if (response.status == '0')
-            setFieldError("password", "Invalid Credentials");
+            setFieldError("password", response.data);
     }
     useEffect(() => {
         let userData = localStorage.getItem("auth_token");
@@ -150,43 +155,7 @@ const CandidateLogin = () => {
                         <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700", marginBottom: "30px" }}>
                             Sign In for JobsYahan
                         </Typography>
-                        {/* <Formik
 
-                        // initialValues={defaultValue}
-                        // validationSchema={employerLoginValidationSchema}
-                        // onSubmit={handleSubmit}
-                        >
-                            {({ errors, touched }) => (
-                                <Form className="EmployerLoginForm">
-                                    <ThemeFInputDiv >
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="email_address" LableText="Email Address * " />
-                                            <Field
-                                                error={errors.email_address && touched.email_address}
-                                                as={TextField}
-                                                id="email_address"
-                                                placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
-                                            {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
-
-                                        </ThemeFInputDiv>
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="password" LableText="Password *" />
-                                            <Field
-                                                error={errors.password && touched.password}
-                                                id="password"
-                                                as={TextField}
-                                                placeholder="Enter Password" type="password" name="password" fullWidth />
-                                            {errors.password && touched.password && <Error text={errors.password} />}
-                                        </ThemeFInputDiv>
-                                    </ThemeFInputDiv>
-                                    <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
-                                        <ThemeButtonType3 variant="outlined" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Sign up</ThemeButtonType3>
-
-                                    </Stack>
-                                </Form>
-                            )}
-                        </Formik> */}
                         <Formik
                             initialValues={defaultValue}
                             validationSchema={candidateLoginValidationSchema}
@@ -222,9 +191,9 @@ const CandidateLogin = () => {
 
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
                                         {isEmailVerified &&
-                                            <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
+                                            <ThemeButtonType2 variant="contained" id="resend_link" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
                                         }
-                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
+                                        <ThemeButtonType2 variant="contained" type="submit" id="log_in" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
                                         <ThemeButtonType3 variant="outlined"
                                             type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
                                             onClick={() => {

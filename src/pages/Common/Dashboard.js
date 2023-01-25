@@ -172,7 +172,7 @@ const Dashboard = () => {
                     </Stack></>)
                 }
 
-                {user && user.data.type == "candidate" && (<>
+                {user && user.data && user.data.type == "candidate" && (<>
 
                     <Stack direction="column"  >
 

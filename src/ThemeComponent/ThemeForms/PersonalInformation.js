@@ -78,6 +78,7 @@ const PersonalInformation = ({ setActiveStep }) => {
 
 
     const handleSubmit = async (values) => {
+        document.getElementById("continue").disabled = "true";
         let formData = new FormData();
         formData = {
             current_title: values.current_title,
@@ -100,7 +101,6 @@ const PersonalInformation = ({ setActiveStep }) => {
         }
 
         let response = await postRequest(SaveCandidatePersonalInformation, formData);
-        console.log(response);
         if (response.status == 1) {
             localStorage.setItem("user", JSON.stringify(response.data));
             window.location.href = window.location.origin + '/profile/1';
@@ -759,7 +759,7 @@ const PersonalInformation = ({ setActiveStep }) => {
 
                                     </ThemeFInputDiv>
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue and Next</ThemeButtonType2>
+                                        <ThemeButtonType2 variant="contained" id="continue" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue and Next</ThemeButtonType2>
 
                                     </Stack>
                                 </Form>)}

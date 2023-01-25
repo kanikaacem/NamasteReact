@@ -15,6 +15,7 @@ import ButtonType3 from "../Common/ButtonType3";
 
 import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv, NextButton } from "../../utils/Theme";
 
+import CloseIcon from '@mui/icons-material/Close';
 import { useState, useRef, useEffect } from "react";
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,6 +48,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     /* Form State*/
     const [hrName, setHRName] = useState("");
     const [companyName, setCompanyName] = useState("");
+    const [companyPanNumber, setCompanyPanNumber] = useState("");
 
     const [companyEmail, setCompanyEmail] = useState("");
     const [companyWebsite, setCompanyWebsite] = useState("");
@@ -62,7 +64,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         hr_name: hrName,
         company_type: companyType,
         company_name: companyName,
-
+        company_pan_number: companyPanNumber
     }
 
     const defaultValue1 = {
@@ -76,7 +78,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         city: "",
         company_address: "",
         company_pincode: "",
-        company_pan_number: "",
         company_gst_number: "",
         area: ""
 
@@ -126,7 +127,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const handleSubmit = async (values) => {
         setHRName(values.hr_name);
         setCompanyName(values.company_name);
-
+        setCompanyPanNumber(values.company_pan_number);
 
         console.log(values);
         console.log(hrName, companyName, companyType);
@@ -175,7 +176,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
             company_area: values.area,
             company_address: company_address,
             companypincode: company_pincode,
-            companypancard: company_pan_number,
+            companypancard: companyPanNumber,
             companygstnumber: company_gst_number,
             company_gstnumber: company_gst_number,
         }
@@ -400,6 +401,17 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                             </ThemeFInputDiv>
 
                                             <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="company_pan_number" LableText="Company Pan Number *" />
+                                                <Field
+                                                    error={errors.company_pan_number && touched.company_pan_number}
+                                                    id="company_pan_number"
+                                                    as={TextField}
+                                                    placeholder="Enter Company Pan Number" type="text" name="company_pan_number" fullWidth />
+                                                {errors.company_pan_number && touched.company_pan_number && <Error text={errors.company_pan_number} />}
+
+                                            </ThemeFInputDiv>
+
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="company_type" LableText="Company Type *" />
                                                 <Select
                                                     variant="outlined"
@@ -433,7 +445,12 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                 {errors.company_type && touched.company_type && <Error text={errors.company_type} />}
                                             </ThemeFInputDiv>
 
-                                            <ThemeFInputDiv sx={{ width: "80px" }}>
+                                            <ThemeFInputDiv sx={{ width: "200px" }}>
+                                                {/* <Box sx={{
+                                                    position: "absolute",
+                                                    top: "0px",
+                                                    background: "white"
+                                                }}> <CloseIcon></CloseIcon></Box> */}
                                                 <img id="companyLogo" width="100%" />
                                             </ThemeFInputDiv>
 
@@ -453,156 +470,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                                 <ButtonType3 ButtonText="Upload Company Logo" imageURL="/assets/InsertPicture.png" ClickEvent={() => document.getElementById("upload_company_logo").click()}></ButtonType3>
                                             </ThemeFInputDiv>
-
-
-                                            {/* 
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_email" LableText="Company Email" />
-            <Field
-                error={errors.company_email && touched.company_email}
-                id="company_email"
-                variant="standard"
-                as={TextField}
-                placeholder="Enter Company Email ( eg. xyz@company.com )" type="text" name="company_email" fullWidth />
-            {errors.company_email && touched.company_email && <Error text={errors.company_email} />}
-
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_lan_number" LableText="Company Landline Number" />
-            <Field
-                error={errors.company_lan_number && touched.company_lan_number}
-                id="company_lan_number"
-                variant="standard"
-                as={TextField}
-                placeholder="Enter Company Landline Number ( eg. 9898989898 )" type="text" name="company_lan_number" fullWidth />
-            {errors.company_lan_number && touched.company_lan_number && <Error text={errors.company_lan_number} />}
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_website" LableText="Company Website" />
-            <Field
-                error={errors.company_website && touched.company_website}
-                id="company_website"
-                variant="standard"
-                as={TextField}
-                placeholder="Enter Company Website ( eg. xyz.com )" type="text" name="company_website" fullWidth />
-            {errors.company_website && touched.company_website && <Error text={errors.company_website} />}
-
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_pincode" LableText="Company Pincode" />
-            <Field
-                error={errors.company_pincode && touched.company_pincode}
-                id="company_pincode"
-                variant="standard"
-                as={TextField}
-                placeholder="Enter Company Pincode ( eg. 23123 )" type="text" name="company_pincode" fullWidth />
-            {errors.company_pincode && touched.company_pincode && <Error text={errors.company_pincode} />}
-
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_address" LableText="Company Address" />
-            <Box sx={{ width: "100%", margin: "10px 0px" }}>
-                <TextField
-                    error={errors.company_address && touched.company_address}
-                    sx={{ width: "100%" }}
-                    variant="standard"
-                    placeholder="Company Address"
-                    multiline
-                    rows={4}
-                    maxRows={4}
-                    onChange={(event) => setFieldValue("company_address", event.target.value)}
-                />
-            </Box>
-
-            {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
-
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="city" LableText="City" />
-            <Select
-                classNamePrefix="react-select"
-                variant="standard"
-                labelId="demo-simple-select-label"
-                name="city"
-                value={city}
-                label="Age"
-                onChange={(event) => {
-                    setCity(event.target.value);
-                    setFieldValue("city", event.target.value);
-                }}
-                sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                disableUnderline
-            >
-                <MenuItem value=" ">Select City</MenuItem>
-                {cities.map((item) =>
-                    <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                )}
-            </Select>
-
-            {errors.city && touched.city && <Error text={errors.city} />}
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_pan_number" LableText="Company Pan Number" />
-            <Field
-                error={errors.company_pan_number && touched.company_pan_number}
-                id="company_pan_number"
-                variant="standard"
-                as={TextField}
-                placeholder="Enter Company Pan Number" type="text" name="company_pan_number" fullWidth />
-            {errors.company_pan_number && touched.company_pan_number && <Error text={errors.company_pan_number} />}
-
-        </Box>
-
-        <Box sx={{ width: "80px" }}>
-            <img id="PanImage" width="100%" />
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_pan_image" LableText="Upload Company Pan Number Image" />
-
-            <Field
-                id="company_pan_image"
-                style={{ display: "none", outline: "none" }}
-                as={TextField}
-                type="file" name="company_pan_image"
-                onChange={uploadCompanyPan} fullWidth />
-
-            <ButtonType3 ButtonText="Upload Company Pan Number Image" ClickEvent={() => document.getElementById("company_pan_image").click()}></ButtonType3>
-        </Box>
-        
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_gst_number" LableText="Company GST Number" />
-            <Field
-                error={errors.company_gst_number && touched.company_gst_number}
-                id="company_gst_number"
-                variant="standard"
-                as={TextField}
-                placeholder="Enter Company GST Number" type="text" name="company_gst_number" fullWidth />
-            {errors.company_gst_number && touched.company_gst_number && <Error text={errors.company_gst_number} />}
-
-        </Box>
-        <Box sx={{ width: "80px" }}>
-            <img id="GSTImage" width="100%" />
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_gst_image" LableText="Upload Company GST Image" />
-
-            <Field
-                id="company_gst_image"
-                style={{ display: "none", outline: "none" }}
-                as={TextField}
-                type="file" name="company_gst_image"
-                onChange={uploadCompanyGST} fullWidth />
-
-            <ButtonType3 ButtonText="Upload Company GST Image" ClickEvent={() => document.getElementById("company_gst_image").click()}></ButtonType3>
-        </Box> */}
 
 
                                         </ThemeFInputDiv>
@@ -1088,7 +955,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                             onChange={(event) => {
                                                                 setCity(event.target.value);
                                                                 setFieldValue("city", event.target.value);
-                                                                setFieldValue("area", event.target.value);
                                                             }}
                                                             sx={{
                                                                 background: " #FFFFFF",
@@ -1111,44 +977,16 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                     </ThemeFInputDiv>
                                                 </Stack>
 
-                                                <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="area" LableText="Company Area *" />
-                                                    <Box sx={{ width: "100%", margin: "10px 0px" }}>
-                                                        <Field
-                                                            error={errors.area && touched.area}
-                                                            id="area"
-                                                            as={TextField}
-                                                            placeholder="Area" type="text" name="area" fullWidth />
-
-                                                    </Box>
-
-                                                    {errors.area && touched.area && <Error text={errors.area} />}
-
-                                                </ThemeFInputDiv>
-
                                                 <ThemeFInputDiv sx={{ position: "relative" }}>
-                                                    <ThemeLabel LableFor="company_address" LableText="Company Address *" />
+                                                    <ThemeLabel LableFor="area" LableText="Company Area  *" />
                                                     <Box sx={{ width: "100%", margin: "10px 0px" }}>
-                                                        {/* <Field
-                                                            error={errors.company_address && touched.company_address}
-                                                            id="company_address"
-                                                            as={TextField}
-                                                            placeholder="Company Address" type="text" name="company_address" fullWidth /> */}
-                                                        {/* <TextField
-                                                            id="company_address"
-                                                            variant="contained"
 
-                                                            value={companyAddress}
-                                                            onChange={(event) => {
-                                                                setCompanyAddress(event.target.value)
-                                                            }}
-                                                            fullWidth /> */}
                                                         <TextField id="outlined-basic"
-                                                            placeholder="Enter Company Address (eg.Haridwar, Uttarakhand, India)"
+                                                            placeholder="Enter Company Area (eg.Haridwar, Uttarakhand, India)"
                                                             value={companyAddress}
                                                             onChange={(event) => {
                                                                 setCompanyAddress(event.target.value);
-                                                                setFieldValue("company_address", event.target.value);
+                                                                setFieldValue("area", event.target.value);
                                                                 getAddress(event.target.value);
                                                                 setMenuBar(true)
                                                             }}
@@ -1182,7 +1020,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                                         }}
                                                                             onClick={(event) => {
                                                                                 setCompanyAddress(item.description);
-                                                                                setFieldValue("company_address", item.description)
+                                                                                setFieldValue("area", item.description)
                                                                                 setMenuBar(false)
                                                                             }}> {item.description}</Box></>)
                                                                 })}
@@ -1195,6 +1033,22 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                     {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
 
                                                 </ThemeFInputDiv>
+                                                <ThemeFInputDiv>
+                                                    <ThemeLabel LableFor="area" LableText="Company Area *" />
+                                                    <Box sx={{ width: "100%", margin: "10px 0px" }}>
+                                                        <Field
+                                                            error={errors.area && touched.area}
+                                                            id="area"
+                                                            as={TextField}
+                                                            placeholder="Area" type="text" name="area" fullWidth />
+
+                                                    </Box>
+
+                                                    {errors.area && touched.area && <Error text={errors.area} />}
+
+                                                </ThemeFInputDiv>
+
+
 
                                                 <ThemeFInputDiv>
                                                     <ThemeLabel LableFor="company_pincode" LableText="Company Pincode *" />
@@ -1204,17 +1058,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                         as={TextField}
                                                         placeholder="Enter Company Pincode ( eg. 23123 )" type="text" name="company_pincode" fullWidth />
                                                     {errors.company_pincode && touched.company_pincode && <Error text={errors.company_pincode} />}
-
-                                                </ThemeFInputDiv>
-
-                                                <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="company_pan_number" LableText="Company Pan Number *" />
-                                                    <Field
-                                                        error={errors.company_pan_number && touched.company_pan_number}
-                                                        id="company_pan_number"
-                                                        as={TextField}
-                                                        placeholder="Enter Company Pan Number" type="text" name="company_pan_number" fullWidth />
-                                                    {errors.company_pan_number && touched.company_pan_number && <Error text={errors.company_pan_number} />}
 
                                                 </ThemeFInputDiv>
 

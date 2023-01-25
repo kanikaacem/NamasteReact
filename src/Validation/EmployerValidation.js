@@ -37,12 +37,13 @@ const PincodeRegExp = /^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$/;
 export const companyInfoValidationSchema = yup.object().shape({
     hr_name: yup.string().required("Hr Name is required"),
     company_type: yup.string().required("Company Type is required"),
-    company_name: yup.string().required("Company Name is required")
+    company_name: yup.string().required("Company Name is required"),
+    company_pan_number: yup.string().matches(/[A-Z]{5}[0-9]{4}[A-Z]{1}$/, "Please Provide a valid Pan Number ").required("Pan Number is required"),
+
 })
 
 export const companyInfoValidationSchema1 = yup.object().shape({
     company_email: yup.string().required("Company Email is required").email("Email is not valid"),
-    company_website: yup.string().required("Company website is required"),
     company_lan_number: yup.string().required("Company LandLine Number is required").min(8, "Company LandLine Number is of atleast 8 character").max(11, "Company LandLine Number is of atmost 11 character"),
 })
 
@@ -84,6 +85,5 @@ export const CompanyUpdateInformationSchema = yup.object().shape({
     company_website: yup.string().required("Company Website is required"),
     company_pincode: yup.string().required("Company Lan Number is required").max(6),
     company_address: yup.string().required("Company Address is required"),
-    company_pan_number: yup.string().matches(/[A-Z]{5}[0-9]{4}[A-Z]{1}$/, "Please Provide a valid Pan Number ").required("Pan Number is required"),
-    company_gst_number: yup.string().required("GST Number is required")
+    // company_gst_number: yup.string().required("GST Number is required")
 })

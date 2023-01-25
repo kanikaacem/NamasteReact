@@ -50,7 +50,7 @@ const EmployerLogin = () => {
 
         }
         if (response.status == '0')
-            setFieldError("password", "Invalid Credentials");
+            setFieldError("password", response.data);
 
     }
 
