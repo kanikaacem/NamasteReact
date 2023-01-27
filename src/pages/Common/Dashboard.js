@@ -105,9 +105,10 @@ const Dashboard = () => {
                                     fontSize: "12px"
                                 }}>
                                     Last Login :
-                                    <Moment format="DD/MM/YYYY">
+                                    {user && user.lastlogin}
+                                    {/* <Moment format="DD/MM/YYYY">
                                         {user && user.lastlogin}
-                                    </Moment>
+                                    </Moment> */}
                                 </Box>
 
 

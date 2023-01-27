@@ -148,10 +148,12 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     }
 
     const handleSubmit2 = async (values) => {
-        console.log(hrName, companyName, companyType, companyEmail, companyWebsite, companyLanNumber);
+        // console.log(companyWebsite)
+        // console.log(hrName, companyName, companyType, companyEmail, companyWebsite, companyLanNumber);
+        // console.log(values);
         let area = values.area;
         let company_address = values.company_address;
-        let company_gst_number = values.company_gst_number;
+        let company_gst_number = values.company_gst_number == '' ? 'not present' : values.company_gst_number;
         let company_pan_number = values.company_pan_number;
         let company_pincode = values.company_pincode;
         let state = values.state;
@@ -162,27 +164,28 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         }
 
         let data = new FormData();
+    
         data = {
             // _id: userid,
             employer_name: hrName,
             company_name: companyName,
             company_type: companyType,
             company_email: companyEmail,
-            company_website: companyWebsite,
+            company_website: companyWebsite ? companyWebsite :"not present",
             company_lanNumber: companyLanNumber,
             companynumber: companyLanNumber,
             company_state: state,
             company_city: city,
             company_area: values.area,
             company_address: company_address,
-            companypincode: company_pincode,
-            companypancard: companyPanNumber,
-            companygstnumber: company_gst_number,
+            company_pincode: company_pincode,
+            company_pancard: companyPanNumber,
+            companygstnumber: company_gst_number ,
             company_gstnumber: company_gst_number,
         }
 
         let response = await postRequest(EmployerCompanyInformationURL, data);
-        console.log(response);
+        // console.log(response);
         if (response.status == 1) {
             dispatch({ type: 'LOGIN', payload: response.data });
         }
@@ -681,7 +684,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                 </ThemeFInputDiv>
 
                                                 <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="company_website" LableText="Company Website *" />
+                                                    <ThemeLabel LableFor="company_website" LableText="Company Website " />
                                                     <Field
                                                         error={errors.company_website && touched.company_website}
                                                         id="company_website"
@@ -1030,21 +1033,21 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                     </>
 
                                                     }
-                                                    {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
+                                                    {errors.area && touched.area && <Error text={errors.area} />}
 
                                                 </ThemeFInputDiv>
                                                 <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="area" LableText="Company Area *" />
+                                                    <ThemeLabel LableFor="company_address" LableText="Company Address *" />
                                                     <Box sx={{ width: "100%", margin: "10px 0px" }}>
                                                         <Field
-                                                            error={errors.area && touched.area}
-                                                            id="area"
+                                                            error={errors.company_address && touched.company_address}
+                                                            id="company_address"
                                                             as={TextField}
-                                                            placeholder="Area" type="text" name="area" fullWidth />
+                                                            placeholder="Company Address" type="text" name="company_address" fullWidth />
 
                                                     </Box>
 
-                                                    {errors.area && touched.area && <Error text={errors.area} />}
+                                                    {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
 
                                                 </ThemeFInputDiv>
 
@@ -1079,7 +1082,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                 </ThemeFInputDiv>
 
                                                 <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="company_gst_number" LableText="Company GST Number *" />
+                                                    <ThemeLabel LableFor="company_gst_number" LableText="Company GST Number " />
                                                     <Field
                                                         error={errors.company_gst_number && touched.company_gst_number}
                                                         id="company_gst_number"

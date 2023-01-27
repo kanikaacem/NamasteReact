@@ -914,3 +914,28 @@ export const SalaryCTC = [
         value: " above 13 Lakhs"
     }
 ]
+
+export const EducationType = [
+    {
+        id:1,
+        value:"Distance"
+    },{
+        id:2,
+        value:"Regular"
+    }
+]
+
+export const Proficiency = [
+    {
+        id:1,
+        value:"Normal"
+    },
+    {
+        id:2,
+        value:"Moderate"
+    },
+    {
+        id:3,
+        value:"Expert"
+    }
+]

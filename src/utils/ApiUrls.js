@@ -23,6 +23,7 @@ export const getAllJobs = "http://13.126.115.3:3001/api/job/getalljobs";
 
 
 /*Posting Job */
+export const getJobTypeURL = "http://13.235.183.204:3001/api/file/jobtype";
 export const PostJobURL = "http://13.126.115.3:3001/api/job/postjob";
 
 /* Api for getting the data of the posted jobs*/

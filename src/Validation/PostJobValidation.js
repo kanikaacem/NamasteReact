@@ -26,20 +26,15 @@ export const postJobValidationSchema = yup.object().shape({
 
 });
 
-export const postPartTimeJobValidationSchema = yup.object().shape({
-    // job_title: yup.string().required("Job Titlte is required"),
-    // job_type: yup.string().required("Job Type is required"),
-    // role: yup.string().required("Job role is required"),
-    // experience: yup.string().required("Job experience is required"),
-    // opening: yup.number("Opening should be a number").required("Opening is required"),
-    // skills: yup.string().required("Skills is required"),
-    // salary: yup.number("Salary should be a number").min(10000).required("Salary is required"),
-    // short_description: yup.string().required("Short Description is required"),
-    // long_description: yup.string().required("Job Long description is required"),
-    // city: yup.string().required("City is required"),
-    // job_working_type: yup.string().required("Job Working Type is required"),
-    // salary_type: yup.string().required("Salary Type is required"),
-    // responsibilites: yup.string().required("Responsibilites is required"),
-    // advantage: yup.string().required("Extra Benefits is required"),
-
+export const postJobSchema2 = yup.object().shape({
+    experienced_required:yup.string().required("Experience is required"),
+    age:yup.string().required("Age is required"),
+    education_type: yup.string().required("Education Type is required"),
+    education_degree:yup.string().required("Education Degree is required"),
+    perferred_degree:yup.string().required("Perferred Degree is required"),
+    gender:yup.string().required("Gender is required"),
+    mandatory_local_language:yup.string().required("Language is required"),
+    hindi_required:yup.string().required("This field is required"),
+    english_required:yup.string().required("This field id required")
+    
 })

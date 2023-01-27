@@ -1,10 +1,10 @@
 import { postRequest, getRequest } from "../../utils/ApiRequests";
-import { PostJobURL, StatesURL } from "../../utils/ApiUrls";
+import { PostJobURL, StatesURL,getJobTypeURL } from "../../utils/ApiUrls";
 
 import {
     Box, Stack, TextField, Checkbox, Select as SelectField,
     MenuItem, Snackbar, IconButton, Alert, Typography, FormControlLabel,
-    Chip
+    Chip,Radio, RadioGroup,  FormControl
 } from '@mui/material';
 
 import ClickAwayListener from '@mui/base/ClickAwayListener';
@@ -24,8 +24,11 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from "react";
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
-import { postJobValidationSchema, postPartTimeJobValidationSchema } from "../../Validation/PostJobValidation";
-import { cities, Experience, Role, Skills, JobType, AssociationType, PaymentType, WorkingDays, WorkingShift, SalaryType, SalaryCTC } from "../../utils/Data";
+import { postJobValidationSchema, postJobSchema2 } from "../../Validation/PostJobValidation";
+import { CandidateEducation, 
+    Experience, Skills, JobType, AssociationType,
+     PaymentType, WorkingDays, WorkingShift, SalaryType, SalaryCTC,EducationType,
+    Proficiency } from "../../utils/Data";
 
 import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv, NextButton } from "../../utils/Theme";
 
@@ -44,12 +47,11 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 const PostJob = () => {
     const [postJobStep, setPostJobStep] = useState(1);
     const user = localStorage.user && JSON.parse(localStorage.user);
-    const api_url = useSelector(state => state.api_url);
 
     const [city, setCity] = useState(" ");
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const [jobType, setJobType] = useState("part-time");
+    const [jobType, setJobType] = useState(" ");
     const [associationType, setAssociationType] = useState(" ");
     const [industryType, setIndustryType] = useState(" ");
     const [experience, setExperience] = useState(" ");
@@ -96,6 +98,15 @@ const PostJob = () => {
     const [responsibilty, setResponsibilty] = useState("");
     const [skills, setSkills] = useState("");
     const [weeklyOff, setWeeklyOff] = useState("");
+    const [jobTypeData,setJobTypeData] = useState([]);
+    const [industryTypeData,setIndustryData] = useState([]);
+    /* Next Form */
+    const [educationType,setEducationType] = useState(" ");
+    const [educationDegree,setEducationDegree] = useState(" ");
+    const [perferredDegree,setPerferredDegree] = useState(" ");
+    const [hindiReq,setHindiReq]= useState(" ");
+    const [englishReq,setEnglishReq] = useState(" ");
+    const [gender, setGender] = useState("");
 
     let extra_benefits = [];
 
@@ -159,6 +170,19 @@ const PostJob = () => {
         extra_benefits: ""
     }
 
+    const defaultValue2 = {
+        experienced_required:"",
+        age:"",
+        education_type:"",
+        education_degree:"",
+        perferred_degree:"",
+        gender:"",
+        mandatory_local_language:"",
+        hindi_required:"",
+        english_required:""
+
+    }
+
     const handleClose = (event) => {
         setFormSubmitted(false);
     };
@@ -175,6 +199,8 @@ const PostJob = () => {
     }
 
     const handleSubmit1 = async (values, { resetForm }) => {
+        console.log(values);
+        setPostJobStep(2);
         // associationType
         // city
         // state
@@ -233,12 +259,21 @@ const PostJob = () => {
 
     }
 
+    const handleSubmit2 = async (values,{resetForm}) =>{
+        console.log(values);
+    }
+
     useEffect(() => {
         const getState = async () => {
             let response = await getRequest(StatesURL);
             setCountryState(response.data);
         }
+        const getJobType = async () => {
+            let response = await getRequest(getJobTypeURL);
+            setJobTypeData(response.data);
+        }
         getState();
+        getJobType();
     }, [])
 
     const getDistrictByState = async (statefilter) => {
@@ -249,9 +284,14 @@ const PostJob = () => {
         // console.log(response);
     }
 
+    const getIndustryTypeByJobType = async (jobTypeFilter) =>{
+        let response = await getRequest("http://13.235.183.204:3001/api/file/industrytype?jobtype="+jobTypeFilter);
+        setIndustryData(response.data);
+    }
     const getAddress = async (value) => {
         let response = await getRequest("http://13.235.183.204:3001/api/map/autocompleteplaces?input=" + value);
         setAutoData(response.data);
+
         // console.log(response.data);
     }
     return (<>
@@ -468,6 +508,7 @@ const PostJob = () => {
                                                     onChange={(event) => {
                                                         setJobType(event.target.value);
                                                         setFieldValue("job_type", event.target.value);
+                                                        getIndustryTypeByJobType(event.target.value);
                                                     }}
                                                     sx={{
                                                         background: " #FFFFFF",
@@ -482,8 +523,9 @@ const PostJob = () => {
 
                                                 >
                                                     <MenuItem value=" ">Select Job Type</MenuItem>
-                                                    {JobType.map((item) =>
-                                                        <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                   
+                                                    {jobTypeData && jobTypeData.map((item) =>
+                                                        <MenuItem value={item} key={item}>{item}</MenuItem>
                                                     )}
                                                 </SelectField>
 
@@ -517,8 +559,8 @@ const PostJob = () => {
                                                 disableUnderline
                                             >
                                                 <MenuItem value=" ">Select Industry Type</MenuItem>
-                                                {JobType.map((item) =>
-                                                    <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                {industryTypeData && industryTypeData.map((item) =>
+                                                    <MenuItem value={item[0].toString()} key={item[0].toString()}>{item[0].toString()}</MenuItem>
                                                 )}
                                             </SelectField>
 
@@ -1114,9 +1156,9 @@ const PostJob = () => {
                             </Typography>
                             <Formik
 
-                                initialValues={defaultValue}
-                                validationSchema={jobType == "regular" ? postJobValidationSchema : postPartTimeJobValidationSchema}
-                            // onSubmit={handleSubmit}
+                                initialValues={defaultValue2}
+                                validationSchema={postJobSchema2}
+                                onSubmit={handleSubmit2}
                             >
                                 {({ values, errors, touched, setFieldValue }) => (
                                     <Form className="PostJobForm1" >
@@ -1134,7 +1176,7 @@ const PostJob = () => {
                                             </ThemeFInputDiv>
 
                                             <ThemeFInputDiv>
-                                                <ThemeLabel LableFor="age" LableText="AGe" />
+                                                <ThemeLabel LableFor="age" LableText="Age" />
                                                 <Field
                                                     error={errors.age && touched.age}
                                                     as={TextField}
@@ -1143,17 +1185,17 @@ const PostJob = () => {
                                                 {errors.age && touched.age && <Error text={errors.age} />}
                                             </ThemeFInputDiv>
 
-                                            <Stack direction="row" gap={5}>
+                                            <Stack direction="row" gap={2}>
                                                 <ThemeFInputDiv sx={{ width: "30%" }}>
-                                                    <ThemeLabel LableFor="working_days" LableText="Working Days" />
+                                                    <ThemeLabel LableFor="education_type" LableText="Education Type" />
                                                     <SelectField
                                                         labelId="demo-simple-select-label"
                                                         name="association_type"
-                                                        value={associationType}
+                                                        value={educationType}
                                                         label="role"
                                                         onChange={(event) => {
-                                                            setAssociationType(event.target.value);
-                                                            setFieldValue("working_days", event.target.value);
+                                                            setEducationType(event.target.value);
+                                                            setFieldValue("education_type", event.target.value);
                                                         }}
                                                         sx={{
                                                             background: " #FFFFFF",
@@ -1169,25 +1211,25 @@ const PostJob = () => {
                                                         }}
                                                         disableUnderline
                                                     >
-                                                        <MenuItem value=" ">Select Working Days</MenuItem>
-                                                        {AssociationType.map((item) =>
-                                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                        <MenuItem value=" ">Select Education Type </MenuItem>
+                                                        {EducationType.map((item) =>
+                                                            <MenuItem value={item.value} key={item.id}>{item.value}</MenuItem>
                                                         )}
                                                     </SelectField>
 
-                                                    {errors.association_type && touched.association_type && <Error text={errors.association_type} />}
+                                                    {errors.education_type && touched.education_type && <Error text={errors.education_type} />}
                                                 </ThemeFInputDiv>
 
                                                 <ThemeFInputDiv sx={{ width: "30%" }}>
-                                                    <ThemeLabel LableFor="work_shift" LableText="Work Shift" />
+                                                    <ThemeLabel LableFor="education_degree" LableText="Education Degree" />
                                                     <SelectField
                                                         labelId="demo-simple-select-label"
-                                                        name="work_shift"
+                                                        name="education_degree"
                                                         value={associationType}
                                                         label="role"
                                                         onChange={(event) => {
                                                             setAssociationType(event.target.value);
-                                                            setFieldValue("work_shift", event.target.value);
+                                                            setFieldValue("education_degree", event.target.value);
                                                         }}
                                                         sx={{
                                                             background: " #FFFFFF",
@@ -1198,30 +1240,28 @@ const PostJob = () => {
                                                             fontSize: "16px",
                                                             fontamily: 'Montserrat',
                                                             BorderBottom: 'none !important',
-
-                                                            padding: "8px"
                                                         }}
                                                         disableUnderline
                                                     >
-                                                        <MenuItem value=" ">Work Shift</MenuItem>
-                                                        {AssociationType.map((item) =>
+                                                        <MenuItem value=" ">Select Education Degree</MenuItem>
+                                                        {CandidateEducation.map((item) =>
                                                             <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
                                                         )}
                                                     </SelectField>
 
-                                                    {errors.work_shift && touched.work_shift && <Error text={errors.work_shift} />}
+                                                    {errors.education_degree && touched.education_degree && <Error text={errors.education_degree} />}
                                                 </ThemeFInputDiv>
 
-                                                <ThemeFInputDiv sx={{ width: "30%" }}>
-                                                    <ThemeLabel LableFor="shift_timing" LableText="Shift Timing" />
+                                                <ThemeFInputDiv>
+                                                    <ThemeLabel LableFor="perferred_degree" LableText="Perferred Education" />
                                                     <SelectField
                                                         labelId="demo-simple-select-label"
-                                                        name="association_type"
-                                                        value={associationType}
+                                                        name="perferred_degree"
+                                                        value={perferredDegree}
                                                         label="role"
                                                         onChange={(event) => {
-                                                            setAssociationType(event.target.value);
-                                                            setFieldValue("shift_timing", event.target.value);
+                                                            setPerferredDegree(event.target.value);
+                                                            setFieldValue("perferred_degree", event.target.value);
                                                         }}
                                                         sx={{
                                                             background: " #FFFFFF",
@@ -1233,23 +1273,22 @@ const PostJob = () => {
                                                             fontamily: 'Montserrat',
                                                             BorderBottom: 'none !important',
 
-                                                            padding: "8px"
                                                         }}
                                                         disableUnderline
                                                     >
-                                                        <MenuItem value=" ">Shift Timing</MenuItem>
-                                                        {AssociationType.map((item) =>
+                                                        <MenuItem value=" ">Select Perferred Degree</MenuItem>
+                                                        {CandidateEducation.map((item) =>
                                                             <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
                                                         )}
                                                     </SelectField>
 
-                                                    {errors.shift_timing && touched.shift_timing && <Error text={errors.shift_timing} />}
+                                                    {errors.perferred_degree && touched.perferred_degree && <Error text={errors.perferred_degree} />}
                                                 </ThemeFInputDiv>
 
                                             </Stack>
 
 
-                                            <ThemeFInputDiv>
+                                            {/* <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="skills_required" LableText="Skill Required" />
                                                 <Field
                                                     error={errors.skills_required && touched.skills_required}
@@ -1257,29 +1296,83 @@ const PostJob = () => {
                                                     id="skills_required"
                                                     placeholder="Enter Skill Required" type="text" name="skills_required" fullWidth />
                                                 {errors.skills_required && touched.skills_required && <Error text={errors.skills_required} />}
+                                            </ThemeFInputDiv> */}
+                                             <ThemeFInputDiv>
+                                            <ThemeLabel LableFor="gender" LableText="Gender" />
+                                            <ThemeFInputDiv>
+                                                <FormControl>
+                                                    <RadioGroup
+                                                        aria-labelledby="demo-controlled-radio-buttons-group"
+                                                        name="controlled-radio-buttons-group"
+                                                        value={gender}
+                                                        onChange={(event) => {
+                                                            setGender(event.target.value)
+                                                            setFieldValue("gender", event.target.value)
+                                                        }}
+                                                    >
+                                                        <Stack direction="row" gap={3}>
+
+                                                            <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                                sx={{
+                                                                    height: "59px",
+                                                                    width: "230px",
+                                                                    borderRadius: "7px",
+                                                                    border: " 2px solid #EAEAEA"
+                                                                }} >
+                                                                <Box sx={{ marginLeft: "20px" }}>Male</Box>
+                                                                <FormControlLabel value="male" control={<Radio />} label="" />
+                                                            </Stack>
+
+                                                            <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                                sx={{
+                                                                    height: "59px",
+                                                                    width: "230px",
+                                                                    borderRadius: "7px",
+                                                                    border: " 2px solid #EAEAEA"
+                                                                }} >
+                                                                <Box sx={{ marginLeft: "20px" }}>Female</Box>
+                                                                <FormControlLabel value="female" control={<Radio />} label="" />
+                                                            </Stack>
+
+                                                            <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                                sx={{
+                                                                    height: "59px",
+                                                                    width: "231px",
+                                                                    borderRadius: "7px",
+                                                                    border: " 2px solid #EAEAEA"
+                                                                }} >
+                                                                <Box sx={{ marginLeft: "20px" }}>Other</Box>
+                                                                <FormControlLabel value="other" control={<Radio />} label="" />
+                                                            </Stack>
+                                                        </Stack>
+
+                                                    </RadioGroup>
+                                                </FormControl>
                                             </ThemeFInputDiv>
+                                            {errors.gender && touched.gender && <Error text={errors.gender} />}
+                                        </ThemeFInputDiv>
 
                                             <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="mandatory_local_language" LableText="Mandatory Local Language" />
                                                 <Field
                                                     error={errors.mandatory_local_language && touched.mandatory_local_language}
                                                     as={TextField}
-                                                    id="experienced_required"
+                                                    id="mandatory_local_language"
                                                     placeholder="Enter Mandatory Local Language" type="text" name="mandatory_local_language" fullWidth />
                                                 {errors.mandatory_local_language && touched.mandatory_local_language && <Error text={errors.mandatory_local_language} />}
                                             </ThemeFInputDiv>
 
                                             <Stack direction="row" gap={5}>
                                                 <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                    <ThemeLabel LableFor="working_days" LableText="Working Days" />
+                                                    <ThemeLabel LableFor="hindi_required" LableText="Hindi Required" />
                                                     <SelectField
                                                         labelId="demo-simple-select-label"
-                                                        name="association_type"
-                                                        value={associationType}
+                                                        name="hindi_required"
+                                                        value={hindiReq}
                                                         label="role"
                                                         onChange={(event) => {
-                                                            setAssociationType(event.target.value);
-                                                            setFieldValue("working_days", event.target.value);
+                                                            setHindiReq(event.target.value);
+                                                            setFieldValue("hindi_required", event.target.value);
                                                         }}
                                                         sx={{
                                                             background: " #FFFFFF",
@@ -1290,30 +1383,28 @@ const PostJob = () => {
                                                             fontSize: "16px",
                                                             fontamily: 'Montserrat',
                                                             BorderBottom: 'none !important',
-
-                                                            padding: "8px"
                                                         }}
                                                         disableUnderline
                                                     >
-                                                        <MenuItem value=" ">Select Working Days</MenuItem>
-                                                        {AssociationType.map((item) =>
-                                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                        <MenuItem value=" ">Select Proficiency Level</MenuItem>
+                                                        {Proficiency.map((item) =>
+                                                            <MenuItem value={item.value} key={item.id}>{item.value}</MenuItem>
                                                         )}
                                                     </SelectField>
 
-                                                    {errors.association_type && touched.association_type && <Error text={errors.association_type} />}
+                                                    {errors.hindi_required && touched.hindi_required && <Error text={errors.hindi_required} />}
                                                 </ThemeFInputDiv>
 
                                                 <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                    <ThemeLabel LableFor="work_shift" LableText="Work Shift" />
+                                                    <ThemeLabel LableFor="english_required" LableText="English Required" />
                                                     <SelectField
                                                         labelId="demo-simple-select-label"
-                                                        name="work_shift"
-                                                        value={associationType}
+                                                        name="english_required"
+                                                        value={englishReq}
                                                         label="role"
                                                         onChange={(event) => {
-                                                            setAssociationType(event.target.value);
-                                                            setFieldValue("work_shift", event.target.value);
+                                                            setEnglishReq(event.target.value);
+                                                            setFieldValue("english_required", event.target.value);
                                                         }}
                                                         sx={{
                                                             background: " #FFFFFF",
@@ -1325,17 +1416,16 @@ const PostJob = () => {
                                                             fontamily: 'Montserrat',
                                                             BorderBottom: 'none !important',
 
-                                                            padding: "8px"
                                                         }}
                                                         disableUnderline
                                                     >
-                                                        <MenuItem value=" ">Work Shift</MenuItem>
-                                                        {AssociationType.map((item) =>
-                                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                        <MenuItem value=" ">Select Proficiency Level</MenuItem>
+                                                        {Proficiency.map((item) =>
+                                                            <MenuItem value={item.value} key={item.id}>{item.value}</MenuItem>
                                                         )}
                                                     </SelectField>
 
-                                                    {errors.work_shift && touched.work_shift && <Error text={errors.work_shift} />}
+                                                    {errors.english_required && touched.english_required && <Error text={errors.english_required} />}
                                                 </ThemeFInputDiv>
 
 

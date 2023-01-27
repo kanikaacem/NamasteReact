@@ -52,12 +52,7 @@ export const companyInfoValidationSchema2 = yup.object().shape({
     city: yup.string().required("City website is required"),
     company_address: yup.string().required("Company Address is required"),
     company_pincode: yup.string().matches(/^[1-9][0-9]{5}$/, "please enter a valid Pincode.").required("Company Pincode is required"),
-    company_pan_number: yup.string().matches(/[A-Z]{5}[0-9]{4}[A-Z]{1}$/, "Please Provide a valid Pan Number ").required("Pan Number is required"),
-    company_gst_number: yup.string()
-        // .matches(/\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}/
-        //     , "Please enter a valid GST Number")
-        .required("GST Number is required"),
-    area: yup.string().required("Company Address is required")
+    area: yup.string().required("Area is required")
 })
 //Forgot Password Validation
 export const ForgotPasswordValidation = yup.object().shape({
