@@ -1,10 +1,11 @@
 import { postRequest, getRequest } from "../../utils/ApiRequests";
-import { PostJobURL, StatesURL,getJobTypeURL } from "../../utils/ApiUrls";
+import { PostJobURL, StatesURL, getJobTypeURL } from "../../utils/ApiUrls";
 
 import {
     Box, Stack, TextField, Checkbox, Select as SelectField,
     MenuItem, Snackbar, IconButton, Alert, Typography, FormControlLabel,
-    Chip,Radio, RadioGroup,  FormControl
+    Radio, RadioGroup, FormControl, Input,
+    ListItemText
 } from '@mui/material';
 
 import ClickAwayListener from '@mui/base/ClickAwayListener';
@@ -25,10 +26,17 @@ import { useState, useEffect } from "react";
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import { postJobValidationSchema, postJobSchema2 } from "../../Validation/PostJobValidation";
-import { CandidateEducation, 
+import {
+    CandidateEducation,
     Experience, Skills, JobType, AssociationType,
-     PaymentType, WorkingDays, WorkingShift, SalaryType, SalaryCTC,EducationType,
-    Proficiency } from "../../utils/Data";
+    PaymentType, WorkingDays, WorkingShift, SalaryType, SalaryCTC, EducationType,
+    Proficiency,
+    ExtraBenefitsData,
+    WeeklyOffData,
+    ExperienceLevel,
+    AgeLevel,
+    JobWorkingPlaceData
+} from "../../utils/Data";
 
 import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv, NextButton } from "../../utils/Theme";
 
@@ -62,6 +70,7 @@ const PostJob = () => {
     const [endingTime, setEndingTime] = useState(new Date());
 
     const [JobWorkingDays, setJobWorkingDays] = useState(" ");
+    const [JobWorkingPlace, setJobWorkingPlace] = useState(" ");
 
     const [salaryType, setSalaryType] = useState(" ");
     const [satStartTime, setSatStartTime] = useState("");
@@ -81,57 +90,28 @@ const PostJob = () => {
     const [jobPlace, setJobPlace] = useState("");
     const [jobTitle, setJobTitle] = useState("");
     const [responsibilty, setResponsibilty] = useState("");
-    const [skills, setSkills] = useState("");
+    const [SKill, setSKill] = useState(" ");
     const [weeklyOff, setWeeklyOff] = useState("");
-    const [jobTypeData,setJobTypeData] = useState([]);
-    const [industryTypeData,setIndustryData] = useState([]);
+    const [jobTypeData, setJobTypeData] = useState([]);
+    const [industryTypeData, setIndustryData] = useState([]);
+    const [extraBenefitsData, setExtraBenefitsData] = useState(" ");
     /* Next Form */
-    const [educationType,setEducationType] = useState(" ");
-    const [educationDegree,setEducationDegree] = useState(" ");
-    const [perferredDegree,setPerferredDegree] = useState(" ");
-    const [hindiReq,setHindiReq]= useState(" ");
-    const [englishReq,setEnglishReq] = useState(" ");
+    const [minExp, setMinExp] = useState(" ");
+    const [maxExp, setMaxExp] = useState(" ");
+    const [minAge, setMinAge] = useState(" ");
+    const [maxAge, setMaxAge] = useState(" ");
+    const [localLanguage, setLocalLanguage] = useState(" ");
+    const [localLanguageData, setLocalLanguageData] = useState([]);
+
+    const [educationType, setEducationType] = useState(" ");
+    const [educationDegree, setEducationDegree] = useState(" ");
+    const [perferredDegree, setPerferredDegree] = useState(" ");
+    const [hindiReq, setHindiReq] = useState(" ");
+    const [englishReq, setEnglishReq] = useState(" ");
     const [gender, setGender] = useState("");
 
-    let extra_benefits = [];
 
     const animatedComponents = makeAnimated();
-
-    const handleClick = (event) => {
-        event.target.classList.add("ValueSelected")
-        console.log(event.target);
-    };
-
-    /*Tags*/
-    const [tags, setTags] = useState([
-        { id: 'Thailand', text: 'Thailand' },
-        { id: 'India', text: 'India' },
-        { id: 'Vietnam', text: 'Vietnam' },
-        { id: 'Turkey', text: 'Turkey' }
-    ]);
-
-    const handleDelete = i => {
-        setTags(tags.filter((tag, index) => index !== i));
-    };
-
-    const handleAddition = tag => {
-        setTags([...tags, tag]);
-    };
-
-    const handleDrag = (tag, currPos, newPos) => {
-        const newTags = tags.slice();
-
-        newTags.splice(currPos, 1);
-        newTags.splice(newPos, 0, tag);
-
-        // re-render
-        setTags(newTags);
-    };
-
-    const handleTagClick = index => {
-        console.log('The tag at index ' + index + ' was clicked');
-    };
-
     const defaultValue = {
         company_name: "",
         job_title: "",
@@ -156,15 +136,17 @@ const PostJob = () => {
     }
 
     const defaultValue2 = {
-        experienced_required:"",
-        age:"",
-        education_type:"",
-        education_degree:"",
-        perferred_degree:"",
-        gender:"",
-        mandatory_local_language:"",
-        hindi_required:"",
-        english_required:""
+        minAge: "",
+        maxAge: "",
+        minExp: "",
+        maxExp: "",
+        education_type: "",
+        education_degree: "",
+        perferred_degree: "",
+        gender: "",
+        mandatory_local_language: "",
+        hindi_required: "",
+        english_required: ""
 
     }
 
@@ -172,85 +154,79 @@ const PostJob = () => {
         setFormSubmitted(false);
     };
 
-
-    /* Adding the extra benefits */
-    const handleExtraBenefit = (value) => {
-
-        if (!extra_benefits.includes(value)) {
-            extra_benefits.push(value);
-        } else {
-            extra_benefits.splice(extra_benefits.indexOf(value), 1);
-        }
-    }
-
     const handleSubmit1 = async (values, { resetForm }) => {
-        
+        console.log(values);
         setCompanyName(values.company_name)
         setSalary(values.ctc_salary);
         setStartingTime(values.starting_time);
         setEndingTime(values.ending_time);
-        setExtraBenefits(values.extra_benefits)
+        setExtraBenefitsData(values.extra_benefits)
         setJobDescription(values.job_description);
         setJobPlace(values.job_place);
         setJobTitle(values.job_title);
         setResponsibilty(values.responsibilites);
         setCTCSalary(values.ctc_salary);
-        setSkills(values.skills);
+        setSKill(values.skills);
         setWeeklyOff(values.weekly_off)
-        console.log(companyName,jobTitle,jobType,industryType,associationType,jobPlace,
-            responsibilty,jobDescription,skills,JobWorkingDays,workShift,
-            startingTime,endingTime,salaryType,CTCSalary,weeklyOff,state,city,companyAddress,
-            extraBenefits
-           )
-
+        // console.log(companyName, jobTitle, jobType, industryType, associationType, jobPlace,
+        //     responsibilty, jobDescription, SKill, JobWorkingDays, workShift,
+        //     startingTime, endingTime, salaryType, CTCSalary, weeklyOff, state, city, companyAddress,
+        //     extraBenefitsData
+        // )
+        localStorage.setItem("post_data", JSON.stringify(values))
+        console.log(localStorage.getItem("post_data"));
         setPostJobStep(2);
-       
+
     }
 
-    const handleSubmit2 = async (values,{resetForm}) =>{
-       console.log(endingTime)
+    const handleSubmit2 = async (values, { resetForm }) => {
+        let postData = JSON.parse(localStorage.getItem("post_data"));
         let formData = new FormData();
-        formData ={
-            title:jobTitle,
-            role:"",
-            jobtype:jobType,
-            jobresponsibilty:responsibilty,
-            experience:values.experienced_required,
-            jobplace:jobPlace,
-            city:city,
-            industrytype:industryType,
-            associationtype:associationType,
-            skills:skills,
-            arealocal:"",
-            opening:"",
-            salary:{
-                saltype:salaryType,
-                salary:CTCSalary
+        formData = {
+            title: jobTitle,
+            role: "",
+            jobtype: jobType,
+            jobresponsibilty: responsibilty,
+            experience: values.min_exp + values.max_exp,
+            jobplace: jobPlace,
+            city: city,
+            industrytype: industryType,
+            associationtype: associationType,
+            skills: postData['skills'],
+            arealocal: "",
+            opening: "",
+            salary: {
+                saltype: salaryType,
+                salary: CTCSalary
             },
-            
-            shortdescription:jobDescription,
-            description:jobDescription,
-            extrabenefits:extraBenefits,
-            pincode:"",
-            workingdays: [JobWorkingDays],
-            Workshifttiming:{
-                startting_time:startingTime,
-                leaving_time:endingTime
+            workingdays: postData['working_days'],
+            shortdescription: jobDescription,
+            description: jobDescription,
+            extrabenefits: postData['extra_benefits'],
+            pincode: "",
+            weekly_off: [postData['weekly_off']],
+            Workshifttiming: {
+                startting_time: startingTime,
+                leaving_time: endingTime
             },
-            candidateage:values.age,
-            educationtype:values.education_type,
-            educationdegree:values.education_degree,
-            prefereddegree:values.perferred_degree,
-            preferedgender:values.gender,
-            hindirequirement:values.hindi_required,
-            englishrequirement:values.english_required
-            }
-          
-        let response = await postRequest(PostJobURL,formData);
-            if(response.status == '1'){
-                setFormSubmitted(true)
-                setPostJobStep(1);
-            }   
+            candidateage: {
+                min_age: values.min_age,
+                max_age: values.max_age
+            },
+            educationtype: values.education_type,
+            educationdegree: values.education_degree,
+            prefereddegree: values.perferred_degree,
+            preferedgender: values.gender,
+            hindirequirement: values.hindi_required,
+            englishrequirement: values.english_required
+        }
+
+        let response = await postRequest(PostJobURL, formData);
+        if (response.status == '1') {
+            setFormSubmitted(true)
+            setPostJobStep(1);
+            localStorage.setItem("post_data", "");
+        }
     }
 
     useEffect(() => {
@@ -262,8 +238,13 @@ const PostJob = () => {
             let response = await getRequest(getJobTypeURL);
             setJobTypeData(response.data);
         }
+        const getLocalLanguage = async () => {
+            let response = await getRequest("http://13.235.183.204:3001/api/file/findlocallanguage");
+            setLocalLanguageData(response.data[0]['languages']);
+        }
         getState();
         getJobType();
+        getLocalLanguage();
     }, [])
 
     const getDistrictByState = async (statefilter) => {
@@ -274,9 +255,19 @@ const PostJob = () => {
         // console.log(response);
     }
 
-    const getIndustryTypeByJobType = async (jobTypeFilter) =>{
-        let response = await getRequest("http://13.235.183.204:3001/api/file/industrytype?jobtype="+jobTypeFilter);
-        setIndustryData(response.data);
+    const getIndustryTypeByJobType = async (jobTypeFilter) => {
+        let SkillsData = [];
+        let response = await getRequest("http://13.235.183.204:3001/api/file/industrytype?jobtype=" + jobTypeFilter);
+        // setIndustryData(response.data);
+        response.data.map(item => {
+            // {item[0].toString()}
+            SkillsData.push({
+                label: item[0],
+                value: item[0]
+            })
+        });
+        // console.log(SkillsData);
+        setIndustryData(SkillsData);
     }
     const getAddress = async (value) => {
         let response = await getRequest("http://13.235.183.204:3001/api/map/autocompleteplaces?input=" + value);
@@ -468,7 +459,7 @@ const PostJob = () => {
                                     <ThemeFInputDiv >
 
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="company_name" LableText="Company Name" />
+                                            <ThemeLabel LableFor="company_name" LableText="Company Name*" />
                                             <Field
                                                 error={errors.company_name && touched.company_name}
                                                 as={TextField}
@@ -479,7 +470,7 @@ const PostJob = () => {
 
                                         <Stack direction="row" gap={2}>
                                             <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                <ThemeLabel LableFor="job_title" LableText="Job Title" />
+                                                <ThemeLabel LableFor="job_title" LableText="Job Title*" />
                                                 <Field
                                                     error={errors.job_title && touched.job_title}
                                                     as={TextField}
@@ -489,7 +480,7 @@ const PostJob = () => {
                                             </ThemeFInputDiv>
 
                                             <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                <ThemeLabel LableFor="job_type" LableText="Job Type" />
+                                                <ThemeLabel LableFor="job_type" LableText="Job Type *" />
                                                 <SelectField
                                                     labelId="demo-simple-select-label"
                                                     name="job_type"
@@ -513,7 +504,7 @@ const PostJob = () => {
 
                                                 >
                                                     <MenuItem value=" ">Select Job Type</MenuItem>
-                                                   
+
                                                     {jobTypeData && jobTypeData.map((item) =>
                                                         <MenuItem value={item} key={item}>{item}</MenuItem>
                                                     )}
@@ -524,7 +515,69 @@ const PostJob = () => {
                                         </Stack>
 
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="industry_type" LableText="Industry Type" />
+                                            <ThemeLabel LableFor="skills" LableText="Skills *" />
+                                            <Field
+
+                                                variant="standard"
+                                                error={errors.skills && touched.skills}
+                                                component={Select}
+                                                name="skills"
+                                                options={industryTypeData}
+                                                components={animatedComponents}
+                                                onChange={(options) => {
+                                                    let optionvalue = [];
+                                                    setSelectedOptions(options);
+                                                    options.map((item) => {
+                                                        optionvalue.push(item.value);
+                                                    })
+                                                    setFieldValue("skills", optionvalue.join(","));
+                                                }}
+                                                isMulti
+                                                placeholder="Select Skills " data={industryTypeData} fullWidth />
+
+                                            {/* <SelectField
+                                                multiple
+                                                labelId="demo-simple-select-label"
+                                                name="industry_type"
+                                                value={SKill.first}
+                                                label="role"
+                                                onChange={(event) => {
+                                                    setSKill({ ...SKill, [event.target.name]: event.target.value })
+                                                    console.log(SKill);
+                                                    // setIndustryType(event.target.value);
+                                                    // setFieldValue("skills", { ...skills, [event.target.name]: event.target.value });
+                                                }}
+                                                input={<Input />}
+                                                renderValue={selected => selected.join(", ")}
+                                                sx={{
+                                                    background: " #FFFFFF",
+                                                    border: "1px solid #EAEAEA",
+                                                    boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                    borderRadius: "7px",
+                                                    width: "101%",
+                                                    fontSize: "16px",
+                                                    fontamily: 'Montserrat',
+                                                    BorderBottom: 'none !important',
+
+                                                    padding: "8px"
+                                                }}
+                                                disableUnderline
+                                            >
+                                                <MenuItem value=" ">Select Skills</MenuItem>
+                                                {industryTypeData && industryTypeData.map((item) =>
+                                                    <MenuItem value={item[0].toString()} key={item[0].toString()}>
+                                                        <Checkbox checked={SKill.first.indexOf(item[0].toString()) > -1} />
+                                                        <ListItemText primary={item[0].toString()} />
+                                                    </MenuItem>
+                                                    // <MenuItem >{item[0].toString()}</MenuItem>
+                                                )}
+                                            </SelectField> */}
+
+                                            {errors.skills && touched.skills && <Error text={errors.skills} />}
+
+                                        </ThemeFInputDiv>
+                                        <ThemeFInputDiv>
+                                            <ThemeLabel LableFor="industry_type" LableText="Industry Type " />
                                             <SelectField
                                                 labelId="demo-simple-select-label"
                                                 name="industry_type"
@@ -549,17 +602,19 @@ const PostJob = () => {
                                                 disableUnderline
                                             >
                                                 <MenuItem value=" ">Select Industry Type</MenuItem>
-                                                {industryTypeData && industryTypeData.map((item) =>
+                                                {/* {industryTypeData && industryTypeData.map((item) =>
                                                     <MenuItem value={item[0].toString()} key={item[0].toString()}>{item[0].toString()}</MenuItem>
-                                                )}
+                                                )} */}
                                             </SelectField>
 
                                             {errors.industry_type && touched.industry_type && <Error text={errors.industry_type} />}
                                         </ThemeFInputDiv>
 
+
+
                                         <Stack direction="row" gap={2}>
                                             <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                <ThemeLabel LableFor="association_type" LableText="Association Type" />
+                                                <ThemeLabel LableFor="association_type" LableText="Association Type *" />
                                                 <SelectField
                                                     labelId="demo-simple-select-label"
                                                     name="association_type"
@@ -590,18 +645,43 @@ const PostJob = () => {
                                             </ThemeFInputDiv>
 
                                             <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                <ThemeLabel LableFor="job_place" LableText="Job Place" />
-                                                <Field
+                                                <ThemeLabel LableFor="job_place" LableText="Job Place *" />
+                                                <SelectField
+                                                    labelId="demo-simple-select-label"
+                                                    name="association_type"
+                                                    value={JobWorkingPlace}
+                                                    label="role"
+                                                    onChange={(event) => {
+                                                        setJobWorkingPlace(event.target.value);
+                                                        setFieldValue("job_place", event.target.value);
+                                                    }}
+                                                    sx={{
+                                                        background: " #FFFFFF",
+                                                        border: "1px solid #EAEAEA",
+                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                        borderRadius: "7px",
+                                                        width: "101%",
+                                                        fontSize: "16px",
+                                                        fontamily: 'Montserrat',
+                                                        padding: "8px"
+                                                    }}
+                                                >
+                                                    <MenuItem value=" ">Select Job Working Place</MenuItem>
+                                                    {JobWorkingPlaceData.map((item) =>
+                                                        <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                    )}
+                                                </SelectField>
+                                                {/* <Field
                                                     error={errors.job_place && touched.job_place}
                                                     as={TextField}
                                                     id="job_place"
-                                                    placeholder="Enter Job Place" type="text" name="job_place" fullWidth />
+                                                    placeholder="Enter Job Place" type="text" name="job_place" fullWidth /> */}
                                                 {errors.job_place && touched.job_place && <Error text={errors.job_place} />}
                                             </ThemeFInputDiv>
                                         </Stack>
 
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="responsibilites" LableText="Job Responsibilites" />
+                                            <ThemeLabel LableFor="responsibilites" LableText="Job Responsibilites *" />
                                             <Box sx={{ width: "100%", margin: "10px 0px" }}>
                                                 <TextField
                                                     error={errors.responsibilites && touched.responsibilites}
@@ -619,7 +699,7 @@ const PostJob = () => {
                                         </ThemeFInputDiv>
 
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="job_description" LableText="Job Description" />
+                                            <ThemeLabel LableFor="job_description" LableText="Job Description *" />
                                             <DefaultEditor
                                                 style={{
                                                     minHeight: "300px",
@@ -631,7 +711,7 @@ const PostJob = () => {
                                             {errors.job_description && touched.job_description && <Error text={errors.job_description} />}
                                         </ThemeFInputDiv>
 
-                                        <ThemeFInputDiv>
+                                        {/* <ThemeFInputDiv>
                                             <ThemeLabel LableFor="skills" LableText="Skills" />
 
                                             <Field
@@ -656,11 +736,11 @@ const PostJob = () => {
 
                                             {errors.skills && touched.skills && <Error text={errors.skills} />}
 
-                                        </ThemeFInputDiv>
+                                        </ThemeFInputDiv> */}
 
                                         <Stack direction="row" gap={5}>
                                             <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                <ThemeLabel LableFor="working_days" LableText="Working Days" />
+                                                <ThemeLabel LableFor="working_days" LableText="Working Days *" />
                                                 <SelectField
                                                     labelId="demo-simple-select-label"
                                                     name="association_type"
@@ -724,11 +804,11 @@ const PostJob = () => {
                                         </Stack>
 
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="shift_timing" LableText="Shift Timing" />
+                                            <ThemeLabel LableFor="shift_timing" LableText="Shift Timing *" />
                                             <Stack direction="row" gap={5}>
                                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                                                     <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                        <ThemeLabel LableFor="starting_time" LableText="Starting Time" />
+                                                        <ThemeLabel LableFor="starting_time" sx={{ fontSize: "16px" }} LableText="Starting Time" />
                                                         <TimePicker
                                                             value={startingTime}
                                                             onChange={(newValue) => {
@@ -737,6 +817,7 @@ const PostJob = () => {
                                                             }}
                                                             renderInput={(params) => <TextField {...params} />}
                                                         />
+                                                        {errors.starting_time && touched.starting_time && <Error text={errors.starting_time} />}
 
                                                     </ThemeFInputDiv>
                                                     <ThemeFInputDiv sx={{ width: "50%" }}>
@@ -749,7 +830,6 @@ const PostJob = () => {
                                                             renderInput={(params) => <TextField {...params} />}
                                                         />
 
-                                                        {errors.starting_time && touched.starting_time && <Error text={errors.starting_time} />}
                                                         {errors.ending_time && touched.ending_time && <Error text={errors.ending_time} />}
 
                                                     </ThemeFInputDiv>
@@ -759,7 +839,7 @@ const PostJob = () => {
                                         </ThemeFInputDiv>
 
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="salary_type" LableText="Salary Type" />
+                                            <ThemeLabel LableFor="salary_type" LableText="Salary Type *" />
                                             <SelectField
                                                 labelId="demo-simple-select-label"
                                                 name="association_type"
@@ -826,12 +906,31 @@ const PostJob = () => {
                                         </ThemeFInputDiv>
 
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="weekly_off" LableText="Weekly Off" />
+                                            <ThemeLabel LableFor="weekly_off" LableText="Weekly Off *" />
                                             <Field
+
+                                                variant="standard"
+                                                error={errors.skills && touched.skills}
+                                                component={Select}
+                                                name="skills"
+                                                options={WeeklyOffData}
+                                                components={animatedComponents}
+                                                onChange={(options) => {
+                                                    let optionvalue = [];
+                                                    setSelectedOptions(options);
+                                                    options.map((item) => {
+                                                        optionvalue.push(item.value);
+                                                    })
+                                                    setFieldValue("weekly_off", optionvalue.join(","));
+                                                }}
+                                                isMulti
+                                                placeholder="Select Weekly Off" data={WeeklyOffData} fullWidth />
+
+                                            {/* <Field
                                                 error={errors.weekly_off && touched.weekly_off}
                                                 as={TextField}
                                                 id="weekly_off"
-                                                placeholder="Enter Weekly off" type="text" name="weekly_off" fullWidth />
+                                                placeholder="Enter Weekly off" type="text" name="weekly_off" fullWidth /> */}
                                             {errors.weekly_off && touched.weekly_off && <Error text={errors.weekly_off} />}
                                         </ThemeFInputDiv>
 
@@ -961,12 +1060,31 @@ const PostJob = () => {
 
                                         </ThemeFInputDiv>
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="extra_benefits" LableText="Extra Benefits" />
-                                            <Field
+                                            <ThemeLabel LableFor="extra_benefits" LableText="Extra Benefits *" />
+                                            {/* <Field
                                                 error={errors.extra_benefits && touched.extra_benefits}
                                                 as={TextField}
                                                 id="extra_benefits"
-                                                placeholder="Enter Extra Benefits" type="text" name="extra_benefits" fullWidth />
+                                                placeholder="Enter Extra Benefits" type="text" name="extra_benefits" fullWidth /> */}
+                                            <Field
+
+                                                variant="standard"
+                                                error={errors.skills && touched.skills}
+                                                component={Select}
+                                                name="extra_benefits"
+                                                options={ExtraBenefitsData}
+                                                components={animatedComponents}
+                                                onChange={(options) => {
+                                                    let optionvalue = [];
+                                                    setExtraBenefits(options);
+                                                    options.map((item) => {
+                                                        optionvalue.push(item.value);
+                                                    })
+                                                    setFieldValue("extra_benefits", optionvalue.join(","));
+                                                }}
+                                                isMulti
+                                                placeholder="Select Extra Benefits" data={ExtraBenefitsData} fullWidth />
+
                                             {errors.extra_benefits && touched.extra_benefits && <Error text={errors.extra_benefits} />}
                                         </ThemeFInputDiv>
 
@@ -1157,21 +1275,156 @@ const PostJob = () => {
 
                                             <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="experienced_required" LableText="Experience Required" />
-                                                <Field
+                                                <Stack direction="row" gap={2}>
+                                                    <Box sx={{ width: "50%" }}>
+                                                        <Box >Min Exp. (Yrs)</Box>
+                                                        <SelectField
+                                                            labelId="demo-simple-select-label"
+                                                            name="min_exp"
+                                                            value={minExp}
+                                                            label="role"
+                                                            onChange={(event) => {
+                                                                setMinExp(event.target.value);
+                                                                setFieldValue("min_exp", event.target.value);
+                                                            }}
+                                                            sx={{
+                                                                background: " #FFFFFF",
+                                                                border: "1px solid #EAEAEA",
+                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                borderRadius: "7px",
+                                                                width: "101%",
+                                                                fontSize: "16px",
+                                                                fontamily: 'Montserrat',
+                                                                BorderBottom: 'none !important',
+
+                                                            }}
+                                                            disableUnderline
+                                                        >
+                                                            <MenuItem value=" ">Select Min Exp </MenuItem>
+                                                            {ExperienceLevel.map((item) =>
+                                                                <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                            )}
+                                                        </SelectField>
+                                                        {errors.min_exp && touched.min_exp && <Error text={errors.min_exp} />}
+                                                    </Box>
+
+                                                    <Box sx={{ width: "50%" }}>
+                                                        <Box> Max Exp. (Yrs)</Box>
+                                                        <SelectField
+                                                            labelId="demo-simple-select-label"
+                                                            name="max_exp"
+                                                            value={maxExp}
+                                                            label="role"
+                                                            onChange={(event) => {
+                                                                setMaxExp(event.target.value);
+                                                                setFieldValue("max_exp", event.target.value);
+                                                            }}
+                                                            sx={{
+                                                                background: " #FFFFFF",
+                                                                border: "1px solid #EAEAEA",
+                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                borderRadius: "7px",
+                                                                width: "101%",
+                                                                fontSize: "16px",
+                                                                fontamily: 'Montserrat',
+                                                                BorderBottom: 'none !important',
+                                                            }}
+                                                            disableUnderline
+                                                        >
+                                                            <MenuItem value=" ">Select Max Exp </MenuItem>
+                                                            {ExperienceLevel.map((item) =>
+                                                                <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                            )}
+                                                        </SelectField>
+                                                        {errors.max_exp && touched.max_exp && <Error text={errors.max_exp} />}
+                                                    </Box>
+
+
+
+
+                                                </Stack>
+                                                {/* <Field
                                                     error={errors.experienced_required && touched.experienced_required}
                                                     as={TextField}
                                                     id="experienced_required"
-                                                    placeholder="Enter Experienced Required" type="text" name="experienced_required" fullWidth />
-                                                {errors.experienced_required && touched.experienced_required && <Error text={errors.experienced_required} />}
+                                                    placeholder="Enter Experienced Required" type="text" name="experienced_required" fullWidth /> */}
                                             </ThemeFInputDiv>
 
                                             <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="age" LableText="Age" />
-                                                <Field
+                                                <Stack direction="row" gap={2}>
+                                                    <Box sx={{ width: "50%" }}>
+                                                        <Box> Min Age. (Yrs) </Box>
+                                                        <SelectField
+                                                            labelId="demo-simple-select-label"
+                                                            name="min_age"
+                                                            value={minAge}
+                                                            label="role"
+                                                            onChange={(event) => {
+                                                                setMinAge(event.target.value);
+                                                                setFieldValue("min_age", event.target.value);
+                                                            }}
+                                                            sx={{
+                                                                background: " #FFFFFF",
+                                                                border: "1px solid #EAEAEA",
+                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                borderRadius: "7px",
+                                                                width: "101%",
+                                                                fontSize: "16px",
+                                                                fontamily: 'Montserrat',
+                                                                BorderBottom: 'none !important',
+
+                                                            }}
+                                                            disableUnderline
+                                                        >
+                                                            <MenuItem value=" ">Select Min Age </MenuItem>
+                                                            {AgeLevel.map((item) =>
+                                                                <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                            )}
+                                                        </SelectField>
+                                                        {errors.min_age && touched.min_age && <Error text={errors.min_age} />}
+                                                    </Box>
+
+                                                    <Box sx={{ width: "50%" }}>
+                                                        <Box> Max Age. (Yrs)</Box>
+                                                        <SelectField
+                                                            labelId="demo-simple-select-label"
+                                                            name="max_age"
+                                                            value={maxAge}
+                                                            label="role"
+                                                            onChange={(event) => {
+                                                                setMaxAge(event.target.value);
+                                                                setFieldValue("max_age", event.target.value);
+                                                            }}
+                                                            sx={{
+                                                                background: " #FFFFFF",
+                                                                border: "1px solid #EAEAEA",
+                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                borderRadius: "7px",
+                                                                width: "101%",
+                                                                fontSize: "16px",
+                                                                fontamily: 'Montserrat',
+                                                                BorderBottom: 'none !important',
+                                                            }}
+                                                            disableUnderline
+                                                        >
+                                                            <MenuItem value=" ">Select Max Exp </MenuItem>
+                                                            {AgeLevel.map((item) =>
+                                                                <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                            )}
+                                                        </SelectField>
+                                                        {errors.max_age && touched.max_age && <Error text={errors.max_age} />}
+                                                    </Box>
+
+
+
+
+                                                </Stack>
+                                                {/* <Field
                                                     error={errors.age && touched.age}
                                                     as={TextField}
                                                     id="age"
-                                                    placeholder="Enter Age" type="text" name="age" fullWidth />
+                                                    placeholder="Enter Age" type="text" name="age" fullWidth /> */}
                                                 {errors.age && touched.age && <Error text={errors.age} />}
                                             </ThemeFInputDiv>
 
@@ -1287,75 +1540,103 @@ const PostJob = () => {
                                                     placeholder="Enter Skill Required" type="text" name="skills_required" fullWidth />
                                                 {errors.skills_required && touched.skills_required && <Error text={errors.skills_required} />}
                                             </ThemeFInputDiv> */}
-                                             <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="gender" LableText="Gender" />
                                             <ThemeFInputDiv>
-                                                <FormControl>
-                                                    <RadioGroup
-                                                        aria-labelledby="demo-controlled-radio-buttons-group"
-                                                        name="controlled-radio-buttons-group"
-                                                        value={gender}
-                                                        onChange={(event) => {
-                                                            setGender(event.target.value)
-                                                            setFieldValue("gender", event.target.value)
-                                                        }}
-                                                    >
-                                                        <Stack direction="row" gap={3}>
+                                                <ThemeLabel LableFor="gender" LableText="Gender" />
+                                                <ThemeFInputDiv>
+                                                    <FormControl>
+                                                        <RadioGroup
+                                                            aria-labelledby="demo-controlled-radio-buttons-group"
+                                                            name="controlled-radio-buttons-group"
+                                                            value={gender}
+                                                            onChange={(event) => {
+                                                                setGender(event.target.value)
+                                                                setFieldValue("gender", event.target.value)
+                                                            }}
+                                                        >
+                                                            <Stack direction="row" gap={3}>
 
-                                                            <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
-                                                                sx={{
-                                                                    height: "59px",
-                                                                    width: "230px",
-                                                                    borderRadius: "7px",
-                                                                    border: " 2px solid #EAEAEA"
-                                                                }} >
-                                                                <Box sx={{ marginLeft: "20px" }}>Male</Box>
-                                                                <FormControlLabel value="male" control={<Radio />} label="" />
+                                                                <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                                    sx={{
+                                                                        height: "59px",
+                                                                        width: "230px",
+                                                                        borderRadius: "7px",
+                                                                        border: " 2px solid #EAEAEA"
+                                                                    }} >
+                                                                    <Box sx={{ marginLeft: "20px" }}>Male</Box>
+                                                                    <FormControlLabel value="male" control={<Radio />} label="" />
+                                                                </Stack>
+
+                                                                <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                                    sx={{
+                                                                        height: "59px",
+                                                                        width: "230px",
+                                                                        borderRadius: "7px",
+                                                                        border: " 2px solid #EAEAEA"
+                                                                    }} >
+                                                                    <Box sx={{ marginLeft: "20px" }}>Female</Box>
+                                                                    <FormControlLabel value="female" control={<Radio />} label="" />
+                                                                </Stack>
+
+                                                                <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                                    sx={{
+                                                                        height: "59px",
+                                                                        width: "231px",
+                                                                        borderRadius: "7px",
+                                                                        border: " 2px solid #EAEAEA"
+                                                                    }} >
+                                                                    <Box sx={{ marginLeft: "20px" }}>Both</Box>
+                                                                    <FormControlLabel value="both" control={<Radio />} label="" />
+                                                                </Stack>
                                                             </Stack>
 
-                                                            <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
-                                                                sx={{
-                                                                    height: "59px",
-                                                                    width: "230px",
-                                                                    borderRadius: "7px",
-                                                                    border: " 2px solid #EAEAEA"
-                                                                }} >
-                                                                <Box sx={{ marginLeft: "20px" }}>Female</Box>
-                                                                <FormControlLabel value="female" control={<Radio />} label="" />
-                                                            </Stack>
-
-                                                            <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
-                                                                sx={{
-                                                                    height: "59px",
-                                                                    width: "231px",
-                                                                    borderRadius: "7px",
-                                                                    border: " 2px solid #EAEAEA"
-                                                                }} >
-                                                                <Box sx={{ marginLeft: "20px" }}>Both</Box>
-                                                                <FormControlLabel value="both" control={<Radio />} label="" />
-                                                            </Stack>
-                                                        </Stack>
-
-                                                    </RadioGroup>
-                                                </FormControl>
+                                                        </RadioGroup>
+                                                    </FormControl>
+                                                </ThemeFInputDiv>
+                                                {errors.gender && touched.gender && <Error text={errors.gender} />}
                                             </ThemeFInputDiv>
-                                            {errors.gender && touched.gender && <Error text={errors.gender} />}
-                                        </ThemeFInputDiv>
 
                                             <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="mandatory_local_language" LableText="Mandatory Local Language" />
-                                                <Field
+                                                <SelectField
+                                                    labelId="demo-simple-select-label"
+                                                    name="mandatory_local_language"
+                                                    value={localLanguage}
+                                                    label="role"
+                                                    onChange={(event) => {
+                                                        setLocalLanguage(event.target.value);
+                                                        setFieldValue("mandatory_local_language", event.target.value);
+                                                    }}
+                                                    sx={{
+                                                        background: " #FFFFFF",
+                                                        border: "1px solid #EAEAEA",
+                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                        borderRadius: "7px",
+                                                        width: "101%",
+                                                        fontSize: "16px",
+                                                        fontamily: 'Montserrat',
+                                                        BorderBottom: 'none !important',
+
+                                                    }}
+                                                    disableUnderline
+                                                >
+                                                    <MenuItem value=" ">Select Local language</MenuItem>
+
+                                                    {localLanguageData && localLanguageData.map((item) =>
+                                                        <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                    )}
+                                                </SelectField>
+                                                {/* <Field
                                                     error={errors.mandatory_local_language && touched.mandatory_local_language}
                                                     as={TextField}
                                                     id="mandatory_local_language"
-                                                    placeholder="Enter Mandatory Local Language" type="text" name="mandatory_local_language" fullWidth />
+                                                    placeholder="Enter Mandatory Local Language" type="text" name="mandatory_local_language" fullWidth /> */}
                                                 {errors.mandatory_local_language && touched.mandatory_local_language && <Error text={errors.mandatory_local_language} />}
                                             </ThemeFInputDiv>
 
                                             <Stack direction="row" gap={5}>
                                                 <ThemeFInputDiv sx={{ width: "50%" }}>
                                                     <ThemeLabel LableFor="hindi_required" LableText="Hindi Required" />
-                                                    <SelectField
+                                                    {/* <SelectField
                                                         labelId="demo-simple-select-label"
                                                         name="hindi_required"
                                                         value={hindiReq}
@@ -1380,14 +1661,51 @@ const PostJob = () => {
                                                         {Proficiency.map((item) =>
                                                             <MenuItem value={item.value} key={item.id}>{item.value}</MenuItem>
                                                         )}
-                                                    </SelectField>
+                                                    </SelectField> */}
+
+                                                    <Field
+
+                                                        variant="standard"
+                                                        error={errors.skills && touched.skills}
+                                                        component={Select}
+                                                        name="skills"
+                                                        options={Proficiency}
+                                                        components={animatedComponents}
+                                                        onChange={(options) => {
+                                                            let optionvalue = [];
+                                                            setSelectedOptions(options);
+                                                            options.map((item) => {
+                                                                optionvalue.push(item.value);
+                                                            })
+                                                            setFieldValue("hindi_required", optionvalue.join(","));
+                                                        }}
+                                                        isMulti
+                                                        placeholder="Select Proficiency Level " data={Proficiency} fullWidth />
 
                                                     {errors.hindi_required && touched.hindi_required && <Error text={errors.hindi_required} />}
                                                 </ThemeFInputDiv>
 
                                                 <ThemeFInputDiv sx={{ width: "50%" }}>
                                                     <ThemeLabel LableFor="english_required" LableText="English Required" />
-                                                    <SelectField
+                                                    <Field
+
+                                                        variant="standard"
+                                                        error={errors.skills && touched.skills}
+                                                        component={Select}
+                                                        name="skills"
+                                                        options={Proficiency}
+                                                        components={animatedComponents}
+                                                        onChange={(options) => {
+                                                            let optionvalue = [];
+                                                            setSelectedOptions(options);
+                                                            options.map((item) => {
+                                                                optionvalue.push(item.value);
+                                                            })
+                                                            setFieldValue("english_required", optionvalue.join(","));
+                                                        }}
+                                                        isMulti
+                                                        placeholder="Select Proficiency Level " data={Proficiency} fullWidth />
+                                                    {/* <SelectField
                                                         labelId="demo-simple-select-label"
                                                         name="english_required"
                                                         value={englishReq}
@@ -1413,7 +1731,7 @@ const PostJob = () => {
                                                         {Proficiency.map((item) =>
                                                             <MenuItem value={item.value} key={item.id}>{item.value}</MenuItem>
                                                         )}
-                                                    </SelectField>
+                                                    </SelectField> */}
 
                                                     {errors.english_required && touched.english_required && <Error text={errors.english_required} />}
                                                 </ThemeFInputDiv>
@@ -1422,7 +1740,7 @@ const PostJob = () => {
                                         </ThemeFInputDiv>
 
                                         <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                            <ThemeButtonType2  id="save" variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Save</ThemeButtonType2>
+                                            <ThemeButtonType2 id="save" variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Save</ThemeButtonType2>
                                         </Stack>
 
                                     </Form>

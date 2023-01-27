@@ -379,6 +379,11 @@ textarea {
   margin: 0 auto;
 }
 
+.PostJobForm1 .css-1s2u09g-control {
+  padding: 10px !important;
+  border-radius: 11px !important;
+}
+
 /*tags */
 .tag-wrapper.ReactTags__tag {
   opacity: 1;
