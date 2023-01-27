@@ -32,7 +32,7 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                 <Button type="button" variant="filled"
                     onClick={
                         () => {
-                            if (buttonText === 'Employer SignIn')
+                            if (buttonText === 'Employer SignIn/Signup')
                                 window.location.href = window.location.origin + "/employer-login"
                         }
                     }
@@ -41,7 +41,6 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                         border: "none",
                         color: "#2B1E44",
                         textTransform: "capitalize",
-                        width: "200px",
                         borderRadius: "44px",
                         fontSize: "18px",
                         fontWeight: "600",
@@ -53,11 +52,11 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                     {buttonText ? buttonText : "About Us"}
                 </Button>
                 {
-                    buttonText === "Employer SignIn" && <>
+                    buttonText === "Employer SignIn/Signup" && <>
                         <Button type="button" variant="filled"
                             onClick={
                                 () => {
-                                    if (buttonText === 'Employer SignIn')
+                                    if (buttonText === 'Employer SignIn/Signup')
                                         window.location.href = window.location.origin + "/candidate-login"
                                 }
                             }
@@ -66,7 +65,6 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                                 border: "none",
                                 color: "#2B1E44",
                                 textTransform: "capitalize",
-                                width: "250px",
                                 borderRadius: "44px",
                                 fontSize: "18px",
                                 fontWeight: "600",
@@ -75,7 +73,7 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                                     background: "#FC9A7E"
                                 }
                             }}>
-                            {localStorage.getItem("isLoggedIn") == 'true' ? "Dashboard" : "Candidate SignIn"}
+                            {localStorage.getItem("isLoggedIn") == 'true' ? "Dashboard" : "Candidate SignIn /Signup"}
                         </Button></>
                 }
 

@@ -45,11 +45,12 @@ const CandidateLogin = () => {
         if (response.status == '1') {
             localStorage.setItem("auth_token", response.token);
             console.log(response.data)
-            // if (response.data.isemailverified && response.profilePercentage < 50)
-            //     window.location.href = window.location.origin + "/profile/0";
-             if (response.data.isemailverified)
+            if (response.data.isemailverified && response.data.profilecompleted >= 50)
                 dispatch({ type: 'LOGIN', payload: response });
-            
+
+            else if (response.data.isemailverified && response.data.profilecompleted < 50)
+                window.location.href = window.location.origin + "/profile/0";
+
             else {
                 setShowEmailVerifiedMessage(true);
                 setIsEmailVerified(true);
@@ -71,6 +72,7 @@ const CandidateLogin = () => {
                 if (response.data.isemailverified && response.data.profilecompleted < 50) {
                     window.location.href = window.location.origin + "/profile/0";
                 }
+
                 if (!response.data.isEmailVerified && response.data.profilecompleted < 50) {
                     if (localStorage.getItem("useremail")) {
                         setIsEmailVerified(true)
