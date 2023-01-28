@@ -61,22 +61,7 @@ const PostJob = () => {
     const [startingTime, setStartingTime] = useState(new Date());
     const [endingTime, setEndingTime] = useState(new Date());
 
-    const [workingDays, setWorkingDays] = useState(" ");
-
-    const [monStartTime, setMonStartTime] = useState("");
-    const [monEndTime, setMonEndTime] = useState("");
-
-    const [tueStartTime, setTueStartTime] = useState("");
-    const [tueEndTime, setTueEndTime] = useState("");
-
-    const [wedStartTime, setWedStartTime] = useState("");
-    const [wedEndTime, setWedEndTime] = useState("");
-
-    const [thruStartTime, setThruStartTime] = useState("");
-    const [thruEndTime, setThruEndTime] = useState("");
-
-    const [friStartTime, setFriStartTime] = useState("");
-    const [friEndTime, setFriEndTime] = useState("");
+    const [JobWorkingDays, setJobWorkingDays] = useState(" ");
 
     const [salaryType, setSalaryType] = useState(" ");
     const [satStartTime, setSatStartTime] = useState("");
@@ -199,68 +184,73 @@ const PostJob = () => {
     }
 
     const handleSubmit1 = async (values, { resetForm }) => {
-        console.log(values);
+        
+        setCompanyName(values.company_name)
+        setSalary(values.ctc_salary);
+        setStartingTime(values.starting_time);
+        setEndingTime(values.ending_time);
+        setExtraBenefits(values.extra_benefits)
+        setJobDescription(values.job_description);
+        setJobPlace(values.job_place);
+        setJobTitle(values.job_title);
+        setResponsibilty(values.responsibilites);
+        setCTCSalary(values.ctc_salary);
+        setSkills(values.skills);
+        setWeeklyOff(values.weekly_off)
+        console.log(companyName,jobTitle,jobType,industryType,associationType,jobPlace,
+            responsibilty,jobDescription,skills,JobWorkingDays,workShift,
+            startingTime,endingTime,salaryType,CTCSalary,weeklyOff,state,city,companyAddress,
+            extraBenefits
+           )
+
         setPostJobStep(2);
-        // associationType
-        // city
-        // state
-        // companyAddress
-        // industryType
-        // setCompanyName(values.company_name)
-        // setSalary(values.ctc_salary);
-        // setStartingTime(values.starting_time);
-        // setEndingTime(values.ending_time);
-        // setExtraBenefits(values.extra_benefits)
-        // setJobDescription(values.job_description);
-        // setJobPlace(values.job_place);
-        // setJobTitle(values.job_title)
-        // jobType;
-        // setResponsibilty(values.responsibilites);
-        // salaryType
-        // setCTCSalary(values.ctc_salary);
-        // setSkills(values.skills);
-        // startingTime
-        // endingTime
-        // setWeeklyOff(values.weekly_off)
-        // workShift
-        // jobWorkingDay
-        // console.log(values);
-        // console.log(extra_benefits)
-        // let formData = new FormData();
-        // formData = {
-        //     userid: user._id,
-        //     title: values.job_title,
-        //     role: values.role,
-        //     experience: values.experience,
-        //     opening: values.opening,
-        //     salary: values.salary,
-        //     skills: values.skills,
-        //     shortdescription: values.short_description,
-        //     description: values.long_description,
-        //     location: values.city
-        // }
-        // if (jobType == "regular") {
-
-        //     let response = await postRequest(PostJobURL, formData);
-        //     if (response.status == 1) {
-        //         setFormSubmitted(true);
-        //         resetForm();
-        //         setCity(" ");
-        //         setRole(" ");
-        //         setSelectedOptions("");
-        //     }
-        // }
-        // else {
-        //     console.log(values);
-        //     console.log(formData);
-        // }
-
-
-
+       
     }
 
     const handleSubmit2 = async (values,{resetForm}) =>{
-        console.log(values);
+       console.log(endingTime)
+        let formData = new FormData();
+        formData ={
+            title:jobTitle,
+            role:"",
+            jobtype:jobType,
+            jobresponsibilty:responsibilty,
+            experience:values.experienced_required,
+            jobplace:jobPlace,
+            city:city,
+            industrytype:industryType,
+            associationtype:associationType,
+            skills:skills,
+            arealocal:"",
+            opening:"",
+            salary:{
+                saltype:salaryType,
+                salary:CTCSalary
+            },
+            
+            shortdescription:jobDescription,
+            description:jobDescription,
+            extrabenefits:extraBenefits,
+            pincode:"",
+            workingdays: [JobWorkingDays],
+            Workshifttiming:{
+                startting_time:startingTime,
+                leaving_time:endingTime
+            },
+            candidateage:values.age,
+            educationtype:values.education_type,
+            educationdegree:values.education_degree,
+            prefereddegree:values.perferred_degree,
+            preferedgender:values.gender,
+            hindirequirement:values.hindi_required,
+            englishrequirement:values.english_required
+            }
+          
+        let response = await postRequest(PostJobURL,formData);
+            if(response.status == '1'){
+                setFormSubmitted(true)
+                setPostJobStep(1);
+            }   
     }
 
     useEffect(() => {
@@ -674,10 +664,10 @@ const PostJob = () => {
                                                 <SelectField
                                                     labelId="demo-simple-select-label"
                                                     name="association_type"
-                                                    value={workingDays}
+                                                    value={JobWorkingDays}
                                                     label="role"
                                                     onChange={(event) => {
-                                                        setWorkingDays(event.target.value);
+                                                        setJobWorkingDays(event.target.value);
                                                         setFieldValue("working_days", event.target.value);
                                                     }}
                                                     sx={{
@@ -1341,8 +1331,8 @@ const PostJob = () => {
                                                                     borderRadius: "7px",
                                                                     border: " 2px solid #EAEAEA"
                                                                 }} >
-                                                                <Box sx={{ marginLeft: "20px" }}>Other</Box>
-                                                                <FormControlLabel value="other" control={<Radio />} label="" />
+                                                                <Box sx={{ marginLeft: "20px" }}>Both</Box>
+                                                                <FormControlLabel value="both" control={<Radio />} label="" />
                                                             </Stack>
                                                         </Stack>
 
@@ -1427,15 +1417,12 @@ const PostJob = () => {
 
                                                     {errors.english_required && touched.english_required && <Error text={errors.english_required} />}
                                                 </ThemeFInputDiv>
-
-
-
                                             </Stack>
 
                                         </ThemeFInputDiv>
 
                                         <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                            <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Save</ThemeButtonType2>
+                                            <ThemeButtonType2  id="save" variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Save</ThemeButtonType2>
                                         </Stack>
 
                                     </Form>

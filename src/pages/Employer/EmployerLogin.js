@@ -42,7 +42,10 @@ const EmployerLogin = () => {
         let response = await postRequest(EmployerLoginURL, EmployerLoginForm);
         if (response.status == '1') {
             if (response.data.isemailverified)
+              {
+                localStorage.setItem("auth_token",response.token)
                 dispatch({ type: 'LOGIN', payload: response.data });
+              }
             else {
                 setShowEmailVerifiedMessage(true);
                 setIsEmailVerified(true);

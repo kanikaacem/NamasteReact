@@ -44,10 +44,12 @@ const CandidateLogin = () => {
         let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
         if (response.status == '1') {
             localStorage.setItem("auth_token", response.token);
-            if (response.data.isemailverified)
-                dispatch({ type: 'LOGIN', payload: response });
-            // else if (response.data.isemailverified && response.data.profilecompleted < 50)
+            console.log(response.data)
+            // if (response.data.isemailverified && response.profilePercentage < 50)
             //     window.location.href = window.location.origin + "/profile/0";
+             if (response.data.isemailverified)
+                dispatch({ type: 'LOGIN', payload: response });
+            
             else {
                 setShowEmailVerifiedMessage(true);
                 setIsEmailVerified(true);
