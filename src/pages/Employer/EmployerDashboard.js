@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import JobComponent from "../../ThemeComponent/JobComponent";
-
+import RecommendedJobs from "../Home/Component/RecommendedJobs";
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Bar } from 'react-chartjs-2'
 ChartJS.register(...registerables);
@@ -155,42 +155,85 @@ const EmployerDashboard = () => {
                  }}>
 
                     <Stack gap={4} direction="row" divider={<Divider orientation="vertical" flexItem />}
-                        sx={{  height: "130px", borderRadius: "10px", padding: "20px" }}>
+                        justifyContent="center" alignItems="center"
+                        sx={{  height: "130px", borderRadius: "10px", padding: "30px" }}>
 
-                        <Stack gap={1} sx={{ minWidth: "100px" }}>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
+                      
+                        <Stack gap={1} sx={{ minWidth: "230px" }}>
+                           <Stack direction="row" justifyContent="space-between">
+                           <Typography component="div" sx={{ fontSize: "24px" ,fontWeight:"600"}}>
                                 {data.length}
                             </Typography>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
+                            <img src={window.location.origin+"/assets/V1.png"} alt="V1" height="30px" />
+                           
+                           </Stack>
+                            <Typography component="div" sx={{ fontSize: "24px",fontWeight:"600" }}>
                                 Posted Jobs
                             </Typography>
                         </Stack>
-
-                        <Stack gap={1} sx={{ minWidth: "100px" }}>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-
+                        <Stack gap={1} sx={{ minWidth: "230px" }}>
+                           <Stack direction="row" justifyContent="space-between">
+                           <Typography component="div" sx={{ fontSize: "24px" ,fontWeight:"600"}}>
+                                {data.length}
                             </Typography>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
+                            <img src={window.location.origin+"/assets/V2.png"} alt="V2" height="30px" />
+                           
+                           </Stack>
+                            <Typography component="div" sx={{ fontSize: "24px",fontWeight:"600" }}>
                                 Saved Candidate
                             </Typography>
                         </Stack>
+                        <Stack gap={1} sx={{ minWidth: "230px" }}>
+                           <Stack direction="row" justifyContent="space-between">
+                           <Typography component="div" sx={{ fontSize: "24px" ,fontWeight:"600"}}>
+                                {data.length}
+                            </Typography>
+                            <img src={window.location.origin+"/assets/V3.png"} alt="V3" height="30px" />
+                           
+                           </Stack>
+                            <Typography component="div" sx={{ fontSize: "24px",fontWeight:"600" }}>
+                                Active Jobs
+                            </Typography>
+                        </Stack>
+                        <Stack gap={1} sx={{ minWidth: "230px" }}>
+                           <Stack direction="row" justifyContent="space-between">
+                           <Typography component="div" sx={{ fontSize: "24px" ,fontWeight:"600"}}>
+                                {data.length}
+                            </Typography>
+                            <img src={window.location.origin+"/assets/V4.png"} alt="V4" height="30px" />
+                           
+                           </Stack>
+                            <Typography component="div" sx={{ fontSize: "24px",fontWeight:"600" }}>
+                              Shortlisted Candidate to be reviewed
+                            </Typography>
+                        </Stack>
 
-                        {DashboardValues.map((item) => {
-                            return (<Stack gap={1} sx={{ minWidth: "100px" }}>
-                                <Typography component="div" sx={{ fontSize: "14px" }}>
+                        <Stack gap={1} sx={{ minWidth: "230px" }}>
+                           <Stack direction="row" justifyContent="space-between">
+                           <Typography component="div" sx={{ fontSize: "24px" ,fontWeight:"600"}}>
+                                {data.length}
+                            </Typography>
+                            <img src={window.location.origin+"/assets/V5.png"} alt="V5" height="30px" />
+                           
+                           </Stack>
+                            <Typography component="div" sx={{ fontSize: "24px",fontWeight:"600" }}>
+                                Interview schedule for Today
+                            </Typography>
+                        </Stack>
+                       
 
-                                </Typography>
-                                <Typography component="div" sx={{ fontSize: "14px" }}>
-                                    {item.name}
-                                </Typography>
-                            </Stack>)
-                        })}
+                       
 
                     </Stack>
                 </Stack>
 
-                <Stack direction="row">
-                    <Box sx={{ width: "70%", padding: "20px" }}>
+                <Stack direction="row" gap={2}>
+                    <Box sx={{ width: "70%", 
+                    background: "#FFFFFF",
+                    border: "1px solid #E1D4F2",
+                    borderRadius: "14px",
+                    padding: "20px"
+                    }}>
                         <Bar
                             data={state}
                             options={{
@@ -209,52 +252,51 @@ const EmployerDashboard = () => {
                     <Box sx={{
                         width: "30%",
                         background: "#FFFFFF",
-                        borderRadius: "10px"
+                        border: "1px solid #E1D4F2",
+                        borderRadius: "14px",
+                        padding:"20px"
                     }}>
-                        <Box sx={{
-                            background: "#f3fbfb", padding: "10px",
-                        }}>
-                            <Typography component="div" sx={{ fontSize: "18px", fontWeight: "600" }}>
-                                0 interviews scheduled
-                            </Typography>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                <Link to="/">See Demo</Link>  on how to scheduled Video Interviews
-                            </Typography>
-                        </Box>
+                        
+                        <Typography component="div" sx={{ fontSize: "24px", 
+                        fontWeight: "600" ,
+                        color:"#4E3A67",
+                        padding:"20px"}}>
+                            Upcoming Interviews
+                        </Typography>
+                        
+                      <Box sx={{
+                        background:"#E1D4F2",
+                        borderRadius:"11px",
+                        padding:"10px"
+                      }}>
+                        
+                        <Typography component="div" sx={{ fontSize: "20px", 
+                        fontWeight: "600" ,
+                        color:"#4E3A67",
+                        padding:"20px"}}>
+                            0 interviews Scheduled
+                        </Typography>
 
-                        <Stack sx={{ padding: "10px" }} gap={2}>
-                            <Typography component="div" sx={{ fontSize: "16px", fontWeight: "600" }}>
-                                Start Interviewing Today
-                            </Typography>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                Andriod Developer -Kotlin/Java (4-10 yrs)
-                            </Typography>
+                        <Typography component="div" sx={{ fontSize: "20px", 
+                        color:"#4E3A67",
+                        padding:"20px"}}>
+                           See Demo on how to scheduled Video Interviews
+                        </Typography>
+                      </Box>
 
-                            <Typography component="div" sx={{ fontSize: "14px", fontWeight: "600" }}>
-                                Shortlisted Candidate
-                            </Typography>
+                      <Typography component="div" sx={{ fontSize: "20px", 
+                        fontWeight: "600" ,
+                        color:"#4E3A67",
+                        padding:"20px"}}>
+                            Start Interviewing Today
+                        </Typography>
 
-                            <Stack alignItems="flex-start">
-                                <AvatarGroup max={4} alignItems="flex-start">
-                                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                                    <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                                    <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-                                    <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
-                                    <Avatar alt="Trevor Henderson" src="/static/images/avatar/5.jpg" />
-                                </AvatarGroup>
-                            </Stack>
-
-                            <Link to="/">
-                                <Typography component="div" sx={{
-                                    fontSize: "14px",
-                                    fontWeight: "600",
-                                    textAlign: "center",
-                                    fontStyle: "none"
-                                }}>
-                                    View All
-                                </Typography></Link>
-
-                        </Stack>
+                        <Typography component="div" sx={{ fontSize: "20px", 
+                        color:"#4E3A67",
+                        padding:"20px"}}>
+                           Android Developer - Kotlin/Java (4-10 yrs)
+                        </Typography>
+                     
                     </Box>
                 </Stack>
 
@@ -262,10 +304,13 @@ const EmployerDashboard = () => {
                 <Stack gap={2} direction="row" sx={{ minHeight: "600px" }}>
                     <Stack direction="column" gap={2} sx={{ width: "60%", height: "600" }}>
                         <Box>
-                            <Typography component="span" sx={{ fontSize: "18px", fontWeight: "600" }}>
+                           <Box sx={{margin:"30px 0px"}}>
+                           <Typography component="span" sx={{ fontSize: "24px", fontWeight: "600" }}>
                                 Recent Jobs
                             </Typography>
-                            <Box sx={{ height: "500px" }}>
+                           </Box>
+                            <RecommendedJobs/>
+                            {/* <Box sx={{ height: "500px" }}>
                                 {
                                     jobs.length > 0 ? jobs.map((item) => {
                                         return (<>
@@ -274,7 +319,7 @@ const EmployerDashboard = () => {
                                     })
                                         : " There is no data present"
                                 }
-                            </Box>
+                            </Box> */}
                             <Box >
                                 <Pagination count={Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
                             </Box>
