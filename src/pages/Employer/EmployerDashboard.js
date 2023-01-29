@@ -95,11 +95,37 @@ const EmployerDashboard = () => {
     const jobs = data.slice(IndexOfFirstData, IndexOfLastData);
 
     return (<>
-        {/* {console.log(user)} */}
-        <Stack direction="row" gap={4} sx={{ padding: "50px" }}>
+        <Stack direction="column" gap={2} sx={{ padding: "50px" }}  className="EmployerData">
+        <Stack 
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+                gap={2} sx={{
+                    background: "#FFFFFF",
+                    border: "1px solid #E1D4F2",
+                    borderRadius: "14px",
+                    padding: "20px"
+                }}>
+                
+                <Typography component="box" sx={{
+                    fontSize: "24px",
+                    fontFamily: "Montserrat",
+                    fontWeight: "700",
+                    color: "#4E3A67"
+                }}>
+                   {dayMessage}, {user && user.employer_email}!
+                </Typography>
 
-            <Stack direction="column" gap={3} sx={{ width: "80%" }}>
-                <Stack direction="column" gap={4} sx={{ width: "98%", background: "#FFFFFF", borderRadius: "10px", padding: "10px" }}>
+                <Box>
+                    <ButtonType2 ButtonText="Post a Job" ClickEvent={() => window.location.href = window.location.href + "/post-a-job"}></ButtonType2>
+                </Box>
+
+        </Stack>
+        <Stack direction="column" gap={4} sx={{ width: "98%", 
+                 background: "#FFFFFF",
+                 border: "1px solid #E1D4F2",
+                 borderRadius: "14px",
+                 padding: "20px" }}>
                     <Stack direction="row" alignItems="center" justifyContent="space-between">
                         <Box>
                             <Typography component="div" sx={{ fontSize: "18px", fontWeight: "600" }}>
@@ -110,36 +136,26 @@ const EmployerDashboard = () => {
                             </Typography>
                         </Box>
                         <Stack direction="row" gap={2} sx={{ alignItems: "center", justifyContent: "center" }}>
-                            <Box width="40px" sx={{ borderRadius: "50%" }}>
-                                <img src="./assets/LinkedIn.png" width="100%" style={{
-                                    borderRadius: "50%",
-                                    objectFit: "cover"
-                                }}></img>
-                            </Box>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
+                            <Typography component="div" sx={{ fontSize: "14px",color:"#FC9A7E" }}>
                                 Connect with LinkedIn
                             </Typography>
+                            <img src={window.location.origin+"/assets/RightArrow.png"} alt="Right arrow" />
                         </Stack>
 
                     </Stack>
                 </Stack>
-                <Stack sx={{ width: "100%", background: "#FFFFFF", minHeight: "200px", borderRadius: "10px" }}>
-                    <Container sx={{ height: "70px" }}>
-                        <Stack direction="row" alignItems="center" justifyContent="space-between">
-                            <Box>
-                                <Typography component="span" sx={{ fontSize: "30px" }}>
-                                    {dayMessage}, {user && user.employer_email}
-                                </Typography>
-                            </Box>
-                            <Box>
-                                <ButtonType2 ButtonText="Post a Job" ClickEvent={() => window.location.href = window.location.href + "/post-a-job"}></ButtonType2>
-                            </Box>
+        <Stack direction="row" gap={4} >
 
-                        </Stack>
-                    </Container>
+            <Stack direction="column" gap={3} sx={{ width: "80%" }}>
+                
+                <Stack sx={{ width: "100%",
+                 background: "#FFFFFF",
+                 border: "1px solid #E1D4F2",
+                 borderRadius: "14px",
+                 }}>
 
                     <Stack gap={4} direction="row" divider={<Divider orientation="vertical" flexItem />}
-                        sx={{ background: "#f3fbfb", height: "130px", borderRadius: "10px", padding: "20px" }}>
+                        sx={{  height: "130px", borderRadius: "10px", padding: "20px" }}>
 
                         <Stack gap={1} sx={{ minWidth: "100px" }}>
                             <Typography component="div" sx={{ fontSize: "14px" }}>
@@ -442,6 +458,8 @@ const EmployerDashboard = () => {
                 </Box>
             </Stack>
         </Stack>
+        </Stack>
+       
 
     </>)
 }

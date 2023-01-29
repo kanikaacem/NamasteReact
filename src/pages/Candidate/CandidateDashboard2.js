@@ -12,7 +12,9 @@ import { Link, useOutletContext } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
+import JobDescription from "../../ThemeComponent/JobDescription";
 import RecommendedJobs from "../Home/Component/RecommendedJobs";
+import Filter from "../../ThemeComponent/Filter";
 
 
 const CandidateDashboard2 = () => {
@@ -42,15 +44,14 @@ const CandidateDashboard2 = () => {
     }, []);
 
     return (<>
-        <Stack
+       <Stack direction="column" gap={2} sx={{margin:"20px 50px"}}>
+       <Stack
             direction="row"
             alignItems="center"
             gap={2} sx={{
-                width: "1789px",
                 background: "#FFFFFF",
                 border: "1px solid #E1D4F2",
                 borderRadius: "14px",
-                margin: "20px auto",
                 padding: "20px"
             }}>
             <Box>
@@ -72,23 +73,15 @@ const CandidateDashboard2 = () => {
             <Stack direction="row" gap={1} sx={{ minHeight: `calc(100vh-70px)` }}>
 
                 <Box sx={{ width: "20%" }}>
-                    <Typography component="h5" sx={{
-                        fontWeight: "600",
-                        color: "#2B1E44",
-                        margin: "10px 0px",
-                        textTransform: "capitalize"
-                    }}>
-                        filter
-                    </Typography>
-
+                    <Filter/>
                 </Box>
 
 
-                <Box sx={{ width: "35%", padding: "0px 10px", minHeight: "100vh" }}>
+                <Box sx={{ width: "40%", padding: "0px 10px", minHeight: "100vh" }}>
                     <RecommendedJobs></RecommendedJobs>
                 </Box>
-                <Box sx={{ width: "55%", padding: "0px 10px" }}>
-
+                <Box sx={{ width: "50%", padding: "0px 10px" }}>
+                  <JobDescription/>
                 </Box>
 
 
@@ -100,6 +93,7 @@ const CandidateDashboard2 = () => {
 
 
         </Stack>
+       </Stack>
     </>)
 }
 

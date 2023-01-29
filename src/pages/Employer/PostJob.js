@@ -94,6 +94,7 @@ const PostJob = () => {
     const [weeklyOff, setWeeklyOff] = useState("");
     const [jobTypeData, setJobTypeData] = useState([]);
     const [industryTypeData, setIndustryData] = useState([]);
+    const [industryTypeCollection,setIndustryTypeCollection] = useState([]);
     const [extraBenefitsData, setExtraBenefitsData] = useState(" ");
     /* Next Form */
     const [minExp, setMinExp] = useState(" ");
@@ -109,6 +110,8 @@ const PostJob = () => {
     const [hindiReq, setHindiReq] = useState(" ");
     const [englishReq, setEnglishReq] = useState(" ");
     const [gender, setGender] = useState("");
+
+    const [jobInformation,setJobInformation] = useState({});
 
 
     const animatedComponents = makeAnimated();
@@ -155,77 +158,85 @@ const PostJob = () => {
     };
 
     const handleSubmit1 = async (values, { resetForm }) => {
-        console.log(values);
-        setCompanyName(values.company_name)
-        setSalary(values.ctc_salary);
-        setStartingTime(values.starting_time);
-        setEndingTime(values.ending_time);
-        setExtraBenefitsData(values.extra_benefits)
-        setJobDescription(values.job_description);
-        setJobPlace(values.job_place);
-        setJobTitle(values.job_title);
-        setResponsibilty(values.responsibilites);
-        setCTCSalary(values.ctc_salary);
-        setSKill(values.skills);
-        setWeeklyOff(values.weekly_off)
+        // console.log(values);
+        // setCompanyName(values.company_name)
+        // setSalary(values.ctc_salary);
+        // setStartingTime(values.starting_time);
+        // setEndingTime(values.ending_time);
+        // setExtraBenefitsData(values.extra_benefits)
+        // setJobDescription(values.job_description);
+        // setJobPlace(values.job_place);
+        // setJobTitle(values.job_title);
+        // setResponsibilty(values.responsibilites);
+        // setCTCSalary(values.ctc_salary);
+        // setSKill(values.skills);
+        // setWeeklyOff(values.weekly_off)
         // console.log(companyName, jobTitle, jobType, industryType, associationType, jobPlace,
         //     responsibilty, jobDescription, SKill, JobWorkingDays, workShift,
         //     startingTime, endingTime, salaryType, CTCSalary, weeklyOff, state, city, companyAddress,
         //     extraBenefitsData
         // )
-        localStorage.setItem("post_data", JSON.stringify(values))
-        console.log(localStorage.getItem("post_data"));
+        // localStorage.setItem("post_data", JSON.stringify(values))
+        // console.log(localStorage.getItem("post_data"));
+
+        setJobInformation(values);
         setPostJobStep(2);
+
+        
 
     }
 
     const handleSubmit2 = async (values, { resetForm }) => {
-        let postData = JSON.parse(localStorage.getItem("post_data"));
+    
+        let postData = jobInformation;
+        console.log(postData);
         let formData = new FormData();
-        formData = {
-            title: jobTitle,
-            role: "",
-            jobtype: jobType,
-            jobresponsibilty: responsibilty,
-            experience: values.min_exp + values.max_exp,
-            jobplace: jobPlace,
-            city: city,
-            industrytype: industryType,
-            associationtype: associationType,
-            skills: postData['skills'],
-            arealocal: "",
+        formData =   {
+            title: postData.job_title,
+            role: " ",
+            jobtype: postData.job_type,
+            jobresponsibilty: postData.responsibilites,
+            candidate_experience: {
+                min: values.min_exp,
+                max: values.max_exp
+            },
+            jobplace: postData.job_place,
+            city: [postData.city ],
+            industrytype: postData.industry_type,
+            associationtype: postData.association_type,
+            skills: postData.skills.split(","),
             opening: "",
             salary: {
                 saltype: salaryType,
                 salary: CTCSalary
             },
-            workingdays: postData['working_days'],
-            shortdescription: jobDescription,
-            description: jobDescription,
-            extrabenefits: postData['extra_benefits'],
+            shortdescription: postData.job_description,
+            description: postData.job_description,
+            location_state: postData.state,
+            extrabenefits: postData.extra_benefits.split(","),
             pincode: "",
-            weekly_off: [postData['weekly_off']],
+            workingdays:[postData.working_days],
             Workshifttiming: {
-                startting_time: startingTime,
-                leaving_time: endingTime
+                startting_time: postData.starting_time,
+                leaving_time: postData.ending_time
             },
             candidateage: {
                 min_age: values.min_age,
                 max_age: values.max_age
             },
+            job_place: postData.job_place,
             educationtype: values.education_type,
             educationdegree: values.education_degree,
             prefereddegree: values.perferred_degree,
             preferedgender: values.gender,
-            hindirequirement: values.hindi_required,
-            englishrequirement: values.english_required
+            hindirequirement: values.hindi_required.split(","),
+            englishrequirement: values.english_required.split(",")
+       
         }
-
         let response = await postRequest(PostJobURL, formData);
         if (response.status == '1') {
             setFormSubmitted(true)
             setPostJobStep(1);
-            localStorage.setItem("post_data", "");
         }
     }
 
@@ -242,9 +253,15 @@ const PostJob = () => {
             let response = await getRequest("http://13.235.183.204:3001/api/file/findlocallanguage");
             setLocalLanguageData(response.data[0]['languages']);
         }
+
+        const getIndustryType = async () => {
+            let response = await getRequest("http://13.235.183.204:3001/api/file/findindustrydata");
+            setIndustryTypeCollection(response.data);
+        }
         getState();
         getJobType();
         getLocalLanguage();
+        getIndustryType();
     }, [])
 
     const getDistrictByState = async (statefilter) => {
@@ -535,44 +552,7 @@ const PostJob = () => {
                                                 isMulti
                                                 placeholder="Select Skills " data={industryTypeData} fullWidth />
 
-                                            {/* <SelectField
-                                                multiple
-                                                labelId="demo-simple-select-label"
-                                                name="industry_type"
-                                                value={SKill.first}
-                                                label="role"
-                                                onChange={(event) => {
-                                                    setSKill({ ...SKill, [event.target.name]: event.target.value })
-                                                    console.log(SKill);
-                                                    // setIndustryType(event.target.value);
-                                                    // setFieldValue("skills", { ...skills, [event.target.name]: event.target.value });
-                                                }}
-                                                input={<Input />}
-                                                renderValue={selected => selected.join(", ")}
-                                                sx={{
-                                                    background: " #FFFFFF",
-                                                    border: "1px solid #EAEAEA",
-                                                    boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                    borderRadius: "7px",
-                                                    width: "101%",
-                                                    fontSize: "16px",
-                                                    fontamily: 'Montserrat',
-                                                    BorderBottom: 'none !important',
-
-                                                    padding: "8px"
-                                                }}
-                                                disableUnderline
-                                            >
-                                                <MenuItem value=" ">Select Skills</MenuItem>
-                                                {industryTypeData && industryTypeData.map((item) =>
-                                                    <MenuItem value={item[0].toString()} key={item[0].toString()}>
-                                                        <Checkbox checked={SKill.first.indexOf(item[0].toString()) > -1} />
-                                                        <ListItemText primary={item[0].toString()} />
-                                                    </MenuItem>
-                                                    // <MenuItem >{item[0].toString()}</MenuItem>
-                                                )}
-                                            </SelectField> */}
-
+                                          
                                             {errors.skills && touched.skills && <Error text={errors.skills} />}
 
                                         </ThemeFInputDiv>
@@ -602,9 +582,9 @@ const PostJob = () => {
                                                 disableUnderline
                                             >
                                                 <MenuItem value=" ">Select Industry Type</MenuItem>
-                                                {/* {industryTypeData && industryTypeData.map((item) =>
-                                                    <MenuItem value={item[0].toString()} key={item[0].toString()}>{item[0].toString()}</MenuItem>
-                                                )} */}
+                                                {industryTypeCollection && industryTypeCollection.map((item) =>
+                                                    <MenuItem value={item.industry} key={item.id}>{item.industry}</MenuItem>
+                                                )}
                                             </SelectField>
 
                                             {errors.industry_type && touched.industry_type && <Error text={errors.industry_type} />}
@@ -925,12 +905,6 @@ const PostJob = () => {
                                                 }}
                                                 isMulti
                                                 placeholder="Select Weekly Off" data={WeeklyOffData} fullWidth />
-
-                                            {/* <Field
-                                                error={errors.weekly_off && touched.weekly_off}
-                                                as={TextField}
-                                                id="weekly_off"
-                                                placeholder="Enter Weekly off" type="text" name="weekly_off" fullWidth /> */}
                                             {errors.weekly_off && touched.weekly_off && <Error text={errors.weekly_off} />}
                                         </ThemeFInputDiv>
 
@@ -1061,11 +1035,7 @@ const PostJob = () => {
                                         </ThemeFInputDiv>
                                         <ThemeFInputDiv>
                                             <ThemeLabel LableFor="extra_benefits" LableText="Extra Benefits *" />
-                                            {/* <Field
-                                                error={errors.extra_benefits && touched.extra_benefits}
-                                                as={TextField}
-                                                id="extra_benefits"
-                                                placeholder="Enter Extra Benefits" type="text" name="extra_benefits" fullWidth /> */}
+
                                             <Field
 
                                                 variant="standard"
@@ -1087,16 +1057,6 @@ const PostJob = () => {
 
                                             {errors.extra_benefits && touched.extra_benefits && <Error text={errors.extra_benefits} />}
                                         </ThemeFInputDiv>
-
-                                        {/* <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="timestamp_job_post_timing" LableText="Timestamp Job Posting Timing" />
-                                            <Field
-                                                error={errors.timestamp_job_post_timing && touched.timestamp_job_post_timing}
-                                                as={TextField}
-                                                id="timestamp_job_post_timing"
-                                                placeholder="Enter Extra Benefits" type="text" name="timestamp_job_post_timing" fullWidth />
-                                            {errors.timestamp_job_post_timing && touched.timestamp_job_post_timing && <Error text={errors.timestamp_job_post_timing} />}
-                                        </ThemeFInputDiv> */}
 
                                     </ThemeFInputDiv>
 

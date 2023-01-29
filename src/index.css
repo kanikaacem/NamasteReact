@@ -6,6 +6,9 @@ body {
 
 }
 
+*{
+  font-family: 'Montserrat', sans-serif;
+}
 /* Header */
 nav {
   padding: 0px 100px;
