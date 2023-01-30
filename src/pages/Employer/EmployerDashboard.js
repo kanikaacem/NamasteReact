@@ -71,11 +71,8 @@ const EmployerDashboard = () => {
 
     useEffect(() => {
         const getpostedjobs = async () => {
-            let body = new FormData();
-            body = {
-                userid: user._id
-            }
-            let data = await postRequest(getAllPostedJobs, body, user.token);
+
+            let data = await postRequest(getAllPostedJobs);
             setData(data.data);
         };
 
@@ -121,7 +118,7 @@ const EmployerDashboard = () => {
                 </Box>
 
             </Stack>
-            <Stack direction="column" gap={4} sx={{
+            {/* <Stack direction="column" gap={4} sx={{
                 width: "98%",
                 background: "#FFFFFF",
                 border: "1px solid #E1D4F2",
@@ -145,7 +142,7 @@ const EmployerDashboard = () => {
                     </Stack>
 
                 </Stack>
-            </Stack>
+            </Stack> */}
             <Stack direction="row" gap={4} >
 
                 <Stack direction="column" gap={3} sx={{ width: "80%" }}>
@@ -177,7 +174,7 @@ const EmployerDashboard = () => {
                             <Stack gap={1} sx={{ minWidth: "230px" }}>
                                 <Stack direction="row" justifyContent="space-between">
                                     <Typography component="div" sx={{ fontSize: "24px", fontWeight: "600" }}>
-                                        {data.length}
+                                        0
                                     </Typography>
                                     <img src={window.location.origin + "/assets/V2.png"} alt="V2" height="30px" />
 
@@ -189,7 +186,7 @@ const EmployerDashboard = () => {
                             <Stack gap={1} sx={{ minWidth: "230px" }}>
                                 <Stack direction="row" justifyContent="space-between">
                                     <Typography component="div" sx={{ fontSize: "24px", fontWeight: "600" }}>
-                                        {data.length}
+                                        0
                                     </Typography>
                                     <img src={window.location.origin + "/assets/V3.png"} alt="V3" height="30px" />
 
@@ -201,7 +198,7 @@ const EmployerDashboard = () => {
                             <Stack gap={1} sx={{ minWidth: "230px" }}>
                                 <Stack direction="row" justifyContent="space-between">
                                     <Typography component="div" sx={{ fontSize: "24px", fontWeight: "600" }}>
-                                        {data.length}
+                                        0
                                     </Typography>
                                     <img src={window.location.origin + "/assets/V4.png"} alt="V4" height="30px" />
 
@@ -214,7 +211,7 @@ const EmployerDashboard = () => {
                             <Stack gap={1} sx={{ minWidth: "230px" }}>
                                 <Stack direction="row" justifyContent="space-between">
                                     <Typography component="div" sx={{ fontSize: "24px", fontWeight: "600" }}>
-                                        {data.length}
+                                        0
                                     </Typography>
                                     <img src={window.location.origin + "/assets/V5.png"} alt="V5" height="30px" />
 
@@ -231,7 +228,7 @@ const EmployerDashboard = () => {
                     </Stack>
 
                     <Stack direction="row" gap={2}>
-                        <Box sx={{
+                        {/* <Box sx={{
                             width: "60%",
                             background: "#FFFFFF",
                             border: "1px solid #E1D4F2",
@@ -252,13 +249,43 @@ const EmployerDashboard = () => {
                                     }
                                 }}
                             />
+                        </Box> */}
+
+                        <Box sx={{
+                            width: "60%"
+                        }}>
+                            <Stack direction="column" gap={2} sx={{ width: "100%", height: "600" }}>
+                                <Box>
+                                    <Box sx={{ margin: "30px 0px" }}>
+                                        <Typography component="span" sx={{ fontSize: "24px", fontWeight: "600" }}>
+                                            Recent Jobs
+                                        </Typography>
+                                    </Box>
+                                    <Box sx={{ height: "500px" }}>
+                                        {
+                                            jobs.length > 0 ? jobs.map((item) => {
+                                                return (<>
+                                                    <JobComponent key={item.id} data={item} />
+                                                </>)
+                                            })
+                                                : " There is no data present"
+                                        }
+                                    </Box>
+                                    <Box >
+                                        <Pagination count={Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
+                                    </Box>
+                                </Box>
+
+                            </Stack>
+
                         </Box>
                         <Box sx={{
                             width: "40%",
                             background: "#FFFFFF",
                             border: "1px solid #E1D4F2",
                             borderRadius: "14px",
-                            padding: "20px"
+                            padding: "20px",
+                            height: "fit-content"
                         }}>
 
                             <Typography component="div" sx={{
@@ -315,7 +342,7 @@ const EmployerDashboard = () => {
                     </Stack>
 
 
-                    <Stack gap={2} direction="row" sx={{ minHeight: "600px" }}>
+                    {/* <Stack gap={2} direction="row" sx={{ minHeight: "600px" }}>
                         <Stack direction="column" gap={2} sx={{ width: "60%", height: "600" }}>
                             <Box>
                                 <Box sx={{ margin: "30px 0px" }}>
@@ -323,8 +350,8 @@ const EmployerDashboard = () => {
                                         Recent Jobs
                                     </Typography>
                                 </Box>
-                                <RecommendedJobs />
-                                {/* <Box sx={{ height: "500px" }}>
+                                <RecommendedJobs /> */}
+                    {/* <Box sx={{ height: "500px" }}>
                                 {
                                     jobs.length > 0 ? jobs.map((item) => {
                                         return (<>
@@ -334,14 +361,14 @@ const EmployerDashboard = () => {
                                         : " There is no data present"
                                 }
                             </Box> */}
-                                <Box >
+                    {/* <Box >
                                     <Pagination count={Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
                                 </Box>
                             </Box>
 
-                        </Stack>
+                        </Stack> */}
 
-                        {/* <Box sx={{ width: "40%", borderRadius: "10px" }}>
+                    {/* <Box sx={{ width: "40%", borderRadius: "10px" }}>
                         <Typography component="span" sx={{ fontSize: "18px", fontWeight: "600" }}>
                             Explore
                         </Typography>
@@ -413,7 +440,7 @@ const EmployerDashboard = () => {
 
                     </Box> */}
 
-                    </Stack>
+                    {/* </Stack> */}
 
 
                 </Stack>

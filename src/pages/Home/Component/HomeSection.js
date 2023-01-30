@@ -26,7 +26,8 @@ const HomeSection = () => {
                         lineHeight: "1.0",
                         zIndex: "1"
                     }}>
-                    Accelerate your job search with premium services
+                    No.1 Job Portal for Employers and Employees
+
                 </Typography>
                 <Typography component="span" sx={{
                     textAlign: "center",
@@ -34,10 +35,11 @@ const HomeSection = () => {
                     margin: "3px 0px",
                     fontWeight: "500",
                     fontSize: "24px",
-                    width: "700px"
+                    width: "1069px"
                 }}>
-                    Services to help you get hired, faster: from preparing your CV, getting recruiter attention,
-                    finding the right jobs, and more!
+                    A portal where you as an employer can get people for all kinds of jobs - beauticians, delivery executives, etc.
+                    As an employee too, choices are unlimited! All it takes is 2 minutes. Explore Now!
+
                 </Typography>
             </Stack>
             <Box

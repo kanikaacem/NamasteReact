@@ -13,7 +13,7 @@ const CompanyLogo = ({ color }) => {
                     color: color ? color : "#ffffff",
                     fontFamily: "Work Sans, sans-serif"
                 }}>
-                Job
+                Jobs
             </Typography>
             <Typography component="span"
                 sx={{

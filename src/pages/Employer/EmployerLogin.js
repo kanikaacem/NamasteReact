@@ -41,11 +41,13 @@ const EmployerLogin = () => {
         localStorage.setItem('password', values.password);
         let response = await postRequest(EmployerLoginURL, EmployerLoginForm);
         if (response.status == '1') {
-            if (response.data.isemailverified)
-              {
-                localStorage.setItem("auth_token",response.token)
+            if (response.data.isemailverified && response.data.stage == "hrpage") {
+                localStorage.setItem("auth_token", response.token)
                 dispatch({ type: 'LOGIN', payload: response.data });
-              }
+            }
+            else if (response.data.isemailverified && response.data.stage != "hrpage") {
+                window.location.href = window.location.origin + "/employer-register"
+            }
             else {
                 setShowEmailVerifiedMessage(true);
                 setIsEmailVerified(true);

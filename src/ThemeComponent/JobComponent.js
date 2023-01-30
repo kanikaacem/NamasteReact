@@ -1,109 +1,143 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-import PlaceIcon from '@mui/icons-material/Place';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-
-import Moment from 'react-moment';
-
-import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
-
-const JobComponent = ({ company, data }) => {
-    const [showJobDescription, setshowJobDescription] = useState();
-    const user = localStorage.user && JSON.parse(localStorage.user);
-    const api_url = useSelector(state => state.api_url);
-    const deletePostedJob = (id) => {
-        console.log(id);
-    }
-    const showDescription = (id) => {
-        // console.log(id);
-        // setshowJobDescription(id);
-        window.location.href = "/job-description/" + id;
-        // dispatch({ type: 'JOB_DESCRIPTION', payload: id });
-
-    }
-    const closeDescription =
-        () => {
-            setshowJobDescription(0);
-        }
-
-
-    const JobAction = async (jobId, jobAction) => {
-        let url = "";
-        if (jobAction == "apply") url = api_url + "/api/job/applyforjob";
-        else if (jobAction == "save") url = api_url + "/api/job/savejob";
-
-        let response = await fetch(url, {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify({
-                userid: "637e078a29dc3fa6c141e534",
-                jobsid: jobId
-
-            }),
-        })
-        if (response.ok) {
-            response = await response.json();
-            console.log(response);
-
-        }
-
-    }
+const JobComponent = ({ data }) => {
+    console.log(data);
     return (<>
-        <Stack>
-            <Box className="jobItem" id={data && data._id} onClick={() => showDescription(data._id)}>
-                <Box className="jobLogo"
-                    sx={{
-                        borderRadius: "10px",
-                        position: "absolute",
-                        left: "5%",
-                        top: "14%",
-                        width: "60px",
-                        height: "60px",
-                        background: "#FFFFFF"
-                    }}>
-                    <img style={{ width: "100%", borderRadius: '10px' }} src={data && data.companyLogo ? data.companyLogo : './assets/companyLogo.png'} alt=""></img>
-                </Box>
+        <Box sx={{
+            background: "#FFFFFF",
+            border: " 1px solid #E1D4F2",
+            borderRadius: "19px",
+        }}>
+            <Box >
+                <Stack direction="row" justifyContent="space-between" sx={{ padding: "20px" }}>
+                    <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600" }}>
+                        {data ? data.job_title : " Linux Solution Engineer"}
+                    </Typography>
+                    <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600" }}>
+                        {(data && data.salarytype) ? data.salarytype.salary : "Rs 25,000- Rs 99,999"}
+                    </Typography>
+                </Stack>
+                <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", padding: "0px 20px" }}>
+                    {data ? data.company_name : "Vays Infotech Private Limited"}
+                </Typography>
 
-
-                <Box className="jobInformation">
-
-                    <h3> {data && data.companyName ? data.companyName : "Company Name"} - {data && data.title} - {data && data.role.replaceAll("_", " ")}</h3>
-
-                    <Stack direction="row" gap={5}>
-                        <span><WorkOutlineIcon></WorkOutlineIcon>{data && data.experience} Yrs  </span>
-                        <span><CurrencyRupeeIcon></CurrencyRupeeIcon> {data && data.salary}</span>
-                        <span><PlaceIcon></PlaceIcon>{data && data.location}</span>
-                        <span><Moment format="DD/MM/YYYY">
-                            {data && data.createdat}
-                        </Moment></span>
-
+                <Box></Box>
+                <Box sx={{ padding: "20px" }}>
+                    <Stack direction="row" gap={2} sx={{ flexWrap: "wrap" }}>
+                        <Stack direction="row" sx={{
+                            background: "#FFFFFF",
+                            border: "1px solid #E2D7F0",
+                            borderRadius: "11px",
+                            padding: "15px",
+                            gap: "5px",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            <Box>
+                                <img src={window.location.origin + "/assets/RJ.png"} alt="RJ"></img>
+                            </Box>
+                            <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                                {data ? data.city[0] : "Demo City"}
+                            </Typography>
+                        </Stack>
+                        {/* <Stack direction="row" sx={{
+                            background: "#FFFFFF",
+                            border: "1px solid #E2D7F0",
+                            borderRadius: "11px",
+                            padding: "15px",
+                            gap: "5px",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            <Box>
+                                <img src={window.location.origin + "/assets/RJ1.png"} alt="RJ1"></img>
+                            </Box>
+                            <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                                5 Openings
+                            </Typography>
+                        </Stack> */}
+                        <Stack direction="row" sx={{
+                            background: "#FFFFFF",
+                            border: "1px solid #E2D7F0",
+                            borderRadius: "11px",
+                            padding: "15px",
+                            gap: "5px",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            <Box>
+                                <img src={window.location.origin + "/assets/RJ2.png"} alt="RJ2"></img>
+                            </Box>
+                            <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                                Min. {data && data.candidate_experience.min_age} Years
+                            </Typography>
+                        </Stack>
+                        <Stack direction="row" sx={{
+                            background: "#FFFFFF",
+                            border: "1px solid #E2D7F0",
+                            borderRadius: "11px",
+                            padding: "15px",
+                            gap: "5px",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            <Box>
+                                <img src={window.location.origin + "/assets/RJ3.png"} alt="RJ3"></img>
+                            </Box>
+                            <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                                {data && data.prefered_degree[0]}
+                            </Typography>
+                        </Stack>
                     </Stack>
+                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
+                        {data && data.job_responsibilty}
+                    </Typography>
 
-                    {
-                        user && user.type == "employer" && <>
-                            <span> <a href={`employer-dashboard/job/${data._id}/recommedations`} > View All Candidate</a></span>
+                    {/* <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67", margin: "20px 0px" }}>
+                        Skill(s) Required
+                    </Typography>
 
-                        </>
-                    }
+                    <Stack direction="row" gap={2} sx={{ flexWrap: "wrap" }}>
+                        <Stack direction="row" sx={{
+                            background: "#FFFFFF",
+                            border: "1px solid #E2D7F0",
+                            borderRadius: "11px",
+                            padding: "15px",
+                            gap: "5px",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
 
-                    {/* <div style={{ display: 'flex', gap: '10px', position: 'absolute', right: '10px' }}>
-                        {user.type == 'employer' && <>
-                            <span><EditIcon onClick={() => deletePostedJob(data._id)}></EditIcon></span>
-                            <span><DeleteIcon onClick={() => deletePostedJob(data._id)}></DeleteIcon></span>
-                        </>}
+                            <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                                Python
+                            </Typography>
+                        </Stack>
 
-                    </div> */}
+                        <Stack direction="row" sx={{
+                            background: "#FFFFFF",
+                            border: "1px solid #E2D7F0",
+                            borderRadius: "11px",
+                            padding: "15px",
+                            gap: "5px",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+
+                            <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                                Kotlin
+                            </Typography>
+                        </Stack>
+
+                    </Stack> */}
                 </Box>
-            </Box >
-        </Stack>
-    </>
-    )
+
+
+
+
+
+            </Box>
+        </Box>
+    </>)
 }
+
 export default JobComponent;

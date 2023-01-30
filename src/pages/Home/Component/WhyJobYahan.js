@@ -48,12 +48,10 @@ const WhyJobYahan = () => {
                 </Typography>
 
                 <Box sx={{ lineHeight: "2", color: "#3A2D49" }}>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                    took a galley of type and scrambled it to make a type specimen book.
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                    took a galley of type and scrambled it to make a type specimen book.
+                    JobsYahan is a job portal every employer and employee would like.
+                    While employers get suitable candidates for jobs, employees get suitable
+                    jobs through the portal. You can even get delivery jobs on JobsYahan, which may
+                    not be the case on other job portals. Means, JobsYahan is Sabhi Ke Liye. So, try us now!
                 </Box>
             </Box>
             <Box sx={{
