@@ -24,11 +24,13 @@ export const getAllJobs = "http://13.126.115.3:3001/api/job/getalljobs";
 
 /*Posting Job */
 export const getJobTypeURL = "http://13.235.183.204:3001/api/file/jobtype";
-export const PostJobURL = "http://13.235.183.204:3001/api/job/postjob";
+export const PostJob1 = "http://13.235.183.204:3001/api/job/postjob1";
+export const PostJob2 = "http://13.235.183.204:3001/api/job/postjob2";
+
+// export const PostJobURL = "http://13.235.183.204:3001/api/job/postjob";
 
 /* Api for getting the data of the posted jobs*/
 export const getAllPostedJobs = "http://13.126.115.3:3001/api/job/getpostedjobs";
-
 
 /*----------------------Candidate----------------------------------------*/
 /*Candidate Registration*/

@@ -1,3 +1,5 @@
+import { postRequest, PostImageRequest, getRequest } from "../../utils/ApiRequests";
+
 import { Box, TextField, Typography, Snackbar, IconButton, Stack, Button } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { Formik, Field, Form } from "formik";
@@ -11,15 +13,10 @@ import { useState } from "react";
 
 const VerifyMobileForm = ({ email, setVerifyMobileForm, setCompanyInfoForm, setMobileNumber }) => {
     const [sendOtp, setSendOtp] = useState(false);
-    const [verifyEmail, setVerifyEmail] = useState(true);
 
     const handleClose = (event) => {
         setSendOtp(false);
     };
-
-    const handleClose2 = (event) => {
-        setVerifyEmail(false)
-    }
     const action = (
         <>
             <IconButton
@@ -35,10 +32,6 @@ const VerifyMobileForm = ({ email, setVerifyMobileForm, setCompanyInfoForm, setM
 
     const action2 = (
         <> OK
-            {/* <a
-                style={{
-                    color: "#FFFFFF"
-                }} href={window.location.origin + "/verification/kanika.np@acem.edu.in"} target="_blank" > OK </a> */}
 
         </>
     )
@@ -49,11 +42,17 @@ const VerifyMobileForm = ({ email, setVerifyMobileForm, setCompanyInfoForm, setM
         otp: ""
     }
     const handleSubmit1 = async (values, { setFieldError }) => {
-        setMobileNumber(values.mobile_number);
-        setSendOtp(true);
+        // console.log(values.mobile_number);
+        let response = await postRequest("http://13.235.183.204:3001/api/sendotp/+91" + values.mobile_number);
+        if (response.status == '1')
+            //     // setMobileNumber(values.mobile_number);
+            setSendOtp(true);
     }
     const handleSubmit2 = async (values, { setFieldError }) => {
-        if (values.otp == '1234') {
+        let response = await postRequest("http://13.235.183.204:3001/api/verifyotp", {
+            otp: values.otp
+        })
+        if (response.status == '1') {
             setVerifyMobileForm(false);
             setCompanyInfoForm(true);
         }
@@ -64,15 +63,6 @@ const VerifyMobileForm = ({ email, setVerifyMobileForm, setCompanyInfoForm, setM
 
     }
     return (<>
-        {/* <Snackbar
-            open={verifyEmail}
-            autoHideDuration={6000}
-            onClose={handleClose2}
-            message="Please verify the Email address"
-            action={action2}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        /> */}
-
 
         <Snackbar
             open={sendOtp}
@@ -100,7 +90,7 @@ const VerifyMobileForm = ({ email, setVerifyMobileForm, setCompanyInfoForm, setM
                             error={errors.mobile_number && touched.mobile_number}
                             id="mobile_number"
                             as={TextField}
-                            placeholder="Enter Mobile Number" type="text" name="mobile_number *" />
+                            placeholder="Enter Mobile Number (eg. 9313170822 )" type="text" name="mobile_number" />
                         <Button
                             type="submit"
                             sx={{

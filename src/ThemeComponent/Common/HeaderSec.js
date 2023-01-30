@@ -32,35 +32,37 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                 <Button type="button" variant="filled"
                     onClick={
                         () => {
-                            if (buttonText === 'Employer SignIn/Signup')
+                            if (buttonText === 'Employer login')
                                 window.location.href = window.location.origin + "/employer-login"
                         }
                     }
                     sx={{
-                        background: "#FC9A7E",
-                        border: "none",
-                        color: "#2B1E44",
-                        textTransform: "capitalize",
+                        padding: "0px 40px",
+                        width: "max-content",
                         borderRadius: "44px",
                         fontSize: "18px",
+                        border: { border },
+                        color: { color },
+                        textTransform: "capitalize",
                         fontWeight: "600",
                         fontFamily: "Work Sans, sans-serif !important",
+                        background: { background },
                         "&:hover": {
-                            background: "#FC9A7E"
+                            border: { border },
+                            color: { color },
+                            background: { background }
+
                         }
-                    }}>
+                    }}
+                >
                     {buttonText ? buttonText : "About Us"}
                 </Button>
                 {
-                    buttonText === "Employer SignIn/Signup" && <>
-                        <Button type="button" variant="filled"
-                            onClick={
-                                () => {
-                                    if (buttonText === 'Employer SignIn/Signup')
-                                        window.location.href = window.location.origin + "/candidate-login"
-                                }
-                            }
+                    buttonText === "Employer login" && <>
+                        <Button type="button" variant="outlined"
                             sx={{
+                                padding: "0px 40px",
+                                width: "max-content",
                                 background: "#FC9A7E",
                                 border: "none",
                                 color: "#2B1E44",
@@ -72,8 +74,15 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                                 "&:hover": {
                                     background: "#FC9A7E"
                                 }
-                            }}>
-                            {localStorage.getItem("isLoggedIn") == 'true' ? "Dashboard" : "Candidate SignIn /Signup"}
+                            }}
+                            onClick={
+                                () => {
+                                    if (buttonText === 'Employer login')
+                                        window.location.href = window.location.origin + "/candidate-login"
+                                }
+                            }
+                        >
+                            {localStorage.getItem("isLoggedIn") == 'true' ? "Dashboard" : "Candidate login"}
                         </Button></>
                 }
 

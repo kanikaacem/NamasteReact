@@ -23,7 +23,7 @@ function Home() {
             <HeaderSec
                 color="black"
                 border="2px solid #8E8E8E"
-                buttonText="Employer SignIn/Signup" />
+                buttonText="Employer login" />
         </Box>
         <HomeSection />
         <JobCategory />

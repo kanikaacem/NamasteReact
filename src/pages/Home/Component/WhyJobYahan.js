@@ -36,7 +36,7 @@ const WhyJobYahan = () => {
                         fontWeight: "600",
 
                     }}>
-                    Job
+                    Jobs
                     <Typography component="span"
                         sx={{
                             fontSize: "96px",

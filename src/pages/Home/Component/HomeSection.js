@@ -16,7 +16,7 @@ const HomeSection = () => {
 
         >
             <Stack alignItems="center" justifyContent="center">
-                <Typography variant="h5"
+                <Typography variant="h1"
                     sx={{
                         color: "#2B1E44",
                         textAlign: "center",

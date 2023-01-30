@@ -22,10 +22,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { set } from "date-fns";
 
 const CompanyInfoForm = ({ email, userId, mobile_number }) => {
-
-
     const isLoggedIn = useSelector(state => state.isLoggedIn);
-    const api_url = useSelector(state => state.api_url);
     const dispatch = useDispatch();
 
     const companyImageRef = useRef();
@@ -54,7 +51,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const [companyWebsite, setCompanyWebsite] = useState("");
     const [companyLanNumber, setCompanyLanNumber] = useState("");
 
-    const [companyInfoForm, setCompanyInfoForm] = useState(1);
+    const [companyInfoForm, setCompanyInfoForm] = useState(localStorage.getItem("formpage") ? localStorage.getItem("formpage") : 1);
 
     const [companyAddress, setCompanyAddress] = useState("");
     const [autoData, setAutoData] = useState([]);
@@ -124,69 +121,72 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
 
     }
-    const handleSubmit = async (values) => {
+    const handleSubmit = async (values, { setFieldError }) => {
         setHRName(values.hr_name);
-        setCompanyName(values.company_name);
+        setCompanyName(values.hr_name);
         setCompanyPanNumber(values.company_pan_number);
+        let formData = new FormData();
+        formData = {
+            employername: values.hr_name,
+            companyname: values.company_name,
+            companytype: values.company_type,
+            company_logo: "",
+            company_pancard: values.company_pan_number,
+            comapany_panddoc: ""
+        }
 
-        console.log(values);
-        console.log(hrName, companyName, companyType);
-        setCompanyInfoForm(2);
+        let response = await postRequest("http://13.235.183.204:3001/api/employer/checkpan", {
+            company_pancard: values.company_pan_number
+        });
+        console.log(response.status);
+        if (response.status == 0) {
+
+            let response2 = await postRequest("http://13.235.183.204:3001/api/employer/postemployer1", formData);
+            if (response2.status == 1) {
+                localStorage.setItem("formpage", 2);
+                setCompanyInfoForm(2);
+            }
+        }
+        else {
+            console.log(response.msg);
+            setFieldError("company_pan_number", response.msg);
+        }
+
+
     }
 
     const handleSubmit1 = async (values) => {
-        let company_email = values.company_email;
-        let company_lan_number = values.company_lan_number;
-        let company_website = values.company_website;
 
-        setCompanyEmail(company_email);
-        setCompanyWebsite(company_website);
-        setCompanyLanNumber(company_lan_number);
-        setCompanyInfoForm(3);
-
+        let formData = new FormData();
+        formData = {
+            company_email: values.company_email,
+            companywebsite: values.company_website ? values.company_website : " ",
+            companylannumber: values.company_lan_number
+        }
+        let response = await postRequest("http://13.235.183.204:3001/api/employer/postemployer2", formData);
+        if (response.status == 1) {
+            localStorage.setItem("formpage", 3);
+            setCompanyInfoForm(3);
+        }
 
     }
 
     const handleSubmit2 = async (values) => {
-        // console.log(companyWebsite)
-        // console.log(hrName, companyName, companyType, companyEmail, companyWebsite, companyLanNumber);
-        // console.log(values);
-        let area = values.area;
-        let company_address = values.company_address;
-        let company_gst_number = values.company_gst_number == '' ? 'not present' : values.company_gst_number;
-        let company_pan_number = values.company_pan_number;
-        let company_pincode = values.company_pincode;
-        let state = values.state;
-        let city = values.city;
-        let userid = "";
-        if (localStorage["userid"]) {
-            userid = localStorage.getItem("userid");
-        }
-
         let data = new FormData();
-    
         data = {
-            // _id: userid,
-            employer_name: hrName,
-            company_name: companyName,
-            company_type: companyType,
-            company_email: companyEmail,
-            company_website: companyWebsite ? companyWebsite :"not present",
-            company_lanNumber: companyLanNumber,
-            companynumber: companyLanNumber,
             company_state: state,
             company_city: city,
             company_area: values.area,
-            company_address: company_address,
-            company_pincode: company_pincode,
-            company_pancard: companyPanNumber,
-            companygstnumber: company_gst_number ,
-            company_gstnumber: company_gst_number,
+            company_address: values.company_address,
+            company_pincode: values.company_pincode,
+            company_gstnumber: values.company_gstnumber ? values.company_gst_number : "not present",
+            company_gstDoc: ""
         }
 
-        let response = await postRequest(EmployerCompanyInformationURL, data);
+        let response = await postRequest("http://13.235.183.204:3001/api/employer/postemployer3", data);
         // console.log(response);
         if (response.status == 1) {
+            localStorage.setItem("formpage", 1);
             dispatch({ type: 'LOGIN', payload: response.data });
         }
 

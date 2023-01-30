@@ -48,10 +48,15 @@ const EmployerRegister = () => {
             if (response.status == '1') {
                 console.log(response);
                 // console.log(verifyMobileForm)
-                if (response.data.isemailverified) {
+                if (response.data.isemailverified && !response.data.ismobileverified) {
                     setEmailSignupForm(false);
                     setVerifyMobileForm(true);
                     dispatch({ type: 'USER_REGISTRATION', payload: response });
+                }
+                else if (response.data.isemailverified && response.data.ismobileverified) {
+                    setEmailSignupForm(false);
+                    setVerifyMobileForm(false);
+                    setCompanyInfoForm(true);
                 }
                 else {
                     if (localStorage.getItem("useremail")) {
