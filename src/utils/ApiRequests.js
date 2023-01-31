@@ -65,3 +65,16 @@ export const getRequest = async (api_url) => {
         return data;
     }
 }
+
+export const getRequestwithData = async (api_url, bodyData) => {
+
+    let data = await fetch(api_url, {
+        method: "GET",
+        headers: header,
+        body: JSON.stringify(bodyData)
+    });
+    if (data.ok) {
+        data = await data.json();
+        return data;
+    }
+}

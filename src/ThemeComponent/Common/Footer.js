@@ -1,15 +1,7 @@
-import { Box, Container, Typography, Stack, styled } from "@mui/material";
-
+import { Box, Typography, Stack } from "@mui/material";
+import SocialMedia from "./SocialMedia";
 const Footer = () => {
-    const SocialIcon = styled(Box)({
-        width: "51px",
-        height: "51px",
-        background: "#4E3A67",
-        borderRadius: "50%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-    })
+
     return (<>
         <Box sx={{ background: "#2B1E44", minheight: "400px", padding: "50px 150px" }}>
             <Stack direction={{ lg: "row", md: "column", xs: "column" }} gap={5} sx={{ padding: "50px 0px" }}>
@@ -93,17 +85,7 @@ const Footer = () => {
                         Support
                     </Typography>
                     <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> jobyahan@gmail.com</Box>
-                    <Stack direction="row" gap={2}>
-                        <SocialIcon>
-                            <img src={window.location.origin + "/assets/FG1.png"} alt="FG1" />
-                        </SocialIcon>
-                        <SocialIcon>
-                            <img src={window.location.origin + "/assets/FG2.png"} alt="FG2" />
-                        </SocialIcon>
-                        <SocialIcon>
-                            <img src={window.location.origin + "/assets/FG3.png"} alt="FG3" />
-                        </SocialIcon>
-                    </Stack>
+                    <SocialMedia />
 
                 </Box>
                 <Box sx={{ width: { lg: "35%", md: "100%", xs: "100%" } }}>

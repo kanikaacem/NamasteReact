@@ -1,5 +1,5 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { EmployerLoginURL } from "../../utils/ApiUrls";
+import { EmployerLoginURL, ReSendEmailVerificationURL } from "../../utils/ApiUrls";
 
 import { TextField, Box, Typography, Stack } from "@mui/material";
 import { Formik, Field, Form } from "formik";
@@ -19,6 +19,7 @@ import Error from "../../ThemeComponent/Common/Error";
 import { useState, useEffect } from "react";
 const EmployerLogin = () => {
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
+    const [sendVerificationLink, setSendVerificationLink] = useState(false);
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     const isLoggedIn = useSelector(state => state.isLoggedIn);
 
@@ -44,7 +45,7 @@ const EmployerLogin = () => {
             if (!response.data.isemailverified) {
                 setShowEmailVerifiedMessage(true);
                 setIsEmailVerified(true);
-                localStorage.setItem("removeLocalStorageData", true);
+                // localStorage.setItem("removeLocalStorageData", true);
             }
             else if (!response.data.ismobileverified) {
                 localStorage.setItem("auth_token", response.token);
@@ -66,6 +67,17 @@ const EmployerLogin = () => {
 
     }
 
+    const resendEmailVerificationLink = async () => {
+
+        let response = await postRequest(ReSendEmailVerificationURL, {
+            email: document.getElementById("email_address").value
+        })
+        if (response.status == '1') {
+            setSendVerificationLink(true);
+        }
+
+
+    }
     useEffect(() => {
         let userData = localStorage.getItem("auth_token");
         const getUserData = async () => {
@@ -100,6 +112,8 @@ const EmployerLogin = () => {
     return (<>
         {isLoggedIn == 'true' && (user && user.employer_type == "employer") && <Navigate to="/employer-dashboard"></Navigate>}
         <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)} message="Email Address is not verified. Please Verify your email First" messageType="success" />
+        <ShowMessageToastr value={sendVerificationLink} handleClose={() => setSendVerificationLink(false)} message="Email Verification link is send" messageType="success" />
+
         <Box className="EmployerLoginPage"
             sx={{
                 minHeight: "100vh",
@@ -218,8 +232,18 @@ const EmployerLogin = () => {
                                         </ThemeFInputDiv>
                                     </ThemeFInputDiv>
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                        {isEmailVerified &&
-                                            <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
+                                        {isEmailVerified && (<>
+                                            <a href="#" onClick={
+                                                () => {
+                                                    resendEmailVerificationLink()
+                                                }
+                                            }
+                                                style={{ textAlign: "center" }}>
+                                                Resend Verification Link
+                                            </a>
+
+                                        </>)
+
                                         }
                                         <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
                                         <ThemeButtonType3 variant="outlined" type="button"

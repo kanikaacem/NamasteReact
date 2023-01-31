@@ -6,9 +6,10 @@ body {
 
 }
 
-*{
+* {
   font-family: 'Montserrat', sans-serif;
 }
+
 /* Header */
 nav {
   padding: 0px 100px;
@@ -694,7 +695,7 @@ textarea {
 .AccountMenu,
 .SettingMenu {
   /* color: #62459b; */
-  color: #445578;
+  color: #4E3A67;
   font-weight: 600 !important;
 }
 

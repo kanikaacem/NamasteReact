@@ -20,6 +20,7 @@ import { CandidateLogoutMenu } from "../../utils/Data";
 
 import Moment from 'react-moment';
 
+import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
 import Footer from "../../ThemeComponent/Common/Footer";
 
 // import PostJob from "./PostJob";
@@ -47,15 +48,16 @@ const Dashboard = () => {
                 }}>
 
                 {userInformation && userInformation.employer_type == "employer" && (<>
-                    <Stack direction="row" gap={3} sx={{ height: "50px", padding: "10px 50px", alignItems: "center" }}>
-                        <Box sx={{ width: "5%" }}>
-                            <Box sx={{ width: "50px", height: "50px" }} >
-                                <Link to="/">
+                    <Stack direction="row" gap={3} sx={{ height: "50px", padding: "20px 50px", alignItems: "center" }}>
+                        <Box sx={{ width: "10%" }}>
+                            <Box sx={{ width: "50px", marginTop: "10px", height: "50px" }} >
+                                {/* <Link to="/">
                                     <img src={window.location.origin + "/assets/companyLogo.png"} width="100%" height="100%" alt="companyLogo" />
-                                </Link>
+                                </Link> */}
+                                <CompanyLogo color="#4E3A67" />
                             </Box>
                         </Box>
-                        <Box direction="row" sx={{ width: "75%" }}>
+                        <Box direction="row" sx={{ width: "70%" }}>
                             <List sx={{ display: "flex" }}>
 
                                 {EmployerMenu.map((item) => {
@@ -65,7 +67,12 @@ const Dashboard = () => {
                                             className="menu"
                                             id={item.id}
                                             onClick={() => { dispatch({ type: "CHANGE_EMPLOYEE_MENU", payload: item.value }) }} >
-                                            <ListItemText className={EmployeeMenuSelected === item.value && "EmployeeMenuSelected"} primary={item.MenuName} />
+                                            <ListItemText
+                                                disableTypography
+                                                sx={{
+                                                    fontSize: "20px !important", color: "#4E3A67"
+                                                }}
+                                                className={EmployeeMenuSelected === item.value && "EmployeeMenuSelected"} primary={item.MenuName} />
                                         </ListItem>
                                     </>)
                                 })}

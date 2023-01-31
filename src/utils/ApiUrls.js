@@ -32,6 +32,8 @@ export const PostJob2 = "http://13.235.183.204:3001/api/job/postjob2";
 /* Api for getting the data of the posted jobs*/
 export const getAllPostedJobs = "http://13.235.183.204:3001/api/job/getpostedjobs";
 
+/*Resending the Email Verification Link */
+export const ReSendEmailVerificationURL = "http://13.235.183.204:3001/api/resendlink/employer";
 /*----------------------Candidate----------------------------------------*/
 /*Candidate Registration*/
 
