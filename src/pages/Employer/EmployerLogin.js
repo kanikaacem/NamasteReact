@@ -41,16 +41,23 @@ const EmployerLogin = () => {
         localStorage.setItem('password', values.password);
         let response = await postRequest(EmployerLoginURL, EmployerLoginForm);
         if (response.status == '1') {
-            if (response.data.isemailverified && response.data.stage == "hrpage") {
-                localStorage.setItem("auth_token", response.token)
-                dispatch({ type: 'LOGIN', payload: response.data });
-            }
-            else if (response.data.isemailverified && response.data.stage != "hrpage") {
-                window.location.href = window.location.origin + "/employer-register"
-            }
-            else {
+            if (!response.data.isemailverified) {
                 setShowEmailVerifiedMessage(true);
                 setIsEmailVerified(true);
+                localStorage.setItem("removeLocalStorageData", true);
+            }
+            else if (!response.data.ismobileverified) {
+                localStorage.setItem("auth_token", response.token);
+                localStorage.setItem("removeLocalStorageData", true);
+                window.location.href = window.location.origin + "/employer-register";
+            }
+            else if (response.data.isemailverified && response.data.ismobileverified && response.data.stage == "savememailandpass") {
+                localStorage.setItem("removeLocalStorageData", true);
+                window.location.href = window.location.origin + "/employer-register";
+            }
+            else {
+                localStorage.setItem("auth_token", response.token);
+                dispatch({ type: 'LOGIN', payload: response.data });
             }
 
         }
@@ -67,13 +74,22 @@ const EmployerLogin = () => {
                 password: localStorage.getItem("password")
             })
             if (response.status == '1') {
-                if (response.data.isemailverified && response.data.stage != "hrpage") {
+                if (!response.data.isemailverified) {
+                    setShowEmailVerifiedMessage(true);
+                    setIsEmailVerified(true);
+                    localStorage.setItem("removeLocalStorageData", true);
+                }
+                else if (!response.data.ismobileverified) {
+                    localStorage.setItem("removeLocalStorageData", true);
                     window.location.href = window.location.origin + "/employer-register";
                 }
-                if (!response.data.isEmailVerified && response.data.stage != "hrpage") {
-                    if (localStorage.getItem("useremail")) {
-                        setIsEmailVerified(true)
-                    }
+                else if (response.data.isemailverified && response.data.ismobileverified && response.data.stage == "savememailandpass") {
+                    localStorage.setItem("removeLocalStorageData", true);
+                    window.location.href = window.location.origin + "/employer-register";
+                }
+                else {
+                    localStorage.setItem("auth_token", response.token)
+                    dispatch({ type: 'LOGIN', payload: response.data });
                 }
             }
         }
@@ -82,7 +98,6 @@ const EmployerLogin = () => {
 
     }, []);
     return (<>
-
         {isLoggedIn == 'true' && (user && user.employer_type == "employer") && <Navigate to="/employer-dashboard"></Navigate>}
         <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)} message="Email Address is not verified. Please Verify your email First" messageType="success" />
         <Box className="EmployerLoginPage"

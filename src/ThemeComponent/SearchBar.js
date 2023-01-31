@@ -1,5 +1,5 @@
 import { Box, Stack, Button } from '@mui/material';
-import { cities, Experience } from "../utils/Data";
+import { cities, Experience, SalaryCTC } from "../utils/Data";
 
 import SearchIcon from '@mui/icons-material/Search';
 import CustomizeSelect from "../ThemeComponent/CustomizeSelect";
@@ -67,7 +67,7 @@ const SearchBar = () => {
 
                 <CustomizeSelect ref={experienceRef} placeholder="Experience" id_data="experience" data={Experience} />
 
-                <CustomizeSelect ref={ctcRef} placeholder="CTC" id_data="ctc" data={Experience} />
+                <CustomizeSelect ref={ctcRef} placeholder="CTC" id_data="ctc" data={SalaryCTC} />
                 <Button
                     sx={{
                         background: "#2B1E44",

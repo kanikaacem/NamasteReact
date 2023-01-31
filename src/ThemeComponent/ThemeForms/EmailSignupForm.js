@@ -16,14 +16,14 @@ import { LoginSocialGoogle } from 'reactjs-social-login';
 
 import { useSelector } from "react-redux";
 
+import { useEffect } from "react";
 const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenForm, isEmailVerified }) => {
 
-    const api_url = useSelector(state => state.api_url);
 
     const CLIENT_ID = "346122009616-1gljk4ii4218dajhhjki2cb62v1r1cr0.apps.googleusercontent.com";
 
     const defaultValue = {
-        email_address: ""
+        email_address: email ? email : ""
     }
 
     const CheckEmail = async (email) => {
@@ -47,6 +47,8 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
             setPasswordGenForm(true);
         }
     }
+
+
 
     return (<>
         <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
@@ -114,35 +116,6 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                     </Form>
                 )}
             </Formik>
-
-            {/* <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                <ThemeButtontype1 variant="contained" type="submit">Next</ThemeButtontype1>
-            </Box> */}
-
-            {/* <Typography component="h4" sx={{ fontSize: "16px", textAlign: "center", color: "#2B1E44", margin: "30px 0px" }}>
-                OR
-            </Typography> */}
-
-            {/* <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                <LoginSocialGoogle
-                    client_id={CLIENT_ID}
-                    scope="openid profile email"
-                    discoveryDocs="claims_supported"
-                    access_type="offline"
-                    onResolve={({ provider, data }) => {
-                        setFieldValue("email_address", data.email)
-                    }}
-                    onReject={err => {
-                        console.log(err);
-                    }}
-                >
-                    <button type="button" class="signup-with-google-btn" >
-                        Sign up with Google
-                    </button>
-
-                </LoginSocialGoogle>
-
-            </Box> */}
         </Box>
     </>)
 }

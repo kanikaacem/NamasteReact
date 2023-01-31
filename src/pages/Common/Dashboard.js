@@ -130,7 +130,10 @@ const Dashboard = () => {
                                                 </Typography>
                                             </Stack>
 
-                                            <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => dispatch({ type: "LOGOUT" })}>
+                                            <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => {
+
+                                                dispatch({ type: "LOGOUT" })
+                                            }}>
                                                 <LogoutIcon />
                                                 <Typography component="div" sx={{ fontSize: "14px" }}>
                                                     Logout

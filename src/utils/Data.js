@@ -866,52 +866,73 @@ export const SalaryType = [
 export const SalaryCTC = [
     {
         id: 1,
-        value: "0 - 1 Lakhs"
+        value: "0 - 1 Lakhs",
+        name: "0 - 1 Lakhs"
     },
     {
         id: 2,
-        value: "1 - 2 Lakhs"
+        value: "1 - 2 Lakhs",
+        name: "1 - 2 Lakhs"
     },
     {
         id: 3,
-        value: "2 - 3 Lakhs"
+        value: "2 - 3 Lakhs",
+        name: "2 - 3 Lakhs"
     },
     {
         id: 4,
-        value: " 3 - 4 Lakhs"
+        value: " 3 - 4 Lakhs",
+        name: " 3 - 4 Lakhs"
     },
     {
         id: 5,
-        value: " 4 - 5 Lakhs"
+        value: " 4 - 5 Lakhs",
+        name: " 4 - 5 Lakhs"
     },
     {
         id: 6,
-        value: " 5 - 6 Lakhs"
+        value: " 5 - 6 Lakhs",
+        name: " 5 - 6 Lakhs"
     },
     {
         id: 7,
-        value: " 6 - 7 Lakhs"
-    }, {
+        value: " 6 - 7 Lakhs",
+        name: " 6 - 7 Lakhs"
+    },
+    {
         id: 8,
-        value: " 7 - 8 Lakhs"
-    }, {
+        value: " 7 - 8 Lakhs",
+        name: " 7 - 8 Lakhs"
+    },
+    {
         id: 9,
-        value: " 8 - 9 Lakhs"
-    }, {
+        value: " 8 - 9 Lakhs",
+        name: " 8 - 9 Lakhs"
+    },
+    {
         id: 10,
-        value: " 9 - 10 Lakhs"
-    }, {
+        value: " 9 - 10 Lakhs",
+        name: " 9 - 10 Lakhs"
+    },
+    {
         id: 11,
-        value: " 10 - 11 Lakhs"
-    }, {
+        value: " 10 - 11 Lakhs",
+        name: " 10 - 11 Lakhs"
+    },
+    {
         id: 12,
-        value: " 11 - 12 Lakhs"
-    }, {
+        value: " 11 - 12 Lakhs",
+        name: " 11 - 12 Lakhs"
+    },
+    {
         id: 12,
-        value: " 12 - 13 Lakhs"
-    }, {
+        value: " 12 - 13 Lakhs",
+        name: " 12 - 13 Lakhs"
+    },
+    {
         id: 13,
-        value: " above 13 Lakhs"
+        value: " above 13 Lakhs",
+        name: " above 13 Lakhs"
     }
 ]
 

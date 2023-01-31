@@ -12,14 +12,12 @@ import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
 import ButtonType3 from "../Common/ButtonType3";
-
+import BackButton from "../Common/BackButton";
 import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv, NextButton } from "../../utils/Theme";
 
-import CloseIcon from '@mui/icons-material/Close';
 import { useState, useRef, useEffect } from "react";
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { set } from "date-fns";
 
 const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
@@ -40,16 +38,25 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const [CountryState, setCountryState] = useState([]);
     const [District, setDistrict] = useState([]);
     const [profileType, setProfileType] = useState(" ");
-    const [companyType, setCompanyType] = useState(" ");
+    const [companyType, setCompanyType] = useState(localStorage.getItem("company_form_data")
+        ? JSON.parse(localStorage.getItem("company_form_data"))['company_type'] : " ")
 
     /* Form State*/
-    const [hrName, setHRName] = useState("");
-    const [companyName, setCompanyName] = useState("");
-    const [companyPanNumber, setCompanyPanNumber] = useState("");
+    const [hrName, setHRName] = useState(localStorage.getItem("company_form_data")
+        ? JSON.parse(localStorage.getItem("company_form_data"))['hr_name'] : "");
+    const [companyName, setCompanyName] = useState(localStorage.getItem("company_form_data")
+        ? JSON.parse(localStorage.getItem("company_form_data"))['company_name'] : "");
+    const [companyPanNumber, setCompanyPanNumber] = useState(localStorage.getItem("company_form_data")
+        ? JSON.parse(localStorage.getItem("company_form_data"))['company_pan_number'] : "");
 
-    const [companyEmail, setCompanyEmail] = useState("");
-    const [companyWebsite, setCompanyWebsite] = useState("");
-    const [companyLanNumber, setCompanyLanNumber] = useState("");
+    const [companyEmail, setCompanyEmail] = useState(localStorage.getItem("company_form_data1")
+        ? JSON.parse(localStorage.getItem("company_form_data1"))['company_email'] : "");
+
+    const [companyWebsite, setCompanyWebsite] = useState(localStorage.getItem("company_form_data1")
+        ? JSON.parse(localStorage.getItem("company_form_data1"))['company_website'] : "");
+
+    const [companyLanNumber, setCompanyLanNumber] = useState(localStorage.getItem("company_form_data1")
+        ? JSON.parse(localStorage.getItem("company_form_data1"))['company_lan_number'] : "");
 
     const [companyInfoForm, setCompanyInfoForm] = useState(localStorage.getItem("formpage") ? localStorage.getItem("formpage") : 1);
 
@@ -65,9 +72,9 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     }
 
     const defaultValue1 = {
-        company_email: "",
-        company_website: "",
-        company_lan_number: ""
+        company_email: companyEmail,
+        company_website: companyWebsite,
+        company_lan_number: companyLanNumber
     }
 
     const defaultValue2 = {
@@ -125,6 +132,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         setHRName(values.hr_name);
         setCompanyName(values.hr_name);
         setCompanyPanNumber(values.company_pan_number);
+        localStorage.setItem("company_form_data", JSON.stringify(values));
         let formData = new FormData();
         formData = {
             employername: values.hr_name,
@@ -156,6 +164,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     }
 
     const handleSubmit1 = async (values) => {
+        localStorage.setItem("company_form_data1", JSON.stringify(values));
 
         let formData = new FormData();
         formData = {
@@ -479,6 +488,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
 
                                         <Stack alignItems="flex-end">
+
                                             <NextButton type="submit"><img src={window.location.origin + "/assets/CompanyInfoRight.png"} alt="Next" width="14px" height="14px" ></img></NextButton>
                                         </Stack>
                                     </Form>)}
@@ -552,6 +562,13 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 borderRadius: "19px",
                                 padding: "35px 50px"
                             }}>
+                                <BackButton
+                                    GoBack={
+                                        () => {
+                                            setCompanyInfoForm(1)
+                                        }
+                                    } ></BackButton>
+
                                 <Typography component="box" sx={{
                                     fontSize: "40px",
                                     fontFamily: "Montserrat",
@@ -698,6 +715,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
 
                                             <Stack alignItems="flex-end" sx={{ margin: "20px 0px" }}>
+
                                                 <NextButton type="submit"><img src={window.location.origin + "/assets/CompanyInfoRight.png"} alt="Next" width="14px" height="14px" ></img></NextButton>
                                             </Stack>
                                         </Form>)}
@@ -801,6 +819,13 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 borderRadius: "19px",
                                 padding: "35px 50px"
                             }}>
+                                <BackButton
+                                    GoBack={
+                                        () => {
+                                            setCompanyInfoForm(2)
+                                        }
+                                    } ></BackButton>
+
                                 <Typography component="box" sx={{
                                     fontSize: "40px",
                                     fontFamily: "Montserrat",

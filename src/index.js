@@ -38,11 +38,12 @@ const reducer = (state, action) =>{
       return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:localStorage.getItem('user')};
 
     case "LOGOUT":
-      localStorage.setItem("user","")
-      localStorage.setItem("auth_token","")
-      localStorage.setItem("isLoggedIn", false);
-      localStorage.setItem("useremail","");
-      localStorage.setItem("password","");
+      localStorage.clear();
+      // localStorage.setItem("user","")
+      // localStorage.setItem("auth_token","")
+      // localStorage.setItem("isLoggedIn", false);
+      // localStorage.setItem("useremail","");
+      // localStorage.setItem("password","");
       return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn")};
 
     case "SHOW_HIDE_PROFILE":

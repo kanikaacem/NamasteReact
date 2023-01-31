@@ -45,9 +45,9 @@ const EmployerRegister = () => {
                 email: localStorage.getItem("useremail"),
                 password: localStorage.getItem("password")
             })
+
             if (response.status == '1') {
-                console.log(response);
-                // console.log(verifyMobileForm)
+                // console.log(response);
                 if (response.data.isemailverified && !response.data.ismobileverified) {
                     setEmailSignupForm(false);
                     setVerifyMobileForm(true);
@@ -57,6 +57,15 @@ const EmployerRegister = () => {
                     setEmailSignupForm(false);
                     setVerifyMobileForm(false);
                     setCompanyInfoForm(true);
+                    if (response.data.company_pancard && !response.data.company_email) {
+                        localStorage.setItem("formpage", 2);
+                    }
+                    else if (response.data.company_email) {
+                        localStorage.setItem("formpage", 3);
+                    }
+                    else {
+                        localStorage.setItem("formpage", 1);
+                    }
                 }
                 else {
                     if (localStorage.getItem("useremail")) {
@@ -152,7 +161,8 @@ const EmployerRegister = () => {
                             {passwordGenForm && <PasswordGenForm email={email}
                                 setUserId={setUserId}
                                 setPasswordGenForm={setPasswordGenForm}
-                                setVerifyMobileForm={setVerifyMobileForm} />}
+                                setVerifyMobileForm={setVerifyMobileForm}
+                                setEmailSignupForm={setEmailSignupForm} />}
 
                             {verifyMobileForm && <VerifyMobileForm
                                 email={email}

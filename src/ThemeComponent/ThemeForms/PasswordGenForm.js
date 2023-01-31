@@ -7,11 +7,14 @@ import { PasswordGenFormValidationSchema } from "../../Validation/EmployerValida
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import ShowMessageToastr from "../../ThemeComponent/Common/ShowMessageToastr";
+import BackButton from "../Common/BackButton";
 import Error from "../../ThemeComponent/Common/Error";
 
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
-import { useEffect, useState } from "react";
-const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobileForm }) => {
+import { useState } from "react";
+
+import { useDispatch } from "react-redux";
+const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenForm, setVerifyMobileForm }) => {
     const [sHPassword, setSHPassword] = useState(false);
     const [sHConfirmPassword, setSHConfirmPassword] = useState(false);
 
@@ -23,6 +26,7 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
         confirm_password: ""
     }
 
+    const dispatch = useDispatch();
     const handleSubmit = async (values) => {
         document.getElementById("next").disabled = "true";
         let formData = new FormData();
@@ -33,13 +37,20 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
 
         let response = await postRequest(EmployerSaveEmailAndPassword, formData);
         if (response.status == 1) {
+            console.log(response);
             localStorage.setItem("useremail", email);
             localStorage.setItem("password", values.password)
             localStorage.setItem('auth_token', response.data);
             localStorage.setItem("userid", response._id);
+            localStorage.setItem("removeLocalStorageData", true);
             setShowEmailVerifiedMessage(true);
 
         }
+    }
+
+    const GoBack = () => {
+        setEmailSignupForm(true);
+        setPasswordGenForm(false);
     }
 
 
@@ -49,9 +60,11 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
             message="Email Verification Link is send . Please verify the Email before going further "
             messageType="success" />
 
+        <BackButton GoBack={GoBack} />
         <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
             Create Password
         </Typography>
+
         <Formik
 
             initialValues={defaultValue}
