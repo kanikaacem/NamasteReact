@@ -5,6 +5,7 @@ import App from './App';
 //redux 
 import {createStore} from "redux";
 import {Provider} from "react-redux";
+import { json } from 'react-router-dom';
 const initialState = {
   isLoggedIn : localStorage.getItem("isLoggedIn") == null ? false : localStorage.getItem("isLoggedIn"),
   categoryActive : {
@@ -23,19 +24,26 @@ const initialState = {
 const reducer = (state, action) =>{
   switch(action.type){
     case "LOGIN":
-      let {data,token} = action.payload;
+      // let {data,token,user} = action.payload;
       // console.log(data);
       // console.log(user);
       // console.log(token);
+      
+      // console.log(action.payload);
+      // let data = action.payload;
       localStorage.setItem('isLoggedIn',true);
-      localStorage.setItem('user',JSON.stringify(data));
-      localStorage.setItem('auth_token',token);
+      localStorage.setItem('user',JSON.stringify(action.payload));
+      // localStorage.setItem('auth_token',token);
 
       return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:localStorage.getItem('user')};
 
     case "LOGOUT":
-      localStorage.setItem("user","")
-      localStorage.setItem("isLoggedIn", false);
+      localStorage.clear();
+      // localStorage.setItem("user","")
+      // localStorage.setItem("auth_token","")
+      // localStorage.setItem("isLoggedIn", false);
+      // localStorage.setItem("useremail","");
+      // localStorage.setItem("password","");
       return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn")};
 
     case "SHOW_HIDE_PROFILE":
@@ -55,6 +63,10 @@ const reducer = (state, action) =>{
 
     case "USER_REGISTRATION":
       let candidateInfo = action.payload;
+      console.log(candidateInfo.data);
+      localStorage.setItem('auth_token',candidateInfo.token);
+      // localStorage.setItem('user',JSON.stringify(candidateInfo.data['personalInfo']));
+
       return {...initialState,candidateInfo:candidateInfo,CandidateRegistration:true}
 
    
@@ -244,3 +256,5 @@ root.render(
 //https://stackoverflow.com/questions/70165035/how-to-use-material-ui-checkbox-with-formik
 //https://stackoverflow.com/questions/59721035/usestate-only-update-component-when-values-in-object-change
 //https://www.npmjs.com/package/react-tag-input
+
+//https://www.npmjs.com/package/react-dropdown-input

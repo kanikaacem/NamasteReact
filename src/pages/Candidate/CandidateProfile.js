@@ -40,37 +40,15 @@ const CandidateProfile = () => {
     const steps = getSteps();
 
     return (<>
-        <Header />
 
-        <Box sx={{ padding: "20px", background: "#FAFAFA", minHeight: "100vh" }}>
-            <Container>
-                <Box>
-                    <Stepper activeStep={activeStep}>
-                        {steps.map((label, index) => {
-                            const stepProps = {};
-                            const labelProps = {};
 
-                            if (isStepSkipped(index)) {
-                                stepProps.completed = false;
-                            }
-                            return (
-                                <Step key={label} {...stepProps}>
-                                    <StepLabel {...labelProps}>{label}</StepLabel>
-                                </Step>
-                            );
-                        })}
-                    </Stepper>
-                </Box>
-
-                <Box >
-                    {activeStep == 0 && <PersonalInformation setActiveStep={setActiveStep} />}
-                    {activeStep == 1 && <ProfessionalDetail setActiveStep={setActiveStep} />}
-                    {activeStep == 2 && <WorkHistory setActiveStep={setActiveStep} ></WorkHistory>}
-                    {activeStep == 3 && <UploadResume ></UploadResume>}
-                </Box>
-            </Container>
-
+        <Box >
+            {activeStep == 0 && <PersonalInformation setActiveStep={setActiveStep} />}
+            {activeStep == 1 && <ProfessionalDetail setActiveStep={setActiveStep} />}
+            {activeStep == 2 && <WorkHistory setActiveStep={setActiveStep} ></WorkHistory>}
+            {activeStep == 3 && <UploadResume ></UploadResume>}
         </Box>
+
     </>)
 }
 

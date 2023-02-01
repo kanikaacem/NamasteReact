@@ -170,7 +170,7 @@ const AccountSetting = () => {
                     </Typography>
                     <Stack direction="row" gap={1} sx={{ alignItems: "center" }}>
                         <Box width="30px" sx={{ borderRadius: "50%" }}>
-                            <img src="http://www.localhost:3000/assets/LinkedIn.png" width="100%" style={{
+                            <img src={window.location.origin + "/assets/LinkedIn.png"} width="100%" style={{
                                 borderRadius: "50%",
                                 objectFit: "cover"
                             }}></img>

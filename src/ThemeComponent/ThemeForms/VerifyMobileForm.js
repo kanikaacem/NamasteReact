@@ -1,3 +1,5 @@
+import { postRequest, PostImageRequest, getRequest } from "../../utils/ApiRequests";
+
 import { Box, TextField, Typography, Snackbar, IconButton, Stack, Button } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { Formik, Field, Form } from "formik";
@@ -9,13 +11,12 @@ import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
 import { useState } from "react";
 
-const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNumber }) => {
+const VerifyMobileForm = ({ email, setVerifyMobileForm, setCompanyInfoForm, setMobileNumber }) => {
     const [sendOtp, setSendOtp] = useState(false);
 
     const handleClose = (event) => {
         setSendOtp(false);
     };
-
     const action = (
         <>
             <IconButton
@@ -28,6 +29,12 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
             </IconButton>
         </>
     );
+
+    const action2 = (
+        <> OK
+
+        </>
+    )
     const defaultValue1 = {
         mobile_number: ""
     }
@@ -35,11 +42,17 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
         otp: ""
     }
     const handleSubmit1 = async (values, { setFieldError }) => {
-        setMobileNumber(values.mobile_number);
-        setSendOtp(true);
+        // console.log(values.mobile_number);
+        let response = await postRequest("http://13.235.183.204:3001/api/sendotp/+91" + values.mobile_number);
+        if (response.status == '1')
+            //     // setMobileNumber(values.mobile_number);
+            setSendOtp(true);
     }
     const handleSubmit2 = async (values, { setFieldError }) => {
-        if (values.otp == '1234') {
+        let response = await postRequest("http://13.235.183.204:3001/api/verifyotp", {
+            otp: values.otp
+        })
+        if (response.status == '1') {
             setVerifyMobileForm(false);
             setCompanyInfoForm(true);
         }
@@ -50,6 +63,7 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
 
     }
     return (<>
+
         <Snackbar
             open={sendOtp}
             autoHideDuration={6000}
@@ -76,7 +90,7 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
                             error={errors.mobile_number && touched.mobile_number}
                             id="mobile_number"
                             as={TextField}
-                            placeholder="Enter Mobile Number" type="text" name="mobile_number *" />
+                            placeholder="Enter Mobile Number (eg. 9313170822 )" type="text" name="mobile_number" />
                         <Button
                             type="submit"
                             sx={{
@@ -111,13 +125,6 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
                         {errors.mobile_number && touched.mobile_number && <Error text={errors.mobile_number} />}
 
                     </ThemeFInputDiv>
-
-                    {/* <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Next</ThemeButtonType2>
-                    </Stack> */}
-                    {/* <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                        <ThemeButtontype1 variant="contained" type="submit">Send OTP</ThemeButtontype1>
-                    </Box> */}
                 </Form>
             )}
         </Formik>
@@ -144,10 +151,6 @@ const VerifyMobileForm = ({ setVerifyMobileForm, setCompanyInfoForm, setMobileNu
                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
                         <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Verify</ThemeButtonType2>
                     </Stack>
-
-                    {/* <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                        <ThemeButtontype1 variant="contained" type="submit">Verify OTP</ThemeButtontype1>
-                    </Box> */}
                 </Form>
             )}
         </Formik>

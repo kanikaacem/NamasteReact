@@ -26,24 +26,19 @@ const JobCategory = () => {
   const [showCategory, setshowCategory] = useState(false);
 
   return (<>
-    <Box className="hs_job_categories"
-      sx={{
-        padding: { md: "20px 100px", xs: "20px" }
-      }}
-    >
-
+    <Box className="hs_job_categories">
       <Stack
         className="hs_job_categroies_wrapper"
         sx={{
           display: "flex",
           flexDirextion: "column",
           alignItem: "center",
-          padding: "15px",
+          padding: "50px 30px",
           backgroundColor: "#FFFFFF",
           columnGap: "20px",
           rowGap: "20px",
-          boxShadow: "2px 2px 8px 0px rgb(148 134 90)",
           borderRadius: "10px",
+
         }}>
         <Box
           className="JobCategoriesItems" sx={{
@@ -59,11 +54,17 @@ const JobCategory = () => {
             return (
               <>
                 <div className="CategoryItem" key={item.id} id={item.id} >
-                  <div className="CategoryLogo" >
+                  {/* <div className="CategoryLogo" >
                     <img src={item.logo} alt={item.title} width="100%" />
-                  </div>
+                  </div> */}
                   <div className="CategoryTitle" >
-                    <span>{item.title}</span>
+                    <span
+                      style={{
+                        fontSize: "24px",
+                        fontFamily: "Montserrat",
+                        fontWeight: "600",
+                        color: "#5A5A5A"
+                      }}>{item.title}</span>
                   </div>
                 </div>
 
@@ -71,7 +72,21 @@ const JobCategory = () => {
           })}
         </Box>
 
-        <ShowLessCategoryButton className="ShowMoreButton" onClick={() => setshowCategory(!showCategory)} >
+        <ShowLessCategoryButton sx={{
+          fontWeight: "700",
+          background: "none",
+          border: "none",
+          fontSize: "24px",
+          color: "#FC9A7E",
+          "&:hover": {
+            fontWeight: "700",
+            background: "none",
+            border: "none",
+            fontSize: "24px",
+            color: "#FC9A7E"
+          }
+        }}
+          className="ShowMoreButton" onClick={() => setshowCategory(!showCategory)} >
           {showCategory ? "Show Less Categories " : "More Categories"}
           {showCategory ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
         </ShowLessCategoryButton>
@@ -82,7 +97,7 @@ const JobCategory = () => {
 
       </Stack>
 
-    </Box>
+    </Box >
   </>)
 }
 export default JobCategory;

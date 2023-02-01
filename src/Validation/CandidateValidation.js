@@ -27,29 +27,27 @@ export const CandidateRegistrationSchema = yup.object().shape({
 })
 
 //Candidate Registration Step 2 ->Step 1
-export const PersonalRegistrationSchema1 = yup.object().shape({
+export const PersonalRegistrationSchema = yup.object().shape({
     current_title: yup.string().required("Current Title is required"),
     current_salary: yup.number("Current Salary should be a number")
         .positive("Current Salary should be positive").required("Current Salary is required"),
     excepted_salary: yup.number("Excepted Salary should be a number")
         .positive("Excepted Salary should be positive").required("Excepted Salary is required"),
-    current_industry: yup.string().required("Current Industry is required"),
     skills: yup.string().required("Skills is required"),
     perferred_location: yup.string().required("Perferred Location is required"),
     total_work_experience: yup.number("Total Work Experience should be a number")
         .positive("Total Work Experience should be positive").required("Total Work Experience is required"),
-})
-
-//Candidate Registration Step 2 ->step 2
-export const PersonalRegistrationSchema = yup.object().shape({
     full_name: yup.string().required("FullName is required"),
     date_of_birth: yup.string().required("Date of Birth is required"),
-    permanant_address: yup.string().required("Permanant address is required"),
-    current_location: yup.string().required("Current Location is required"),
+    state: yup.string().required("State is required"),
+    city: yup.string().required("City is required"),
+    area: yup.string().required("Area is required"),
+    complete_address: yup.string().required("Complete address is required"),
     phone_number: yup.number().min(10).required("Phone Number is required"),
     marital_status: yup.string().required("Martial Status is required"),
     gender: yup.string().required("Gender is required")
 })
+
 
 //Candidate Registration Step 3
 export const ProfessionalDetailSchema = yup.object().shape({
@@ -59,8 +57,6 @@ export const ProfessionalDetailSchema = yup.object().shape({
     starting_year: yup.string().required("Staring Year is required"),
     ending_year: yup.string().required("Ending Year is required"),
     percentage: yup.string().required("Percentage is required"),
-
-
 })
 
 //Candidate WorkHistory Step 4

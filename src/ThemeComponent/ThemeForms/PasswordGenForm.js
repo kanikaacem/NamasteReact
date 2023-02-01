@@ -1,28 +1,34 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { EmployerSaveEmailAndPassword } from "../../utils/ApiUrls";
 
-import { Box, TextField, Stack, styled, Typography } from "@mui/material";
+import { TextField, Stack, Typography } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { PasswordGenFormValidationSchema } from "../../Validation/EmployerValidation";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
+import ShowMessageToastr from "../../ThemeComponent/Common/ShowMessageToastr";
+import BackButton from "../Common/BackButton";
 import Error from "../../ThemeComponent/Common/Error";
 
-import { ThemeButtontype1, ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
-
-import { useSelector } from "react-redux";
+import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import { useState } from "react";
-const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobileForm }) => {
+
+import { useDispatch } from "react-redux";
+const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenForm, setVerifyMobileForm }) => {
     const [sHPassword, setSHPassword] = useState(false);
     const [sHConfirmPassword, setSHConfirmPassword] = useState(false);
-    const api_url = useSelector(state => state.api_url);
+
+    const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
+    const [isEmailVerified, setIsEmailVerified] = useState(false);
 
     const defaultValue = {
         password: "",
         confirm_password: ""
     }
 
+    const dispatch = useDispatch();
     const handleSubmit = async (values) => {
+        document.getElementById("next").disabled = "true";
         let formData = new FormData();
         formData = {
             email: email,
@@ -32,23 +38,33 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
         let response = await postRequest(EmployerSaveEmailAndPassword, formData);
         if (response.status == 1) {
             console.log(response);
-            localStorage.setItem("auth_token", response.data);
-            setPasswordGenForm(false);
-            setVerifyMobileForm(true);
+            localStorage.setItem("useremail", email);
+            localStorage.setItem("password", values.password)
+            localStorage.setItem('auth_token', response.data);
+            localStorage.setItem("userid", response._id);
+            localStorage.setItem("removeLocalStorageData", true);
+            setShowEmailVerifiedMessage(true);
+
         }
-        // console.log(response);
-        //    if(response.)
-        //     console.log(response.data);
-        //     localStorage.setItem("auth_token", response.data);
-        //     // setUserId(response.data);
-        //     // localStorage.setItem("auth_token", response.data);
-        //     
-        // }
     }
+
+    const GoBack = () => {
+        setEmailSignupForm(true);
+        setPasswordGenForm(false);
+    }
+
+
     return (<>
+
+        <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)}
+            message="Email Verification Link is send . Please verify the Email before going further "
+            messageType="success" />
+
+        <BackButton GoBack={GoBack} />
         <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
             Create Password
         </Typography>
+
         <Formik
 
             initialValues={defaultValue}
@@ -119,12 +135,13 @@ const PasswordGenForm = ({ email, setUserId, setPasswordGenForm, setVerifyMobile
 
                     </ThemeFInputDiv>
                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Next</ThemeButtonType2>
+                        {
+                            isEmailVerified && <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
+                        }
+                        <ThemeButtonType2 variant="contained" id="next" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Next</ThemeButtonType2>
                     </Stack>
 
-                    {/* <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                        <ThemeButtontype1 variant="contained" type="submit">Next</ThemeButtontype1>
-                    </Box> */}
+
                 </Form>
             )}
         </Formik>

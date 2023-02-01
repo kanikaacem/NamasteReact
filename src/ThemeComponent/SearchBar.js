@@ -1,5 +1,5 @@
-import { Box, Stack, Divider } from '@mui/material';
-import { cities, Experience } from "../utils/Data";
+import { Box, Stack, Button } from '@mui/material';
+import { cities, Experience, SalaryCTC } from "../utils/Data";
 
 import SearchIcon from '@mui/icons-material/Search';
 import CustomizeSelect from "../ThemeComponent/CustomizeSelect";
@@ -34,39 +34,62 @@ const SearchBar = () => {
     return (<>
         <Box
             sx={{
-                padding: "0px 100px",
-                height: "fit-content",
-                margin: '20px 0px',
-                display: { md: "block", xs: "none" }
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                // margin: '100px 0px',
             }}>
             <Stack
                 direction="row"
                 sx={{
+                    boxSizing: "border-box",
+                    width: "1447px",
+                    height: "80px",
                     background: "#FFFFFF",
-                    height: "60px",
-                    borderRadius: "10px",
+                    border: "3px solid #E1D4F2",
+                    boxShadow: "0px 47px 52px #f4ecff",
+                    borderRadius: "15px",
                     alignItems: "center",
                     justifyContent: "center",
                     gap: "20px",
                     padding: " 0px 20px",
-                    boxShadow: "2px 2px 8px 0px rgb(148 134 90)"
                 }}
             >
-                <SearchIcon></SearchIcon>
-                <input
-                    style={{ width: "500px" }}
-                    type="text" ref={searchRef} placeholder="Search" className='Search' />
-                <span>|</span>
+                <Stack direction="row" gap={1}>
+                    <SearchIcon></SearchIcon>
+                    <input
+                        style={{ width: "500px" }}
+                        type="text" ref={searchRef} placeholder="Search" className='Search' />
+                </Stack>
+
                 <CustomizeSelect ref={cityRef} placeholder="City" id_data="city" data={cities} />
-                <span>|</span>
+
                 <CustomizeSelect ref={experienceRef} placeholder="Experience" id_data="experience" data={Experience} />
-                <span>|</span>
-                <CustomizeSelect ref={ctcRef} placeholder="CTC" id_data="ctc" data={Experience} />
-                <ThemeButtontype1 onClick={searchJob} > Search</ThemeButtontype1>
+
+                <CustomizeSelect ref={ctcRef} placeholder="CTC" id_data="ctc" data={SalaryCTC} />
+                <Button
+                    sx={{
+                        background: "#2B1E44",
+                        width: "56px",
+                        height: "56px",
+                        background: "#4E3A67",
+                        borderRadius: "11px",
+                        "&:hover": {
+                            background: "#2B1E44",
+                            width: "56px",
+                            height: "56px",
+                            background: "#4E3A67",
+                            borderRadius: "11px"
+                        }
+                    }}
+                    type="button" onClick={searchJob}>
+                    <img src={window.location.origin + "/assets/g2.png"} alt="g2" />
+                </Button>
             </Stack>
         </Box>
 
-        <Box
+        {/* <Box
             sx={{
                 padding: "0px 20px",
                 height: "fit-content",
@@ -96,7 +119,7 @@ const SearchBar = () => {
 
                 </Stack>
             </Stack>
-        </Box>
+        </Box> */}
     </>)
 }
 export default SearchBar;

@@ -1,45 +1,68 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const WhyJobYahan = () => {
     return (<>
         <Box sx={{
-            background: "#2B1E44"
+            background: "#FAFAFA",
+            padding: "100px",
+            position: "relative"
         }}>
-            <Container sx={{ padding: "20px " }} >
-                <Stack direction={{ lg: 'row', md: 'column', xs: 'column' }} gap={10} sx={{ margin: "20px 0px" }}>
-                    <Box sx={{ width: { lg: "50%", md: "90%", xs: "90%" } }}>
-                        <img src="./assets/analytics.png" alt="explore" width="100%" height="100%" />
-                    </Box>
-                    <Box sx={{
-                        width: { lg: "50%", md: "90%", xs: "90%" },
-                        background: "#FFFFFF",
-                        color: "#445578",
-                        padding: { lg: "100px 50px", md: "20px", xs: "20px" },
-                        borderRadius: "10px",
-                        fontsize: "25px"
-                    }}>
-                        <Typography component="span"
-                            sx={{
-                                display: "block",
-                                fontSize: "50px",
-                                color: "#445578",
-                                fontWeight: "600",
-                                margin: "10px 0px",
-                            }}>
-                            Explore JobYahan
-                        </Typography>
-                        <Box sx={{ lineHeight: "2" }}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                            has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                            took a galley of type and scrambled it to make a type specimen book.
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                            has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                            took a galley of type and scrambled it to make a type specimen book.
-                        </Box>
-                    </Box>
-                </Stack>
+            <Box sx={{
+                width: { lg: "50%", md: "90%", xs: "90%" },
+                background: "#FFFFFF",
+                color: "#445578",
+                padding: "100px",
+                borderRadius: "10px",
+                fontsize: "25px",
+                boxSizing: "border-box",
+                width: "928px",
+                border: " 1px solid #E7D3FF",
+                borderradius: "23px"
+            }}>
+                <Typography component="span"
+                    sx={{
+                        display: "block",
+                        fontSize: "96px",
+                        color: "#2B1E44",
+                        fontWeight: "600",
 
-            </Container>
+                    }}>
+                    Explore
+                </Typography>
+                <Typography component="span"
+                    sx={{
+                        fontSize: "96px",
+                        color: "#2B1E44",
+                        fontWeight: "600",
+
+                    }}>
+                    Jobs
+                    <Typography component="span"
+                        sx={{
+                            fontSize: "96px",
+                            color: "#2B1E44"
+                        }}>
+                        Yahan
+                    </Typography>
+
+                </Typography>
+
+                <Box sx={{ lineHeight: "2", color: "#3A2D49" }}>
+                    JobsYahan is a job portal every employer and employee would like.
+                    While employers get suitable candidates for jobs, employees get suitable
+                    jobs through the portal. You can even get delivery jobs on JobsYahan, which may
+                    not be the case on other job portals. Means, JobsYahan is Sabhi Ke Liye. So, try us now!
+                </Box>
+            </Box>
+            <Box sx={{
+                width: "617px",
+                position: "absolute",
+                right: "0",
+                top: "120px"
+            }}>
+                <img src={window.location.origin + "/assets/g4.png"} alt="g4" width="100%" height="100%" />
+            </Box>
+
         </Box>
     </>
     )

@@ -1,6 +1,7 @@
-import { EmployerCompanyInformationURL, UplaodImageURL } from "../../utils/ApiUrls";
-import { postRequest, PostImageRequest } from "../../utils/ApiRequests";
+import { StatesURL, EmployerCompanyInformationURL, UplaodImageURL } from "../../utils/ApiUrls";
+import { postRequest, PostImageRequest, getRequest } from "../../utils/ApiRequests";
 
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { Box, Stack, TextField, Typography, MenuItem, Select } from "@mui/material";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { companyInfoValidationSchema, companyInfoValidationSchema1, companyInfoValidationSchema2 } from "../../Validation/EmployerValidation";
@@ -11,19 +12,15 @@ import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
 import ButtonType3 from "../Common/ButtonType3";
-
+import BackButton from "../Common/BackButton";
 import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv, NextButton } from "../../utils/Theme";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { set } from "react-hook-form";
-import { BorderBottom } from "@mui/icons-material";
-import { gridColumnPositionsSelector } from "@mui/x-data-grid";
 
 const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
-    const api_url = useSelector(state => state.api_url);
     const dispatch = useDispatch();
 
     const companyImageRef = useRef();
@@ -38,30 +35,46 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
     const [city, setCity] = useState(" ");
     const [state, setState] = useState(" ");
+    const [CountryState, setCountryState] = useState([]);
+    const [District, setDistrict] = useState([]);
     const [profileType, setProfileType] = useState(" ");
-    const [companyType, setCompanyType] = useState(" ");
+    const [companyType, setCompanyType] = useState(localStorage.getItem("company_form_data")
+        ? JSON.parse(localStorage.getItem("company_form_data"))['company_type'] : " ")
 
     /* Form State*/
-    const [hrName, setHRName] = useState("");
-    const [companyName, setCompanyName] = useState("");
+    const [hrName, setHRName] = useState(localStorage.getItem("company_form_data")
+        ? JSON.parse(localStorage.getItem("company_form_data"))['hr_name'] : "");
+    const [companyName, setCompanyName] = useState(localStorage.getItem("company_form_data")
+        ? JSON.parse(localStorage.getItem("company_form_data"))['company_name'] : "");
+    const [companyPanNumber, setCompanyPanNumber] = useState(localStorage.getItem("company_form_data")
+        ? JSON.parse(localStorage.getItem("company_form_data"))['company_pan_number'] : "");
 
-    const [companyEmail, setCompanyEmail] = useState("");
-    const [companyWebsite, setCompanyWebsite] = useState("");
-    const [companyLanNumber, setCompanyLanNumber] = useState("");
+    const [companyEmail, setCompanyEmail] = useState(localStorage.getItem("company_form_data1")
+        ? JSON.parse(localStorage.getItem("company_form_data1"))['company_email'] : "");
 
-    const [companyInfoForm, setCompanyInfoForm] = useState(1);
+    const [companyWebsite, setCompanyWebsite] = useState(localStorage.getItem("company_form_data1")
+        ? JSON.parse(localStorage.getItem("company_form_data1"))['company_website'] : "");
+
+    const [companyLanNumber, setCompanyLanNumber] = useState(localStorage.getItem("company_form_data1")
+        ? JSON.parse(localStorage.getItem("company_form_data1"))['company_lan_number'] : "");
+
+    const [companyInfoForm, setCompanyInfoForm] = useState(localStorage.getItem("formpage") ? localStorage.getItem("formpage") : 1);
+
+    const [companyAddress, setCompanyAddress] = useState("");
+    const [autoData, setAutoData] = useState([]);
+    const [menubar, setMenuBar] = useState(false);
 
     const defaultValue = {
         hr_name: hrName,
         company_type: companyType,
         company_name: companyName,
-
+        company_pan_number: companyPanNumber
     }
 
     const defaultValue1 = {
-        company_email: "",
-        company_website: "",
-        company_lan_number: ""
+        company_email: companyEmail,
+        company_website: companyWebsite,
+        company_lan_number: companyLanNumber
     }
 
     const defaultValue2 = {
@@ -69,7 +82,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         city: "",
         company_address: "",
         company_pincode: "",
-        company_pan_number: "",
         company_gst_number: "",
         area: ""
 
@@ -116,67 +128,106 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
 
     }
-    const handleSubmit = async (values) => {
+    const handleSubmit = async (values, { setFieldError }) => {
         setHRName(values.hr_name);
-        setCompanyName(values.company_name);
+        setCompanyName(values.hr_name);
+        setCompanyPanNumber(values.company_pan_number);
+        localStorage.setItem("company_form_data", JSON.stringify(values));
+        let formData = new FormData();
+        formData = {
+            employername: values.hr_name,
+            companyname: values.company_name,
+            companytype: values.company_type,
+            company_logo: "",
+            company_pancard: values.company_pan_number,
+            comapany_panddoc: ""
+        }
 
-        /* Form State*/
+        let response = await postRequest("http://13.235.183.204:3001/api/employer/checkpan", {
+            company_pancard: values.company_pan_number
+        });
+        console.log(response.status);
+        if (response.status == 0) {
 
-        console.log(values);
-        console.log(hrName, companyName, companyType);
-        setCompanyInfoForm(2);
+            let response2 = await postRequest("http://13.235.183.204:3001/api/employer/postemployer1", formData);
+            if (response2.status == 1) {
+                localStorage.setItem("formpage", 2);
+                setCompanyInfoForm(2);
+            }
+        }
+        else {
+            console.log(response.msg);
+            setFieldError("company_pan_number", response.msg);
+        }
+
+
     }
 
     const handleSubmit1 = async (values) => {
-        let company_email = values.company_email;
-        let company_lan_number = values.company_lan_number;
-        let company_website = values.company_website;
+        setCompanyEmail(values.company_email);
+        setCompanyWebsite(values.company_website);
+        setCompanyLanNumber(values.company_lan_number)
+        localStorage.setItem("company_form_data1", JSON.stringify(values));
 
-        setCompanyEmail(company_email);
-        setCompanyWebsite(company_website);
-        setCompanyLanNumber(company_website);
-        setCompanyInfoForm(3);
-
+        let formData = new FormData();
+        formData = {
+            company_email: values.company_email,
+            companywebsite: values.company_website ? values.company_website : " ",
+            companylannumber: values.company_lan_number
+        }
+        let response = await postRequest("http://13.235.183.204:3001/api/employer/postemployer2", formData);
+        if (response.status == 1) {
+            localStorage.setItem("formpage", 3);
+            setCompanyInfoForm(3);
+        }
 
     }
 
     const handleSubmit2 = async (values) => {
-        // values.area
-        // values.city
+        let data = new FormData();
+        data = {
+            company_state: state,
+            company_city: city,
+            company_area: values.area,
+            company_address: values.company_address,
+            company_pincode: values.company_pincode,
+            company_gstnumber: values.company_gstnumber ? values.company_gst_number : "not present",
+            company_gstDoc: ""
+        }
 
-        // values.company_address
-        // values.company_gst_number
-
-        // values.company_pan_number
-        // values.company_pincode
-        // values.state
-        // let data = new FormData();
-        // data = {
-        //     employername: hrName,
-        //     companynumber: companyLanNumber,
-        //     companytype: companyType,
-        //     companyname: companyName,
-        //     companyemail: companyEmail,
-        //     companywebsite: companyWebsite,
-        //     companyaddress: values.company_address,
-        //     companycity: values.company_city,
-        //     companypincode: values.company_pincode,
-        //     companypancard: values.company_pan_number,
-        //     companygstnumber: values.company_gst_number,
-        //     companylan: values.company_lan_number
-
-        // }
-
-        // let response = await postRequest(EmployerCompanyInformationURL, data);
-        // if (response.status == 1) {
-        //     dispatch({ type: 'LOGIN', payload: JSON.stringify(response.data) });
-        // }
-
+        let response = await postRequest("http://13.235.183.204:3001/api/employer/postemployer3", data);
+        // console.log(response);
+        if (response.status == 1) {
+            localStorage.setItem("formpage", 1);
+            dispatch({ type: 'LOGIN', payload: response.data });
+        }
 
     }
-    return (<>
-        {isLoggedIn == 'true' && <Navigate to="/employer-dashboard"></Navigate>}
 
+    useEffect(() => {
+        const getState = async () => {
+            let response = await getRequest(StatesURL);
+            setCountryState(response.data);
+        }
+        getState();
+    }, [])
+
+    const getDistrictByState = async (statefilter) => {
+        // console.log(statefilter);
+        let response = await getRequest("http://13.235.183.204:3001/api/map/districts?states=" + statefilter);
+        // console.log(response.data[0].districts);
+        setDistrict(response.data[0].districts);
+        // console.log(response);
+    }
+
+    const getAddress = async (value) => {
+        let response = await getRequest("http://13.235.183.204:3001/api/map/autocompleteplaces?input=" + value);
+        setAutoData(response.data);
+        // console.log(response.data);
+    }
+    return (<>
+
+        {isLoggedIn == 'true' && <Navigate to="/employer-dashboard"></Navigate>}
         {companyInfoForm == 1 && <>
             <Box className="EmployerRegisterPage"
                 sx={{
@@ -366,6 +417,17 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                             </ThemeFInputDiv>
 
                                             <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="company_pan_number" LableText="Company Pan Number *" />
+                                                <Field
+                                                    error={errors.company_pan_number && touched.company_pan_number}
+                                                    id="company_pan_number"
+                                                    as={TextField}
+                                                    placeholder="Enter Company Pan Number" type="text" name="company_pan_number" fullWidth />
+                                                {errors.company_pan_number && touched.company_pan_number && <Error text={errors.company_pan_number} />}
+
+                                            </ThemeFInputDiv>
+
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="company_type" LableText="Company Type *" />
                                                 <Select
                                                     variant="outlined"
@@ -399,7 +461,12 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                 {errors.company_type && touched.company_type && <Error text={errors.company_type} />}
                                             </ThemeFInputDiv>
 
-                                            <ThemeFInputDiv sx={{ width: "80px" }}>
+                                            <ThemeFInputDiv sx={{ width: "200px" }}>
+                                                {/* <Box sx={{
+                                                    position: "absolute",
+                                                    top: "0px",
+                                                    background: "white"
+                                                }}> <CloseIcon></CloseIcon></Box> */}
                                                 <img id="companyLogo" width="100%" />
                                             </ThemeFInputDiv>
 
@@ -417,164 +484,15 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                     fullWidth />
 
 
-                                                <ButtonType3 ButtonText="Upload Company Logo" ClickEvent={() => document.getElementById("upload_company_logo").click()}></ButtonType3>
+                                                <ButtonType3 ButtonText="Upload Company Logo" imageURL="/assets/InsertPicture.png" ClickEvent={() => document.getElementById("upload_company_logo").click()}></ButtonType3>
                                             </ThemeFInputDiv>
-
-
-                                            {/* 
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_email" LableText="Company Email" />
-            <Field
-                error={errors.company_email && touched.company_email}
-                id="company_email"
-                variant="standard"
-                as={TextField}
-                placeholder="Enter Company Email ( eg. xyz@company.com )" type="text" name="company_email" fullWidth />
-            {errors.company_email && touched.company_email && <Error text={errors.company_email} />}
-
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_lan_number" LableText="Company Landline Number" />
-            <Field
-                error={errors.company_lan_number && touched.company_lan_number}
-                id="company_lan_number"
-                variant="standard"
-                as={TextField}
-                placeholder="Enter Company Landline Number ( eg. 9898989898 )" type="text" name="company_lan_number" fullWidth />
-            {errors.company_lan_number && touched.company_lan_number && <Error text={errors.company_lan_number} />}
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_website" LableText="Company Website" />
-            <Field
-                error={errors.company_website && touched.company_website}
-                id="company_website"
-                variant="standard"
-                as={TextField}
-                placeholder="Enter Company Website ( eg. xyz.com )" type="text" name="company_website" fullWidth />
-            {errors.company_website && touched.company_website && <Error text={errors.company_website} />}
-
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_pincode" LableText="Company Pincode" />
-            <Field
-                error={errors.company_pincode && touched.company_pincode}
-                id="company_pincode"
-                variant="standard"
-                as={TextField}
-                placeholder="Enter Company Pincode ( eg. 23123 )" type="text" name="company_pincode" fullWidth />
-            {errors.company_pincode && touched.company_pincode && <Error text={errors.company_pincode} />}
-
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_address" LableText="Company Address" />
-            <Box sx={{ width: "100%", margin: "10px 0px" }}>
-                <TextField
-                    error={errors.company_address && touched.company_address}
-                    sx={{ width: "100%" }}
-                    variant="standard"
-                    placeholder="Company Address"
-                    multiline
-                    rows={4}
-                    maxRows={4}
-                    onChange={(event) => setFieldValue("company_address", event.target.value)}
-                />
-            </Box>
-
-            {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
-
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="city" LableText="City" />
-            <Select
-                classNamePrefix="react-select"
-                variant="standard"
-                labelId="demo-simple-select-label"
-                name="city"
-                value={city}
-                label="Age"
-                onChange={(event) => {
-                    setCity(event.target.value);
-                    setFieldValue("city", event.target.value);
-                }}
-                sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                disableUnderline
-            >
-                <MenuItem value=" ">Select City</MenuItem>
-                {cities.map((item) =>
-                    <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                )}
-            </Select>
-
-            {errors.city && touched.city && <Error text={errors.city} />}
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_pan_number" LableText="Company Pan Number" />
-            <Field
-                error={errors.company_pan_number && touched.company_pan_number}
-                id="company_pan_number"
-                variant="standard"
-                as={TextField}
-                placeholder="Enter Company Pan Number" type="text" name="company_pan_number" fullWidth />
-            {errors.company_pan_number && touched.company_pan_number && <Error text={errors.company_pan_number} />}
-
-        </Box>
-
-        <Box sx={{ width: "80px" }}>
-            <img id="PanImage" width="100%" />
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_pan_image" LableText="Upload Company Pan Number Image" />
-
-            <Field
-                id="company_pan_image"
-                style={{ display: "none", outline: "none" }}
-                as={TextField}
-                type="file" name="company_pan_image"
-                onChange={uploadCompanyPan} fullWidth />
-
-            <ButtonType3 ButtonText="Upload Company Pan Number Image" ClickEvent={() => document.getElementById("company_pan_image").click()}></ButtonType3>
-        </Box>
-        
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_gst_number" LableText="Company GST Number" />
-            <Field
-                error={errors.company_gst_number && touched.company_gst_number}
-                id="company_gst_number"
-                variant="standard"
-                as={TextField}
-                placeholder="Enter Company GST Number" type="text" name="company_gst_number" fullWidth />
-            {errors.company_gst_number && touched.company_gst_number && <Error text={errors.company_gst_number} />}
-
-        </Box>
-        <Box sx={{ width: "80px" }}>
-            <img id="GSTImage" width="100%" />
-        </Box>
-
-        <Box className="input-item">
-            <ThemeLabel LableFor="company_gst_image" LableText="Upload Company GST Image" />
-
-            <Field
-                id="company_gst_image"
-                style={{ display: "none", outline: "none" }}
-                as={TextField}
-                type="file" name="company_gst_image"
-                onChange={uploadCompanyGST} fullWidth />
-
-            <ButtonType3 ButtonText="Upload Company GST Image" ClickEvent={() => document.getElementById("company_gst_image").click()}></ButtonType3>
-        </Box> */}
 
 
                                         </ThemeFInputDiv>
 
 
                                         <Stack alignItems="flex-end">
+
                                             <NextButton type="submit"><img src={window.location.origin + "/assets/CompanyInfoRight.png"} alt="Next" width="14px" height="14px" ></img></NextButton>
                                         </Stack>
                                     </Form>)}
@@ -648,6 +566,13 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 borderRadius: "19px",
                                 padding: "35px 50px"
                             }}>
+                                <BackButton
+                                    GoBack={
+                                        () => {
+                                            setCompanyInfoForm(1)
+                                        }
+                                    } ></BackButton>
+
                                 <Typography component="box" sx={{
                                     fontSize: "40px",
                                     fontFamily: "Montserrat",
@@ -780,7 +705,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                 </ThemeFInputDiv>
 
                                                 <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="company_website" LableText="Company Website *" />
+                                                    <ThemeLabel LableFor="company_website" LableText="Company Website " />
                                                     <Field
                                                         error={errors.company_website && touched.company_website}
                                                         id="company_website"
@@ -794,6 +719,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
 
                                             <Stack alignItems="flex-end" sx={{ margin: "20px 0px" }}>
+
                                                 <NextButton type="submit"><img src={window.location.origin + "/assets/CompanyInfoRight.png"} alt="Next" width="14px" height="14px" ></img></NextButton>
                                             </Stack>
                                         </Form>)}
@@ -876,6 +802,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 }}>
                                     Get candidates for local-level jobs
                                 </Typography>
+                                <img src={window.location.origin + "/assets/g52.png"} alt="g52" />
                             </Box>
                             <Box sx={{
                                 position: "absolute",
@@ -896,6 +823,13 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 borderRadius: "19px",
                                 padding: "35px 50px"
                             }}>
+                                <BackButton
+                                    GoBack={
+                                        () => {
+                                            setCompanyInfoForm(2)
+                                        }
+                                    } ></BackButton>
+
                                 <Typography component="box" sx={{
                                     fontSize: "40px",
                                     fontFamily: "Montserrat",
@@ -1016,8 +950,11 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                             value={state}
                                                             label="Age"
                                                             onChange={(event) => {
-                                                                setState(event.target.value);
+                                                                let stateValue = event.target.value;
+                                                                // console.log(event.target.value);
+                                                                setState(stateValue);
                                                                 setFieldValue("state", event.target.value);
+                                                                getDistrictByState(event.target.value);
                                                             }}
                                                             sx={{
                                                                 background: " #FFFFFF",
@@ -1031,8 +968,8 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                             disableUnderline
                                                         >
                                                             <MenuItem value=" ">Select State</MenuItem>
-                                                            {cities.map((item) =>
-                                                                <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
+                                                            {CountryState && CountryState.map((item) =>
+                                                                <MenuItem value={item} key={item}>{item}</MenuItem>
                                                             )}
                                                         </Select>
                                                         {errors.state && touched.state && <Error text={errors.state} />}
@@ -1063,8 +1000,8 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                             disableUnderline
                                                         >
                                                             <MenuItem value=" ">Select City</MenuItem>
-                                                            {cities.map((item) =>
-                                                                <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
+                                                            {District && District.map((item) =>
+                                                                <MenuItem value={item.name} key={item._id}>{item.name}</MenuItem>
                                                             )}
                                                         </Select>
 
@@ -1072,21 +1009,62 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                     </ThemeFInputDiv>
                                                 </Stack>
 
-                                                <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="area" LableText="Company Area *" />
+                                                <ThemeFInputDiv sx={{ position: "relative" }}>
+                                                    <ThemeLabel LableFor="area" LableText="Company Area  *" />
                                                     <Box sx={{ width: "100%", margin: "10px 0px" }}>
-                                                        <Field
-                                                            error={errors.company_address && touched.company_address}
-                                                            id="area"
-                                                            as={TextField}
-                                                            placeholder="Area" type="text" name="area" fullWidth />
+
+                                                        <TextField id="outlined-basic"
+                                                            placeholder="Enter Company Area (eg.Haridwar, Uttarakhand, India)"
+                                                            value={companyAddress}
+                                                            onChange={(event) => {
+                                                                setCompanyAddress(event.target.value);
+                                                                setFieldValue("area", event.target.value);
+                                                                getAddress(event.target.value);
+                                                                setMenuBar(true)
+                                                            }}
+                                                            variant="outlined" fullWidth />
+
 
                                                     </Box>
 
+                                                    {menubar && autoData && autoData != "no record please enter some word" && <>
+                                                        <ClickAwayListener onClickAway={() => setAutoData(false)}>
+
+                                                            <Box
+                                                                sx={{
+                                                                    position: "absolute",
+                                                                    top: "110px",
+                                                                    background: "#FFFFFF",
+                                                                    width: "94%",
+                                                                    padding: "20px",
+                                                                    height: "fit-content",
+                                                                    zIndex: "34",
+                                                                    boxShadow: "0px 47px 52px #f4ecff",
+                                                                    border: "3px solid #E1D4F2",
+                                                                    borderRadius: "11px"
+                                                                }}>
+                                                                {autoData && autoData != "no record please enter some word" && autoData.map((item) => {
+                                                                    return (<>
+                                                                        <Box sx={{
+                                                                            padding: "20px",
+                                                                            borderBottom: "1px solid #E1D4F2",
+                                                                            cursor: "pointer"
+                                                                        }}
+                                                                            onClick={(event) => {
+                                                                                setCompanyAddress(item.description);
+                                                                                setFieldValue("area", item.description)
+                                                                                setMenuBar(false)
+                                                                            }}> {item.description}</Box></>)
+                                                                })}
+
+                                                            </Box>
+                                                        </ClickAwayListener>
+                                                    </>
+
+                                                    }
                                                     {errors.area && touched.area && <Error text={errors.area} />}
 
                                                 </ThemeFInputDiv>
-
                                                 <ThemeFInputDiv>
                                                     <ThemeLabel LableFor="company_address" LableText="Company Address *" />
                                                     <Box sx={{ width: "100%", margin: "10px 0px" }}>
@@ -1102,6 +1080,8 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                                 </ThemeFInputDiv>
 
+
+
                                                 <ThemeFInputDiv>
                                                     <ThemeLabel LableFor="company_pincode" LableText="Company Pincode *" />
                                                     <Field
@@ -1110,17 +1090,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                         as={TextField}
                                                         placeholder="Enter Company Pincode ( eg. 23123 )" type="text" name="company_pincode" fullWidth />
                                                     {errors.company_pincode && touched.company_pincode && <Error text={errors.company_pincode} />}
-
-                                                </ThemeFInputDiv>
-
-                                                <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="company_pan_number" LableText="Company Pan Number *" />
-                                                    <Field
-                                                        error={errors.company_pan_number && touched.company_pan_number}
-                                                        id="company_pan_number"
-                                                        as={TextField}
-                                                        placeholder="Enter Company Pan Number" type="text" name="company_pan_number" fullWidth />
-                                                    {errors.company_pan_number && touched.company_pan_number && <Error text={errors.company_pan_number} />}
 
                                                 </ThemeFInputDiv>
 
@@ -1138,11 +1107,11 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                         type="file" name="company_pan_image"
                                                         onChange={uploadCompanyPan} fullWidth />
 
-                                                    <ButtonType3 ButtonText="Upload Image" ClickEvent={() => document.getElementById("company_pan_image").click()}></ButtonType3>
+                                                    <ButtonType3 imageURL="/assets/InsertPicture.png" ButtonText="Upload Image" ClickEvent={() => document.getElementById("company_pan_image").click()}></ButtonType3>
                                                 </ThemeFInputDiv>
 
                                                 <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="company_gst_number" LableText="Company GST Number *" />
+                                                    <ThemeLabel LableFor="company_gst_number" LableText="Company GST Number " />
                                                     <Field
                                                         error={errors.company_gst_number && touched.company_gst_number}
                                                         id="company_gst_number"
@@ -1165,7 +1134,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                         type="file" name="company_gst_image"
                                                         onChange={uploadCompanyGST} fullWidth />
 
-                                                    <ButtonType3 ButtonText="Upload Image" ClickEvent={() => document.getElementById("company_gst_image").click()}></ButtonType3>
+                                                    <ButtonType3 imageURL="/assets/InsertPicture.png" ButtonText="Upload Image" ClickEvent={() => document.getElementById("company_gst_image").click()}></ButtonType3>
                                                 </ThemeFInputDiv>
                                             </ ThemeFInputDiv>
 

@@ -80,7 +80,8 @@ export const SocialBox = styled(Box)({
     borderRadius: "37px",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    cursor: "pointer"
 })
 
 export const NextButton = styled(Button)({
@@ -102,3 +103,4 @@ export const NextButton = styled(Button)({
     }
 
 })
+

@@ -202,7 +202,7 @@ export const CandidateMenu = [
         id: 1,
         MenuName: "Profile",
         value: "profile",
-        url: "candidate-profile",
+        url: "",
         image: "profile.png"
     },
     // {
@@ -223,14 +223,14 @@ export const CandidateMenu = [
         id: 4,
         MenuName: "Recommend Jobs",
         value: "recommend_jobs",
-        url: "/",
+        url: "",
         image: "Job.png"
     },
     {
         id: 5,
         MenuName: "Applied Jobs",
         value: "applied_jobs",
-        url: "/",
+        url: "",
         image: "AllJob.png"
     },
     // {
@@ -244,14 +244,14 @@ export const CandidateMenu = [
         id: 7,
         MenuName: "Messages",
         value: "messages",
-        url: "/",
+        url: "",
         image: "chat.png"
     },
     {
         id: 8,
         MenuName: "Saved Jobs",
         value: "saved_jobs",
-        url: "/",
+        url: "",
         image: "SavedJob.png"
     },
 
@@ -259,7 +259,7 @@ export const CandidateMenu = [
         id: 9,
         MenuName: "Top company jobs",
         value: "top_company_jobs",
-        url: "/",
+        url: "",
         image: "SavedJob.png"
     },
     // {
@@ -816,3 +816,227 @@ export const socialLogin = [
         image_url: "../assets/image_12.png"
     }
 ]
+
+export const WorkingDays = [
+    {
+        id: 1,
+        value: '5 Days'
+    },
+    {
+        id: 2,
+        value: '6 Days'
+    },
+    {
+        id: 3,
+        value: '7 Days'
+    },
+
+]
+
+export const WorkingShift = [
+    {
+        id: 1,
+        value: "Morning"
+    },
+    {
+        id: 2,
+        value: "Evening"
+    },
+    {
+        id: 3,
+        value: "Night"
+    }
+]
+
+export const SalaryType = [
+    {
+        id: 1,
+        value: "Monthly"
+    },
+    {
+        id: 2,
+        value: "Per Day"
+    },
+    {
+        id: 3,
+        value: "Per Hour"
+    }
+]
+
+export const SalaryCTC = [
+    {
+        id: 1,
+        value: "0 - 1 Lakhs",
+        name: "0 - 1 Lakhs"
+    },
+    {
+        id: 2,
+        value: "1 - 2 Lakhs",
+        name: "1 - 2 Lakhs"
+    },
+    {
+        id: 3,
+        value: "2 - 3 Lakhs",
+        name: "2 - 3 Lakhs"
+    },
+    {
+        id: 4,
+        value: " 3 - 4 Lakhs",
+        name: " 3 - 4 Lakhs"
+    },
+    {
+        id: 5,
+        value: " 4 - 5 Lakhs",
+        name: " 4 - 5 Lakhs"
+    },
+    {
+        id: 6,
+        value: " 5 - 6 Lakhs",
+        name: " 5 - 6 Lakhs"
+    },
+    {
+        id: 7,
+        value: " 6 - 7 Lakhs",
+        name: " 6 - 7 Lakhs"
+    },
+    {
+        id: 8,
+        value: " 7 - 8 Lakhs",
+        name: " 7 - 8 Lakhs"
+    },
+    {
+        id: 9,
+        value: " 8 - 9 Lakhs",
+        name: " 8 - 9 Lakhs"
+    },
+    {
+        id: 10,
+        value: " 9 - 10 Lakhs",
+        name: " 9 - 10 Lakhs"
+    },
+    {
+        id: 11,
+        value: " 10 - 11 Lakhs",
+        name: " 10 - 11 Lakhs"
+    },
+    {
+        id: 12,
+        value: " 11 - 12 Lakhs",
+        name: " 11 - 12 Lakhs"
+    },
+    {
+        id: 12,
+        value: " 12 - 13 Lakhs",
+        name: " 12 - 13 Lakhs"
+    },
+    {
+        id: 13,
+        value: " above 13 Lakhs",
+        name: " above 13 Lakhs"
+    }
+]
+
+export const EducationType = [
+    {
+        id: 1,
+        value: "Distance"
+    }, {
+        id: 2,
+        value: "Regular"
+    }
+]
+
+export const Proficiency = [
+    {
+        label: "Can Read",
+        value: "Can Read"
+    },
+    {
+        label: "Can Understand",
+        value: "Can Understand"
+    },
+    {
+        label: "Can Read & Write Both",
+        value: "Can Read & Write Both"
+    },
+    {
+        label: "Can Speak",
+        value: "Can Speak"
+    }
+]
+
+export const WeeklyOffData = [
+    {
+        label: "Sunday",
+        value: "Sunday"
+    },
+    {
+        label: "Monday",
+        value: "Monday"
+    },
+    {
+        label: "Tuesday",
+        value: "Tuesday"
+    },
+    {
+        label: "Wednesday",
+        value: "Wednesday"
+    },
+    {
+        label: "Thursday",
+        value: "Thursday"
+    },
+    {
+        label: "Friday",
+        value: "Friday"
+    },
+    {
+        label: "Saturday",
+        value: "Saturday"
+    }
+]
+
+export const ExtraBenefitsData = [
+    {
+        label: "Insurance",
+        value: "Insurance"
+    },
+    {
+        label: "A",
+        value: "B"
+    }
+]
+
+
+export const minExperience = [
+    {
+        id: 0,
+        value: '0'
+    },
+    {
+        id: 1,
+        value: '1'
+    },
+    {
+        id: 2,
+        value: '2'
+    },
+    {
+        id: 3,
+        value: '3'
+    },
+    {
+        id: 4,
+        value: '4'
+    },
+    {
+        id: 5,
+        value: '5'
+    }
+
+]
+
+export const ExperienceLevel = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+export const AgeLevel = [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60];
+
+export const JobWorkingPlaceData = ['Work from Home', 'Work from Office'];

@@ -6,6 +6,15 @@ body {
 
 }
 
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
 /* Header */
 nav {
   padding: 0px 100px;
@@ -290,7 +299,7 @@ textarea {
 
 
 .company-information-form .input-item .css-1869usk-MuiFormControl-root,
-.postjobForm .input-item .css-1869usk-MuiFormControl-root {
+.postjobForm1 .input-item .css-1869usk-MuiFormControl-root {
   padding: 7px 10px;
   margin: 10px 0px;
   width: 93%;
@@ -377,6 +386,11 @@ textarea {
 .postjobForm Button {
   display: block;
   margin: 0 auto;
+}
+
+.PostJobForm1 .css-1s2u09g-control {
+  padding: 10px !important;
+  border-radius: 11px !important;
 }
 
 /*tags */
@@ -639,7 +653,6 @@ textarea {
 
 #mui-component-select-role,
 #mui-component-select-experience,
-#mui-component-select-profile_type,
 #mui-component-select-job_type,
 #mui-component-select-job_working_type,
 #mui-component-select-salary_type,
@@ -687,7 +700,7 @@ textarea {
 .AccountMenu,
 .SettingMenu {
   /* color: #62459b; */
-  color: #445578;
+  color: #4E3A67;
   font-weight: 600 !important;
 }
 
@@ -735,13 +748,13 @@ textarea {
   background: #f1f1f1;
 }
 
-#mui-component-select-marital_status {
+/* #mui-component-select-marital_status {
   margin: 10px 0px;
   width: 97%;
   padding: 10px;
   border: 1px solid #d0d0d0;
 
-}
+} */
 
 /* Registration and Login Form */
 /* .EmployerLoginForm .input-item input {
@@ -786,7 +799,7 @@ textarea {
   outline: none;
 } */
 
-.candidateLogin .input-item input {
+/* .candidateLogin .input-item input {
   border: none;
   margin: 10px 0px;
   font-size: 14px;
@@ -798,14 +811,14 @@ textarea {
   margin: 10px 0px;
   font-size: 14px;
   outline: none;
-}
+} */
 
-.PostJobForm .input-item input {
+/* .PostJobForm .input-item input {
   border: none;
   margin: 10px 0px;
   font-size: 14px;
   outline: none;
-}
+} */
 
 .updateCompanyInformationForm .input-item input {
   border: none;
@@ -840,7 +853,7 @@ textarea {
 }
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  border-radius: 7px;
+  border-radius: 11px;
   font-size: 16px !important;
   font-family: 'Montserrat' !important;
   font-weight: 500 !important;
@@ -850,9 +863,39 @@ textarea {
   color: #B1B1B1 !important;
 }
 
+.Search::placeholder {
+  color: #AEA4BB;
+  font-size: 24px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+}
+
 .CompanyInformationForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   background: #EAEAEA;
+}
 
+.ProfessionalDetailForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  background: #EAEAEA;
+}
+
+.workHistoryForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  background: #EAEAEA;
+}
+
+.PostJobForm1 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  background: #EAEAEA;
+}
+
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border-radius: 11px !important;
+}
+
+.PersonalInformationForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  background: #EAEAEA;
+}
+
+.CompanyInformationForm .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border-radius: 11px;
 }
 
 #mui-component-select-company_type,
@@ -860,6 +903,49 @@ textarea {
   font-family: "Montserrat";
 }
 
+/*Removing the above hint form the input text */
 .CompanyInformationForm .css-14lo706 {
   display: none !important;
+}
+
+.ProfessionalDetailForm .css-14lo706 {
+  display: none !important;
+}
+
+.PostJobForm1 .css-14lo706 {
+  display: none !important;
+}
+
+.PersonalInformationForm .css-14lo706 {
+  display: none !important;
+}
+
+/*--------------------------------------------*/
+
+.JobSearchMenu .css-10hburv-MuiTypography-root {
+  font-size: 20px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700;
+  width: max-content;
+  color: #BDB5C7
+}
+
+.SalarySlider .css-14pt78w-MuiSlider-rail {
+  background-color: #E7D4FF;
+  height: 2px;
+}
+
+.SalarySlider .css-eg0mwd-MuiSlider-thumb {
+  background-color: #4E3A67;
+}
+
+.SalarySlider .css-1gv0vcd-MuiSlider-track {
+  background-color: #E7D4FF;
+
+}
+
+#mui-component-select-association_type,
+#mui-component-select-job_type,
+#mui-component-select-industry_type {
+  border-bottom: none;
 }

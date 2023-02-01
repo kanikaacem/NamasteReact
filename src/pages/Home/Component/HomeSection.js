@@ -1,33 +1,88 @@
 import { Box, Stack, Typography } from '@mui/material';
 import SearchBar from "../../../ThemeComponent/SearchBar";
-import JobCategory from "./JobCategory";
 
 const HomeSection = () => {
     return (<>
         <Box
             className="home-banner-section"
             sx={{
-                // background: "url('./assets/home-banner.jpg') no-repeat",
-                // backgroundPosition: "bottom",
-                padding: "100px 0px",
+                position: "relative",
+                paddingTop: "50px",
+                paddingBottom: "20px",
+                // padding: "100px 0px",
                 position: "relative",
                 background: "#FAFAFA"
-
-                // backgroundSize: "cover"
             }}
 
         >
-            <Typography variant="h5" sx={{ color: "#2B1E44", textAlign: "center", fontWeight: "700", fontSize: '31px' }}>
-                Accelerate your job search with premium services
-            </Typography>
-            <Typography component="span" sx={{ textAlign: "center", display: "block", margin: "3px 0px", fontWeight: "500" }}>
-                Services to help you get hired, faster: from preparing your CV, getting recruiter attention,
-                finding the right jobs, and more!
-            </Typography>
+            <Stack alignItems="center" justifyContent="center">
+                <Typography variant="h1"
+                    sx={{
+                        color: "#2B1E44",
+                        textAlign: "center",
+                        fontWeight: "700",
+                        fontSize: '96px',
+                        width: "1300px",
+                        lineHeight: "1.0",
+                        zIndex: "1"
+                    }}>
+                    No.1 Job Portal for Employers and Employees
 
-            <SearchBar></SearchBar>
+                </Typography>
+                <Typography component="span" sx={{
+                    textAlign: "center",
+                    display: "block",
+                    margin: "3px 0px",
+                    fontWeight: "500",
+                    fontSize: "24px",
+                    width: "1069px"
+                }}>
+                    A portal where you as an employer can get people for all kinds of jobs - beauticians, delivery executives, etc.
+                    As an employee too, choices are unlimited! All it takes is 2 minutes. Explore Now!
 
-            <JobCategory></JobCategory>
+                </Typography>
+            </Stack>
+            <Box
+                sx={{
+                    position: "absolute",
+                    width: "1214px",
+                    height: "31px",
+                    left: "353px",
+                    top: "187px",
+                    background: "#FFD5C9"
+                }}>
+
+            </Box>
+            <Box
+                sx={{
+                    position: "absolute",
+                    top: "134px"
+                }}>
+                <img src={window.location.origin + "/assets/Mg1.png"} alt="Mg1" />
+            </Box>
+            <Box
+                sx={{
+                    position: "absolute",
+                    right: "0px",
+                    top: "134px"
+                }}>
+                <img src={window.location.origin + "/assets/Mg2.png"} alt="Mg2" />
+            </Box>
+
+            <Box sx={{ margin: "100px 0px" }}>
+                <SearchBar></SearchBar>
+            </Box>
+
+            <Stack direction="row" gap={1} alignItems="center" justifyContent="center">
+                <Typography component="span" sx={{
+                    fontSize: "20px",
+                }}>
+                    Scroll
+                </Typography>
+                <img src={window.location.origin + "/assets/g3.png"} alt="g3" />
+            </Stack>
+
+
 
             {/* <Box className="gradient-text"> Jobs</Box> */}
         </Box>

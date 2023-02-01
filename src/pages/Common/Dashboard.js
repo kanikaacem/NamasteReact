@@ -20,6 +20,7 @@ import { CandidateLogoutMenu } from "../../utils/Data";
 
 import Moment from 'react-moment';
 
+import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
 import Footer from "../../ThemeComponent/Common/Footer";
 
 // import PostJob from "./PostJob";
@@ -27,25 +28,10 @@ const Dashboard = () => {
     const user = localStorage.user && JSON.parse(localStorage.user);
 
     const [openProfile, setOpenProfile] = useState(false);
-    const [userInformation, setUserInformation] = useState({});
+    const [userInformation, setUserInformation] = useState(user);
     const dispatch = useDispatch();
     const EmployeeMenuSelected = useSelector(state => state.EmployeeMenuSelected);
     const CandidateMenuSelected = useSelector(state => state.CandidateMenuSelected);
-    useEffect(() => {
-        const getUserInformation = async () => {
-            console.log("I runnde")
-            let response = await postRequest(UserInformationURL);
-            console.log(response);
-            if (response.status == 1) {
-                let userInformation = response.data;
-                console.log(userInformation);
-                setUserInformation(userInformation);
-            }
-
-        }
-        getUserInformation();
-
-    }, []);
 
     return (<>
         <Box
@@ -55,22 +41,23 @@ const Dashboard = () => {
                 width: "100%",
             }}
         >
-            <Stack direction={userInformation && userInformation.type == "employer" ? "column" : "row"}
+            <Stack direction={userInformation && userInformation.employer_type == "employer" ? "column" : "row"}
                 sx={{
                     width: "100%",
                     height: "inherit"
                 }}>
 
-                {userInformation && userInformation.type == "employer" && (<>
-                    <Stack direction="row" gap={3} sx={{ height: "50px", padding: "10px 50px", alignItems: "center" }}>
-                        <Box sx={{ width: "5%" }}>
-                            <Box sx={{ width: "50px", height: "50px" }} >
-                                <Link to="/">
+                {userInformation && userInformation.employer_type == "employer" && (<>
+                    <Stack direction="row" gap={3} sx={{ height: "50px", padding: "20px 50px", alignItems: "center" }}>
+                        <Box sx={{ width: "10%" }}>
+                            <Box sx={{ width: "50px", marginTop: "10px", height: "50px" }} >
+                                {/* <Link to="/">
                                     <img src={window.location.origin + "/assets/companyLogo.png"} width="100%" height="100%" alt="companyLogo" />
-                                </Link>
+                                </Link> */}
+                                <CompanyLogo color="#4E3A67" />
                             </Box>
                         </Box>
-                        <Box direction="row" sx={{ width: "75%" }}>
+                        <Box direction="row" sx={{ width: "70%" }}>
                             <List sx={{ display: "flex" }}>
 
                                 {EmployerMenu.map((item) => {
@@ -80,7 +67,12 @@ const Dashboard = () => {
                                             className="menu"
                                             id={item.id}
                                             onClick={() => { dispatch({ type: "CHANGE_EMPLOYEE_MENU", payload: item.value }) }} >
-                                            <ListItemText className={EmployeeMenuSelected === item.value && "EmployeeMenuSelected"} primary={item.MenuName} />
+                                            <ListItemText
+                                                disableTypography
+                                                sx={{
+                                                    fontSize: "20px !important", color: "#4E3A67"
+                                                }}
+                                                className={EmployeeMenuSelected === item.value && "EmployeeMenuSelected"} primary={item.MenuName} />
                                         </ListItem>
                                     </>)
                                 })}
@@ -107,10 +99,10 @@ const Dashboard = () => {
                             }}>
                                 <Box sx={{ background: "#1f8f75", padding: "20px", height: "70px" }}>
                                     <Typography component="div" sx={{ fontSize: "20px", color: "#FFFFFF" }}>
-                                        {user.employername ? user.employername : user.fullname}
+                                        {user.employer_name ? user.employer_name : user.fullname}
                                     </Typography>
                                     <Typography component="div" sx={{ fontSize: "16px", color: "#FFFFFF" }}>
-                                        {user.email}
+                                        {user.employer_email}
                                     </Typography>
                                 </Box>
                                 <Box sx={{
@@ -120,31 +112,35 @@ const Dashboard = () => {
                                     fontSize: "12px"
                                 }}>
                                     Last Login :
-                                    <Moment format="DD/MM/YYYY">
+                                    {user && user.lastlogin}
+                                    {/* <Moment format="DD/MM/YYYY">
                                         {user && user.lastlogin}
-                                    </Moment>
+                                    </Moment> */}
                                 </Box>
 
 
                                 {
-                                    user && user.type == "employer" && (<>
+                                    user && user.employer_type == "employer" && (<>
                                         <Stack gap={2} direction="column" sx={{ background: "#FFFFFF", padding: "20px" }}>
-                                            <Typography component="div" sx={{ fontSize: "14px" }}>
+                                            {/* <Typography component="div" sx={{ fontSize: "14px" }}>
                                                 Basic Postings : Unlimited
                                             </Typography>
 
                                             <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                Premium Posting : {user && user.plan} credits
-                                            </Typography>
+                                                Premium Posting : {user && user.employer_plan} credits
+                                            </Typography> */}
 
-                                            <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => window.location.href = 'http://localhost:3000/employer-dashboard/account-setting'}>
+                                            <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => window.location.href = window.location.origin + '/employer-dashboard/account-setting'}>
                                                 <PersonIcon />
                                                 <Typography component="div" sx={{ fontSize: "14px" }}>
                                                     Account Setting
                                                 </Typography>
                                             </Stack>
 
-                                            <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => dispatch({ type: "LOGOUT" })}>
+                                            <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => {
+
+                                                dispatch({ type: "LOGOUT" })
+                                            }}>
                                                 <LogoutIcon />
                                                 <Typography component="div" sx={{ fontSize: "14px" }}>
                                                     Logout
@@ -187,7 +183,7 @@ const Dashboard = () => {
                     </Stack></>)
                 }
 
-                {user && user.type == "candidate" && (<>
+                {user && user.data && user.data.type == "candidate" && (<>
 
                     <Stack direction="column"  >
 

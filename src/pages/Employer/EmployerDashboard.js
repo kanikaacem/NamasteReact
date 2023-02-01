@@ -16,6 +16,8 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import JobComponent from "../../ThemeComponent/JobComponent";
+import RecommendedJobs from "../Home/Component/RecommendedJobs";
+import SocialMedia from "../../ThemeComponent/Common/SocialMedia";
 
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Bar } from 'react-chartjs-2'
@@ -71,11 +73,8 @@ const EmployerDashboard = () => {
 
     useEffect(() => {
         const getpostedjobs = async () => {
-            let body = new FormData();
-            body = {
-                userid: user._id
-            }
-            let data = await postRequest(getAllPostedJobs, body, user.token);
+
+            let data = await postRequest(getAllPostedJobs);
             setData(data.data);
         };
 
@@ -95,161 +94,266 @@ const EmployerDashboard = () => {
     const jobs = data.slice(IndexOfFirstData, IndexOfLastData);
 
     return (<>
-        {/* {console.log(user)} */}
-        <Stack direction="row" gap={4} sx={{ padding: "50px" }}>
+        <Stack direction="column" gap={2} sx={{ padding: "30px" }} className="EmployerData">
+            <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+                gap={2} sx={{
+                    background: "#FFFFFF",
+                    border: "1px solid #E1D4F2",
+                    borderRadius: "14px",
+                    padding: "20px"
+                }}>
 
-            <Stack direction="column" gap={3} sx={{ width: "80%" }}>
-                <Stack direction="column" gap={4} sx={{ width: "98%", background: "#FFFFFF", borderRadius: "10px", padding: "10px" }}>
-                    <Stack direction="row" alignItems="center" justifyContent="space-between">
-                        <Box>
-                            <Typography component="div" sx={{ fontSize: "18px", fontWeight: "600" }}>
-                                Connect Your Account With Linkedin
-                            </Typography>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                Connect your linkedin account and automatically promote your jobs in your network
-                            </Typography>
-                        </Box>
-                        <Stack direction="row" gap={2} sx={{ alignItems: "center", justifyContent: "center" }}>
-                            <Box width="40px" sx={{ borderRadius: "50%" }}>
-                                <img src="./assets/LinkedIn.png" width="100%" style={{
-                                    borderRadius: "50%",
-                                    objectFit: "cover"
-                                }}></img>
-                            </Box>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                Connect with LinkedIn
-                            </Typography>
-                        </Stack>
+                <Typography component="box" sx={{
+                    fontSize: "24px",
+                    fontFamily: "Montserrat",
+                    fontWeight: "600",
+                    color: "#4E3A67"
+                }}>
+                    {dayMessage}, {user && user.employer_name}!
+                </Typography>
 
-                    </Stack>
-                </Stack>
-                <Stack sx={{ width: "100%", background: "#FFFFFF", minHeight: "200px", borderRadius: "10px" }}>
-                    <Container sx={{ height: "70px" }}>
-                        <Stack direction="row" alignItems="center" justifyContent="space-between">
-                            <Box>
-                                <Typography component="span" sx={{ fontSize: "30px" }}>
-                                    {dayMessage}, {user && user.employername}
-                                </Typography>
-                            </Box>
-                            <Box>
-                                <ButtonType2 ButtonText="Post a Job" ClickEvent={() => window.location.href = window.location.href + "/post-a-job"}></ButtonType2>
-                            </Box>
+                <Box>
+                    <ButtonType2 ButtonText="Post a Job" ClickEvent={() => window.location.href = window.location.href + "/post-a-job"}></ButtonType2>
+                </Box>
 
-                        </Stack>
-                    </Container>
-
-                    <Stack gap={4} direction="row" divider={<Divider orientation="vertical" flexItem />}
-                        sx={{ background: "#f3fbfb", height: "130px", borderRadius: "10px", padding: "20px" }}>
-
-                        <Stack gap={1} sx={{ minWidth: "100px" }}>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                {data.length}
-                            </Typography>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                Posted Jobs
-                            </Typography>
-                        </Stack>
-
-                        <Stack gap={1} sx={{ minWidth: "100px" }}>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-
-                            </Typography>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                Saved Candidate
-                            </Typography>
-                        </Stack>
-
-                        {DashboardValues.map((item) => {
-                            return (<Stack gap={1} sx={{ minWidth: "100px" }}>
-                                <Typography component="div" sx={{ fontSize: "14px" }}>
-
-                                </Typography>
-                                <Typography component="div" sx={{ fontSize: "14px" }}>
-                                    {item.name}
-                                </Typography>
-                            </Stack>)
-                        })}
-
-                    </Stack>
-                </Stack>
-
-                <Stack direction="row">
-                    <Box sx={{ width: "70%", padding: "20px" }}>
-                        <Bar
-                            data={state}
-                            options={{
-                                title: {
-                                    display: true,
-                                    text: 'Average Rainfall per month',
-                                    fontSize: 20
-                                },
-                                legend: {
-                                    display: true,
-                                    position: 'right'
-                                }
-                            }}
-                        />
+            </Stack>
+            {/* <Stack direction="column" gap={4} sx={{
+                width: "98%",
+                background: "#FFFFFF",
+                border: "1px solid #E1D4F2",
+                borderRadius: "14px",
+                padding: "20px"
+            }}>
+                <Stack direction="row" alignItems="center" justifyContent="space-between">
+                    <Box>
+                        <Typography component="div" sx={{ fontSize: "18px", fontWeight: "600" }}>
+                            Connect Your Account With Linkedin
+                        </Typography>
+                        <Typography component="div" sx={{ fontSize: "14px" }}>
+                            Connect your linkedin account and automatically promote your jobs in your network
+                        </Typography>
                     </Box>
-                    <Box sx={{
-                        width: "30%",
+                    <Stack direction="row" gap={2} sx={{ alignItems: "center", justifyContent: "center" }}>
+                        <Typography component="div" sx={{ fontSize: "14px", color: "#FC9A7E" }}>
+                            Connect with LinkedIn
+                        </Typography>
+                        <img src={window.location.origin + "/assets/RightArrow.png"} alt="Right arrow" />
+                    </Stack>
+
+                </Stack>
+            </Stack> */}
+            <Stack direction="row" gap={4} >
+
+                <Stack direction="column" gap={3} sx={{ width: "80%" }}>
+
+                    <Stack sx={{
+                        width: "100%",
                         background: "#FFFFFF",
-                        borderRadius: "10px"
+                        border: "1px solid #E1D4F2",
+                        borderRadius: "14px",
                     }}>
-                        <Box sx={{
-                            background: "#f3fbfb", padding: "10px",
-                        }}>
-                            <Typography component="div" sx={{ fontSize: "18px", fontWeight: "600" }}>
-                                0 interviews scheduled
-                            </Typography>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                <Link to="/">See Demo</Link>  on how to scheduled Video Interviews
-                            </Typography>
-                        </Box>
 
-                        <Stack sx={{ padding: "10px" }} gap={2}>
-                            <Typography component="div" sx={{ fontSize: "16px", fontWeight: "600" }}>
-                                Start Interviewing Today
-                            </Typography>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                Andriod Developer -Kotlin/Java (4-10 yrs)
-                            </Typography>
+                        <Stack gap={2} direction="row" divider={<Divider orientation="vertical" flexItem />}
+                            justifyContent="center" alignItems="center"
+                            sx={{ height: "130px", borderRadius: "10px", padding: "30px" }}>
 
-                            <Typography component="div" sx={{ fontSize: "14px", fontWeight: "600" }}>
-                                Shortlisted Candidate
-                            </Typography>
 
-                            <Stack alignItems="flex-start">
-                                <AvatarGroup max={4} alignItems="flex-start">
-                                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                                    <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                                    <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-                                    <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
-                                    <Avatar alt="Trevor Henderson" src="/static/images/avatar/5.jpg" />
-                                </AvatarGroup>
+                            <Stack gap={1} sx={{ minWidth: "230px" }}>
+                                <Stack direction="row" justifyContent="space-between">
+                                    <Typography component="div" sx={{ fontSize: "40px", color: "#4E3A67", fontWeight: "700" }}>
+                                        {data.length}
+                                    </Typography>
+                                    <img src={window.location.origin + "/assets/V1.png"} alt="V1" height="35px" />
+
+                                </Stack>
+                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                    Posted Jobs
+                                </Typography>
+                            </Stack>
+                            <Stack gap={1} sx={{ minWidth: "230px" }}>
+                                <Stack direction="row" justifyContent="space-between">
+                                    <Typography component="div" sx={{ fontSize: "40px", color: "#4E3A67", fontWeight: "700" }}>
+                                        0
+                                    </Typography>
+                                    <img src={window.location.origin + "/assets/V2.png"} alt="V2" height="35px" />
+
+                                </Stack>
+                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                    Saved Candidate
+                                </Typography>
+                            </Stack>
+                            <Stack gap={1} sx={{ minWidth: "230px" }}>
+                                <Stack direction="row" justifyContent="space-between">
+                                    <Typography component="div" sx={{ fontSize: "40px", color: "#4E3A67", fontWeight: "700" }}>
+                                        0
+                                    </Typography>
+                                    <img src={window.location.origin + "/assets/V3.png"} alt="V3" height="35px" />
+
+                                </Stack>
+                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                    Active Jobs
+                                </Typography>
+                            </Stack>
+                            <Stack gap={1} sx={{ minWidth: "230px" }}>
+                                <Stack direction="row" justifyContent="space-between">
+                                    <Typography component="div" sx={{ fontSize: "40px", color: "#4E3A67", fontWeight: "700" }}>
+                                        0
+                                    </Typography>
+                                    <img src={window.location.origin + "/assets/V4.png"} alt="V4" height="35px" />
+
+                                </Stack>
+                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                    Shortlisted Candidate to be reviewed
+                                </Typography>
                             </Stack>
 
-                            <Link to="/">
-                                <Typography component="div" sx={{
-                                    fontSize: "14px",
-                                    fontWeight: "600",
-                                    textAlign: "center",
-                                    fontStyle: "none"
-                                }}>
-                                    View All
-                                </Typography></Link>
+                            <Stack gap={1} sx={{ minWidth: "230px" }}>
+                                <Stack direction="row" justifyContent="space-between">
+                                    <Typography component="div" sx={{ fontSize: "40px", color: "#4E3A67", fontWeight: "700" }}>
+                                        0
+                                    </Typography>
+                                    <img src={window.location.origin + "/assets/V5.png"} alt="V5" height="35px" />
+
+                                </Stack>
+                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                    Interview schedule for Today
+                                </Typography>
+                            </Stack>
+
+
+
 
                         </Stack>
-                    </Box>
-                </Stack>
+                    </Stack>
 
+                    <Stack direction="row" gap={2}>
+                        {/* <Box sx={{
+                            width: "60%",
+                            background: "#FFFFFF",
+                            border: "1px solid #E1D4F2",
+                            borderRadius: "14px",
+                            padding: "20px"
+                        }}>
+                            <Bar
+                                data={state}
+                                options={{
+                                    title: {
+                                        display: true,
+                                        text: 'Average Rainfall per month',
+                                        fontSize: 20
+                                    },
+                                    legend: {
+                                        display: true,
+                                        position: 'right'
+                                    }
+                                }}
+                            />
+                        </Box> */}
 
-                <Stack gap={2} direction="row" sx={{ minHeight: "600px" }}>
-                    <Stack direction="column" gap={2} sx={{ width: "60%", height: "600" }}>
-                        <Box>
-                            <Typography component="span" sx={{ fontSize: "18px", fontWeight: "600" }}>
-                                Recent Jobs
+                        <Box sx={{
+                            width: "60%"
+                        }}>
+                            <Stack direction="column" gap={2} sx={{ width: "100%", height: "600" }}>
+                                <Box>
+                                    <Box sx={{ margin: "30px 0px" }}>
+                                        <Typography component="span" sx={{ fontSize: "24px", fontWeight: "600" }}>
+                                            Recent Jobs
+                                        </Typography>
+                                    </Box>
+                                    <Box sx={{ height: "500px" }}>
+                                        {
+                                            jobs.length > 0 ? jobs.map((item) => {
+                                                return (<>
+                                                    <JobComponent key={item.id} data={item} />
+                                                </>)
+                                            })
+                                                : " There is no data present"
+                                        }
+                                    </Box>
+                                    <Box >
+                                        <Pagination count={Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
+                                    </Box>
+                                </Box>
+
+                            </Stack>
+
+                        </Box>
+                        <Box sx={{
+                            width: "40%",
+                            background: "#FFFFFF",
+                            border: "1px solid #E1D4F2",
+                            borderRadius: "14px",
+                            padding: "20px",
+                            height: "fit-content"
+                        }}>
+
+                            <Typography component="div" sx={{
+                                fontSize: "24px",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                padding: "20px"
+                            }}>
+                                Upcoming Interviews
                             </Typography>
-                            <Box sx={{ height: "500px" }}>
+
+                            <Box sx={{
+                                background: "#E1D4F2",
+                                borderRadius: "11px",
+                                padding: "10px"
+                            }}>
+
+                                <Typography component="div" sx={{
+                                    fontSize: "20px",
+                                    fontWeight: "600",
+                                    color: "#4E3A67",
+                                    padding: "20px"
+                                }}>
+                                    0 interviews Scheduled
+                                </Typography>
+
+                                <Typography component="div" sx={{
+                                    fontSize: "20px",
+                                    color: "#4E3A67",
+                                    padding: "20px"
+                                }}>
+                                    See Demo on how to scheduled Video Interviews
+                                </Typography>
+                            </Box>
+
+                            <Typography component="div" sx={{
+                                fontSize: "20px",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                padding: "20px"
+                            }}>
+                                Start Interviewing Today
+                            </Typography>
+
+                            <Typography component="div" sx={{
+                                fontSize: "20px",
+                                color: "#4E3A67",
+                                padding: "20px"
+                            }}>
+                                Android Developer - Kotlin/Java (4-10 yrs)
+                            </Typography>
+
+                        </Box>
+                    </Stack>
+
+
+                    {/* <Stack gap={2} direction="row" sx={{ minHeight: "600px" }}>
+                        <Stack direction="column" gap={2} sx={{ width: "60%", height: "600" }}>
+                            <Box>
+                                <Box sx={{ margin: "30px 0px" }}>
+                                    <Typography component="span" sx={{ fontSize: "24px", fontWeight: "600" }}>
+                                        Recent Jobs
+                                    </Typography>
+                                </Box>
+                                <RecommendedJobs /> */}
+                    {/* <Box sx={{ height: "500px" }}>
                                 {
                                     jobs.length > 0 ? jobs.map((item) => {
                                         return (<>
@@ -258,15 +362,15 @@ const EmployerDashboard = () => {
                                     })
                                         : " There is no data present"
                                 }
+                            </Box> */}
+                    {/* <Box >
+                                    <Pagination count={Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
+                                </Box>
                             </Box>
-                            <Box >
-                                <Pagination count={Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
-                            </Box>
-                        </Box>
 
-                    </Stack>
+                        </Stack> */}
 
-                    <Box sx={{ width: "40%", borderRadius: "10px" }}>
+                    {/* <Box sx={{ width: "40%", borderRadius: "10px" }}>
                         <Typography component="span" sx={{ fontSize: "18px", fontWeight: "600" }}>
                             Explore
                         </Typography>
@@ -336,112 +440,212 @@ const EmployerDashboard = () => {
                             </Box>
                         </Box>
 
-                    </Box>
+                    </Box> */}
+
+                    {/* </Stack> */}
+
 
                 </Stack>
 
-
-            </Stack>
-
-            <Stack direction="column" gap={3} sx={{ width: "20%" }}>
-                <Stack direction="row" gap={2} alignItems="center" justifyContent="center"
-                    sx={{
-                        // background: "white",
-                        padding: "10px",
-                        borderRadius: "10px",
-                        borderBottom: "1px solid #d9d9d9"
-
+                <Stack direction="column" gap={3} sx={{ width: "20%" }}>
+                    <Stack sx={{
+                        background: "#FFFFFF",
+                        border: " 1px solid #E1D4F2",
+                        borderRadius: "14px",
+                        padding: "20px",
+                        minHeight: "300px",
+                        textAlign: "center",
+                        justifyContent: "center"
                     }}>
-                    <MessageIcon></MessageIcon>
-                    <TextField placeholder="Your Chats" variant="standard" InputProps={{
-                        disableUnderline: true,
-                    }} />
-                    <SearchIcon></SearchIcon>
-                </Stack>
-
-                <Stack direction="row" gap={2} alignItems="center"
-                    sx={{
-                        // background: "white",
-                        padding: "10px",
-                        borderRadius: "10px",
-                        borderBottom: "1px solid #d9d9d9"
-
-                    }}>
-                    <Box sx={{ width: "30px" }} >
-                        <img src="./assets/companyLogo.png" width="100%" alt="roboLogo"></img>
-                    </Box>
-                    <Stack direction="column" alignItems="center" >
-                        <Typography component="div" >
-                            JobYahan ibot
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "12px" }}>
-                            Your Personal Assistant
-                        </Typography>
+                        No Chats
                     </Stack>
 
-                </Stack>
+                    <Stack direction="column"
+                        sx={{
+                            minHeight: "396px",
+                            background: "#FFFFFF",
+                            border: " 1px solid #E1D4F2",
+                            borderRadius: "19px"
+                        }}>
+                        <Stack sx={{
+                            padding: "15px",
+                            height: "150px",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                Become a JobsYahan certified Recruiter
+                            </Typography>
 
-                <Stack direction="column" gap={2} alignItems="center"
-                    sx={{
+                            <Box sx={{ cursor: "pointer" }}
+                                onClick={() => window.location.href = window.location.origin}>
+                                <Typography component="span"
+                                    sx={{
+                                        fontSize: "50px",
+                                        fontWeight: "600",
+                                        color: "#4E3A67",
+                                        fontFamily: "Work Sans, sans-serif"
+                                    }}>
+                                    Jobs
+                                </Typography>
+                                <Typography component="span"
+                                    sx={{
+                                        fontSize: "50px",
+                                        color: "#4E3A67",
+                                        fontFamily: "Work Sans, sans-serif"
+                                    }}>
+                                    Yahan
+                                </Typography>
+                            </Box>
+
+                            <Stack direction="row" alignItems="center" justifyContent="center">
+                                <Typography component="div" sx={{
+                                    fontSize: "16px", color: "#FC9A7E", fontWeight: "600"
+                                }}>
+                                    Read More
+                                </Typography>
+                                <img height="16px" src={window.location.origin + "/assets/RightArrow.png"} alt="RightArrow" />
+                            </Stack>
+                        </Stack>
+                        <Stack
+                            direction="column"
+                            gap={2}
+                            sx={{
+                                minheight: "277px",
+                                background: "#F7F0FF",
+                                border: "1px solid #E1D4F2",
+                                borderRadius: "0px 0px 14px 14px",
+                                padding: "20px",
+                                height: "200px",
+
+                            }}>
+                            <Box>
+                                <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "600" }}>
+                                    For Sales Enquiries
+                                </Typography>
+
+                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67" }}>
+                                    Call On: 1800-103-7344
+                                </Typography>
+                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67" }}>
+                                    ( Toll Free: 9:30 AM to 6:30 PM)
+                                </Typography>
+                            </Box>
+
+                            <Box>
+                                <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "600" }}>
+                                    Socials
+                                </Typography>
+
+                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67" }}>
+                                    jobsyahan@gmail.com
+                                </Typography>
+
+                                <Box sx={{ margin: "10px 0px" }}>
+                                    <SocialMedia />
+                                </Box>
+                            </Box>
+
+                        </Stack>
+                    </Stack>
+                    {/* <Stack direction="row" gap={2} alignItems="center" justifyContent="center"
+                        sx={{
+                            padding: "10px",
+                            borderRadius: "10px",
+                            borderBottom: "1px solid #d9d9d9"
+
+                        }}>
+                        <MessageIcon></MessageIcon>
+                        <TextField placeholder="Your Chats" variant="standard" InputProps={{
+                            disableUnderline: true,
+                        }} />
+                        <SearchIcon></SearchIcon>
+                    </Stack>
+
+                    <Stack direction="row" gap={2} alignItems="center"
+                        sx={{
+                            padding: "10px",
+                            borderRadius: "10px",
+                            borderBottom: "1px solid #d9d9d9"
+
+                        }}>
+                        <Box sx={{ width: "30px" }} >
+                            <img src="./assets/companyLogo.png" width="100%" alt="roboLogo"></img>
+                        </Box>
+                        <Stack direction="column" alignItems="center" >
+                            <Typography component="div" >
+                                JobYahan ibot
+                            </Typography>
+                            <Typography component="div" sx={{ fontSize: "12px" }}>
+                                Your Personal Assistant
+                            </Typography>
+                        </Stack>
+
+                    </Stack>
+
+                    <Stack direction="column" gap={2} alignItems="center"
+                        sx={{
+                            // background: "white",
+                            padding: "10px",
+                            borderRadius: "10px",
+                            borderBottom: "1px solid #d9d9d9"
+
+                        }}>
+                        <Typography component="div" sx={{ fontSize: "25px" }}>
+                            Become a Jobyahan certified Recuriter
+                        </Typography>
+
+                        <Box sx={{ width: "100px" }} >
+                            <img src="./assets/companyLogo.png" width="100%" alt="roboLogo"></img>
+                        </Box>
+
+                        <Link to="/">
+                            <Stack direction="row" alignItems="center">
+
+                                <Typography component="div">
+                                    Read More
+                                </Typography>
+                                <ChevronRightIcon></ChevronRightIcon>
+                            </Stack>
+
+                        </Link>
+
+
+
+                    </Stack>
+
+                    <Box sx={{
                         // background: "white",
                         padding: "10px",
                         borderRadius: "10px",
                         borderBottom: "1px solid #d9d9d9"
 
                     }}>
-                    <Typography component="div" sx={{ fontSize: "25px" }}>
-                        Become a Jobyahan certified Recuriter
-                    </Typography>
+                        <Typography component="div" sx={{ fontSize: "20px" }}>
+                            For Sales Enquiries
+                        </Typography>
 
-                    <Box sx={{ width: "100px" }} >
-                        <img src="./assets/companyLogo.png" width="100%" alt="roboLogo"></img>
                     </Box>
 
-                    <Link to="/">
-                        <Stack direction="row" alignItems="center">
+                    <Box sx={{
+                        // background: "white",
+                        padding: "10px",
+                        borderRadius: "10px",
+                        borderBottom: "1px solid #d9d9d9"
 
-                            <Typography component="div">
-                                Read More
-                            </Typography>
-                            <ChevronRightIcon></ChevronRightIcon>
-                        </Stack>
+                    }}>
+                        <Typography component="div">
+                            Call on: 1800-103-7344
+                        </Typography>
+                        <Typography component="div">
+                            (Toll Free: 9:30 AM to 6:30 PM)
+                        </Typography>
 
-                    </Link>
-
-
-
+                    </Box> */}
                 </Stack>
-
-                <Box sx={{
-                    // background: "white",
-                    padding: "10px",
-                    borderRadius: "10px",
-                    borderBottom: "1px solid #d9d9d9"
-
-                }}>
-                    <Typography component="div" sx={{ fontSize: "20px" }}>
-                        For Sales Enquiries
-                    </Typography>
-
-                </Box>
-
-                <Box sx={{
-                    // background: "white",
-                    padding: "10px",
-                    borderRadius: "10px",
-                    borderBottom: "1px solid #d9d9d9"
-
-                }}>
-                    <Typography component="div">
-                        Call on: 1800-103-7344
-                    </Typography>
-                    <Typography component="div">
-                        (Toll Free: 9:30 AM to 6:30 PM)
-                    </Typography>
-
-                </Box>
             </Stack>
         </Stack>
+
 
     </>)
 }

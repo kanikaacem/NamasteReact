@@ -1,37 +1,34 @@
+import { getRequest } from "../../utils/ApiRequests";
+
 import { Box, Container, Stack, Typography, Button, Snackbar, Alert } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { useSelector } from 'react-redux';
 
 import { useState } from "react";
 const EmployerVerficationPage = () => {
-    const { email } = useParams();
+    const { employerEmail, candidateEmail } = useParams();
     const [emailVerified, setEmailVerified] = useState(false);
-    // console.log(email);
-    const api_url = useSelector(state => state.api_url);
-    const VerifyEmail = async () => {
-        let formData = new FormData();
-        formData = {
-            email: email
-        }
-        let response = await fetch(api_url + "/api/admin/verificationthroughmail", {
-            // Adding method type
-            method: "POST",
-            // Adding body or contents to send
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify(formData),
-        })
-        if (response.ok) {
-            response = await response.json();
-            if (response.status == 1) {
-                setEmailVerified(true);
-            }
 
+    const VerifyEmail = async () => {
+        let api_url = "";
+        let redirect_url = "";
+        if (employerEmail != undefined) {
+            api_url = `http://13.235.183.204:3001/api/verificationthroughmail/employer?email=${employerEmail}`;
+            redirect_url = window.location.origin + "/employer-login";
         }
+        if (candidateEmail != undefined) {
+            api_url = `http://13.235.183.204:3001/api/verificationthroughmail/candidate?email=${candidateEmail}`;
+            redirect_url = window.location.origin + "/candidate-login";
+        }
+        let response = await getRequest(api_url);
+
+        // console.log(response.status)
+        if (response.status == '1') {
+            window.location.href = redirect_url;
+        }
+
     }
     return (<>
+
         <Snackbar
             open={emailVerified}
             autoHideDuration={6000} onClose={() => setEmailVerified(false)}
@@ -52,7 +49,7 @@ const EmployerVerficationPage = () => {
                         Verify your email address
                     </Typography>
                     <Typography component="div" sx={{ fontSize: "16px", color: "#2B1E44", textAlign: "center" }}>
-                        You've entered {email} as the email address for your account.
+                        You've entered  {employerEmail || candidateEmail} as the email address for your account.
                     </Typography>
                     <Typography component="div" sx={{ fontSize: "16px", color: "#2B1E44", textAlign: "center" }}>
                         Please verify this email address by clicking button below.
