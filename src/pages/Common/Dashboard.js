@@ -122,13 +122,13 @@ const Dashboard = () => {
                                 {
                                     user && user.employer_type == "employer" && (<>
                                         <Stack gap={2} direction="column" sx={{ background: "#FFFFFF", padding: "20px" }}>
-                                            <Typography component="div" sx={{ fontSize: "14px" }}>
+                                            {/* <Typography component="div" sx={{ fontSize: "14px" }}>
                                                 Basic Postings : Unlimited
                                             </Typography>
 
                                             <Typography component="div" sx={{ fontSize: "14px" }}>
                                                 Premium Posting : {user && user.employer_plan} credits
-                                            </Typography>
+                                            </Typography> */}
 
                                             <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => window.location.href = 'http://localhost:3000/employer-dashboard/account-setting'}>
                                                 <PersonIcon />

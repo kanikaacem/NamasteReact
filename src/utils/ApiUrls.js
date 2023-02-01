@@ -34,6 +34,10 @@ export const getAllPostedJobs = "http://13.235.183.204:3001/api/job/getpostedjob
 
 /*Resending the Email Verification Link */
 export const ReSendEmailVerificationURL = "http://13.235.183.204:3001/api/resendlink/employer";
+
+/*Forgot Password */
+export const ForgotPasswordEmployerEmailURL = "http://13.235.183.204:3001/api/forgotpassword/employer"
+export const ResetPasswordEmployerEmailURL = "http://13.235.183.204:3001/api/reset-password/employer/";
 /*----------------------Candidate----------------------------------------*/
 /*Candidate Registration*/
 

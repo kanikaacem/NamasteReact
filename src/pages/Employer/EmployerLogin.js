@@ -134,62 +134,65 @@ const EmployerLogin = () => {
                     border="2px solid rgba(255, 255, 255, 0.25)"
                     color="#FFFFFF"
                     background="#432C60" />
-                <Stack alignItems="flex-end" sx={{ position: "relative" }}>
-
+                <Stack direction="row" gap={1} sx={{ position: "relative" }}>
                     <Box sx={{
-                        position: "absolute",
-                        top: "236px",
-                        left: "204px"
+                        width: "70%"
                     }}>
-                        <Typography component="box" sx={{
-                            fontSize: "64px",
-                            fontFamily: "Work Sans, sans-serif",
-                            fontWeight: "700",
-                            color: "#FC9A7E",
-                            display: "block",
-                            lineHeight: "40px"
-                        }}>
-                            We settle for nothing
+                        <Box sx={{
 
+                            marginTop: "236px",
+                            marginLeft: "204px"
+
+                        }}>
                             <Typography component="box" sx={{
                                 fontSize: "64px",
                                 fontFamily: "Work Sans, sans-serif",
                                 fontWeight: "700",
                                 color: "#FC9A7E",
-                                display: "block"
+                                display: "block",
+                                lineHeight: "40px"
                             }}>
-                                Less than the BEST
+                                We settle for nothing
+
+                                <Typography component="box" sx={{
+                                    fontSize: "64px",
+                                    fontFamily: "Work Sans, sans-serif",
+                                    fontWeight: "700",
+                                    color: "#FC9A7E",
+                                    display: "block"
+                                }}>
+                                    Less than the BEST
+                                </Typography>
                             </Typography>
-                        </Typography>
 
 
-                        <Typography component="box" sx={{
-                            fontSize: "24px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "800",
-                            color: "#FFFFFF",
-                            display: "block",
-                            marginTop: "20px"
-                        }}>
-                            We Love Recruiting
-                        </Typography>
-                        <Typography component="box" sx={{
-                            fontSize: "24px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "500",
-                            color: "#FFFFFF",
-                            display: "block",
-                            width: "695px"
-                        }}>
-                            Employees get the work they look for through our impactful job portal
-                            that is monitored 24x7 for quality, transparency and success. Employers,
-                            the other hand, get the unique skills and experience of the champion employees,
-                            hired through us, for their growth.
+                            <Typography component="box" sx={{
+                                fontSize: "24px",
+                                fontFamily: "Montserrat",
+                                fontWeight: "800",
+                                color: "#FFFFFF",
+                                display: "block",
+                                marginTop: "20px"
+                            }}>
+                                We Love Recruiting
+                            </Typography>
+                            <Typography component="box" sx={{
+                                fontSize: "24px",
+                                fontFamily: "Montserrat",
+                                fontWeight: "500",
+                                color: "#FFFFFF",
+                                display: "block",
+                                width: "695px"
+                            }}>
+                                Employees get the work they look for through our impactful job portal
+                                that is monitored 24x7 for quality, transparency and success. Employers,
+                                the other hand, get the unique skills and experience of the champion employees,
+                                hired through us, for their growth.
 
-                        </Typography>
-
-
+                            </Typography>
+                        </Box>
                     </Box>
+
 
                     <Stack gap={2} sx={{
                         width: "449px",
@@ -231,6 +234,16 @@ const EmployerLogin = () => {
                                             {errors.password && touched.password && <Error text={errors.password} />}
                                         </ThemeFInputDiv>
                                     </ThemeFInputDiv>
+                                    <ThemeFInputDiv>
+                                        <a href="#" onClick={
+                                            () => {
+                                                window.location.href = window.location.origin + "/forgot-password/employer";
+                                            }
+                                        }
+                                            style={{ marginTop: "20px" }}>
+                                            Forgot Password ?
+                                        </a>
+                                    </ThemeFInputDiv>
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
                                         {isEmailVerified && (<>
                                             <a href="#" onClick={
@@ -245,6 +258,7 @@ const EmployerLogin = () => {
                                         </>)
 
                                         }
+
                                         <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
                                         <ThemeButtonType3 variant="outlined" type="button"
                                             sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}

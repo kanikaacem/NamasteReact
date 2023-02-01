@@ -6,6 +6,9 @@ import { useSelector } from "react-redux";
 /*Email Verification Page*/
 import EmployerVerficationPage from './Pages/Common/EmailVerficationPage';
 
+/*ForgotPasswordPage */
+import ForgotPasswordPage from './Pages/Common/ForgotPasswordPage';
+import ResetPasswordPage from "./Pages/Common/ResetPasswordPage";
 /*Employer Component*/
 import EmployerRegister from './Pages/Employer/EmployerRegister';
 import EmployerLogin from "./Pages/Employer/EmployerLogin";
@@ -49,6 +52,9 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home></Home>} />
 
+          <Route path="/forgot-password/employer" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password/employer/:token" element={<ResetPasswordPage user="employer" />} />
+
           <Route path="/verificationthroughmail/candidate/:candidateEmail" element={<EmployerVerficationPage />} />
           <Route path="/verificationthroughmail/employer/:employerEmail" element={<EmployerVerficationPage />} />
 
@@ -58,10 +64,10 @@ function App() {
           <Route path="/candidate-login" element={<CandidateLogin></CandidateLogin>}></Route>
           <Route path="/candidate-register" element={<CandidateRegistration />} />
           <Route path="/profile/:step" element={<CandidateProfile></CandidateProfile>} />
-          {/* <Route path="/post-a-job" element={<PostJob></PostJob>} /> */}
           <Route path="/job" element={<JobSearch></JobSearch>} />
           <Route path="/candidate-new" element={<CandidateDashboard2></CandidateDashboard2>} />
-          {/* <Route path="/employer-dashboard/post-a-job" element={<PostJob></PostJob>} /> */}
+
+
           <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
             <Route path="post-a-job" element={<PostJob></PostJob>} />
@@ -74,7 +80,7 @@ function App() {
             <Route path="view-profile" element={<ViewProfile></ViewProfile>} />
             <Route path="chats" element={<Chat></Chat>} />
           </Route>
-          {/* <Route path="/perferences" element={<CandidateJobPerferences></CandidateJobPerferences>} /> */}
+
           <Route path="/view-profile" element={<ViewProfile></ViewProfile>} />
 
           <Route path="/update-profile" element={<UpdateProfile></UpdateProfile>} />
