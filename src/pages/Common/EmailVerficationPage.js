@@ -13,11 +13,11 @@ const EmployerVerficationPage = () => {
         let redirect_url = "";
         if (employerEmail != undefined) {
             api_url = `http://13.235.183.204:3001/api/verificationthroughmail/employer?email=${employerEmail}`;
-            redirect_url = "http://13.235.183.204:3000/employer-login";
+            redirect_url = window.location.origin + "/employer-login";
         }
         if (candidateEmail != undefined) {
             api_url = `http://13.235.183.204:3001/api/verificationthroughmail/candidate?email=${candidateEmail}`;
-            redirect_url = "http://13.235.183.204:3000/candidate-login";
+            redirect_url = window.location.origin + "/candidate-login";
         }
         let response = await getRequest(api_url);
 

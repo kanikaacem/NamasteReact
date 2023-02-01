@@ -31,7 +31,8 @@ const ResetPasswordPage = ({ user }) => {
             password: values.password
         });
         if (response.status === '1') {
-            setPasswordChanged(true);
+            // setPasswordChanged(true);
+            window.location.href = window.location.origin + '/employer-login';
         }
         if (response.status === '0') {
             setFieldError("confirm_password", "Token is expired !!!.");

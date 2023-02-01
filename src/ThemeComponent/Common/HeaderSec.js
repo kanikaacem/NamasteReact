@@ -73,7 +73,7 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                 >
                     {buttonText ? buttonText : "About Us"}
                 </Button>
-                {
+                {/* {
                     buttonText === "Employer login" && <>
                         <Button type="button" variant="outlined"
                             sx={{
@@ -100,7 +100,7 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                         >
                             {localStorage.getItem("isLoggedIn") == 'true' ? "Dashboard" : "Candidate login"}
                         </Button></>
-                }
+                } */}
 
                 {
                     localStorage.getItem("removeLocalStorageData") && localStorage.getItem("removeLocalStorageData") == "true"
@@ -143,13 +143,13 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
 
                                 (<>
                                     <Stack gap={2} direction="column" sx={{ background: "#FFFFFF", padding: "20px" }}>
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
+                                        {/* <Typography component="div" sx={{ fontSize: "14px" }}>
                                             Basic Postings : Unlimited
                                         </Typography>
 
                                         <Typography component="div" sx={{ fontSize: "14px" }}>
                                             Premium Posting : 300 credits
-                                        </Typography>
+                                        </Typography> */}
 
 
 

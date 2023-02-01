@@ -31,7 +31,7 @@ const Header = () => {
                         width: "60px",
                         height: "60px"
                     }}>
-                        <a href="http://localhost:3000">
+                        <a href={window.location.origin}>
                             <img src={window.location.origin + '/assets/companyLogo.png'} alt="LOGO" width="100%"></img>
                         </a>
                     </Box>

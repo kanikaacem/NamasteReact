@@ -1,7 +1,7 @@
 <nav>
     <div style={{ width: '60px', height: '60px' }}>
         {/* <a href="#" onClick={() => window.history.back()}> */}
-        <a href="http://localhost:3000">
+        <a href={window.location.origin}>
             <img src={window.location.origin + '/assets/companyLogo.png'} alt="LOGO" width="100%"></img>
         </a>
     </div>

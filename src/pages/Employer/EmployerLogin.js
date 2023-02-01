@@ -136,7 +136,8 @@ const EmployerLogin = () => {
                     background="#432C60" />
                 <Stack direction="row" gap={1} sx={{ position: "relative" }}>
                     <Box sx={{
-                        width: "70%"
+                        width: "70%",
+                        display: { 'lg': 'block', 'md': 'none', 'xs': 'none' }
                     }}>
                         <Box sx={{
 
@@ -195,7 +196,7 @@ const EmployerLogin = () => {
 
 
                     <Stack gap={2} sx={{
-                        width: "449px",
+                        width: { 'lg': "449px", 'md': '70%', 'xs': '100%' },
                         height: "730px",
                         background: "#FBF8FF",
                         boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",

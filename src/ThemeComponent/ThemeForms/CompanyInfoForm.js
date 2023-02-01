@@ -164,6 +164,9 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     }
 
     const handleSubmit1 = async (values) => {
+        setCompanyEmail(values.company_email);
+        setCompanyWebsite(values.company_website);
+        setCompanyLanNumber(values.company_lan_number)
         localStorage.setItem("company_form_data1", JSON.stringify(values));
 
         let formData = new FormData();
@@ -223,6 +226,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         // console.log(response.data);
     }
     return (<>
+
         {isLoggedIn == 'true' && <Navigate to="/employer-dashboard"></Navigate>}
         {companyInfoForm == 1 && <>
             <Box className="EmployerRegisterPage"
