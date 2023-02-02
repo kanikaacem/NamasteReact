@@ -44,6 +44,8 @@ import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeF
 import Error from '../../ThemeComponent/Common/Error';
 import ThemeLabel from '../../ThemeComponent/ThemeForms/ThemeLabel';
 import Loader from "../Common/Loader";
+import BackButton from "../../ThemeComponent/Common/BackButton";
+
 
 const PostJob = () => {
     const [postJobStep, setPostJobStep] = useState(1);
@@ -346,6 +348,12 @@ const PostJob = () => {
                         }}></Box> */}
                     </Stack>
                     <Box sx={{ width: "50%" }}>
+                        {/* <BackButton
+                            GoBack={
+                                () => {
+                                    setPostJobStep(1)
+                                }
+                            } ></BackButton> */}
 
                         <Box sx={{
                             width: "763px",

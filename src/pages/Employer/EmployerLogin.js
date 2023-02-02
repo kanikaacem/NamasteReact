@@ -272,10 +272,10 @@ const EmployerLogin = () => {
                                 </Form>
                             )}
                         </Formik>
-                        <Typography component="span" sx={{ fontSize: "16px", display: "flex" }}>
+                        {/* <Typography component="span" sx={{ fontSize: "16px", display: "flex" }}>
                             <hr style={{ width: "150px", height: "0px", color: "#DAD9D9" }}></hr> or login in with <hr style={{ width: "150px", height: "0px" }}></hr>
-                        </Typography>
-                        <Stack direction="row" gap={3} justifyContent="center">
+                        </Typography> */}
+                        {/* <Stack direction="row" gap={3} justifyContent="center">
                             {
                                 socialLogin.map((item) => {
                                     return (<>
@@ -285,7 +285,7 @@ const EmployerLogin = () => {
                                     </>)
                                 })
                             }
-                        </Stack>
+                        </Stack> */}
                     </Stack>
                 </Stack>
             </Stack>

@@ -805,16 +805,16 @@ export const socialLogin = [
         value: "Google Login",
         image_url: "../assets/image_10.png"
     },
-    {
-        id: 2,
-        value: "Linkedin Login",
-        image_url: "../assets/image_11.png"
-    },
-    {
-        id: 3,
-        value: "facebook Login",
-        image_url: "../assets/image_12.png"
-    }
+    // {
+    //     id: 2,
+    //     value: "Linkedin Login",
+    //     image_url: "../assets/image_11.png"
+    // },
+    // {
+    //     id: 3,
+    //     value: "facebook Login",
+    //     image_url: "../assets/image_12.png"
+    // }
 ]
 
 export const WorkingDays = [

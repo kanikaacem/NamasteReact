@@ -134,7 +134,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     }
     const handleSubmit = async (values, { setFieldError }) => {
         setHRName(values.hr_name);
-        setCompanyName(values.hr_name);
+        setCompanyName(values.company_name);
         setCompanyPanNumber(values.company_pan_number);
         localStorage.setItem("company_form_data", JSON.stringify(values));
         let formData = new FormData();

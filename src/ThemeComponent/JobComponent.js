@@ -69,7 +69,7 @@ const JobComponent = ({ data }) => {
                                 <img src={window.location.origin + "/assets/RJ2.png"} alt="RJ2"></img>
                             </Box>
                             <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-                                Min. {data && data.candidate_experience.min_age} Years
+                                Min. {data && data.candidate_experience && data.candidate_experience.min_age} Years
                             </Typography>
                         </Stack>
                         <Stack direction="row" sx={{
