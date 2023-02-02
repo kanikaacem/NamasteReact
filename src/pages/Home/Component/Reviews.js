@@ -20,7 +20,8 @@ const Reviews = () => {
         <Box className="reviews"
             sx={{
                 background: "#FAFAFA",
-                padding: "100px 50px"
+                padding: "100px 50px",
+                display: { "lg": "block", "md": "none", "xs": "none" }
             }}>
             <Typography component="span"
                 sx={{

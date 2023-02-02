@@ -12,7 +12,7 @@ const initialState = {
     "id" : 1,
     "title" : "Mobile Applications"
   },
-  api_url: 'http://13.126.115.3:3001',
+  api_url: 'https://13.126.115.3:3001',
   showProfile : false,
   EmployeeMenuSelected : "dashboard",
   CandidateMenuSelected : "applied_jobs",
@@ -117,7 +117,7 @@ root.render(
       //               })
       // localStorage.setItem("authenticated", true);
     
-      //   fetch("http://192.168.1.9:8000/api/users/login", {
+      //   fetch("https://192.168.1.9:8000/api/users/login", {
       //       // Adding method type
       //       method: "POST",
       //       // Adding body or contents to send

@@ -54,7 +54,7 @@ const UploadResume = ({ setActiveStep }) => {
         //     response = await response.json();
         //     console.log(response);
         //     setFormSubmitted(true);
-        // window.location.href = "http://localhost:3000/employer-login";
+        // window.location.href = "https://localhost:3000/employer-login";
         // }
         // for (var pair of formData.entries()) {
         //     console.log(pair[0] + ', ' + pair[1]);
@@ -80,7 +80,7 @@ const UploadResume = ({ setActiveStep }) => {
         //     console.log(response);
         //     dispatch({ type: 'LOGIN', payload: JSON.stringify(response.data) });
         //     // setFormSubmitted(true);
-        //     // window.location.href = "http://localhost:3000/employer-login";
+        //     // window.location.href = "https://localhost:3000/employer-login";
         // }
     }
 

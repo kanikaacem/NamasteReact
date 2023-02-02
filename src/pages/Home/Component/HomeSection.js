@@ -22,7 +22,7 @@ const HomeSection = () => {
                         textAlign: "center",
                         fontWeight: "700",
                         fontSize: '96px',
-                        width: "1300px",
+                        maxWidth: "1300px",
                         lineHeight: "1.0",
                         zIndex: "1"
                     }}>
@@ -35,14 +35,14 @@ const HomeSection = () => {
                     margin: "3px 0px",
                     fontWeight: "500",
                     fontSize: "24px",
-                    width: "1069px"
+                    maxWidth: "1069px"
                 }}>
                     A portal where you as an employer can get people for all kinds of jobs - beauticians, delivery executives, etc.
                     As an employee too, choices are unlimited! All it takes is 2 minutes. Explore Now!
 
                 </Typography>
             </Stack>
-            <Box
+            {/* <Box
                 sx={{
                     position: "absolute",
                     width: "1214px",
@@ -52,7 +52,7 @@ const HomeSection = () => {
                     background: "#FFD5C9"
                 }}>
 
-            </Box>
+            </Box> */}
             <Box
                 sx={{
                     position: "absolute",
@@ -69,7 +69,7 @@ const HomeSection = () => {
                 <img src={window.location.origin + "/assets/Mg2.png"} alt="Mg2" />
             </Box>
 
-            <Box sx={{ margin: "100px 0px" }}>
+            <Box sx={{ margin: { "lg": "100px 0px", "md": "0px", "xs": "0px" } }}>
                 <SearchBar></SearchBar>
             </Box>
 

@@ -75,7 +75,7 @@ const ForgotPasswordPage = () => {
                             </Typography>
                         </Box>
                         <Box sx={{ width: "500px", height: "500px" }}>
-                            <img src={window.location.origin + "/assets/ForgotPassword.jpg"} width="100%" height="100%" alt="Forgot Password" />
+                            <img src={window.location.origin + "/assets/ForgotPassword.png"} width="100%" height="100%" alt="Forgot Password" />
                         </Box>
                     </Stack>
                     <Box sx={{ width: "50%", padding: "20px" }}>

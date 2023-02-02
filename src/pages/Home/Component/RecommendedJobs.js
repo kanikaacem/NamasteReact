@@ -23,7 +23,7 @@ const RecommendedJobs = () => {
             'Authorization': 'your-token'
         });
         const getData = async () => {
-            let response = await fetch("http://192.168.1.4:3001/api/job/getalljobs",
+            let response = await fetch("https://192.168.1.4:3001/api/job/getalljobs",
                 {
                     method: "GET",
                     headers: myHeaders,

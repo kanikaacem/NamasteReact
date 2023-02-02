@@ -53,13 +53,13 @@ const VerifyMobileForm = ({ email, setVerifyMobileForm, setCompanyInfoForm, setM
             label: "test",
             value: values.mobile_number
         })
-        let response = await postRequest("http://13.235.183.204:3001/api/sendotp/+91" + values.mobile_number);
+        let response = await postRequest("https://13.235.183.204:3001/api/sendotp/+91" + values.mobile_number);
         if (response.status == '1')
             //     // setMobileNumber(values.mobile_number);
             setSendOtp(true);
     }
     const handleSubmit2 = async (values, { setFieldError }) => {
-        let response = await postRequest("http://13.235.183.204:3001/api/verifyotp", {
+        let response = await postRequest("https://13.235.183.204:3001/api/verifyotp", {
             otp: values.otp
         })
         if (response.status == '1') {

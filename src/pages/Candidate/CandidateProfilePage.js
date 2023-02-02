@@ -184,7 +184,7 @@ const CandidateProfilePage = () => {
                     {user && user.email}
                 </Typography>
 
-                <ButtonType3 ButtonText="Verify your Contact Details" ClickEvent={() => window.location.href = "http://localhost:3000/profile/2"} />
+                <ButtonType3 ButtonText="Verify your Contact Details" ClickEvent={() => window.location.href = "https://localhost:3000/profile/2"} />
 
 
                 <Box sx={{ margin: "20px 0px", width: "300px" }}>
@@ -269,7 +269,7 @@ const CandidateProfilePage = () => {
                             </Typography>
                         </Stack>
 
-                        <ButtonType3 ButtonText="Add Professional Details" ClickEvent={() => window.location.href = "http://localhost:3000/profile/1"} />
+                        <ButtonType3 ButtonText="Add Professional Details" ClickEvent={() => window.location.href = "https://localhost:3000/profile/1"} />
 
                     </Box>
 
@@ -282,7 +282,7 @@ const CandidateProfilePage = () => {
                                 Work History
                             </Typography>
                         </Stack>
-                        <ButtonType3 ButtonText="Work History" ClickEvent={() => window.location.href = "http://localhost:3000/profile/2"} />
+                        <ButtonType3 ButtonText="Work History" ClickEvent={() => window.location.href = "https://localhost:3000/profile/2"} />
                     </Box>
 
                     <Box>

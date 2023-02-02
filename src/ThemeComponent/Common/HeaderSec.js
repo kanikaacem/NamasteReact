@@ -20,7 +20,8 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
 
     return (<>
 
-        <Stack direction={{ "lg": "row", "md": "row", "xs": "column" }} gap={4} justifyContent="space-between">
+        <Stack direction={{ "lg": "row", "md": "row", "xs": "column" }}
+            gap={4} justifyContent="space-between">
             <CompanyLogo color={color} />
 
             <Stack direction="row"
