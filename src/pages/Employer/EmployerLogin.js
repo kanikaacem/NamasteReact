@@ -116,6 +116,7 @@ const EmployerLogin = () => {
 
         <Box className="EmployerLoginPage"
             sx={{
+                width: "100%",
                 minHeight: "100vh",
                 background: "#2B1E44",
                 backgroundImage:
@@ -127,6 +128,7 @@ const EmployerLogin = () => {
             <Stack className="EmployerLoginPageInnerWrapper"
                 sx=
                 {{
+                    // width: "100%",
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
@@ -136,12 +138,12 @@ const EmployerLogin = () => {
                     background="#432C60" />
                 <Stack direction="row" gap={1} sx={{ position: "relative" }}>
                     <Box sx={{
-                        width: "70%",
+                        width: "60%",
                         display: { 'lg': 'block', 'md': 'none', 'xs': 'none' }
                     }}>
                         <Box sx={{
 
-                            marginTop: "236px",
+                            marginTop: "150px",
                             marginLeft: "204px"
 
                         }}>
@@ -151,7 +153,7 @@ const EmployerLogin = () => {
                                 fontWeight: "700",
                                 color: "#FC9A7E",
                                 display: "block",
-                                lineHeight: "40px"
+                                lineHeight: "1.2"
                             }}>
                                 We settle for nothing
 
@@ -183,7 +185,7 @@ const EmployerLogin = () => {
                                 fontWeight: "500",
                                 color: "#FFFFFF",
                                 display: "block",
-                                width: "695px"
+                                maxWidth: "695px"
                             }}>
                                 Employees get the work they look for through our impactful job portal
                                 that is monitored 24x7 for quality, transparency and success. Employers,
@@ -196,12 +198,12 @@ const EmployerLogin = () => {
 
 
                     <Stack gap={2} sx={{
-                        width: { 'lg': "449px", 'md': '70%', 'xs': '100%' },
+                        width: { 'lg': "449px", 'md': '100%', 'xs': '100%' },
                         height: "730px",
                         background: "#FBF8FF",
                         boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                         borderRadius: "19px",
-                        padding: "50px 100px"
+                        padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "30px" }
                     }}>
                         <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
                             Log in

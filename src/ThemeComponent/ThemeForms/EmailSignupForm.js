@@ -102,13 +102,13 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
 
                                 </LoginSocialGoogle>
 
-                                <SocialBox>
+                                {/* <SocialBox>
                                     <img src={socialLogin[1].image_url} alt={socialLogin[1].value} />
                                 </SocialBox>
 
                                 <SocialBox>
                                     <img src={socialLogin[2].image_url} alt={socialLogin[2].value} />
-                                </SocialBox>
+                                </SocialBox> */}
 
                             </Stack>
 

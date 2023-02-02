@@ -20,10 +20,15 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
 
     return (<>
 
-        <Stack direction="row" justifyContent="space-between">
+        <Stack direction={{ "lg": "row", "md": "row", "xs": "column" }} gap={4} justifyContent="space-between">
             <CompanyLogo color={color} />
 
-            <Stack direction="row" gap={2}>
+            <Stack direction="row"
+                sx={{
+                    visibility: { "lg": "visible", "md": "visible", "xs": "hidden" }
+                }}
+                gap={2}
+            >
                 <Button type="button" variant="outlined"
                     sx={{
                         width: "200px",
