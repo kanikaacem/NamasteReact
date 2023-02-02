@@ -19,6 +19,10 @@ import { useState, useRef, useEffect } from "react";
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import ReactGA from 'react-ga';
+const TRACKING_ID = 'AW-11080443279/84LrCNKT24kYEI_LyKMp'
+ReactGA.initialize(TRACKING_ID)
+
 const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const dispatch = useDispatch();
@@ -184,6 +188,12 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     }
 
     const handleSubmit2 = async (values) => {
+        ReactGA.event({
+            category: values.company_address,
+            action: "test",
+            label: "test",
+            value: values.area
+        })
         let data = new FormData();
         data = {
             company_state: state,

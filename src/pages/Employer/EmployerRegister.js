@@ -12,9 +12,11 @@ import EmailSignupForm from "../../ThemeComponent/ThemeForms/EmailSignupForm";
 import PasswordGenForm from "../../ThemeComponent/ThemeForms/PasswordGenForm";
 import VerifyMobileForm from "../../ThemeComponent/ThemeForms/VerifyMobileForm";
 import CompanyInfoForm from "../../ThemeComponent/ThemeForms/CompanyInfoForm";
+import ReactGA from 'react-ga';
+ReactGA.initialize('AW-11080443279/AeoHCJzJ2YkYEI_LyKMp');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const CLIENT_ID = "346122009616-5gsdqla59hflt7sg5f8n38valqs6p1q8.apps.googleusercontent.com";
-
 const EmployerRegister = () => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const api_url = useSelector(state => state.api_url);

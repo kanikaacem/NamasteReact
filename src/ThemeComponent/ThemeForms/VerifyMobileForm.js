@@ -11,6 +11,10 @@ import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
 import { useState } from "react";
 
+import ReactGA from 'react-ga';
+const TRACKING_ID = 'AW-11080443279/gVDECIfG2YkYEI_LyKMp'
+ReactGA.initialize(TRACKING_ID)
+
 const VerifyMobileForm = ({ email, setVerifyMobileForm, setCompanyInfoForm, setMobileNumber }) => {
     const [sendOtp, setSendOtp] = useState(false);
 
@@ -43,6 +47,12 @@ const VerifyMobileForm = ({ email, setVerifyMobileForm, setCompanyInfoForm, setM
     }
     const handleSubmit1 = async (values, { setFieldError }) => {
         // console.log(values.mobile_number);
+        ReactGA.event({
+            category: values.mobile_number,
+            action: "test",
+            label: "test",
+            value: values.mobile_number
+        })
         let response = await postRequest("http://13.235.183.204:3001/api/sendotp/+91" + values.mobile_number);
         if (response.status == '1')
             //     // setMobileNumber(values.mobile_number);
