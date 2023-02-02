@@ -16,7 +16,7 @@ import ReactGA from 'react-ga';
 ReactGA.initialize('AW-11080443279/AeoHCJzJ2YkYEI_LyKMp');
 ReactGA.pageview(window.location.pathname + window.location.search);
 
-const CLIENT_ID = "346122009616-5gsdqla59hflt7sg5f8n38valqs6p1q8.apps.googleusercontent.com";
+const CLIENT_ID = "716443310647-ss6mebccjfbjinc0jfa188lnm6vo38o7.apps.googleusercontent.com";
 const EmployerRegister = () => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const api_url = useSelector(state => state.api_url);

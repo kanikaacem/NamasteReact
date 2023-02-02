@@ -20,7 +20,8 @@ import { useEffect } from "react";
 const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenForm, isEmailVerified }) => {
 
 
-    const CLIENT_ID = "346122009616-1gljk4ii4218dajhhjki2cb62v1r1cr0.apps.googleusercontent.com";
+    const CLIENT_ID = "716443310647-ss6mebccjfbjinc0jfa188lnm6vo38o7.apps.googleusercontent.com";
+
 
     const defaultValue = {
         email_address: email ? email : ""
