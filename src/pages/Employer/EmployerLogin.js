@@ -136,7 +136,7 @@ const EmployerLogin = () => {
                     border="2px solid rgba(255, 255, 255, 0.25)"
                     color="#FFFFFF"
                     background="#432C60" />
-                <Stack direction="row" gap={1} sx={{ position: "relative" }}>
+                <Stack direction="row" sx={{ position: "relative", gap: "40px" }}>
                     <Box sx={{
                         width: "60%",
                         display: { 'lg': 'block', 'md': 'none', 'xs': 'none' }

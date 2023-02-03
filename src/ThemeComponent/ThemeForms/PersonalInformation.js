@@ -122,14 +122,14 @@ const PersonalInformation = ({ setActiveStep }) => {
 
     const getDistrictByState = async (statefilter) => {
         // console.log(statefilter);
-        let response = await getRequest("https://13.235.183.204:3001/api/map/districts?states=" + statefilter);
+        let response = await getRequest("https://backend.jobsyahan.com/api/map/districts?states=" + statefilter);
         // console.log(response.data[0].districts);
         setDistrict(response.data[0].districts);
         // console.log(response);
     }
 
     const getAddress = async (value) => {
-        let response = await getRequest("https://13.235.183.204:3001/api/map/autocompleteplaces?input=" + value);
+        let response = await getRequest("https://backend.jobsyahan.com/api/map/autocompleteplaces?input=" + value);
         console.log(response)
         setAutoData(response.data);
         // console.log(response.data);

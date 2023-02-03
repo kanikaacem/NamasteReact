@@ -235,12 +235,12 @@ const PostJob = () => {
             setJobTypeData(response.data);
         }
         const getLocalLanguage = async () => {
-            let response = await getRequest("https://13.235.183.204:3001/api/file/findlocallanguage");
+            let response = await getRequest("https://backend.jobsyahan.com/api/file/findlocallanguage");
             setLocalLanguageData(response.data[0]['languages']);
         }
 
         const getIndustryType = async () => {
-            let response = await getRequest("https://13.235.183.204:3001/api/file/findindustrydata");
+            let response = await getRequest("https://backend.jobsyahan.com/api/file/findindustrydata");
             setIndustryTypeCollection(response.data);
         }
         getState();
@@ -251,7 +251,7 @@ const PostJob = () => {
 
     const getDistrictByState = async (statefilter) => {
         // console.log(statefilter);
-        let response = await getRequest("https://13.235.183.204:3001/api/map/districts?states=" + statefilter);
+        let response = await getRequest("https://backend.jobsyahan.com/api/map/districts?states=" + statefilter);
         // console.log(response.data[0].districts);
         setDistrict(response.data[0].districts);
         // console.log(response);
@@ -259,7 +259,7 @@ const PostJob = () => {
 
     const getIndustryTypeByJobType = async (jobTypeFilter) => {
         let SkillsData = [];
-        let response = await getRequest("https://13.235.183.204:3001/api/file/industrytype?jobtype=" + jobTypeFilter);
+        let response = await getRequest("https://backend.jobsyahan.com/api/file/industrytype?jobtype=" + jobTypeFilter);
         // setIndustryData(response.data);
         response.data.map(item => {
             // {item[0].toString()}
@@ -272,7 +272,7 @@ const PostJob = () => {
         setIndustryData(SkillsData);
     }
     const getAddress = async (value) => {
-        let response = await getRequest("https://13.235.183.204:3001/api/map/autocompleteplaces?input=" + value);
+        let response = await getRequest("https://backend.jobsyahan.com/api/map/autocompleteplaces?input=" + value);
         setAutoData(response.data);
 
         // console.log(response.data);

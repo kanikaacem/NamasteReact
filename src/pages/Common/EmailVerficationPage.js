@@ -12,11 +12,11 @@ const EmployerVerficationPage = () => {
         let api_url = "";
         let redirect_url = "";
         if (employerEmail != undefined) {
-            api_url = `https://13.235.183.204:3001/api/verificationthroughmail/employer?email=${employerEmail}`;
+            api_url = `https://backend.jobsyahan.com/api/verificationthroughmail/employer?email=${employerEmail}`;
             redirect_url = window.location.origin + "/employer-login";
         }
         if (candidateEmail != undefined) {
-            api_url = `https://13.235.183.204:3001/api/verificationthroughmail/candidate?email=${candidateEmail}`;
+            api_url = `https://backend.jobsyahan.com/api/verificationthroughmail/candidate?email=${candidateEmail}`;
             redirect_url = window.location.origin + "/candidate-login";
         }
         let response = await getRequest(api_url);

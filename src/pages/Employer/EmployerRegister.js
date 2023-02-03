@@ -105,74 +105,89 @@ const EmployerRegister = () => {
                         color="#FFFFFF"
                         background="#432C60"
                     />
-                    <Stack alignItems="flex-end" sx={{ position: "relative" }}>
+                    <Stack direction={{ 'lg': "row", 'md': 'column', 'xs': 'column' }} sx={{ gap: "40px" }}>
 
                         <Box sx={{
-                            position: "absolute",
-                            top: "236px",
-                            left: "204px"
-                        }}>
-                            <Typography component="box" sx={{
-                                fontSize: "36px",
-                                fontFamily: "Montserrat",
-                                fontWeight: "600",
-                                color: "#FFFFFF",
-                                display: "block",
-                                marginTop: "20px"
-                            }}>
-                                Direct Hiring App for
-                            </Typography>
+                            width: { 'lg': "60%", 'md': '100%', 'xs': '100%' },
+                            // position: "absolute",
+                            marginTop: { 'lg': "236px", 'md': '0px', 'xs': '0px' },
+                            // marginLeft: { 'lg': "204px", 'md': '0px', 'xs': '0px' }
+                            display: "flex",
+                            justifyContent: "center",
 
-                            <Typography component="box" sx={{
-                                fontSize: "64px",
-                                fontFamily: "Work Sans, sans-serif",
-                                fontWeight: "700",
-                                color: "#FC9A7E",
-                                display: "block",
-                                lineHeight: "40px"
-                            }}>
-                                Founders, Business
+                        }}>
+                            <Box
+                            >
+                                <Typography component="box" sx={{
+                                    fontSize: "36px",
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#FFFFFF",
+                                    display: "block",
+                                    marginTop: "20px"
+                                }}>
+                                    Direct Hiring App for
+                                </Typography>
 
                                 <Typography component="box" sx={{
                                     fontSize: "64px",
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "700",
                                     color: "#FC9A7E",
-                                    display: "block"
+                                    display: "block",
+                                    lineHeight: "1.2"
                                 }}>
-                                    Owners and HRs.
+                                    Founders, Business
+
+                                    <Typography component="box" sx={{
+                                        fontSize: "64px",
+                                        fontFamily: "Work Sans, sans-serif",
+                                        fontWeight: "700",
+                                        color: "#FC9A7E",
+                                        display: "block"
+                                    }}>
+                                        Owners and HRs.
+                                    </Typography>
                                 </Typography>
-                            </Typography>
+
+                            </Box>
                         </Box>
+                        <Stack
+                            sx={{
+                                width: { "lg": "40%", "md": "100%", "xs": "100%" },
+                                alignItems: "flex-end"
+                            }}>
+                            <Stack gap={2} sx={{
+                                width: { "lg": "449px", "md": "85%", "xs": "85%" },
+                                height: "730px",
+                                background: "#FBF8FF",
+                                boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
+                                borderRadius: "19px",
+                                padding: { 'lg': "50px 100px", 'md': '50px', 'xs': '50px' }
 
-                        <Stack gap={2} sx={{
-                            width: "449px",
-                            height: "730px",
-                            background: "#FBF8FF",
-                            boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
-                            borderRadius: "19px",
-                            padding: "50px 100px"
-                        }}>
+                            }}>
 
-                            {emailSignupForm && <EmailSignupForm
-                                email={email} setEmail={setEmail}
-                                setEmailSignupForm={setEmailSignupForm}
-                                setPasswordGenForm={setPasswordGenForm}
-                                isEmailVerified={isEmailVerified} />}
+                                {emailSignupForm && <EmailSignupForm
+                                    email={email} setEmail={setEmail}
+                                    setEmailSignupForm={setEmailSignupForm}
+                                    setPasswordGenForm={setPasswordGenForm}
+                                    isEmailVerified={isEmailVerified} />}
 
-                            {passwordGenForm && <PasswordGenForm email={email}
-                                setUserId={setUserId}
-                                setPasswordGenForm={setPasswordGenForm}
-                                setVerifyMobileForm={setVerifyMobileForm}
-                                setEmailSignupForm={setEmailSignupForm} />}
+                                {passwordGenForm && <PasswordGenForm email={email}
+                                    setUserId={setUserId}
+                                    setPasswordGenForm={setPasswordGenForm}
+                                    setVerifyMobileForm={setVerifyMobileForm}
+                                    setEmailSignupForm={setEmailSignupForm} />}
 
-                            {verifyMobileForm && <VerifyMobileForm
-                                email={email}
-                                setMobileNumber={setMobileNumber}
-                                setVerifyMobileForm={setVerifyMobileForm}
-                                setCompanyInfoForm={setCompanyInfoForm} />}
+                                {verifyMobileForm && <VerifyMobileForm
+                                    email={email}
+                                    setMobileNumber={setMobileNumber}
+                                    setVerifyMobileForm={setVerifyMobileForm}
+                                    setCompanyInfoForm={setCompanyInfoForm} />}
 
+                            </Stack>
                         </Stack>
+
 
                     </Stack>
                 </Stack>

@@ -58,7 +58,7 @@ const SearchBar = () => {
                 }}
             >
                 <Stack direction="row" gap={1}>
-                    <SearchIcon></SearchIcon>
+                    {/* <SearchIcon></SearchIcon> */}
                     <input
                         style={{ width: "500px" }}
                         type="text" ref={searchRef} placeholder="Search" className='Search' />

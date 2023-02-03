@@ -147,13 +147,13 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
             comapany_panddoc: ""
         }
 
-        let response = await postRequest("https://13.235.183.204:3001/api/employer/checkpan", {
+        let response = await postRequest("https://backend.jobsyahan.com/api/employer/checkpan", {
             company_pancard: values.company_pan_number
         });
         console.log(response.status);
         if (response.status == 0) {
 
-            let response2 = await postRequest("https://13.235.183.204:3001/api/employer/postemployer1", formData);
+            let response2 = await postRequest("https://backend.jobsyahan.com/api/employer/postemployer1", formData);
             if (response2.status == 1) {
                 localStorage.setItem("formpage", 2);
                 setCompanyInfoForm(2);
@@ -179,7 +179,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
             companywebsite: values.company_website ? values.company_website : " ",
             companylannumber: values.company_lan_number
         }
-        let response = await postRequest("https://13.235.183.204:3001/api/employer/postemployer2", formData);
+        let response = await postRequest("https://backend.jobsyahan.com/api/employer/postemployer2", formData);
         if (response.status == 1) {
             localStorage.setItem("formpage", 3);
             setCompanyInfoForm(3);
@@ -205,7 +205,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
             company_gstDoc: ""
         }
 
-        let response = await postRequest("https://13.235.183.204:3001/api/employer/postemployer3", data);
+        let response = await postRequest("https://backend.jobsyahan.com/api/employer/postemployer3", data);
         // console.log(response);
         if (response.status == 1) {
             localStorage.setItem("formpage", 1);
@@ -224,14 +224,14 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
     const getDistrictByState = async (statefilter) => {
         // console.log(statefilter);
-        let response = await getRequest("https://13.235.183.204:3001/api/map/districts?states=" + statefilter);
+        let response = await getRequest("https://backend.jobsyahan.com/api/map/districts?states=" + statefilter);
         // console.log(response.data[0].districts);
         setDistrict(response.data[0].districts);
         // console.log(response);
     }
 
     const getAddress = async (value) => {
-        let response = await getRequest("https://13.235.183.204:3001/api/map/autocompleteplaces?input=" + value);
+        let response = await getRequest("https://backend.jobsyahan.com/api/map/autocompleteplaces?input=" + value);
         setAutoData(response.data);
         // console.log(response.data);
     }
