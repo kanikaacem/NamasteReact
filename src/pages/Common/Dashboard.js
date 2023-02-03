@@ -130,7 +130,8 @@ const Dashboard = () => {
                                                 Premium Posting : {user && user.employer_plan} credits
                                             </Typography> */}
 
-                                            <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => window.location.href = window.location.origin + '/employer-dashboard/account-setting'}>
+                                            <Stack direction="row" gap={2} sx={{ cursor: "pointer" }}
+                                                onClick={() => window.location.href = window.location.origin + '/employer-dashboard/account-setting'}>
                                                 <PersonIcon />
                                                 <Typography component="div" sx={{ fontSize: "14px" }}>
                                                     Account Setting
