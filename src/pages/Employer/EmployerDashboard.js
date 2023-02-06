@@ -145,20 +145,31 @@ const EmployerDashboard = () => {
 
                 </Stack>
             </Stack> */}
-            <Stack direction="row" gap={4} >
+            <Stack direction="row" gap={4}
+                sx={{
+                    flexWrap: "wrap"
+                }}>
 
-                <Stack direction="column" gap={3} sx={{ width: "80%" }}>
+                <Stack direction="column" gap={2} sx={{
+                    width: {
+                        "lg":
+                            `calc(100vw - 451px)`, "md": "100%", "xs": "100%"
+                    }
+                }}>
 
                     <Stack sx={{
-                        width: "100%",
+                        visibility: { "lg": "visible", "md": "hidden", "xs": "hidden" },
+                        height: { "lg": "fit-content", "md": "0px", "xs": "0px" },
+                        maxWidth: "1500px !important",
                         background: "#FFFFFF",
                         border: "1px solid #E1D4F2",
                         borderRadius: "14px",
+
                     }}>
 
                         <Stack gap={2} direction="row" divider={<Divider orientation="vertical" flexItem />}
                             justifyContent="center" alignItems="center"
-                            sx={{ height: "130px", borderRadius: "10px", padding: "30px" }}>
+                            sx={{ height: "fit-content", borderRadius: "10px", padding: "30px", flexWrap: "wrap" }}>
 
 
                             <Stack gap={1} sx={{ minWidth: "230px" }}>
@@ -254,7 +265,7 @@ const EmployerDashboard = () => {
                         </Box> */}
 
                         <Box sx={{
-                            width: "60%"
+                            width: { "lg": "60%", "md": "100%", "xs": "100%" }
                         }}>
                             <Stack direction="column" gap={2} sx={{ width: "100%", height: "600" }}>
                                 <Box>
@@ -263,7 +274,7 @@ const EmployerDashboard = () => {
                                             Recent Jobs
                                         </Typography>
                                     </Box>
-                                    <Box sx={{ height: "500px" }}>
+                                    <Stack direction="column" gap={2} sx={{ height: "600px" }}>
                                         {
                                             jobs.length > 0 ? jobs.map((item) => {
                                                 return (<>
@@ -272,7 +283,7 @@ const EmployerDashboard = () => {
                                             })
                                                 : " There is no data present"
                                         }
-                                    </Box>
+                                    </Stack>
                                     <Box >
                                         <Pagination count={Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
                                     </Box>
@@ -282,6 +293,7 @@ const EmployerDashboard = () => {
 
                         </Box>
                         <Box sx={{
+                            display: { "lg": "block", "md": "none", "xs": "none" },
                             width: "40%",
                             background: "#FFFFFF",
                             border: "1px solid #E1D4F2",
@@ -447,7 +459,12 @@ const EmployerDashboard = () => {
 
                 </Stack>
 
-                <Stack direction="column" gap={3} sx={{ width: "20%" }}>
+                <Stack direction="column" sx={{
+                    // width: `calc(100vw - 83%)`,
+                    width: "300px",
+                    visibility: { "lg": "visible", "md": "hidden", "xs": "hidden" },
+                    gap: "12px"
+                }}>
                     <Stack sx={{
                         background: "#FFFFFF",
                         border: " 1px solid #E1D4F2",
@@ -455,7 +472,9 @@ const EmployerDashboard = () => {
                         padding: "20px",
                         minHeight: "300px",
                         textAlign: "center",
-                        justifyContent: "center"
+                        justifyContent: "center",
+                        width: "100%"
+                        // minwidth: "300px"
                     }}>
                         No Chats
                     </Stack>
@@ -465,7 +484,11 @@ const EmployerDashboard = () => {
                             minHeight: "396px",
                             background: "#FFFFFF",
                             border: " 1px solid #E1D4F2",
-                            borderRadius: "19px"
+                            borderRadius: "19px",
+                            width: "100%"
+
+                            // minWidth: "320px"
+
                         }}>
                         <Stack sx={{
                             padding: "15px",

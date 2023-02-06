@@ -11,7 +11,7 @@ const AllJobCategories = () => {
     })
     return (<>
         {/* <span> Browse All Categories</span> */}
-        <Stack direction="row"
+        <Stack direction={{ "lg": "row", "md": "column", "xs": "column" }}
             gap={3}
             sx={{ margin: "0 auto" }}>
 

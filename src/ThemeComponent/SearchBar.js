@@ -34,7 +34,7 @@ const SearchBar = () => {
     return (<>
         <Box
             sx={{
-                // visibility: { "lg": "visible", "md": "hidden", "xs": "hidden" },
+                visibility: { "lg": "visible", "md": "hidden", "xs": "hidden" },
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",

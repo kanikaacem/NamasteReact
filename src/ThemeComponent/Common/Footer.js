@@ -108,7 +108,9 @@ const Footer = () => {
                 margin: "10px 0px"
             }}></hr>
 
-            <Stack direction="row" gap={2}>
+            <Stack direction="row" gap={2} sx={{
+                flexWrap: "wrap"
+            }}>
                 <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Terms and Conditions</Box>
                 <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Privacy Policy</Box>
                 <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Cookies Policy</Box>

@@ -56,7 +56,7 @@ const WhyJobYahan = () => {
             </Box>
             <Box sx={{
                 width: "617px",
-                position: "absolute",
+                position: { lg: "absolute", md: "relative", xs: "relative" },
                 right: "0",
                 top: "120px"
             }}>

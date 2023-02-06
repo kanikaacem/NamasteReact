@@ -11,6 +11,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import ReorderIcon from '@mui/icons-material/Reorder';
 
 import { EmployerMenu, CandidateMenu } from "../../utils/Data.js";
 import { useEffect, useState } from 'react';
@@ -20,6 +21,7 @@ import { CandidateLogoutMenu } from "../../utils/Data";
 
 import Moment from 'react-moment';
 
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
 import Footer from "../../ThemeComponent/Common/Footer";
 
@@ -28,6 +30,7 @@ const Dashboard = () => {
     const user = localStorage.user && JSON.parse(localStorage.user);
 
     const [openProfile, setOpenProfile] = useState(false);
+    const [openMenu, setOpenMenu] = useState(false);
     const [userInformation, setUserInformation] = useState(user);
     const dispatch = useDispatch();
     const EmployeeMenuSelected = useSelector(state => state.EmployeeMenuSelected);
@@ -48,21 +51,24 @@ const Dashboard = () => {
                 }}>
 
                 {userInformation && userInformation.employer_type == "employer" && (<>
-                    <Stack direction="row" gap={3} sx={{ height: "50px", padding: "20px 50px", alignItems: "center" }}>
-                        <Box sx={{ width: "10%" }}>
-                            <Box sx={{ width: "50px", marginTop: "10px", height: "50px" }} >
+                    <Stack direction="row" gap={3} sx={{ height: "50px", padding: "20px 50px", alignItems: "center", justifyContent: "space-between" }}>
+                        <Box sx={{ width: "15%" }}>
+                            <Box sx={{ width: "fit-content", marginTop: "10px", height: "50px" }} >
                                 {/* <Link to="/">
                                     <img src={window.location.origin + "/assets/companyLogo.png"} width="100%" height="100%" alt="companyLogo" />
                                 </Link> */}
                                 <CompanyLogo color="#4E3A67" />
                             </Box>
                         </Box>
-                        <Box direction="row" sx={{ width: "70%" }}>
+                        <Box direction="row" sx={{
+                            width: "70%",
+                            display: { "lg": "block", "md": "block", "xs": "none" }
+                        }}>
                             <List sx={{ display: "flex" }}>
 
                                 {EmployerMenu.map((item) => {
                                     return (<>
-                                        <ListItem sx={{ width: "fit-content" }}
+                                        <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
                                             button key={item.id} to={item.url} component={NavLink}
                                             className="menu"
                                             id={item.id}
@@ -70,7 +76,7 @@ const Dashboard = () => {
                                             <ListItemText
                                                 disableTypography
                                                 sx={{
-                                                    fontSize: "20px !important", color: "#4E3A67"
+                                                    fontSize: { "lg": "20px !important", "md": "16px !important" }, color: "#4E3A67"
                                                 }}
                                                 className={EmployeeMenuSelected === item.value && "EmployeeMenuSelected"} primary={item.MenuName} />
                                         </ListItem>
@@ -78,7 +84,54 @@ const Dashboard = () => {
                                 })}
                             </List>
                         </Box>
-                        <Stack direction="row" gap={3} justifyContent="flex-end" alignItems="center" sx={{ width: "20%" }}>
+                        <Stack direction="row" gap={3} justifyContent="flex-end" alignItems="center" sx={{ width: "15%" }}>
+                            <Box sx={{
+                                display: { "lg": "none", "md": "none", "xs": "block" },
+                                position: "relative"
+                            }}>
+                                <ReorderIcon onClick={() => setOpenMenu(!openMenu)} />
+                            </Box>
+                            {openMenu && (<>
+                                <ClickAwayListener onClickAway={() => setOpenMenu(!openMenu)}>
+
+                                    <Box sx={{
+                                        position: "absolute",
+                                        top: "75px",
+                                        background: "#FFFFFF",
+                                        right: "10px",
+                                        width: "300px",
+                                        zIndex: "345235"
+                                    }}>
+                                        <Box direction="row" sx={{
+                                            width: "100%"
+                                        }}>
+                                            <List sx={{ display: "flex", flexDirection: "column" }}>
+
+                                                {EmployerMenu.map((item) => {
+                                                    return (<>
+                                                        <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
+                                                            button key={item.id} to={item.url} component={NavLink}
+                                                            className="menu"
+                                                            id={item.id}
+                                                            onClick={() => { dispatch({ type: "CHANGE_EMPLOYEE_MENU", payload: item.value }) }} >
+                                                            <ListItemText
+                                                                disableTypography
+                                                                sx={{
+                                                                    fontSize: { "lg": "20px !important", "md": "16px !important" }, color: "#4E3A67"
+                                                                }}
+                                                                className={EmployeeMenuSelected === item.value && "EmployeeMenuSelected"} primary={item.MenuName} />
+                                                        </ListItem>
+                                                    </>)
+                                                })}
+                                            </List>
+                                        </Box>
+
+
+                                    </Box>
+                                </ClickAwayListener >
+
+                            </>
+                            )}
                             <Badge badgeContent={4} color="primary" sx={{ cursor: "pointer" }}
                                 onClick={() => window.location.href = window.location.origin + '/employer-dashboard/chats'}>
                                 <MailOutlineIcon></MailOutlineIcon>

@@ -110,13 +110,18 @@ const EmployerRegister = () => {
                         <Box sx={{
                             width: { 'lg': "60%", 'md': '100%', 'xs': '100%' },
                             // position: "absolute",
-                            marginTop: { 'lg': "236px", 'md': '0px', 'xs': '0px' },
+                            // marginTop: { 'lg': "236px", 'md': '0px', 'xs': '0px' },
                             // marginLeft: { 'lg': "204px", 'md': '0px', 'xs': '0px' }
                             display: "flex",
                             justifyContent: "center",
+                            alignItems: "center"
 
                         }}>
                             <Box
+                                sx={{
+                                    width: `calc(60 % - 20px)`,
+
+                                }}
                             >
                                 <Typography component="box" sx={{
                                     fontSize: "36px",
@@ -154,8 +159,8 @@ const EmployerRegister = () => {
                         </Box>
                         <Stack
                             sx={{
-                                width: { "lg": "40%", "md": "100%", "xs": "100%" },
-                                alignItems: "flex-end"
+                                // width: { "lg": "40%", "md": "100%", "xs": "100%" },
+                                // alignItems: "flex-end"
                             }}>
                             <Stack gap={2} sx={{
                                 width: { "lg": "449px", "md": "85%", "xs": "85%" },
