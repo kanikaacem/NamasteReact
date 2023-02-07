@@ -73,9 +73,21 @@ const EmployerDashboard = () => {
 
     useEffect(() => {
         const getpostedjobs = async () => {
+            try {
+                let data = await postRequest(getAllPostedJobs);
+                console.log(data);
+                if (data.status === '0') {
+                    setData([])
+                } else {
+                    setData(data.data);
 
-            let data = await postRequest(getAllPostedJobs);
-            setData(data.data);
+                }
+                // console.log(data);
+            } catch (err) {
+                setData([]);
+
+            }
+
         };
 
         getpostedjobs();
@@ -91,9 +103,10 @@ const EmployerDashboard = () => {
     //Pagination 
     const IndexOfLastData = currentPage * dataPerPage;
     const IndexOfFirstData = IndexOfLastData - dataPerPage;
-    const jobs = data.slice(IndexOfFirstData, IndexOfLastData);
+    const jobs = data.length > 0 && data.slice(IndexOfFirstData, IndexOfLastData);
 
     return (<>
+
         <Stack direction="column" gap={2} sx={{ padding: "30px" }} className="EmployerData">
             <Stack
                 direction="row"
@@ -175,7 +188,7 @@ const EmployerDashboard = () => {
                             <Stack gap={1} sx={{ minWidth: "230px" }}>
                                 <Stack direction="row" justifyContent="space-between">
                                     <Typography component="div" sx={{ fontSize: "40px", color: "#4E3A67", fontWeight: "700" }}>
-                                        {data.length}
+                                        {data ? data.length : '0'}
                                     </Typography>
                                     <img src={window.location.origin + "/assets/V1.png"} alt="V1" height="35px" />
 
@@ -285,7 +298,7 @@ const EmployerDashboard = () => {
                                         }
                                     </Stack>
                                     <Box >
-                                        <Pagination count={Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
+                                        <Pagination count={data && Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
                                     </Box>
                                 </Box>
 

@@ -21,7 +21,8 @@ const Reviews = () => {
             sx={{
                 background: "#FAFAFA",
                 padding: "100px 50px",
-                display: { "lg": "block", "md": "none", "xs": "none" }
+                // display: { "lg": "block", "md": "none", "xs": "none" }
+                display: window.innerWidth > 1790 ? "block" : "none"
             }}>
             <Typography component="span"
                 sx={{
