@@ -21,7 +21,7 @@ const HomeSection = () => {
                         color: "#2B1E44",
                         textAlign: "center",
                         fontWeight: "700",
-                        fontSize: '96px',
+                        fontSize: { "lg": '96px', "md": "96px", "xs": "70px" },
                         maxWidth: "1300px",
                         lineHeight: "1.0",
                         zIndex: "1"
@@ -34,7 +34,7 @@ const HomeSection = () => {
                     display: "block",
                     margin: "3px 0px",
                     fontWeight: "500",
-                    fontSize: "24px",
+                    fontSize: { "lg": "24px", "md": "24px", "xs": "20px" },
                     maxWidth: "1069px"
                 }}>
                     A portal where you as an employer can get people for all kinds of jobs - beauticians, delivery executives, etc.
@@ -56,7 +56,8 @@ const HomeSection = () => {
             <Box
                 sx={{
                     position: "absolute",
-                    top: "134px"
+                    top: "134px",
+                    display: { "lg": "block", "md": "block", "xs": "none" }
                 }}>
                 <img src={window.location.origin + "/assets/Mg1.png"} alt="Mg1" />
             </Box>

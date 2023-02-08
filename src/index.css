@@ -365,6 +365,10 @@ textarea {
 }
 
 /* Post job */
+.PostJobPage {
+  background: linear-gradient(231.41deg, #FDFCFF 13.04%, #FAF7FE 57.79%);
+}
+
 .postjobForm .input-item .css-1869usk-MuiFormControl-root,
 .postjobForm .input-item .css-1869usk-MuiFormControl-root {
   padding: 7px 10px;

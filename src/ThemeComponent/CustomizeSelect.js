@@ -14,7 +14,10 @@ const CustomizeSelect = ({ placeholder, data, id_data }) => {
   }
 
   return (
-    <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+    <FormControl variant="standard" sx={{
+      m: 1,
+      width: "100%"
+    }}>
       <Select
         id={id_data}
         labelId="demo-simple-select-label"

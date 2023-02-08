@@ -425,7 +425,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 // position: "absolute",
                                 // top: "197px",
                                 padding: "30px 50px",
-                                // margin: "0 auto"
+                                margin: "0 auto"
 
                             }}>
                                 <Formik

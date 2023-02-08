@@ -34,7 +34,6 @@ const SearchBar = () => {
     return (<>
         <Box
             sx={{
-                visibility: { "lg": "visible", "md": "hidden", "xs": "hidden" },
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -42,33 +41,63 @@ const SearchBar = () => {
                 // margin: '100px 0px',
             }}>
             <Stack
-                direction="row"
+                direction={{ "lg": "row", "md": "column", "xs": "column" }}
                 sx={{
                     boxSizing: "border-box",
-                    width: "1447px",
-                    height: "80px",
+                    width: { "lg": `calc(100vw - 420px)`, "md": "700px", "xs": "500px" },
+                    // minWidth: { "lg": "1447px", "md": `calc(100vw - 20px)`, "xs": `calc(100vw - 20px)` },
+                    height: "fit-content",
                     background: "#FFFFFF",
                     border: "3px solid #E1D4F2",
                     boxShadow: "0px 47px 52px #f4ecff",
                     borderRadius: "15px",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "space-between",
                     gap: "20px",
-                    padding: " 0px 20px",
+                    padding: { "lg": " 10px 20px", "md": "20px", "xs": "20px" },
                 }}
             >
-                <Stack direction="row" gap={1}>
+                <Stack direction="row" gap={1} sx={{
+                    width: { "lg": "500px", "md": "100%", "xs": "100%" }
+                }}>
                     {/* <SearchIcon></SearchIcon> */}
                     <input
-                        style={{ width: "500px" }}
+
                         type="text" ref={searchRef} placeholder="Search" className='Search' />
                 </Stack>
 
-                <CustomizeSelect ref={cityRef} placeholder="City" id_data="city" data={cities} />
+                <Box
+                    sx={{
+                        background: "#FFF7F5",
+                        borderRadius: "11px",
+                        border: " 1px solid rgba(255, 195, 177, 0.3)",
+                        width: { "lg": "238px", "md": "100%", "xs": "100%" },
+                        padding: "0px 10px"
+                    }}>
+                    <CustomizeSelect ref={cityRef} placeholder="City" id_data="city" data={cities} />
+                </Box>
 
-                <CustomizeSelect ref={experienceRef} placeholder="Experience" id_data="experience" data={Experience} />
+                <Box
+                    sx={{
+                        background: "#FFF7F5",
+                        borderRadius: "11px",
+                        border: " 1px solid rgba(255, 195, 177, 0.3)",
+                        width: { "lg": "238px", "md": "100%", "xs": "100%" },
+                        padding: "0px 10px"
+                    }}>
+                    <CustomizeSelect ref={experienceRef} placeholder="Experience" id_data="experience" data={Experience} />
+                </Box>
 
-                <CustomizeSelect ref={ctcRef} placeholder="CTC" id_data="ctc" data={SalaryCTC} />
+                <Box
+                    sx={{
+                        background: "#FFF7F5",
+                        borderRadius: "11px",
+                        border: " 1px solid rgba(255, 195, 177, 0.3)",
+                        width: { "lg": "238px", "md": "100%", "xs": "100%" },
+                        padding: "0px 10px"
+                    }}>
+                    <CustomizeSelect ref={ctcRef} placeholder="CTC" id_data="ctc" data={SalaryCTC} />
+                </Box>
                 <Button
                     sx={{
                         background: "#2B1E44",
@@ -88,7 +117,7 @@ const SearchBar = () => {
                     <img src={window.location.origin + "/assets/g2.png"} alt="g2" />
                 </Button>
             </Stack>
-        </Box>
+        </Box >
 
         {/* <Box
             sx={{

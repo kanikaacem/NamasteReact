@@ -29,7 +29,7 @@ function Home() {
         <JobCategory />
         <WhyJobYahan />
         <AboutUs />
-        <Reviews />
+        {/* <Reviews /> */}
         <Footer />
 
     </>)

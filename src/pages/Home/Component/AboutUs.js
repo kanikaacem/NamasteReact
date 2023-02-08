@@ -16,9 +16,10 @@ const AboutUs = () => {
 
             <Stack
                 gap={5}
-                direction="row"
+                direction={{ "lg": "row", "md": "row", "xs": "column" }}
+
             >
-                <Stack className="secDesc" direction="row" gap={5} sx={{ width: "50%" }}>
+                <Stack className="secDesc" direction="row" gap={5} sx={{ width: { "lg": "50%", "md": "50%", "xs": "100%" } }}>
                     <Box sx={{
                         width: "300px",
                         height: "330px",
@@ -96,7 +97,7 @@ const AboutUs = () => {
                 </Stack>
                 <Box className="description" sx={{
                     color: "#2B1E44",
-                    width: "50%",
+                    width: { "lg": "50%", "md": "50%", "xs": "100%" },
                     display: "flex",
                     flexDirection: "row",
                     alignContent: "center",

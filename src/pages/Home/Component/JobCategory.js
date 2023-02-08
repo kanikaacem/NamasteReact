@@ -60,7 +60,7 @@ const JobCategory = () => {
                   <div className="CategoryTitle" >
                     <span
                       style={{
-                        fontSize: "24px",
+                        fontSize: "18px",
                         fontFamily: "Montserrat",
                         fontWeight: "600",
                         color: "#5A5A5A"

@@ -296,7 +296,6 @@ const PostJob = () => {
         <Box className="PostJobPage"
             direction="column"
             sx={{
-                background: "#FFFFFF",
                 padding: (postJobStep == 1) ? "30px 50px" : "0px",
                 gap: "50px",
                 visibility: (postJobStep == 1) ? "visible" : "hidden",
@@ -1039,7 +1038,6 @@ const PostJob = () => {
         <Box className="PostJobPage"
             sx={{
                 minheight: "100vh",
-                background: "#FFFFFF",
                 visibility: (postJobStep == 2) ? "visible" : "hidden",
                 height: (postJobStep == 2) ? "fit-content" : "0px",
                 display: (postJobStep == 2) ? "block" : "none",

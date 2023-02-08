@@ -58,6 +58,7 @@ const EmployerLogin = () => {
             }
             else {
                 localStorage.setItem("auth_token", response.token);
+                localStorage.setItem("action", "login");
                 dispatch({ type: 'LOGIN', payload: response.data });
             }
 
@@ -80,6 +81,8 @@ const EmployerLogin = () => {
     }
     useEffect(() => {
         let userData = localStorage.getItem("auth_token");
+        let action = localStorage.getItem("action");
+        console.log(action);
         const getUserData = async () => {
             let response = await postRequest(EmployerLoginURL, {
                 email: localStorage.getItem("useremail"),
@@ -106,7 +109,7 @@ const EmployerLogin = () => {
             }
         }
 
-        (userData != " " && userData != null) && getUserData();
+        ((userData != " " && userData != null) && (action != "login" && action != " " && action != null)) && getUserData();
 
     }, []);
     return (<>

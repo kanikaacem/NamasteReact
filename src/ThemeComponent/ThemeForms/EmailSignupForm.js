@@ -41,7 +41,7 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
         let response = await CheckEmail(values.email_address);
         let status = response.status;
         if (status == 1) {
-            setFieldError("email_address", "Email Address is already present.");
+            setFieldError("email_address", "This email is already registered. Kindly Login.");
         } else {
             setEmail(values.email_address);
             setEmailSignupForm(false);
