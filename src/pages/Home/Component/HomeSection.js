@@ -21,12 +21,13 @@ const HomeSection = () => {
                         color: "#2B1E44",
                         textAlign: "center",
                         fontWeight: "700",
-                        fontSize: { "lg": '96px', "md": "96px", "xs": "70px" },
+                        fontSize: { "lg": '70px', "md": "70px", "xs": "70px" },
                         maxWidth: "1300px",
                         lineHeight: "1.0",
-                        zIndex: "1"
+                        zIndex: "1",
+                        marginBottom: "20px"
                     }}>
-                    No.1 Job Portal for Employers and Employees
+                    Find Suitable Jobs & Candidates Here! (Launching Soon)
 
                 </Typography>
                 <Typography component="span" sx={{
@@ -34,12 +35,12 @@ const HomeSection = () => {
                     display: "block",
                     margin: "3px 0px",
                     fontWeight: "500",
-                    fontSize: { "lg": "24px", "md": "24px", "xs": "20px" },
+                    fontSize: { "lg": "23px", "md": "23px", "xs": "20px" },
                     maxWidth: "1069px"
                 }}>
-                    A portal where you as an employer can get people for all kinds of jobs - beauticians, delivery executives, etc.
-                    As an employee too, choices are unlimited! All it takes is 2 minutes. Explore Now!
-
+                    Want to hire delivery executives, technicians, beauticians, field executives,
+                    sales representatives or other frontline executives?.
+                    JobsYahan is working to ensure you the same. Stay connected with us.
                 </Typography>
             </Stack>
             {/* <Box
