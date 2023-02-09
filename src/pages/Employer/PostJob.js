@@ -55,7 +55,7 @@ const PostJob = () => {
 
     const [city, setCity] = useState(" ");
     const [selectedOptions, setSelectedOptions] = useState([]);
-    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [formSubmitted, setFormSubmitted] = useState(localStorage.getItem("formSubmitted") ? localStorage.getItem("formSubmitted") : false);
     const [jobType, setJobType] = useState(" ");
     const [associationType, setAssociationType] = useState(" ");
     const [industryType, setIndustryType] = useState(" ");
@@ -152,6 +152,7 @@ const PostJob = () => {
 
     const handleClose = (event) => {
         setFormSubmitted(false);
+        localStorage.setItem("formSubmitted", "")
     };
 
     const handleSubmit1 = async (values, { resetForm }) => {
@@ -185,15 +186,15 @@ const PostJob = () => {
             company_address: values.company_address,
             extrabenefits: values.extra_benefits
         }
-        // let response = await postRequest(PostJob1, formData);
-        // if (response.status == '1') {
-        //     console.log(response);
-        //     localStorage.setItem("post_id", response.data._id);
-        //     setShowLoader(false);
-        //     setPostJobStep(2);
-        // }
-        setShowLoader(false);
-        setPostJobStep(2);
+        let response = await postRequest(PostJob1, formData);
+        if (response.status == '1') {
+            console.log(response);
+            localStorage.setItem("post_id", response.data._id);
+            setShowLoader(false);
+            setPostJobStep(2);
+        }
+        // setShowLoader(false);
+        // setPostJobStep(2);
     }
 
     const handleSubmit2 = async (values, { resetForm }) => {
@@ -224,6 +225,8 @@ const PostJob = () => {
         if (response.status == '1') {
             setFormSubmitted(true)
             setPostJobStep(1);
+            localStorage.setItem('formSubmitted', true);
+            window.location.reload();
         }
     }
 

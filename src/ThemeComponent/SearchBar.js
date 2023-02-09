@@ -44,7 +44,7 @@ const SearchBar = () => {
                 direction={{ "lg": "row", "md": "column", "xs": "column" }}
                 sx={{
                     boxSizing: "border-box",
-                    width: { "lg": `calc(100vw - 420px)`, "md": "700px", "xs": "500px" },
+                    width: { "lg": `calc(100vw - 420px)`, "md": " calc(100vw - 50px);", "xs": " calc(100vw - 50px)" },
                     // minWidth: { "lg": "1447px", "md": `calc(100vw - 20px)`, "xs": `calc(100vw - 20px)` },
                     height: "fit-content",
                     background: "#FFFFFF",

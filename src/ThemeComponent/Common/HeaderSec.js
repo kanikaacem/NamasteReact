@@ -27,7 +27,7 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
             <Stack direction="row"
                 sx={{
                     // visibility: { "lg": "visible", "md": "visible", "xs": "hidden" },
-                    width: { "lg": `calc(100vw - 73%)`, "md": "fit-content", "xs": "fit-content" },
+                    width: { "lg": `calc(100vw - 73%)`, "md": `"fit-content"`, "xs": "fit-content" },
                     flexWrap: "wrap",
                     justifyContent: "flex-end"
                 }}
