@@ -260,3 +260,8 @@ root.render(
 //https://www.npmjs.com/package/react-dropdown-input
 //https://stackoverflow.com/questions/67308610/prevent-a-multi-step-formik-form-from-resetting-the-form-control-inputs-on-re-re
 //Syncing Changes
+//https://www.geeksforgeeks.org/how-to-use-usemediaquery-component-in-reactjs/
+//https://medium.com/swlh/using-window-matchmedia-for-media-queries-in-reactjs-97ddc66fca2e
+//https://fireship.io/snippets/use-media-query-hook/
+
+//https://dev.to/arikaturika/react-how-to-use-media-queries-with-radium-32he

@@ -233,20 +233,20 @@ const PostJob = () => {
     useEffect(() => {
         const getState = async () => {
             let response = await getRequest(StatesURL);
-            setCountryState(response.data);
+            setCountryState(response.data.sort());
         }
         const getJobType = async () => {
             let response = await getRequest(getJobTypeURL);
-            setJobTypeData(response.data);
+            setJobTypeData(response.data.sort());
         }
         const getLocalLanguage = async () => {
             let response = await getRequest("https://backend.jobsyahan.com/api/file/findlocallanguage");
-            setLocalLanguageData(response.data[0]['languages']);
+            setLocalLanguageData(response.data[0]['languages'].sort());
         }
 
         const getIndustryType = async () => {
             let response = await getRequest("https://backend.jobsyahan.com/api/file/findindustrydata");
-            setIndustryTypeCollection(response.data);
+            setIndustryTypeCollection(response.data.sort());
         }
         getState();
         getJobType();
@@ -258,7 +258,7 @@ const PostJob = () => {
         // console.log(statefilter);
         let response = await getRequest("https://backend.jobsyahan.com/api/map/districts?states=" + statefilter);
         // console.log(response.data[0].districts);
-        setDistrict(response.data[0].districts);
+        setDistrict(response.data[0].districts.sort());
         // console.log(response);
     }
 
@@ -274,7 +274,7 @@ const PostJob = () => {
             })
         });
         // console.log(SkillsData);
-        setIndustryData(SkillsData);
+        setIndustryData(SkillsData.sort());
     }
     const getAddress = async (value) => {
         let response = await getRequest("https://backend.jobsyahan.com/api/map/autocompleteplaces?input=" + value);
@@ -751,7 +751,10 @@ const PostJob = () => {
                                             <Stack direction="row" gap={5}>
                                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                                                     <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                        <ThemeLabel LableFor="starting_time" sx={{ fontSize: "16px !important" }} LableText="Starting Time" />
+                                                        <Box sx={{
+                                                            margin: "15px 0px"
+                                                        }}> Starting Time </Box>
+                                                        {/* <ThemeLabel LableFor="starting_time" sx={{ fontSize: "16px !important" }} LableText="Starting Time" /> */}
                                                         <TimePicker
                                                             value={startingTime}
                                                             onChange={(newValue) => {
@@ -764,7 +767,10 @@ const PostJob = () => {
 
                                                     </ThemeFInputDiv>
                                                     <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                        <ThemeLabel LableFor="ending_time" LableText="Ending Time" sx={{ fontSize: "16px !important" }} />
+                                                        <Box sx={{
+                                                            margin: "15px 0px"
+                                                        }}>Ending Time</Box>
+                                                        {/* <ThemeLabel LableFor="ending_time" LableText="Ending Time" sx={{ fontSize: "16px !important" }} /> */}
                                                         <TimePicker
                                                             value={endingTime}
                                                             onChange={(newValue) => {

@@ -1,6 +1,8 @@
 /*getting Api Url and sending the data */
 import { getAllPostedJobs } from "../../utils/ApiUrls";
 import { postRequest } from "../../utils/ApiRequests";
+import { useTheme, useMediaQuery } from '@mui/material';
+
 import { Box, Stack, Container, Typography, Divider, Pagination, TextField, AvatarGroup, Avatar, Button } from "@mui/material";
 
 import MessageIcon from '@mui/icons-material/Message';
@@ -23,14 +25,37 @@ import { Chart as ChartJS, registerables } from 'chart.js';
 import { Bar } from 'react-chartjs-2'
 ChartJS.register(...registerables);
 
+
+// import { makeStyles } from "@material-ui/core/styles";
+
+// const useStyles = makeStyles(theme => ({
+//     button: {
+//         color: "white",
+//         [theme.breakpoints.down("xs")]: {
+//             marginTop: theme.spacing(1),
+//             backgroundColor: "purple"
+//         },
+//         [theme.breakpoints.between("sm", "md")]: {
+//             marginTop: theme.spacing(3),
+//             backgroundColor: "blue"
+//         },
+//         "@media (min-width: 1280px)": {
+//             marginTop: theme.spacing(5),
+//             backgroundColor: "red"
+//         }
+//     }
+// }));
+
 const EmployerDashboard = () => {
+    // const theme = useTheme();
+    // const showText = useMediaQuery(theme.breakpoints.up('1200'));
 
     const user = useOutletContext();
     const api_url = useSelector(state => state.api_url);
 
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [dataPerPage, setDataPerPage] = useState(4);
+    const [dataPerPage, setDataPerPage] = useState(2);
     const [dayMessage, setDayMessage] = useState("");
     const DashboardValues = [
         {
@@ -75,7 +100,7 @@ const EmployerDashboard = () => {
         const getpostedjobs = async () => {
             try {
                 let data = await postRequest(getAllPostedJobs);
-                console.log(data);
+                // console.log(data);
                 if (data.status === '0') {
                     setData([])
                 } else {
@@ -133,6 +158,7 @@ const EmployerDashboard = () => {
                 </Box>
 
             </Stack>
+            {/* {showText && <Typography variant="h1">Appear when 600px and above</Typography>} */}
             {/* <Stack direction="column" gap={4} sx={{
                 width: "98%",
                 background: "#FFFFFF",
@@ -170,19 +196,22 @@ const EmployerDashboard = () => {
                     }
                 }}>
 
-                    <Stack sx={{
-                        visibility: { "lg": "visible", "md": "hidden", "xs": "hidden" },
-                        height: { "lg": "fit-content", "md": "0px", "xs": "0px" },
-                        maxWidth: "1500px !important",
-                        background: "#FFFFFF",
-                        border: "1px solid #E1D4F2",
-                        borderRadius: "14px",
+                    <Stack
+                        className="EmployerDashboardInfo"
+                        sx={{
+                            visibility: { "lg": "visible", "md": "hidden", "xs": "hidden" },
+                            height: { "lg": "fit-content", "md": "0px", "xs": "0px" },
+                            maxWidth: "1500px !important",
+                            background: "#FFFFFF",
+                            border: "1px solid #E1D4F2",
+                            borderRadius: "14px",
 
-                    }}>
+                        }}>
 
-                        <Stack gap={2} direction="row" divider={<Divider orientation="vertical" flexItem />}
+                        <Stack
+                            gap={2} direction="row" divider={<Divider orientation="vertical" flexItem />}
                             justifyContent="center" alignItems="center"
-                            sx={{ height: "fit-content", borderRadius: "10px", padding: "30px", flexWrap: "wrap" }}>
+                            sx={{ height: "fit-content", borderRadius: "10px", padding: "30px", flexWrap: "wrap", rowGap: "80px" }}>
 
 
                             <Stack gap={1} sx={{ minWidth: "230px" }}>
@@ -246,10 +275,6 @@ const EmployerDashboard = () => {
                                     Interview schedule for Today
                                 </Typography>
                             </Stack>
-
-
-
-
                         </Stack>
                     </Stack>
 
@@ -283,7 +308,7 @@ const EmployerDashboard = () => {
                             <Stack direction="column" gap={2} sx={{ width: "100%", height: "600" }}>
                                 <Box>
                                     <Box sx={{ margin: "30px 0px" }}>
-                                        <Typography component="span" sx={{ fontSize: "24px", fontWeight: "600" }}>
+                                        <Typography component="span" sx={{ fontSize: "24px", fontWeight: "600", color: "#4E3A67" }}>
                                             Recent Jobs
                                         </Typography>
                                     </Box>
@@ -291,15 +316,25 @@ const EmployerDashboard = () => {
                                         {
                                             jobs.length > 0 ? jobs.map((item) => {
                                                 return (<>
-                                                    <JobComponent key={item.id} data={item} />
+                                                    <JobComponent key={item._id} data={item} data_id={item._id} />
                                                 </>)
                                             })
-                                                : " There is no data present"
+                                                :
+                                                <Typography component="box" sx={{
+                                                    fontSize: "24px",
+                                                    fontWeight: "600",
+                                                    color: "#4E3A67"
+                                                }}>
+                                                    You haven't posted any Job yet.
+                                                </Typography>
+
                                         }
                                     </Stack>
-                                    <Box >
-                                        <Pagination count={data && Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
-                                    </Box>
+                                    {jobs.length > 0 &&
+                                        <Box >
+                                            <Pagination count={data && Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
+                                        </Box>
+                                    }
                                 </Box>
 
                             </Stack>
@@ -344,7 +379,8 @@ const EmployerDashboard = () => {
                                     color: "#4E3A67",
                                     padding: "20px"
                                 }}>
-                                    See Demo on how to scheduled Video Interviews
+                                    {/* See Demo on how to scheduled Video Interviews */}
+                                    There is no interview Scheduled
                                 </Typography>
                             </Box>
 
@@ -354,16 +390,16 @@ const EmployerDashboard = () => {
                                 color: "#4E3A67",
                                 padding: "20px"
                             }}>
-                                Start Interviewing Today
+                                {/* Start Interviewing Today */}
                             </Typography>
 
-                            <Typography component="div" sx={{
+                            {/* <Typography component="div" sx={{
                                 fontSize: "20px",
                                 color: "#4E3A67",
                                 padding: "20px"
                             }}>
                                 Android Developer - Kotlin/Java (4-10 yrs)
-                            </Typography>
+                            </Typography> */}
 
                         </Box>
                     </Stack>

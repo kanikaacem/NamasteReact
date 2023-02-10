@@ -1,13 +1,17 @@
 import { Box, Stack, Typography } from "@mui/material";
 
-const JobComponent = ({ data }) => {
-    console.log(data);
+const JobComponent = ({ data, data_id }) => {
+    // { console.log(data, data_id) }
     return (<>
         <Box sx={{
             background: "#FFFFFF",
             border: " 1px solid #E1D4F2",
             borderRadius: "19px",
-        }}>
+            cursor: "pointer"
+        }}
+            onClick={() => {
+                window.location.href = window.location.origin + '/employer-dashboard/job-description/' + data_id
+            }}>
             <Box >
                 <Stack direction="row" justifyContent="space-between" sx={{ padding: "20px" }}>
                     <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600" }}>

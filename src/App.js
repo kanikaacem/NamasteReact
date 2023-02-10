@@ -42,6 +42,8 @@ import PrivateRoute from "./utils/PrivateRoute";
 import Dashboard from './Pages/Common/Dashboard';
 import JobDescription from './Pages/JobDescription';
 import JobSearch from './ThemeComponent/Common/JobSearch';
+import ContactUs from "./Pages/Common/ContactUs";
+import AboutUs from './Pages/Common/AboutUs';
 
 function App() {
 
@@ -51,6 +53,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home></Home>} />
+          <Route path="/contact-us" element={<ContactUs></ContactUs>} />
+          <Route path="/about-us" element={<AboutUs></AboutUs>} />
 
           <Route path="/forgot-password/employer" element={<ForgotPasswordPage />} />
           <Route path="/reset-password/employer/:token" element={<ResetPasswordPage user="employer" />} />
@@ -66,7 +70,6 @@ function App() {
           <Route path="/profile/:step" element={<CandidateProfile></CandidateProfile>} />
           <Route path="/job" element={<JobSearch></JobSearch>} />
           <Route path="/candidate-new" element={<CandidateDashboard2></CandidateDashboard2>} />
-
 
           <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             <Route path="" element={<EmployerDashboard></EmployerDashboard>} />

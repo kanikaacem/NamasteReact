@@ -1,17 +1,13 @@
-import { Box, Container, Stack, Typography, Snackbar, Alert } from "@mui/material";
-import { useParams } from "react-router-dom";
-import Moment from 'react-moment';
+import { Box } from "@mui/material";
+
+import { useParams, useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import parse from 'html-react-parser';
-
-import CheckIcon from '@mui/icons-material/Check';
-
-import ButtonType2 from "../ThemeComponent/Common/ButtonType2";
+import JobDescriptionComponent from "../ThemeComponent/JobDescriptionComponent";
 
 const JobDescription = () => {
     const { id } = useParams();
-    const user = localStorage.user && JSON.parse(localStorage.user);
+    const user = useOutletContext();
     const [data, setdata] = useState("");
     const [company, setcompany] = useState("");
     const [alreadyApplied, setAlreadyApplied] = useState(false);
@@ -91,8 +87,8 @@ const JobDescription = () => {
 
             }
         }
-        getJobDescription();
-        getSavedAppliedJobs();
+        // getJobDescription();
+        // getSavedAppliedJobs();
 
 
 
@@ -104,7 +100,64 @@ const JobDescription = () => {
     };
 
     return (<>
-        <Snackbar
+        <Box className="JobDescriptionPage"
+            sx={{
+                minHeight: "100vh"
+            }}>
+            <Box className="JobDescriptionContent"
+                sx={{ padding: "100px 20px" }}>
+                <Box
+                    sx={{
+                        display: { "lg": "block", "md": "none", "xs": "none" },
+                        position: "absolute",
+                        height: "320.38px",
+                        left: "0px",
+                        transform: " matrix(-1, 0, 0, 1, 0, 0)",
+                        zIndex: "1"
+                    }}>
+                    <img src={window.location.origin + "/assets/About1.png"} alt="About1" />
+                </Box>
+                <Box sx={{
+                    display: { "lg": "block", "md": "none", "xs": "none" },
+                    position: "absolute",
+                    height: "380px",
+                    top: "805px",
+                    right: "0px",
+                    zIndex: "1"
+                }}>
+                    <img src={window.location.origin + "/assets/About2.png"} alt="About2" />
+                </Box>
+
+                <Box sx={{
+                    maxWidth: "1263px",
+                    margin: "0 auto"
+                }}>
+                    <JobDescriptionComponent userType={user && user.employer_type} />
+
+                </Box>
+
+                {/* <Box sx={{
+                    background: "#FFFFFF",
+                    maxWidth: "1263px",
+                    margin: "0 auto",
+                    border: "1px solid #E1D4F2",
+                    borderRadius: "19px",
+                    minHeight: "1663px",
+                    padding: "60px",
+                    position: "relative",
+                    zIndex: "2"
+                }}>
+
+
+
+
+
+
+                </Box> */}
+
+            </Box>
+        </Box>
+        {/* <Snackbar
             open={savedJobs}
             autoHideDuration={6000} onClose={handleClose}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -135,9 +188,9 @@ const JobDescription = () => {
             </Alert>
 
         </Snackbar>
+ */}
 
-
-        <Box
+        {/* <Box
             className="jobDescriptionPage"
             id={company.id}
             sx={{
@@ -147,7 +200,6 @@ const JobDescription = () => {
             <Container sx={{ height: "inherit", padding: "0px", maxWidth: "1400px !important" }}>
                 <Stack direction="row" gap={3} sx={{
                     minHeight: "150px",
-                    // background: "#2B1E44",
                     background: "#445578",
                     color: "#FFFFFF",
                     padding: "20px"
@@ -262,8 +314,8 @@ const JobDescription = () => {
                                 </Stack>
                             </>}
                         </Box>
-                    </Box>
-                    {/* <Box sx={{ width: "30%", padding: "30px 0px" }}>
+                    </Box> */}
+        {/* <Box sx={{ width: "30%", padding: "30px 0px" }}>
                         <Box sx={{
                             background: "white",
                             borderRadius: "10px",
@@ -273,12 +325,12 @@ const JobDescription = () => {
                             Item3
                         </Box>
                     </Box> */}
-                </Stack>
+        {/* </Stack>
 
 
             </Container>
 
-        </Box>
+        </Box> */}
 
     </>)
 }

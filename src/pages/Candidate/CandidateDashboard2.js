@@ -12,7 +12,7 @@ import { Link, useOutletContext } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
-import JobDescription from "../../ThemeComponent/JobDescription";
+import JobDescription from "../../ThemeComponent/JobDescriptionComponent";
 import RecommendedJobs from "../Home/Component/RecommendedJobs";
 import Filter from "../../ThemeComponent/Filter";
 
@@ -44,56 +44,56 @@ const CandidateDashboard2 = () => {
     }, []);
 
     return (<>
-       <Stack direction="column" gap={2} sx={{margin:"20px 50px"}}>
-       <Stack
-            direction="row"
-            alignItems="center"
-            gap={2} sx={{
-                background: "#FFFFFF",
-                border: "1px solid #E1D4F2",
-                borderRadius: "14px",
-                padding: "20px"
+        <Stack direction="column" gap={2} sx={{ margin: "20px 50px" }}>
+            <Stack
+                direction="row"
+                alignItems="center"
+                gap={2} sx={{
+                    background: "#FFFFFF",
+                    border: "1px solid #E1D4F2",
+                    borderRadius: "14px",
+                    padding: "20px"
+                }}>
+                <Box>
+                    <img src={window.location.origin + "/assets/Morning.png"} alt="Morning" />
+                </Box>
+                <Typography component="box" sx={{
+                    fontSize: "24px",
+                    fontFamily: "Montserrat",
+                    fontWeight: "700",
+                    color: "#4E3A67"
+                }}>
+                    Good Morning, Sarika !
+                </Typography>
+
+            </Stack>
+            <Stack direction="column" sx={{
+                padding: "0px 10px"
             }}>
-            <Box>
-                <img src={window.location.origin + "/assets/Morning.png"} alt="Morning" />
-            </Box>
-            <Typography component="box" sx={{
-                fontSize: "24px",
-                fontFamily: "Montserrat",
-                fontWeight: "700",
-                color: "#4E3A67"
-            }}>
-                Good Morning, Sarika !
-            </Typography>
+                <Stack direction="row" gap={1} sx={{ minHeight: `calc(100vh-70px)` }}>
 
-        </Stack>
-        <Stack direction="column" sx={{
-            padding: "0px 10px"
-        }}>
-            <Stack direction="row" gap={1} sx={{ minHeight: `calc(100vh-70px)` }}>
-
-                <Box sx={{ width: "20%" }}>
-                    <Filter/>
-                </Box>
+                    <Box sx={{ width: "20%" }}>
+                        <Filter />
+                    </Box>
 
 
-                <Box sx={{ width: "40%", padding: "0px 10px", minHeight: "100vh" }}>
-                    <RecommendedJobs></RecommendedJobs>
-                </Box>
-                <Box sx={{ width: "50%", padding: "0px 10px" }}>
-                  <JobDescription/>
-                </Box>
+                    <Box sx={{ width: "40%", padding: "0px 10px", minHeight: "100vh" }}>
+                        <RecommendedJobs></RecommendedJobs>
+                    </Box>
+                    <Box sx={{ width: "50%", padding: "0px 10px" }}>
+                        <JobDescription />
+                    </Box>
+
+
+                </Stack>
+
+
+
+
 
 
             </Stack>
-
-
-
-
-
-
         </Stack>
-       </Stack>
     </>)
 }
 

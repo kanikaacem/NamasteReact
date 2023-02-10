@@ -365,7 +365,9 @@ textarea {
 }
 
 /* Post job */
-.PostJobPage {
+.JobDescriptionPage,
+.PostJobPage,
+.AppliedCandidatePage {
   background: linear-gradient(231.41deg, #FDFCFF 13.04%, #FAF7FE 57.79%);
 }
 
@@ -952,4 +954,11 @@ textarea {
 #mui-component-select-job_type,
 #mui-component-select-industry_type {
   border-bottom: none;
+}
+
+.Mui-selected {
+  font-weight: 700 !important;
+  width: max-content;
+  color: #4E3A67 !important;
+  border-bottom: none !important
 }

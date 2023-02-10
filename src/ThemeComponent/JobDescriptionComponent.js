@@ -1,40 +1,40 @@
-import { Box, Stack, Typography} from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
-import {ThemeButtonType2} from "../utils/Theme";
-const JobDescription= () =>{
+import { ThemeButtonType2 } from "../utils/Theme";
+const JobDescriptionComponent = ({ userType }) => {
     return (<>
-     <Stack 
-     direction="column"
-     gap={3}
-        sx={{
-            background: "#FFFFFF",
-            border: " 1px solid #E1D4F2",
-            borderRadius: "19px",
-            padding:"20px"
-        }}>
-            
-           <Stack direction="row" gap={2}>
-            <img src={window.location.origin+"/assets/ActivelyHiring.png"} alt="Active Hiring"/>
-            <Typography component="box" sx={{
-                fontSize: "16ox",
-                fontFamily: "Montserrat",
-                color: "#4E3A67"
+        <Stack
+            direction="column"
+            gap={3}
+            sx={{
+                background: "#FFFFFF",
+                border: " 1px solid #E1D4F2",
+                borderRadius: "19px",
+                padding: "20px"
             }}>
-                Active Hiring
-            </Typography>
-            </Stack> 
 
-            <Stack direction="column" gap={1} sx={{margin:"30px 0px"}}>
-            <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600",color:"#4E3A67" }}>
-                Linux Solution Engineer
-            </Typography>
-
-            <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600" ,color:"#BDB5C7" }}>
-                Vays Infotech Private Limited
-            </Typography>
+            <Stack direction="row" gap={2}>
+                <img src={window.location.origin + "/assets/ActivelyHiring.png"} alt="Active Hiring" />
+                <Typography component="box" sx={{
+                    fontSize: "16ox",
+                    fontFamily: "Montserrat",
+                    color: "#4E3A67"
+                }}>
+                    Active Hiring
+                </Typography>
             </Stack>
 
-            
+            <Stack direction="column" gap={1} sx={{ margin: "30px 0px" }}>
+                <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600", color: "#4E3A67" }}>
+                    Linux Solution Engineer
+                </Typography>
+
+                <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#BDB5C7" }}>
+                    Vays Infotech Private Limited
+                </Typography>
+            </Stack>
+
+
             <Stack direction="row" gap={2} sx={{ flexWrap: "wrap" }}>
                 <Stack direction="row" sx={{
                     background: "#FFFFFF",
@@ -100,86 +100,86 @@ const JobDescription= () =>{
                         Graduate
                     </Typography>
                 </Stack>
-            </Stack> 
+            </Stack>
 
-            <Stack direction="row" justifyContent="space-between" sx={{margin:"20px 0px"}}>
+            <Stack direction="row" justifyContent="space-between" sx={{ margin: "20px 0px" }}>
                 <Stack direction="row" gap={2} alignItems="center" justifyContent="center" >
-                    <img height="20px" src={window.location.origin+"/assets/AppliedCandidate.png"} alt="Applied Candidate"/>
+                    <img height="20px" src={window.location.origin + "/assets/AppliedCandidate.png"} alt="Applied Candidate" />
                     <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-                    50 Applicants  
+                        50 Applicants
                     </Typography>
                 </Stack>
 
                 <Stack direction="row" gap={2} alignItems="center" justifyContent="center" >
-                    <img height="20px" src={window.location.origin+"/assets/BookMark.png"} alt="Book Mark"/>
-                    <img height="20px" src={window.location.origin+"/assets/Share.png"} alt="Share"/>
+                    <img height="20px" src={window.location.origin + "/assets/BookMark.png"} alt="Book Mark" />
+                    <img height="20px" src={window.location.origin + "/assets/Share.png"} alt="Share" />
                 </Stack>
             </Stack>
 
-            <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600",color:"#4E3A67" }}>
-            Vays Infotech Private Limited
+            <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600", color: "#4E3A67" }}>
+                Vays Infotech Private Limited
             </Typography>
 
-            <Stack direction="row" gap={2} sx={{color:"#EB6F4B"}} alignItems="center" >
-            <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-            Website 
-            </Typography>
-                <img src={window.location.origin+"/assets/Website.png"} height="20px" alt="Website"/>
+            <Stack direction="row" gap={2} sx={{ color: "#EB6F4B" }} alignItems="center" >
+                <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                    Website
+                </Typography>
+                <img src={window.location.origin + "/assets/Website.png"} height="20px" alt="Website" />
             </Stack>
 
-            <Typography component="div" sx={{ fontSize: "20px",lineHeight:'1.5'  }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+            <Typography component="div" sx={{ fontSize: "20px", lineHeight: '1.5' }}>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                 when an unknown printer took a galley of type.
 
                 And scrambled it to make a type specimen book.
-                 It has survived not only five centuries, but also the leap into 
-                 electronic typesetting, remaining essentially unchanged. 
+                It has survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged.
             </Typography>
 
             <Box sx={{
-                background: "#9C9C9C",
-                padding:"20px",
-                borderRadius:"11px"
+                background: "#E9DFF7",
+                padding: "20px",
+                borderRadius: "11px"
             }}>
-                <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600" ,color:"#4E3A67"}}>
-                Activity On JobsYahan 
+                <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
+                    Activity On JobsYahan
                 </Typography>
 
                 <Stack direction="row" justifyContent="space-between" >
-                    <Stack direction="row" gap={2}  alignItems="center">
-                        <img src={window.location.origin+"/assets/Timeline.png"}  height="20px"alt="Timeline"/>
-                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600",color:"#4E3A67" }}>
-                        Hiring since January 2022
+                    <Stack direction="row" gap={2} alignItems="center">
+                        <img src={window.location.origin + "/assets/Timeline.png"} height="20px" alt="Timeline" />
+                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
+                            Hiring since January 2022
                         </Typography>
                     </Stack>
                     <Stack direction="row" gap={2} alignItems="center">
-                        <img src={window.location.origin+"/assets/Suitcase.png"}  height="20px" alt="Suitcase"/>
-                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600",color:"#4E3A67" }}>
-                        16 Job Opportunities Posted
+                        <img src={window.location.origin + "/assets/Suitcase.png"} height="20px" alt="Suitcase" />
+                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
+                            16 Job Opportunities Posted
                         </Typography>
                     </Stack>
-                   
+
                 </Stack>
 
             </Box>
 
-            <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600",color:"#4E3A67" }}>
-            About the Job
+            <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600", color: "#4E3A67" }}>
+                About the Job
             </Typography>
 
-            <Typography component="div" sx={{ fontSize: "20px",lineHeight:'1.5'  }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+            <Typography component="div" sx={{ fontSize: "20px", lineHeight: '1.5' }}>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                 when an unknown printer took a galley of type.
 
                 And scrambled it to make a type specimen book.
-                 It has survived not only five centuries, but also the leap into 
-                 electronic typesetting, remaining essentially unchanged. 
+                It has survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged.
             </Typography>
 
-            <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600",color:"#4E3A67" }}>
-            Skill(s) Required
+            <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600", color: "#4E3A67" }}>
+                Skill(s) Required
             </Typography>
 
             <Stack direction="row" gap={2} sx={{ flexWrap: "wrap" }}>
@@ -192,7 +192,7 @@ const JobDescription= () =>{
                     alignItems: "center",
                     justifyContent: "center"
                 }}>
-                  
+
                     <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
                         Python
                     </Typography>
@@ -207,19 +207,19 @@ const JobDescription= () =>{
                     alignItems: "center",
                     justifyContent: "center"
                 }}>
-                  
+
                     <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
                         Kotlin
                     </Typography>
                 </Stack>
-               
-            </Stack> 
-            
-            <ThemeButtonType2 type="button" > Apply Now</ThemeButtonType2>
 
-       
-     </Stack>
+            </Stack>
+
+            {userType !== "employer" && <ThemeButtonType2 type="button" > Apply Now</ThemeButtonType2>}
+
+
+        </Stack>
     </>)
 }
 
-export default JobDescription ;
+export default JobDescriptionComponent;
