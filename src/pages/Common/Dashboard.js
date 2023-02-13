@@ -52,7 +52,7 @@ const Dashboard = () => {
 
                 {userInformation && userInformation.employer_type == "employer" && (<>
                     <Stack direction="row" gap={3} sx={{ height: "50px", padding: "20px 50px", alignItems: "center", justifyContent: "space-between" }}>
-                        <Box sx={{ width: "15%" }}>
+                        <Box sx={{ maxWidth: "15%" }}>
                             <Box sx={{ width: "fit-content", marginTop: "10px", height: "50px" }} >
                                 {/* <Link to="/">
                                     <img src={window.location.origin + "/assets/companyLogo.png"} width="100%" height="100%" alt="companyLogo" />
@@ -61,7 +61,7 @@ const Dashboard = () => {
                             </Box>
                         </Box>
                         <Box direction="row" sx={{
-                            width: "70%",
+                            width: "75%",
                             display: { "lg": "block", "md": "block", "xs": "none" }
                         }}>
                             <List sx={{ display: "flex" }}>
@@ -76,7 +76,7 @@ const Dashboard = () => {
                                             <ListItemText
                                                 disableTypography
                                                 sx={{
-                                                    fontSize: { "lg": "20px !important", "md": "16px !important" }, color: "#4E3A67"
+                                                    fontSize: { "lg": `20px !important`, "md": "16px !important" }, color: "#4E3A67"
                                                 }}
                                                 className={EmployeeMenuSelected === item.value && "EmployeeMenuSelected"} primary={item.MenuName} />
                                         </ListItem>
@@ -84,7 +84,7 @@ const Dashboard = () => {
                                 })}
                             </List>
                         </Box>
-                        <Stack direction="row" gap={3} justifyContent="flex-end" alignItems="center" sx={{ width: "15%" }}>
+                        <Stack direction="row" gap={3} justifyContent="flex-end" alignItems="center" sx={{ maxWidth: "10%" }}>
                             <Box sx={{
                                 display: { "lg": "none", "md": "none", "xs": "block" },
                                 position: "relative"

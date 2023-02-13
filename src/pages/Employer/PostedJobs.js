@@ -145,7 +145,7 @@ const PostedJobs = () => {
     }, []);
 
     return (<>
-        <Stack direction="row" sx={{ padding: "20px" }}>
+        <Stack direction="row" sx={{ padding: "20px" }} className="PostedJobPage" gap={2}>
             <Stack sx={{ width: "80%" }} gap={1}>
                 <Stack direction="row" justifyContent="space-between">
                     <Select
@@ -165,9 +165,7 @@ const PostedJobs = () => {
                             <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
                         )}
                     </Select>
-                    <Box>
-                        <ButtonType2 ButtonText="Post a Job" ClickEvent={() => window.location.href = window.location.origin + "/employer-dashboard/post-a-job"}></ButtonType2>
-                    </Box>
+
                 </Stack>
                 <Box sx={{ height: 500, width: '100%' }}>
                     {jobData && <DataGrid
@@ -183,8 +181,6 @@ const PostedJobs = () => {
                 </Box>
             </Stack>
             <Box sx={{ width: "20%" }}>
-                <ChatAssistant />
-                <ChatComponent />
                 <ChatComponent />
             </Box>
         </Stack>

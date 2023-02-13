@@ -22,6 +22,7 @@ import RecommendedJobs from "../Home/Component/RecommendedJobs";
 import SocialMedia from "../../ThemeComponent/Common/SocialMedia";
 
 import { Chart as ChartJS, registerables } from 'chart.js';
+import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
 import { Bar } from 'react-chartjs-2'
 ChartJS.register(...registerables);
 
@@ -184,7 +185,7 @@ const EmployerDashboard = () => {
 
                 </Stack>
             </Stack> */}
-            <Stack direction="row" gap={4}
+            <Stack direction="row" gap={2}
                 sx={{
                     flexWrap: "wrap"
                 }}>
@@ -192,7 +193,7 @@ const EmployerDashboard = () => {
                 <Stack direction="column" gap={2} sx={{
                     width: {
                         "lg":
-                            `calc(100vw - 451px)`, "md": "100%", "xs": "100%"
+                            `calc(100vw - 412px)`, "md": "100%", "xs": "100%"
                     }
                 }}>
 
@@ -515,17 +516,18 @@ const EmployerDashboard = () => {
                     gap: "12px"
                 }}>
                     <Stack sx={{
-                        background: "#FFFFFF",
-                        border: " 1px solid #E1D4F2",
-                        borderRadius: "14px",
-                        padding: "20px",
-                        minHeight: "300px",
-                        textAlign: "center",
-                        justifyContent: "center",
-                        width: "100%"
-                        // minwidth: "300px"
+                        minWidth: "300px"
+                        // background: "#FFFFFF",
+                        // border: " 1px solid #E1D4F2",
+                        // borderRadius: "14px",
+                        // padding: "20px",
+                        // minHeight: "300px",
+                        // textAlign: "center",
+                        // justifyContent: "center",
+                        // width: "100%"
+                        // // minwidth: "300px"
                     }}>
-                        No Chats
+                        <ChatComponent />
                     </Stack>
 
                     <Stack direction="column"

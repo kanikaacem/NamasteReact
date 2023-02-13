@@ -6,7 +6,7 @@ const ChatComponent = () => {
             sx={{
                 padding: "20px",
                 boxSizing: "border-box",
-                width: "393px",
+                width: "100%",
                 background: "#FFFFFF",
                 border: "1px solid #E1D4F2",
                 borderRadius: "19px"
@@ -30,8 +30,14 @@ const ChatComponent = () => {
 
             </Stack>
             <hr></hr>
-            <Stack direction="column" gap={2} className="Chats">
-                <Stack direction="row" gap={2}
+            <Stack direction="column" gap={2} className="Chats"
+                sx={{
+                    minHeight: "200px",
+                    alignItems: "center",
+                    justifyContent: "center"
+                }}>
+                No Chat Presents
+                {/* <Stack direction="row" gap={2}
                     sx={{ width: "100%" }}>
                     <Box
                         sx={{
@@ -181,9 +187,6 @@ const ChatComponent = () => {
                         </Typography>
                     </Box>
                 </Stack>
-
-
-
                 <Button
                     sx={{
                         background: "#F7F0FF",
@@ -196,7 +199,7 @@ const ChatComponent = () => {
                             borderRadius: "9px",
                             color: "#4E3A67"
                         }
-                    }}> See All</Button>
+                    }}> See All</Button> */}
             </Stack>
         </Stack>
         {/* <Box>

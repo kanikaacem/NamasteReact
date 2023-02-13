@@ -18,7 +18,7 @@ const WhyJobYahan = () => {
                     "md": "100px 0px  100px 0px",
                     "xs": "100px 0px  100px 0px"
                 },
-                width: { "lg": `calc(100vw - 52%)`, "md": "100%", "xs": "100%" },
+                width: { "lg": `calc(100vw - 55%)`, "md": "100%", "xs": "100%" },
                 background: "#FFFFFF",
                 color: "#445578",
                 padding: "100px",
@@ -32,7 +32,7 @@ const WhyJobYahan = () => {
                 <Typography component="span"
                     sx={{
                         display: "block",
-                        fontSize: { lg: "96px", md: "50px", xs: "50px" },
+                        fontSize: { lg: "90px", md: "50px", xs: "50px" },
                         color: "#2B1E44",
                         fontWeight: "600",
 
@@ -41,7 +41,7 @@ const WhyJobYahan = () => {
                 </Typography>
                 <Typography component="span"
                     sx={{
-                        fontSize: { lg: "96px", md: "50px", xs: "50px" },
+                        fontSize: { lg: "90px", md: "50px", xs: "50px" },
                         color: "#2B1E44",
                         fontWeight: "600",
 
@@ -49,7 +49,7 @@ const WhyJobYahan = () => {
                     Jobs
                     <Typography component="span"
                         sx={{
-                            fontSize: { lg: "96px", md: "50px", xs: "50px" },
+                            fontSize: { lg: "90px", md: "50px", xs: "50px" },
                             color: "#2B1E44"
                         }}>
                         Yahan
