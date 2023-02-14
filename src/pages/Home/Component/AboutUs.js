@@ -107,7 +107,7 @@ const AboutUs = () => {
                         <Typography component="span"
                             sx={{
                                 display: "block",
-                                fontSize: "50px",
+                                fontSize: { "lg": "50px", "md": "50px", "xs": "24px" },
                                 color: "#2B1E44",
                                 fontWeight: "600",
                                 margin: "0px",
@@ -117,7 +117,7 @@ const AboutUs = () => {
                         <Typography component="h2"
                             sx={{
                                 margin: '0px',
-                                fontSize: "24px",
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
                                 margin: "10px 0px",
                                 fontWeight: "600",
                                 color: "#3A2D49"
@@ -129,7 +129,7 @@ const AboutUs = () => {
                             sx={{
                                 color: "#3A2D49",
                                 lineHeight: "1.5",
-                                fontSize: "24px"
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" }
                             }}>
                             A disruptor in job search and a strong contributor to India’s growth define JobsYahaan.
                             What sets us apart is that we offer work opportunities to all including those unsung heroes
@@ -137,7 +137,7 @@ const AboutUs = () => {
                             <Typography component="span"
                                 sx={{
                                     color: "#FC9A7E",
-                                    fontSize: "24px"
+                                    fontSize: { "lg": "24px", "md": "24px", "xs": "18px" }
                                 }}>
                                 More.
                             </Typography>

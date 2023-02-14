@@ -18,7 +18,7 @@ const AllJobCategories = () => {
                     width: {
                         "lg": `300px`,
                         "md": "400px",
-                        "xs": "500px"
+                        "xs": "378px"
                     }
                 }}>
                 <Stack gap={2}>
@@ -40,7 +40,7 @@ const AllJobCategories = () => {
                 width: {
                     "lg": `300px`,
                     "md": "400px",
-                    "xs": "500px"
+                    "xs": "378px"
                 }
             }}>
                 <Stack gap={2}>
@@ -63,7 +63,7 @@ const AllJobCategories = () => {
                     width: {
                         "lg": `300px`,
                         "md": "400px",
-                        "xs": "500px"
+                        "xs": "378px"
                     }
                 }} >
                 <Stack gap={2}>
@@ -86,7 +86,7 @@ const AllJobCategories = () => {
                     width: {
                         "lg": `300px`,
                         "md": "400px",
-                        "xs": "500px"
+                        "xs": "378px"
                     }
                 }} >
                 <Stack gap={2}>

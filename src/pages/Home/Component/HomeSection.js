@@ -21,7 +21,7 @@ const HomeSection = () => {
                         color: "#2B1E44",
                         textAlign: "center",
                         fontWeight: "700",
-                        fontSize: { "lg": '70px', "md": "70px", "xs": "70px" },
+                        fontSize: { "lg": '70px', "md": "70px", "xs": "40px" },
                         maxWidth: "1300px",
                         lineHeight: "1.0",
                         zIndex: "1",

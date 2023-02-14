@@ -18,10 +18,10 @@ const WhyJobYahan = () => {
                     "md": "100px 0px  100px 0px",
                     "xs": "100px 0px  100px 0px"
                 },
-                width: { "lg": `calc(100vw - 55%)`, "md": "100%", "xs": "100%" },
+                width: { "lg": `calc(100vw - 55%)`, "md": "100%", "xs": "95%" },
                 background: "#FFFFFF",
                 color: "#445578",
-                padding: "100px",
+                padding: { "lg": "100px", "md": "100px", "xs": "50px" },
                 borderRadius: "10px",
                 fontsize: "25px",
                 boxSizing: "border-box",
@@ -75,7 +75,7 @@ const WhyJobYahan = () => {
                 // top: "120px"
             }}>
                 <Box sx={{
-                    width: "600px"
+                    maxWidth: "600px"
                 }}>
                     <img src={window.location.origin + "/assets/g4.png"} alt="g4" width="100%" height="100%" />
                 </Box>

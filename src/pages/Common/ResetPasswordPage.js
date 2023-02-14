@@ -59,45 +59,56 @@ const ResetPasswordPage = ({ user }) => {
                 <HeaderSec
                     color="black"
                     border="2px solid #8E8E8E" />
-                <Stack direction="row" gap={2} sx={{ height: "100%" }} >
-                    <Stack direction="column" alignItems="center" justifyContent="center" gap={3} sx={{ width: "50%", padding: "20px" }}>
-                        <Box>
-                            <Typography component="box" sx={{
-                                fontSize: "64px",
-                                fontFamily: "Work Sans, sans-serif",
-                                fontWeight: "700",
-                                color: "#4E3A67",
-                                display: "block",
-                                lineHeight: "40px"
-                            }}>
-                                Forgot
-
+                <Stack direction="row" gap={2}
+                    sx={{
+                        margin: { "lg": "100px 0px", "md": "100px 0px", "xs": "20px 0px" }
+                    }} >
+                    <Box
+                        sx={{
+                            width: "50%",
+                            padding: "20px",
+                            display: { "lg": "block", "md": "block", "xs": "none" }
+                        }}>
+                        <Stack direction="column" alignItems="center" justifyContent="center" gap={3} >
+                            <Box>
                                 <Typography component="box" sx={{
-                                    fontSize: "64px",
+                                    fontSize: { "lg": "64px", "md": "50px", "xs": "50px" },
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "700",
                                     color: "#4E3A67",
-                                    display: "block"
+                                    display: "block",
+                                    lineHeight: "40px"
                                 }}>
-                                    Password ?
+                                    Forgot
+
+                                    <Typography component="box" sx={{
+                                        fontSize: { "lg": "64px", "md": "50px", "xs": "50px" },
+                                        fontFamily: "Work Sans, sans-serif",
+                                        fontWeight: "700",
+                                        color: "#4E3A67",
+                                        display: "block"
+                                    }}>
+                                        Password ?
+                                    </Typography>
                                 </Typography>
-                            </Typography>
-                        </Box>
-                        <Box sx={{ width: "500px", height: "500px" }}>
-                            <img src={window.location.origin + "/assets/ForgotPassword.png"} width="100%" height="100%" alt="Forgot Password" />
-                        </Box>
-                    </Stack>
-                    <Box sx={{ width: "50%", padding: "20px" }}>
+                            </Box>
+                            <Box sx={{ width: "400px", height: "400px" }}>
+                                <img src={window.location.origin + "/assets/ForgotPassword.png"} width="100%" height="100%" alt="Forgot Password" />
+                            </Box>
+                        </Stack>
+                    </Box>
+                    <Box sx={{
+                        width: { "lg": "50%", "md": "50%", "xs": "100%" },
+                        padding: "20px"
+                    }}>
                         <Box
                             sx={{
                                 boxSizing: "border-box",
-                                width: "865px",
-                                height: "647",
+                                // maxWidth: "865px",
+                                minHeight: "647",
                                 background: "#FFFFFF",
                                 border: "1px solid #EDEDED",
                                 borderRadius: "19px",
-                                position: "absolute",
-                                top: "197px",
                                 padding: "30px 50px",
                                 paddingBottom: "100px"
                             }}>

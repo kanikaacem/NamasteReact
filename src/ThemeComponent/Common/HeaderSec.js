@@ -59,6 +59,8 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                         () => {
                             if (buttonText === 'Employer login')
                                 window.location.href = window.location.origin + "/employer-login"
+                            else
+                                window.location.href = window.location.origin + "/about-us"
                         }
                     }
                     sx={{
