@@ -82,3 +82,11 @@ export const CompanyUpdateInformationSchema = yup.object().shape({
     company_address: yup.string().required("Company Address is required"),
     // company_gst_number: yup.string().required("GST Number is required")
 })
+
+
+//Contact Us Form Validation
+export const contactUsValidationSchema = yup.object().shape({
+    name: yup.string().required("Name  is required"),
+    mobile_number: yup.string().required("Mobile number is required").matches(phoneRegExp, 'Mobile number is not valid'),
+    message: yup.string().required("Message  is required")
+})

@@ -1,36 +1,54 @@
-import { Box, Stack, Button } from '@mui/material';
-import { cities, Experience, SalaryCTC } from "../utils/Data";
+import { HomeCities } from '../utils/ApiUrls';
+import { getRequest } from "../utils/ApiRequests";
 
-import SearchIcon from '@mui/icons-material/Search';
+import { Box, Stack, Button, Autocomplete, TextField } from '@mui/material';
+import { Experience, SalaryCTC } from "../utils/Data";
+
 import CustomizeSelect from "../ThemeComponent/CustomizeSelect";
-import { ThemeButtontype1 } from '../utils/Theme';
-import { useRef } from 'react';
+import Error from './Common/Error';
+import { useEffect, useRef, useState } from 'react';
 const SearchBar = () => {
     const searchRef = useRef(null);
     const cityRef = useRef(null);
     const experienceRef = useRef(null);
     const ctcRef = useRef(null);
+    const [cities, setCities] = useState([]);
+    const [searchError, setSearchError] = useState(false);
+    // const top100Films = ["hello ", "mongodb"];
 
     const searchJob = () => {
         let searchValue = searchRef.current.value;
-        let cityValue = document.querySelector("#city").textContent;
-        let experienceValue = document.querySelector("#experience").textContent;
-        let ctcValue = document.querySelector("#ctc").textContent;
-        // if (searchValue != "")
-        //     path = searchValue;
+        console.log(searchValue)
+        // let cityValue = document.querySelector("#city").textContent;
+        // let experienceValue = document.querySelector("#experience").textContent;
+        // let ctcValue = document.querySelector("#ctc").textContent;
+        if (searchValue === "")
+            setSearchError(true);
+        else
+            window.location.href = window.location.origin + "/job?name=" + searchValue;
         // elif(cityValue != "")
         //     path = searchValue+"-"+cityValue;
         // elif(experienceValue != "")
         //     path = 
         // elif(ctcValue != "")
         // else path = "/job";
-        window.location.href = window.location.origin + "/job";
+
         // console.log(searchValue, cityValue, experienceValue, ctcValue)
         // let cityValue = cityRef.current.value;
         // let experienceValue = experienceRef.current.value;
         // let ctcValue = ctcRef.current.value;
         // console.log(searchValue, cityValue, experienceValue, ctcValue);
     }
+    useEffect(() => {
+        const getCities = async () => {
+            let data = await getRequest(HomeCities);
+            if (data.status === '1')
+                setCities(data.data.sort());
+
+        }
+        getCities();
+
+    }, []);
     return (<>
         <Box
             sx={{
@@ -57,13 +75,16 @@ const SearchBar = () => {
                     padding: { "lg": " 10px 20px", "md": "20px", "xs": "20px" },
                 }}
             >
-                <Stack direction="row" gap={1} sx={{
+                <Stack direction="column" gap={1} sx={{
                     width: { "lg": "500px", "md": "100%", "xs": "100%" }
                 }}>
                     {/* <SearchIcon></SearchIcon> */}
                     <input
-
+                        style={{
+                            width: "100%"
+                        }}
                         type="text" ref={searchRef} placeholder="Search" className='Search' />
+
                 </Stack>
 
                 <Box
@@ -74,7 +95,28 @@ const SearchBar = () => {
                         width: { "lg": "238px", "md": "100%", "xs": "100%" },
                         padding: "0px 10px"
                     }}>
-                    <CustomizeSelect ref={cityRef} placeholder="City" id_data="city" data={cities} />
+                    {/* <CustomizeSelect ref={cityRef} placeholder="City" id_data="city" data={cities} /> */}
+                    <Autocomplete
+                        disablePortal
+                        id="combo-box-demo"
+                        options={cities}
+                        // sx={{ width: 300 }}
+                        sx={{
+                            // border: "1px solid blue",
+                            "& .MuiOutlinedInput-root": {
+                                // border: "1px solid yellow",
+                                borderRadius: "0",
+                                padding: "2px",
+                                border: "none"
+                            },
+                            "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                                border: "none"
+                            }
+                        }}
+                        renderInput={(params) => <TextField
+                            placeholder='Cities'
+                            {...params} />}
+                    />
                 </Box>
 
                 <Box
@@ -117,6 +159,8 @@ const SearchBar = () => {
                     <img src={window.location.origin + "/assets/g2.png"} alt="g2" />
                 </Button>
             </Stack>
+            {searchError && <Box sx={{ margin: "10px 0px" }}>
+                <Error text="Please select atleast one value" /></Box>}
         </Box >
 
         {/* <Box

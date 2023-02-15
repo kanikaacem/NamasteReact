@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { ThemeFInputDiv } from "../../utils/Theme";
 
 import ThemeLabel from "../ThemeForms/ThemeLabel";
+import SearchBar from "../SearchBar";
 import CompanyLogo from "./CompanyLogo";
 import { EmployerMenu, cities } from "../../utils/Data";
 
@@ -13,15 +14,15 @@ import { useState, useEffect } from "react";
 
 import Filter from "../Filter"
 const JobSearch = () => {
-   
+
     const [city, setCity] = useState(" ");
-    const [jobType,setJobType] = useState(" ");
+    const [jobType, setJobType] = useState(" ");
     const [state, setState] = useState(" ");
 
-    const searchJob = () =>{
+    const searchJob = () => {
 
     }
-   
+
     return (<>
         <Box className="jobSearchPage"
             sx={{ background: "#FAFAFA" }}>
@@ -32,7 +33,7 @@ const JobSearch = () => {
             </Box>
 
 
-            <Box
+            {/* <Box
                 sx={{
                     display: "flex",
                     flexDirection: "column",
@@ -80,13 +81,13 @@ const JobSearch = () => {
                         <img src={window.location.origin + "/assets/g2.png"} alt="g2" />
                     </Button>
                 </Stack>
-            </Box>
-
-            <Stack direction="row" gap={2} sx={{ marginTop: "30px",padding:"30px" }}>
+            </Box> */}
+            <SearchBar />
+            <Stack direction="row" gap={2} sx={{ marginTop: "30px", padding: "30px" }}>
                 <Box sx={{
-                    width:"30%"
+                    width: "30%"
                 }}>
-                     <Filter/>
+                    <Filter />
                 </Box>
                 <Box sx={{ width: "70%" }}>
                     <RecommendedJobs></RecommendedJobs>

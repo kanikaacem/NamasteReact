@@ -1,6 +1,12 @@
 import { Box, Stack, Typography, Modal } from "@mui/material";
 import { ThemeButtonType2 } from "../../utils/Theme";
 const ThemeMessage = ({ open, setOpen, message, type }) => {
+    const handleClose = () => {
+        if (window.location.pathname === '/forgot-password/employer')
+            window.location.href = window.location.origin + "/employer-login";
+        else
+            setOpen(false)
+    }
     return (<>
         <div className="ThemeMessage" >
             <Modal
@@ -34,7 +40,7 @@ const ThemeMessage = ({ open, setOpen, message, type }) => {
                         {message}
                     </Typography>
                     <ThemeButtonType2
-                        onClick={() => setOpen(false)}
+                        onClick={handleClose}
                         variant="contained" type="button" sx={{ width: "fit-content", fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>OK</ThemeButtonType2>
                 </Stack>
             </Modal>

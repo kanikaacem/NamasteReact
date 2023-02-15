@@ -1,6 +1,6 @@
 /*getting Api Url and sending the data */
-import { getAllPostedJobs } from "../../utils/ApiUrls";
-import { postRequest } from "../../utils/ApiRequests";
+import { getAllPostedJobs, EmployerDashboardDetailsCount } from "../../utils/ApiUrls";
+import { postRequest, getRequest } from "../../utils/ApiRequests";
 import { useTheme, useMediaQuery } from '@mui/material';
 
 import { Box, Stack, Container, Typography, Divider, Pagination, TextField, AvatarGroup, Avatar, Button } from "@mui/material";
@@ -26,35 +26,11 @@ import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
 import { Bar } from 'react-chartjs-2'
 ChartJS.register(...registerables);
 
-
-// import { makeStyles } from "@material-ui/core/styles";
-
-// const useStyles = makeStyles(theme => ({
-//     button: {
-//         color: "white",
-//         [theme.breakpoints.down("xs")]: {
-//             marginTop: theme.spacing(1),
-//             backgroundColor: "purple"
-//         },
-//         [theme.breakpoints.between("sm", "md")]: {
-//             marginTop: theme.spacing(3),
-//             backgroundColor: "blue"
-//         },
-//         "@media (min-width: 1280px)": {
-//             marginTop: theme.spacing(5),
-//             backgroundColor: "red"
-//         }
-//     }
-// }));
-
 const EmployerDashboard = () => {
-    // const theme = useTheme();
-    // const showText = useMediaQuery(theme.breakpoints.up('1200'));
-
     const user = useOutletContext();
-    const api_url = useSelector(state => state.api_url);
 
     const [data, setData] = useState([]);
+    const [jobInfo, setJobInfo] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage, setDataPerPage] = useState(2);
     const [dayMessage, setDayMessage] = useState("");
@@ -116,7 +92,15 @@ const EmployerDashboard = () => {
 
         };
 
+        const getJobInfo = async () => {
+            let data = await getRequest(EmployerDashboardDetailsCount);
+            if (data.status === '1') {
+                setJobInfo(data.data.alldata)
+            }
+        }
+
         getpostedjobs();
+        getJobInfo();
 
     }, []);
 
@@ -218,7 +202,7 @@ const EmployerDashboard = () => {
                             <Stack gap={1} sx={{ minWidth: "230px" }}>
                                 <Stack direction="row" justifyContent="space-between">
                                     <Typography component="div" sx={{ fontSize: "40px", color: "#4E3A67", fontWeight: "700" }}>
-                                        {data ? data.length : '0'}
+                                        {jobInfo && jobInfo.allposted_jobscount}
                                     </Typography>
                                     <img src={window.location.origin + "/assets/V1.png"} alt="V1" height="35px" />
 
@@ -230,7 +214,7 @@ const EmployerDashboard = () => {
                             <Stack gap={1} sx={{ minWidth: "230px" }}>
                                 <Stack direction="row" justifyContent="space-between">
                                     <Typography component="div" sx={{ fontSize: "40px", color: "#4E3A67", fontWeight: "700" }}>
-                                        0
+                                        {jobInfo && jobInfo.all_saved_candidate}
                                     </Typography>
                                     <img src={window.location.origin + "/assets/V2.png"} alt="V2" height="35px" />
 
@@ -242,7 +226,7 @@ const EmployerDashboard = () => {
                             <Stack gap={1} sx={{ minWidth: "230px" }}>
                                 <Stack direction="row" justifyContent="space-between">
                                     <Typography component="div" sx={{ fontSize: "40px", color: "#4E3A67", fontWeight: "700" }}>
-                                        0
+                                        {jobInfo && jobInfo.publishedjobscount}
                                     </Typography>
                                     <img src={window.location.origin + "/assets/V3.png"} alt="V3" height="35px" />
 

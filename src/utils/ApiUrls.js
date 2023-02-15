@@ -1,3 +1,6 @@
+/*------------------------------HomePage----------------------*/
+export const HomeCities = "https://backend.jobsyahan.com/api/map/cities";
+
 /*-----------------------Employer ----------------------------*/
 /* Api for employer Login */
 export const EmployerLoginURL = "https://backend.jobsyahan.com/api/employer/loginemployer";
@@ -38,6 +41,10 @@ export const ReSendEmailVerificationURL = "https://backend.jobsyahan.com/api/res
 /*Forgot Password */
 export const ForgotPasswordEmployerEmailURL = "https://backend.jobsyahan.com/api/forgotpassword/employer"
 export const ResetPasswordEmployerEmailURL = "https://backend.jobsyahan.com/api/reset-password/employer/";
+
+
+/* Getting Count for employer*/
+export const EmployerDashboardDetailsCount = "https://backend.jobsyahan.com/api/job/getdashboarddetails";
 /*----------------------Candidate----------------------------------------*/
 /*Candidate Registration*/
 

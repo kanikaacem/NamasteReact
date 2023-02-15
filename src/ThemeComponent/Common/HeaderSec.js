@@ -34,6 +34,9 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                 gap={2}
             >
                 <Button type="button" variant="outlined"
+                    onClick={() => {
+                        window.location.href = window.location.origin + "/contact-us";
+                    }}
                     sx={{
                         width: "200px",
                         borderRadius: "44px",
