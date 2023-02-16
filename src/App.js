@@ -56,8 +56,11 @@ function App() {
           <Route path="/contact-us" element={<ContactUs></ContactUs>} />
           <Route path="/about-us" element={<AboutUs></AboutUs>} />
 
-          <Route path="/forgot-password/employer" element={<ForgotPasswordPage />} />
+          <Route path="/forgot-password/employer" element={<ForgotPasswordPage user="employer" />} />
           <Route path="/reset-password/employer/:token" element={<ResetPasswordPage user="employer" />} />
+
+          <Route path="/forgot-password/candidate" element={<ForgotPasswordPage user="candidate" />} />
+          <Route path="/reset-password/candidate/:token" element={<ResetPasswordPage user="candidate" />} />
 
           <Route path="/verificationthroughmail/candidate/:candidateEmail" element={<EmployerVerficationPage />} />
           <Route path="/verificationthroughmail/employer/:employerEmail" element={<EmployerVerficationPage />} />

@@ -45,10 +45,10 @@ const CandidateLogin = () => {
         if (response.status == '1') {
             localStorage.setItem("auth_token", response.token);
             console.log(response.data)
-            if (response.data.isemailverified && response.data.profilecompleted >= 50)
+            if (response.data.isemailverified && response.data.profilecomplete >= 50)
                 dispatch({ type: 'LOGIN', payload: response });
 
-            else if (response.data.isemailverified && response.data.profilecompleted < 50)
+            else if (response.data.isemailverified && response.data.profilecomplete < 50)
                 window.location.href = window.location.origin + "/profile/0";
 
             else {
@@ -191,6 +191,17 @@ const CandidateLogin = () => {
 
 
                                         </ThemeFInputDiv>
+                                    </ThemeFInputDiv>
+
+                                    <ThemeFInputDiv>
+                                        <a href="#" onClick={
+                                            () => {
+                                                window.location.href = window.location.origin + "/forgot-password/candidate";
+                                            }
+                                        }
+                                            style={{ marginTop: "20px" }}>
+                                            Forgot Password ?
+                                        </a>
                                     </ThemeFInputDiv>
 
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>

@@ -367,7 +367,8 @@ textarea {
 /* Post job */
 .JobDescriptionPage,
 .PostJobPage,
-.AppliedCandidatePage {
+.AppliedCandidatePage,
+.candidateProfile {
   background: linear-gradient(231.41deg, #FDFCFF 13.04%, #FAF7FE 57.79%);
 }
 

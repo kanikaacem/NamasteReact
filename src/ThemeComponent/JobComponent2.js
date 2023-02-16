@@ -105,7 +105,7 @@ const JobComponent2 = ({ company, data, setshowJobDescription }) => {
                         background: "#cadcef",
                         borderRadius: "20px"
                     }}>
-                        {data && data.role.replaceAll("_", " ")}
+                        {data && data.role && data.role.replaceAll("_", " ")}
                     </Typography>
                 </Stack>
 

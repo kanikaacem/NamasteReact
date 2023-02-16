@@ -1,5 +1,5 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { CheckEmployerEmailExist, ForgotPasswordEmployerEmailURL } from "../../utils/ApiUrls";
+import { CheckEmployerEmailExist, ForgotPasswordEmployerEmailURL, ForgotPasswordCandidateEmailURL } from "../../utils/ApiUrls";
 
 import { Box, Stack, Typography, TextField } from "@mui/material";
 import { Formik, Field, Form } from "formik";
@@ -15,7 +15,7 @@ import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 
-const ForgotPasswordPage = () => {
+const ForgotPasswordPage = ({ user }) => {
 
     const [emailSend, setEmailSend] = useState(false);
 
@@ -25,17 +25,18 @@ const ForgotPasswordPage = () => {
     }
 
     const handleSubmit = async (values, { setFieldError }) => {
-        let response = await postRequest(CheckEmployerEmailExist, {
+        let api_url = user === "employer" ? ForgotPasswordEmployerEmailURL : ForgotPasswordCandidateEmailURL;
+
+        let response = await postRequest(api_url, {
             email: values.email_address
         });
         ;
         console.log(response);
         let status = response.status;
         if (status == 1) {
-            let response2 = await postRequest(ForgotPasswordEmployerEmailURL, {
+            let response2 = await postRequest(api_url, {
                 email: values.email_address
             });
-            // console.log(response=2);
             if (response2.status === '1')
                 setEmailSend(true);
         } else {

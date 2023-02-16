@@ -61,3 +61,7 @@ export const SaveCandidatePersonalInformation = "https://backend.jobsyahan.com/a
 export const SaveCandidateProfessionalInformation = "https://backend.jobsyahan.com/api/users/updateusereducationalinfo";
 /*STEP 4 */
 export const SaveCandidateWorkInformation = "https://backend.jobsyahan.com/api/users/updateuserworkhistoryinfo"
+
+/* Forgot Password */
+export const ForgotPasswordCandidateEmailURL = "https://backend.jobsyahan.com/api/forgotpassword/candidate";
+export const ResetPasswordCandidateEmailURL = "https://backend.jobsyahan.com/api/reset-password/candidate/";

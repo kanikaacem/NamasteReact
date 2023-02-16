@@ -1,5 +1,5 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { ResetPasswordEmployerEmailURL } from "../../utils/ApiUrls";
+import { ResetPasswordEmployerEmailURL, ResetPasswordCandidateEmailURL } from "../../utils/ApiUrls";
 
 import { Box, Stack, Typography, TextField } from "@mui/material";
 import { Formik, Field, Form } from "formik";
@@ -26,30 +26,20 @@ const ResetPasswordPage = ({ user }) => {
     }
 
     const handleSubmit = async (values, { setFieldError }) => {
-        let api_url = user === "employer" && ResetPasswordEmployerEmailURL;
+        let api_url = user === "employer" ? ResetPasswordEmployerEmailURL : ResetPasswordCandidateEmailURL;
         let response = await postRequest(api_url + token, {
             password: values.password
         });
         if (response.status === '1') {
-            // setPasswordChanged(true);
-            window.location.href = window.location.origin + '/employer-login';
+            window.location.href =
+                window.location.pathname.includes('employer') ? window.location.origin + '/employer-login' : window.location.origin + '/candidate-login';
+
+
         }
         if (response.status === '0') {
             setFieldError("confirm_password", "Token is expired !!!.");
         }
-        // ;
-        // console.log(response);
-        // let status = response.status;
-        // if (status == 1) {
-        //     let response2 = await postRequest(ForgotPasswordEmailURL, {
-        //         email: values.email_address
-        //     });
-        //     // console.log(response=2);
-        //     if (response2.status === '1')
-        //         setEmailSend(true);
-        // } else {
-        //     setFieldError("email_address", "This email address is not registered with us.");
-        // }
+
     }
     return (<>
 

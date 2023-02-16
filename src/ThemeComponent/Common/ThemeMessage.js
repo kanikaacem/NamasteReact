@@ -4,6 +4,8 @@ const ThemeMessage = ({ open, setOpen, message, type }) => {
     const handleClose = () => {
         if (window.location.pathname === '/forgot-password/employer')
             window.location.href = window.location.origin + "/employer-login";
+        else if (window.location.pathname === "/forgot-password/candidate")
+            window.location.href = window.location.origin + "/candidate-login";
         else
             setOpen(false)
     }

@@ -14,11 +14,23 @@ const ViewProfile = () => {
     const [meetingType, setMeetingType] = useState(" ");
 
     return (<>
-        <Stack direction="row" gap={2} sx={{ padding: "20px" }}>
+        <Stack className="candidateProfile" direction="row" gap={2} sx={{ padding: "20px" }}>
             <Box sx={{ width: "75%", background: "#FFFFFF", minHeight: "700px" }}>
-                <Box sx={{ width: "100%", background: "green", height: "150px" }}>
-                    {/* <img src={window.location.origin + "/assets/ProfileBackground.png"} alt="BackgroundImage" /> */}
-                </Box>
+                <Stack direction="row"
+                    alignItems="center" justifyContent="flex-start" gap={3} sx={{ width: "100%", height: "150px", padding: "20px" }}>
+                    <Box sx={{ width: "100px" }}>
+                        <img src={window.location.origin + "/assets/profile.png"} width="100%" alt="Profile" style={{ borderRadius: "50%" }} />
+                    </Box>
+                    <Box>
+                        <Typography component="div" sx={{ fontSize: "36px", color: "#4E3A67" }}>
+                            Gyanendra Chaudhary
+                        </Typography>
+                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
+                            Last Login: 20-01-2023
+                        </Typography>
+
+                    </Box>
+                </Stack>
                 <Stack alignItems="center" justifyContent="center"
                     sx={{
                         width: "100px",
@@ -27,7 +39,7 @@ const ViewProfile = () => {
                         top: "192px",
                         width: "70%"
                     }}>
-                    <img src={window.location.origin + "/assets/profile.png"} alt="Profile" style={{ borderRadius: "50%" }} />
+
                 </Stack>
                 <Box>
                     <Typography component="div" sx={{ fontSize: "20px", textAlign: "center", marginTop: "60px" }}>

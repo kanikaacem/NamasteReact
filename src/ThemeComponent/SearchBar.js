@@ -158,9 +158,10 @@ const SearchBar = () => {
                     type="button" onClick={searchJob}>
                     <img src={window.location.origin + "/assets/g2.png"} alt="g2" />
                 </Button>
+
             </Stack>
-            {searchError && <Box sx={{ margin: "10px 0px" }}>
-                <Error text="Please select atleast one value" /></Box>}
+            {searchError && <Box sx={{ margin: "10px ", width: { "lg": `calc(100vw - 420px)`, "md": " calc(100vw - 50px);", "xs": " calc(100vw - 50px)" } }}>
+                <Error text="Please enter keywords to search relevant jobs" /></Box>}
         </Box >
 
         {/* <Box
