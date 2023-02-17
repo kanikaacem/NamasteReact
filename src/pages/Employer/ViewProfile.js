@@ -10,7 +10,7 @@ import { MeetingType } from "../../utils/Data";
 import { PDFReader } from 'reactjs-pdf-reader';
 import { useState } from "react";
 const ViewProfile = () => {
-    const [value, setValue] = useState(0)
+    const [value, setValue] = useState(1)
     const [meetingType, setMeetingType] = useState(" ");
 
     return (<>
@@ -186,140 +186,182 @@ const ViewProfile = () => {
                     }
                     {
                         value == 1 && (<>
-                            <Stack direction="column" gap={2} sx={{ padding: "30px" }} >
+                            <Stack direction="column" gap={2} sx={{ padding: "30px" }}
+                                divider={<Divider orientation="horizontal" flexItem />} >
                                 <Box sx={{
-                                    border: "1px solid #e5e5e5",
+
                                     padding: "30px"
                                 }}>
-                                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600" }}>
+                                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
                                         Professional Details
                                     </Typography>
 
                                     <Stack direction="column" gap={1}>
-                                        <Typography component="div" sx={{ fontSize: "18px", fontWeight: "600" }}>
-                                            Pepperbiz marketing and franchise pvt ltd
+                                        <Typography component="div" sx={{ fontSize: "18px", fontWeight: "600", color: "#4E3A67" }}>
+                                            Unnati
                                         </Typography>
-                                        <Typography component="div" sx={{ fontSize: "16px" }}>
+                                        <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
                                             Andriod Development
                                         </Typography>
-                                        <Typography component="div" sx={{ fontSize: "16px" }}>
+                                        <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
                                             jan,2019 to Present
                                         </Typography>
                                     </Stack>
                                 </Box>
+
                                 <Box sx={{
-                                    border: "1px solid #e5e5e5",
+
                                     padding: "30px"
                                 }}>
-                                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600" }}>
-                                        Personal Details
+                                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
+                                        RakVin Technologies Pvt. Ltd.
                                     </Typography>
 
                                     <Stack direction="column" gap={1}>
-                                        <Typography component="div" sx={{ fontSize: "18px", fontWeight: "600" }}>
-                                            Pepperbiz marketing and franchise pvt ltd
-                                        </Typography>
-                                        <Typography component="div" sx={{ fontSize: "16px" }}>
+
+                                        <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
                                             Andriod Development
                                         </Typography>
-                                        <Typography component="div" sx={{ fontSize: "16px" }}>
+                                        <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
                                             jan,2019 to Present
                                         </Typography>
                                     </Stack>
                                 </Box>
+
+
                                 <Box sx={{
-                                    border: "1px solid #e5e5e5",
+
                                     padding: "30px"
                                 }}>
-                                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600" }}>
-                                        More Information
+                                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
+                                        Educational Details
                                     </Typography>
 
-                                    <Stack direction="row" gap={1} justifyContent="space-between">
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Current Location:
+                                    <Stack direction="column" gap={1}>
+
+                                        <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                            Greater Noida Institute of Technology
                                         </Typography>
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Noida
+                                        <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                            MCA ( Full Time) | 2014 to 2018
                                         </Typography>
                                     </Stack>
-
-                                    <Stack direction="row" gap={1} justifyContent="space-between">
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Perferred Location:
-                                        </Typography>
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Anywhere
-                                        </Typography>
-                                    </Stack>
-
-                                    <Stack direction="row" gap={1} justifyContent="space-between">
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Current Salary:
-                                        </Typography>
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Confidental
-                                        </Typography>
-                                    </Stack>
-
-
-                                    <Stack direction="row" gap={1} justifyContent="space-between">
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Expected Salary:
-                                        </Typography>
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Confidental
-                                        </Typography>
-                                    </Stack>
-
-                                    <Stack direction="row" gap={1} justifyContent="space-between">
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Experience:
-                                        </Typography>
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            3y 8m
-                                        </Typography>
-                                    </Stack>
-
-                                    <Stack direction="row" gap={1} justifyContent="space-between">
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Gender:
-                                        </Typography>
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Male
-                                        </Typography>
-                                    </Stack>
-
-                                    <Stack direction="row" gap={1} justifyContent="space-between">
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Age:
-                                        </Typography>
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            25 year old
-                                        </Typography>
-                                    </Stack>
-
-                                    <Stack direction="row" gap={1} justifyContent="space-between">
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Notice Period:
-                                        </Typography>
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Immediately
-                                        </Typography>
-                                    </Stack>
-
-                                    <Stack direction="row" gap={1} justifyContent="space-between">
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Application Date:
-                                        </Typography>
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            12-12-2022
-                                        </Typography>
-                                    </Stack>
-
-
-
                                 </Box>
+
+                                <Box sx={{
+
+                                    padding: "30px"
+                                }}>
+                                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
+                                        More Information                                    </Typography>
+
+                                    <Stack direction="column" gap={1}>
+                                        <Stack direction="row" gap={3}>
+                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                                Current Location:
+                                            </Typography>
+                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                                Delhi
+                                            </Typography>
+                                        </Stack>
+                                        <Stack direction="row" gap={3}>
+                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                                Perferred Location:
+                                            </Typography>
+                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                                Delhi, Gurgaon, Noida
+                                            </Typography>
+                                        </Stack>
+                                        <Stack direction="row" gap={3}>
+                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                                Current Salary:
+                                            </Typography>
+                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                                7 Lpa
+                                            </Typography>
+                                        </Stack>
+                                        <Stack direction="row" gap={3}>
+                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                                Expected Salary:                                            </Typography>
+                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                                10 Lpa
+                                            </Typography>
+                                        </Stack>
+                                        <Stack direction="row" gap={3}>
+                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                                Experience::
+                                            </Typography>
+                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                                3 Y 1mos
+                                            </Typography>
+                                        </Stack>
+                                        <Stack direction="row" gap={3}>
+                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                                Gender:
+                                            </Typography>
+                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                                Male                                            </Typography>
+                                        </Stack>
+
+                                        <Stack direction="row" gap={3}>
+                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                                Age:
+                                            </Typography>
+                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                                20 years                                            </Typography>
+                                        </Stack>
+                                        <Stack direction="row" gap={3}>
+                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                                Notice Period:
+                                            </Typography>
+                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                                Immediately                                            </Typography>
+                                        </Stack>
+                                        <Stack direction="row" gap={3}>
+                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                                Application Date:
+                                            </Typography>
+                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                                20-01-2023                                            </Typography>
+                                        </Stack>
+
+
+                                    </Stack>
+                                </Box>
+
+                                <Box sx={{
+
+                                    padding: "30px"
+                                }}>
+                                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
+                                        Additional Information
+                                    </Typography>
+
+                                    <Stack direction="column" gap={1}>
+                                        <Stack direction="row" gap={3}>
+                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                                Language:
+                                            </Typography>
+                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                                English
+                                            </Typography>
+                                        </Stack>
+                                        <Stack direction="row" gap={3}>
+                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                                CAT Percentile::
+                                            </Typography>
+                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                                0.0
+                                            </Typography>
+                                        </Stack>
+
+
+
+
+
+                                    </Stack>
+                                </Box>
+
                             </Stack>
                         </>)
                     }
@@ -444,7 +486,9 @@ const ViewProfile = () => {
                                 color: "#4E3A67",
                             }
                         }
-                        } ><Stack direction="row" gap={1} >
+                        } ><Stack direction="row" alignItems="center" justifyContent="center" sx={{
+                            gap: "6px"
+                        }} >
                             <Box><img src={window.location.origin + "/assets/Profile1.png"} alt="Profile1"></img></Box>
                             <Box>Save for later</Box></Stack>
                     </Button>
@@ -461,7 +505,9 @@ const ViewProfile = () => {
                                 color: "#4E3A67",
                             }
                         }
-                        } ><Stack direction="row" gap={1} >
+                        } ><Stack direction="row" alignItems="center" justifyContent="center" sx={{
+                            gap: "6px"
+                        }}  >
                             <Box><img src={window.location.origin + "/assets/Profile2.png"} alt="Profile2"></img></Box>
                             <Box>Download Resume</Box></Stack></Button>
                 </Stack>
@@ -485,27 +531,29 @@ const ViewProfile = () => {
                     </Stack>
                 </Stack> */}
 
-                {/* <Stack direction="column" gap={1}>
+                <Stack direction="column" gap={1}>
                     <Typography component="div" sx={{ fontSize: "20px" }}>
-                        Contact Details
+                        Contact Information
                     </Typography>
-                    <Box >
-                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                            Phone
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                            12345678901
-                        </Typography>
-                    </Box>
-                    <Box>
-                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                            E-mail
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                            demo@gmail.com
-                        </Typography>
-                    </Box>
-                </Stack> */}
+                    <Stack direction="row" justifyContent="space-between">
+                        <Box >
+                            <Typography component="div" sx={{ fontSize: "20px" }}>
+                                Phone
+                            </Typography>
+                            <Typography component="div" sx={{ fontSize: "20px", color: "#FC9A7E" }}>
+                                9818032487
+                            </Typography>
+                        </Box>
+                        <Box>
+                            <Typography component="div" sx={{ fontSize: "20px" }}>
+                                E-mail
+                            </Typography>
+                            <Typography component="div" sx={{ fontSize: "20px", color: "#FC9A7E" }}>
+                                demo@gmail.com
+                            </Typography>
+                        </Box>
+                    </Stack>
+                </Stack>
 
 
             </Stack>
