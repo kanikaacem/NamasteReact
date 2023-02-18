@@ -495,7 +495,7 @@ const EmployerDashboard = () => {
 
                 <Stack direction="column" sx={{
                     // width: `calc(100vw - 83%)`,
-                    width: "300px",
+                    width: "312px",
                     visibility: { "lg": "visible", "md": "hidden", "xs": "hidden" },
                     gap: "12px"
                 }}>

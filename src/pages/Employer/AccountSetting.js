@@ -11,6 +11,8 @@ import SubscriptionPlan from "./SubscriptionPlan";
 import { ThemeButtontype1 } from "../../utils/Theme";
 import { useOutletContext } from "react-router-dom";
 
+import {  ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
+import UploadFile  from "../../ThemeComponent/Common/UploadFile";
 import { CompanyUpdateInformationSchema, CreateSubUserValidationSchema } from "../../Validation/EmployerValidation";
 import { AccountSettingMenu } from "../../utils/Data";
 
@@ -140,19 +142,35 @@ const AccountSetting = () => {
 
 
     return (<>
-        <Stack direction="row" gap={2} sx={{ padding: "20px" }}>
-            <Stack direction="column" gap={2} sx={{ width: "20%", padding: "0px 50px" }}>
+        <Stack className="AccountSettingPage" direction="row" gap={2} sx={{ 
+            padding: "20px",
+            minHeight:"100vh",
+            background:"linear-gradient(231.41deg, #FDFCFF 13.04%, #FAF7FE 57.79%)" }}>
+            <Stack direction="column" gap={2} sx={{ width: "30%", padding: "0px 50px" }}>
                 <Box >
-                    <Typography component="div" sx={{ fontWeight: "600", fontSize: "25px", margin: "20px 0px", textTransform: "capitalize" }}>
+                    <Typography component="div" sx={{ 
+                        fontWeight: "600", 
+                        fontSize: "25px", 
+                        margin: "20px 0px", 
+                        textTransform: "capitalize",
+                        color:"#4E3A67" }}>
                         {currentMenu.replaceAll("_", " ")}
                     </Typography>
 
-                    <Stack direction="column" gap={1} divider={<Divider orientation="horizontal" flexItem />}
-                        sx={{ Height: "200px", background: "#FFFFFF", borderRadius: "10px", padding: "20px" }}>
+                    <Stack direction="column" gap={2} divider={<Divider orientation="horizontal" flexItem />}
+                        sx={{ minHeight: "200px", 
+                        background: "#FFFFFF",
+                         borderRadius: "14px", 
+                         padding: "20px",
+                         border:"1px solid #E1D4F2" }}>
 
                         {AccountSettingMenu && AccountSettingMenu.map((item) => {
                             return (<Typography key={item.id} className={currentMenu == item.menu_name && "AccountMenu "} component="div"
-                                sx={{ fontSize: "16px", margin: "5 0px", cursor: "pointer", textTransform: "capitalize" }} onClick={() => setCurrentMenu(item.menu_name)}>
+                                sx={{ fontSize: "16px", 
+                                color:"#4E3A67",
+                                margin: "5 0px", 
+                                cursor: "pointer", 
+                                textTransform: "capitalize" }} onClick={() => setCurrentMenu(item.menu_name)}>
                                 {item.menu_name.replaceAll("_", " ")}
                             </Typography>
                             )
@@ -161,7 +179,7 @@ const AccountSetting = () => {
                     </Stack>
                 </Box>
 
-                <Stack gap={2} sx={{ background: "#FFFFFF", padding: "20px", borderRadius: "10px" }}>
+                {/* <Stack gap={2} sx={{ background: "#FFFFFF", padding: "20px", borderRadius: "10px" }}>
                     <Typography component="div" sx={{ fontWeight: "600", fontSize: "16px", textTransform: "capitalize" }}>
                         Increase visibility of your jobs
                     </Typography>
@@ -180,7 +198,7 @@ const AccountSetting = () => {
                         </Typography>
                     </Stack>
 
-                </Stack>
+                </Stack> */}
             </Stack>
 
 
@@ -191,12 +209,17 @@ const AccountSetting = () => {
                         gap={2}
                         sx={{
                             background: "#FFFFFF",
-                            padding: "20px",
-                            borderRadius: "10px",
-                            borderTop: "4px solid #2B1E44"
+                            padding: "50px",
+                            borderRadius: "14px",
+                            border:"1px solid #E1D4F2"
                         }}>
                         <Box>
-                            <Typography component="div" sx={{ color: "#2B1E44", fontWeight: "600", fontSize: "20px", textTransform: "capitalize", margin: "10px 0px" }}>
+                            <Typography component="div" sx={{ 
+                                color: "#2B1E44",
+                                textTransform: "capitalize", margin: "10px 0px",
+                                fontSize: "40px",
+                                fontFamily: "Work Sans,sans-serif",
+                                fontWeight: "700" }}>
                                 Create Sub User
                             </Typography>
                             <Formik
@@ -206,44 +229,41 @@ const AccountSetting = () => {
                                 onSubmit={createSubUser}
                             >
                                 {({ errors, touched, values, setFieldValue }) => (
-                                    <Form className="updateCompanyInformationForm" >
-                                        <Stack direction="column" gap={2}>
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="email_address" LableText="Email Address" />
+                                    <Form className="CreateSubUser" >
+                                        <ThemeFInputDiv>
+                                            <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="email_address" LableText="Email Address *" />
                                                 <Field
-                                                    variant="standard"
                                                     id="email_address"
                                                     as={TextField}
                                                     placeholder="Enter Email" type="text" name="email_address" fullWidth />
                                                 {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
-                                            </Box>
+                                            </ThemeFInputDiv>
 
 
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="password" LableText="Password" />
+                                            <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="password" LableText="Password *" />
                                                 <Field
-                                                    variant="standard"
                                                     id="password"
                                                     as={TextField}
                                                     placeholder="Enter Password" type="password" name="password" fullWidth />
                                                 {errors.password && touched.password && <Error text={errors.password} />}
-                                            </Box>
+                                            </ThemeFInputDiv>
 
 
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="mobile_number" LableText="Mobile Number" />
+                                            <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="mobile_number" LableText="Mobile Number *" />
                                                 <Field
-                                                    variant="standard"
                                                     id="mobile_number"
                                                     as={TextField}
                                                     placeholder="Enter Mobile Number" type="text" name="mobile_number" fullWidth />
                                                 {errors.mobile_number && touched.mobile_number && <Error text={errors.mobile_number} />}
-                                            </Box>
+                                            </ThemeFInputDiv>
 
-                                        </Stack>
+                                        </ThemeFInputDiv>
 
                                         <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                            <ThemeButtontype1 type="submit" variant="contained">Create Sub User </ThemeButtontype1>
+                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Create Sub User</ThemeButtonType2>
                                         </Box>
                                     </Form>
                                 )}
@@ -261,14 +281,19 @@ const AccountSetting = () => {
                         sx={{
                             // margin: "0 auto",
                             background: "#FFFFFF",
-                            padding: "20px",
-                            borderRadius: "10px",
-                            borderTop: "4px solid #2B1E44"
+                            padding: "50px",
+                            borderRadius: "14px",
+                            border:"1px solid #E1D4F2"
                         }}>
                         <Box>
-                            <Typography component="div" sx={{ color: "#2B1E44", fontWeight: "600", fontSize: "20px", textTransform: "capitalize", margin: "10px 0px" }}>
+                        <Typography component="div" sx={{ 
+                                color: "#2B1E44",
+                                textTransform: "capitalize", margin: "10px 0px",
+                                fontSize: "40px",
+                                fontFamily: "Work Sans,sans-serif",
+                                fontWeight: "700" }}>
                                 Update Company Information
-                            </Typography>
+                        </Typography>
                             <Formik
 
                                 initialValues={defaultValue1}
@@ -277,21 +302,24 @@ const AccountSetting = () => {
                             >
                                 {({ errors, touched, values, setFieldValue }) => (
                                     <Form className="updateCompanyInformationForm" >
-                                        <Stack direction="column" gap={2}>
-                                            <Box className="input-item">
+                                        <ThemeFInputDiv>
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="company_name" LableText="Company Name" />
                                                 <Field
-                                                    variant="standard"
                                                     id="company_name"
                                                     as={TextField}
                                                     placeholder="Enter Company Name" type="text" name="company_name" fullWidth />
                                                 {errors.company_name && touched.company_name && <Error text={errors.company_name} />}
-                                            </Box>
+                                            </ThemeFInputDiv>
 
-                                            <Box className="input-item">
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="update_company_logo" LableText="Update Company Logo" />
-
                                                 <Box sx={{ width: "80px" }}>
+                                                    <img id="companyLogo" width="100%" />
+                                                </Box>
+                                                <UploadFile element="update_company_logo" uploadEvent={handleCompanyLogo} />
+
+                                                {/* <Box sx={{ width: "80px" }}>
                                                     <img id="companyLogo" width="100%" />
                                                 </Box>
                                                 <Field
@@ -301,66 +329,61 @@ const AccountSetting = () => {
                                                     onChange={handleCompanyLogo}
                                                     type="file" name="update_company_logo" fullWidth />
 
-                                                <ButtonType3 ButtonText="update Company Logo" ClickEvent={() => document.getElementById("update_company_logo").click()} ></ButtonType3>
+                                                <ButtonType3 ButtonText="update Company Logo" ClickEvent={() => document.getElementById("update_company_logo").click()} ></ButtonType3> */}
 
-                                            </Box>
+                                            </ThemeFInputDiv>
 
 
-                                            <Box className="input-item">
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="company_email" LableText="Company Email" />
                                                 <Field
                                                     error={errors.company_email && touched.company_email}
                                                     id="company_email"
-                                                    variant="standard"
                                                     as={TextField}
                                                     placeholder="Enter Company Email ( eg. xyz@company.com )" type="text" name="company_email" fullWidth />
                                                 {errors.company_email && touched.company_email && <Error text={errors.company_email} />}
 
-                                            </Box>
+                                            </ThemeFInputDiv>
 
-                                            <Box className="input-item">
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="company_lan_number" LableText="Company Landline Number" />
                                                 <Field
                                                     error={errors.company_lan_number && touched.company_lan_number}
                                                     id="company_lan_number"
-                                                    variant="standard"
                                                     as={TextField}
                                                     placeholder="Enter Company Landline Number ( eg. 9898989898 )" type="text" name="company_lan_number" fullWidth />
                                                 {errors.company_lan_number && touched.company_lan_number && <Error text={errors.company_lan_number} />}
-                                            </Box>
+                                            </ThemeFInputDiv>
 
-                                            <Box className="input-item">
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="company_website" LableText="Company Website" />
                                                 <Field
                                                     error={errors.company_website && touched.company_website}
                                                     id="company_website"
-                                                    variant="standard"
                                                     as={TextField}
                                                     placeholder="Enter Company Website ( eg. xyz.com )" type="text" name="company_website" fullWidth />
                                                 {errors.company_website && touched.company_website && <Error text={errors.company_website} />}
 
-                                            </Box>
+                                            </ThemeFInputDiv>
 
-                                            <Box className="input-item">
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="company_pincode" LableText="Company Pincode" />
                                                 <Field
                                                     error={errors.company_pincode && touched.company_pincode}
                                                     id="company_pincode"
-                                                    variant="standard"
                                                     as={TextField}
                                                     placeholder="Enter Company Pincode ( eg. 23123 )" type="text" name="company_pincode" fullWidth />
                                                 {errors.company_pincode && touched.company_pincode && <Error text={errors.company_pincode} />}
 
-                                            </Box>
+                                            </ThemeFInputDiv>
 
-                                            <Box className="input-item">
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="company_address" LableText="Company Address" />
                                                 <Box sx={{ width: "100%", margin: "10px 0px" }}>
                                                     <TextField
                                                         value={values.company_address}
                                                         error={errors.company_address && touched.company_address}
                                                         sx={{ width: "100%" }}
-                                                        variant="standard"
                                                         placeholder="Company Address"
                                                         multiline
                                                         rows={4}
@@ -370,37 +393,35 @@ const AccountSetting = () => {
 
                                                 {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
 
-                                            </Box>
+                                            </ThemeFInputDiv>
 
-                                            <Box className="input-item">
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="company_pan_number" LableText="Company Pan Number" />
                                                 <Field
                                                     error={errors.company_pan_number && touched.company_pan_number}
                                                     id="company_pan_number"
-                                                    variant="standard"
                                                     as={TextField}
                                                     placeholder="Enter Company Pan Number" type="text" name="company_pan_number" fullWidth />
                                                 {errors.company_pan_number && touched.company_pan_number && <Error text={errors.company_pan_number} />}
 
-                                            </Box>
+                                            </ThemeFInputDiv>
 
-                                            <Box className="input-item">
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="company_gst_number" LableText="Company GST Number" />
                                                 <Field
                                                     error={errors.company_gst_number && touched.company_gst_number}
                                                     id="company_gst_number"
-                                                    variant="standard"
                                                     as={TextField}
                                                     placeholder="Enter Company GST Number" type="text" name="company_gst_number" fullWidth />
                                                 {errors.company_gst_number && touched.company_gst_number && <Error text={errors.company_gst_number} />}
 
-                                            </Box>
-                                        </Stack>
+                                            </ThemeFInputDiv>
+                                        </ThemeFInputDiv>
 
 
 
                                         <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                            <ThemeButtontype1 type="submit" variant="contained">Update Company Information </ThemeButtontype1>
+                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Update</ThemeButtonType2>
                                         </Box>
                                     </Form>
                                 )}
@@ -419,15 +440,20 @@ const AccountSetting = () => {
                         sx={{
                             // margin: "0 auto",
                             background: "#FFFFFF",
-                            padding: "20px",
-                            borderRadius: "10px",
-                            borderTop: "4px solid #2B1E44"
+                            padding: "50px",
+                            borderRadius: "14px",
+                            border:"1px solid #E1D4F2"
                         }}>
 
                         <Box>
-                            <Typography component="div" sx={{ color: "#2B1E44", fontWeight: "600", fontSize: "20px", textTransform: "capitalize", margin: "10px 0px" }}>
+                        <Typography component="div" sx={{ 
+                                color: "#2B1E44",
+                                textTransform: "capitalize", margin: "10px 0px",
+                                fontSize: "40px",
+                                fontFamily: "Work Sans,sans-serif",
+                                fontWeight: "700" }}>
                                 Personal Details
-                            </Typography>
+                        </Typography>
 
                             <Formik
 
@@ -437,21 +463,26 @@ const AccountSetting = () => {
                             >
                                 {({ errors, touched, values, setFieldValue }) => (
                                     <Form className="HrInformationUpdateForm">
-                                        <Stack direction="column" gap={2}>
-                                            <Box className="input-item">
+                                        <ThemeFInputDiv>
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="full_name" LableText="Full Name" />
                                                 <Field
-                                                    variant="standard"
                                                     id="full_name"
                                                     as={TextField}
                                                     placeholder="Enter Name" type="text" name="full_name" fullWidth />
                                                 {errors.full_name && touched.full_name && <Error text={errors.full_name} />}
-                                            </Box>
+                                            </ThemeFInputDiv>
 
-                                            <Box className="input-item">
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="update_profile_image" LableText="Upload Profile Image" />
-
                                                 <Box sx={{ width: "80px" }}>
+                                                    <img id="profileLogo" width="100%" />
+                                                </Box>
+                                                <UploadFile element="update_profile_image" uploadEvent={handleProfileLogo} />
+                                                    {/* <input type="file" name="upload_resume" id="update_profile_image" onChange={handleProfileLogo} style={{ display: "none" }} />
+                                                    <ButtonType3 ButtonText="Upload File" imageURL="/assets/document.png" ClickEvent={() => document.getElementById("update_profile_image").click()}></ButtonType3> */}
+
+                                                {/* <Box sx={{ width: "80px" }}>
                                                     <img id="profileLogo" width="100%" />
                                                 </Box>
 
@@ -464,15 +495,14 @@ const AccountSetting = () => {
                                                     }
                                                     type="file" name="update_profile_image" fullWidth />
 
-                                                <ButtonType3 ButtonText="update Company Logo" ClickEvent={() => document.getElementById("update_profile_image").click()}></ButtonType3>
+                                                <ButtonType3 ButtonText="update Company Logo" ClickEvent={() => document.getElementById("update_profile_image").click()}></ButtonType3> */}
 
-                                            </Box>
+                                            </ThemeFInputDiv>
 
-                                            <Box className="input-item">
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="email_address" LableText="Email Address" />
-                                                <Stack direction="row" gap={2}>
+                                                <Stack direction="row" gap={2} alignItems="center">
                                                     <Field
-                                                        variant="standard"
                                                         id="email_address"
                                                         as={TextField}
                                                         placeholder="Enter Email Address" type="text" name="email_address" fullWidth />
@@ -482,13 +512,12 @@ const AccountSetting = () => {
                                                 </Stack>
                                                 {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
 
-                                            </Box>
+                                            </ThemeFInputDiv>
 
-                                            <Box className="input-item">
+                                            <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="mobile_number" LableText="Mobile Number" />
-                                                <Stack direction="row" gap={2}>
+                                                <Stack direction="row" gap={2}  alignItems="center">
                                                     <Field
-                                                        variant="standard"
                                                         id="mobile_number"
                                                         as={TextField}
                                                         placeholder="Enter Mobile Number" type="text" name="mobile_number" fullWidth />
@@ -496,13 +525,14 @@ const AccountSetting = () => {
                                                 </Stack>
                                                 {errors.mobile_number && touched.mobile_number && <Error text={errors.mobile_number} />}
 
-                                            </Box>
+                                            </ThemeFInputDiv>
 
 
 
-                                        </Stack>
+                                        </ThemeFInputDiv>
                                         <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                            <ThemeButtontype1 type="submit" variant="contained">Update Account </ThemeButtontype1>
+                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Update Account</ThemeButtonType2>
+
                                         </Box>
                                     </Form>
                                 )}

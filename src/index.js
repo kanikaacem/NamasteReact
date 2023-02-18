@@ -265,3 +265,6 @@ root.render(
 //https://fireship.io/snippets/use-media-query-hook/
 
 //https://dev.to/arikaturika/react-how-to-use-media-queries-with-radium-32he
+//https://blog.devgenius.io/persistent-state-in-react-js-using-useeffect-hook-d6e3e7ae65f2
+//https://www.howtogeek.com/devops/how-to-persist-your-redux-store/
+

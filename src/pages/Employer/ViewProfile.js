@@ -10,22 +10,23 @@ import { MeetingType } from "../../utils/Data";
 import { PDFReader } from 'reactjs-pdf-reader';
 import { useState } from "react";
 const ViewProfile = () => {
-    const [value, setValue] = useState(1)
+    const [value, setValue] = useState(0)
     const [meetingType, setMeetingType] = useState(" ");
 
     return (<>
         <Stack className="CandidateProfilePage" direction="row" gap={2} sx={{
-            padding: "20px 100px",
-            background: "#f9f9f9"
+            padding: {"lg":"20px 100px","md":"20px","xs":"20px"},
+            background: "#f9f9f9",
+            flexWrap:"wrap"
         }}>
-            <Box sx={{ width: "75%", minHeight: "700px" }}>
+            <Box sx={{ width: {"lg":"71%","md":"100%","xs":"100%"}, minHeight: "700px" }}>
                 <Stack direction="row"
-                    alignItems="center" justifyContent="flex-start" gap={3} sx={{ width: "100%", height: "150px", padding: "20px" }}>
+                    alignItems="center" justifyContent="flex-start" gap={3} sx={{  height: "150px", padding: "20px" }}>
                     <Box sx={{ width: "100px" }}>
                         <img src={window.location.origin + "/assets/profile.png"} width="100%" alt="Profile" style={{ borderRadius: "50%" }} />
                     </Box>
                     <Box>
-                        <Typography component="div" sx={{ fontSize: "30px", fontWeight: "700", color: "#4E3A67" }}>
+                        <Typography component="div" sx={{ fontSize: {"lg":"30px","md":"30px","xs":"24px"}, fontWeight: "700", color: "#4E3A67" }}>
                             Gyanendra Chaudhary
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
@@ -95,8 +96,10 @@ const ViewProfile = () => {
                     <Button variant="outlined" startIcon={<PhoneIcon />} >Call</Button>
                 </Box> */}
 
-                <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between" sx={{
-                    height: "50px", margin: "10px 0px", padding: "10px"
+                <Stack direction="row"  alignItems="center" justifyContent="flex-start" sx={{
+                    minHeight: "50px", margin: "10px 0px", padding: "10px",
+                    flexWrap:'wrap',
+                    gap:"40px"
                 }}
                     divider={<Divider orientation="vertical" flexItem />}>
 
@@ -186,7 +189,9 @@ const ViewProfile = () => {
                     }
                     {
                         value == 1 && (<>
-                            <Stack direction="column" gap={2} sx={{ padding: "30px" }}
+                            <Stack direction="column" gap={2} sx={{ padding: {
+                                "lg":"30px","md":"0px","xs":"0px"
+                            } }}
                                 divider={<Divider orientation="horizontal" flexItem />} >
                                 <Box sx={{
 
@@ -256,7 +261,9 @@ const ViewProfile = () => {
                                         More Information                                    </Typography>
 
                                     <Stack direction="column" gap={1}>
-                                        <Stack direction="row" gap={3}>
+                                        <Stack direction="row" sx={{
+                                            flexWrap:"wrap"
+                                        }}>
                                             <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
                                                 Current Location:
                                             </Typography>
@@ -264,7 +271,9 @@ const ViewProfile = () => {
                                                 Delhi
                                             </Typography>
                                         </Stack>
-                                        <Stack direction="row" gap={3}>
+                                        <Stack direction="row" sx={{
+                                            flexWrap:"wrap"
+                                        }}>
                                             <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
                                                 Perferred Location:
                                             </Typography>
@@ -272,7 +281,9 @@ const ViewProfile = () => {
                                                 Delhi, Gurgaon, Noida
                                             </Typography>
                                         </Stack>
-                                        <Stack direction="row" gap={3}>
+                                        <Stack direction="row"sx={{
+                                            flexWrap:"wrap"
+                                        }}>
                                             <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
                                                 Current Salary:
                                             </Typography>
@@ -280,14 +291,18 @@ const ViewProfile = () => {
                                                 7 Lpa
                                             </Typography>
                                         </Stack>
-                                        <Stack direction="row" gap={3}>
+                                        <Stack direction="row" sx={{
+                                            flexWrap:"wrap"
+                                        }}>
                                             <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
                                                 Expected Salary:                                            </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
                                                 10 Lpa
                                             </Typography>
                                         </Stack>
-                                        <Stack direction="row" gap={3}>
+                                        <Stack direction="row" sx={{
+                                            flexWrap:"wrap"
+                                        }}>
                                             <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
                                                 Experience::
                                             </Typography>
@@ -295,7 +310,9 @@ const ViewProfile = () => {
                                                 3 Y 1mos
                                             </Typography>
                                         </Stack>
-                                        <Stack direction="row" gap={3}>
+                                        <Stack direction="row" sx={{
+                                            flexWrap:"wrap"
+                                        }}>
                                             <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
                                                 Gender:
                                             </Typography>
@@ -303,21 +320,27 @@ const ViewProfile = () => {
                                                 Male                                            </Typography>
                                         </Stack>
 
-                                        <Stack direction="row" gap={3}>
+                                        <Stack direction="row" sx={{
+                                            flexWrap:"wrap"
+                                        }}>
                                             <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
                                                 Age:
                                             </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
                                                 20 years                                            </Typography>
                                         </Stack>
-                                        <Stack direction="row" gap={3}>
+                                        <Stack direction="row" sx={{
+                                            flexWrap:"wrap"
+                                        }}>
                                             <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
                                                 Notice Period:
                                             </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
                                                 Immediately                                            </Typography>
                                         </Stack>
-                                        <Stack direction="row" gap={3}>
+                                        <Stack direction="row" sx={{
+                                            flexWrap:"wrap"
+                                        }}>
                                             <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
                                                 Application Date:
                                             </Typography>
@@ -338,7 +361,9 @@ const ViewProfile = () => {
                                     </Typography>
 
                                     <Stack direction="column" gap={1}>
-                                        <Stack direction="row" gap={3}>
+                                        <Stack direction="row" sx={{
+                                            flexWrap:"wrap"
+                                        }}>
                                             <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
                                                 Language:
                                             </Typography>
@@ -346,7 +371,9 @@ const ViewProfile = () => {
                                                 English
                                             </Typography>
                                         </Stack>
-                                        <Stack direction="row" gap={3}>
+                                        <Stack direction="row" sx={{
+                                            flexWrap:"wrap"
+                                        }}>
                                             <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
                                                 CAT Percentile::
                                             </Typography>
@@ -368,7 +395,7 @@ const ViewProfile = () => {
 
                 </Box>
             </Box>
-            <Stack direction="column" sx={{ width: "25%", padding: "20px" }}>
+            <Stack direction="column" sx={{ width: {"lg":"25%","md":"100%","xs":"100%"}, padding: "20px" }}>
                 <Stack direction="column"
                     divider={<Divider orientation="horizontal" flexItem />}
                     gap={1} >
@@ -460,7 +487,7 @@ const ViewProfile = () => {
                                 padding: "10px",
                             }
                         }}
-                    > <Stack direction="row" gap={2} >
+                    > <Stack direction="row" gap={2} alignItems="center" >
                             <Box>
                                 <img src={window.location.origin + "/assets/Chat1.png"} alt="Chat" />
                             </Box>
@@ -532,12 +559,12 @@ const ViewProfile = () => {
                 </Stack> */}
 
                 <Stack direction="column" gap={1}>
-                    <Typography component="div" sx={{ fontSize: "20px" }}>
+                    <Typography component="div" sx={{ fontSize: "20px" ,color:"#4E3A67",fontWeight:"600" }}>
                         Contact Information
                     </Typography>
                     <Stack direction="row" justifyContent="space-between">
                         <Box >
-                            <Typography component="div" sx={{ fontSize: "20px" }}>
+                            <Typography component="div" sx={{ fontSize: "20px" ,color:"#4E3A67"}}>
                                 Phone
                             </Typography>
                             <Typography component="div" sx={{ fontSize: "20px", color: "#FC9A7E" }}>
@@ -545,7 +572,7 @@ const ViewProfile = () => {
                             </Typography>
                         </Box>
                         <Box>
-                            <Typography component="div" sx={{ fontSize: "20px" }}>
+                            <Typography component="div" sx={{ fontSize: "20px" ,color:"#4E3A67"}}>
                                 E-mail
                             </Typography>
                             <Typography component="div" sx={{ fontSize: "20px", color: "#FC9A7E" }}>

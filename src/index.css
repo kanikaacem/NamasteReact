@@ -827,12 +827,12 @@ textarea {
   outline: none;
 } */
 
-.updateCompanyInformationForm .input-item input {
+/* .updateCompanyInformationForm .input-item input {
   border: none;
   margin: 10px 0px;
   font-size: 14px;
   outline: none;
-}
+} */
 
 .HrInformationUpdateForm .input-item input {
   border: none;
@@ -959,7 +959,7 @@ textarea {
 
 .Mui-selected {
   font-weight: 700 !important;
-  width: max-content;
+  /* width: max-content; */
   color: #4E3A67 !important;
   border-bottom: none !important
 }
