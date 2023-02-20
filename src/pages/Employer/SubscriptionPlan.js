@@ -99,8 +99,9 @@ const SubscriptionPlan = () => {
                         <SubscriptionPlanMainHeading sx={{ fontWeight: "600" }}>Choose the right plan for you</SubscriptionPlanMainHeading>
                         <SubscriptionPlanMainHeading>Increase the visibility of your posting, create a listing that attracts the best candidates</SubscriptionPlanMainHeading>
                         <Stack direction="row" gap={2}
-                            sx={{ margin: "50px 0px" }}>
-                            <CustomizeBox sx={{ width: "40%" }}>
+                            sx={{ margin: "50px 0px", flexWrap: "wrap" }}
+                        >
+                            <CustomizeBox sx={{ width: { "lg": "40%", "md": "100%", "xs": "100%" } }}>
                                 <PlanHeading>basic</PlanHeading>
                                 <PlanHeading sx={{ fontWeight: "600" }}>free</PlanHeading>
 
@@ -114,7 +115,7 @@ const SubscriptionPlan = () => {
 
 
                             </CustomizeBox>
-                            <CustomizeBox sx={{ width: "60%" }}>
+                            <CustomizeBox sx={{ width: { "lg": "60%", "md": "100%", "xs": "100%" } }}>
                                 <PlanHeading>Signature Posting</PlanHeading>
                                 <PlanHeading sx={{ fontWeight: "600" }}>Rs. 3,000</PlanHeading>
 

@@ -11,8 +11,8 @@ import SubscriptionPlan from "./SubscriptionPlan";
 import { ThemeButtontype1 } from "../../utils/Theme";
 import { useOutletContext } from "react-router-dom";
 
-import {  ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
-import UploadFile  from "../../ThemeComponent/Common/UploadFile";
+import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
+import UploadFile from "../../ThemeComponent/Common/UploadFile";
 import { CompanyUpdateInformationSchema, CreateSubUserValidationSchema } from "../../Validation/EmployerValidation";
 import { AccountSettingMenu } from "../../utils/Data";
 
@@ -142,44 +142,52 @@ const AccountSetting = () => {
 
 
     return (<>
-        <Stack className="AccountSettingPage" direction="row" gap={2} sx={{ 
+        <Stack className="AccountSettingPage" direction="row" gap={2} sx={{
             padding: "20px",
-            minHeight:"100vh",
-            background:"linear-gradient(231.41deg, #FDFCFF 13.04%, #FAF7FE 57.79%)" }}>
-            <Stack direction="column" gap={2} sx={{ width: "30%", padding: "0px 50px" }}>
-                <Box >
-                    <Typography component="div" sx={{ 
-                        fontWeight: "600", 
-                        fontSize: "25px", 
-                        margin: "20px 0px", 
-                        textTransform: "capitalize",
-                        color:"#4E3A67" }}>
-                        {currentMenu.replaceAll("_", " ")}
-                    </Typography>
+            minHeight: "100vh",
+            background: "linear-gradient(231.41deg, #FDFCFF 13.04%, #FAF7FE 57.79%)"
+            , flexWrap: "wrap"
+        }}>
+            <Box sx={{ width: { "lg": "30%", "md": "100%", "xs": "100%" } }}>
+                <Stack direction="column" gap={2} sx={{ padding: { "lg": "0px 50px", "md": "0px 50px", "xs": "0px" } }}>
+                    <Box >
+                        <Typography component="div" sx={{
+                            fontWeight: "600",
+                            fontSize: "25px",
+                            margin: "20px 0px",
+                            textTransform: "capitalize",
+                            color: "#4E3A67"
+                        }}>
+                            {currentMenu.replaceAll("_", " ")}
+                        </Typography>
 
-                    <Stack direction="column" gap={2} divider={<Divider orientation="horizontal" flexItem />}
-                        sx={{ minHeight: "200px", 
-                        background: "#FFFFFF",
-                         borderRadius: "14px", 
-                         padding: "20px",
-                         border:"1px solid #E1D4F2" }}>
+                        <Stack direction="column" gap={2} divider={<Divider orientation="horizontal" flexItem />}
+                            sx={{
+                                minHeight: "200px",
+                                background: "#FFFFFF",
+                                borderRadius: "14px",
+                                padding: "20px",
+                                border: "1px solid #E1D4F2"
+                            }}>
 
-                        {AccountSettingMenu && AccountSettingMenu.map((item) => {
-                            return (<Typography key={item.id} className={currentMenu == item.menu_name && "AccountMenu "} component="div"
-                                sx={{ fontSize: "16px", 
-                                color:"#4E3A67",
-                                margin: "5 0px", 
-                                cursor: "pointer", 
-                                textTransform: "capitalize" }} onClick={() => setCurrentMenu(item.menu_name)}>
-                                {item.menu_name.replaceAll("_", " ")}
-                            </Typography>
-                            )
-                        })}
+                            {AccountSettingMenu && AccountSettingMenu.map((item) => {
+                                return (<Typography key={item.id} className={currentMenu == item.menu_name && "AccountMenu "} component="div"
+                                    sx={{
+                                        fontSize: "16px",
+                                        color: "#4E3A67",
+                                        margin: "5 0px",
+                                        cursor: "pointer",
+                                        textTransform: "capitalize"
+                                    }} onClick={() => setCurrentMenu(item.menu_name)}>
+                                    {item.menu_name.replaceAll("_", " ")}
+                                </Typography>
+                                )
+                            })}
 
-                    </Stack>
-                </Box>
+                        </Stack>
+                    </Box>
 
-                {/* <Stack gap={2} sx={{ background: "#FFFFFF", padding: "20px", borderRadius: "10px" }}>
+                    {/* <Stack gap={2} sx={{ background: "#FFFFFF", padding: "20px", borderRadius: "10px" }}>
                     <Typography component="div" sx={{ fontWeight: "600", fontSize: "16px", textTransform: "capitalize" }}>
                         Increase visibility of your jobs
                     </Typography>
@@ -199,10 +207,11 @@ const AccountSetting = () => {
                     </Stack>
 
                 </Stack> */}
-            </Stack>
+                </Stack>
+            </Box>
 
 
-            <Box sx={{ width: "60%" }}>
+            <Box sx={{ width: { "lg": "60%", "md": "100%", "xs": "100%" } }}>
                 {currentMenu == "create_sub_user" && <>
                     <Stack
                         divider={<Divider orientation="horizontal" flexItem />}
@@ -211,15 +220,16 @@ const AccountSetting = () => {
                             background: "#FFFFFF",
                             padding: "50px",
                             borderRadius: "14px",
-                            border:"1px solid #E1D4F2"
+                            border: "1px solid #E1D4F2"
                         }}>
                         <Box>
-                            <Typography component="div" sx={{ 
+                            <Typography component="div" sx={{
                                 color: "#2B1E44",
                                 textTransform: "capitalize", margin: "10px 0px",
                                 fontSize: "40px",
                                 fontFamily: "Work Sans,sans-serif",
-                                fontWeight: "700" }}>
+                                fontWeight: "700"
+                            }}>
                                 Create Sub User
                             </Typography>
                             <Formik
@@ -263,7 +273,7 @@ const AccountSetting = () => {
                                         </ThemeFInputDiv>
 
                                         <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Create Sub User</ThemeButtonType2>
+                                            <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Create Sub User</ThemeButtonType2>
                                         </Box>
                                     </Form>
                                 )}
@@ -283,17 +293,18 @@ const AccountSetting = () => {
                             background: "#FFFFFF",
                             padding: "50px",
                             borderRadius: "14px",
-                            border:"1px solid #E1D4F2"
+                            border: "1px solid #E1D4F2"
                         }}>
                         <Box>
-                        <Typography component="div" sx={{ 
+                            <Typography component="div" sx={{
                                 color: "#2B1E44",
                                 textTransform: "capitalize", margin: "10px 0px",
                                 fontSize: "40px",
                                 fontFamily: "Work Sans,sans-serif",
-                                fontWeight: "700" }}>
+                                fontWeight: "700"
+                            }}>
                                 Update Company Information
-                        </Typography>
+                            </Typography>
                             <Formik
 
                                 initialValues={defaultValue1}
@@ -421,7 +432,7 @@ const AccountSetting = () => {
 
 
                                         <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Update</ThemeButtonType2>
+                                            <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Update</ThemeButtonType2>
                                         </Box>
                                     </Form>
                                 )}
@@ -442,18 +453,19 @@ const AccountSetting = () => {
                             background: "#FFFFFF",
                             padding: "50px",
                             borderRadius: "14px",
-                            border:"1px solid #E1D4F2"
+                            border: "1px solid #E1D4F2"
                         }}>
 
                         <Box>
-                        <Typography component="div" sx={{ 
+                            <Typography component="div" sx={{
                                 color: "#2B1E44",
                                 textTransform: "capitalize", margin: "10px 0px",
                                 fontSize: "40px",
                                 fontFamily: "Work Sans,sans-serif",
-                                fontWeight: "700" }}>
+                                fontWeight: "700"
+                            }}>
                                 Personal Details
-                        </Typography>
+                            </Typography>
 
                             <Formik
 
@@ -479,7 +491,7 @@ const AccountSetting = () => {
                                                     <img id="profileLogo" width="100%" />
                                                 </Box>
                                                 <UploadFile element="update_profile_image" uploadEvent={handleProfileLogo} />
-                                                    {/* <input type="file" name="upload_resume" id="update_profile_image" onChange={handleProfileLogo} style={{ display: "none" }} />
+                                                {/* <input type="file" name="upload_resume" id="update_profile_image" onChange={handleProfileLogo} style={{ display: "none" }} />
                                                     <ButtonType3 ButtonText="Upload File" imageURL="/assets/document.png" ClickEvent={() => document.getElementById("update_profile_image").click()}></ButtonType3> */}
 
                                                 {/* <Box sx={{ width: "80px" }}>
@@ -516,7 +528,7 @@ const AccountSetting = () => {
 
                                             <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="mobile_number" LableText="Mobile Number" />
-                                                <Stack direction="row" gap={2}  alignItems="center">
+                                                <Stack direction="row" gap={2} alignItems="center">
                                                     <Field
                                                         id="mobile_number"
                                                         as={TextField}
@@ -531,7 +543,7 @@ const AccountSetting = () => {
 
                                         </ThemeFInputDiv>
                                         <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Update Account</ThemeButtonType2>
+                                            <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Update Account</ThemeButtonType2>
 
                                         </Box>
                                     </Form>
