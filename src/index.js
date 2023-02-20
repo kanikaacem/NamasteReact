@@ -15,7 +15,7 @@ const initialState = {
   api_url: 'https://13.126.115.3:3001',
   showProfile : false,
   EmployeeMenuSelected : "dashboard",
-  CandidateMenuSelected : "applied_jobs",
+  CandidateMenuSelected : "home",
   activeJob : '',
   candidateInfo: '',
   CandidateRegistration:false,

@@ -11,12 +11,7 @@ import { useState, useEffect } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 
 import { useSelector } from "react-redux";
-
-import ProgressBar from "@ramonak/react-progress-bar";
-
-import Filter from "../../ThemeComponent/Filter";
-import JobComponent2 from "../../ThemeComponent/JobComponent2";
-import SearchBar from "../../ThemeComponent/SearchBar";
+import CandidateHome from "./CandidateHome";
 
 
 const CandidateDashboard = () => {
@@ -46,10 +41,11 @@ const CandidateDashboard = () => {
     }, []);
 
     return (<>
+        {console.log(user)}
         <Stack direction="column" sx={{
             padding: "0px 10px"
         }}>
-            <Typography component="h3" sx={{
+            {/* <Typography component="h3" sx={{
                 fontSize: "30px",
                 fontWeight: "600",
                 color: "#2B1E44",
@@ -57,15 +53,15 @@ const CandidateDashboard = () => {
                 textTransform: "capitalize"
             }}>
                 {CandidateMenuSelected.replaceAll("_", " ")}
-            </Typography>
+            </Typography> */}
 
-            {CandidateMenuSelected == "applied_jobs" && (<>
-                <hr style={{
+            {CandidateMenuSelected == "home" && (<>
+                {/* <hr style={{
                     bordertop: "1px solid #2B1E44",
                     width: "100%"
-                }}></hr>
-
-                <Stack direction="row" gap={1} sx={{ minHeight: `calc(100vh-70px)` }}>
+                }}></hr> */}
+                <CandidateHome />
+                {/* <Stack direction="row" gap={1} sx={{ minHeight: `calc(100vh-70px)` }}>
 
                     <Box sx={{ width: "20%" }}>
                         <Typography component="h5" sx={{
@@ -107,7 +103,6 @@ const CandidateDashboard = () => {
                             job details
                         </Typography>
                         <Box sx={{ background: "#FFFFFF", minHeight: "100vh", borderTop: "4px solid #2B1E44" }}>
-                            {/* {showJobDescription} */}
                             <Box sx={{
                                 background: "#cadcef",
                                 minHeight: "80px",
@@ -187,53 +182,7 @@ const CandidateDashboard = () => {
                         </Box>
                     </Box>
 
-                    {/* <Box sx={{ position: "relative", top: "30px" }}>
-                            <Pagination count={Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
-                        </Box> */}
-
-                    {/* <Box sx={{ width: "30%", padding: "20px" }}>
-                        <Typography component="h3" sx={{ fontSize: "20px", fontWeight: "600", color: "#2B1E44", margin: "10px 0px" }}>
-                            Profile Status
-                        </Typography>
-                        <Stack direction="column" gap={2}>
-                            <Box sx={{ background: "#FFFFFF", borderRadius: "10px", minHeight: "30px", padding: "20px" }}>
-                                <Stack direction="column" gap={2} alignItems="center">
-                                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-
-                                    <Box>
-                                        <Typography component="h3" sx={{ fontSize: "20px", fontWeight: "600", color: "#2B1E44" }}>
-                                            {user.employername ? user.employername : user.fullname}
-                                        </Typography>
-                                        <Typography component="h3" sx={{ fontSize: "14px", color: "#2B1E44" }}>
-                                            {user.email}
-                                        </Typography>
-                                    </Box>
-
-                                    <Stack justifyContent="space-between" direction="row" sx={{ width: "100%" }}>
-                                        <Typography component="h3" sx={{ fontSize: "12px", fontWeight: "600", color: "#2B1E44" }}>
-                                            Profile Progress
-                                        </Typography>
-                                        <Typography component="h3" sx={{ fontSize: "12px", fontWeight: "600", color: "#2B1E44" }}>
-                                            50%
-                                        </Typography>
-                                    </Stack>
-
-                                    <Box width="100%">
-                                        <ProgressBar completed={50} />
-                                    </Box>
-                                    <Button variant="contained" onClick={() => window.location.href = window.location.href + "/update-profile"}>Update Profile</Button>
-                                </Stack>
-                            </Box>
-
-                            <Link style={{ textDecoration: "none" }} to="/">
-                                <Stack direction="row" gap={2} sx={{ cursor: "pointer", background: "#FFFFFF", borderRadius: "10px", minHeight: "30px", padding: "20px" }}>
-                                    You can customize your job feed here <ChevronRightIcon></ChevronRightIcon>
-                                </Stack>
-                            </Link>
-                        </Stack>
-
-                    </Box> */}
-                </Stack>
+                </Stack> */}
 
             </>)}
 

@@ -705,15 +705,16 @@ textarea {
 /*Employer Dashboard account setting */
 .EmployeeMenuSelected,
 .AccountMenu,
-.SettingMenu {
+.SettingMenu,
+.CandidateMenuSelected {
   /* color: #62459b; */
   color: #4E3A67;
   font-weight: 600 !important;
 }
 
-.CandidateMenuSelected {
+/* .CandidateMenuSelected {
   border-right: 3px solid #007FFF !important;
-}
+} */
 
 #permanant_address,
 #current_location,

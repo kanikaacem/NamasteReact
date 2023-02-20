@@ -1,5 +1,5 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { CandidateLoginURL } from "../../utils/ApiUrls";
+import { CandidateLoginURL, ReSendCandidateEmailVerificationURL } from "../../utils/ApiUrls";
 
 import { Box, TextField, Typography, Container, Stack, Button } from "@mui/material";
 import { Formik, Field, Form } from "formik";
@@ -21,6 +21,7 @@ import { useState, useEffect } from "react";
 
 const CandidateLogin = () => {
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
+    const [sendVerificationLink, setSendVerificationLink] = useState(false);
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     const isLoggedIn = useSelector(state => state.isLoggedIn);
 
@@ -61,6 +62,19 @@ const CandidateLogin = () => {
         if (response.status == '0')
             setFieldError("password", response.data);
     }
+
+    const resendEmailVerificationLink = async () => {
+
+        let response = await postRequest(ReSendCandidateEmailVerificationURL, {
+            email: document.getElementById("email_address").value
+        })
+        if (response.status == '1') {
+            setSendVerificationLink(true);
+        }
+
+
+    }
+
     useEffect(() => {
         let userData = localStorage.getItem("auth_token");
         const getUserData = async () => {
@@ -87,6 +101,7 @@ const CandidateLogin = () => {
     return (<>
         {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>}
         <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)} message="Email Address is not verified. Please Verify your email First" messageType="success" />
+        <ShowMessageToastr value={sendVerificationLink} handleClose={() => setSendVerificationLink(false)} message="Email Verification link is send" messageType="success" />
 
         <Box className="CandidateLoginPage"
             sx={{
@@ -205,9 +220,29 @@ const CandidateLogin = () => {
                                     </ThemeFInputDiv>
 
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                        {isEmailVerified &&
-                                            <ThemeButtonType2 variant="contained" id="resend_link" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
+                                        {/* {isEmailVerified &&
+                                            <ThemeButtonType2 variant="contained"
+                                                id="resend_link"
+                                                type="button"
+                                                sx={{ fontFamily: "Work Sans, sans-serif", fontSize: "18px" }}
+                                                onClick={() => {
+                                                    resendEmailVerificationLink()
+                                                }}>Resend Verification Link</ThemeButtonType2>
+                                        } */}
+                                        {isEmailVerified && (<>
+                                            <a href="#" onClick={
+                                                () => {
+                                                    resendEmailVerificationLink()
+                                                }
+                                            }
+                                                style={{ textAlign: "center" }}>
+                                                Resend Verification Link
+                                            </a>
+
+                                        </>)
+
                                         }
+
                                         <ThemeButtonType2 variant="contained" type="submit" id="log_in" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
                                         <ThemeButtonType3 variant="outlined"
                                             type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
@@ -221,7 +256,7 @@ const CandidateLogin = () => {
                         </Formik>
 
 
-                        <Typography component="span" sx={{ fontSize: "16px", display: "flex" }}>
+                        {/* <Typography component="span" sx={{ fontSize: "16px", display: "flex" }}>
                             <hr style={{ width: "150px", height: "0px", color: "#DAD9D9" }}></hr> or login in with <hr style={{ width: "150px", height: "0px" }}></hr>
                         </Typography>
                         <Stack direction="row" gap={3} justifyContent="center">
@@ -234,7 +269,7 @@ const CandidateLogin = () => {
                                     </>)
                                 })
                             }
-                        </Stack>
+                        </Stack> */}
                     </Stack>
                 </Stack>
             </Stack>

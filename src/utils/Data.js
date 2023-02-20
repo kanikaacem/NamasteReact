@@ -199,6 +199,13 @@ export const reviews = [
 
 export const CandidateMenu = [
     {
+        id: 0,
+        MenuName: "Home",
+        value: "home",
+        url: "",
+
+    },
+    {
         id: 1,
         MenuName: "Profile",
         value: "profile",

@@ -1,5 +1,8 @@
 import { Box } from "@mui/material";
 
+import { JobDescriptionURL } from '../utils/ApiUrls';
+import { postRequest } from "../utils/ApiRequests";
+
 import { useParams, useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -49,45 +52,45 @@ const JobDescription = () => {
     }
 
     useEffect(() => {
+        let JobFormData = new FormData();
+        JobFormData = {
+
+            jobid: id
+
+        }
+        console.log(id);
         const getJobDescription = async () => {
-            let response = await fetch(api_url + "/api/job/getjobbyid", {
-                method: "POST",
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-Type': 'application/json; charset=UTF-8'
-                },
-                body: JSON.stringify({
-                    jobid: id
-
-                }),
-            })
-            if (response.ok) {
-                response = await response.json();
-                console.log(response)
-                setdata(response.message);
-            }
+            let response = await postRequest(JobDescriptionURL, JobFormData);
+            if (response.status === '1')
+                setdata(response.data);
+            // setdata(response.data);
+            // if (response.ok) {
+            //     response = await response.json();
+            //     console.log(response)
+            //     setdata(response.message);
+            // }
         }
 
-        const getSavedAppliedJobs = async () => {
-            let response = await fetch(api_url + "/api/users/getuserbyid", {
-                method: "POST",
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-Type': 'application/json; charset=UTF-8'
-                },
-                body: JSON.stringify({
-                    userid: user._id
+        // const getSavedAppliedJobs = async () => {
+        //     let response = await fetch(api_url + "/api/users/getuserbyid", {
+        //         method: "POST",
+        //         headers: {
+        //             'Access-Control-Allow-Origin': '*',
+        //             'Content-Type': 'application/json; charset=UTF-8'
+        //         },
+        //         body: JSON.stringify({
+        //             userid: user._id
 
-                }),
-            })
-            if (response.ok) {
-                response = await response.json();
-                // if (response.status == "1") setAlreadyApplied(true);
-                console.log(response);
+        //         }),
+        //     })
+        //     if (response.ok) {
+        //         response = await response.json();
+        //         // if (response.status == "1") setAlreadyApplied(true);
+        //         console.log(response);
 
-            }
-        }
-        // getJobDescription();
+        //     }
+        // }
+        getJobDescription();
         // getSavedAppliedJobs();
 
 
@@ -132,7 +135,7 @@ const JobDescription = () => {
                     maxWidth: "1263px",
                     margin: "0 auto"
                 }}>
-                    <JobDescriptionComponent userType={user && user.employer_type} />
+                    <JobDescriptionComponent userType={user && user.employer_type} data={data} />
 
                 </Box>
 

@@ -45,11 +45,16 @@ export const ResetPasswordEmployerEmailURL = "https://backend.jobsyahan.com/api/
 
 /* Getting Count for employer*/
 export const EmployerDashboardDetailsCount = "https://backend.jobsyahan.com/api/job/getdashboarddetails";
+
+/*Getting the job Description */
+export const JobDescriptionURL = "https://backend.jobsyahan.com/api/job/getjobbyid";
 /*----------------------Candidate----------------------------------------*/
 /*Candidate Registration*/
 
 /*Candidate Login */
 export const CandidateLoginURL = "https://backend.jobsyahan.com/api/users/login";
+
+export const ReSendCandidateEmailVerificationURL = "https://backend.jobsyahan.com/api/resendlink/candidate";
 
 /*Email Present */
 export const EmailExist = "https://backend.jobsyahan.com/api/users/checkemailexist";
