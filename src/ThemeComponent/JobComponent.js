@@ -1,7 +1,6 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, Button } from "@mui/material";
 
-const JobComponent = ({ data, data_id }) => {
-    // { console.log(data, data_id) }
+const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
     return (<>
         <Box sx={{
             background: "#FFFFFF",
@@ -10,18 +9,21 @@ const JobComponent = ({ data, data_id }) => {
             cursor: "pointer"
         }}
             onClick={() => {
-                window.location.href = window.location.origin + '/employer-dashboard/job-description/' + data_id
+                if (userType === "employer")
+                    window.location.href = window.location.origin + '/employer-dashboard/job-description/' + data_id
+                else
+                    OnClickfun()
             }}>
             <Box >
-                <Stack direction="row" justifyContent="space-between" sx={{ padding: "20px" }}>
-                    <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600" }}>
+                <Stack direction="row" justifyContent="space-between" sx={{ padding: "20px", color: "#4E3A67" }}>
+                    <Typography component="div" sx={{ fontSize: { "lg": "26px", "md": "26px", "xs": "20px" }, fontWeight: "600" }}>
                         {data ? data.job_title : " Linux Solution Engineer"}
                     </Typography>
-                    <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600" }}>
+                    <Typography component="div" sx={{ fontSize: { "lg": "26px", "md": "26px", "xs": "20px" }, fontWeight: "600" }}>
                         {(data && data.salarytype) ? data.salarytype.salary : "Rs 25,000- Rs 99,999"}
                     </Typography>
                 </Stack>
-                <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", padding: "0px 20px" }}>
+                <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, color: "#3D3B3F", padding: "0px 20px" }}>
                     {data ? data.company_name : "Vays Infotech Private Limited"}
                 </Typography>
 
@@ -40,7 +42,7 @@ const JobComponent = ({ data, data_id }) => {
                             <Box>
                                 <img src={window.location.origin + "/assets/RJ.png"} alt="RJ"></img>
                             </Box>
-                            <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                            <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "800px" }}>
                                 {data ? data.city[0] : "Demo City"}
                             </Typography>
                         </Stack>
@@ -72,10 +74,11 @@ const JobComponent = ({ data, data_id }) => {
                             <Box>
                                 <img src={window.location.origin + "/assets/RJ2.png"} alt="RJ2"></img>
                             </Box>
-                            <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                            <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "800px" }}>
                                 Min. {data && data.candidate_experience && data.candidate_experience.min_age} Years
                             </Typography>
                         </Stack>
+
                         <Stack direction="row" sx={{
                             background: "#FFFFFF",
                             border: "1px solid #E2D7F0",
@@ -88,14 +91,85 @@ const JobComponent = ({ data, data_id }) => {
                             <Box>
                                 <img src={window.location.origin + "/assets/RJ3.png"} alt="RJ3"></img>
                             </Box>
-                            <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                            <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "800px" }}>
                                 {data && data.prefered_degree[0]}
                             </Typography>
                         </Stack>
                     </Stack>
-                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
+
+                    {
+                        userType === "candidate" && <>
+                            <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
+                                50 Applicants Applied / 10 Applicants Rejected
+                            </Typography></>
+                    }
+                    <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
                         {data && data.job_responsibilty}
                     </Typography>
+
+                    {userType === "candidate" && <>
+                        <Stack direction="row" gap={2} sx={{ margin: "50px 0px", flexWrap: "wrap" }} justifyContent="space-between">
+                            <Stack direction="row" gap={1}>
+                                <Button
+                                    onClick={() => {
+                                        window.location.href = window.location.origin + '/candidate-dashboard/job-description/' + data_id
+                                    }}
+                                    sx={{
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: "500",
+                                        fontSize: { "lg": "20px", "md": "16px", "xs": "16px" },
+                                        color: "#3A2D49",
+                                        background: "#FC9A7E",
+                                        borderRadius: "7px",
+                                        textTransform: "capitalize",
+                                        fontWeight: "600",
+                                        "&:hover": {
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: "500",
+                                            fontSize: { "lg": "20px", "md": "16px", "xs": "16px" },
+                                            color: "#3A2D49",
+                                            background: "#FC9A7E",
+                                            borderRadius: "7px",
+                                            textTransform: "capitalize",
+                                            fontWeight: "600"
+                                        }
+                                    }} variant="contained">Apply Now</Button>
+                                <Button variant="outlined"
+                                    sx={{
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: "500",
+                                        fontSize: { "lg": "20px", "md": "16px", "xs": "16px" },
+                                        background: "#FAF7FE",
+                                        border: "1px solid #E7D5FF",
+                                        borderRadius: "7px",
+                                        color: "#3A2D49",
+                                        textTransform: "capitalize",
+                                        fontWeight: "600",
+                                        "&:hover": {
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: "500",
+                                            fontSize: { "lg": "20px", "md": "16px", "xs": "16px" },
+                                            background: "#FAF7FE",
+                                            border: "1px solid #E7D5FF",
+                                            borderRadius: "7px",
+                                            color: "#3A2D49",
+                                            textTransform: "capitalize",
+                                            fontWeight: "600",
+                                        }
+                                    }}>Share</Button>
+
+                            </Stack>
+
+                            <Box>
+                                <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "800px", padding: "0px 20px", color: '#A69CB2' }}>
+                                    Jobs For Freshers
+                                </Typography>
+                                <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "800px", padding: "0px 20px", color: "#A69CB2" }}>
+                                    Jobs For Women
+                                </Typography>
+                            </Box>
+                        </Stack> </>
+                    }
 
                     {/* <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67", margin: "20px 0px" }}>
                         Skill(s) Required

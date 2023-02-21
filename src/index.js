@@ -267,4 +267,10 @@ root.render(
 //https://dev.to/arikaturika/react-how-to-use-media-queries-with-radium-32he
 //https://blog.devgenius.io/persistent-state-in-react-js-using-useeffect-hook-d6e3e7ae65f2
 //https://www.howtogeek.com/devops/how-to-persist-your-redux-store/
+//https://www.educative.io/answers/how-to-use-the-uselocation-hook-in-react
 
+//https://stackoverflow.com/questions/36904185/react-router-scroll-to-top-on-every-transition
+//https://beta.reactjs.org/reference/react/useLayoutEffect
+//https://codingbeautydev.com/blog/react-scroll-event/
+//https://javascript.plainenglish.io/implementing-skeleton-ui-in-react-js-7eeb409584de
+//https://www.npmjs.com/package/react-loading-skeleton

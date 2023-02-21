@@ -4,7 +4,7 @@ import { Box, Stack, Typography } from "@mui/material";
 
 import { ThemeButtonType2 } from "../utils/Theme";
 const JobDescriptionComponent = ({ userType, data }) => {
-    console.log(data);
+    // console.log(data);
     return (<>
         <Stack
             direction="column"
@@ -38,24 +38,25 @@ const JobDescriptionComponent = ({ userType, data }) => {
             </Stack>
 
 
-            <Stack direction="row" gap={2} sx={{ flexWrap: "wrap" }}>
-                <Stack direction="row" sx={{
-                    background: "#FFFFFF",
-                    border: "1px solid #E2D7F0",
-                    borderRadius: "11px",
-                    padding: "15px",
-                    gap: "5px",
-                    alignItems: "center",
-                    justifyContent: "center"
-                }}>
-                    <Box>
-                        <img src={window.location.origin + "/assets/RJ.png"} alt="RJ"></img>
-                    </Box>
-                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-                        {data && data.city ? data.city.toString() : " Indiranagar"}
-                    </Typography>
-                </Stack>
-                {/* <Stack direction="row" sx={{
+            <Stack direction="row" justifyContent="space-between" sx={{ flexWrap: "wrap" }} gap={2}>
+                <Stack direction="row" gap={2} >
+                    <Stack direction="row" sx={{
+                        background: "#FFFFFF",
+                        border: "1px solid #E2D7F0",
+                        borderRadius: "11px",
+                        padding: "15px",
+                        gap: "5px",
+                        alignItems: "center",
+                        justifyContent: "center"
+                    }}>
+                        <Box>
+                            <img src={window.location.origin + "/assets/RJ.png"} alt="RJ"></img>
+                        </Box>
+                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                            {data && data.city ? data.city.toString() : " Indiranagar"}
+                        </Typography>
+                    </Stack>
+                    {/* <Stack direction="row" sx={{
                     background: "#FFFFFF",
                     border: "1px solid #E2D7F0",
                     borderRadius: "11px",
@@ -71,39 +72,49 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         5 Openings
                     </Typography>
                 </Stack> */}
-                <Stack direction="row" sx={{
-                    background: "#FFFFFF",
-                    border: "1px solid #E2D7F0",
-                    borderRadius: "11px",
-                    padding: "15px",
-                    gap: "5px",
-                    alignItems: "center",
-                    justifyContent: "center"
-                }}>
-                    <Box>
-                        <img src={window.location.origin + "/assets/RJ2.png"} alt="RJ2"></img>
-                    </Box>
-                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-                        Min. {data && data.candidate_experience && data.candidate_experience.min_age ? data.candidate_experience.min_age : "  3 "} Years
-                    </Typography>
+                    <Stack direction="row" sx={{
+                        background: "#FFFFFF",
+                        border: "1px solid #E2D7F0",
+                        borderRadius: "11px",
+                        padding: "15px",
+                        gap: "5px",
+                        alignItems: "center",
+                        justifyContent: "center"
+                    }}>
+                        <Box>
+                            <img src={window.location.origin + "/assets/RJ2.png"} alt="RJ2"></img>
+                        </Box>
+                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                            Min. {data && data.candidate_experience && data.candidate_experience.min_age ? data.candidate_experience.min_age : "  3 "} Years
+                        </Typography>
+                    </Stack>
+                    <Stack direction="row" sx={{
+                        background: "#FFFFFF",
+                        border: "1px solid #E2D7F0",
+                        borderRadius: "11px",
+                        padding: "15px",
+                        gap: "5px",
+                        alignItems: "center",
+                        justifyContent: "center"
+                    }}>
+                        <Box>
+                            <img src={window.location.origin + "/assets/RJ3.png"} alt="RJ3"></img>
+                        </Box>
+                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                            {data && data.prefered_degree ? data.prefered_degree.toString() : "Graduate"}
+                        </Typography>
+                    </Stack>
                 </Stack>
-                <Stack direction="row" sx={{
-                    background: "#FFFFFF",
-                    border: "1px solid #E2D7F0",
-                    borderRadius: "11px",
-                    padding: "15px",
-                    gap: "5px",
-                    alignItems: "center",
-                    justifyContent: "center"
-                }}>
-                    <Box>
-                        <img src={window.location.origin + "/assets/RJ3.png"} alt="RJ3"></img>
-                    </Box>
-                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-                        {data && data.prefered_degree ? data.prefered_degree.toString() : "Graduate"}
-                    </Typography>
-                </Stack>
+                {userType !== "employer" && <>
+                    <Stack direction="row" gap={2} alignItems="center" justifyContent="center" >
+                        <img height="20px" src={window.location.origin + "/assets/BookMark.png"} alt="Book Mark" />
+                        <img height="20px" src={window.location.origin + "/assets/Share.png"} alt="Share" />
+                    </Stack>
+                </>}
+
+
             </Stack>
+
 
             <Stack direction="row" justifyContent="space-between" sx={{ margin: "20px 0px" }}>
                 {/* <Stack direction="row" gap={2} alignItems="center" justifyContent="center" >
@@ -112,14 +123,6 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         50 Applicants
                     </Typography>
                 </Stack> */}
-
-                {userType !== "employer" && <>
-                    <Stack direction="row" gap={2} alignItems="center" justifyContent="center" >
-                        <img height="20px" src={window.location.origin + "/assets/BookMark.png"} alt="Book Mark" />
-                        <img height="20px" src={window.location.origin + "/assets/Share.png"} alt="Share" />
-                    </Stack>
-                </>}
-
             </Stack>
 
             <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600", color: "#4E3A67" }}>

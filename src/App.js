@@ -1,8 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { useSelector } from "react-redux";
-
 /*Email Verification Page*/
 import EmployerVerficationPage from './Pages/Common/EmailVerficationPage';
 
@@ -45,9 +43,17 @@ import JobSearch from './ThemeComponent/Common/JobSearch';
 import ContactUs from "./Pages/Common/ContactUs";
 import AboutUs from './Pages/Common/AboutUs';
 
+/*ScrollToTop when website reload */
+import { useLayoutEffect } from "react";
+// import ScrollToTop from './ThemeComponent/Common/ScrollToTop';
 function App() {
 
-  const isLoggedIn = useSelector(state => state.isLoggedIn);
+  // useLayoutEffect(() => {
+  //   console.log("I am running");
+  //   window.scrollTo(0, 0);
+
+  //   return null;
+  // }, []);
   return (
     <>
       <BrowserRouter>
@@ -72,7 +78,6 @@ function App() {
           <Route path="/candidate-register" element={<CandidateRegistration />} />
           <Route path="/profile/:step" element={<CandidateProfile></CandidateProfile>} />
           <Route path="/job" element={<JobSearch></JobSearch>} />
-          {/* <Route path="/candidate-new" element={<CandidateDashboard2></CandidateDashboard2>} /> */}
 
           <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
@@ -93,9 +98,8 @@ function App() {
           <Route path="/candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route>
 
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
-            {/* <Route path="/candidate-dashboard" element={<Dashboard />} > */}
             <Route path="" element={<CandidateDashboard></CandidateDashboard>} />
-            {/* <Route path="candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route> */}
+            <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
             <Route path="update-profile" element={<UpdateProfile></UpdateProfile>} />
             <Route path="saved-jobs" element={<SavedJobs></SavedJobs>} />
             <Route path="perferences" element={<CandidateJobPerferences></CandidateJobPerferences>} />

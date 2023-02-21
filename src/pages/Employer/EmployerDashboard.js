@@ -23,8 +23,12 @@ import SocialMedia from "../../ThemeComponent/Common/SocialMedia";
 
 import { Chart as ChartJS, registerables } from 'chart.js';
 import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
+import DashboardGreeting from "../../ThemeComponent/Common/DashboardGreeting";
+
 import { Bar } from 'react-chartjs-2'
+import { useLayoutEffect } from "react";
 ChartJS.register(...registerables);
+
 
 const EmployerDashboard = () => {
     const user = useOutletContext();
@@ -73,7 +77,7 @@ const EmployerDashboard = () => {
     }
 
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const getpostedjobs = async () => {
             try {
                 let data = await postRequest(getAllPostedJobs);
@@ -118,7 +122,9 @@ const EmployerDashboard = () => {
     return (<>
 
         <Stack direction="column" gap={2} sx={{ padding: "30px" }} className="EmployerData">
-            <Stack
+            <DashboardGreeting username={user && user.employer_name} userType="employer" />
+
+            {/* <Stack
                 direction="row"
                 alignItems="center"
                 justifyContent="space-between"
@@ -142,7 +148,7 @@ const EmployerDashboard = () => {
                     <ButtonType2 ButtonText="Post a Job" ClickEvent={() => window.location.href = window.location.href + "/post-a-job"}></ButtonType2>
                 </Box>
 
-            </Stack>
+            </Stack> */}
             {/* {showText && <Typography variant="h1">Appear when 600px and above</Typography>} */}
             {/* <Stack direction="column" gap={4} sx={{
                 width: "98%",
@@ -299,19 +305,19 @@ const EmployerDashboard = () => {
                                     </Box>
                                     <Stack direction="column" gap={2} sx={{ height: "600px" }}>
                                         {
-                                            jobs.length > 0 ? jobs.map((item) => {
+                                            jobs && jobs.length > 0 && jobs.map((item) => {
                                                 return (<>
-                                                    <JobComponent key={item._id} data={item} data_id={item._id} />
+                                                    <JobComponent key={item._id} data={item} data_id={item._id} userType="employer" />
                                                 </>)
                                             })
-                                                :
-                                                <Typography component="box" sx={{
-                                                    fontSize: "24px",
-                                                    fontWeight: "600",
-                                                    color: "#4E3A67"
-                                                }}>
-                                                    You haven't posted any Job yet.
-                                                </Typography>
+                                            //         :
+                                            // <Typography component="box" sx={{
+                                            //     fontSize: "24px",
+                                            //     fontWeight: "600",
+                                            //     color: "#4E3A67"
+                                            // }}>
+                                            //     You haven't posted any Job yet.
+                                            // </Typography>
 
                                         }
                                     </Stack>

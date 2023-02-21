@@ -699,7 +699,7 @@ textarea {
 /* Home Page Pagination */
 .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
   background: #2B1E44 !important;
-  color: white;
+  color: #FFFFFF !important;
 }
 
 /*Employer Dashboard account setting */
@@ -963,4 +963,9 @@ textarea {
   /* width: max-content; */
   color: #4E3A67 !important;
   border-bottom: none !important
+}
+
+.fixedDiv {
+  position: fixed;
+  top: 10px
 }

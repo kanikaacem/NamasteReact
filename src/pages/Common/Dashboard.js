@@ -25,6 +25,8 @@ import ClickAwayListener from '@mui/base/ClickAwayListener';
 import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
 import Footer from "../../ThemeComponent/Common/Footer";
 
+import DashboardAccountSetting from "../../ThemeComponent/Common/DashboardAccountSetting";
+
 // import PostJob from "./PostJob";
 const Dashboard = () => {
     const user = localStorage.user && JSON.parse(localStorage.user);
@@ -37,7 +39,6 @@ const Dashboard = () => {
     const CandidateMenuSelected = useSelector(state => state.CandidateMenuSelected);
 
     return (<>
-
         <Box
             className="dashboard"
             sx={{
@@ -55,9 +56,6 @@ const Dashboard = () => {
                 <Stack direction="row" gap={3} sx={{ height: "50px", padding: "20px 50px", alignItems: "center", justifyContent: "space-between" }}>
                     <Box sx={{ maxWidth: "15%" }}>
                         <Box sx={{ width: "fit-content", marginTop: "10px", height: "50px" }} >
-                            {/* <Link to="/">
-                                    <img src={window.location.origin + "/assets/companyLogo.png"} width="100%" height="100%" alt="companyLogo" />
-                                </Link> */}
                             <CompanyLogo color="#4E3A67" />
                         </Box>
                     </Box>
@@ -87,26 +85,17 @@ const Dashboard = () => {
 
                             {userInformation && userInformation.data && userInformation.data.type == "candidate" && CandidateMenu.map((item) => {
                                 return (<>
-                                    <ListItem sx={{
-                                        width: "fit-content",
-                                        display: "flex",
-                                        flexDirection: "row",
-                                        width: '100%',
-                                        padding: "0px",
-                                        alignItems: "center",
-                                        justifyContent: 'center',
-                                        margin: "8px 0px",
-
-                                    }}
+                                    <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
                                         button key={item.id} to={item.url} component={NavLink}
                                         className={CandidateMenuSelected === item.value && "CandidateMenuSelected"}
                                         id={item.id}
                                         onClick={() => { dispatch({ type: "CHANGE_CANDIDATE_MENU", payload: item.value }) }} >
-                                        {/* <ListItemIcon sx={{ width: "20px", minWidth: "20px" }}>
-                                            <img src={window.location.origin + `/assets/${item.image}`} width="100%" alt={item.value} />
-                                        </ListItemIcon> */}
+
                                         <ListItemText
-                                            primaryTypographyProps={{ fontSize: { "lg": "20px !important", "md": "16px !important" }, olor: "#4E3A67", textAlign: "center" }}
+                                            disableTypography
+                                            sx={{
+                                                fontSize: { "lg": `20px !important`, "md": "16px !important" }, color: "#4E3A67"
+                                            }}
                                             primary={item.MenuName} />
                                     </ListItem>
 
@@ -114,12 +103,7 @@ const Dashboard = () => {
                                 )
                             })}
 
-                            {/* <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => dispatch({ type: "LOGOUT" })}>
-                                            <LogoutIcon />
-                                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                Logout
-                                            </Typography>
-                                        </Stack> */}
+
                         </List>
 
                     </Box>
@@ -130,7 +114,7 @@ const Dashboard = () => {
                         }}>
                             <ReorderIcon onClick={() => setOpenMenu(!openMenu)} />
                         </Box>
-                        {openMenu && (<>
+                        {openMenu && userInformation && userInformation.employer_type == "employer" && (<>
                             <ClickAwayListener onClickAway={() => setOpenMenu(!openMenu)}>
 
                                 <Box sx={{
@@ -171,6 +155,49 @@ const Dashboard = () => {
 
                         </>
                         )}
+
+                        {openMenu && userInformation && userInformation.data && userInformation.data.type == "candidate" && (<>
+                            <ClickAwayListener onClickAway={() => setOpenMenu(!openMenu)}>
+
+                                <Box sx={{
+                                    position: "absolute",
+                                    top: "75px",
+                                    background: "#FFFFFF",
+                                    right: "10px",
+                                    width: "300px",
+                                    zIndex: "345235"
+                                }}>
+                                    <Box direction="row" sx={{
+                                        width: "100%"
+                                    }}>
+                                        <List sx={{ display: "flex", flexDirection: "column" }}>
+
+                                            {CandidateMenu.map((item) => {
+                                                return (<>
+                                                    <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
+                                                        button key={item.id} to={item.url} component={NavLink}
+                                                        className="menu"
+                                                        id={item.id}
+                                                        onClick={() => { dispatch({ type: "CHANGE_CANDIDATE_MENU", payload: item.value }) }} >
+                                                        <ListItemText
+                                                            disableTypography
+                                                            sx={{
+                                                                fontSize: { "lg": "20px !important", "md": "16px !important" }, color: "#4E3A67"
+                                                            }}
+                                                            className={CandidateMenuSelected === item.value && "CandidateMenuSelected"}
+                                                            primary={item.MenuName} />
+                                                    </ListItem>
+                                                </>)
+                                            })}
+                                        </List>
+                                    </Box>
+
+
+                                </Box>
+                            </ClickAwayListener >
+
+                        </>
+                        )}
                         <Badge badgeContent={4} color="primary" sx={{ cursor: "pointer" }}
                             onClick={() => window.location.href = window.location.origin + '/employer-dashboard/chats'}>
                             <MailOutlineIcon></MailOutlineIcon>
@@ -181,169 +208,30 @@ const Dashboard = () => {
                         </Box>
                     </Stack>
                     {openProfile && (<>
-                        <Box sx={{
-                            position: "absolute",
-                            top: "75px",
-                            background: "#FFFFFF",
-                            right: "10px",
-                            width: "300px",
-                            zIndex: "345235"
-                        }}>
-                            <Box sx={{ background: "#1f8f75", padding: "20px", height: "70px" }}>
-                                <Typography component="div" sx={{ fontSize: "20px", color: "#FFFFFF" }}>
-                                    {user.employer_name ? user.employer_name : user.fullname}
-                                </Typography>
-                                <Typography component="div" sx={{ fontSize: "16px", color: "#FFFFFF" }}>
-                                    {user.employer_email}
-                                </Typography>
-                            </Box>
-                            <Box sx={{
-                                background: "#0a6e56",
-                                color: "#FFFFFF",
-                                padding: "5px",
-                                fontSize: "12px"
-                            }}>
-                                Last Login :
-                                {user && user.lastlogin}
-                                {/* <Moment format="DD/MM/YYYY">
-                                        {user && user.lastlogin}
-                                    </Moment> */}
-                            </Box>
 
+                        {user && user.employer_type == "employer" &&
+                            <DashboardAccountSetting
+                                userName={user && user.employer_name}
+                                userEmail={user && user.employer_email}
+                                userLastLogin={user && user.lastlogin}
+                                userType="employer" />
+                        }
 
-                            {
-                                user && user.employer_type == "employer" && (<>
-                                    <Stack gap={2} direction="column" sx={{ background: "#FFFFFF", padding: "20px" }}>
-                                        {/* <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                Basic Postings : Unlimited
-                                            </Typography>
+                        {user && user.data && user.data.type == "candidate" &&
+                            <DashboardAccountSetting
+                                userName={user && user.data && user.data.personalInfo && user.data.personalInfo.fullname}
+                                userEmail={user && user.data && user.data.personalInfo && user.data.personalInfo.email}
+                                userLastLogin={user && user.data && user.data.lastlogin}
+                                userType="candidate" />
+                        }
 
-                                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                Premium Posting : {user && user.employer_plan} credits
-                                            </Typography> */}
-
-                                        <Stack direction="row" gap={2} sx={{ cursor: "pointer" }}
-                                            onClick={() => window.location.href = window.location.origin + '/employer-dashboard/account-setting'}>
-                                            <PersonIcon />
-                                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                Account Setting
-                                            </Typography>
-                                        </Stack>
-
-                                        <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => {
-
-                                            dispatch({ type: "LOGOUT" })
-                                        }}>
-                                            <LogoutIcon />
-                                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                Logout
-                                            </Typography>
-                                        </Stack>
-                                    </Stack></>)
-                            }
-
-                            {/* {
-                                user && user.type == "candidate" && (<>
-                                    <Box sx={{ background: "#FFFFFF", padding: "0px 20px", height: "300px", overflow: "scroll" }}>
-                                        <List sx={{ display: "flex", flexDirection: "column" }}>
-                                            {CandidateLogoutMenu.map((item) => {
-                                                return (<>
-                                                    <ListItem sx={{ width: "100%" }}
-                                                        button key={item.id} to={item.url} component={NavLink}
-                                                        className="menu"
-                                                        id={item.id}
-                                                        onClick={() => { }} >
-                                                        <ListItemText primary={item.Name} />
-                                                    </ListItem>
-                                                </>)
-                                            })}
-                                        </List>
-
-                                        <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => dispatch({ type: "LOGOUT" })}>
-                                            <LogoutIcon />
-                                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                Logout
-                                            </Typography>
-                                        </Stack>
-                                    </Box>
-                                </>)
-                            } */}
-
-                        </Box>
                     </>
                     )}
 
                 </Stack>
 
-
-
-
-                {/* {user && user.data && user.data.type == "candidate" && (<>
-
-                    <Stack direction="column"  >
-
-                        <Box sx={{ width: "50px", margin: "10px auto" }} >
-                            <Link to="/">
-                                <img src={window.location.origin + "/assets/companyLogo.png"} width="100%" height="100%" alt="companyLogo" />
-                            </Link>
-                        </Box>
-
-                        <Stack direction="column" gap={2}>
-                            {user && CandidateMenu.map((item) => {
-                                return (<>
-                                    <ListItem sx={{
-                                        width: "fit-content",
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        width: '100%',
-                                        padding: "0px",
-                                        alignItems: "center",
-                                        justifyContent: 'center',
-                                        margin: "8px 0px",
-
-                                    }}
-                                        button key={item.id} to={item.url} component={NavLink}
-                                        className={CandidateMenuSelected === item.value && "CandidateMenuSelected"}
-                                        id={item.id}
-                                        onClick={() => { dispatch({ type: "CHANGE_CANDIDATE_MENU", payload: item.value }) }} >
-                                        <ListItemIcon sx={{ width: "20px", minWidth: "20px" }}>
-                                            <img src={window.location.origin + `/assets/${item.image}`} width="100%" alt={item.value} />
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primaryTypographyProps={{ fontSize: '12px', textAlign: "center" }}
-                                            primary={item.MenuName} />
-                                    </ListItem>
-
-                                </>
-                                )
-                            })}
-                            <ListItem sx={{
-                                width: "fit-content",
-                                display: "flex",
-                                flexDirection: "column",
-                                width: '100%',
-                                padding: "0px",
-                                alignItems: "center",
-                                justifyContent: 'center',
-                                margin: "8px 0px"
-
-                            }}
-                                className={CandidateMenuSelected === "logout" && "CandidateMenuSelected"}
-                                onClick={() => dispatch({ type: "LOGOUT" })} >
-                                <ListItemIcon sx={{ width: "20px", minWidth: "20px" }}>
-                                    <LogoutIcon />
-                                </ListItemIcon>
-                                <ListItemText
-                                    primaryTypographyProps={{ fontSize: '12px', textAlign: "center" }}
-                                    primary="Logout" />
-                            </ListItem>
-
-                        </Stack>
-
-                    </Stack>
-                </>)} */}
-
-                <Box sx={{ background: "#f2f5fa", minHeight: `calc(100vh - 50px)`, width: '100%' }}>
+                {/* Dashboard based on the user */}
+                <Box sx={{ background: "#FAFAFA", minHeight: `calc(100vh - 50px)`, width: '100%' }}>
                     <Outlet context={userInformation}></Outlet>
                 </Box>
 
