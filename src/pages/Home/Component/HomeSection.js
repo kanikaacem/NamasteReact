@@ -30,7 +30,7 @@ const HomeSection = () => {
                     Find Suitable Jobs & Candidates Here! (Launching Soon)
 
                 </Typography>
-                <Typography component="span" sx={{
+                {/* <Typography component="span" sx={{
                     textAlign: "center",
                     display: "block",
                     margin: "3px 0px",
@@ -41,7 +41,18 @@ const HomeSection = () => {
                     Want to hire delivery executives, technicians, beauticians, field executives,
                     sales representatives or other frontline executives?.
                     JobsYahan is working to ensure you the same. Stay connected with us.
+                </Typography> */}
+                <Typography component="span" sx={{
+                    textAlign: "center",
+                    display: "block",
+                    margin: "3px 0px",
+                    fontWeight: "500",
+                    fontSize: { "lg": "23px", "md": "23px", "xs": "20px" },
+                    maxWidth: "1069px"
+                }}>
+                    JobsYahan is where employers can get suitable candidates for frontline jobs
                 </Typography>
+
             </Stack>
             {/* <Box
                 sx={{

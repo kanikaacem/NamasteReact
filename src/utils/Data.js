@@ -607,8 +607,8 @@ export const PerferredLocation = [
 export const MaritalStatus = [
     {
         id: 1,
-        value: "single",
-        Name: "Single"
+        value: "unmarried",
+        Name: "UnMarried"
     },
     {
         id: 2,

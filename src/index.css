@@ -722,7 +722,8 @@ textarea {
 #starting_year,
 #ending_year,
 #address,
-#currAddress {
+#currAddress,
+#current_address {
   width: 97%;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   border: 1px solid #d0d0d0;

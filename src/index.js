@@ -274,3 +274,8 @@ root.render(
 //https://codingbeautydev.com/blog/react-scroll-event/
 //https://javascript.plainenglish.io/implementing-skeleton-ui-in-react-js-7eeb409584de
 //https://www.npmjs.com/package/react-loading-skeleton
+//https://www.npmjs.com/package/react-share
+//https://www.npmjs.com/package/react-share-social
+
+//working reactjs share
+//https://www.npmjs.com/package/react-web-share

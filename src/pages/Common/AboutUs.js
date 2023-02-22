@@ -115,11 +115,73 @@ const AboutUs = () => {
                                 display: "block",
                                 lineHeight: "1.7"
                             }}>
-                            A disruptor in job search and a strong contributor to India’s
-                            growth define JobsYahaan. What sets us apart is that we offer
-                            work opportunities to all including those unsung heroes who give
-                            you gifts, deliver you food & groceries, make you beautiful, etc.
+                            JobsYahan will help employees and employers in fulfilling their
+                            respective needs. Employees can get the work they look for, while
+                            employers can get suitable candidates. Employers can post various
+                            frontline jobs, such as sales executives, technicians, beauticians,
+                            delivery executives, field executives, on our portal.
+
                         </Typography>
+
+                        <Typography component="box"
+                            sx={{
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontWeight: "600",
+                                color: "#2B1E44",
+                                display: "block",
+                                lineHeight: "1.7"
+                            }}>
+                            Our Vision - Make Employment Simple and Accessible
+                        </Typography>
+                        <Typography component="box"
+                            sx={{
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontWeight: "400",
+                                color: "#2B1E44",
+                                display: "block",
+                                lineHeight: "1.7"
+                            }}>
+
+                            Jobs are plenty in the market but somehow not as simple and accessible as
+                            employees would like. We thus step in by enabling people with suitable jobs.
+
+
+                        </Typography>
+
+                        <Typography component="box"
+                            sx={{
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontWeight: "600",
+                                color: "#2B1E44",
+                                display: "block",
+                                lineHeight: "1.7"
+                            }}>
+                            We Also Go Local with Jobs
+                        </Typography>
+                        <Typography component="box"
+                            sx={{
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontWeight: "400",
+                                color: "#2B1E44",
+                                display: "block",
+                                lineHeight: "1.7"
+                            }}>
+                            We have tied up with small retailers, kirana stores, and various other small
+                            businesses looking for support staff such as accountants, goods handlers, maintenance
+                            staff, etc. Both experienced and freshers can grab this wonderful opportunity.
+                            <Typography component="box"
+                                sx={{
+                                    fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                    fontWeight: "600",
+                                    color: "#2B1E44",
+                                    display: "block",
+                                    lineHeight: "1.7"
+                                }}>
+                                Our motto is not only to get you a job but also to make you happy.
+                            </Typography>
+
+                        </Typography>
+
                     </Stack>
 
                     <Typography component="box" sx={{

@@ -61,7 +61,7 @@ const WhyJobYahan = () => {
                     JobsYahan is a job portal every employer and employee would like.
                     While employers get suitable candidates for jobs, employees get suitable
                     jobs through the portal. You can even get delivery jobs on JobsYahan, which may
-                    not be the case on other job portals. Means, JobsYahan is Sabhi Ke Liye. So, try us now!
+                    not be the case on other job portals. So, try us now!
                 </Box>
             </Box>
             <Stack sx={{

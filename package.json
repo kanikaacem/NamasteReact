@@ -45,6 +45,7 @@
     "react-social-login-buttons": "^3.6.1",
     "react-tag-input": "^6.8.1",
     "react-top-loading-bar": "^2.3.1",
+    "react-web-share": "^2.0.2",
     "reactjs-pdf-reader": "^1.0.12",
     "reactjs-social-login": "^2.6.1",
     "redux": "^4.2.0",

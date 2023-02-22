@@ -3,8 +3,9 @@ import parse from 'html-react-parser';
 import { Box, Stack, Typography } from "@mui/material";
 
 import { ThemeButtonType2 } from "../utils/Theme";
+import { RWebShare } from "react-web-share";
+
 const JobDescriptionComponent = ({ userType, data }) => {
-    // console.log(data);
     return (<>
         <Stack
             direction="column"
@@ -106,9 +107,20 @@ const JobDescriptionComponent = ({ userType, data }) => {
                     </Stack>
                 </Stack>
                 {userType !== "employer" && <>
-                    <Stack direction="row" gap={2} alignItems="center" justifyContent="center" >
+                    <Stack direction="row" gap={2} alignItems="center" justifyContent="center"
+                        sx={{ cursor: "pointer" }}>
                         <img height="20px" src={window.location.origin + "/assets/BookMark.png"} alt="Book Mark" />
+                        {/* <RWebShare
+                            data={{
+                                text: "Job Opportunity",
+                                url: window.location.origin + "/job-description/" + data._id,
+                                title: "Job Opportunity",
+                            }}
+                            onClick={() => console.log("shared successfully!")}
+                        > */}
                         <img height="20px" src={window.location.origin + "/assets/Share.png"} alt="Share" />
+
+                        {/* </RWebShare> */}
                     </Stack>
                 </>}
 

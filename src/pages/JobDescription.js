@@ -58,17 +58,12 @@ const JobDescription = () => {
             jobid: id
 
         }
-        console.log(id);
+        // console.log(id);
         const getJobDescription = async () => {
             let response = await postRequest(JobDescriptionURL, JobFormData);
             if (response.status === '1')
                 setdata(response.data);
-            // setdata(response.data);
-            // if (response.ok) {
-            //     response = await response.json();
-            //     console.log(response)
-            //     setdata(response.message);
-            // }
+
         }
 
         // const getSavedAppliedJobs = async () => {
@@ -107,8 +102,11 @@ const JobDescription = () => {
             sx={{
                 minHeight: "100vh"
             }}>
+
             <Box className="JobDescriptionContent"
                 sx={{ padding: "100px 20px" }}>
+
+
                 <Box
                     sx={{
                         display: { "lg": "block", "md": "none", "xs": "none" },

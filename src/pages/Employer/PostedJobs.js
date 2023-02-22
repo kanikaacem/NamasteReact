@@ -172,7 +172,7 @@ const PostedJobs = () => {
 
     return (<>
         <Stack direction="row" sx={{ padding: "20px" }} className="PostedJobPage" gap={2}>
-            <Stack sx={{ width: "80%" }} gap={1}>
+            <Stack sx={{ width: { "lg": "80%", "md": "100%", "xs": "100%" } }} gap={1}>
                 <Stack direction="row" justifyContent="space-between">
                     <Select
                         variant="standard"
@@ -196,19 +196,19 @@ const PostedJobs = () => {
                 <Box sx={{ minHeight: 500, width: '100%' }}>
                     <Stack direction="column" gap={2}>
                         {
-                            jobs.length > 0 ? jobs.map((item) => {
+                            jobs.length > 0 && jobs.map((item) => {
                                 return (<>
                                     <JobComponent key={item._id} data={item} data_id={item._id} userType="employer" />
                                 </>)
                             })
-                                :
-                                <Typography component="box" sx={{
-                                    fontSize: "24px",
-                                    fontWeight: "600",
-                                    color: "#4E3A67"
-                                }}>
-                                    You haven't posted any Job yet.
-                                </Typography>
+                            // :
+                            // <Typography component="box" sx={{
+                            //     fontSize: "24px",
+                            //     fontWeight: "600",
+                            //     color: "#4E3A67"
+                            // }}>
+                            //     You haven't posted any Job yet.
+                            // </Typography>
 
                         }
                     </Stack>
@@ -229,7 +229,7 @@ const PostedJobs = () => {
                     />} */}
                 </Box>
             </Stack>
-            <Box sx={{ width: "20%" }}>
+            <Box sx={{ width: "20%", display: { "lg": "block", "md": "none", "xs": "none" } }}>
                 <ChatComponent />
             </Box>
         </Stack>

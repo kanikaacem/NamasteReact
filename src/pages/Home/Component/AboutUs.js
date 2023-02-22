@@ -135,9 +135,12 @@ const AboutUs = () => {
                             What sets us apart is that we offer work opportunities to all including those unsung heroes
                             who give you gifts, deliver you food & groceries, make you.......
                             <Typography component="span"
+                                onClick={() =>
+                                    window.location.href = window.location.origin + "/about-us"}
                                 sx={{
                                     color: "#FC9A7E",
-                                    fontSize: { "lg": "24px", "md": "24px", "xs": "18px" }
+                                    fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                    cursor: "pointer"
                                 }}>
                                 More.
                             </Typography>

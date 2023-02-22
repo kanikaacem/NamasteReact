@@ -1,4 +1,5 @@
 import { Box, Stack, Typography, Button } from "@mui/material";
+import { RWebShare } from "react-web-share";
 
 const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
     return (<>
@@ -97,12 +98,13 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                         </Stack>
                     </Stack>
 
-                    {
-                        userType === "candidate" && <>
-                            <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
-                                50 Applicants Applied / 10 Applicants Rejected
-                            </Typography></>
-                    }
+                    <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
+                        50 Applicants Applied
+                    </Typography>
+                    {/* <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
+                        50 Applicants Applied / 10 Applicants Rejected
+                    </Typography> */}
+
                     <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
                         {data && data.job_responsibilty}
                     </Typography>
@@ -134,6 +136,15 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                             fontWeight: "600"
                                         }
                                     }} variant="contained">Apply Now</Button>
+
+                                {/* <RWebShare
+                                    data={{
+                                        text: "Job Opportunity",
+                                        url: window.location.origin + "/job-description/" + data._id,
+                                        title: "Job Opportunity",
+                                    }}
+                                    onClick={() => console.log("shared successfully!")}
+                                > */}
                                 <Button variant="outlined"
                                     sx={{
                                         fontFamily: 'Montserrat',
@@ -157,6 +168,9 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                             fontWeight: "600",
                                         }
                                     }}>Share</Button>
+
+                                {/* </RWebShare> */}
+
 
                             </Stack>
 
