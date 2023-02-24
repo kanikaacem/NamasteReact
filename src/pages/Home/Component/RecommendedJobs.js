@@ -11,9 +11,6 @@ const RecommendedJobs = ({ fixed }) => {
     const [data, setData] = useState([]);
     const [canJobDes, setCanJobDes] = useState([]);
 
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [dataPerPage, setDataPerPage] = useState(4);
-
     useEffect(() => {
         const getData = async () => {
             let response = await getRequest(getAllJobs);
@@ -42,11 +39,6 @@ const RecommendedJobs = ({ fixed }) => {
         }
         // console.log(response);
     }
-    //Pagination 
-    // const IndexOfLastData = currentPage * dataPerPage;
-    // const IndexOfFirstData = IndexOfLastData - dataPerPage;
-    // const jobs = data.slice(IndexOfFirstData, IndexOfLastData);
-
     return (<>
         <Stack direction="row" className="RecommendedJobs" gap={2}
         >
@@ -69,11 +61,7 @@ const RecommendedJobs = ({ fixed }) => {
 
                 }
 
-                {/* {data.length > 0 &&
-                    <Box >
-                        <Pagination count={data && Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
-                    </Box>
-                } */}
+
             </Stack>
             <Box sx={{ width: "60%", display: { "lg": "block", "md": "none", "xs": "none" } }}>
                 <JobDescriptionComponent userType="Candidate" data={canJobDes} />

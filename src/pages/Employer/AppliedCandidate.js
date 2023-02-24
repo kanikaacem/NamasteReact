@@ -4,111 +4,9 @@ import SocialMedia from "../../ThemeComponent/Common/SocialMedia";
 import { useState, useEffect } from "react"
 const AppliedCandidate = () => {
     const [value, setValue] = useState(0)
-    // const user = localStorage.user && JSON.parse(localStorage.user);
-    // const api_url = useSelector(state => state.api_url);
 
-    // const [jobFilter, setJobFilter] = useState(" ");
-    // const [candidateFilter, setCandidateFilter] = useState(" ");
-    // const [data, setData] = useState();
-    // useEffect(() => {
-    //     const getCandidates = async () => {
-    //         let formData = new FormData();
-    //         formData = {
-    //             userid: user._id
-    //         }
-    //         let response = await fetch(api_url + "/api/job/getcandidatesonpostedjobs", {
-    //             // Adding method type
-    //             method: "POST",
-    //             // Adding body or contents to send
-    //             headers: {
-    //                 'Access-Control-Allow-Origin': '*',
-    //                 'Content-Type': 'application/json; charset=UTF-8'
-    //             },
-    //             body: JSON.stringify(formData),
-    //         })
-    //         if (response.ok) {
-    //             response = await response.json();
-    //             if (response.status == 1) {
-    //                 console.log(response);
-    //                 setData(response.data);
-    //             }
-
-    //         }
-
-    //     }
-    //     getCandidates();
-    // }, [])
     return (<>
-        {/* <Stack direction="row" gap={2}>
-            <Stack direction="column" gap={2} className="JobRecommened Candidates" sx={{ padding: '20px', width: "80%" }}>
-                <Box>
-                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600" }}>
-                        Applied Candidates
-                    </Typography>
-                </Box>
 
-                <Stack direction="row" gap={2}>
-                    <Select
-                        variant="standard"
-                        labelId="demo-simple-select-label"
-                        name="role"
-                        value={candidateFilter}
-                        label="role"
-                        onChange={(event) => {
-                            setCandidateFilter(event.target.value);
-                        }}
-                        sx={{ width: "200px", display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                        disableUnderline
-                    >
-                        <MenuItem value=" ">All Candidates</MenuItem>
-                        {CandidateFilter.map((item) =>
-                            <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                        )}
-                    </Select>
-
-                    <Select
-                        variant="standard"
-                        labelId="demo-simple-select-label"
-                        name="role"
-                        value={jobFilter}
-                        label="role"
-                        onChange={(event) => {
-                            setJobFilter(event.target.value);
-                        }}
-                        sx={{ width: "200px", display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                        disableUnderline
-                    >
-                        <MenuItem value=" ">All Jobs</MenuItem>
-                        {JobFilter.map((item) =>
-                            <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                        )}
-                    </Select>
-
-                </Stack>
-
-                <Stack direction="column" gap={2}>
-
-                    {data ? data.map((item) => {
-                        return (<CandidateComponent item={item}></CandidateComponent>)
-                    }) :
-                        <Box sx={{ width: "100%" }}>
-                        </Box>
-                    }
-
-                </Stack>
-            </Stack>
-
-            <Box sx={{
-                // position: "fixed",
-                // right: "0px",
-                // height: "100vh",
-                // background: "#f2f5fa"
-            }}>
-                <ChatAssistant />
-                <ChatComponent />
-                <ChatComponent />
-            </Box>
-        </Stack> */}
         <Box className="AppliedCandidatePage"
             sx={{
                 minHeight: "100vh"
@@ -134,22 +32,8 @@ const AppliedCandidate = () => {
                                 Noida   4-10 yrs |  Job Code: 1135573
                             </Typography>
                         </Box>
-                        {/* <Box> kjlkdfjlk </Box> */}
                     </Stack>
-                    {/* <Box sx={{ marginTop: "30px" }}>
-                        <Tabs
-                            value={value}
-                            textColor="primary"
-                            indicatorColor="primary"
-                            onChange={(event, newValue) => {
-                                setValue(newValue);
-                                console.log(value);
-                            }}
-                        >
-                            <Tab sx={{ fontSize: "20px", maxWidth: "fit-content" }} label="Recommended Candidates (10)" />
-                            <Tab sx={{ fontSize: "20px", maxWidth: "fit-content" }} label="Applications (10)" />
-                        </Tabs>
-                    </Box> */}
+
                     <Stack direction="row" gap={2}
 
                         sx={{

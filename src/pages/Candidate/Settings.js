@@ -21,9 +21,7 @@ const Settings = () => {
     return (<>
         <Box sx={{ height: "150px", background: "#445578", margin: "0px 30px" }}>
             <Stack direction="row" alignItems="center">
-                {/* <Stack sx={{ width: "15%", height: "150px", background: "green" }}>
-                    <img src={window.location.origin + "/assets/Setting.png"} height="100%" width="100%" alt="Setting" ></img>
-                </Stack> */}
+
                 <Box sx={{ width: "50%", padding: "20px" }}>
                     <Typography component="div" sx={{ fontSize: "16px", color: "white" }}>
                         My Settings
@@ -37,9 +35,7 @@ const Settings = () => {
         <Stack direction="row" gap={2} sx={{ padding: "20px" }}>
             <Stack direction="column" gap={2} sx={{ width: "20%", padding: "0px 50px" }}>
                 <Box >
-                    {/* <Typography component="div" sx={{ fontWeight: "600", fontSize: "30px", margin: "20px 0px", textTransform: "capitalize" }}>
-                        {currentMenu.replaceAll("_", " ")}
-                    </Typography> */}
+
 
                     <Stack direction="column" gap={1} divider={<Divider orientation="horizontal" flexItem />}
                         sx={{ Height: "200px", background: "#FFFFFF", borderRadius: "10px", padding: "20px" }}>

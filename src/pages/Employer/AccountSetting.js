@@ -54,8 +54,7 @@ const AccountSetting = () => {
     const handleCompanyLogo = async (event) => {
         let file = event.target.files[0];
         let file_size = file.size;
-        // setCompanyLogoImage(file);
-        // console.log(companyLogoImage);
+
         var output = document.getElementById('companyLogo');
         output.src = URL.createObjectURL(event.target.files[0]);
 
@@ -187,26 +186,7 @@ const AccountSetting = () => {
                         </Stack>
                     </Box>
 
-                    {/* <Stack gap={2} sx={{ background: "#FFFFFF", padding: "20px", borderRadius: "10px" }}>
-                    <Typography component="div" sx={{ fontWeight: "600", fontSize: "16px", textTransform: "capitalize" }}>
-                        Increase visibility of your jobs
-                    </Typography>
-                    <Typography component="div" sx={{ fontSize: "14px" }}>
-                        Connect your LinkedIn account and automatically promote your jobs in your network to increase visibility
-                    </Typography>
-                    <Stack direction="row" gap={1} sx={{ alignItems: "center" }}>
-                        <Box width="30px" sx={{ borderRadius: "50%" }}>
-                            <img src={window.location.origin + "/assets/LinkedIn.png"} width="100%" style={{
-                                borderRadius: "50%",
-                                objectFit: "cover"
-                            }}></img>
-                        </Box>
-                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                            Connect with LinkedIn
-                        </Typography>
-                    </Stack>
 
-                </Stack> */}
                 </Stack>
             </Box>
 
@@ -330,17 +310,6 @@ const AccountSetting = () => {
                                                 </Box>
                                                 <UploadFile element="update_company_logo" uploadEvent={handleCompanyLogo} />
 
-                                                {/* <Box sx={{ width: "80px" }}>
-                                                    <img id="companyLogo" width="100%" />
-                                                </Box>
-                                                <Field
-                                                    id="update_company_logo"
-                                                    style={{ display: "none", outline: "none" }}
-                                                    as={TextField}
-                                                    onChange={handleCompanyLogo}
-                                                    type="file" name="update_company_logo" fullWidth />
-
-                                                <ButtonType3 ButtonText="update Company Logo" ClickEvent={() => document.getElementById("update_company_logo").click()} ></ButtonType3> */}
 
                                             </ThemeFInputDiv>
 
@@ -491,23 +460,7 @@ const AccountSetting = () => {
                                                     <img id="profileLogo" width="100%" />
                                                 </Box>
                                                 <UploadFile element="update_profile_image" uploadEvent={handleProfileLogo} />
-                                                {/* <input type="file" name="upload_resume" id="update_profile_image" onChange={handleProfileLogo} style={{ display: "none" }} />
-                                                    <ButtonType3 ButtonText="Upload File" imageURL="/assets/document.png" ClickEvent={() => document.getElementById("update_profile_image").click()}></ButtonType3> */}
 
-                                                {/* <Box sx={{ width: "80px" }}>
-                                                    <img id="profileLogo" width="100%" />
-                                                </Box>
-
-                                                <Field
-                                                    id="update_profile_image"
-                                                    style={{ display: "none", outline: "none" }}
-                                                    as={TextField}
-                                                    onChange={
-                                                        handleProfileLogo
-                                                    }
-                                                    type="file" name="update_profile_image" fullWidth />
-
-                                                <ButtonType3 ButtonText="update Company Logo" ClickEvent={() => document.getElementById("update_profile_image").click()}></ButtonType3> */}
 
                                             </ThemeFInputDiv>
 

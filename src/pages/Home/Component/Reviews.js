@@ -1,21 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material";
 const Reviews = () => {
-
-    // const [item, setItem] = useState(reviews);
-
-    // const splitedReview = [];
-    // while (reviews.length > 0) {
-    //     splitedReview.push(reviews.splice(0, 2));
-    // }
-
-    // useEffect(() => {
-    //     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    //     console.log(item);
-    //     // if (!isMobile)
-    //     //     // setItem(2);
-    // })
-
-
     return (<>
         <Box className="reviews"
             sx={{
@@ -266,26 +250,6 @@ const Reviews = () => {
                     </Stack>
                 </Box>
             </Box>
-            {/* <Box sx={{
-                background: "#FAFAFA",
-                padding: "20px 0px",
-                color: "445578"
-            }}>
-                < Heading text="What Customers Say about us!" />
-
-            </Box>
-            <Carousel
-                autoPlay="true"
-                infiniteLoop="true"
-            >
-                {splitedReview.map((reviews, index) => {
-                    return (<>
-                        <div className="reviewItem" key={index}>
-                            <UserReview reviews={reviews} />
-                        </div>
-                    </>)
-                })}
-            </Carousel> */}
 
         </Box>
 

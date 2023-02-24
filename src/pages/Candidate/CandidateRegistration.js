@@ -60,28 +60,8 @@ const CandidateRegistration = () => {
 
     }
 
-    // useEffect(() => {
-    //     let userData = localStorage.getItem("auth_token");
-    //     const getUserData = async () => {
-    //         let response = await postRequest(CandidateLoginURL, {
-    //             email: localStorage.getItem("useremail"),
-    //             password: localStorage.getItem("password")
-    //         })
-    //         if (response.status == '1') {
-    //             if (response.data.isemailverified) {
-    //                 dispatch({ type: 'USER_REGISTRATION', payload: response });
-    //             }
-    //             else {
-    //                 setIsEmailVerified(true);
-    //             }
-    //         }
-    //     }
 
-    //     userData != " " && getUserData();
-
-    // })
     return (<>
-        {/* {CandidateRegistration == true && <Navigate to="/profile/0"></Navigate>} */}
 
         <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)}
             message="Email Verification Link is send . "
@@ -229,14 +209,7 @@ const CandidateRegistration = () => {
                                     </ThemeFInputDiv>
 
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                        {/* {showLoginButton &&
-                                            <ThemeButtonType2
-                                                onClick={() => {
-                                                    window.location.href = window.location.origin + "/candidate-login";
-                                                }
-                                                } id="login" variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Login</ThemeButtonType2>
 
-                                        } */}
                                         <ThemeButtonType2 id="continue" variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue</ThemeButtonType2>
                                     </Stack>
 

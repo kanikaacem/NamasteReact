@@ -77,24 +77,6 @@ const ViewProfile = () => {
 
                     </Box>
                 </Stack>
-                {/* <Stack alignItems="center" justifyContent="center"
-                    sx={{
-                        width: "100px",
-                        margin: "0 auto",
-                        position: "absolute",
-                        top: "192px",
-                        width: "70%"
-                    }}>
-
-                </Stack>
-                <Box>
-                    <Typography component="div" sx={{ fontSize: "20px", textAlign: "center", marginTop: "60px" }}>
-                        User Name
-                    </Typography>
-                </Box>
-                <Box sx={{ textAlign: "center" }}>
-                    <Button variant="outlined" startIcon={<PhoneIcon />} >Call</Button>
-                </Box> */}
 
                 <Stack direction="row" alignItems="center" justifyContent="flex-start" sx={{
                     minHeight: "50px", margin: "10px 0px", padding: "10px",

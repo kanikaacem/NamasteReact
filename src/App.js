@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 /*Email Verification Page*/
 import EmployerVerficationPage from './Pages/Common/EmailVerficationPage';
@@ -42,18 +43,13 @@ import JobDescription from './Pages/JobDescription';
 import JobSearch from './ThemeComponent/Common/JobSearch';
 import ContactUs from "./Pages/Common/ContactUs";
 import AboutUs from './Pages/Common/AboutUs';
-
-/*ScrollToTop when website reload */
-import { useLayoutEffect } from "react";
-// import ScrollToTop from './ThemeComponent/Common/ScrollToTop';
+import { useEffect } from "react";
 function App() {
 
-  // useLayoutEffect(() => {
-  //   console.log("I am running");
-  //   window.scrollTo(0, 0);
+  useEffect(() => {
+    window.history.scrollRestoration = 'manual'
+  }, []);
 
-  //   return null;
-  // }, []);
   return (
     <>
       <BrowserRouter>

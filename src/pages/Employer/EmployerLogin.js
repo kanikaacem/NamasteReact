@@ -9,9 +9,8 @@ import { Navigate } from 'react-router-dom';
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 
-import { SocialBox, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
+import { ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
-import { socialLogin } from "../../utils/Data";
 import { employerLoginValidationSchema } from "../../Validation/EmployerValidation";
 import ShowMessageToastr from "../../ThemeComponent/Common/ShowMessageToastr";
 import Error from "../../ThemeComponent/Common/Error";
@@ -41,7 +40,7 @@ const EmployerLogin = () => {
         localStorage.setItem('useremail', values.email_address);
         localStorage.setItem('password', values.password);
         let response = await postRequest(EmployerLoginURL, EmployerLoginForm);
-        if (response.status == '1') {
+        if (response.status === '1') {
             if (!response.data.isemailverified) {
                 setShowEmailVerifiedMessage(true);
                 setIsEmailVerified(true);
@@ -52,7 +51,7 @@ const EmployerLogin = () => {
                 localStorage.setItem("removeLocalStorageData", true);
                 window.location.href = window.location.origin + "/employer-register";
             }
-            else if (response.data.isemailverified && response.data.ismobileverified && response.data.stage == "savememailandpass") {
+            else if (response.data.isemailverified && response.data.ismobileverified && response.data.stage === "savememailandpass") {
                 localStorage.setItem("removeLocalStorageData", true);
                 window.location.href = window.location.origin + "/employer-register";
             }
@@ -63,7 +62,7 @@ const EmployerLogin = () => {
             }
 
         }
-        if (response.status == '0')
+        if (response.status === '0')
             setFieldError("password", response.data);
 
     }
@@ -73,7 +72,7 @@ const EmployerLogin = () => {
         let response = await postRequest(ReSendEmailVerificationURL, {
             email: document.getElementById("email_address").value
         })
-        if (response.status == '1') {
+        if (response.status === '1') {
             setSendVerificationLink(true);
         }
 
@@ -88,7 +87,7 @@ const EmployerLogin = () => {
                 email: localStorage.getItem("useremail"),
                 password: localStorage.getItem("password")
             })
-            if (response.status == '1') {
+            if (response.status === '1') {
                 if (!response.data.isemailverified) {
                     setShowEmailVerifiedMessage(true);
                     setIsEmailVerified(true);
@@ -98,7 +97,7 @@ const EmployerLogin = () => {
                     localStorage.setItem("removeLocalStorageData", true);
                     window.location.href = window.location.origin + "/employer-register";
                 }
-                else if (response.data.isemailverified && response.data.ismobileverified && response.data.stage == "savememailandpass") {
+                else if (response.data.isemailverified && response.data.ismobileverified && response.data.stage === "savememailandpass") {
                     localStorage.setItem("removeLocalStorageData", true);
                     window.location.href = window.location.origin + "/employer-register";
                 }
@@ -109,11 +108,11 @@ const EmployerLogin = () => {
             }
         }
 
-        ((userData != " " && userData != null) && (action != "login" && action != " " && action != null)) && getUserData();
+        ((userData !== " " && userData !== null) && (action !== "login" && action !== " " && action !== null)) && getUserData();
 
     }, []);
     return (<>
-        {isLoggedIn == 'true' && (user && user.employer_type == "employer") && <Navigate to="/employer-dashboard"></Navigate>}
+        {isLoggedIn === 'true' && (user && user.employer_type === "employer") && <Navigate to="/employer-dashboard"></Navigate>}
         <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)} message="Email Address is not verified. Please Verify your email First" messageType="success" />
         <ShowMessageToastr value={sendVerificationLink} handleClose={() => setSendVerificationLink(false)} message="Email Verification link is send" messageType="success" />
 
