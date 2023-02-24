@@ -43,6 +43,7 @@ import JobDescription from './Pages/JobDescription';
 import JobSearch from './ThemeComponent/Common/JobSearch';
 import ContactUs from "./Pages/Common/ContactUs";
 import AboutUs from './Pages/Common/AboutUs';
+import PersonalInformationInformation2 from "./ThemeComponent/ThemeForms/PersonalInformation2";
 import { useEffect } from "react";
 function App() {
 
@@ -57,6 +58,8 @@ function App() {
           <Route exact path="/" element={<Home></Home>} />
           <Route path="/contact-us" element={<ContactUs></ContactUs>} />
           <Route path="/about-us" element={<AboutUs></AboutUs>} />
+
+          <Route path="/personal-info" element={<PersonalInformationInformation2></PersonalInformationInformation2>} ></Route>
 
           <Route path="/forgot-password/employer" element={<ForgotPasswordPage user="employer" />} />
           <Route path="/reset-password/employer/:token" element={<ResetPasswordPage user="employer" />} />
