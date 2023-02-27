@@ -13,7 +13,6 @@ import Footer from "../../ThemeComponent/Common/Footer";
 
 import "./Home.css";
 
-import { useState } from "react"
 function Home() {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const user = localStorage.user && JSON.parse(localStorage.user);

@@ -27,6 +27,7 @@ const JobCategory = () => {
 
   return (<>
     <Box className="hs_job_categories">
+
       <Stack
         className="hs_job_categroies_wrapper"
         sx={{

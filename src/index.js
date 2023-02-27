@@ -279,3 +279,4 @@ root.render(
 
 //working reactjs share
 //https://www.npmjs.com/package/react-web-share
+//https://www.npmjs.com/package/react-multi-carousel

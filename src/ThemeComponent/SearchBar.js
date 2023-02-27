@@ -88,7 +88,7 @@ const SearchBar = () => {
                     height: "fit-content",
                     background: "#FFFFFF",
                     border: "3px solid #E1D4F2",
-                    boxShadow: "0px 47px 52px #f4ecff",
+                    boxShadow: { "lg": "0px 47px 52px #f4ecff", "md": "none", "xs": "none" },
                     borderRadius: "15px",
                     alignItems: "center",
                     justifyContent: "space-between",
