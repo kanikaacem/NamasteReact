@@ -1,25 +1,12 @@
-import { UserInformationURL } from "../../utils/ApiUrls";
-import { postRequest } from "../../utils/ApiRequests";
+import { NavLink, Outlet } from "react-router-dom";
+import { Avatar, Box, Stack, Badge, List, ListItem, ListItemText } from "@mui/material";
 
-import { NavLink, Link, Outlet } from "react-router-dom";
-import { Avatar, Box, Stack, Badge, Typography, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
-
-import PersonIcon from '@mui/icons-material/Person';
-import LogoutIcon from '@mui/icons-material/Logout';
-
-import WorkIcon from '@mui/icons-material/Work';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import ReorderIcon from '@mui/icons-material/Reorder';
 
 import { EmployerMenu, CandidateMenu } from "../../utils/Data.js";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
-import { CandidateLogoutMenu } from "../../utils/Data";
-
-import Moment from 'react-moment';
 
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
@@ -29,16 +16,18 @@ import DashboardAccountSetting from "../../ThemeComponent/Common/DashboardAccoun
 
 // import PostJob from "./PostJob";
 const Dashboard = () => {
-    const user = localStorage.user && JSON.parse(localStorage.user);
+    // const user = localStorage.user && JSON.parse(localStorage.user);
 
     const [openProfile, setOpenProfile] = useState(false);
     const [openMenu, setOpenMenu] = useState(false);
-    const [userInformation, setUserInformation] = useState(user);
+    // const [userInformation, setUserInformation] = useState(user);
+    const user = useSelector(state => state.user);
     const dispatch = useDispatch();
     const EmployeeMenuSelected = useSelector(state => state.EmployeeMenuSelected);
     const CandidateMenuSelected = useSelector(state => state.CandidateMenuSelected);
 
     return (<>
+        {/* {console.log(user)} */}
         <Box
             className="dashboard"
             sx={{
@@ -65,7 +54,7 @@ const Dashboard = () => {
                     }}>
                         <List sx={{ display: "flex" }}>
 
-                            {userInformation && userInformation.employer_type == "employer" && EmployerMenu.map((item) => {
+                            {user && user.employer_type == "employer" && EmployerMenu.map((item) => {
                                 return (<>
                                     <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
                                         button key={item.id} to={item.url} component={NavLink}
@@ -83,7 +72,7 @@ const Dashboard = () => {
                             })}
 
 
-                            {userInformation && userInformation.data && userInformation.data.type == "candidate" && CandidateMenu.map((item) => {
+                            {user && user.data && user.data.type == "candidate" && CandidateMenu.map((item) => {
                                 return (<>
                                     <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
                                         button key={item.id} to={item.url} component={NavLink}
@@ -114,7 +103,7 @@ const Dashboard = () => {
                         }}>
                             <ReorderIcon onClick={() => setOpenMenu(!openMenu)} />
                         </Box>
-                        {openMenu && userInformation && userInformation.employer_type == "employer" && (<>
+                        {openMenu && user && user.employer_type == "employer" && (<>
                             <ClickAwayListener onClickAway={() => setOpenMenu(!openMenu)}>
 
                                 <Box sx={{
@@ -156,7 +145,7 @@ const Dashboard = () => {
                         </>
                         )}
 
-                        {openMenu && userInformation && userInformation.data && userInformation.data.type == "candidate" && (<>
+                        {openMenu && user && user.data && user.data.type == "candidate" && (<>
                             <ClickAwayListener onClickAway={() => setOpenMenu(!openMenu)}>
 
                                 <Box sx={{
@@ -232,7 +221,7 @@ const Dashboard = () => {
 
                 {/* Dashboard based on the user */}
                 <Box sx={{ background: "#FAFAFA", minHeight: `calc(100vh - 50px)`, width: '100%' }}>
-                    <Outlet context={userInformation}></Outlet>
+                    <Outlet context={user}></Outlet>
                 </Box>
 
             </Stack>

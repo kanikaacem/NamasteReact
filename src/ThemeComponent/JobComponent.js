@@ -12,6 +12,9 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
             onClick={() => {
                 if (userType === "employer")
                     window.location.href = window.location.origin + '/employer-dashboard/job-description/' + data_id
+                else if (userType === "candidate" && window.location.pathname === "/job")
+                    window.location.href = window.location.origin + '/candidate-dashboard/job-description/' + data_id
+
                 else
                     OnClickfun()
             }}>
@@ -99,11 +102,9 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                     </Stack>
 
                     <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
-                        50 Applicants Applied
+                        {data && data.applied_count > 0 ? data.applied_count : '0'} Applicants Applied
                     </Typography>
-                    {/* <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
-                        50 Applicants Applied / 10 Applicants Rejected
-                    </Typography> */}
+
 
                     <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
                         {data && data.job_responsibilty}
@@ -114,6 +115,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                             <Stack direction="row" gap={1}>
                                 <Button
                                     onClick={() => {
+
                                         window.location.href = window.location.origin + '/candidate-dashboard/job-description/' + data_id
                                     }}
                                     sx={{

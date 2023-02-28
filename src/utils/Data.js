@@ -223,7 +223,7 @@ export const CandidateMenu = [
         id: 3,
         MenuName: "Notification",
         value: "notification",
-        url: "/",
+        url: "",
         image: "notification.png"
     },
     {
@@ -1233,4 +1233,32 @@ export const FooterData3 = [
         name: "Cookies Settings",
         url: "/"
     }
+]
+
+export const ExperienceHome = [
+    '1-2 yrs',
+    '2-3 yrs',
+    '3-4 yrs',
+    '4-5 yrs',
+    '5-6 yrs',
+    '6-7 yrs',
+    '7-8 yrs',
+    '8-9 yrs',
+    '9-10 yrs'
+];
+
+export const CTCHome = [
+    '1-2 lakhs',
+    '2-3 lakhs',
+    '3-4 lakhs',
+    '4-5 lakhs',
+    '5-6 lakhs',
+    '6-7 lakhs',
+    '7-8 lakhs',
+    '8-9 lakhs',
+    '9-10 lakhs',
+    '10-11 lakhs',
+    '11-12 lakhs',
+    '12-13 lakhs',
+    'above 13 lakhs'
 ]

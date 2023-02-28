@@ -1,19 +1,30 @@
+import { HomeCities } from '../utils/ApiUrls';
+import { getRequest } from "../utils/ApiRequests";
 import {
     Box, Stack, Typography,
-    Select, MenuItem, Slider, Button
+    Autocomplete, TextField
 } from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
-import { cities } from "../utils/Data";
-
-import { useState, useEffect } from "react";
 
 import ThemeLabel from "./ThemeForms/ThemeLabel";
 import { ThemeFInputDiv } from "../utils/Theme";
+
+import { useState, useEffect } from "react";
+
+
 const Filter = () => {
 
-    const [city, setCity] = useState(" ");
-    const [jobType, setJobType] = useState(" ");
-    const [state, setState] = useState(" ");
+    useEffect(() => {
+        const getCities = async () => {
+            let data = await getRequest(HomeCities);
+            if (data.status === '1')
+                setCities(data.data.sort());
+
+        }
+        getCities();
+
+    }, []);
+
+    const [cities, setCities] = useState([]);
 
     return (<>
         <Box sx={{
@@ -60,50 +71,53 @@ const Filter = () => {
                             }} type="text" name="jobType" placeholder="Job Type" />
                     </ThemeFInputDiv>
 
-                    <Stack direction="row" gap={1} sx={{ width: "100%" }}>
-                        <ThemeFInputDiv sx={{ width: "40%" }}>
-                            <ThemeLabel LableFor="city" LableText="City" />
-                            <Select
-                                classNamePrefix="react-select"
-                                labelId="demo-simple-select-label"
-                                name="city"
-                                value={city}
-                                label="Age"
-                                onChange={(event) => {
-                                    setCity(event.target.value);
-                                }}
+                    <ThemeFInputDiv sx={{ width: "100%" }}>
+                        <ThemeLabel LableFor="city" LableText="City" />
+                        <Box
+                            sx={{
+                                background: " rgb(255, 255, 255)",
+                                border: " 1px solid rgb(231, 213, 255)",
+                                borderRadius: "11px",
+                                fontSize: "16px",
+                                padding: "8px"
+                            }}>
+                            <Autocomplete
+                                disablePortal
+                                id="city"
+                                options={cities}
                                 sx={{
-                                    background: " #FFFFFF",
-                                    border: "1px solid #EAEAEA",
-                                    boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                    borderRadius: "7px",
-                                    fontSize: "16px",
-                                    fontamily: 'Montserrat',
-                                    BorderBottom: 'none'
+                                    "& .MuiOutlinedInput-root": {
+                                        borderRadius: "0",
+                                        padding: "2px",
+                                        border: "none"
+                                    },
+                                    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                                        border: "none"
+                                    }
                                 }}
-                                disableUnderline
-                            >
-                                <MenuItem value=" ">Select City</MenuItem>
-                                {cities.map((item) =>
-                                    <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                                )}
-                            </Select>
-                        </ThemeFInputDiv>
+                                renderInput={(params) => <TextField
+                                    placeholder='Cities'
+                                    {...params} />}
+                            />
+                        </Box>
+
+                    </ThemeFInputDiv>
 
 
-                        <ThemeFInputDiv sx={{ width: "60%" }}>
-                            <ThemeLabel LableFor="area" LableText="Area" />
-                            <input
-                                style={{
-                                    background: "#FFFFFF",
-                                    border: " 1px solid #E7D5FF",
-                                    borderRadius: "11px",
-                                    padding: "20px",
-                                    fontSize: "16px"
-                                }} type="text" name="area" placeholder="Area" />
+                    {/* <ThemeFInputDiv sx={{ width: "100%" }}>
+                        <ThemeLabel LableFor="area" LableText="Area" />
+                        <input
+                            style={{
+                                background: "#FFFFFF",
+                                border: " 1px solid #E7D5FF",
+                                borderRadius: "11px",
+                                padding: "20px",
+                                fontSize: "16px"
+                            }} type="text" name="area" placeholder="Area" />
 
-                        </ThemeFInputDiv>
-                    </Stack>
+                    </ThemeFInputDiv> */}
+
+
                     {/* 
                 <ThemeFInputDiv sx={{ width: "100%" }} className="SalarySlider">
                     <ThemeLabel LableFor="desired_salary" LableText="Desired Salary" />

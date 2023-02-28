@@ -6,6 +6,7 @@ import { ThemeButtonType2 } from "../utils/Theme";
 import { RWebShare } from "react-web-share";
 
 const JobDescriptionComponent = ({ userType, data }) => {
+    { console.log(data) }
     return (<>
         <Stack
             direction="column"
@@ -106,6 +107,15 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         </Typography>
                     </Stack>
                 </Stack>
+            </Stack>
+
+
+            <Stack direction="row" justifyContent="space-between" sx={{ margin: "20px 0px" }}>
+                <Box>
+                    <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
+                        {data && data.applied_count > 0 ? data.applied_count : '0'} Applicants Applied
+                    </Typography>
+                </Box>
                 {userType !== "employer" && <>
                     <Stack direction="row" gap={2} alignItems="center" justifyContent="center"
                         sx={{ cursor: "pointer" }}>
@@ -123,12 +133,6 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         {/* </RWebShare> */}
                     </Stack>
                 </>}
-
-
-            </Stack>
-
-
-            <Stack direction="row" justifyContent="space-between" sx={{ margin: "20px 0px" }}>
                 {/* <Stack direction="row" gap={2} alignItems="center" justifyContent="center" >
                     <img height="20px" src={window.location.origin + "/assets/AppliedCandidate.png"} alt="Applied Candidate" />
                     <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
