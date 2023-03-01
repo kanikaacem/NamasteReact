@@ -178,10 +178,11 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
 
                             <Box>
                                 <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "800px", padding: "0px 20px", color: '#A69CB2' }}>
-                                    Jobs For Freshers
+                                    {data && data.candidate_experience && data.candidate_experience.min_age === 0 && "Jobs For Freshers"}
                                 </Typography>
-                                <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "800px", padding: "0px 20px", color: "#A69CB2" }}>
-                                    Jobs For Women
+                                <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "800px", padding: "0px 20px", color: "#A69CB2", textTransform: "capitalize" }}>
+                                    {(data && data.prefered_gender === "both" ?
+                                        " Job for Men , Women" : "Job for " + data.prefered_gender)}
                                 </Typography>
                             </Box>
                         </Stack> </>

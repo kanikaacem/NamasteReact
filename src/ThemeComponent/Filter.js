@@ -2,7 +2,7 @@ import { HomeCities } from '../utils/ApiUrls';
 import { getRequest } from "../utils/ApiRequests";
 import {
     Box, Stack, Typography,
-    Autocomplete, TextField
+    Autocomplete, TextField, Button
 } from "@mui/material";
 
 import ThemeLabel from "./ThemeForms/ThemeLabel";
@@ -190,42 +190,42 @@ const Filter = () => {
 
                 </Stack> */}
 
-                    {/* <ThemeFInputDiv>
-                    <Button
-                        sx={{
-                            width: "419px",
-                            height: "54px",
-                            background: "#4E3A67",
-                            border: "1px solid #E7D5FF",
-                            borderRadius: "7px",
-                            color: "#FFFFFF",
-                            "&:hover": {
-                                width: "419px",
+                    <ThemeFInputDiv>
+                        <Button
+                            sx={{
+                                maxWidth: "419px",
                                 height: "54px",
                                 background: "#4E3A67",
                                 border: "1px solid #E7D5FF",
                                 borderRadius: "7px",
                                 color: "#FFFFFF",
-                            }
-                        }}> Jobs for Women</Button>
-                    <Button
-                        sx={{
-                            width: "419px",
-                            height: "54px",
-                            background: " #FFFFFF",
-                            border: "1px solid #E7D5FF",
-                            borderRadius: "7px",
-                            color: '#3A2D49',
-                            "&:hover": {
-                                width: "419px",
+                                "&:hover": {
+                                    maxWidth: "419px",
+                                    height: "54px",
+                                    background: "#4E3A67",
+                                    border: "1px solid #E7D5FF",
+                                    borderRadius: "7px",
+                                    color: "#FFFFFF",
+                                }
+                            }}> Jobs for Women</Button>
+                        <Button
+                            sx={{
+                                maxWidth: "419px",
                                 height: "54px",
                                 background: " #FFFFFF",
                                 border: "1px solid #E7D5FF",
                                 borderRadius: "7px",
-                                color: '#3A2D49'
-                            }
-                        }}> Jobs for Freshers</Button>
-                </ThemeFInputDiv> */}
+                                color: '#3A2D49',
+                                "&:hover": {
+                                    maxWidth: "419px",
+                                    height: "54px",
+                                    background: " #FFFFFF",
+                                    border: "1px solid #E7D5FF",
+                                    borderRadius: "7px",
+                                    color: '#3A2D49'
+                                }
+                            }}> Jobs for Freshers</Button>
+                    </ThemeFInputDiv>
 
 
                 </Stack>

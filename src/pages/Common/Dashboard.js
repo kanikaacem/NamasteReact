@@ -27,7 +27,7 @@ const Dashboard = () => {
     const CandidateMenuSelected = useSelector(state => state.CandidateMenuSelected);
 
     return (<>
-        {/* {console.log(user)} */}
+        {console.log(user)}
         <Box
             className="dashboard"
             sx={{
@@ -72,7 +72,7 @@ const Dashboard = () => {
                             })}
 
 
-                            {user && user.data && user.data.type == "candidate" && CandidateMenu.map((item) => {
+                            {user && user.type == "candidate" && CandidateMenu.map((item) => {
                                 return (<>
                                     <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
                                         button key={item.id} to={item.url} component={NavLink}
@@ -145,7 +145,7 @@ const Dashboard = () => {
                         </>
                         )}
 
-                        {openMenu && user && user.data && user.data.type == "candidate" && (<>
+                        {openMenu && user && user.type == "candidate" && (<>
                             <ClickAwayListener onClickAway={() => setOpenMenu(!openMenu)}>
 
                                 <Box sx={{
@@ -206,11 +206,11 @@ const Dashboard = () => {
                                 userType="employer" />
                         }
 
-                        {user && user.data && user.data.type == "candidate" &&
+                        {user && user.type == "candidate" &&
                             <DashboardAccountSetting
-                                userName={user && user.data && user.data.personalInfo && user.data.personalInfo.fullname}
-                                userEmail={user && user.data && user.data.personalInfo && user.data.personalInfo.email}
-                                userLastLogin={user && user.data && user.data.lastlogin}
+                                userName={user && user.personalInfo && user.personalInfo.fullname}
+                                userEmail={user && user.personalInfo && user.personalInfo.email}
+                                userLastLogin={user && user.lastlogin}
                                 userType="candidate" />
                         }
 

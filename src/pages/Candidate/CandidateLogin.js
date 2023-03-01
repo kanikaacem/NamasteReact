@@ -45,9 +45,9 @@ const CandidateLogin = () => {
         let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
         if (response.status == '1') {
             localStorage.setItem("auth_token", response.token);
-            console.log(response.data)
+            // console.log(response)
             if (response.data.isemailverified && response.data.profilecompleted >= 50)
-                dispatch({ type: 'LOGIN', payload: response });
+                dispatch({ type: 'LOGIN', payload: response.data });
 
             else if (response.data.isemailverified && response.data.profilecompleted < 50)
                 window.location.href = window.location.origin + "/profile/0";

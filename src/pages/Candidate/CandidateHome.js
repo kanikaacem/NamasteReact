@@ -31,7 +31,7 @@ const CandidateHome = () => {
                 padding: "20px"
             }}>
 
-            <DashboardGreeting username={user && user.data && user.data.personalInfo && user.data.personalInfo.fullname} userType="candidate" />
+            <DashboardGreeting username={user && user.personalInfo && user.personalInfo.fullname} userType="candidate" />
             <Stack direction="column" >
                 <Stack direction="row" gap={1} sx={{ minHeight: `calc(100vh-70px)` }}>
 

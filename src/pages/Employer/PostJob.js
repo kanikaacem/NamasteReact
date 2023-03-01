@@ -176,7 +176,7 @@ const PostJob = () => {
             },
             salary: {
                 saltype: values.salary_type,
-                salary: values.ctc_salary
+                salary: values.ctc_salary.trim()
             },
             weekly_off: values.weekly_off.split(","),
             location_state: values.state,
