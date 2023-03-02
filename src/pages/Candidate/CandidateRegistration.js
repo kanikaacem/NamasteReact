@@ -17,6 +17,7 @@ import Error from '../../ThemeComponent/Common/Error';
 
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+
 const CandidateRegistration = () => {
 
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
@@ -42,9 +43,10 @@ const CandidateRegistration = () => {
         let response = await postRequest(EmailExist, {
             email: values.email_id
         });
-        if (response.status == '0') {
+        console.log(response)
+        if (response.status === '0') {
             setShowLoginButton(true);
-            setFieldError("email_id", response.data);
+            setFieldError("email_id", response.msg);
         }
         else {
             response = await postRequest(saveCandidateUserNameAndPasswordURL, CandidateLoginForm);

@@ -684,6 +684,7 @@ export const PaymentType = [
         value: "montly",
         Name: "Montly"
     }
+
 ]
 /* Job Filter */
 
@@ -858,14 +859,18 @@ export const WorkingShift = [
 export const SalaryType = [
     {
         id: 1,
-        value: "Monthly"
+        value: "Yearly"
     },
     {
         id: 2,
-        value: "Per Day"
+        value: "Monthly"
     },
     {
         id: 3,
+        value: "Per Day"
+    },
+    {
+        id: 4,
         value: "Per Hour"
     }
 ]
@@ -1235,30 +1240,9 @@ export const FooterData3 = [
     }
 ]
 
-export const ExperienceHome = [
-    '1-2 yrs',
-    '2-3 yrs',
-    '3-4 yrs',
-    '4-5 yrs',
-    '5-6 yrs',
-    '6-7 yrs',
-    '7-8 yrs',
-    '8-9 yrs',
-    '9-10 yrs'
-];
+export const ExperienceHome =
+    ['1 yrs', '2 yrs', '3 yrs', '4 yrs', '5 yrs', '6 yrs', '7 yrs', '8 yrs', '9 yrs', '10 yrs', '11 yrs', '12 yrs', '13 yrs', '14 yrs', '15 yrs', '16 yrs', '17 yrs', '18 yrs', '19 yrs', '20 yrs', '21 yrs', '22 yrs', '23 yrs', '24 yrs', '25 yrs', '26 yrs', '27 yrs', '28 yrs', '29 yrs', 'above 30 yrs'];
 
 export const CTCHome = [
-    '1-2 lakhs',
-    '2-3 lakhs',
-    '3-4 lakhs',
-    '4-5 lakhs',
-    '5-6 lakhs',
-    '6-7 lakhs',
-    '7-8 lakhs',
-    '8-9 lakhs',
-    '9-10 lakhs',
-    '10-11 lakhs',
-    '11-12 lakhs',
-    '12-13 lakhs',
-    'above 13 lakhs'
+    '1 lpa', '2 lpa', '3 lpa', '4 lpa', '5 lpa', '6 lpa', '7 lpa', '8 lpa', '9 lpa', '10 lpa', '11 lpa', '12 lpa', '13 lpa', '14 lpa', '15 lpa', '16 lpa', '17 lpa', '18 lpa', '19 lpa', '20 lpa', '21 lpa', '22 lpa', '23 lpa', '24 lpa', '25 lpa', '26 lpa', '27 lpa', '28 lpa', '29 lpa', 'above 30 lpa'
 ]

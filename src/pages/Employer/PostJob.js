@@ -1,5 +1,5 @@
 import { postRequest, getRequest } from "../../utils/ApiRequests";
-import { StatesURL, getJobTypeURL, PostJob1, PostJob2 } from "../../utils/ApiUrls";
+import { StatesURL, getJobTypeURL, getSKillOnJobType, PostJob1, PostJob2 } from "../../utils/ApiUrls";
 
 import {
     Box, Stack, TextField, Checkbox, Select as SelectField,
@@ -264,13 +264,13 @@ const PostJob = () => {
 
     const getIndustryTypeByJobType = async (jobTypeFilter) => {
         let SkillsData = [];
-        let response = await getRequest("https://backend.jobsyahan.com/api/file/industrytype?jobtype=" + jobTypeFilter);
-        // setIndustryData(response.data);
+        let response = await getRequest(getSKillOnJobType + "=" + jobTypeFilter);
+
         response.data.map(item => {
             // {item[0].toString()}
             SkillsData.push({
-                label: item[0],
-                value: item[0]
+                label: item,
+                value: item
             })
         });
         // console.log(SkillsData);
@@ -510,14 +510,15 @@ const PostJob = () => {
                                                         width: "101%",
                                                         fontSize: "16px",
                                                         fontamily: 'Montserrat',
-                                                        padding: "8px"
+                                                        padding: "8px",
+
                                                     }}
 
                                                 >
                                                     <MenuItem value=" ">Select Job Type</MenuItem>
 
                                                     {jobTypeData && jobTypeData.map((item) =>
-                                                        <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                        <MenuItem value={item} key={item}>{item.replaceAll("_", " ")}</MenuItem>
                                                     )}
                                                 </SelectField>
 
@@ -816,7 +817,7 @@ const PostJob = () => {
                                                 )}
                                             </SelectField>
                                             {
-                                                (salaryType == "Per Day" || salaryType == "Per Hour") && <>
+                                                (salaryType === "Per Day" || salaryType === "Per Hour") && <>
                                                     <Field
                                                         error={errors.salary && touched.salary}
                                                         as={TextField}
@@ -825,7 +826,7 @@ const PostJob = () => {
                                                 </>
                                             }
 
-                                            {salaryType == "Monthly" &&
+                                            {(salaryType === "Monthly" || salaryType === "Yearly") &&
                                                 <SelectField
                                                     labelId="demo-simple-select-label"
                                                     name="association_type"
@@ -1041,7 +1042,7 @@ const PostJob = () => {
                     </Box>
                 </Box>
             </Stack>
-        </Box>
+        </Box >
 
 
         <Box className="PostJobPage"

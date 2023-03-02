@@ -26,7 +26,9 @@ export const getAllJobs = "https://backend.jobsyahan.com/api/job/getalljobs";
 
 
 /*Posting Job */
-export const getJobTypeURL = "https://backend.jobsyahan.com/api/file/jobtype";
+// export const getJobTypeURL = "https://backend.jobsyahan.com/api/file/jobtype";
+export const getJobTypeURL = "https://backend.jobsyahan.com/api/file/jobscategory";
+export const getSKillOnJobType = "https://backend.jobsyahan.com/api/file/jobscategoryskill?category"
 export const PostJob1 = "https://backend.jobsyahan.com/api/job/postjob1";
 export const PostJob2 = "https://backend.jobsyahan.com/api/job/postjob2";
 
@@ -61,6 +63,8 @@ export const EmailExist = "https://backend.jobsyahan.com/api/users/checkemailexi
 /*STEP 1 */
 export const saveCandidateUserNameAndPasswordURL = "https://backend.jobsyahan.com/api/users/createuser";
 /*STEP 2 */
+/*Middle Step */
+export const checkBlueCollarJob = "https://backend.jobsyahan.com/api/file/findjobtype?jobtype";
 export const SaveCandidatePersonalInformation = "https://backend.jobsyahan.com/api/users/updateuserpersonalinfo";
 /*STEP 3 */
 export const SaveCandidateProfessionalInformation = "https://backend.jobsyahan.com/api/users/updateusereducationalinfo";

@@ -35,14 +35,6 @@ import { useState, useEffect } from "react";
 const PersonalInformation = ({ setActiveStep }) => {
     const animatedComponents = makeAnimated();
 
-
-    // let userid = useSelector(state => state.candidateInfo);
-    // if (userid != '') {
-    //     userid = JSON.parse(userid);
-    //     userid = userid.data;
-    // }
-    // userid = userid && userid.data;
-
     const [personalInfoForm, setPersonalInfoForm] = useState(1);
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [perferredLocation, setPerferredLocation] = useState([]);
