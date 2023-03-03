@@ -288,7 +288,7 @@ const PersonalInformation = ({ setActiveStep }) => {
                                     width: "max-content"
 
                                 }}>
-                                    Personal Details
+                                    Professional Details
                                 </Typography>
                                 <Box>
                                     <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />

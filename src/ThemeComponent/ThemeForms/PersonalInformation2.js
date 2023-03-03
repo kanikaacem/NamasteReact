@@ -19,7 +19,7 @@ const PersonalInformation2 = () => {
     const [gender, setGender] = useState("");
     const [martialStatus, setMaritalStatus] = useState(" ");
 
-    const [form, setForm] = useState(2);
+    const [form, setForm] = useState(1);
     const [workArea, setWorkArea] = useState(" ");
     const [workExperience, setWorkExperience] = useState(" ");
     const [previouslyWorked, setPreviouslyWorked] = useState(" ");
@@ -37,7 +37,8 @@ const PersonalInformation2 = () => {
         bank_account: ""
     }
     return (<>
-        <Box className="PersonalInformation2" sx={{
+        <Box> Hello</Box>
+        {/* <Box className="PersonalInformation2" sx={{
             padding: { "lg": "50px 80px", "md": "20px", "xs": "20px" },
             background: "FAFAFA",
             display: form === 1 ? "block" : "none"
@@ -125,64 +126,10 @@ const PersonalInformation2 = () => {
                             display: "block",
                             marginTop: "20px"
                         }}>
-                            Personal Details
+                            Candidate Details
                         </Typography>
 
-                        <Stack direction="row" gap={2} sx={{
-                            margin: "25px 0px",
-                            flexWrap: "wrap"
-                        }}>
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center"
-                            >
-                                <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>1</Box>
-                                <Typography component="box" sx={{
-                                    fontSize: "19px",
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                }}>
-                                    Personal Details
-                                </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                </Box>
-                            </Stack>
 
-
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>2</Box>
-                                <Typography component="box" sx={{
-                                    fontSize: "19px",
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                }}>
-                                    Professional Details
-                                </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                </Box>
-                            </Stack>
-
-                        </Stack>
 
                     </Box>
                     <Box sx={{
@@ -536,64 +483,9 @@ const PersonalInformation2 = () => {
                             display: "block",
                             marginTop: "20px"
                         }}>
-                            Professional Details
+                            Candidate Details
                         </Typography>
 
-                        <Stack direction="row" gap={2} sx={{
-                            margin: "25px 0px",
-                            flexWrap: "wrap"
-                        }}>
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center"
-                            >
-                                <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>1</Box>
-                                <Typography component="box" sx={{
-                                    fontSize: "19px",
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                }}>
-                                    Personal Details
-                                </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                </Box>
-                            </Stack>
-
-
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>2</Box>
-                                <Typography component="box" sx={{
-                                    fontSize: "19px",
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                }}>
-                                    Professional Details
-                                </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                </Box>
-                            </Stack>
-
-                        </Stack>
 
                     </Box>
                     <Box sx={{
@@ -772,7 +664,7 @@ const PersonalInformation2 = () => {
                 </Box>
 
             </Stack>
-        </Box >
+        </Box > */}
     </>)
 }
 export default PersonalInformation2;

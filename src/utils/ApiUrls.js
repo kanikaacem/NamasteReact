@@ -74,3 +74,6 @@ export const SaveCandidateWorkInformation = "https://backend.jobsyahan.com/api/u
 /* Forgot Password */
 export const ForgotPasswordCandidateEmailURL = "https://backend.jobsyahan.com/api/forgotpassword/candidate";
 export const ResetPasswordCandidateEmailURL = "https://backend.jobsyahan.com/api/reset-password/candidate/";
+
+/*Candidate Question */
+export const CandidateQuestion = "https://backend.jobsyahan.com/api/file/getquestion";

@@ -78,6 +78,7 @@ function App() {
           <Route path="/candidate-login" element={<CandidateLogin></CandidateLogin>}></Route>
           <Route path="/candidate-register" element={<CandidateRegistration />} />
           <Route path="/profile/:step" element={<CandidateProfile></CandidateProfile>} />
+          <Route path=":jobType/profile/:step" element={<CandidateProfile></CandidateProfile>} />
           <Route path="/job" element={<JobSearch></JobSearch>} />
 
           <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
