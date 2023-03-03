@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 import Header from "../../ThemeComponent/Common/Header";
-import PersonalInformation2 from "../../ThemeComponent/ThemeForms/PersonalInformation";
+import PersonalInformation2 from "../../ThemeComponent/ThemeForms/PersonalInformation2";
 import PersonalInformation from "../../ThemeComponent/ThemeForms/PersonalInformation";
 import ProfessionalDetail from "../../ThemeComponent/ThemeForms/ProfessionalDetail";
 import WorkHistory from "../../ThemeComponent/ThemeForms/WorkHistory";
@@ -57,16 +57,15 @@ const CandidateProfile = () => {
         {console.log(jobType)}
 
         {jobType ? <PersonalInformation2 /> :
-            "hello"
-            // <>
-            //     <Box>
-            //         {activeStep == 0 && <PersonalInformation setActiveStep={setActiveStep} />}
-            //         {activeStep == 1 && <ProfessionalDetail setActiveStep={setActiveStep} />}
-            //         {activeStep == 2 && <WorkHistory setActiveStep={setActiveStep} ></WorkHistory>}
-            //         {activeStep == 3 && <UploadResume ></UploadResume>}
+            <>
+                <Box>
+                    {activeStep == 0 && <PersonalInformation setActiveStep={setActiveStep} />}
+                    {activeStep == 1 && <ProfessionalDetail setActiveStep={setActiveStep} />}
+                    {activeStep == 2 && <WorkHistory setActiveStep={setActiveStep} ></WorkHistory>}
+                    {activeStep == 3 && <UploadResume ></UploadResume>}
 
-            //     </Box>
-            // </>
+                </Box>
+            </>
         }
 
 
