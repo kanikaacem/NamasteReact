@@ -223,7 +223,7 @@ export const CandidateMenu = [
         id: 3,
         MenuName: "Notification",
         value: "notification",
-        url: "/",
+        url: "",
         image: "notification.png"
     },
     {
@@ -684,6 +684,7 @@ export const PaymentType = [
         value: "montly",
         Name: "Montly"
     }
+
 ]
 /* Job Filter */
 
@@ -858,14 +859,18 @@ export const WorkingShift = [
 export const SalaryType = [
     {
         id: 1,
-        value: "Monthly"
+        value: "Yearly"
     },
     {
         id: 2,
-        value: "Per Day"
+        value: "Monthly"
     },
     {
         id: 3,
+        value: "Per Day"
+    },
+    {
+        id: 4,
         value: "Per Hour"
     }
 ]
@@ -1043,7 +1048,201 @@ export const minExperience = [
 
 ]
 
-export const ExperienceLevel = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+export const ExperienceLevel = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 export const AgeLevel = [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60];
 
 export const JobWorkingPlaceData = ['Work from Home', 'Work from Office'];
+
+export const categoryData = [
+    {
+        id: 1,
+        name: "supply_chain",
+        Text: "Supply Chain",
+        image1: "/assets/Group.png",
+        image2: "/assets/Group2.png"
+    },
+    {
+        id: 2,
+        name: "service_jobs",
+        Text: "Service Jobs",
+        image1: "/assets/Group3.png",
+        image2: "/assets/Group4.png"
+    },
+    {
+        id: 3,
+        name: "digital",
+        Text: "Digital & Tech",
+        image1: "/assets/Group5.png",
+        image2: "/assets/Group6.png"
+    },
+    {
+        id: 4,
+        name: "marketing",
+        Text: "Marketing",
+        image1: "/assets/Group5.png",
+        image2: "/assets/Group6.png"
+    },
+    {
+        id: 5,
+        name: "sales",
+        Text: "Sales",
+        image1: "/assets/Group9.png",
+        image2: "/assets/Group10.png"
+    }
+
+]
+
+export const supply_chain = [
+    {
+        id: 1,
+        value: "/assets/supply_chain1.png"
+    },
+    {
+        id: 2,
+        value: "/assets/supply_chain2.png"
+    },
+    {
+        id: 3,
+        value: "/assets/supply_chain3.png"
+    },
+    {
+        id: 4,
+        value: "/assets/supply_chain4.png"
+    }
+]
+
+export const service_jobs = [
+    {
+        id: 1,
+        value: "/assets/service_job1.png"
+    },
+    {
+        id: 2,
+        value: "/assets/service_job2.png"
+    },
+    {
+        id: 3,
+        value: "/assets/service_job3.png"
+    },
+    {
+        id: 4,
+        value: "/assets/service_job4.png"
+    }
+]
+
+export const digital = [
+    {
+        id: 1,
+        value: "/assets/digital1.png"
+    },
+    {
+        id: 2,
+        value: "/assets/digital2.png"
+    },
+    {
+        id: 3,
+        value: "/assets/digital3.png"
+    }
+]
+
+export const marketing = [
+    {
+        id: 1,
+        value: "/assets/marketing1.png"
+    },
+    {
+        id: 2,
+        value: "/assets/marketing2.png"
+    }
+]
+
+export const sales = [
+    {
+        id: 1,
+        value: "/assets/sales1.png"
+    }
+]
+
+export const FooterData = [
+    {
+        id: 1,
+        name: "Home",
+        url: "/"
+    }, {
+        id: 2,
+        name: "About Us",
+        url: "/about-us"
+    }, {
+        id: 3,
+        name: "Careers",
+        url: "/"
+    },
+    {
+        id: 4,
+        name: "Life@jobyahan",
+        url: "/"
+    },
+    {
+        id: 5,
+        name: "Blogs",
+        url: "/"
+    },
+    {
+        id: 6,
+        name: "What makes us special for job search?",
+        url: "/"
+    },
+    {
+        id: 7,
+        name: "Why Do Employers Love Us?",
+        url: "/"
+    }
+]
+
+export const FooterData2 = [
+    {
+        id: 1,
+        name: "Privacy Policy",
+        url: "/"
+    },
+    {
+        id: 2,
+        name: "Terms & conditions",
+        url: "/"
+    }
+]
+
+export const FooterData3 = [
+    {
+        id: 1,
+        name: "Terms and Conditions",
+        url: "/"
+    },
+    {
+        id: 2,
+        name: "Privacy Policy",
+        url: "/"
+    },
+    {
+        id: 3,
+        name: "Cookies Policy",
+        url: "/"
+    },
+    {
+        id: 4,
+        name: "Copyright Notifications",
+        url: "/"
+    },
+    {
+        id: 5,
+        name: "Cookies Settings",
+        url: "/"
+    }
+]
+
+export const ExperienceHome =
+    ['1 yrs', '2 yrs', '3 yrs', '4 yrs', '5 yrs', '6 yrs', '7 yrs', '8 yrs', '9 yrs', '10 yrs', '11 yrs', '12 yrs', '13 yrs', '14 yrs', '15 yrs', '16 yrs', '17 yrs', '18 yrs', '19 yrs', '20 yrs', '21 yrs', '22 yrs', '23 yrs', '24 yrs', '25 yrs', '26 yrs', '27 yrs', '28 yrs', '29 yrs', 'above 30 yrs'];
+
+export const CTCHome = [
+    '1 lpa', '2 lpa', '3 lpa', '4 lpa', '5 lpa', '6 lpa', '7 lpa', '8 lpa', '9 lpa', '10 lpa', '11 lpa', '12 lpa', '13 lpa', '14 lpa', '15 lpa', '16 lpa', '17 lpa', '18 lpa', '19 lpa', '20 lpa', '21 lpa', '22 lpa', '23 lpa', '24 lpa', '25 lpa', '26 lpa', '27 lpa', '28 lpa', '29 lpa', 'above 30 lpa'
+]

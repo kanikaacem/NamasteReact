@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import JobComponent from "../../../ThemeComponent/JobComponent";
 import JobDescriptionComponent from "../../../ThemeComponent/JobDescriptionComponent";
 const RecommendedJobs = ({ fixed }) => {
-
     const [data, setData] = useState([]);
     const [canJobDes, setCanJobDes] = useState([]);
 

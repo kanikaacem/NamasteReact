@@ -19,7 +19,7 @@ const initialState = {
   activeJob : '',
   candidateInfo: '',
   CandidateRegistration:false,
-  user:{}
+  user:localStorage.getItem("user") == null ? {} : JSON.parse(localStorage.getItem("user"))
 };
 const reducer = (state, action) =>{
   switch(action.type){
@@ -35,7 +35,7 @@ const reducer = (state, action) =>{
       localStorage.setItem('user',JSON.stringify(action.payload));
       // localStorage.setItem('auth_token',token);
 
-      return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:localStorage.getItem('user')};
+      return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:JSON.parse(localStorage.getItem("user"))};
 
     case "LOGOUT":
       localStorage.clear();
@@ -279,3 +279,4 @@ root.render(
 
 //working reactjs share
 //https://www.npmjs.com/package/react-web-share
+//https://www.npmjs.com/package/react-multi-carousel

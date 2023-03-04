@@ -13,26 +13,28 @@ import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import Moment from 'react-moment';
 import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const HeaderSec = ({ color, background, border, buttonText }) => {
-    // let user = localStorage.getItem("user");
     const [openProfile, setOpenProfile] = useState(false);
+    const user = useSelector((state) => state.user);
+    const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
     return (<>
-
         <Stack direction={{ "lg": "row", "md": "row", "xs": "column" }}
             gap={4} justifyContent="space-between">
             <CompanyLogo color={color} />
 
+
             <Stack direction="row"
                 sx={{
-                    // visibility: { "lg": "visible", "md": "visible", "xs": "hidden" },
-                    width: { "lg": `calc(100vw - 73%)`, "md": `"fit-content"`, "xs": "fit-content" },
+                    width: { "lg": `fit-content`, "md": `"fit-content"`, "xs": "fit-content" },
                     flexWrap: "wrap",
                     justifyContent: "flex-end"
                 }}
                 gap={2}
             >
+
                 <Button type="button" variant="outlined"
                     onClick={() => {
                         window.location.href = window.location.origin + "/contact-us";
@@ -57,65 +59,65 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                     Contact us
                 </Button>
 
-                <Button type="button" variant="filled"
-                    onClick={
-                        () => {
-                            if (buttonText === 'Employer login')
-                                window.location.href = window.location.origin + "/employer-login"
-                            else
-                                window.location.href = window.location.origin + "/about-us"
-                        }
-                    }
-                    sx={{
-                        // padding: "0px 40px",
-                        padding: "5px 15px",
-                        width: "max-content",
-                        borderRadius: "44px",
-                        fontSize: "18px",
-                        border: { border },
-                        color: { color },
-                        textTransform: "capitalize",
-                        fontWeight: "600",
-                        fontFamily: "Work Sans, sans-serif !important",
-                        background: { background },
-                        "&:hover": {
-                            border: { border },
-                            color: { color },
-                            background: { background }
-
-                        }
-                    }}
-                >
-                    {buttonText ? buttonText : "About Us"}
-                </Button>
-                {/* {
-                    buttonText === "Employer login" && <>
+                {(isLoggedIn && user) && user.data && user.data.type == "candidate"
+                    ? <>
                         <Button type="button" variant="outlined"
+                            onClick={() => {
+                                window.location.href = window.location.origin + "/candidate-dashboard";
+                            }}
                             sx={{
-                                padding: "0px 40px",
-                                width: "max-content",
-                                background: "#FC9A7E",
-                                border: "none",
-                                color: "#2B1E44",
-                                textTransform: "capitalize",
+                                width: "200px",
                                 borderRadius: "44px",
                                 fontSize: "18px",
+                                border: { border },
+                                color: { color },
+                                textTransform: "capitalize",
                                 fontWeight: "600",
                                 fontFamily: "Work Sans, sans-serif !important",
+                                background: { background },
                                 "&:hover": {
-                                    background: "#FC9A7E"
+                                    border: { border },
+                                    color: { color },
+                                    background: { background }
+
                                 }
-                            }}
+                            }}>
+                            Dashboard
+                        </Button></> :
+                    <>
+                        <Button type="button" variant="filled"
                             onClick={
                                 () => {
                                     if (buttonText === 'Employer login')
-                                        window.location.href = window.location.origin + "/candidate-login"
+                                        window.location.href = window.location.origin + "/employer-login"
+                                    else
+                                        window.location.href = window.location.origin + "/about-us"
                                 }
                             }
+                            sx={{
+                                // padding: "0px 40px",
+                                padding: "5px 15px",
+                                width: "max-content",
+                                borderRadius: "44px",
+                                fontSize: "18px",
+                                border: { border },
+                                color: { color },
+                                textTransform: "capitalize",
+                                fontWeight: "600",
+                                fontFamily: "Work Sans, sans-serif !important",
+                                background: { background },
+                                "&:hover": {
+                                    border: { border },
+                                    color: { color },
+                                    background: { background }
+
+                                }
+                            }}
                         >
-                            {localStorage.getItem("isLoggedIn") == 'true' ? "Dashboard" : "Candidate login"}
-                        </Button></>
-                } */}
+                            {buttonText ? buttonText : "About Us"}
+                        </Button>
+                    </>}
+
 
                 {
                     localStorage.getItem("removeLocalStorageData") && localStorage.getItem("removeLocalStorageData") == "true"

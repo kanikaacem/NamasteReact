@@ -104,3 +104,12 @@ export const NextButton = styled(Button)({
 
 })
 
+
+export const FooterBox = styled(Box)({
+    fontSize: "20px",
+    color: "#2B!E44",
+    margin: "10px 0px",
+    color: "#FFFFFF",
+    fontWeight: '100',
+    cursor: "pointer"
+})

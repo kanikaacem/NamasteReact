@@ -1,5 +1,7 @@
-import { Box, Typography, Stack } from "@mui/material";
+import { Box, Typography, Stack, styled } from "@mui/material";
 import SocialMedia from "./SocialMedia";
+import { FooterData, FooterData2, FooterData3 } from "../../utils/Data";
+import { FooterBox } from "../../utils/Theme";
 const Footer = () => {
 
     return (<>
@@ -60,17 +62,16 @@ const Footer = () => {
                         }}>
                         Company
                     </Typography>
+                    {
+                        FooterData && FooterData.map((item, index) => {
+                            return (<>
+                                <FooterBox key={index}
+                                    onClick={() => window.location.href = window.location.origin + item.url}
+                                > {item.name}</FooterBox>
 
-                    <Box sx={{ fontSize: "20px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Home</Box>
-                    <Box sx={{ fontSize: "20px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> About Us</Box>
-                    <Box sx={{ fontSize: "20px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Careers</Box>
-                    <Box sx={{ fontSize: "20px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Life@jobyahan</Box>
-                    <Box sx={{ fontSize: "20px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Blogs</Box>
-                    <Box sx={{ fontSize: "20px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> What makes us special for job search?</Box>
-                    <Box sx={{ fontSize: "20px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Why Do Employers Love Us?</Box>
-
-
-
+                            </>)
+                        })
+                    }
                 </Box>
 
                 <Box sx={{ width: { lg: "35%", md: "100%", xs: "100%" } }}>
@@ -84,7 +85,7 @@ const Footer = () => {
                         }}>
                         Support
                     </Typography>
-                    <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> jobyahan@gmail.com</Box>
+                    <FooterBox> jobyahan@gmail.com</FooterBox>
                     <SocialMedia />
 
                 </Box>
@@ -99,8 +100,16 @@ const Footer = () => {
                         }}>
                         Legal
                     </Typography>
-                    <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}>Privacy Policy</Box>
-                    <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Terms & conditions</Box>
+                    {
+                        FooterData2 && FooterData2.map((item, index) => {
+                            return (<>
+                                <FooterBox key={index}
+                                    onClick={() => window.location.href = window.location.origin + item.url}
+                                > {item.name}</FooterBox>
+                            </>)
+                        })
+                    }
+
                 </Box>
 
             </Stack>
@@ -111,11 +120,15 @@ const Footer = () => {
             <Stack direction="row" gap={2} sx={{
                 flexWrap: "wrap"
             }}>
-                <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Terms and Conditions</Box>
-                <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Privacy Policy</Box>
-                <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Cookies Policy</Box>
-                <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Copyright Notifications</Box>
-                <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#FFFFFF", fontWeight: '100' }}> Cookies Settings</Box>
+                {
+                    FooterData3 && FooterData3.map((item, index) => {
+                        return (<>
+                            <FooterBox key={index}
+                                onClick={() => window.location.href = window.location.origin + item.url}
+                            > {item.name}</FooterBox>
+                        </>)
+                    })
+                }
             </Stack>
 
             <Typography component="span"

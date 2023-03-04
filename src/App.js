@@ -22,6 +22,7 @@ import Chat from "./Pages/Common/Chat";
 import ViewProfile from "./Pages/Employer/ViewProfile";
 
 /*Candidate Component*/
+import JobTypePage from "./Pages/Candidate/JobTypePage";
 import CandidateRegistration from "./Pages/Candidate/CandidateRegistration";
 import CandidateLogin from "./Pages/Candidate/CandidateLogin";
 import CandidateDashboard from "./Pages/Candidate/CandidateDashboard";
@@ -59,6 +60,7 @@ function App() {
           <Route path="/contact-us" element={<ContactUs></ContactUs>} />
           <Route path="/about-us" element={<AboutUs></AboutUs>} />
 
+          <Route path="/job-type" element={<JobTypePage></JobTypePage>} />
           <Route path="/personal-info" element={<PersonalInformationInformation2></PersonalInformationInformation2>} ></Route>
 
           <Route path="/forgot-password/employer" element={<ForgotPasswordPage user="employer" />} />
@@ -76,6 +78,7 @@ function App() {
           <Route path="/candidate-login" element={<CandidateLogin></CandidateLogin>}></Route>
           <Route path="/candidate-register" element={<CandidateRegistration />} />
           <Route path="/profile/:step" element={<CandidateProfile></CandidateProfile>} />
+          <Route path=":jobType/profile/:step" element={<CandidateProfile></CandidateProfile>} />
           <Route path="/job" element={<JobSearch></JobSearch>} />
 
           <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>

@@ -2,54 +2,44 @@ import { HomeCities } from '../utils/ApiUrls';
 import { getRequest } from "../utils/ApiRequests";
 
 import { Box, Stack, Button, Autocomplete, TextField } from '@mui/material';
-import { Experience, SalaryCTC } from "../utils/Data";
+import { ExperienceHome, CTCHome } from "../utils/Data";
 
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import CustomizeSelect from "../ThemeComponent/CustomizeSelect";
 import Error from './Common/Error';
-import { useEffect, useRef, useState } from 'react';
-const SearchBar = () => {
-    const searchRef = useRef(null);
-    const cityRef = useRef(null);
-    const experienceRef = useRef(null);
-    const ctcRef = useRef(null);
+
+import { useEffect, useState, useCallback } from 'react';
+const SearchBar = ({ name, city, exp, ctc }) => {
+
     const [cities, setCities] = useState([]);
     const [searchError, setSearchError] = useState(false);
     const [menubar, setMenuBar] = useState(false);
-    const [value, setValue] = useState();
     const [autoData, setAutoData] = useState([]);
 
-    // const top100Films = ["hello ", "mongodb"];
+    const [value, setValue] = useState();
 
     const searchJob = () => {
-        let searchValue = searchRef.current.value;
+        let searchValue = document.querySelector("#Search").value;
         let cityValue = document.querySelector("#city").value;
-        let experienceValue = document.querySelector("#experience").textContent;
-        let ctcValue = document.querySelector("#ctc").textContent;
-
+        let experienceValue = document.querySelector("#experience").value;
+        let ctcValue = document.querySelector("#ctc").value;
         let searchPath = window.location.origin + "/job?";
-        // window.location.href = window.location.origin + "/job?name=" + searchValue;
         if (searchValue === "")
             setSearchError(true);
-
-        // else if (cityValue != "")
-        //     searchPath = searchPath + "&city=" + cityValue;
-        // else if (experienceValue != "")
-        //     searchPath = searchPath + "&experience=" + experienceValue
-        // else if (ctcValue != "")
-        //     searchPath = searchPath + "&ctc=" + ctcValue
         else {
-            searchPath = searchPath + "&name=" + searchValue
+            searchPath = searchPath + "name=" + searchValue;
+            if (cityValue !== "")
+                searchPath = searchPath + "&city=" + cityValue;
+            if (experienceValue !== "")
+                searchPath = searchPath + "&exp=" + experienceValue.split(" ")[0];
+            if (ctcValue !== "")
+                searchPath = searchPath + "&ctc=" + ctcValue.split(" ")[0];
             window.location.href = searchPath;
         }
 
-        // console.log(searchValue, cityValue, experienceValue, ctcValue)
-        // let cityValue = cityRef.current.value;
-        // let experienceValue = experienceRef.current.value;
-        // let ctcValue = ctcRef.current.value;
-        // console.log(searchValue, cityValue, experienceValue, ctcValue);
     }
     useEffect(() => {
+        setValue(name)
         const getCities = async () => {
             let data = await getRequest(HomeCities);
             if (data.status === '1')
@@ -58,37 +48,34 @@ const SearchBar = () => {
         }
         getCities();
 
-    }, []);
+    }, [name, city, exp, ctc,]);
 
     const searchData = async (value) => {
+
         let response = await getRequest("https://backend.jobsyahan.com/api/file/skill?q=" + value);
         console.log(response.data);
         setAutoData(response.data);
         setMenuBar(true);
-        // autoData.map((item) => {
-        //     console.log(item);
-        // })
-        // console.log(response.data);
+
     }
     return (<>
+
         <Box
             sx={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                // margin: '100px 0px',
             }}>
             <Stack
                 direction={{ "lg": "row", "md": "column", "xs": "column" }}
                 sx={{
                     boxSizing: "border-box",
                     width: { "lg": `calc(100vw - 420px)`, "md": " calc(100vw - 50px);", "xs": " calc(100vw - 50px)" },
-                    // minWidth: { "lg": "1447px", "md": `calc(100vw - 20px)`, "xs": `calc(100vw - 20px)` },
                     height: "fit-content",
                     background: "#FFFFFF",
                     border: "3px solid #E1D4F2",
-                    boxShadow: "0px 47px 52px #f4ecff",
+                    boxShadow: { "lg": "0px 47px 52px #f4ecff", "md": "none", "xs": "none" },
                     borderRadius: "15px",
                     alignItems: "center",
                     justifyContent: "space-between",
@@ -100,12 +87,12 @@ const SearchBar = () => {
                     position: "relative",
                     width: { "lg": "500px", "md": "100%", "xs": "100%" }
                 }}>
-                    {/* <SearchIcon></SearchIcon> */}
                     <input
                         style={{
                             width: "100%"
                         }}
-                        type="text" ref={searchRef} placeholder="Search" className='Search'
+                        id="Search"
+                        type="text" placeholder="Search" className='Search'
                         value={value}
                         onChange={
                             (event) => {
@@ -168,7 +155,9 @@ const SearchBar = () => {
                         disablePortal
                         id="city"
                         options={cities}
+
                         // sx={{ width: 300 }}
+
                         sx={{
                             // border: "1px solid blue",
                             "& .MuiOutlinedInput-root": {
@@ -195,7 +184,27 @@ const SearchBar = () => {
                         width: { "lg": "238px", "md": "100%", "xs": "100%" },
                         padding: "0px 10px"
                     }}>
-                    <CustomizeSelect ref={experienceRef} placeholder="Experience" id_data="experience" data={Experience} />
+                    <Autocomplete
+                        disablePortal
+                        id="experience"
+                        options={ExperienceHome}
+
+                        // sx={{ width: 300 }}
+                        sx={{
+                            // border: "1px solid blue",
+                            "& .MuiOutlinedInput-root": {
+                                // border: "1px solid yellow",
+                                borderRadius: "0",
+                                padding: "2px",
+                                border: "none"
+                            },
+                            "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                                border: "none"
+                            }
+                        }}
+                        renderInput={(params) => <TextField
+                            placeholder='Experience'
+                            {...params} />} />
                 </Box>
 
                 <Box
@@ -206,7 +215,27 @@ const SearchBar = () => {
                         width: { "lg": "238px", "md": "100%", "xs": "100%" },
                         padding: "0px 10px"
                     }}>
-                    <CustomizeSelect ref={ctcRef} placeholder="CTC" id_data="ctc" data={SalaryCTC} />
+                    <Autocomplete
+                        disablePortal
+                        id="ctc"
+                        options={CTCHome}
+
+                        // sx={{ width: 300 }}
+                        sx={{
+                            // border: "1px solid blue",
+                            "& .MuiOutlinedInput-root": {
+                                // border: "1px solid yellow",
+                                borderRadius: "0",
+                                padding: "2px",
+                                border: "none"
+                            },
+                            "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                                border: "none"
+                            }
+                        }}
+                        renderInput={(params) => <TextField
+                            placeholder='CTC'
+                            {...params} />} />
                 </Box>
                 <Button
                     sx={{

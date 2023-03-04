@@ -1,98 +1,86 @@
-import { Box, Container, Badge, Stack, Typography, Button, List, ListItem, ListItemText, TextField, Select, MenuItem, Slider } from "@mui/material";
-import RecommendedJobs from "../../Pages/Home/Component/RecommendedJobs";
-import Footer from "../../ThemeComponent/Common/Footer";
-import SearchIcon from '@mui/icons-material/Search';
-import { ThemeFInputDiv } from "../../utils/Theme";
+import { getRequest } from "../../utils/ApiRequests"
+import { getAllJobs } from "../../utils/ApiUrls";
 
-import ThemeLabel from "../ThemeForms/ThemeLabel";
+import { Box, Stack, Pagination } from "@mui/material";
+import JobComponent from "../JobComponent";
+import Footer from "../../ThemeComponent/Common/Footer";
 import SearchBar from "../SearchBar";
-import CompanyLogo from "./CompanyLogo";
-import { EmployerMenu, cities } from "../../utils/Data";
 
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Filter from "../Filter"
+import HeaderSec from "./HeaderSec";
+import { QrCodeScannerOutlined } from "@mui/icons-material";
 const JobSearch = () => {
 
+    const [data, setData] = useState([]);
+    const [name, setName] = useState(" ");
     const [city, setCity] = useState(" ");
-    const [jobType, setJobType] = useState(" ");
-    const [state, setState] = useState(" ");
+    const [exp, setExp] = useState("");
+    const [ctc, setCTC] = useState('');
+    useEffect(() => {
+        const params = new URL(window.location.href).searchParams;
+        setName(params.get("name"));
+        setExp(params.get("exp") + " yrs");
+        setCity(params.get("city"));
+        setCTC(params.get("ctc") + " lakhs")
+        const getData = async () => {
+            let response = await getRequest(getAllJobs);
 
-    const searchJob = () => {
+            if (response.status == 1) {
+                console.log(response.data);
+                setData(response.data);
+            }
+        };
 
-    }
+        getData(); // run it, run it
+    }, []);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [dataPerPage, setDataPerPage] = useState(10);
+    const IndexOfLastData = currentPage * dataPerPage;
+    const IndexOfFirstData = IndexOfLastData - dataPerPage;
+    const jobs = data.length > 0 && data.slice(IndexOfFirstData, IndexOfLastData);
 
     return (<>
+
         <Box className="jobSearchPage"
             sx={{ background: "#FAFAFA" }}>
-            <Box sx={{ padding: "20px" }}>
-                <Stack direction="row" justifyContent="space-between" alignItems="center" >
-                    < CompanyLogo color="#000000" />
-                </Stack>
+            <Box sx={{ padding: "20px 40px" }}>
+                <HeaderSec
+                    color="black"
+                    border="2px solid #8E8E8E"
+                    buttonText="Employer login"
+                    background="#FAFAFA" />
             </Box>
-
-
-            {/* <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}>
-                <Stack
-                    direction="row"
-                    sx={{
-                        boxSizing: "border-box",
-                        width: "1447px",
-                        height: "80px",
-                        background: "#FFFFFF",
-                        border: "3px solid #E1D4F2",
-                        boxShadow: "0px 47px 52px #f4ecff",
-                        borderRadius: "15px",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: "20px",
-                        padding: " 0px 20px",
-                    }}
-                >
-                    <Stack direction="row" gap={1} sx={{ width: "100%" }}>
-                        <input
-                            style={{ width: "500px" }}
-                            type="text" placeholder="Search the best Job you Want" className='Search' />
-                    </Stack>
-
-                    <Button
-                        sx={{
-                            background: "#2B1E44",
-                            width: "56px",
-                            height: "56px",
-                            background: "#4E3A67",
-                            borderRadius: "11px",
-                            "&:hover": {
-                                background: "#2B1E44",
-                                width: "56px",
-                                height: "56px",
-                                background: "#4E3A67",
-                                borderRadius: "11px"
-                            }
-                        }}
-                        type="button" onClick={searchJob}>
-                        <img src={window.location.origin + "/assets/g2.png"} alt="g2" />
-                    </Button>
-                </Stack>
-            </Box> */}
-            <SearchBar />
+            <SearchBar name={name} city={city} exp={exp} ctc={ctc} />
             <Stack direction="row" gap={2} sx={{ marginTop: "30px", padding: "30px" }}>
                 <Box sx={{
                     width: "30%"
                 }}>
                     <Filter />
                 </Box>
-                <Box sx={{ width: "70%" }}>
-                    <RecommendedJobs></RecommendedJobs>
+                <Stack sx={{ width: "70%" }} gap={2}>
+                    {
+                        jobs.length > 0 && jobs.map((item) => {
+                            return (<>
+                                <JobComponent key={item._id} data={item} data_id={item._id} userType="candidate"
+                                    OnClickfun={() => {
+                                        // getJobDescription(item._id)
+                                    }} />
+                            </>)
+                        })
 
-                </Box>
+
+                    }
+                    {jobs.length > 0 &&
+                        <Box >
+                            <Pagination count={data && Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
+                        </Box>
+                    }
+
+                </Stack>
             </Stack>
 
             <Footer />
