@@ -1,7 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material';
 import SearchBar from "../../../ThemeComponent/SearchBar";
-
+import {useState} from "react";
 const HomeSection = () => {
+    const [activeCategory,setActiveCategory] = useState(0);
     return (<>
         <Box
             className="home-banner-section"
@@ -73,6 +74,19 @@ const HomeSection = () => {
                 </Typography>
                 <img src={window.location.origin + "/assets/g3.png"} alt="g3" />
             </Stack>
+
+            <Stack 
+                alignItems="center"
+                justifyContent="space-between"
+                sx={{
+                    background: "#FFFFFF",
+                    boxShadow: "20px 5px 11px rgba(214, 214, 214, 0.25)",
+                    minHeight:"211px",
+                    padding:"30px",
+                    flexWrap:"wrap"
+                }}>
+
+                </Stack>
 
 
 
