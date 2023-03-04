@@ -12,6 +12,7 @@ import PersonalInformation from "../../ThemeComponent/ThemeForms/PersonalInforma
 import ProfessionalDetail from "../../ThemeComponent/ThemeForms/ProfessionalDetail";
 import WorkHistory from "../../ThemeComponent/ThemeForms/WorkHistory";
 import UploadResume from "../../ThemeComponent/ThemeForms/UploadResume";
+import ErrorPage from "../Common/ErrorPage";
 
 import { useEffect } from "react";
 const CandidateProfile = () => {
@@ -49,14 +50,21 @@ const CandidateProfile = () => {
                 jobtype: jobType
             })
             if (response.status === '1')
+                response.data.length > 0 ? 
                 setQuestions(response.data[0].questions)
+                :
+                setQuestions([])
         }
         jobType && getQuestion();
     }, [jobType]);
     return (<>
-        {console.log(jobType)}
-
-        {jobType ? <PersonalInformation2 /> :
+        {/* {console.log(jobType)} */}
+        {/* ( 
+            questions&& questions.length > 0  ? <PersonalInformation2 questions={questions} /> :
+        <ErrorPage/> ) */}
+        {jobType ? ( 
+            <PersonalInformation2 questions={questions} />  )
+         :
             <>
                 <Box>
                     {activeStep == 0 && <PersonalInformation setActiveStep={setActiveStep} />}

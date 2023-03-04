@@ -280,3 +280,7 @@ root.render(
 //working reactjs share
 //https://www.npmjs.com/package/react-web-share
 //https://www.npmjs.com/package/react-multi-carousel
+//https://rkstrdee.medium.com/dynamic-form-fields-using-react-with-hooks-b7d4d037042c
+//https://reactscript.com/material-ui-based-dynamic-form-component-react-aztec/
+//https://hashnode.com/post/dynamic-form-object-rendering-with-formik-material-ui-cknk99i8x008id5s12s8ecs6o
+//https://blog.openreplay.com/dynamic-multi-step-forms-with-formik/

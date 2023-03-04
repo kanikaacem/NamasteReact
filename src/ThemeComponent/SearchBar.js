@@ -156,12 +156,9 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                         id="city"
                         options={cities}
 
-                        // sx={{ width: 300 }}
 
                         sx={{
-                            // border: "1px solid blue",
                             "& .MuiOutlinedInput-root": {
-                                // border: "1px solid yellow",
                                 borderRadius: "0",
                                 padding: "2px",
                                 border: "none"
