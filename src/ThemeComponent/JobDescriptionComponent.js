@@ -1,13 +1,63 @@
+import { postRequest, getRequestWithToken } from "../utils/ApiRequests";
+import { ApplyForJob } from "../utils/ApiUrls";
 import parse from 'html-react-parser';
 
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, Snackbar, Alert } from "@mui/material";
 
 import { ThemeButtonType2 } from "../utils/Theme";
 import { RWebShare } from "react-web-share";
 
+import { useState, useEffect } from "react";
 const JobDescriptionComponent = ({ userType, data }) => {
-    { console.log(data) }
+
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [jobApplied, setJobApplied] = useState(false);
+    const JobApplied = async () => {
+        if (window.location.pathname === '/candidate-dashboard') {
+            window.location.href = window.location.origin + '/candidate-dashboard/job-description/' + data._id
+        }
+        else {
+            let formData = new FormData();
+            formData = {
+                jobid: data._id
+            }
+            let response = await postRequest(ApplyForJob, formData)
+            if (response.status === '1') {
+                setFormSubmitted(true)
+                setJobApplied(true)
+            }
+
+        }
+
+    }
+    const handleClose = (event) => {
+        setFormSubmitted(false);
+    };
+
+    useEffect(() => {
+        const IsjobApplied = async () => {
+            let response = await getRequestWithToken("https://backend.jobsyahan.com/api/job/details?jobid=" + data._id);
+            if (response.status === "1") {
+                if (response.data[0].jobapply) {
+                    setJobApplied(true)
+                }
+            }
+
+        }
+        IsjobApplied();
+    }, [data])
     return (<>
+
+        <Snackbar
+            open={formSubmitted}
+            autoHideDuration={6000} onClose={handleClose}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        >
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                you applied for the job.
+            </Alert>
+
+        </Snackbar >
         <Stack
             direction="column"
             gap={3}
@@ -30,7 +80,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
             </Stack>
 
             <Stack direction="column" gap={1} sx={{ margin: "30px 0px" }}>
-                <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600", color: "#4E3A67" }}>
+                <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600", color: "#4E3A67", textTransform: "capitalize" }}>
                     {data && data.job_title ? data.job_title : "Linux Solution Engineer"}
                 </Typography>
 
@@ -173,12 +223,12 @@ const JobDescriptionComponent = ({ userType, data }) => {
                             Hiring since January 2022
                         </Typography>
                     </Stack>
-                    <Stack direction="row" gap={2} alignItems="center">
+                    {/* <Stack direction="row" gap={2} alignItems="center">
                         <img src={window.location.origin + "/assets/Suitcase.png"} height="20px" alt="Suitcase" />
                         <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
                             16 Job Opportunities Posted
                         </Typography>
-                    </Stack>
+                    </Stack> */}
 
                 </Stack>
 
@@ -236,7 +286,8 @@ const JobDescriptionComponent = ({ userType, data }) => {
 
             </Stack>
 
-            {userType !== "employer" && <ThemeButtonType2 type="button" > Apply Now</ThemeButtonType2>}
+            {userType !== "employer" &&
+                <ThemeButtonType2 onClick={JobApplied}> {jobApplied ? "Applied" : "Apply Now"} </ThemeButtonType2>}
 
 
         </Stack>

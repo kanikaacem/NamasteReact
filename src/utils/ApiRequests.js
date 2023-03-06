@@ -78,3 +78,22 @@ export const getRequestwithData = async (api_url, bodyData) => {
         return data;
     }
 }
+
+export const getRequestWithToken = async (api_url) => {
+    let token = localStorage.getItem("auth_token");
+
+    if (token != null)
+        header = {
+            'Access-Control-Allow-Origin': "*",
+            'authorization': 'Bearer ' + token
+        };
+
+    let data = await fetch(api_url, {
+        method: "GET",
+        headers: header,
+    });
+    if (data.ok) {
+        data = await data.json();
+        return data;
+    }
+}

@@ -50,7 +50,7 @@ const CandidateLogin = () => {
                 dispatch({ type: 'LOGIN', payload: response.data });
 
             else if (response.data.isemailverified && response.data.profilecompleted < 50)
-                window.location.href = window.location.origin + "/profile/0";
+                window.location.href = window.location.origin + "/job-type";
 
             else {
                 setShowEmailVerifiedMessage(true);
@@ -84,7 +84,7 @@ const CandidateLogin = () => {
             })
             if (response.status == '1') {
                 if (response.data.isemailverified && response.data.profilecompleted < 50) {
-                    window.location.href = window.location.origin + "/profile/0";
+                    window.location.href = window.location.origin + "/job-type";
                 }
 
                 if (!response.data.isEmailVerified && response.data.profilecompleted < 50) {

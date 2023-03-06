@@ -78,6 +78,9 @@ export const ResetPasswordCandidateEmailURL = "https://backend.jobsyahan.com/api
 /*Candidate Question */
 export const CandidateQuestion = "https://backend.jobsyahan.com/api/file/getquestion";
 
+/* Apply for the job */
+export const ApplyForJob = "https://backend.jobsyahan.com/api/job/applyforjob";
+
 
 /*Website */
 export const JobSearchPageURL = "https://backend.jobsyahan.com/api/job/searchjobs";

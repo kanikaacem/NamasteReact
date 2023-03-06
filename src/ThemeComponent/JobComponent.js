@@ -1,7 +1,23 @@
+import { getRequestWithToken } from "../utils/ApiRequests";
 import { Box, Stack, Typography, Button } from "@mui/material";
 import { RWebShare } from "react-web-share";
-
+import { useState, useEffect } from "react";
 const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
+
+    const [jobApplied, setJobApplied] = useState(false);
+    useEffect(() => {
+        const IsjobApplied = async () => {
+            let response = await getRequestWithToken("https://backend.jobsyahan.com/api/job/details?jobid=" + data_id);
+            if (response.status === "1") {
+                if (response.data[0].jobapply) {
+                    // console.log(response.data[0].jobapply)
+                    setJobApplied(true)
+                }
+            }
+
+        }
+        IsjobApplied();
+    }, [data])
     return (<>
         <Box sx={{
             background: "#FFFFFF",
@@ -20,7 +36,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
             }}>
             <Box >
                 <Stack direction="row" justifyContent="space-between" sx={{ padding: "20px", color: "#4E3A67" }}>
-                    <Typography component="div" sx={{ fontSize: { "lg": "26px", "md": "26px", "xs": "20px" }, fontWeight: "600" }}>
+                    <Typography component="div" sx={{ fontSize: { "lg": "26px", "md": "26px", "xs": "20px" }, fontWeight: "600", textTransform: "capitalize" }}>
                         {data ? data.job_title : " Linux Solution Engineer"}
                     </Typography>
                     <Typography component="div" sx={{ fontSize: { "lg": "26px", "md": "26px", "xs": "20px" }, fontWeight: "600" }}>
@@ -137,7 +153,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                             textTransform: "capitalize",
                                             fontWeight: "600"
                                         }
-                                    }} variant="contained">Apply Now</Button>
+                                    }} variant="contained">{jobApplied ? "Applied" : "Apply Now"}</Button>
 
                                 {/* <RWebShare
                                     data={{

@@ -1,12 +1,12 @@
-import { Stack, TextField, FormControlLabel, Radio, FormControl, Box, RadioGroup, Select as SelectField, MenuItem, Select, Typography ,Autocomplete } from "@mui/material";
+import { Stack, TextField, FormControlLabel, Radio, FormControl, Box, RadioGroup, Select as SelectField, MenuItem, Select, Typography, Autocomplete } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { ThemeButtonType2, ThemeFInputDiv, ThemeButtonType3 } from "../../utils/Theme";
 import ThemeLabel from "./ThemeLabel";
 import Error from '../Common/Error';
 
 import HeaderSec from "../Common/HeaderSec";
-import { useState,useEffect } from "react";
-const PersonalInformation2 = ({questions}) => {
+import { useState, useEffect } from "react";
+const PersonalInformation2 = ({ questions }) => {
 
     const [date, setDate] = useState(null);
     const [qualification, setQualification] = useState(" ");
@@ -20,7 +20,7 @@ const PersonalInformation2 = ({questions}) => {
     const handleSubmit = async (values, { resetForm }) => {
         console.log(values);
     }
-       
+
     return (<>
         <Box className="PersonalInformation2" sx={{
             background: "FAFAFA"
@@ -36,7 +36,7 @@ const PersonalInformation2 = ({questions}) => {
             <Stack direction="row" gap={2}
                 sx={{
                     padding: { "lg": "50px 80px", "md": "20px", "xs": "20px" },
-                  
+
                 }}>
 
                 <Box sx={{
@@ -145,84 +145,84 @@ const PersonalInformation2 = ({questions}) => {
                             // enableReinitialize
                             // initialValues={props.initialValues}
                             initialValues={{}}
-                        // validationSchema={ProfessionalDetailSchema}
+                            // validationSchema={ProfessionalDetailSchema}
                             onSubmit={handleSubmit}
                         >
                             {({ errors, touched, values, setFieldValue }) => (
                                 <Form className="ProfessionalDetailForm">
                                     <ThemeFInputDiv>
                                         {
-                                            questions && questions.length > 0 && questions.map((item,index) =>{
+                                            questions && questions.length > 0 && questions.map((item, index) => {
                                                 return (<>
-                                                 <ThemeFInputDiv>
-                                            <ThemeLabel LableFor={"question"+index} LableText={item.question}/>
-                                            {
-                                                item.questiontype === "input" && <>
-                                                 <Field
-                                                // error={errors.name && touched.name}
-                                                as={TextField}
-                                                id={"question"+index}
-                                                placeholder={item.question} type="text" name={"question"+index} fullWidth /> 
-                                                {errors.job_type && touched.job_type && <Error text={errors.job_type} />}
+                                                    <ThemeFInputDiv>
+                                                        <ThemeLabel LableFor={"question" + index} LableText={item.question} />
+                                                        {
+                                                            item.questiontype === "input" && <>
+                                                                <Field
+                                                                    // error={errors.name && touched.name}
+                                                                    as={TextField}
+                                                                    id={"question" + index}
+                                                                    placeholder={item.question} type="text" name={"question" + index} fullWidth />
+                                                                {errors.job_type && touched.job_type && <Error text={errors.job_type} />}
 
-                                            </>
-                                                
-                                            }
-                                            {
-                                                item.questiontype === "muliple" && <>
-                                                
-                                                <Autocomplete
-                                                        disablePortal
-                                                        id={"question"+index}
-                                                        options={item.questionoption}
-                                                        onChange={(event)=>{
-                                                            setFieldValue("question"+index,event.target.innerText)
-                                                        }}
-                                                        sx={{
-                                                            "& .MuiOutlinedInput-root": {
-                                                                borderRadius: "4px",
-                                                                padding: "2px",
-                                                                border:"1px solid #EAEAEA"
-                                                            },
-                                                            "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-                                                                border: "none"
-                                                            }
-                                                        }}
-                                                        renderInput={(params) => <TextField
-                                                            placeholder={item.question}
-                                                            {...params} />}
-                                                    />
+                                                            </>
 
-                                                </>
-                                            }
-                                            {
-                                                item.questiontype === "radio" && <>
-                                                {
-                                                    item.questionoption.map((option) => {
-                                                     return (
-                                                        <>
-                                                        <Stack direction="row" gap={2} alignItems="center">
-                                                        <input 
-                                                        onChange={(event)=>{
-                                                            // console.log(event.target)
-                                                            setFieldValue("question"+index,event.target.value)
-                                                        }}
-                                                        type="radio" id={"question"+index}  name={"question"+index} value={option} />
-                                                        <label for={"question"+index}>{option}</label><br></br>
-                                                        </Stack>
-                                                       
-                                                       </>
-                                                     )
-                                                    } )
-                                                }
-                                                </>
-                                            }
-                                           
-                                        </ThemeFInputDiv>
+                                                        }
+                                                        {
+                                                            item.questiontype === "muliple" && <>
+
+                                                                <Autocomplete
+                                                                    disablePortal
+                                                                    id={"question" + index}
+                                                                    options={item.questionoption}
+                                                                    onChange={(event) => {
+                                                                        setFieldValue("question" + index, event.target.innerText)
+                                                                    }}
+                                                                    sx={{
+                                                                        "& .MuiOutlinedInput-root": {
+                                                                            borderRadius: "4px",
+                                                                            padding: "2px",
+                                                                            border: "1px solid #EAEAEA"
+                                                                        },
+                                                                        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                                                                            border: "none"
+                                                                        }
+                                                                    }}
+                                                                    renderInput={(params) => <TextField
+                                                                        placeholder={item.question}
+                                                                        {...params} />}
+                                                                />
+
+                                                            </>
+                                                        }
+                                                        {
+                                                            item.questiontype === "radio" && <>
+                                                                {
+                                                                    item.questionoption.map((option) => {
+                                                                        return (
+                                                                            <>
+                                                                                <Stack direction="row" gap={2} alignItems="center">
+                                                                                    <input
+                                                                                        onChange={(event) => {
+                                                                                            // console.log(event.target)
+                                                                                            setFieldValue("question" + index, event.target.value)
+                                                                                        }}
+                                                                                        type="radio" id={"question" + index} name={"question" + index} value={option} />
+                                                                                    <label for={"question" + index}>{option}</label><br></br>
+                                                                                </Stack>
+
+                                                                            </>
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </>
+                                                        }
+
+                                                    </ThemeFInputDiv>
                                                 </>)
                                             })
                                         }
-                                       
+
                                     </ThemeFInputDiv >
 
                                     <Stack direction="row" sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
@@ -242,7 +242,7 @@ const PersonalInformation2 = ({questions}) => {
                 </Box>
 
             </Stack>
-            </Box >
+        </Box >
 
     </>)
 }
