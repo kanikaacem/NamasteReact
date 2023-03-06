@@ -22,6 +22,7 @@ const PersonalInformation2 = ({ questions }) => {
     }
 
     return (<>
+        {console.log(questions)}
         <Box className="PersonalInformation2" sx={{
             background: "FAFAFA"
 
@@ -155,28 +156,28 @@ const PersonalInformation2 = ({ questions }) => {
                                             questions && questions.length > 0 && questions.map((item, index) => {
                                                 return (<>
                                                     <ThemeFInputDiv>
-                                                        <ThemeLabel LableFor={"question" + index} LableText={item.question} />
+                                                        <ThemeLabel LableFor={item.questiontag} LableText={item.question} />
                                                         {
                                                             item.questiontype === "input" && <>
                                                                 <Field
                                                                     // error={errors.name && touched.name}
                                                                     as={TextField}
-                                                                    id={"question" + index}
-                                                                    placeholder={item.question} type="text" name={"question" + index} fullWidth />
-                                                                {errors.job_type && touched.job_type && <Error text={errors.job_type} />}
+                                                                    id={item.questiontag}
+                                                                    placeholder={item.question} type="text" name={item.questiontag} fullWidth />
+                                                                {/* {errors.job_type && touched.job_type && <Error text={errors.job_type} />} */}
 
                                                             </>
 
                                                         }
                                                         {
-                                                            item.questiontype === "muliple" && <>
+                                                            item.questiontype === "dropdown" && <>
 
                                                                 <Autocomplete
                                                                     disablePortal
-                                                                    id={"question" + index}
+                                                                    id={item.questiontag}
                                                                     options={item.questionoption}
                                                                     onChange={(event) => {
-                                                                        setFieldValue("question" + index, event.target.innerText)
+                                                                        setFieldValue(item.questiontag, event.target.innerText)
                                                                     }}
                                                                     sx={{
                                                                         "& .MuiOutlinedInput-root": {
@@ -192,6 +193,16 @@ const PersonalInformation2 = ({ questions }) => {
                                                                         placeholder={item.question}
                                                                         {...params} />}
                                                                 />
+                                                                {console.log(values)}
+                                                                {item.questionsnested.length > 0 && values.questiontag === "Other" && <>
+                                                                    <ThemeLabel LableFor={item.questionsnested[0].questiontag} LableText={item.questionsnested[0].question} />
+
+                                                                    <Field
+                                                                        // error={errors.name && touched.name}
+                                                                        as={TextField}
+                                                                        id={item.questionsnested[0].questiontag}
+                                                                        placeholder={item.questionsnested[0].question} type="text" name={item.questionsnested[0].questiontag} fullWidth />
+                                                                </>}
 
                                                             </>
                                                         }
@@ -205,10 +216,10 @@ const PersonalInformation2 = ({ questions }) => {
                                                                                     <input
                                                                                         onChange={(event) => {
                                                                                             // console.log(event.target)
-                                                                                            setFieldValue("question" + index, event.target.value)
+                                                                                            setFieldValue(item.questiontag, event.target.value)
                                                                                         }}
-                                                                                        type="radio" id={"question" + index} name={"question" + index} value={option} />
-                                                                                    <label for={"question" + index}>{option}</label><br></br>
+                                                                                        type="radio" id={item.questiontag} name={item.questiontag} value={option} />
+                                                                                    <label for={item.questiontag}>{option}</label><br></br>
                                                                                 </Stack>
 
                                                                             </>
