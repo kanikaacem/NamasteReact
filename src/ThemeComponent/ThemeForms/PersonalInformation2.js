@@ -1,3 +1,6 @@
+import {postRequest} from "../../utils/ApiRequests";
+import {PostAnswerCandidate,CandidateLoginURL} from "../../utils/ApiUrls";
+
 import { Stack, TextField, FormControlLabel, Radio, FormControl, Box, RadioGroup, Select as SelectField, MenuItem, Select, Typography, Autocomplete } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { ThemeButtonType2, ThemeFInputDiv, ThemeButtonType3 } from "../../utils/Theme";
@@ -6,23 +9,65 @@ import Error from '../Common/Error';
 
 import HeaderSec from "../Common/HeaderSec";
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+
 const PersonalInformation2 = ({ questions }) => {
 
-    const [date, setDate] = useState(null);
-    const [qualification, setQualification] = useState(" ");
-    const [gender, setGender] = useState("");
-    const [martialStatus, setMaritalStatus] = useState(" ");
+    // const [date, setDate] = useState(null);
+    // const [qualification, setQualification] = useState(" ");
+    // const [gender, setGender] = useState("");
+    // const [martialStatus, setMaritalStatus] = useState(" ");
 
-    const [workArea, setWorkArea] = useState(" ");
-    const [workExperience, setWorkExperience] = useState(" ");
-    const [previouslyWorked, setPreviouslyWorked] = useState(" ");
+    // const [workArea, setWorkArea] = useState(" ");
+    // const [workExperience, setWorkExperience] = useState(" ");
+    // const [previouslyWorked, setPreviouslyWorked] = useState(" ");
+    // const [nestedValue,setNestedValue] = useState(false);
 
-    const handleSubmit = async (values, { resetForm }) => {
-        console.log(values);
+    // const handleSubmit = async (values, { resetForm }) => {
+    //     console.log(values);
+    // }
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector(state => state.isLoggedIn);
+
+    const FormSubmit = async(question,ans) =>{
+       
+        let FormData ={};
+        FormData[question] = ans;
+        console.log(FormData);
+        // if(localStorage.getItem("questions") == null)
+        //     localStorage.setItem("questions", JSON.stringify(FormData));
+        // else 
+        //     localStorage.setItem("questions",localStorage.getItem("questions")+JSON.stringify(FormData))
+
+        let response = await postRequest(PostAnswerCandidate,FormData);
+        if(response.status === '1'){
+            console.log(response);
+        }
+       
+    }
+
+    const LoginUser = async () =>{
+        let CandidateLoginForm = new FormData();
+        CandidateLoginForm = {
+            email:  localStorage.getItem("useremail"),
+            password: localStorage.getItem("password")
+        }
+       
+        let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
+        if (response.status == '1') {
+            localStorage.setItem("auth_token", response.token);
+            // console.log(response)
+            if (response.data.isemailverified && response.data.profilecompleted >= 50)
+                dispatch({ type: 'LOGIN', payload: response.data });
+        }
+
     }
 
     return (<>
-        {console.log(questions)}
+        {/* {console.log(questions)} */}
+        {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>}
+
         <Box className="PersonalInformation2" sx={{
             background: "FAFAFA"
 
@@ -147,7 +192,7 @@ const PersonalInformation2 = ({ questions }) => {
                             // initialValues={props.initialValues}
                             initialValues={{}}
                             // validationSchema={ProfessionalDetailSchema}
-                            onSubmit={handleSubmit}
+                            // onSubmit={handleSubmit}
                         >
                             {({ errors, touched, values, setFieldValue }) => (
                                 <Form className="ProfessionalDetailForm">
@@ -160,6 +205,8 @@ const PersonalInformation2 = ({ questions }) => {
                                                         {
                                                             item.questiontype === "input" && <>
                                                                 <Field
+                                                                    onKeyUp={(event) => FormSubmit(item.questiontag,event.target.value)
+                                                                    }
                                                                     // error={errors.name && touched.name}
                                                                     as={TextField}
                                                                     id={item.questiontag}
@@ -178,6 +225,7 @@ const PersonalInformation2 = ({ questions }) => {
                                                                     options={item.questionoption}
                                                                     onChange={(event) => {
                                                                         setFieldValue(item.questiontag, event.target.innerText)
+                                                                        FormSubmit(item.questiontag,event.target.innerText)
                                                                     }}
                                                                     sx={{
                                                                         "& .MuiOutlinedInput-root": {
@@ -193,8 +241,7 @@ const PersonalInformation2 = ({ questions }) => {
                                                                         placeholder={item.question}
                                                                         {...params} />}
                                                                 />
-                                                                {console.log(values)}
-                                                                {item.questionsnested.length > 0 && values.questiontag === "Other" && <>
+                                                                {item.questionsnested.length > 0 && <>
                                                                     <ThemeLabel LableFor={item.questionsnested[0].questiontag} LableText={item.questionsnested[0].question} />
 
                                                                     <Field
@@ -217,6 +264,8 @@ const PersonalInformation2 = ({ questions }) => {
                                                                                         onChange={(event) => {
                                                                                             // console.log(event.target)
                                                                                             setFieldValue(item.questiontag, event.target.value)
+                                                                                            FormSubmit(item.questiontag,event.target.value)
+
                                                                                         }}
                                                                                         type="radio" id={item.questiontag} name={item.questiontag} value={option} />
                                                                                     <label for={item.questiontag}>{option}</label><br></br>
@@ -238,7 +287,7 @@ const PersonalInformation2 = ({ questions }) => {
 
                                     <Stack direction="row" sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
 
-                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
+                                        <ThemeButtonType2 variant="contained" type="button" onClick={LoginUser} sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
                                         >Save</ThemeButtonType2>
 
                                     </Stack>
