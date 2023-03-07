@@ -56,9 +56,9 @@ const JobTypePage = () => {
 
     const handleSubmit1 = async (values, { resetForm }) => {
         let response = await getRequest(checkBlueCollarJob + "=" + values.job_type);
+        console.log(response);
+
         if (response.data)
-            // console.log(response.job_type)
-            // console.log(values.job_type.toLowerCase().replace("_", "-"))
             window.location.href = window.location.origin + "/" + values.job_type.toLowerCase().replace("_", "-") + "/profile/0"
         else
             window.location.href = window.location.origin + "/profile/0"

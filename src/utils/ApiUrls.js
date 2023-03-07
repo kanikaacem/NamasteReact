@@ -86,4 +86,5 @@ export const ApplyForJob = "https://backend.jobsyahan.com/api/job/applyforjob";
 export const JobSearchPageURL = "https://backend.jobsyahan.com/api/job/searchjobs";
 
 /*Posting Ans */
-export const PostAnswerCandidate = "https://backend.jobsyahan.com/api/users/postquestionanswers";
+// export const PostAnswerCandidate = "https://backend.jobsyahan.com/api/users/postquestionanswers";
+export const PostAnswerCandidate = "https://backend.jobsyahan.com/api/file/postansweronebyone";

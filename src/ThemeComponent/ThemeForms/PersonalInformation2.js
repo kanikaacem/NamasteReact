@@ -1,5 +1,5 @@
-import {postRequest} from "../../utils/ApiRequests";
-import {PostAnswerCandidate,CandidateLoginURL} from "../../utils/ApiUrls";
+import { postRequest } from "../../utils/ApiRequests";
+import { PostAnswerCandidate, CandidateLoginURL } from "../../utils/ApiUrls";
 
 import { Stack, TextField, FormControlLabel, Radio, FormControl, Box, RadioGroup, Select as SelectField, MenuItem, Select, Typography, Autocomplete } from "@mui/material";
 import { Formik, Field, Form } from "formik";
@@ -30,9 +30,9 @@ const PersonalInformation2 = ({ questions }) => {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector(state => state.isLoggedIn);
 
-    const FormSubmit = async(question,ans) =>{
-       
-        let FormData ={};
+    const FormSubmit = async (question, ans) => {
+
+        let FormData = {};
         FormData[question] = ans;
         console.log(FormData);
         // if(localStorage.getItem("questions") == null)
@@ -40,30 +40,31 @@ const PersonalInformation2 = ({ questions }) => {
         // else 
         //     localStorage.setItem("questions",localStorage.getItem("questions")+JSON.stringify(FormData))
 
-        let response = await postRequest(PostAnswerCandidate,FormData);
-        if(response.status === '1'){
+        let response = await postRequest(PostAnswerCandidate, FormData);
+        if (response.status === '1') {
             console.log(response);
         }
-       
+
     }
 
-    const LoginUser = async () =>{
+    const LoginUser = async () => {
         let CandidateLoginForm = new FormData();
         CandidateLoginForm = {
-            email:  localStorage.getItem("useremail"),
+            email: localStorage.getItem("useremail"),
             password: localStorage.getItem("password")
         }
-       
+
         let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
         if (response.status == '1') {
             localStorage.setItem("auth_token", response.token);
             // console.log(response)
             if (response.data.isemailverified && response.data.profilecompleted >= 50)
                 dispatch({ type: 'LOGIN', payload: response.data });
+            else
+                alert("Please fill all the required fields");
         }
 
     }
-
     return (<>
         {/* {console.log(questions)} */}
         {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>}
@@ -191,8 +192,8 @@ const PersonalInformation2 = ({ questions }) => {
                             // enableReinitialize
                             // initialValues={props.initialValues}
                             initialValues={{}}
-                            // validationSchema={ProfessionalDetailSchema}
-                            // onSubmit={handleSubmit}
+                        // validationSchema={ProfessionalDetailSchema}
+                        // onSubmit={handleSubmit}
                         >
                             {({ errors, touched, values, setFieldValue }) => (
                                 <Form className="ProfessionalDetailForm">
@@ -205,7 +206,7 @@ const PersonalInformation2 = ({ questions }) => {
                                                         {
                                                             item.questiontype === "input" && <>
                                                                 <Field
-                                                                    onKeyUp={(event) => FormSubmit(item.questiontag,event.target.value)
+                                                                    onKeyUp={(event) => FormSubmit(item.questiontag, event.target.value)
                                                                     }
                                                                     // error={errors.name && touched.name}
                                                                     as={TextField}
@@ -224,8 +225,8 @@ const PersonalInformation2 = ({ questions }) => {
                                                                     id={item.questiontag}
                                                                     options={item.questionoption}
                                                                     onChange={(event) => {
-                                                                        setFieldValue(item.questiontag, event.target.innerText)
-                                                                        FormSubmit(item.questiontag,event.target.innerText)
+                                                                        // setFieldValue(item.questiontag, event.target.innerText)
+                                                                        FormSubmit(item.questiontag, event.target.innerText)
                                                                     }}
                                                                     sx={{
                                                                         "& .MuiOutlinedInput-root": {
@@ -263,8 +264,8 @@ const PersonalInformation2 = ({ questions }) => {
                                                                                     <input
                                                                                         onChange={(event) => {
                                                                                             // console.log(event.target)
-                                                                                            setFieldValue(item.questiontag, event.target.value)
-                                                                                            FormSubmit(item.questiontag,event.target.value)
+                                                                                            // setFieldValue(item.questiontag, event.target.value)
+                                                                                            FormSubmit(item.questiontag, event.target.value)
 
                                                                                         }}
                                                                                         type="radio" id={item.questiontag} name={item.questiontag} value={option} />
