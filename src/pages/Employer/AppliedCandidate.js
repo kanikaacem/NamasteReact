@@ -1,10 +1,38 @@
+import { getRequestWithToken, postRequest } from "../../utils/ApiRequests";
+import { JobDescriptionURL } from "../../utils/ApiUrls";
+
 import { Box, Button, Stack, Typography, Divider, Tabs, Tab, MenuItem, Select, Badge } from "@mui/material";
 import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
 import SocialMedia from "../../ThemeComponent/Common/SocialMedia";
-import { useState, useEffect } from "react"
+import { useParams } from "react-router-dom";
+
+import { useState, useEffect } from "react";
 const AppliedCandidate = () => {
     const [value, setValue] = useState(0)
+    const [jobData, setJobData] = useState([]);
+    const { id } = useParams();
+    useEffect(() => {
+        console.log(id)
 
+        const getCandidateOnJob = async () => {
+            let response = await getRequestWithToken("https://backend.jobsyahan.com/api/job/details?jobid=" + id);
+            if (response.status === "1") {
+                console.log(response)
+            }
+        }
+
+        const getJobDescription = async () => {
+            let response = await postRequest(JobDescriptionURL, { jobid: id });
+            console.log(response.data);
+            if (response.status === '1')
+
+                setJobData(response.data);
+
+        }
+
+        getCandidateOnJob();
+        getJobDescription();
+    }, [id])
     return (<>
 
         <Box className="AppliedCandidatePage"
@@ -26,10 +54,13 @@ const AppliedCandidate = () => {
                     <Stack direction="row" justifyContent="space-between">
                         <Box>
                             <Typography component="div" sx={{ fontSize: "26px", color: "#4E3A67", fontWeight: "700" }}>
-                                Linux Solution Engineer
+                                {jobData && jobData.job_title ? jobData.job_title : " "}
                             </Typography>
                             <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
-                                Noida   4-10 yrs |  Job Code: 1135573
+                                {jobData && jobData.location_state ? jobData.location_state + "  " : " "}
+                                {jobData && jobData.candidate_experience ?
+                                    "," + jobData.candidate_experience.min_age + " - " + jobData.candidate_experience.max_age + "Yrs" : " "}
+                                |  Job Code: {id}
                             </Typography>
                         </Box>
                     </Stack>

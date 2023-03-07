@@ -303,7 +303,7 @@ const EmployerDashboard = () => {
                                             Recent Jobs
                                         </Typography>
                                     </Box>
-                                    <Stack direction="column" gap={2} sx={{ height: "600px" }}>
+                                    <Stack direction="column" gap={2} sx={{ height: "700px" }}>
                                         {
                                             jobs && jobs.length > 0 && jobs.map((item) => {
                                                 return (<>

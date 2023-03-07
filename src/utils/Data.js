@@ -364,14 +364,14 @@ export const EmployerMenu = [
         url: "applied-candidates"
 
     },
-    {
-        id: 5,
-        Menu: "WorkOutlineIcon",
-        MenuName: "Saved Candidates",
-        value: "saved_candidates",
-        url: "saved-candidates"
+    // {
+    //     id: 5,
+    //     Menu: "WorkOutlineIcon",
+    //     MenuName: "Saved Candidates",
+    //     value: "saved_candidates",
+    //     url: "saved-candidates"
 
-    },
+    // },
     // {
     //     id: 6,
     //     Menu: "WorkOutlineIcon",

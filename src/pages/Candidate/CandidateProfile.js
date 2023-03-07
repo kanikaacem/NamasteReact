@@ -50,10 +50,10 @@ const CandidateProfile = () => {
                 jobtype: jobType
             })
             if (response.status === '1')
-                response.data.length > 0 ? 
-                setQuestions(response.data[0].questions)
-                :
-                setQuestions([])
+                response.data.length > 0 ?
+                    setQuestions(response.data[0].questions)
+                    :
+                    setQuestions([])
         }
         jobType && getQuestion();
     }, [jobType]);
@@ -62,9 +62,9 @@ const CandidateProfile = () => {
         {/* ( 
             questions&& questions.length > 0  ? <PersonalInformation2 questions={questions} /> :
         <ErrorPage/> ) */}
-        {jobType ? ( 
-            <PersonalInformation2 questions={questions} />  )
-         :
+        {jobType ? (
+            <PersonalInformation2 questions={questions} />)
+            :
             <>
                 <Box>
                     {activeStep == 0 && <PersonalInformation setActiveStep={setActiveStep} />}

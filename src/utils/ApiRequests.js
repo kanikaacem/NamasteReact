@@ -9,7 +9,7 @@ export const postRequest = async (api_url, bodyData) => {
 
     if (token != null)
         header = {
-            'Access-Control-Allow-Origin': "*",
+            // 'Access-Control-Allow-Origin': "*",
             'Content-Type': 'application/json; charset=UTF-8',
             'authorization': 'Bearer ' + token
         };

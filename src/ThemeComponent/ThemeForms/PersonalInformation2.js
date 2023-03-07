@@ -29,11 +29,18 @@ const PersonalInformation2 = ({ questions }) => {
     // }
     const dispatch = useDispatch();
     const isLoggedIn = useSelector(state => state.isLoggedIn);
+    const JobType = window.location.pathname.split('/')[1];
 
     const FormSubmit = async (question, ans) => {
 
         let FormData = {};
-        FormData[question] = ans;
+        FormData = {
+            tag: question,
+            answer: ans,
+            jobtype: JobType
+
+        }
+        // FormData[question] = ans;
         console.log(FormData);
         // if(localStorage.getItem("questions") == null)
         //     localStorage.setItem("questions", JSON.stringify(FormData));

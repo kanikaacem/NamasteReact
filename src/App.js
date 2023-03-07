@@ -87,7 +87,7 @@ function App() {
             <Route path="posted-jobs" element={<PostedJobs></PostedJobs>} />
             <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
             <Route path="job/:id/recommedations" element={<CandidateRecommendation></CandidateRecommendation>} />
-            <Route path="applied-candidates" element={<AppliedCandidate />} />
+            <Route path="applied-candidates/:id" element={<AppliedCandidate />} />
             <Route path="saved-candidates" element={<SavedCandidate></SavedCandidate>} />
             <Route path="account-setting" element={<AccountSetting></AccountSetting>} />
             <Route path="view-profile" element={<ViewProfile></ViewProfile>} />
