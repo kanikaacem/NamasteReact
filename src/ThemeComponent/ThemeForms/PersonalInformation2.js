@@ -36,7 +36,7 @@ const PersonalInformation2 = ({ questions }) => {
         let FormData = {};
         FormData = {
             tag: question,
-            answer: ans,
+            answers: ans,
             jobtype: JobType
 
         }
@@ -65,7 +65,9 @@ const PersonalInformation2 = ({ questions }) => {
         if (response.status == '1') {
             localStorage.setItem("auth_token", response.token);
             // console.log(response)
-            if (response.data.isemailverified && response.data.profilecompleted >= 50)
+            // if (response.data.isemailverified && response.data.profilecompleted >= 50)
+            //     dispatch({ type: 'LOGIN', payload: response.data });
+            if (response.data.isemailverified)
                 dispatch({ type: 'LOGIN', payload: response.data });
             else
                 alert("Please fill all the required fields");

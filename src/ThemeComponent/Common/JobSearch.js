@@ -1,5 +1,5 @@
 import { getRequest } from "../../utils/ApiRequests"
-import { getAllJobs ,JobSearchPageURL} from "../../utils/ApiUrls";
+import { getAllJobs, JobSearchPageURL } from "../../utils/ApiUrls";
 
 import { Box, Stack, Pagination } from "@mui/material";
 import JobComponent from "../JobComponent";
@@ -26,28 +26,28 @@ const JobSearch = () => {
         setCity(params.get("city"));
         setCTC(params.get("ctc") + " lakhs")
         const getData = async () => {
-            let path_url =  JobSearchPageURL;
+            let path_url = JobSearchPageURL;
             console.log()
-            if(params.get("name") !== " ")
-             path_url =  path_url+"?key="+params.get("name");
-            
-            if(params.get("exp") !== " " && params.get("exp") !== null)
-            path_url = path_url+"&exp="+params.get("exp");
+            if (params.get("name") !== " ")
+                path_url = path_url + "?key=" + params.get("name");
 
-            if(params.get("city") !== " " && params.get("city") !== null)
-            path_url = path_url+"&loc="+params.get("city");
+            if (params.get("exp") !== " " && params.get("exp") !== null)
+                path_url = path_url + "&exp=" + params.get("exp");
 
-            if(params.get("ctc") !== " " && params.get("ctc") !== null)
-            path_url = path_url+"&ctc="+params.get("ctc");
+            if (params.get("city") !== " " && params.get("city") !== null)
+                path_url = path_url + "&loc=" + params.get("city");
+
+            if (params.get("ctc") !== " " && params.get("ctc") !== null)
+                path_url = path_url + "&ctc=" + params.get("ctc");
 
             let response = await getRequest(path_url);
 
             if (response.status == 1) {
-                console.log(response.data);
-                setData(response.data);
+                console.log(response.jobdata);
+                setData(response.jobdata);
             }
 
-           
+
         };
 
         getData(); // run it, run it
