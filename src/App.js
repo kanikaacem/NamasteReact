@@ -19,21 +19,18 @@ import CandidateRecommendation from './Pages/Employer/CandidateRecommendation';
 import SavedCandidate from "./Pages/Employer/SavedCandidate";
 import AppliedCandidate from './Pages/Employer/AppliedCandidate';
 import Chat from "./Pages/Common/Chat";
-import ViewProfile from "./Pages/Employer/ViewProfile";
+import ProfileComponent from './ThemeComponent/Common/ProfileComponent';
+// import CandidateProfilePage from "./ThemeComponent/Common/CandidateProfilePage";
 
 /*Candidate Component*/
+import CandidateProfile from './Pages/Candidate/CandidateProfile';
 import JobTypePage from "./Pages/Candidate/JobTypePage";
 import CandidateRegistration from "./Pages/Candidate/CandidateRegistration";
 import CandidateLogin from "./Pages/Candidate/CandidateLogin";
 import CandidateDashboard from "./Pages/Candidate/CandidateDashboard";
-import CandidateProfile from "./Pages/Candidate/CandidateProfile";
 import CandidateProfilePage from "./Pages/Candidate/CandidateProfilePage";
-import UpdateProfile from "./Pages/Candidate/UpdateProfile";
-import Settings from './Pages/Candidate/Settings';
-import Profile from "./Pages/Candidate/CandidateProfilePage";
 import CandidateJobPerferences from "./Pages/Candidate/CandidateJobPerferences";
 import SavedJobs from './Pages/Candidate/SavedJobs';
-import CandidateDashboard2 from "./Pages/Candidate/CandidateHome";
 
 /*Website Page*/
 import Home from "./Pages/Home/Home";
@@ -90,19 +87,19 @@ function App() {
             <Route path="applied-candidates/:id" element={<AppliedCandidate />} />
             <Route path="saved-candidates" element={<SavedCandidate></SavedCandidate>} />
             <Route path="account-setting" element={<AccountSetting></AccountSetting>} />
-            <Route path="view-profile" element={<ViewProfile></ViewProfile>} />
+            <Route path="view-profile" element={<ProfileComponent userType="employer"></ProfileComponent>} />
             <Route path="chats" element={<Chat></Chat>} />
           </Route>
 
-          <Route path="/view-profile" element={<ViewProfile></ViewProfile>} />
+          <Route path="/view-profile" element={<CandidateProfile></CandidateProfile>} />
 
-          <Route path="/update-profile" element={<UpdateProfile></UpdateProfile>} />
-          <Route path="/candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route>
+          {/* <Route path="/update-profile" element={<UpdateProfile></UpdateProfile>} /> */}
+          {/* <Route path="/candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route> */}
 
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             <Route path="" element={<CandidateDashboard></CandidateDashboard>} />
             <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
-            <Route path="update-profile" element={<UpdateProfile></UpdateProfile>} />
+            <Route path="profile" element={<CandidateProfilePage></CandidateProfilePage>} />
             <Route path="saved-jobs" element={<SavedJobs></SavedJobs>} />
             <Route path="perferences" element={<CandidateJobPerferences></CandidateJobPerferences>} />
             <Route path="*" element={<NotFound></NotFound>} />

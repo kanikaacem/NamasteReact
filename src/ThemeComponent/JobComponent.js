@@ -205,42 +205,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                         </Stack> </>
                     }
 
-                    {/* <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67", margin: "20px 0px" }}>
-                        Skill(s) Required
-                    </Typography>
 
-                    <Stack direction="row" gap={2} sx={{ flexWrap: "wrap" }}>
-                        <Stack direction="row" sx={{
-                            background: "#FFFFFF",
-                            border: "1px solid #E2D7F0",
-                            borderRadius: "11px",
-                            padding: "15px",
-                            gap: "5px",
-                            alignItems: "center",
-                            justifyContent: "center"
-                        }}>
-
-                            <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-                                Python
-                            </Typography>
-                        </Stack>
-
-                        <Stack direction="row" sx={{
-                            background: "#FFFFFF",
-                            border: "1px solid #E2D7F0",
-                            borderRadius: "11px",
-                            padding: "15px",
-                            gap: "5px",
-                            alignItems: "center",
-                            justifyContent: "center"
-                        }}>
-
-                            <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-                                Kotlin
-                            </Typography>
-                        </Stack>
-
-                    </Stack> */}
                 </Box>
 
 

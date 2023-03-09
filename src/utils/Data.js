@@ -209,7 +209,7 @@ export const CandidateMenu = [
         id: 1,
         MenuName: "Profile",
         value: "profile",
-        url: "",
+        url: "profile",
         image: "profile.png"
     },
     // {
