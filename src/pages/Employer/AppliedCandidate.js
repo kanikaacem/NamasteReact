@@ -77,9 +77,9 @@ const AppliedCandidate = () => {
                         }}>
                             Applications({jobCanData.length})
                         </Typography>
-                        <Typography component="div" sx={{ fontSize: "26px", color: "#4E3A67", fontWeight: "700" }}>
+                        {/* <Typography component="div" sx={{ fontSize: "26px", color: "#4E3A67", fontWeight: "700" }}>
                             Recommended Candidates (10)
-                        </Typography>
+                        </Typography> */}
                     </Stack>
 
                     {/* <Stack direction="row" gap={2}

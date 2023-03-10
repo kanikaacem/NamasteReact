@@ -11,13 +11,17 @@ const CandidateComponent = ({ CandidateData, AppliedDate, CandidateStatus }) => 
     // let appliedDate = new Date(AppliedDate);
     // { console.log(AppliedDate) };
     return (<>
+        {console.log(CandidateData)}
         <Box sx={{
             background: " #FFFFFF",
             border: "1px solid #E2D7F0",
             borderRadius: "19px",
             padding: "20px",
-            width: { "lg": "100%", "md": "96%", "xs": "96%" }
-        }}>
+            width: { "lg": "100%", "md": "96%", "xs": "96%" },
+            cursor: "pointer"
+        }}
+            onClick={() => window.location.href = window.location.origin + '/employer-dashboard/view-profile/' + CandidateData._id}
+        >
             <Stack direction={{ "lg": "row", "md": "row", "xs": "column" }} gap={1} >
                 <Box sx={{ width: { "lg": "8%", "md": "8%", "xs": "100%" } }}>
                     <Badge color="secondary" variant="dot" >

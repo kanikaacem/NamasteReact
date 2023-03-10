@@ -15,7 +15,7 @@ const RecommendedJobs = ({ fixed }) => {
             let response = await getRequest(getAllJobs);
 
             if (response.status == 1) {
-                console.log(response.data)
+                // console.log(response.data)
                 setData(response.data);
                 setCanJobDes(response.data[0])
             }

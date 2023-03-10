@@ -2,18 +2,15 @@ import { Box, Button, Stack, Typography, Divider, Tabs, Tab, MenuItem, Select } 
 
 import { MeetingType } from "../../utils/Data";
 import { PDFReader } from 'reactjs-pdf-reader';
-import { useOutletContext } from "react-router-dom";
 import { useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import Moment from 'react-moment';
 
 const ProfileComponent = ({ userData, userType }) => {
-    const [value, setValue] = useState(0)
+    const [value, setValue] = useState(userType === "employer" ? 1 : 0);
     const [meetingType, setMeetingType] = useState(" ");
-    const user = useOutletContext();
 
     return (<>
-        {console.log(userData)};
         <Stack className="CandidateProfilePage" direction="row" gap={2} sx={{
             padding: { "lg": "20px 100px", "md": "20px", "xs": "20px" },
             background: "#f9f9f9",
@@ -97,7 +94,7 @@ const ProfileComponent = ({ userData, userType }) => {
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
 
-                            {userData && userData.personalInfo.city ? userData.personalInfo.city : "City "}
+                            {userData && userData.personalInfo && userData.personalInfo.state ? userData.personalInfo.state : " "}
 
                         </Typography>
                     </Stack>
@@ -156,14 +153,15 @@ const ProfileComponent = ({ userData, userType }) => {
                                 console.log(value);
                             }}
                         >
-                            <Tab label="RESUME" />
+                            {userType === "candidate" && <Tab label="RESUME" />}
                             <Tab label="PROFILE" />
                         </Tabs>
                     </Box>
                     {
                         value == 0 && (<>
                             <Box sx={{ overflowY: "scroll", height: "700px" }} >
-                                <PDFReader showAllPage={true} url="https://jobyahanp.s3.ap-south-1.amazonaws.com/1678433116491_sample.pdf" />
+                                <PDFReader showAllPage={true} url={userData &&
+                                    userData.resume && userData.resume.resume ? userData.resume.resume : "https://jobyahanp.s3.ap-south-1.amazonaws.com/1678433116491_sample.pdf"} />
                             </Box>
                         </>)
 
@@ -244,7 +242,7 @@ const ProfileComponent = ({ userData, userType }) => {
                                                 Current Location:
                                             </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                {userData && userData.personalInfo.city ? userData.personalInfo.city : "City "}
+                                                {userData && userData.personalInfo && userData.personalInfo.state ? userData.personalInfo.state : "  "}
                                             </Typography>
                                         </Stack>
                                         <Stack direction="row" sx={{
@@ -254,7 +252,7 @@ const ProfileComponent = ({ userData, userType }) => {
                                                 Perferred Location:
                                             </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                {userData && userData.personalInfo.preffered_location ? userData.personalInfo.preffered_location : "Perferred Location "}
+                                                {userData && userData.personalInfo && userData.personalInfo.preffered_location ? userData.personalInfo.preffered_location : "Perferred Location "}
                                             </Typography>
                                         </Stack>
                                         <Stack direction="row" sx={{
@@ -264,7 +262,7 @@ const ProfileComponent = ({ userData, userType }) => {
                                                 Current Salary:
                                             </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                {userData && userData.personalInfo.current_salary ? userData.personalInfo.current_salary : "Current Salary "}
+                                                {userData && userData.personalInfo && userData.personalInfo.current_salary ? userData.personalInfo.current_salary : "Current Salary "}
                                             </Typography>
                                         </Stack>
                                         <Stack direction="row" sx={{
@@ -273,7 +271,7 @@ const ProfileComponent = ({ userData, userType }) => {
                                             <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
                                                 Expected Salary:                                            </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                {userData && userData.personalInfo.expected_salary ? userData.personalInfo.expected_salary : "Excepted Salary "}
+                                                {userData && userData.personalInfo && userData.personalInfo.expected_salary ? userData.personalInfo.expected_salary : "Excepted Salary "}
 
                                             </Typography>
                                         </Stack>
@@ -284,7 +282,7 @@ const ProfileComponent = ({ userData, userType }) => {
                                                 Experience:
                                             </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                {userData && userData.personalInfo.total_work_experience ? userData.personalInfo.total_work_experience + " Yrs " : "Experience "}
+                                                {userData && userData.personalInfo && userData.personalInfo.total_work_experience ? userData.personalInfo.total_work_experience + " Yrs " : "Experience "}
                                             </Typography>
                                         </Stack>
                                         <Stack direction="row" sx={{
@@ -294,7 +292,7 @@ const ProfileComponent = ({ userData, userType }) => {
                                                 Gender:
                                             </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                {userData && userData.personalInfo.gender ? userData.personalInfo.gender : "Gender "}
+                                                {userData && userData.personalInfo && userData.personalInfo.gender ? userData.personalInfo.gender : "Gender "}
 
                                             </Typography>
                                         </Stack>
@@ -474,7 +472,9 @@ const ProfileComponent = ({ userData, userType }) => {
                                     <img src={window.location.origin + "/assets/Chat1.png"} alt="Chat" />
                                 </Box>
                                 <Box>
-                                    Chat with Gyanendra Chaudhary
+                                    Chat with
+                                    {userData && userData.personalInfo && userData.personalInfo.fullname ? " " + userData.personalInfo.fullname : " Gyanendra Chaudhary"}
+
                                 </Box>
                             </Stack></Button>
                     </Box>
@@ -522,7 +522,7 @@ const ProfileComponent = ({ userData, userType }) => {
                     </Stack>
 
 
-                    <Stack direction="column" gap={1}>
+                    {/* <Stack direction="column" gap={1}>
                         <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "600" }}>
                             Contact Information
                         </Typography>
@@ -544,7 +544,7 @@ const ProfileComponent = ({ userData, userType }) => {
                                 </Typography>
                             </Box>
                         </Stack>
-                    </Stack>
+                    </Stack> */}
 
 
                 </Stack>

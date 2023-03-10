@@ -219,20 +219,20 @@ export const CandidateMenu = [
     //     url: "/",
     //     image: "booking.png"
     // },
-    {
-        id: 3,
-        MenuName: "Notification",
-        value: "notification",
-        url: "",
-        image: "notification.png"
-    },
-    {
-        id: 4,
-        MenuName: "Recommend Jobs",
-        value: "recommend_jobs",
-        url: "",
-        image: "Job.png"
-    },
+    // {
+    //     id: 3,
+    //     MenuName: "Notification",
+    //     value: "notification",
+    //     url: "",
+    //     image: "notification.png"
+    // },
+    // {
+    //     id: 4,
+    //     MenuName: "Recommend Jobs",
+    //     value: "recommend_jobs",
+    //     url: "",
+    //     image: "Job.png"
+    // },
     {
         id: 5,
         MenuName: "Applied Jobs",
@@ -247,28 +247,28 @@ export const CandidateMenu = [
     //     url: "/",
     //     image: "Job.png"
     // },
-    {
-        id: 7,
-        MenuName: "Messages",
-        value: "messages",
-        url: "",
-        image: "chat.png"
-    },
-    {
-        id: 8,
-        MenuName: "Saved Jobs",
-        value: "saved_jobs",
-        url: "",
-        image: "SavedJob.png"
-    },
+    // {
+    //     id: 7,
+    //     MenuName: "Messages",
+    //     value: "messages",
+    //     url: "",
+    //     image: "chat.png"
+    // },
+    // {
+    //     id: 8,
+    //     MenuName: "Saved Jobs",
+    //     value: "saved_jobs",
+    //     url: "",
+    //     image: "SavedJob.png"
+    // },
 
-    {
-        id: 9,
-        MenuName: "Top company jobs",
-        value: "top_company_jobs",
-        url: "",
-        image: "SavedJob.png"
-    },
+    // {
+    //     id: 9,
+    //     MenuName: "Top company jobs",
+    //     value: "top_company_jobs",
+    //     url: "",
+    //     image: "SavedJob.png"
+    // },
     // {
     //     id: 10,
     //     MenuName: "Search Appearance",

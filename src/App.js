@@ -19,7 +19,7 @@ import CandidateRecommendation from './Pages/Employer/CandidateRecommendation';
 import SavedCandidate from "./Pages/Employer/SavedCandidate";
 import AppliedCandidate from './Pages/Employer/AppliedCandidate';
 import Chat from "./Pages/Common/Chat";
-import ProfileComponent from './ThemeComponent/Common/ProfileComponent';
+import ViewProfile from './Pages/Employer/ViewProfile';
 // import CandidateProfilePage from "./ThemeComponent/Common/CandidateProfilePage";
 
 /*Candidate Component*/
@@ -31,6 +31,7 @@ import CandidateDashboard from "./Pages/Candidate/CandidateDashboard";
 import CandidateProfilePage from "./Pages/Candidate/CandidateProfilePage";
 import CandidateJobPerferences from "./Pages/Candidate/CandidateJobPerferences";
 import SavedJobs from './Pages/Candidate/SavedJobs';
+import ProfileComponent from './ThemeComponent/Common/ProfileComponent';
 
 /*Website Page*/
 import Home from "./Pages/Home/Home";
@@ -87,7 +88,7 @@ function App() {
             <Route path="applied-candidates/:id" element={<AppliedCandidate />} />
             <Route path="saved-candidates" element={<SavedCandidate></SavedCandidate>} />
             <Route path="account-setting" element={<AccountSetting></AccountSetting>} />
-            <Route path="view-profile" element={<ProfileComponent userType="employer"></ProfileComponent>} />
+            <Route path="view-profile/:id" element={<ViewProfile ></ViewProfile>} />
             <Route path="chats" element={<Chat></Chat>} />
           </Route>
 

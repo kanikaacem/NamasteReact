@@ -8,7 +8,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
     useEffect(() => {
         const IsjobApplied = async () => {
             let response = await getRequestWithToken("https://backend.jobsyahan.com/api/job/details?jobid=" + data_id);
-            if (response.status === "1") {
+            if (response !== undefined && response.status === "1") {
                 if (response.data[0].jobapply) {
                     // console.log(response.data[0].jobapply)
                     setJobApplied(true)
@@ -120,7 +120,13 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                     <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
                         {data && data.applied_count > 0 ? data.applied_count : '0'} Applicants Applied
                     </Typography>
-                    {data && data.applied_count > 0 && userType === "employer" && <a href={"employer-dashboard/applied-candidates/" + data_id}> View Candidates</a>}
+                    {data && data.applied_count > 0 && userType === "employer" && <a
+                        href="#"
+                        onClick={(event) => {
+                            event.stopPropagation()
+                            window.location.href = window.location.origin + "/employer-dashboard/applied-candidates/" + data_id
+                        }}
+                    > View Candidates</a>}
 
 
                     <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>

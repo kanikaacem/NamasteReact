@@ -92,3 +92,4 @@ export const JobSearchPageURL = "https://backend.jobsyahan.com/api/job/searchjob
 export const PostAnswerCandidate = "https://backend.jobsyahan.com/api/file/postansweronebyone";
 
 export const GetCandidateOnParticularJob = "https://backend.jobsyahan.com/api/job/candidateonparticularjob?jobid=";
+export const GetSpecificCandidateDetail = "https://backend.jobsyahan.com/api/employer/getcandidatebyid";
