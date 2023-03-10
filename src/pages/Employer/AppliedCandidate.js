@@ -1,5 +1,5 @@
-import { getRequestWithToken, postRequest } from "../../utils/ApiRequests";
-import { JobDescriptionURL } from "../../utils/ApiUrls";
+import { postRequest } from "../../utils/ApiRequests";
+import { JobDescriptionURL, GetCandidateOnParticularJob } from "../../utils/ApiUrls";
 
 import { Box, Button, Stack, Typography, Divider, Tabs, Tab, MenuItem, Select, Badge } from "@mui/material";
 import CandidateComponent from "../../ThemeComponent/Common/CandidateComponent";
@@ -10,23 +10,24 @@ import { useState, useEffect } from "react";
 const AppliedCandidate = () => {
     const [value, setValue] = useState(0)
     const [jobData, setJobData] = useState([]);
+    const [jobCanData, setJobCanData] = useState([]);
     const { id } = useParams();
     useEffect(() => {
-        console.log(id)
 
         const getCandidateOnJob = async () => {
-            let response = await getRequestWithToken("https://backend.jobsyahan.com/api/job/details?jobid=" + id);
+            let response = await postRequest(GetCandidateOnParticularJob + id);
             if (response.status === "1") {
-                console.log(response)
+                console.log(response.data)
+                setJobCanData(response.data);
             }
+
+
         }
 
         const getJobDescription = async () => {
             let response = await postRequest(JobDescriptionURL, { jobid: id });
-            console.log(response.data);
-            if (response.status === '1')
-
-                setJobData(response.data);
+            // console.log(response.data);
+            if (response.status === '1') setJobData(response.data);
 
         }
 
@@ -70,13 +71,14 @@ const AppliedCandidate = () => {
                         sx={{
                             margin: "20px 0px"
                         }}>
-                        <Typography component="div" sx={{ fontSize: "26px", color: "#4E3A67", fontWeight: "700" }}>
-                            Recommended Candidates (10)
-                        </Typography>
+
                         <Typography component="div" sx={{
                             fontSize: "26px", color: "#FC9A7E", fontWeight: "700"
                         }}>
-                            Applications(10)
+                            Applications({jobCanData.length})
+                        </Typography>
+                        <Typography component="div" sx={{ fontSize: "26px", color: "#4E3A67", fontWeight: "700" }}>
+                            Recommended Candidates (10)
                         </Typography>
                     </Stack>
 
@@ -114,7 +116,15 @@ const AppliedCandidate = () => {
                     }}></hr>
 
                     <Stack className="Candidates" direction="column" gap={2} >
-                        <CandidateComponent />
+                        {jobCanData && jobCanData.map((item) => {
+                            return (<>
+                                <CandidateComponent CandidateData={item.candidate}
+                                    AppliedDate={item.candidateapplieddate}
+                                    CandidateStatus={item.candidatestatus}
+                                />
+                            </>)
+                        })}
+
                     </Stack>
 
                 </Box>

@@ -180,13 +180,14 @@ const JobTypePage = () => {
                                                         fontSize: "16px",
                                                         fontamily: 'Montserrat',
                                                         padding: "8px"
+
                                                     }}
 
                                                 >
                                                     <MenuItem value=" ">Select Job Type</MenuItem>
 
                                                     {jobTypeData && jobTypeData.map((item) =>
-                                                        <MenuItem value={item} key={item}>{item.replaceAll("_", " ")}</MenuItem>
+                                                        <MenuItem sx={{ textTransform: "capitalize" }} value={item} key={item}>{item.replaceAll("_", " ")}</MenuItem>
                                                     )}
                                                 </SelectField>
 

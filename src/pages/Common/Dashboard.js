@@ -27,7 +27,7 @@ const Dashboard = () => {
     const CandidateMenuSelected = useSelector(state => state.CandidateMenuSelected);
 
     return (<>
-        {console.log(user)}
+        {/* {console.log(user)} */}
         <Box
             className="dashboard"
             sx={{

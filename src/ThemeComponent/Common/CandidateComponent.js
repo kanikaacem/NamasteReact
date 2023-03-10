@@ -6,9 +6,10 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 
 import Moment from 'react-moment';
-
-const CandidateComponent = ({ item }) => {
-
+const CandidateComponent = ({ CandidateData, AppliedDate, CandidateStatus }) => {
+    // { console.log(AppliedDate) }
+    // let appliedDate = new Date(AppliedDate);
+    // { console.log(AppliedDate) };
     return (<>
         <Box sx={{
             background: " #FFFFFF",
@@ -29,14 +30,14 @@ const CandidateComponent = ({ item }) => {
                         { "lg": "30%", "md": "30%", "xs": "100%" }
                 }}>
                     <Typography component="div" sx={{ fontSize: "24px", color: "#4E3A67", fontWeight: "700" }}>
-                        Gyanendra Chaudhary
+                        {CandidateData && CandidateData.personalInfo && CandidateData.personalInfo.fullname}
                     </Typography>
                     <Stack direction="row" gap={2}>
                         <Typography component="div" sx={{ fontSize: "18px", color: "#4E3A67", fontWeight: "700" }}>
                             Experience:
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
-                            2
+                            {CandidateData && CandidateData.personalInfo && CandidateData.personalInfo.total_work_experience}
                         </Typography>
                     </Stack>
                     <Stack direction="row" gap={2}>
@@ -44,7 +45,8 @@ const CandidateComponent = ({ item }) => {
                             Location:
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
-                            Delhi
+                            {CandidateData && CandidateData.personalInfo && CandidateData.personalInfo.state}
+
                         </Typography>
                     </Stack>
                     <Stack direction="row" gap={2}>
@@ -52,62 +54,65 @@ const CandidateComponent = ({ item }) => {
                             Applied on:
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
-                            20-02-2023
+                            {/* <Moment format="DD/MM/YYYY">{AppliedDate}</Moment> */}
+                            {/* {new Date(AppliedDate)} */}
                         </Typography>
                     </Stack>
-                    <Stack direction="row" gap={2}>
+                    {/* <Stack direction="row" gap={2}>
                         <Typography component="div" sx={{ fontSize: "18px", color: "#4E3A67", fontWeight: "700" }}>
                             Notice Period:
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
                             Immediately Available
                         </Typography>
-                    </Stack>
+                    </Stack> */}
 
 
                 </Stack>
                 <Stack direction="column" sx={{
                     width: { "lg": "25%", "md": "25%", "xs": "100%" }
                 }} gap={2}>
-                    <Stack direction="column" gap={1}>
-                        <Typography component="div" sx={{ fontSize: "18px", color: "#4E3A67", fontWeight: "700" }}>
-                            Unnati
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
-                            Android developer
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
-                            Dec,2021 to Present
-                        </Typography>
-                    </Stack>
+                    {CandidateData && CandidateData.workHistory.map((item) => {
+                        return (<>
+                            <Stack direction="column" gap={1}>
+                                <Typography component="div" sx={{ fontSize: "18px", color: "#4E3A67", fontWeight: "700" }}>
+                                    {item.company_name}
+                                </Typography>
+                                <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
+                                    {item.designation}
+                                </Typography>
+                                <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
+                                    <Moment format="DD/MM/YYYY">{item.starting_year}</Moment>{" to "}
+                                    <Moment format="DD/MM/YYYY">{item.ending_year}</Moment>
+                                </Typography>
+                            </Stack>
+                        </>)
+                    })}
 
-                    <Stack direction="column" gap={1}>
-                        <Typography component="div" sx={{ fontSize: "18px", color: "#4E3A67", fontWeight: "700" }}>
-                            RakVin Technologies Pvt. Ltd.
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
-                            Android developer
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
-                            July, 2019 to Dec,2020
-                        </Typography>
-                    </Stack>
+
                 </Stack>
 
                 <Stack direction="column" sx={{
                     width: { "lg": "25%", "md": "25%", "xs": "100%" }
                 }} gap={2}>
-                    <Stack direction="column" gap={1}>
-                        <Typography component="div" sx={{ fontSize: "18px", color: "#4E3A67", fontWeight: "700" }}>
-                            Greater Noida Institute of Technology
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
-                            MCA ( Full Time)
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
-                            2014 to 2018
-                        </Typography>
-                    </Stack>
+                    {
+                        CandidateData && CandidateData.educationalInfo.map((item) => {
+                            return (<>
+                                <Stack direction="column" gap={1}>
+                                    <Typography component="div" sx={{ fontSize: "18px", color: "#4E3A67", fontWeight: "700" }}>
+                                        {item.institude_name ? item.institude_name : "Institute name"}
+                                    </Typography>
+                                    <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
+                                        {item.qualification + " ( " + item.course_type.replace("_", " ").toUpperCase() + " )"}
+                                    </Typography>
+                                    <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
+                                        <Moment format="YYYY">{item.starting_year}</Moment>{" to "}
+                                        <Moment format="YYYY">{item.ending_year}</Moment>
+                                    </Typography>
+                                </Stack>
+                            </>)
+                        })
+                    }
                 </Stack>
             </Stack>
 

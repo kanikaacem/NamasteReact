@@ -81,6 +81,8 @@ export const CandidateQuestion = "https://backend.jobsyahan.com/api/file/getques
 /* Apply for the job */
 export const ApplyForJob = "https://backend.jobsyahan.com/api/job/applyforjob";
 
+/*uploading Resume */
+export const uploadResumeURL = "https://backend.jobsyahan.com/api/file/upload";
 
 /*Website */
 export const JobSearchPageURL = "https://backend.jobsyahan.com/api/job/searchjobs";
@@ -88,3 +90,5 @@ export const JobSearchPageURL = "https://backend.jobsyahan.com/api/job/searchjob
 /*Posting Ans */
 // export const PostAnswerCandidate = "https://backend.jobsyahan.com/api/users/postquestionanswers";
 export const PostAnswerCandidate = "https://backend.jobsyahan.com/api/file/postansweronebyone";
+
+export const GetCandidateOnParticularJob = "https://backend.jobsyahan.com/api/job/candidateonparticularjob?jobid=";

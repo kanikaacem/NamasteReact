@@ -96,8 +96,9 @@ const ProfileComponent = ({ userData, userType }) => {
                             Current Location
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
-                            {userData && userData.personalInfo && userData.personalInfo.city ?
-                                userData.personalInfo.city : "City"}
+
+                            {userData && userData.personalInfo.city ? userData.personalInfo.city : "City "}
+
                         </Typography>
                     </Stack>
 
@@ -162,7 +163,7 @@ const ProfileComponent = ({ userData, userType }) => {
                     {
                         value == 0 && (<>
                             <Box sx={{ overflowY: "scroll", height: "700px" }} >
-                                <PDFReader showAllPage={true} url={window.location.origin + '/assets/sample.pdf'} />
+                                <PDFReader showAllPage={true} url="https://jobyahanp.s3.ap-south-1.amazonaws.com/1678433116491_sample.pdf" />
                             </Box>
                         </>)
 
