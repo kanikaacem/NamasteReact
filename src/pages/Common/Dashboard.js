@@ -187,10 +187,10 @@ const Dashboard = () => {
 
                         </>
                         )}
-                        <Badge badgeContent={4} color="primary" sx={{ cursor: "pointer" }}
+                        {/* <Badge badgeContent={4} color="primary" sx={{ cursor: "pointer" }}
                             onClick={() => window.location.href = window.location.origin + '/employer-dashboard/chats'}>
                             <MailOutlineIcon></MailOutlineIcon>
-                        </Badge>
+                        </Badge> */}
 
                         <Box sx={{ cursor: "pointer" }} onClick={() => setOpenProfile(!openProfile)}>
                             <Avatar alt={user.fullname} />

@@ -12,24 +12,19 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+import ThemeMessage from "../Common/ThemeMessage";
 const PersonalInformation2 = ({ questions }) => {
 
-    // const [date, setDate] = useState(null);
-    // const [qualification, setQualification] = useState(" ");
-    // const [gender, setGender] = useState("");
-    // const [martialStatus, setMaritalStatus] = useState(" ");
+    const [date, setDate] = useState(null);
 
-    // const [workArea, setWorkArea] = useState(" ");
-    // const [workExperience, setWorkExperience] = useState(" ");
-    // const [previouslyWorked, setPreviouslyWorked] = useState(" ");
-    // const [nestedValue,setNestedValue] = useState(false);
-
-    // const handleSubmit = async (values, { resetForm }) => {
-    //     console.log(values);
-    // }
     const dispatch = useDispatch();
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const JobType = window.location.pathname.split('/')[1];
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
     const FormSubmit = async (question, ans) => {
 
@@ -67,8 +62,13 @@ const PersonalInformation2 = ({ questions }) => {
             // console.log(response)
             // if (response.data.isemailverified && response.data.profilecompleted >= 50)
             //     dispatch({ type: 'LOGIN', payload: response.data });
-            if (response.data.isemailverified)
-                dispatch({ type: 'LOGIN', payload: response.data });
+            if (response.data.isemailverified) {
+                setFormSubmitted(true);
+                setTimeout(() => {
+                    setFormSubmitted(false);
+                    dispatch({ type: 'LOGIN', payload: response.data });
+                }, 5000);
+            }
             else
                 alert("Please fill all the required fields");
         }
@@ -76,6 +76,8 @@ const PersonalInformation2 = ({ questions }) => {
     }
     return (<>
         {/* {console.log(questions)} */}
+        <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message="Candidate is registered Successfully." type="success" />
+
         {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>}
 
         <Box className="PersonalInformation2" sx={{
@@ -227,6 +229,24 @@ const PersonalInformation2 = ({ questions }) => {
 
                                                         }
                                                         {
+                                                            item.questiontype === "date" && <>
+                                                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                                    <DatePicker
+                                                                        id="date_of_birth"
+                                                                        value={date}
+                                                                        onChange={(newValue) => {
+                                                                            setDate(newValue);
+                                                                            FormSubmit(item.questiontag, new Date(newValue))
+                                                                            // setFieldValue("date_of_birth", new Date(newValue))
+                                                                        }}
+                                                                        renderInput={(params) => <TextField
+
+                                                                            {...params} />}
+                                                                    />
+                                                                </LocalizationProvider>
+                                                            </>
+                                                        }
+                                                        {
                                                             item.questiontype === "dropdown" && <>
 
                                                                 <Autocomplete
@@ -266,24 +286,29 @@ const PersonalInformation2 = ({ questions }) => {
                                                         {
                                                             item.questiontype === "radio" && <>
                                                                 {
-                                                                    item.questionoption.map((option) => {
-                                                                        return (
-                                                                            <>
-                                                                                <Stack direction="row" gap={2} alignItems="center">
-                                                                                    <input
-                                                                                        onChange={(event) => {
-                                                                                            // console.log(event.target)
-                                                                                            // setFieldValue(item.questiontag, event.target.value)
-                                                                                            FormSubmit(item.questiontag, event.target.value)
+                                                                    <Stack direction="row" >
+                                                                        {
+                                                                            item.questionoption.map((option) => {
+                                                                                return (
+                                                                                    <>
+                                                                                        <Stack direction="row" gap={2} alignItems="center">
+                                                                                            <input
+                                                                                                onChange={(event) => {
+                                                                                                    // console.log(event.target)
+                                                                                                    // setFieldValue(item.questiontag, event.target.value)
+                                                                                                    FormSubmit(item.questiontag, event.target.value)
 
-                                                                                        }}
-                                                                                        type="radio" id={item.questiontag} name={item.questiontag} value={option} />
-                                                                                    <label for={item.questiontag}>{option}</label><br></br>
-                                                                                </Stack>
+                                                                                                }}
+                                                                                                type="radio" id={item.questiontag} name={item.questiontag} value={option} />
+                                                                                            <label for={item.questiontag}>{option}</label><br></br>
+                                                                                        </Stack>
 
-                                                                            </>
-                                                                        )
-                                                                    })
+                                                                                    </>
+                                                                                )
+                                                                            })
+                                                                        }
+                                                                    </Stack>
+
                                                                 }
                                                             </>
                                                         }

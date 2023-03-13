@@ -18,7 +18,6 @@ import AccountSetting from './Pages/Employer/AccountSetting';
 import CandidateRecommendation from './Pages/Employer/CandidateRecommendation';
 import SavedCandidate from "./Pages/Employer/SavedCandidate";
 import AppliedCandidate from './Pages/Employer/AppliedCandidate';
-import Chat from "./Pages/Common/Chat";
 import ViewProfile from './Pages/Employer/ViewProfile';
 // import CandidateProfilePage from "./ThemeComponent/Common/CandidateProfilePage";
 
@@ -32,6 +31,7 @@ import CandidateProfilePage from "./Pages/Candidate/CandidateProfilePage";
 import CandidateJobPerferences from "./Pages/Candidate/CandidateJobPerferences";
 import SavedJobs from './Pages/Candidate/SavedJobs';
 import ProfileComponent from './ThemeComponent/Common/ProfileComponent';
+import CandidateMobileVerify from './ThemeComponent/ThemeForms/CandidateMobileVerify';
 
 /*Website Page*/
 import Home from "./Pages/Home/Home";
@@ -58,6 +58,7 @@ function App() {
           <Route path="/contact-us" element={<ContactUs></ContactUs>} />
           <Route path="/about-us" element={<AboutUs></AboutUs>} />
 
+          <Route path="/mobile-verify" element={<CandidateMobileVerify></CandidateMobileVerify>} />
           <Route path="/job-type" element={<JobTypePage></JobTypePage>} />
           <Route path="/personal-info" element={<PersonalInformationInformation2></PersonalInformationInformation2>} ></Route>
 
@@ -89,7 +90,6 @@ function App() {
             <Route path="saved-candidates" element={<SavedCandidate></SavedCandidate>} />
             <Route path="account-setting" element={<AccountSetting></AccountSetting>} />
             <Route path="view-profile/:id" element={<ViewProfile ></ViewProfile>} />
-            <Route path="chats" element={<Chat></Chat>} />
           </Route>
 
           <Route path="/view-profile" element={<CandidateProfile></CandidateProfile>} />

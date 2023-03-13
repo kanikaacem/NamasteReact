@@ -1,5 +1,5 @@
-import { getRequest } from "../../utils/ApiRequests";
-import { getJobTypeURL, getSKillOnJobType, checkBlueCollarJob } from "../../utils/ApiUrls";
+import { getRequest, postRequest } from "../../utils/ApiRequests";
+import { getJobTypeURL, getSKillOnJobType, checkBlueCollarJob, PostAnswerCandidate } from "../../utils/ApiUrls";
 import { JobTypePageSchema } from "../../Validation/PostJobValidation";
 
 import { Box, Stack, Typography, TextField, Select as SelectField, MenuItem } from "@mui/material";
@@ -15,6 +15,7 @@ import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 
 import ThemeLabel from '../../ThemeComponent/ThemeForms/ThemeLabel';
 import Error from '../../ThemeComponent/Common/Error';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 const JobTypePage = () => {
 
@@ -22,12 +23,16 @@ const JobTypePage = () => {
     const [jobTypeData, setJobTypeData] = useState([]);
     const [skillData, setSkillData] = useState([]);
     const [selectedOptions, setSelectedOptions] = useState([]);
+    const [autoData, setAutoData] = useState([]);
+    const [menubar, setMenuBar] = useState(false);
+    const [area, setArea] = useState("");
 
     const animatedComponents = makeAnimated();
 
     const defaultValue = {
         job_type: "",
-        skills: ""
+        // skills: "",
+        area: ""
     }
 
     useEffect(() => {
@@ -55,8 +60,10 @@ const JobTypePage = () => {
     }
 
     const handleSubmit1 = async (values, { resetForm }) => {
+        console.log(values);
+        FormSubmit("job_type", values.job_type, values.job_type);
+        FormSubmit("area", values.area, values.job_type);
         let response = await getRequest(checkBlueCollarJob + "=" + values.job_type);
-        console.log(response);
 
         if (response.data)
             window.location.href = window.location.origin + "/" + values.job_type.toLowerCase().replace("_", "-") + "/profile/0"
@@ -64,6 +71,29 @@ const JobTypePage = () => {
             window.location.href = window.location.origin + "/profile/0"
 
 
+
+    }
+
+    const getAddress = async (value) => {
+        let response = await getRequest("https://backend.jobsyahan.com/api/map/autocompleteplaces?input=" + value);
+        setAutoData(response.data);
+
+        // console.log(response.data);
+    }
+    const FormSubmit = async (question, ans, JobType) => {
+
+        let FormData = {};
+        FormData = {
+            tag: question,
+            answers: ans,
+            jobtype: JobType
+
+        }
+
+        let response = await postRequest(PostAnswerCandidate, FormData);
+        if (response.status === '1') {
+            console.log(response);
+        }
 
     }
     return (<>
@@ -169,7 +199,7 @@ const JobTypePage = () => {
                                                     onChange={(event) => {
                                                         setJobType(event.target.value);
                                                         setFieldValue("job_type", event.target.value);
-                                                        getSkillByJobType(event.target.value);
+                                                        // getSkillByJobType(event.target.value);
                                                     }}
                                                     sx={{
                                                         background: " #FFFFFF",
@@ -194,7 +224,7 @@ const JobTypePage = () => {
                                                 {errors.job_type && touched.job_type && <Error text={errors.job_type} />}
                                             </ThemeFInputDiv>
 
-                                            <ThemeFInputDiv>
+                                            {/* <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="skills" LableText="Skills *" />
                                                 <Field
 
@@ -217,6 +247,62 @@ const JobTypePage = () => {
 
 
                                                 {errors.skills && touched.skills && <Error text={errors.skills} />}
+
+                                            </ThemeFInputDiv> */}
+
+                                            <ThemeFInputDiv sx={{ position: "relative" }}>
+                                                <ThemeLabel LableFor="area" LableText="Area *" />
+                                                <Box sx={{ width: "100%", margin: "10px 0px" }}>
+
+                                                    <TextField id="outlined-basic"
+                                                        placeholder="Enter Area(eg.Haridwar, Uttarakhand, India)"
+                                                        value={area}
+                                                        onChange={(event) => {
+                                                            setArea(event.target.value);
+                                                            setFieldValue("area", event.target.value);
+                                                            getAddress(event.target.value);
+                                                            setMenuBar(true)
+                                                        }}
+                                                        variant="outlined" fullWidth />
+                                                </Box>
+                                                {errors.area && touched.area && <Error text={errors.area} />}
+
+                                                {menubar && autoData && autoData != "no record please enter some word" && <>
+                                                    <ClickAwayListener onClickAway={() => setAutoData(false)}>
+
+                                                        <Box
+                                                            sx={{
+                                                                position: "absolute",
+                                                                top: "110px",
+                                                                background: "#FFFFFF",
+                                                                width: "94%",
+                                                                padding: "20px",
+                                                                height: "fit-content",
+                                                                zIndex: "34",
+                                                                boxShadow: "0px 47px 52px #f4ecff",
+                                                                border: "3px solid #E1D4F2",
+                                                                borderRadius: "11px"
+                                                            }}>
+                                                            {autoData && autoData != "no record please enter some word" && autoData.map((item) => {
+                                                                return (<>
+                                                                    <Box sx={{
+                                                                        padding: "20px",
+                                                                        borderBottom: "1px solid #E1D4F2",
+                                                                        cursor: "pointer"
+                                                                    }}
+                                                                        onClick={(event) => {
+                                                                            setArea(item.description);
+                                                                            setFieldValue("area", item.description)
+                                                                            setMenuBar(false)
+                                                                        }}> {item.description}</Box></>)
+                                                            })}
+
+                                                        </Box>
+                                                    </ClickAwayListener>
+                                                </>
+
+                                                }
+                                                {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
 
                                             </ThemeFInputDiv>
                                         </ThemeFInputDiv>

@@ -19,7 +19,7 @@ const initialState = {
   activeJob : '',
   candidateInfo: '',
   CandidateRegistration:false,
-  user:localStorage.getItem("user") == null ? {} : JSON.parse(localStorage.getItem("user"))
+  user:localStorage.getItem("user") == null ? {} : JSON.parse(localStorage.getItem("user")),
 };
 const reducer = (state, action) =>{
   switch(action.type){
@@ -287,3 +287,4 @@ root.render(
 
 //https://medium.com/@sakshisubedi/optimizing-event-handler-of-input-without-affecting-browser-and-application-performance-in-react-js-7fc4f39b0889
 //-1 Try this event in React , it worked for me. onMouseLeave(). Use this if onBlur() and onFocusOut does not work for you.
+//https://www.npmjs.com/package/react-notifications

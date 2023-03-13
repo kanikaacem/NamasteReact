@@ -25,7 +25,7 @@ export const PasswordGenFormValidationSchema = yup.object().shape({
 //STEP 3
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 export const MobileVerifyFormValidationSchema = yup.object().shape({
-    // mobile_number: yup.string().required("Mobile number is required")
+    mobile_number: yup.string().required("Mobile number is required")
 })
 
 export const OTPValidationSchema = yup.object().shape({

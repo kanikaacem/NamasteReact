@@ -1,11 +1,16 @@
 import { Box, Stack, Typography, Modal } from "@mui/material";
 import { ThemeButtonType2 } from "../../utils/Theme";
+import { useNavigate } from "react-router-dom";
 const ThemeMessage = ({ open, setOpen, message, type }) => {
+    const navigate = useNavigate();
+
     const handleClose = () => {
         if (window.location.pathname === '/forgot-password/employer')
             window.location.href = window.location.origin + "/employer-login";
         else if (window.location.pathname === "/forgot-password/candidate")
             window.location.href = window.location.origin + "/candidate-login";
+        else if (setOpen === "JobPosted")
+            navigate("/", { state: { jobPosted: false } });
         else
             setOpen(false)
     }

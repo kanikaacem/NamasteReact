@@ -13,8 +13,7 @@ import { Carousel } from 'react-responsive-carousel';
 
 import ButtonType2 from "../../ThemeComponent/Common/ButtonType2";
 
-import { Link, useOutletContext } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useOutletContext, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import JobComponent from "../../ThemeComponent/JobComponent";
@@ -24,12 +23,11 @@ import SocialMedia from "../../ThemeComponent/Common/SocialMedia";
 import { Chart as ChartJS, registerables } from 'chart.js';
 import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
 import DashboardGreeting from "../../ThemeComponent/Common/DashboardGreeting";
+import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 
 import { Bar } from 'react-chartjs-2'
 import { useLayoutEffect } from "react";
 ChartJS.register(...registerables);
-
-
 const EmployerDashboard = () => {
     const user = useOutletContext();
 
@@ -118,8 +116,13 @@ const EmployerDashboard = () => {
     const IndexOfLastData = currentPage * dataPerPage;
     const IndexOfFirstData = IndexOfLastData - dataPerPage;
     const jobs = data.length > 0 && data.slice(IndexOfFirstData, IndexOfLastData);
+    let newState = useLocation();
 
+    const { jobPosted } = newState.state !== null && newState.state;
     return (<>
+        {/* {console.log(newState)}{
+        } */}
+        <ThemeMessage open={jobPosted} setOpen="JobPosted" message="Your Job is saved . It will be publised after reviewing." type="success" />
 
         <Stack direction="column" gap={2} sx={{ padding: "30px" }} className="EmployerData">
             <DashboardGreeting username={user && user.employer_name} userType="employer" />
@@ -160,7 +163,7 @@ const EmployerDashboard = () => {
                 <Stack direction="row" alignItems="center" justifyContent="space-between">
                     <Box>
                         <Typography component="div" sx={{ fontSize: "18px", fontWeight: "600" }}>
-                            Connect Your Account With Linkedin
+                            Connect Your Account With din
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "14px" }}>
                             Connect your linkedin account and automatically promote your jobs in your network
@@ -304,6 +307,7 @@ const EmployerDashboard = () => {
                                         </Typography>
                                     </Box>
                                     <Stack direction="column" gap={2} sx={{ height: "700px" }}>
+
                                         {
                                             jobs && jobs.length > 0 && jobs.map((item) => {
                                                 return (<>

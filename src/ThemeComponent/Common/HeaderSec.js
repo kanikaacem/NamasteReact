@@ -58,7 +58,7 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                     }}>
                     Contact us
                 </Button>
-                {console.log(user)}
+                {/* {console.log(user)} */}
                 {(isLoggedIn && user) && user && user.type === "candidate"
                     ? <>
                         <Button type="button" variant="outlined"

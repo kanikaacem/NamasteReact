@@ -46,7 +46,7 @@ import ThemeLabel from '../../ThemeComponent/ThemeForms/ThemeLabel';
 import Loader from "../Common/Loader";
 import BackButton from "../../ThemeComponent/Common/BackButton";
 
-
+import { useNavigate } from "react-router-dom";
 const PostJob = () => {
     const [postJobStep, setPostJobStep] = useState(1);
     const user = localStorage.user && JSON.parse(localStorage.user);
@@ -63,8 +63,8 @@ const PostJob = () => {
     const [jobWorkingType, setJobWorkingType] = useState(" ");
     const [workShift, setWorkShift] = useState(" ");
     const [paymentType, setPaymentType] = useState(" ");
-    const [startingTime, setStartingTime] = useState(" ");
-    const [endingTime, setEndingTime] = useState(" ");
+    const [startingTime, setStartingTime] = useState(null);
+    const [endingTime, setEndingTime] = useState(null);
 
     const [JobWorkingDays, setJobWorkingDays] = useState(" ");
     const [JobWorkingPlace, setJobWorkingPlace] = useState(" ");
@@ -109,7 +109,7 @@ const PostJob = () => {
     const [gender, setGender] = useState("");
 
     const [jobInformation, setJobInformation] = useState({});
-
+    const [salaryDisclosed, setSalaryDisclosed] = useState(false);
 
     const animatedComponents = makeAnimated();
     const defaultValue = {
@@ -127,12 +127,15 @@ const PostJob = () => {
         starting_time: "",
         ending_time: "",
         salary_type: "",
-        salary: "",
+        salary_disclosed: salaryDisclosed,
+        max_salary: "",
+        min_salary: "",
         weekly_off: "",
         state: "",
         city: "",
         company_address: "",
-        extra_benefits: ""
+        extra_benefits: "",
+        vacancy: ""
     }
 
     const defaultValue2 = {
@@ -149,56 +152,90 @@ const PostJob = () => {
         english_required: ""
 
     }
-
+    const navigate = useNavigate();
     const handleClose = (event) => {
         setFormSubmitted(false);
         localStorage.setItem("formSubmitted", "")
     };
 
-    const handleSubmit1 = async (values, { resetForm }) => {
-        setShowLoader(true);
-        let formData = new FormData();
-        formData = {
-            company_name: values.company_name,
-            title: values.job_title,
-            jobtype: values.job_type,
-            skills: values.skills.split(','),
-            industrytype: values.industry_type,
-            associationtype: values.association_type,
-            jobplace: values.job_place,
-            job_place: values.job_place,
-            jobresponsibilty: values.responsibilites,
-            shortdescription: values.job_description,
-            workingdays: [values.working_days],
-            Workshifttiming: {
-                startting_time: values.starting_time,
-                leaving_time: values.ending_time
-            },
-            salary: {
-                saltype: values.salary_type,
-                salary: values.ctc_salary.trim()
-            },
-            weekly_off: values.weekly_off.split(","),
-            location_state: values.state,
-            city: [
-                values.city
-            ],
-            company_address: values.company_address,
-            extrabenefits: values.extra_benefits
+    const handleSubmit1 = async (values, { setFieldError, resetForm }) => {
+
+
+        // console.log(values.salary_type);
+        // if ((values.salary_type === "Yearly") && (values.min_salary.length !== 6 || values.max_salary.length !== 6)) {
+        //     console.log(values.min_salary, values.max_salary.length)
+        //     setFieldError("max_salary", "Salary should be in lakhs")
+
+        // }
+
+        // else if ((values.salary_type === "Monthly") && (values.min_salary.length < 5 || values.max_salary.length < 5)) {
+        //     console.log(values.min_salary, values.max_salary.length)
+        //     setFieldError("max_salary", "Salary should be in thousands")
+
+        // }
+
+        // else if ((values.salary_type === "Per Day" || values.salary_type === "Per Hour") && (values.min_salary.length < 3 || values.max_salary.length < 3)) {
+        //     console.log(values.min_salary, values.max_salary.length)
+        //     setFieldError("max_salary", "Salary should be in hundreds")
+
+        // }
+        // console.log(values);
+        if (values.min_salary > values.max_salary) {
+            setFieldError("max_salary", "Min Salary should be not greater than Max Salary")
+
         }
-        let response = await postRequest(PostJob1, formData);
-        if (response.status == '1') {
-            console.log(response);
-            localStorage.setItem("post_id", response.data._id);
+        else {
+
+            setShowLoader(true);
+            let formData = new FormData();
+            formData = {
+                company_name: values.company_name,
+                title: values.job_title,
+                jobtype: values.job_type,
+                skills: values.skills.split(','),
+                industrytype: values.industry_type,
+                associationtype: values.association_type,
+                jobplace: values.job_place,
+                job_place: values.job_place,
+                jobresponsibilty: values.responsibilites,
+                shortdescription: values.job_description,
+                workingdays: [values.working_days],
+                Workshifttiming: {
+                    startting_time: values.starting_time,
+                    leaving_time: values.ending_time
+                },
+                salary: {
+                    salarytype: values.salary_type,
+                    minimumSalary: values.min_salary,
+                    maximumSalary: values.max_salary,
+                    currency: "INR",
+                    hideSalary: values.salary_disclosed
+                },
+                weekly_off: values.weekly_off.split(","),
+                location_state: values.state,
+                city: [
+                    values.city
+                ],
+                company_address: values.company_address,
+                extrabenefits: values.extra_benefits,
+                vacancy: values.vacancy
+            }
+            let response = await postRequest(PostJob1, formData);
+            if (response.status == '1') {
+                console.log(response);
+                localStorage.setItem("post_id", response.data._id);
+                setShowLoader(false);
+                setPostJobStep(2);
+            }
             setShowLoader(false);
             setPostJobStep(2);
         }
-        // setShowLoader(false);
-        // setPostJobStep(2);
+
+
     }
 
     const handleSubmit2 = async (values, { resetForm }) => {
-        console.log(values);
+        // console.log(values);
 
         let formData = new FormData();
         formData = {
@@ -223,11 +260,9 @@ const PostJob = () => {
 
         let response = await postRequest(PostJob2, formData);
         if (response.status == '1') {
-            setFormSubmitted(true)
-            setPostJobStep(1);
-            localStorage.setItem('formSubmitted', true);
-            window.location.reload();
+            navigate('/employer-dashboard', { JobPosted: true });
         }
+        // navigate('/employer-dashboard', { state: { jobPosted: true } });
     }
 
     useEffect(() => {
@@ -252,6 +287,8 @@ const PostJob = () => {
         getJobType();
         getLocalLanguage();
         getIndustryType();
+
+
     }, [])
 
     const getDistrictByState = async (statefilter) => {
@@ -283,8 +320,9 @@ const PostJob = () => {
         // console.log(response.data);
     }
     return (<>
+        {/* <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message="Candidate is registered Successfully." type="success" /> */}
 
-        <Snackbar
+        {/* <Snackbar
             open={formSubmitted}
             autoHideDuration={6000} onClose={handleClose}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -293,7 +331,7 @@ const PostJob = () => {
                 Your Job is saved . It will be publised after reviewing.
             </Alert>
 
-        </Snackbar >
+        </Snackbar > */}
         <Loader showLoader={showLoader} />
 
         <Box className="PostJobPage"
@@ -752,25 +790,28 @@ const PostJob = () => {
                                             <Stack direction="row" gap={5}>
                                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                                                     <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                        <Box sx={{
-                                                            margin: "15px 0px"
-                                                        }}> Starting Time </Box>
+                                                        <Box > Starting Time </Box>
                                                         {/* <ThemeLabel LableFor="starting_time" sx={{ fontSize: "16px !important" }} LableText="Starting Time" /> */}
                                                         <TimePicker
+
                                                             value={startingTime}
                                                             onChange={(newValue) => {
                                                                 setStartingTime(new Date(newValue).getTime())
                                                                 setFieldValue("starting_time", new Date(newValue).getTime())
                                                             }}
-                                                            renderInput={(params) => <TextField {...params} />}
+                                                            inputProps={{
+                                                                placeholder: "Starting Time"
+                                                            }}
+                                                            renderInput={(params) =>
+                                                                <TextField
+                                                                    {...params} />
+                                                            }
                                                         />
                                                         {errors.starting_time && touched.starting_time && <Error text={errors.starting_time} />}
 
                                                     </ThemeFInputDiv>
                                                     <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                        <Box sx={{
-                                                            margin: "15px 0px"
-                                                        }}>Ending Time</Box>
+                                                        <Box >Ending Time</Box>
                                                         {/* <ThemeLabel LableFor="ending_time" LableText="Ending Time" sx={{ fontSize: "16px !important" }} /> */}
                                                         <TimePicker
                                                             value={endingTime}
@@ -778,7 +819,11 @@ const PostJob = () => {
                                                                 setEndingTime(new Date(newValue).getTime())
                                                                 setFieldValue("ending_time", new Date(newValue).getTime())
                                                             }}
-                                                            renderInput={(params) => <TextField {...params} />}
+                                                            inputProps={{
+                                                                placeholder: "Ending Time"
+                                                            }}
+                                                            renderInput={(params) => <TextField
+                                                                {...params} />}
                                                         />
 
                                                         {errors.ending_time && touched.ending_time && <Error text={errors.ending_time} />}
@@ -817,16 +862,32 @@ const PostJob = () => {
                                                 )}
                                             </SelectField>
                                             {
-                                                (salaryType === "Per Day" || salaryType === "Per Hour") && <>
-                                                    <Field
-                                                        error={errors.salary && touched.salary}
-                                                        as={TextField}
-                                                        id="ctc_salary"
-                                                        placeholder="Enter Salary " type="text" name="ctc_salary" fullWidth />
+                                                (salaryType === "Per Day" || salaryType === "Per Hour" || salaryType === "Monthly" || salaryType === "Yearly") && <>
+                                                    <Stack direction="row" justifyContent="space-between">
+                                                        <Field
+                                                            style={{ width: "49%" }}
+                                                            as={TextField}
+                                                            id="min_salary"
+                                                            placeholder="Enter Min Sal. " type="text" name="min_salary" />
+                                                        <Field
+                                                            style={{ width: "49%" }}
+                                                            as={TextField}
+                                                            id="max_salary"
+                                                            placeholder="Enter Max Sal. " type="text" name="max_salary" />
+                                                    </Stack>
+                                                    <Stack direction="row" gap={2}>
+                                                        <input type="checkbox" name="salary_disclosed" onChange={() => {
+                                                            setSalaryDisclosed(!salaryDisclosed)
+                                                            setFieldValue("salary_disclosed", !salaryDisclosed)
+                                                        }} />
+                                                        <Box >Salary  Not Disclosed</Box>
+                                                    </Stack>
+
+
                                                 </>
                                             }
 
-                                            {(salaryType === "Monthly" || salaryType === "Yearly") &&
+                                            {/* {(salaryType === "Monthly" || salaryType === "Yearly") &&
                                                 <SelectField
                                                     labelId="demo-simple-select-label"
                                                     name="association_type"
@@ -852,8 +913,8 @@ const PostJob = () => {
                                                         <MenuItem value={item.value} key={item.id}>{item.value}</MenuItem>
                                                     )}
                                                 </SelectField>
-                                            }
-                                            {errors.salary && touched.salary && <Error text={errors.salary} />}
+                                            } */}
+                                            {errors.max_salary && touched.max_salary && <Error text={errors.max_salary} />}
                                         </ThemeFInputDiv>
 
                                         <ThemeFInputDiv>
@@ -1026,6 +1087,16 @@ const PostJob = () => {
                                                 placeholder="Select Extra Benefits" data={ExtraBenefitsData} fullWidth />
 
                                             {errors.extra_benefits && touched.extra_benefits && <Error text={errors.extra_benefits} />}
+                                        </ThemeFInputDiv>
+
+                                        <ThemeFInputDiv>
+                                            <ThemeLabel LableFor="vacancy" LableText="Vacancy*" />
+                                            <Field
+                                                error={errors.vacancy && touched.vacancy}
+                                                as={TextField}
+                                                id="vacancy"
+                                                placeholder="Vacancy" type="text" name="vacancy" fullWidth />
+                                            {errors.vacancy && touched.vacancy && <Error text={errors.vacancy} />}
                                         </ThemeFInputDiv>
 
                                     </ThemeFInputDiv>
