@@ -8,6 +8,7 @@ import { ThemeButtonType2 } from "../utils/Theme";
 import { RWebShare } from "react-web-share";
 
 import { useState, useEffect } from "react";
+import ThemeMessage from "./Common/ThemeMessage";
 const JobDescriptionComponent = ({ userType, data }) => {
 
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -47,17 +48,10 @@ const JobDescriptionComponent = ({ userType, data }) => {
         IsjobApplied();
     }, [data])
     return (<>
+        <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted}
+            message=" you applied for the job." type="success" />
 
-        <Snackbar
-            open={formSubmitted}
-            autoHideDuration={6000} onClose={handleClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        >
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                you applied for the job.
-            </Alert>
 
-        </Snackbar >
         <Stack
             direction="column"
             gap={3}

@@ -66,9 +66,9 @@ const JobTypePage = () => {
         let response = await getRequest(checkBlueCollarJob + "=" + values.job_type);
 
         if (response.data)
-            window.location.href = window.location.origin + "/" + values.job_type.toLowerCase().replace("_", "-") + "/profile/0"
+            window.location.href = window.location.origin + "/candidate-dashboard/" + values.job_type.toLowerCase().replace("_", "-") + "/profile/0"
         else
-            window.location.href = window.location.origin + "/profile/0"
+            window.location.href = window.location.origin + "candidate-dashboard/profile/0"
 
 
 
@@ -99,7 +99,7 @@ const JobTypePage = () => {
     return (<>
         <Box className="JobTypePage"
             sx={{
-                height: "100vh",
+                minHeight: "100vh",
                 background: "#FFFFFF",
                 backgroundRepeat: " no-repeat",
                 backgroundPosition: "left 100px bottom 0px"
@@ -110,9 +110,9 @@ const JobTypePage = () => {
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
-                <HeaderSec
+                {/* <HeaderSec
                     color="black"
-                    border="2px solid #8E8E8E" />
+                    border="2px solid #8E8E8E" /> */}
                 <Stack gap={3} direction="row" justifyContent="space-between"
                     sx={{
                         margin: "50px"

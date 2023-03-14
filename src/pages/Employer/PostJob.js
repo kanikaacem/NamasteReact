@@ -45,10 +45,11 @@ import Error from '../../ThemeComponent/Common/Error';
 import ThemeLabel from '../../ThemeComponent/ThemeForms/ThemeLabel';
 import Loader from "../Common/Loader";
 import BackButton from "../../ThemeComponent/Common/BackButton";
+import CurrencyFormat from 'react-currency-format';
 
 import { useNavigate } from "react-router-dom";
 const PostJob = () => {
-    const [postJobStep, setPostJobStep] = useState(1);
+    const [postJobStep, setPostJobStep] = useState(2);
     const user = localStorage.user && JSON.parse(localStorage.user);
 
     const [showLoader, setShowLoader] = useState(false);
@@ -139,10 +140,6 @@ const PostJob = () => {
     }
 
     const defaultValue2 = {
-        minAge: "",
-        maxAge: "",
-        minExp: "",
-        maxExp: "",
         education_type: "",
         education_degree: "",
         perferred_degree: "",
@@ -153,34 +150,8 @@ const PostJob = () => {
 
     }
     const navigate = useNavigate();
-    const handleClose = (event) => {
-        setFormSubmitted(false);
-        localStorage.setItem("formSubmitted", "")
-    };
-
     const handleSubmit1 = async (values, { setFieldError, resetForm }) => {
-
-
-        // console.log(values.salary_type);
-        // if ((values.salary_type === "Yearly") && (values.min_salary.length !== 6 || values.max_salary.length !== 6)) {
-        //     console.log(values.min_salary, values.max_salary.length)
-        //     setFieldError("max_salary", "Salary should be in lakhs")
-
-        // }
-
-        // else if ((values.salary_type === "Monthly") && (values.min_salary.length < 5 || values.max_salary.length < 5)) {
-        //     console.log(values.min_salary, values.max_salary.length)
-        //     setFieldError("max_salary", "Salary should be in thousands")
-
-        // }
-
-        // else if ((values.salary_type === "Per Day" || values.salary_type === "Per Hour") && (values.min_salary.length < 3 || values.max_salary.length < 3)) {
-        //     console.log(values.min_salary, values.max_salary.length)
-        //     setFieldError("max_salary", "Salary should be in hundreds")
-
-        // }
-        // console.log(values);
-        if (values.min_salary > values.max_salary) {
+        if (parseInt(values.min_salary) > parseInt(values.max_salary)) {
             setFieldError("max_salary", "Min Salary should be not greater than Max Salary")
 
         }
@@ -229,40 +200,56 @@ const PostJob = () => {
             }
             setShowLoader(false);
             setPostJobStep(2);
+            window.scrollTo({ top: '0', behaviour: 'smooth' })
+
         }
+
+
 
 
     }
 
-    const handleSubmit2 = async (values, { resetForm }) => {
-        // console.log(values);
+    const handleSubmit2 = async (values, { setFieldError, resetForm }) => {
+        let isFormValid = true;
 
-        let formData = new FormData();
-        formData = {
-            _id: localStorage.getItem("post_id") ?
-                localStorage.getItem("post_id") : "",
-            candidate_experience: {
-                min_age: values.min_exp,
-                max_age: values.max_exp
-            },
-            candidateage: {
-                min_age: values.min_age,
-                max_age: values.max_age
-            },
-            educationtype: values.education_type,
-            educationdegree: values.education_degree,
-            prefereddegree: values.perferred_degree,
-            preferedgender: values.gender,
-            hindirequirement: values.hindi_required,
-            mandatorylocallanguage: values.mandatory_local_language,
-            englishrequirement: values.english_required
+        if (values.min_age > values.max_age) {
+            isFormValid = false;
+            setFieldError("max_age", "Max age should not be less than Min age.")
+        }
+        if (values.min_exp > values.max_exp) {
+            isFormValid = false;
+            setFieldError("max_exp", "Max exp should not be less than Min exp.")
         }
 
-        let response = await postRequest(PostJob2, formData);
-        if (response.status == '1') {
-            navigate('/employer-dashboard', { JobPosted: true });
+        if (isFormValid) {
+            let formData = new FormData();
+            formData = {
+                _id: localStorage.getItem("post_id") ?
+                    localStorage.getItem("post_id") : "",
+                candidate_experience: {
+                    min_age: values.min_exp,
+                    max_age: values.max_exp
+                },
+                candidateage: {
+                    min_age: values.min_age,
+                    max_age: values.max_age
+                },
+                educationtype: values.education_type,
+                educationdegree: values.education_degree,
+                prefereddegree: values.perferred_degree,
+                preferedgender: values.gender,
+                hindirequirement: values.hindi_required,
+                mandatorylocallanguage: values.mandatory_local_language,
+                englishrequirement: values.english_required
+            }
+
+            let response = await postRequest(PostJob2, formData);
+            if (response.status == '1') {
+                navigate('/employer-dashboard', { state: { jobPosted: true } });
+            }
+
         }
-        // navigate('/employer-dashboard', { state: { jobPosted: true } });
+
     }
 
     useEffect(() => {
@@ -292,11 +279,8 @@ const PostJob = () => {
     }, [])
 
     const getDistrictByState = async (statefilter) => {
-        // console.log(statefilter);
         let response = await getRequest("https://backend.jobsyahan.com/api/map/districts?states=" + statefilter);
-        // console.log(response.data[0].districts);
         setDistrict(response.data[0].districts.sort());
-        // console.log(response);
     }
 
     const getIndustryTypeByJobType = async (jobTypeFilter) => {
@@ -304,13 +288,11 @@ const PostJob = () => {
         let response = await getRequest(getSKillOnJobType + "=" + jobTypeFilter);
 
         response.data.map(item => {
-            // {item[0].toString()}
             SkillsData.push({
                 label: item,
                 value: item
             })
         });
-        // console.log(SkillsData);
         setIndustryData(SkillsData.sort());
     }
     const getAddress = async (value) => {
@@ -320,18 +302,7 @@ const PostJob = () => {
         // console.log(response.data);
     }
     return (<>
-        {/* <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message="Candidate is registered Successfully." type="success" /> */}
 
-        {/* <Snackbar
-            open={formSubmitted}
-            autoHideDuration={6000} onClose={handleClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        >
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                Your Job is saved . It will be publised after reviewing.
-            </Alert>
-
-        </Snackbar > */}
         <Loader showLoader={showLoader} />
 
         <Box className="PostJobPage"
@@ -864,16 +835,45 @@ const PostJob = () => {
                                             {
                                                 (salaryType === "Per Day" || salaryType === "Per Hour" || salaryType === "Monthly" || salaryType === "Yearly") && <>
                                                     <Stack direction="row" justifyContent="space-between">
-                                                        <Field
-                                                            style={{ width: "49%" }}
-                                                            as={TextField}
-                                                            id="min_salary"
-                                                            placeholder="Enter Min Sal. " type="text" name="min_salary" />
-                                                        <Field
-                                                            style={{ width: "49%" }}
-                                                            as={TextField}
-                                                            id="max_salary"
-                                                            placeholder="Enter Max Sal. " type="text" name="max_salary" />
+                                                        <ThemeFInputDiv sx={{ width: "50%" }}>
+                                                            <Box > Min. Salary</Box>
+
+                                                            <CurrencyFormat style={{
+                                                                fontSize: "20px",
+                                                                outline: "none",
+                                                                width: "92%",
+                                                                border: "1px solid #EAEAEA",
+                                                                borderRadius: "12px",
+                                                                padding: "15px 10px"
+                                                            }}
+                                                                hintText="Enter Min. Salary"
+                                                                thousandSeparator={true} prefix={'₹'}
+                                                                onChange={(event) => {
+
+                                                                    setFieldValue("min_salary", event.target.value.slice(1).replaceAll(",", ""))
+                                                                }} />
+                                                        </ThemeFInputDiv>
+
+
+                                                        <ThemeFInputDiv sx={{ width: "50%" }}>
+                                                            <Box > Max. Salary</Box>
+
+                                                            <CurrencyFormat style={{
+                                                                fontSize: "20px",
+                                                                outline: "none",
+                                                                width: "92%",
+                                                                border: "1px solid #EAEAEA",
+                                                                borderRadius: "12px",
+                                                                padding: "15px 10px"
+                                                            }}
+                                                                onChange={(event) => {
+                                                                    setFieldValue("max_salary", event.target.value.slice(1).replaceAll(",", ""))
+                                                                }}
+                                                                hintText="Enter Max. Salary"
+                                                                thousandSeparator={true} prefix={'₹'} />
+                                                        </ThemeFInputDiv>
+
+
                                                     </Stack>
                                                     <Stack direction="row" gap={2}>
                                                         <input type="checkbox" name="salary_disclosed" onChange={() => {
@@ -887,33 +887,6 @@ const PostJob = () => {
                                                 </>
                                             }
 
-                                            {/* {(salaryType === "Monthly" || salaryType === "Yearly") &&
-                                                <SelectField
-                                                    labelId="demo-simple-select-label"
-                                                    name="association_type"
-                                                    value={CTCSalary}
-                                                    label="role"
-                                                    onChange={(event) => {
-                                                        setCTCSalary(event.target.value);
-                                                        setFieldValue("ctc_salary", event.target.value);
-                                                    }}
-                                                    sx={{
-                                                        background: " #FFFFFF",
-                                                        border: "1px solid #EAEAEA",
-                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                        borderRadius: "7px",
-                                                        width: "101%",
-                                                        fontSize: "16px",
-                                                        fontamily: 'Montserrat',
-                                                        padding: "8px"
-                                                    }}
-                                                >
-                                                    <MenuItem value=" ">Select CTC Salary</MenuItem>
-                                                    {SalaryCTC.map((item) =>
-                                                        <MenuItem value={item.value} key={item.id}>{item.value}</MenuItem>
-                                                    )}
-                                                </SelectField>
-                                            } */}
                                             {errors.max_salary && touched.max_salary && <Error text={errors.max_salary} />}
                                         </ThemeFInputDiv>
 
@@ -1329,7 +1302,6 @@ const PostJob = () => {
                                                                 <MenuItem value={item} key={item}>{item}</MenuItem>
                                                             )}
                                                         </SelectField>
-                                                        {errors.min_exp && touched.min_exp && <Error text={errors.min_exp} />}
                                                     </Box>
 
                                                     <Box sx={{ width: "50%" }}>
@@ -1362,13 +1334,9 @@ const PostJob = () => {
                                                                 <MenuItem value={item} key={item}>{item}</MenuItem>
                                                             )}
                                                         </SelectField>
-                                                        {errors.max_exp && touched.max_exp && <Error text={errors.max_exp} />}
                                                     </Box>
-
-
-
-
                                                 </Stack>
+                                                {errors.max_exp && touched.max_exp && <Error text={errors.max_exp} />}
 
                                             </ThemeFInputDiv>
 
@@ -1406,7 +1374,6 @@ const PostJob = () => {
                                                                 <MenuItem value={item} key={item}>{item}</MenuItem>
                                                             )}
                                                         </SelectField>
-                                                        {errors.min_age && touched.min_age && <Error text={errors.min_age} />}
                                                     </Box>
 
                                                     <Box sx={{ width: "50%" }}>
@@ -1439,15 +1406,10 @@ const PostJob = () => {
                                                                 <MenuItem value={item} key={item}>{item}</MenuItem>
                                                             )}
                                                         </SelectField>
-                                                        {errors.max_age && touched.max_age && <Error text={errors.max_age} />}
                                                     </Box>
-
-
-
-
                                                 </Stack>
 
-                                                {errors.age && touched.age && <Error text={errors.age} />}
+                                                {errors.max_age && touched.max_age && <Error text={errors.max_age} />}
                                             </ThemeFInputDiv>
 
                                             <Stack direction="row" gap={2}

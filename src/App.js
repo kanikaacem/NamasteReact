@@ -58,10 +58,6 @@ function App() {
           <Route path="/contact-us" element={<ContactUs></ContactUs>} />
           <Route path="/about-us" element={<AboutUs></AboutUs>} />
 
-          <Route path="/mobile-verify" element={<CandidateMobileVerify></CandidateMobileVerify>} />
-          <Route path="/job-type" element={<JobTypePage></JobTypePage>} />
-          <Route path="/personal-info" element={<PersonalInformationInformation2></PersonalInformationInformation2>} ></Route>
-
           <Route path="/forgot-password/employer" element={<ForgotPasswordPage user="employer" />} />
           <Route path="/reset-password/employer/:token" element={<ResetPasswordPage user="employer" />} />
 
@@ -73,11 +69,11 @@ function App() {
 
           <Route path="/employer-register" element={<EmployerRegister></EmployerRegister>} />
           <Route path="/employer-login" element={<EmployerLogin></EmployerLogin>} />
+          <Route path="/personal-info" element={<PersonalInformationInformation2></PersonalInformationInformation2>} ></Route>
 
           <Route path="/candidate-login" element={<CandidateLogin></CandidateLogin>}></Route>
           <Route path="/candidate-register" element={<CandidateRegistration />} />
           <Route path="/profile/:step" element={<CandidateProfile></CandidateProfile>} />
-          <Route path=":jobType/profile/:step" element={<CandidateProfile></CandidateProfile>} />
           <Route path="/job" element={<JobSearch></JobSearch>} />
 
           <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
@@ -90,6 +86,7 @@ function App() {
             <Route path="saved-candidates" element={<SavedCandidate></SavedCandidate>} />
             <Route path="account-setting" element={<AccountSetting></AccountSetting>} />
             <Route path="view-profile/:id" element={<ViewProfile ></ViewProfile>} />
+
           </Route>
 
           <Route path="/view-profile" element={<CandidateProfile></CandidateProfile>} />
@@ -97,12 +94,17 @@ function App() {
           {/* <Route path="/update-profile" element={<UpdateProfile></UpdateProfile>} /> */}
           {/* <Route path="/candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route> */}
 
+
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             <Route path="" element={<CandidateDashboard></CandidateDashboard>} />
             <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
             <Route path="profile" element={<CandidateProfilePage></CandidateProfilePage>} />
             <Route path="saved-jobs" element={<SavedJobs></SavedJobs>} />
+            <Route path="mobile-verify" element={<CandidateMobileVerify></CandidateMobileVerify>} />
             <Route path="perferences" element={<CandidateJobPerferences></CandidateJobPerferences>} />
+            <Route path="job-type" element={<JobTypePage></JobTypePage>} />
+            <Route path="profile/:step" element={<CandidateProfile></CandidateProfile>} />
+            <Route path=":jobType/profile/:step" element={<CandidateProfile></CandidateProfile>} />
             <Route path="*" element={<NotFound></NotFound>} />
           </Route>
 

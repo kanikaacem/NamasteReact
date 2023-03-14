@@ -42,6 +42,9 @@ const ThemeMessage = ({ open, setOpen, message, type }) => {
                         {
                             type == "success" && <img width="100%" height="100%" src={window.location.origin + "/assets/Success.png"} alt="success" />
                         }
+                        {
+                            type == "error" && <img height="100%" src={window.location.origin + "/assets/Error.png"} alt="error" />
+                        }
                     </Box>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         {message}

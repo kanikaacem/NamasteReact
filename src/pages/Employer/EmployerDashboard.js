@@ -307,6 +307,13 @@ const EmployerDashboard = () => {
                                         </Typography>
                                     </Box>
                                     <Stack direction="column" gap={2} sx={{ height: "700px" }}>
+                                        {jobs && jobs.length <= 0 && <Typography component="box" sx={{
+                                            fontSize: "24px",
+                                            fontWeight: "600",
+                                            color: "#4E3A67"
+                                        }}>
+                                            You haven't posted any Job yet.
+                                        </Typography>}
 
                                         {
                                             jobs && jobs.length > 0 && jobs.map((item) => {
@@ -315,14 +322,7 @@ const EmployerDashboard = () => {
                                                     <JobComponent key={item._id} data={item} data_id={item._id} userType="employer" />
                                                 </>)
                                             })
-                                            //         :
-                                            // <Typography component="box" sx={{
-                                            //     fontSize: "24px",
-                                            //     fontWeight: "600",
-                                            //     color: "#4E3A67"
-                                            // }}>
-                                            //     You haven't posted any Job yet.
-                                            // </Typography>
+
 
                                         }
                                     </Stack>
@@ -713,7 +713,7 @@ const EmployerDashboard = () => {
                     </Box> */}
                 </Stack>
             </Stack>
-        </Stack>
+        </Stack >
 
 
     </>)

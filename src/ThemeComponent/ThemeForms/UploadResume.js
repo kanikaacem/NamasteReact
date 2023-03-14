@@ -63,7 +63,7 @@ const UploadResume = ({ setActiveStep }) => {
     }
 
     return (<>
-        {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>}
+        {/* {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>} */}
 
         <Snackbar
             open={formSubmitted}
@@ -78,7 +78,7 @@ const UploadResume = ({ setActiveStep }) => {
 
         <Box className="WorkHistoryPage"
             sx={{
-                height: "100vh",
+                minHeight: "100vh",
                 background: "#FFFFFF",
                 backgroundRepeat: " no-repeat",
                 backgroundPosition: "left 100px bottom 0px"
@@ -89,9 +89,9 @@ const UploadResume = ({ setActiveStep }) => {
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
-                <HeaderSec
+                {/* <HeaderSec
                     color="black"
-                    border="2px solid #8E8E8E" />
+                    border="2px solid #8E8E8E" /> */}
                 <Stack alignItems="flex-end" sx={{ position: "relative" }}>
 
 

@@ -27,7 +27,6 @@ const Dashboard = () => {
     const CandidateMenuSelected = useSelector(state => state.CandidateMenuSelected);
 
     return (<>
-        {/* {console.log(user)} */}
         <Box
             className="dashboard"
             sx={{
@@ -72,7 +71,7 @@ const Dashboard = () => {
                             })}
 
 
-                            {user && user.type == "candidate" && CandidateMenu.map((item) => {
+                            {user && user.type == "candidate" && user.isemailverified && user.ismobileverified && CandidateMenu.map((item) => {
                                 return (<>
                                     <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
                                         button key={item.id} to={item.url} component={NavLink}

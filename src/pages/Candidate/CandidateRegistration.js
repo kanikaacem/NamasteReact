@@ -6,15 +6,13 @@ import { Formik, Field, Form } from "formik";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 import { CandidateRegistrationSchema } from "../../Validation/CandidateValidation";
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
-import ShowMessageToastr from "../../ThemeComponent/Common/ShowMessageToastr";
 import Error from '../../ThemeComponent/Common/Error';
-
+import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -65,9 +63,9 @@ const CandidateRegistration = () => {
 
     return (<>
 
-        <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)}
-            message="Email Verification Link is send . "
-            messageType="success" />
+
+        <ThemeMessage open={showEmailVerifiedMessage} setOpen={setShowEmailVerifiedMessage}
+            message="Email Verification Link is send ." type="success" />
 
         <Box className="CandidateLoginPage"
             sx={{

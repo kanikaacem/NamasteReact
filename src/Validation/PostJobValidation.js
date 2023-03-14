@@ -24,13 +24,10 @@ export const postJobValidationSchema = yup.object().shape({
         .positive()
         .label('seats')
         .required('Vacancy is required')
-
-
 });
 
 
 export const postJobSchema2 = yup.object().shape({
-
     education_type: yup.string().required("Education Type is required"),
     education_degree: yup.string().required("Education Degree is required"),
     perferred_degree: yup.string().required("Perferred Degree is required"),

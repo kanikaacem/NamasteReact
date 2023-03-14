@@ -20,6 +20,7 @@ const initialState = {
   candidateInfo: '',
   CandidateRegistration:false,
   user:localStorage.getItem("user") == null ? {} : JSON.parse(localStorage.getItem("user")),
+  action:localStorage.getItem("action") == null ? " " : localStorage.getItem("action")
 };
 const reducer = (state, action) =>{
   switch(action.type){
@@ -68,7 +69,14 @@ const reducer = (state, action) =>{
       // localStorage.setItem('user',JSON.stringify(candidateInfo.data['personalInfo']));
 
       return {...initialState,candidateInfo:candidateInfo,CandidateRegistration:true}
-
+      
+    case "LOGIN_REGISTRATION":
+        
+        localStorage.setItem('isLoggedIn',true);
+        localStorage.setItem('user',JSON.stringify(action.payload));
+        localStorage.setItem('action',"registration");
+  
+        return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:JSON.parse(localStorage.getItem("user")),action:"registration"};
    
     default:
       return state;
@@ -288,3 +296,4 @@ root.render(
 //https://medium.com/@sakshisubedi/optimizing-event-handler-of-input-without-affecting-browser-and-application-performance-in-react-js-7fc4f39b0889
 //-1 Try this event in React , it worked for me. onMouseLeave(). Use this if onBlur() and onFocusOut does not work for you.
 //https://www.npmjs.com/package/react-notifications
+//https://authkit.arkadip.dev/installation/

@@ -26,19 +26,17 @@ const CandidateMobileVerify = () => {
     }
     const handleSubmit1 = async (values, { setFieldError }) => {
 
-        // let response = await postRequest("https://backend.jobsyahan.com/api/sendotp/+91" + values.mobile_number);
-        // console.log(response)
-        // if (response.status == '1')
-        //     // setMobileNumber(values.mobile_number);
-        setSendOtp(true);
+        let response = await postRequest("https://backend.jobsyahan.com/api/sendotp/+91" + values.mobile_number);
+        console.log(response)
+        if (response.status == '1')
+            setSendOtp(true);
     }
     const handleSubmit2 = async (values, { setFieldError }) => {
         let response = await postRequest("https://backend.jobsyahan.com/api/verifyotp", {
             otp: values.otp
         })
         if (response.status == '1') {
-            // setVerifyMobileForm(false);
-            // setCompanyInfoForm(true);
+            window.location.href = window.location.origin + '/candidate-dashboard/job-type';
         }
         else {
             setFieldError("otp", "OTP doesn't match");
@@ -51,7 +49,7 @@ const CandidateMobileVerify = () => {
 
         <Box className="CandidateMobileVerify"
             sx={{
-                height: "100vh",
+                minHeight: "100vh",
                 background: "#FFFFFF",
                 backgroundRepeat: " no-repeat",
                 backgroundPosition: "left 100px bottom 0px"
@@ -62,9 +60,9 @@ const CandidateMobileVerify = () => {
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
-                <HeaderSec
+                {/* <HeaderSec
                     color="black"
-                    border="2px solid #8E8E8E" />
+                    border="2px solid #8E8E8E" /> */}
                 <Stack gap={3} direction="row" justifyContent="space-between"
                     sx={{
                         margin: "50px"

@@ -78,7 +78,7 @@ const PersonalInformation2 = ({ questions }) => {
         {/* {console.log(questions)} */}
         <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message="Candidate is registered Successfully." type="success" />
 
-        {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>}
+        {/* {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>} */}
 
         <Box className="PersonalInformation2" sx={{
             background: "FAFAFA"
@@ -86,9 +86,9 @@ const PersonalInformation2 = ({ questions }) => {
         }}>
 
             <Box sx={{ padding: "20px" }}>
-                <HeaderSec
+                {/* <HeaderSec
                     color="black"
-                    border="2px solid #8E8E8E" />
+                    border="2px solid #8E8E8E" /> */}
             </Box>
 
             <Stack direction="row" gap={2}
