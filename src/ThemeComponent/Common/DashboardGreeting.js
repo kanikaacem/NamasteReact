@@ -51,7 +51,7 @@ const DashboardGreeting = ({ username, userType, userProfileCompleted }) => {
                     fontFamily: "Montserrat",
                     color: "#4E3A67"
                 }}>
-                    Your Profile is  {userProfileCompleted} % completed
+                    Your Profile is  {userProfileCompleted === 0 ? "not completed" : userProfileCompleted + "% completed."}
                 </Typography>
             </>}
         </Box>

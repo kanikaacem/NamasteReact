@@ -41,8 +41,7 @@ const CandidateLogin = () => {
             email: values.email_address,
             password: values.password
         }
-        // localStorage.setItem("useremail", values.email_address);
-        // localStorage.setItem("password", values.password);
+
         let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
         if (response.status == '1') {
             localStorage.setItem("auth_token", response.token);
@@ -102,7 +101,7 @@ const CandidateLogin = () => {
     // }, []);
     return (<>
         {console.log(action)}
-        {isLoggedIn == 'true' && user.ismobileverified && user.isemailverified && action === "" && < Navigate to="/candidate-dashboard"></Navigate>}
+        {isLoggedIn == 'true' && user.ismobileverified && user.isemailverified && action === "login" && < Navigate to="/candidate-dashboard"></Navigate>}
         {isLoggedIn == 'true' && !user.ismobileverified && action === "registration" && < Navigate to="/candidate-dashboard/mobile-verify"></Navigate>}
         <ThemeMessage open={showEmailVerifiedMessage} setOpen={setShowEmailVerifiedMessage}
             message="Email Address is not verified. Please Verify your email First" type="error" />

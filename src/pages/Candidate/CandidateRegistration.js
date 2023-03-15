@@ -49,8 +49,8 @@ const CandidateRegistration = () => {
         else {
             response = await postRequest(saveCandidateUserNameAndPasswordURL, CandidateLoginForm);
             if (response.status == '1') {
-                localStorage.setItem("useremail", values.email_id);
-                localStorage.setItem("password", values.password)
+                // localStorage.setItem("useremail", values.email_id);
+                // localStorage.setItem("password", values.password)
                 localStorage.setItem('auth_token', response.token);
                 localStorage.setItem('user', JSON.stringify(response.data));
                 document.getElementById("continue").disabled = "true"

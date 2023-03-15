@@ -31,6 +31,7 @@ import HeaderSec from "../Common/HeaderSec";
 // import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import CurrencyFormat from 'react-currency-format';
 
 const PersonalInformation = ({ setActiveStep }) => {
     const animatedComponents = makeAnimated();
@@ -38,7 +39,7 @@ const PersonalInformation = ({ setActiveStep }) => {
     const [personalInfoForm, setPersonalInfoForm] = useState(1);
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [perferredLocation, setPerferredLocation] = useState([]);
-    const [date, setDate] = useState();
+    const [date, setDate] = useState(null);
     const [gender, setGender] = useState("");
     const [city, setCity] = useState(" ");
     const [state, setState] = useState(" ");
@@ -95,7 +96,7 @@ const PersonalInformation = ({ setActiveStep }) => {
         let response = await postRequest(SaveCandidatePersonalInformation, formData);
         if (response.status == 1) {
             localStorage.setItem("user", JSON.stringify(response.data));
-            window.location.href = window.location.origin + '/profile/1';
+            window.location.href = window.location.origin + '/candidate-dashboard/profile/1';
             // setActiveStep(1)
         }
 
@@ -383,22 +384,39 @@ const PersonalInformation = ({ setActiveStep }) => {
                                             <Stack direction="row" gap={3}>
                                                 <ThemeFInputDiv sx={{ width: "370px" }}>
                                                     <ThemeLabel LableFor="current_salary" LableText="Current Salary" />
-                                                    <Field
-                                                        error={errors.current_salary && touched.current_salary}
-                                                        as={TextField}
-                                                        id="current_salary"
-                                                        placeholder="Enter Current Salary" type="text" name="current_salary" fullWidth />
+                                                    <CurrencyFormat style={{
+                                                        fontSize: "20px",
+                                                        outline: "none",
+                                                        width: "92%",
+                                                        border: "1px solid #EAEAEA",
+                                                        borderRadius: "12px",
+                                                        padding: "15px 10px"
+                                                    }}
+                                                        thousandSeparator={true} prefix={'₹'}
+                                                        onChange={(event) => {
+
+                                                            setFieldValue("current_salary", event.target.value.slice(1).replaceAll(",", ""))
+                                                        }} />
                                                     {errors.current_salary && touched.current_salary && <Error text={errors.current_salary} />}
 
                                                 </ThemeFInputDiv>
 
                                                 <ThemeFInputDiv sx={{ width: "370px" }}>
                                                     <ThemeLabel LableFor="excepted_salary" LableText="Excepted Salary" />
-                                                    <Field
-                                                        error={errors.excepted_salary && touched.excepted_salary}
-                                                        as={TextField}
-                                                        id="excepted_salary"
-                                                        placeholder="Enter Excepted Salary" type="text" name="excepted_salary" fullWidth />
+
+                                                    <CurrencyFormat style={{
+                                                        fontSize: "20px",
+                                                        outline: "none",
+                                                        width: "92%",
+                                                        border: "1px solid #EAEAEA",
+                                                        borderRadius: "12px",
+                                                        padding: "15px 10px"
+                                                    }}
+                                                        thousandSeparator={true} prefix={'₹'}
+                                                        onChange={(event) => {
+
+                                                            setFieldValue("excepted_salary", event.target.value.slice(1).replaceAll(",", ""))
+                                                        }} />
                                                     {errors.excepted_salary && touched.excepted_salary && <Error text={errors.excepted_salary} />}
 
                                                 </ThemeFInputDiv>
@@ -544,6 +562,11 @@ const PersonalInformation = ({ setActiveStep }) => {
                                                             setDate(newValue);
                                                             setFieldValue("date_of_birth", new Date(newValue))
                                                         }}
+                                                        inputProps={{
+                                                            placeholder: "Enter Date of Birth"
+                                                        }}
+                                                        disableFuture={true}
+
                                                         renderInput={(params) => <TextField
 
                                                             {...params} />}
@@ -666,7 +689,7 @@ const PersonalInformation = ({ setActiveStep }) => {
                                                     {errors.city && touched.city && <Error text={errors.city} />}
                                                 </ThemeFInputDiv>
                                             </Stack>
-                                            <ThemeFInputDiv sx={{ position: "relative" }}>
+                                            {/* <ThemeFInputDiv sx={{ position: "relative" }}>
                                                 <ThemeLabel LableFor="current_location" LableText="Area" />
 
 
@@ -716,7 +739,7 @@ const PersonalInformation = ({ setActiveStep }) => {
                                                 </>}
                                                 {errors.area && touched.area && <Error text={errors.area} />}
 
-                                            </ThemeFInputDiv>
+                                            </ThemeFInputDiv> */}
 
                                             <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="complete_address" LableText="Complete Address" />

@@ -112,18 +112,20 @@ const CandidateMobileVerify = () => {
                             </Typography>
 
                         </Box>
-                        <Box sx={{
-                            boxSizing: "border-box",
-                            height: "647",
-                            background: "#FFFFFF",
-                            border: "1px solid #EDEDED",
-                            borderRadius: "19px",
-                            position: "relative",
-                            padding: "30px 50px",
-                            paddingBottom: "100px"
+                        <Stack direction="column"
+                            gap={2}
+                            sx={{
+                                boxSizing: "border-box",
+                                height: "647",
+                                background: "#FFFFFF",
+                                border: "1px solid #EDEDED",
+                                borderRadius: "19px",
+                                position: "relative",
+                                padding: "30px 50px",
+                                paddingBottom: "100px"
 
 
-                        }}>
+                            }}>
                             <Formik
 
                                 initialValues={defaultValue1}
@@ -206,7 +208,7 @@ const CandidateMobileVerify = () => {
 
 
 
-                        </Box>
+                        </Stack>
 
                     </Box>
                 </Stack>

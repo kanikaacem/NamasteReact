@@ -17,14 +17,8 @@ import HeaderSec from "../Common/HeaderSec";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
+import ThemeMessage from "../Common/ThemeMessage";
 const WorkHistory = ({ setActiveStep }) => {
-    let api_url = useSelector(state => state.api_url);
-    let userid = useSelector(state => state.candidateInfo);
-
-    if (userid != '') {
-        userid = JSON.parse(userid);
-        userid = userid.data;
-    }
 
     const defaultValue = {
         company_name: "",
@@ -34,15 +28,12 @@ const WorkHistory = ({ setActiveStep }) => {
         ending_year: "",
     }
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const [startingDate, setStartingDate] = useState();
-    const [endingDate, setEndingDate] = useState();
+    const [startingDate, setStartingDate] = useState(null);
+    const [endingDate, setEndingDate] = useState(null);
 
-    const handleClose = (event) => {
-        setFormSubmitted(false);
-    };
 
     const handleSubmit = async (values, { resetForm }) => {
-        console.log(values);
+        // console.log(values);
 
         let formData = new FormData();
         formData = {
@@ -58,8 +49,8 @@ const WorkHistory = ({ setActiveStep }) => {
         if (response.status == 1) {
             localStorage.setItem("user", JSON.stringify(response.data));
             resetForm("");
-            startingDate("");
-            endingDate("");
+            setStartingDate(null);
+            setEndingDate(null);
             setFormSubmitted(true)
         }
 
@@ -67,16 +58,8 @@ const WorkHistory = ({ setActiveStep }) => {
 
     return (<>
 
-        <Snackbar
-            open={formSubmitted}
-            autoHideDuration={6000} onClose={handleClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        >
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                Your Work History is submitted
-            </Alert>
+        <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message=" Your Work History is submitted." type="success" />
 
-        </Snackbar>
         <Box className="WorkHistoryPage"
             sx={{
                 minHeight: "100vh",
@@ -100,7 +83,6 @@ const WorkHistory = ({ setActiveStep }) => {
                         <Box sx={{
 
                             width: "673px",
-                            zIndex: "78798"
                         }}
                         >
                             <Typography component="box" sx={{
@@ -126,15 +108,7 @@ const WorkHistory = ({ setActiveStep }) => {
 
                         </Box>
 
-                        <Box sx={{
-                            height: "31px",
-                            width: "505px",
-                            left: "148px",
-                            top: "241px",
-                            borderRadius: "0px",
-                            background: "#FFD5C9",
-                            position: "absolute"
-                        }}></Box>
+
                     </Stack>
                     <Box>
                         <Box sx={{
@@ -336,6 +310,10 @@ const WorkHistory = ({ setActiveStep }) => {
                                                                 setStartingDate(newValue);
                                                                 setFieldValue("starting_year", new Date(newValue))
                                                             }}
+                                                            inputProps={{
+                                                                placeholder: "Enter Starting Year"
+                                                            }}
+                                                            disableFuture={true}
                                                             renderInput={(params) => <TextField
 
                                                                 {...params} />}
@@ -357,6 +335,10 @@ const WorkHistory = ({ setActiveStep }) => {
                                                                 setEndingDate(newValue);
                                                                 setFieldValue("ending_year", new Date(newValue))
                                                             }}
+                                                            inputProps={{
+                                                                placeholder: "Enter Starting Year"
+                                                            }}
+                                                            disableFuture={true}
                                                             renderInput={(params) => <TextField
 
                                                                 {...params} />}
@@ -374,7 +356,7 @@ const WorkHistory = ({ setActiveStep }) => {
                                                 > Save</ThemeButtonType3>
                                                 <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
                                                     onClick={() => {
-                                                        window.location.href = window.location.origin + '/profile/3';
+                                                        window.location.href = window.location.origin + '/candidate-dashboard/profile/3';
                                                     }}>Next Step</ThemeButtonType2>
 
                                             </Stack>

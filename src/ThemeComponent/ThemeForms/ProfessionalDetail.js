@@ -21,6 +21,7 @@ import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import HeaderSec from "../Common/HeaderSec";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import ThemeMessage from "../Common/ThemeMessage";
 const ProfessionalDetail = ({ setActiveStep }) => {
 
 
@@ -36,12 +37,8 @@ const ProfessionalDetail = ({ setActiveStep }) => {
     const [qualification, setQualification] = useState(" ");
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [courseType, setCourseType] = useState('full_time');
-    const [startingDate, setStartingDate] = useState();
-    const [endingDate, setEndingDate] = useState();
-
-    const handleClose = (event) => {
-        setFormSubmitted(false);
-    };
+    const [startingDate, setStartingDate] = useState(null);
+    const [endingDate, setEndingDate] = useState(null);
 
     const handleSubmit = async (values, { resetForm }) => {
         console.log(values);
@@ -57,12 +54,12 @@ const ProfessionalDetail = ({ setActiveStep }) => {
         }
 
         let response = await postRequest(SaveCandidateProfessionalInformation, formData);
-        console.log(response);
+        // console.log(response);
         if (response.status == 1) {
             localStorage.setItem("user", JSON.stringify(response.data));
             resetForm("");
-            setStartingDate("");
-            setEndingDate("");
+            setStartingDate(null);
+            setEndingDate(null);
             setQualification(" ");
             setFormSubmitted(true);
         }
@@ -71,16 +68,9 @@ const ProfessionalDetail = ({ setActiveStep }) => {
 
     return (<>
 
-        <Snackbar
-            open={formSubmitted}
-            autoHideDuration={6000} onClose={handleClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        >
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                Your Qualification is submitted
-            </Alert>
 
-        </Snackbar>
+        <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message="Your Qualification is submitted." type="success" />
+
         <Box className="ProfessionalInformationPage"
             sx={{
                 minHeight: "100vh",
@@ -385,12 +375,16 @@ const ProfessionalDetail = ({ setActiveStep }) => {
                                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                                         <DatePicker
 
-                                                            id="date_of_birth"
+                                                            id="starting_year"
                                                             value={startingDate}
                                                             onChange={(newValue) => {
                                                                 setStartingDate(newValue);
                                                                 setFieldValue("starting_year", new Date(newValue))
                                                             }}
+                                                            inputProps={{
+                                                                placeholder: "Enter Starting Year"
+                                                            }}
+                                                            disableFuture={true}
                                                             renderInput={(params) => <TextField
 
                                                                 {...params} />}
@@ -407,12 +401,16 @@ const ProfessionalDetail = ({ setActiveStep }) => {
                                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                                         <DatePicker
 
-                                                            id="date_of_birth"
+                                                            id="ending_year"
                                                             value={endingDate}
                                                             onChange={(newValue) => {
                                                                 setEndingDate(newValue);
                                                                 setFieldValue("ending_year", new Date(newValue))
                                                             }}
+                                                            inputProps={{
+                                                                placeholder: "Enter Ending Year"
+                                                            }}
+                                                            disableFuture={true}
                                                             renderInput={(params) => <TextField
 
                                                                 {...params} />}
@@ -443,7 +441,7 @@ const ProfessionalDetail = ({ setActiveStep }) => {
                                             > Save</ThemeButtonType3>
                                             <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
                                                 onClick={() => {
-                                                    window.location.href = window.location.origin + '/profile/2';
+                                                    window.location.href = window.location.origin + '/candidate-dashboard/profile/2';
 
                                                 }}>Next Step</ThemeButtonType2>
 

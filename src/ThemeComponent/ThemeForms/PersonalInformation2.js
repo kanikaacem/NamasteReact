@@ -1,5 +1,5 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { PostAnswerCandidate, CandidateLoginURL } from "../../utils/ApiUrls";
+import { PostAnswerCandidate, BlueCollarProfileCompleted } from "../../utils/ApiUrls";
 
 import { Stack, TextField, FormControlLabel, Radio, FormControl, Box, RadioGroup, Select as SelectField, MenuItem, Select, Typography, Autocomplete } from "@mui/material";
 import { Formik, Field, Form } from "formik";
@@ -17,6 +17,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 import ThemeMessage from "../Common/ThemeMessage";
+import { gridColumnsTotalWidthSelector } from "@mui/x-data-grid";
 const PersonalInformation2 = ({ questions }) => {
 
     const [date, setDate] = useState(null);
@@ -36,7 +37,7 @@ const PersonalInformation2 = ({ questions }) => {
 
         }
         // FormData[question] = ans;
-        console.log(FormData);
+        // console.log(FormData);
         // if(localStorage.getItem("questions") == null)
         //     localStorage.setItem("questions", JSON.stringify(FormData));
         // else 
@@ -50,47 +51,21 @@ const PersonalInformation2 = ({ questions }) => {
     }
 
     const LoginUser = async () => {
-        let CandidateLoginForm = new FormData();
-        CandidateLoginForm = {
-            email: localStorage.getItem("useremail"),
-            password: localStorage.getItem("password")
-        }
-
-        let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
-        if (response.status == '1') {
-            localStorage.setItem("auth_token", response.token);
-            // console.log(response)
-            // if (response.data.isemailverified && response.data.profilecompleted >= 50)
-            //     dispatch({ type: 'LOGIN', payload: response.data });
-            if (response.data.isemailverified) {
-                setFormSubmitted(true);
-                setTimeout(() => {
-                    setFormSubmitted(false);
-                    dispatch({ type: 'LOGIN', payload: response.data });
-                }, 5000);
-            }
-            else
-                alert("Please fill all the required fields");
+        let response = await postRequest(BlueCollarProfileCompleted, {});
+        console.log(response);
+        if (response.status == 1) {
+            localStorage.setItem("action", "login");
+            window.location.href = window.location.origin + "/candidate-dashboard";
         }
 
     }
     return (<>
-        {/* {console.log(questions)} */}
         <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message="Candidate is registered Successfully." type="success" />
-
-        {/* {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>} */}
 
         <Box className="PersonalInformation2" sx={{
             background: "FAFAFA"
 
         }}>
-
-            <Box sx={{ padding: "20px" }}>
-                {/* <HeaderSec
-                    color="black"
-                    border="2px solid #8E8E8E" /> */}
-            </Box>
-
             <Stack direction="row" gap={2}
                 sx={{
                     padding: { "lg": "50px 80px", "md": "20px", "xs": "20px" },
@@ -239,6 +214,7 @@ const PersonalInformation2 = ({ questions }) => {
                                                                             FormSubmit(item.questiontag, new Date(newValue))
                                                                             // setFieldValue("date_of_birth", new Date(newValue))
                                                                         }}
+                                                                        disableFuture={true}
                                                                         renderInput={(params) => <TextField
 
                                                                             {...params} />}
@@ -294,8 +270,12 @@ const PersonalInformation2 = ({ questions }) => {
                                                                                         <Stack direction="row" gap={2} alignItems="center">
                                                                                             <input
                                                                                                 onChange={(event) => {
-                                                                                                    // console.log(event.target)
-                                                                                                    // setFieldValue(item.questiontag, event.target.value)
+                                                                                                    // console.log(event.target.value);
+                                                                                                    // console.log(item.questionopentime)
+                                                                                                    if (event.target.value === item.questionopentime && item.questionsnested.length > 0) {
+                                                                                                        console.log("Iamg running")
+                                                                                                        document.getElementById(item.questionsnested[0].questiontag).style.display = "block"
+                                                                                                    }
                                                                                                     FormSubmit(item.questiontag, event.target.value)
 
                                                                                                 }}
@@ -310,7 +290,25 @@ const PersonalInformation2 = ({ questions }) => {
                                                                     </Stack>
 
                                                                 }
+                                                                <div >
+                                                                    {item.questionsnested.length > 0 &&
+                                                                        <Box
+                                                                            id={item.questionsnested[0].questiontag}
+                                                                            style={{ display: 'none' }}>
+                                                                            <ThemeLabel LableFor={item.questionsnested[0].questiontag} LableText={item.questionsnested[0].question} />
+
+                                                                            <Field
+                                                                                // error={errors.name && touched.name}
+                                                                                onKeyUp={(event) => FormSubmit(item.questionsnested[0].questiontag, event.target.value)}
+                                                                                as={TextField}
+                                                                                placeholder={item.questionsnested[0].question} type="text" name={item.questionsnested[0].questiontag} fullWidth />
+                                                                        </Box>}
+                                                                </div>
+
+
                                                             </>
+
+
                                                         }
 
                                                     </ThemeFInputDiv>

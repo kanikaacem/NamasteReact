@@ -6,6 +6,7 @@ import App from './App';
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 import { json } from 'react-router-dom';
+import { LocalSeeOutlined } from '@mui/icons-material';
 const initialState = {
   isLoggedIn : localStorage.getItem("isLoggedIn") == null ? false : localStorage.getItem("isLoggedIn"),
   categoryActive : {
@@ -34,9 +35,10 @@ const reducer = (state, action) =>{
       // let data = action.payload;
       localStorage.setItem('isLoggedIn',true);
       localStorage.setItem('user',JSON.stringify(action.payload));
+      localStorage.setItem('action',"login")
       // localStorage.setItem('auth_token',token);
 
-      return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:JSON.parse(localStorage.getItem("user"))};
+      return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:JSON.parse(localStorage.getItem("user")),action:localStorage.getItem("action")};
 
     case "LOGOUT":
       localStorage.clear();
@@ -47,8 +49,8 @@ const reducer = (state, action) =>{
       // localStorage.setItem("password","");
       return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn")};
 
-    case "SHOW_HIDE_PROFILE":
-       return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),showProfile: ! state.showProfile}
+    // case "SHOW_HIDE_PROFILE":
+    //    return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),showProfile: ! state.showProfile}
 
     case "CHANGE_EMPLOYEE_MENU" :
       let selected_menu= action.payload;

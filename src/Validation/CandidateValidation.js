@@ -41,7 +41,7 @@ export const PersonalRegistrationSchema = yup.object().shape({
     date_of_birth: yup.string().required("Date of Birth is required"),
     state: yup.string().required("State is required"),
     city: yup.string().required("City is required"),
-    area: yup.string().required("Area is required"),
+    // area: yup.string().required("Area is required"),
     complete_address: yup.string().required("Complete address is required"),
     phone_number: yup.number().min(10).required("Phone Number is required"),
     marital_status: yup.string().required("Martial Status is required"),

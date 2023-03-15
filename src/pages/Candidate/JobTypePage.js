@@ -68,7 +68,7 @@ const JobTypePage = () => {
         if (response.data)
             window.location.href = window.location.origin + "/candidate-dashboard/" + values.job_type.toLowerCase().replace("_", "-") + "/profile/0"
         else
-            window.location.href = window.location.origin + "candidate-dashboard/profile/0"
+            window.location.href = window.location.origin + "/candidate-dashboard/profile/0"
 
 
 

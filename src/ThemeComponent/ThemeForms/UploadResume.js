@@ -22,23 +22,13 @@ import { Navigate } from 'react-router-dom';
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
+import ThemeMessage from "../Common/ThemeMessage";
 const UploadResume = ({ setActiveStep }) => {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector(state => state.isLoggedIn);
-    const api_url = useSelector(state => state.api_url);
-    let userid = useSelector(state => state.candidateInfo);
-
-    if (userid != '') {
-        userid = JSON.parse(userid);
-        userid = userid.data;
-    }
-
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const [file, setFile] = useState();
 
-    const handleClose = (event) => {
-        setFormSubmitted(false);
-    };
+
 
     const uploadFile = async (event) => {
         console.log("hello");
@@ -51,30 +41,21 @@ const UploadResume = ({ setActiveStep }) => {
         let response = await PostImageRequest(uploadResumeURL, formData);
 
         setFormSubmitted(true);
-        console.log(formSubmitted)
+        // console.log(formSubmitted)
 
 
 
     }
 
     const goToDashboard = async () => {
-        dispatch({ type: 'LOGIN', payload: JSON.parse(localStorage.getItem("user")) });
+        localStorage.setItem("action", "login");
+        window.location.href = window.location.origin + "/candidate-dashboard";
+        // dispatch({ type: 'LOGIN', payload: JSON.parse(localStorage.getItem("user")) });
 
     }
 
     return (<>
-        {/* {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>} */}
-
-        <Snackbar
-            open={formSubmitted}
-            autoHideDuration={6000} onClose={handleClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        >
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                Your Resume is uploaded
-            </Alert>
-
-        </Snackbar>
+        <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message="Your Resume is uploaded. User is registered Successfully." type="success" />
 
         <Box className="WorkHistoryPage"
             sx={{

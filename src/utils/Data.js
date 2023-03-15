@@ -495,6 +495,8 @@ export const CandidateEducation = [
     { id: 23, Name: "Passed CFA Level 2", value: "Passed CFA Level 2" },
     { id: 24, Name: "Passed CFA Level 3", value: "Passed CFA Level 3" },
     { id: 25, Name: "PGDDA", value: "PGDDA" },
+    { id: 26, Name: "10th", value: "10" },
+    { id: 27, Name: "12th", value: "12" }
 
 ]
 
