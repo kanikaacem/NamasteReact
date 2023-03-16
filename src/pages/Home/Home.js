@@ -18,7 +18,7 @@ function Home() {
     const user = localStorage.user && JSON.parse(localStorage.user);
     return (<>
         {isLoggedIn == 'true' && (user && user.employer_type == 'employer') && <Navigate to="/employer-dashboard"></Navigate>}
-        <Box sx={{ padding: "20px 40px" }}>
+        <Box sx={{ padding: "20px 40px", background: "#FAFAFA" }}>
             <HeaderSec
                 color="black"
                 border="2px solid #8E8E8E"

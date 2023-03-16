@@ -1,3 +1,5 @@
+import { postRequest, PostImageRequest } from "../../utils/ApiRequests";
+import { uploadFileURL } from "../../utils/ApiUrls";
 import { Box, Button, Stack, Typography, Divider, Tabs, Tab, MenuItem, Select } from "@mui/material";
 
 import { MeetingType } from "../../utils/Data";
@@ -6,10 +8,25 @@ import { useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import Moment from 'react-moment';
 
+import CreateIcon from '@mui/icons-material/Create';
 const ProfileComponent = ({ userData, userType }) => {
+    console.log(userData)
     const [value, setValue] = useState(userType === "employer" ? 1 : 0);
     const [meetingType, setMeetingType] = useState(" ");
+    const [userImage, setUserImage] = useState(window.location.origin + "/assets/Avatar.png");
 
+    const uploadProfileImage = async (event) => {
+        let file = event.target.files[0];
+        let formData = new FormData();
+        formData.append('image', file);
+        formData.append('ImageType', 'CandidateResume');
+        // console.log(formData)
+        let response = await PostImageRequest(uploadFileURL, formData);
+        if (response.status == 1) {
+            // console.log(response);
+            setUserImage(response.data[0].location)
+        }
+    }
     return (<>
         <Stack className="CandidateProfilePage" direction="row" gap={2} sx={{
             padding: { "lg": "20px 100px", "md": "20px", "xs": "20px" },
@@ -20,7 +37,9 @@ const ProfileComponent = ({ userData, userType }) => {
                 <Stack direction="row"
                     alignItems="center" justifyContent="flex-start" gap={3} sx={{ height: "150px", padding: "20px" }}>
                     <Box sx={{ width: "100px" }}>
-                        <img src={window.location.origin + "/assets/profile.png"} width="100%" alt="Profile" style={{ borderRadius: "50%" }} />
+                        <img src={userImage} width="100%" alt="Profile" style={{ borderRadius: "50%", cursor: "pointer" }}
+                            onClick={() => document.getElementById("profileImage").click()} />
+                        <input type="file" id="profileImage" style={{ display: "none" }} onChange={uploadProfileImage} />
                     </Box>
                     <Box>
                         <Typography component="div" sx={{ fontSize: { "lg": "30px", "md": "30px", "xs": "24px" }, fontWeight: "700", color: "#4E3A67" }}>
@@ -159,16 +178,27 @@ const ProfileComponent = ({ userData, userType }) => {
                     </Box>
                     {
                         value == 0 && (<>
-                            <Box sx={{ overflowY: "scroll", height: "700px", textAlign: "center" }} >
-                                {
-                                    userData.resume && userData.resume.resume ?
-                                        <PDFReader showAllPage={true} url={userData &&
-                                            userData.resume.resume} />
-                                        :
-                                        "Not uploaded"
-                                }
+                            {/* <Box>
+                                <CreateIcon />
+                            </Box> */}
+                            {userData.resume && userData.resume.resume ? <>
 
-                            </Box>
+                                <Box sx={{ overflowY: "scroll", height: "700px", textAlign: "center" }} >
+                                    <PDFReader showAllPage={true} url={userData &&
+                                        userData.resume.resume} />
+
+
+                                </Box></> :
+                                <Box sx={{
+                                    overflowY: "scroll", height: "700px", display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center"
+                                }}>
+                                    Not Uploaded
+                                </Box>
+
+                            }
+
                         </>)
 
                     }
@@ -188,8 +218,8 @@ const ProfileComponent = ({ userData, userType }) => {
                                         Professional Details
                                     </Typography>
                                     <Stack direction="column" gap={1}>
-                                        {userData && userData.workHistory.length <= 0 && "Not mentioned"}
-                                        {userData && userData.workHistory.length > 0 && userData.workHistory.map((item) => {
+                                        {userData && userData.workHistory && userData.workHistory.length <= 0 && "Not mentioned"}
+                                        {userData && userData.workHistory && userData.workHistory.length > 0 && userData.workHistory.map((item) => {
                                             return (<>
                                                 <Box>
                                                     <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", fontWeight: "600" }}>
@@ -217,8 +247,8 @@ const ProfileComponent = ({ userData, userType }) => {
                                         Educational Details
                                     </Typography>
                                     <Stack direction="column" gap={1}>
-                                        {userData && userData.educationalInfo.length <= 0 && "Not mentioned"}
-                                        {userData && userData.educationalInfo.length > 0 && userData.educationalInfo.map((item) => {
+                                        {userData && userData.educationalInfo && userData.educationalInfo.length <= 0 && "Not mentioned"}
+                                        {userData && userData.educationalInfo && userData.educationalInfo.length > 0 && userData.educationalInfo.map((item) => {
                                             return (<>
                                                 <Box>
                                                     <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", fontWeight: "600" }}>

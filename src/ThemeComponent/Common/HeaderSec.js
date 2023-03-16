@@ -12,17 +12,28 @@ import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 
 import Moment from 'react-moment';
 import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const HeaderSec = ({ color, background, border, buttonText }) => {
     const [openProfile, setOpenProfile] = useState(false);
     const user = useSelector((state) => state.user);
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    const [showCandidateButton, setShowCandidateButton] = useState(false);
+    const [showEmployerButton, setShowEmployerButton] = useState(false);
 
+    useEffect(() => {
+
+        if (window.location.pathname === "/") {
+            setShowCandidateButton(true);
+            setShowEmployerButton(true);
+        }
+
+    }, []);
     return (<>
         <Stack direction={{ "lg": "row", "md": "row", "xs": "column" }}
-            gap={4} justifyContent="space-between">
+            gap={4} justifyContent="space-between"
+        >
             <CompanyLogo color={color} />
 
 
@@ -35,89 +46,85 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                 gap={2}
             >
 
-                <Button type="button" variant="outlined"
-                    onClick={() => {
-                        window.location.href = window.location.origin + "/contact-us";
-                    }}
-                    sx={{
-                        width: "200px",
-                        borderRadius: "44px",
-                        fontSize: "18px",
-                        border: { border },
-                        color: { color },
-                        textTransform: "capitalize",
-                        fontWeight: "600",
-                        fontFamily: "Work Sans, sans-serif !important",
-                        background: { background },
-                        "&:hover": {
+                {
+                    showEmployerButton &&
+                    <Button type="button" variant="outlined"
+                        onClick={() => {
+                            window.location.href = window.location.origin + "/employer-login";
+                        }}
+                        sx={{
+                            width: "200px",
+                            borderRadius: "44px",
+                            fontSize: "18px",
                             border: { border },
                             color: { color },
-                            background: { background }
-
-                        }
-                    }}>
-                    Contact us
-                </Button>
-                {/* {console.log(user)} */}
-                {(isLoggedIn && user) && user && user.type === "candidate"
-                    ? <>
-                        <Button type="button" variant="outlined"
-                            onClick={() => {
-                                window.location.href = window.location.origin + "/candidate-dashboard";
-                            }}
-                            sx={{
-                                width: "200px",
-                                borderRadius: "44px",
-                                fontSize: "18px",
+                            textTransform: "capitalize",
+                            fontWeight: "600",
+                            fontFamily: "Work Sans, sans-serif !important",
+                            background: { background },
+                            "&:hover": {
                                 border: { border },
                                 color: { color },
-                                textTransform: "capitalize",
-                                fontWeight: "600",
-                                fontFamily: "Work Sans, sans-serif !important",
-                                background: { background },
-                                "&:hover": {
-                                    border: { border },
-                                    color: { color },
-                                    background: { background }
+                                background: { background }
 
-                                }
-                            }}>
-                            Dashboard
-                        </Button></> :
-                    <>
-                        <Button type="button" variant="filled"
-                            onClick={
-                                () => {
-                                    if (buttonText === 'Employer login')
-                                        window.location.href = window.location.origin + "/employer-login"
-                                    else
-                                        window.location.href = window.location.origin + "/about-us"
-                                }
                             }
-                            sx={{
-                                // padding: "0px 40px",
-                                padding: "5px 15px",
-                                width: "max-content",
-                                borderRadius: "44px",
-                                fontSize: "18px",
+                        }}>
+                        Employer Login
+                    </Button>
+                }
+
+
+                {
+                    showCandidateButton && (isLoggedIn && user) && user && user.type === "candidate" &&
+                    <Button type="button" variant="outlined"
+                        onClick={() => {
+                            window.location.href = window.location.origin + "/candidate-dashboard";
+                        }}
+                        sx={{
+                            width: "200px",
+                            borderRadius: "44px",
+                            fontSize: "18px",
+                            border: { border },
+                            color: { color },
+                            textTransform: "capitalize",
+                            fontWeight: "600",
+                            fontFamily: "Work Sans, sans-serif !important",
+                            background: { background },
+                            "&:hover": {
                                 border: { border },
                                 color: { color },
-                                textTransform: "capitalize",
-                                fontWeight: "600",
-                                fontFamily: "Work Sans, sans-serif !important",
-                                background: { background },
-                                "&:hover": {
-                                    border: { border },
-                                    color: { color },
-                                    background: { background }
+                                background: { background }
 
-                                }
-                            }}
-                        >
-                            {buttonText ? buttonText : "About Us"}
-                        </Button>
-                    </>}
+                            }
+                        }}>Dashboard
+                    </Button>
+                }
 
+                {
+                    showCandidateButton && !isLoggedIn &&
+                    < Button type="button" variant="outlined"
+                        onClick={() => {
+                            window.location.href = window.location.origin + "/candidate-login";
+                        }}
+                        sx={{
+                            width: "200px",
+                            borderRadius: "44px",
+                            fontSize: "18px",
+                            border: { border },
+                            color: { color },
+                            textTransform: "capitalize",
+                            fontWeight: "600",
+                            fontFamily: "Work Sans, sans-serif !important",
+                            background: { background },
+                            "&:hover": {
+                                border: { border },
+                                color: { color },
+                                background: { background }
+
+                            }
+                        }}>Candidate Login
+                    </Button>
+                }
 
                 {
                     localStorage.getItem("removeLocalStorageData") && localStorage.getItem("removeLocalStorageData") == "true"
@@ -190,34 +197,59 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                         </>
                         )}
                     </>)
-
-                    // <Button type="button" variant="outlined"
-                    //     onClick={() => {
-                    //         localStorage.clear();
-                    //         window.location.reload();
-                    //     }}
-                    //     sx={{
-                    //         width: "200px",
-                    //         borderRadius: "44px",
-                    //         fontSize: "18px",
-                    //         border: { border },
-                    //         color: { color },
-                    //         textTransform: "capitalize",
-                    //         fontWeight: "600",
-                    //         fontFamily: "Work Sans, sans-serif !important",
-                    //         background: { background },
-                    //         "&:hover": {
-                    //             border: { border },
-                    //             color: { color },
-                    //             background: { background }
-
-                    //         }
-                    //     }}>
-                    //     Log out
-                    // </Button>
-
-
                 }
+
+                <Button type="button" variant="filled"
+                    onClick={
+                        () => {
+                            window.location.href = window.location.origin + "/about-us"
+                        }
+                    }
+                    sx={{
+                        padding: "5px 15px",
+                        width: "max-content",
+                        borderRadius: "44px",
+                        fontSize: "18px",
+                        border: { border },
+                        color: { color },
+                        textTransform: "capitalize",
+                        fontWeight: "600",
+                        fontFamily: "Work Sans, sans-serif !important",
+                        background: { background },
+                        "&:hover": {
+                            border: { border },
+                            color: { color },
+                            background: { background }
+
+                        }
+                    }}
+                >
+                    About Us
+                </Button>
+
+                <Button type="button" variant="outlined"
+                    onClick={() => {
+                        window.location.href = window.location.origin + "/contact-us";
+                    }}
+                    sx={{
+                        width: "200px",
+                        borderRadius: "44px",
+                        fontSize: "18px",
+                        border: { border },
+                        color: { color },
+                        textTransform: "capitalize",
+                        fontWeight: "600",
+                        fontFamily: "Work Sans, sans-serif !important",
+                        background: { background },
+                        "&:hover": {
+                            border: { border },
+                            color: { color },
+                            background: { background }
+
+                        }
+                    }}>
+                    Contact us
+                </Button>
 
 
             </Stack>

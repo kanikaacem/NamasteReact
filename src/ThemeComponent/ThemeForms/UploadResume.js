@@ -1,5 +1,5 @@
 import { PostImageRequest } from "../../utils/ApiRequests";
-import { uploadResumeURL } from "../../utils/ApiUrls";
+import { uploadFileURL } from "../../utils/ApiUrls";
 
 import { Box, Stack, Typography, Button, Input, Radio, RadioGroup, FormControlLabel, FormControl, Snackbar, Alert } from "@mui/material";
 
@@ -31,14 +31,13 @@ const UploadResume = ({ setActiveStep }) => {
 
 
     const uploadFile = async (event) => {
-        console.log("hello");
-        console.log(event.target.files[0]);
+        // console.log(event.target.files[0]);
         let file = event.target.files[0];
         let formData = new FormData();
         formData.append('image', file);
         formData.append('ImageType', 'CandidateResume');
-        console.log(formData)
-        let response = await PostImageRequest(uploadResumeURL, formData);
+        // console.log(formData)
+        let response = await PostImageRequest(uploadFileURL, formData);
 
         setFormSubmitted(true);
         // console.log(formSubmitted)

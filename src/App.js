@@ -73,7 +73,7 @@ function App() {
 
           <Route path="/candidate-login" element={<CandidateLogin></CandidateLogin>}></Route>
           <Route path="/candidate-register" element={<CandidateRegistration />} />
-          <Route path="/profile/:step" element={<CandidateProfile></CandidateProfile>} />
+
           <Route path="/job" element={<JobSearch></JobSearch>} />
 
           <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
@@ -89,11 +89,7 @@ function App() {
 
           </Route>
 
-          <Route path="/view-profile" element={<CandidateProfile></CandidateProfile>} />
-
-          {/* <Route path="/update-profile" element={<UpdateProfile></UpdateProfile>} /> */}
-          {/* <Route path="/candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route> */}
-
+          {/* <Route path="/view-profile" element={<CandidateProfile></CandidateProfile>} /> */}
 
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             <Route path="" element={<CandidateDashboard></CandidateDashboard>} />

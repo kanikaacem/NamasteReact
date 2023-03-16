@@ -83,7 +83,7 @@ export const CandidateQuestion = "https://backend.jobsyahan.com/api/file/getques
 export const ApplyForJob = "https://backend.jobsyahan.com/api/job/applyforjob";
 
 /*uploading Resume */
-export const uploadResumeURL = "https://backend.jobsyahan.com/api/file/upload";
+export const uploadFileURL = "https://backend.jobsyahan.com/api/file/upload";
 
 /*Website */
 export const JobSearchPageURL = "https://backend.jobsyahan.com/api/job/searchjobs";

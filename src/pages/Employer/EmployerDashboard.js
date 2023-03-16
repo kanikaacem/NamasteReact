@@ -106,11 +106,6 @@ const EmployerDashboard = () => {
 
     }, []);
 
-    useEffect(() => {
-        if (showTime <= 12) setDayMessage("Good Morning")
-        else if (showTime >= 12 && showTime < 18) setDayMessage("Good AfterNoon")
-        else setDayMessage("Good Evening")
-    }, [showTime]);
 
     //Pagination 
     const IndexOfLastData = currentPage * dataPerPage;
@@ -127,31 +122,7 @@ const EmployerDashboard = () => {
         <Stack direction="column" gap={2} sx={{ padding: "30px" }} className="EmployerData">
             <DashboardGreeting username={user && user.employer_name} userType="employer" />
 
-            {/* <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="space-between"
-                gap={2} sx={{
-                    background: "#FFFFFF",
-                    border: "1px solid #E1D4F2",
-                    borderRadius: "14px",
-                    padding: "20px"
-                }}>
 
-                <Typography component="box" sx={{
-                    fontSize: "24px",
-                    fontFamily: "Montserrat",
-                    fontWeight: "600",
-                    color: "#4E3A67"
-                }}>
-                    {dayMessage}, {user && user.employer_name}!
-                </Typography>
-
-                <Box>
-                    <ButtonType2 ButtonText="Post a Job" ClickEvent={() => window.location.href = window.location.href + "/post-a-job"}></ButtonType2>
-                </Box>
-
-            </Stack> */}
             {/* {showText && <Typography variant="h1">Appear when 600px and above</Typography>} */}
             {/* <Stack direction="column" gap={4} sx={{
                 width: "98%",
