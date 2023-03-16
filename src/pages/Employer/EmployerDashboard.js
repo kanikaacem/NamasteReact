@@ -35,7 +35,6 @@ const EmployerDashboard = () => {
     const [jobInfo, setJobInfo] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage, setDataPerPage] = useState(2);
-    const [dayMessage, setDayMessage] = useState("");
     const DashboardValues = [
         {
             id: 1,

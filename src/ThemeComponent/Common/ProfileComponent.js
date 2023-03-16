@@ -9,25 +9,38 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import Moment from 'react-moment';
 
 import CreateIcon from '@mui/icons-material/Create';
-const ProfileComponent = ({ userData, userType }) => {
-    console.log(userData)
-    const [value, setValue] = useState(userType === "employer" ? 1 : 0);
-    const [meetingType, setMeetingType] = useState(" ");
-    const [userImage, setUserImage] = useState(window.location.origin + "/assets/Avatar.png");
+import AddIcon from '@mui/icons-material/Add';
+import ThemeMessage from "./ThemeMessage";
 
-    const uploadProfileImage = async (event) => {
+const ProfileComponent = ({ userData, userType }) => {
+    console.log(userType)
+    const [value, setValue] = useState(userType === "employer" ? 1 : 0);
+    console.log(value);
+    const [meetingType, setMeetingType] = useState(" ");
+    const [userImage, setUserImage] = useState(userData.profile_image ? userData.profile_image : window.location.origin + "/assets/Avatar.png");
+    const [userResume, setUserResume] = useState(userData.resume && userData.resume.resume && userData.resume.resume);
+    const [fileUpdated, setFileUpdated] = useState(false);
+
+    const uploadProfileImage = async (event, imageType) => {
         let file = event.target.files[0];
         let formData = new FormData();
         formData.append('image', file);
-        formData.append('ImageType', 'CandidateResume');
-        // console.log(formData)
+        formData.append('ImageType', imageType);
         let response = await PostImageRequest(uploadFileURL, formData);
+        // console.log(response);
         if (response.status == 1) {
-            // console.log(response);
-            setUserImage(response.data[0].location)
+            setFileUpdated(true);
+            if (imageType === "Candidate") setUserImage(response.data[0].location);
+            if (imageType === "CandiateResume") setUserResume(response.data[0].location);
+            console.log(userResume);
+            console.log(userImage);
         }
     }
     return (<>
+        {console.log(value)}
+        <ThemeMessage open={fileUpdated} setOpen={setFileUpdated}
+            message="File is updated Successfully." type="success" />
+
         <Stack className="CandidateProfilePage" direction="row" gap={2} sx={{
             padding: { "lg": "20px 100px", "md": "20px", "xs": "20px" },
             background: "#f9f9f9",
@@ -36,11 +49,15 @@ const ProfileComponent = ({ userData, userType }) => {
             <Box sx={{ width: { "lg": "71%", "md": "100%", "xs": "100%" }, minHeight: "700px" }}>
                 <Stack direction="row"
                     alignItems="center" justifyContent="flex-start" gap={3} sx={{ height: "150px", padding: "20px" }}>
-                    <Box sx={{ width: "100px" }}>
+                    <Box sx={{ width: "100px", height: "100px", position: "relative" }}>
                         <img src={userImage} width="100%" alt="Profile" style={{ borderRadius: "50%", cursor: "pointer" }}
-                            onClick={() => document.getElementById("profileImage").click()} />
-                        <input type="file" id="profileImage" style={{ display: "none" }} onChange={uploadProfileImage} />
+                            // onMouseOver={() => console.log("hello")}
+                            onClick={() => document.getElementById("profileImage").click()}
+                        />
+
+                        <input type="file" id="profileImage" style={{ display: "none" }} onChange={(event) => uploadProfileImage(event, "Candidate")} />
                     </Box>
+
                     <Box>
                         <Typography component="div" sx={{ fontSize: { "lg": "30px", "md": "30px", "xs": "24px" }, fontWeight: "700", color: "#4E3A67" }}>
                             {userData && userData.personalInfo && userData.personalInfo.fullname ? userData.personalInfo.fullname : " Not mentioned"}
@@ -98,6 +115,7 @@ const ProfileComponent = ({ userData, userType }) => {
                         </>}
 
                     </Box>
+
                 </Stack>
 
                 <Stack direction="row" alignItems="center" justifyContent="flex-start" sx={{
@@ -162,7 +180,7 @@ const ProfileComponent = ({ userData, userType }) => {
                         padding: "20px",
                         borderRadius: "20px"
                     }}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider', background: "#FFFFFF" }}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider', background: "#FFFFFF", position: "relative" }}>
                         <Tabs
                             value={value}
                             textColor="primary"
@@ -172,32 +190,44 @@ const ProfileComponent = ({ userData, userType }) => {
                                 console.log(value);
                             }}
                         >
-                            {userType === "candidate" && <Tab label="RESUME" />}
-                            <Tab label="PROFILE" />
-                        </Tabs>
-                    </Box>
-                    {
-                        value == 0 && (<>
-                            {/* <Box>
-                                <CreateIcon />
-                            </Box> */}
-                            {userData.resume && userData.resume.resume ? <>
-
-                                <Box sx={{ overflowY: "scroll", height: "700px", textAlign: "center" }} >
-                                    <PDFReader showAllPage={true} url={userData &&
-                                        userData.resume.resume} />
-
-
-                                </Box></> :
-                                <Box sx={{
-                                    overflowY: "scroll", height: "700px", display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center"
-                                }}>
-                                    Not Uploaded
-                                </Box>
+                            {userType === "candidate" &&
+                                <Tab label="RESUME" />
 
                             }
+                            <Tab label="PROFILE" />
+                        </Tabs>
+                        {value == 0 &&
+                            <Box sx={{
+                                position: "absolute",
+                                right: "30px",
+                                top: "60px",
+                                cursor: "pointer",
+                                zIndex: "23"
+                            }}>
+                                <CreateIcon onClick={() => document.getElementById("upload_resume").click()} />
+                                <input type="file" style={{ display: "none" }} id="upload_resume"
+                                    onChange={(event) => uploadProfileImage(event, "CandidateResume")} />
+                            </Box>}
+                    </Box>
+
+                    {
+                        value == 0 && (<>
+                            <Box sx={{
+                                overflowY: "scroll", height: "700px", display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center", position: "relative"
+                            }} >
+                                {userData.resume && userData.resume.resume ?
+                                    <PDFReader showAllPage={true} url={userResume
+                                    } /> :
+                                    <Box> Not Uploaded </Box>}
+
+
+                            </Box>
+
+
+
+
 
                         </>)
 
