@@ -114,8 +114,7 @@ const EmployerDashboard = () => {
 
     const { jobPosted } = newState.state !== null && newState.state;
     return (<>
-        {/* {console.log(newState)}{
-        } */}
+
         <ThemeMessage open={jobPosted} setOpen="JobPosted" message="Your Job is saved . It will be publised after reviewing." type="success" />
 
         <Stack direction="column" gap={2} sx={{ padding: "30px" }} className="EmployerData">

@@ -1097,71 +1097,85 @@ export const categoryData = [
 export const supply_chain = [
     {
         id: 1,
-        value: "/assets/supply_chain1.png"
+        value: "/assets/supply_chain1.png",
+        url: "loaders"
     },
     {
         id: 2,
-        value: "/assets/supply_chain2.png"
+        value: "/assets/supply_chain2.png",
+        url: "drivers"
     },
     {
         id: 3,
-        value: "/assets/supply_chain3.png"
+        value: "/assets/supply_chain3.png",
+        url: "delivery-rider"
     },
     {
         id: 4,
-        value: "/assets/supply_chain4.png"
+        value: "/assets/supply_chain4.png",
+        url: "courier-partner"
     }
 ]
 
 export const service_jobs = [
     {
         id: 1,
-        value: "/assets/service_job1.png"
+        value: "/assets/service_job1.png",
+        url: "office-boy"
     },
     {
         id: 2,
-        value: "/assets/service_job2.png"
+        value: "/assets/service_job2.png",
+        url: "janitors"
     },
     {
         id: 3,
-        value: "/assets/service_job3.png"
+        value: "/assets/service_job3.png",
+        url: "beauticians"
     },
     {
         id: 4,
-        value: "/assets/service_job4.png"
+        value: "/assets/service_job4.png",
+        url: "nurse"
     }
 ]
 
 export const digital = [
     {
         id: 1,
-        value: "/assets/digital1.png"
+        value: "/assets/digital1.png",
+        url: "android-developer"
     },
     {
         id: 2,
-        value: "/assets/digital2.png"
+        value: "/assets/digital2.png",
+        url: "web-developer"
     },
     {
         id: 3,
-        value: "/assets/digital3.png"
+        value: "/assets/digital3.png",
+        url: "ai-developer"
     }
 ]
 
 export const marketing = [
     {
         id: 1,
-        value: "/assets/marketing1.png"
+        value: "/assets/marketing1.png",
+        url: "brand-marketing"
     },
     {
         id: 2,
-        value: "/assets/marketing2.png"
+        value: "/assets/marketing2.png",
+        url: "digital-marketing"
     }
 ]
 
 export const sales = [
     {
         id: 1,
-        value: "/assets/sales1.png"
+        value: "/assets/sales1.png",
+        url: "field-sales"
     }
 ]
 

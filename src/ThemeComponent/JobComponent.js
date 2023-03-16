@@ -66,7 +66,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                 {data ? data.city[0] : "Demo City"}
                             </Typography>
                         </Stack>
-                        {/* <Stack direction="row" sx={{
+                        <Stack direction="row" sx={{
                             background: "#FFFFFF",
                             border: "1px solid #E2D7F0",
                             borderRadius: "11px",
@@ -79,9 +79,9 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                 <img src={window.location.origin + "/assets/RJ1.png"} alt="RJ1"></img>
                             </Box>
                             <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-                                5 Openings
+                                {data && data.vacancy ? data.vacancy + "Openings" : "No Openings"}
                             </Typography>
-                        </Stack> */}
+                        </Stack>
                         <Stack direction="row" sx={{
                             background: "#FFFFFF",
                             border: "1px solid #E2D7F0",
@@ -210,14 +210,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                             </Box>
                         </Stack> </>
                     }
-
-
                 </Box>
-
-
-
-
-
             </Box>
         </Box>
     </>)

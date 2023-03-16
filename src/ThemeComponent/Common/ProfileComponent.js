@@ -1,4 +1,4 @@
-import { postRequest, PostImageRequest } from "../../utils/ApiRequests";
+import { PostImageRequest } from "../../utils/ApiRequests";
 import { uploadFileURL } from "../../utils/ApiUrls";
 import { Box, Button, Stack, Typography, Divider, Tabs, Tab, MenuItem, Select } from "@mui/material";
 
@@ -9,7 +9,6 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import Moment from 'react-moment';
 
 import CreateIcon from '@mui/icons-material/Create';
-import AddIcon from '@mui/icons-material/Add';
 import ThemeMessage from "./ThemeMessage";
 
 const ProfileComponent = ({ userData, userType }) => {
@@ -28,7 +27,7 @@ const ProfileComponent = ({ userData, userType }) => {
         formData.append('ImageType', imageType);
         let response = await PostImageRequest(uploadFileURL, formData);
         // console.log(response);
-        if (response.status == 1) {
+        if (response.status === 1) {
             setFileUpdated(true);
             if (imageType === "Candidate") setUserImage(response.data[0].location);
             if (imageType === "CandiateResume") setUserResume(response.data[0].location);
@@ -196,7 +195,7 @@ const ProfileComponent = ({ userData, userType }) => {
                             }
                             <Tab label="PROFILE" />
                         </Tabs>
-                        {value == 0 &&
+                        {value === 0 &&
                             <Box sx={{
                                 position: "absolute",
                                 right: "30px",
@@ -211,7 +210,7 @@ const ProfileComponent = ({ userData, userType }) => {
                     </Box>
 
                     {
-                        value == 0 && (<>
+                        value === 0 && (<>
                             <Box sx={{
                                 overflowY: "scroll", height: "700px", display: "flex",
                                 justifyContent: "center",
@@ -233,7 +232,7 @@ const ProfileComponent = ({ userData, userType }) => {
 
                     }
                     {
-                        value == 1 && (<>
+                        value === 1 && (<>
                             <Stack direction="column" gap={2} sx={{
                                 padding: {
                                     "lg": "30px", "md": "0px", "xs": "0px"

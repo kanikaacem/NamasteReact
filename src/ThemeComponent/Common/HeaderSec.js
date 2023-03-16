@@ -35,15 +35,12 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
             gap={4} justifyContent="space-between"
         >
             <CompanyLogo color={color} />
-
-
             <Stack direction="row"
                 sx={{
                     width: { "lg": `fit-content`, "md": `"fit-content"`, "xs": "fit-content" },
                     flexWrap: "wrap",
                     justifyContent: "flex-end"
                 }}
-                gap={2}
             >
 
                 {
@@ -108,18 +105,18 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                         }}
                         sx={{
                             width: "200px",
-                            borderRadius: "44px",
                             fontSize: "18px",
-                            border: { border },
                             color: { color },
                             textTransform: "capitalize",
                             fontWeight: "600",
                             fontFamily: "Work Sans, sans-serif !important",
-                            background: { background },
+                            border: "none",
+                            background: "none",
+
                             "&:hover": {
-                                border: { border },
                                 color: { color },
-                                background: { background }
+                                border: "none",
+                                background: "none",
 
                             }
                         }}>Candidate Login
@@ -206,20 +203,18 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                         }
                     }
                     sx={{
-                        padding: "5px 15px",
                         width: "max-content",
-                        borderRadius: "44px",
                         fontSize: "18px",
-                        border: { border },
                         color: { color },
                         textTransform: "capitalize",
                         fontWeight: "600",
                         fontFamily: "Work Sans, sans-serif !important",
-                        background: { background },
+                        border: "none",
+                        background: "none",
                         "&:hover": {
-                            border: { border },
                             color: { color },
-                            background: { background }
+                            border: "none",
+                            background: "none",
 
                         }
                     }}
@@ -235,17 +230,16 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                         width: "200px",
                         borderRadius: "44px",
                         fontSize: "18px",
-                        border: { border },
                         color: { color },
                         textTransform: "capitalize",
                         fontWeight: "600",
                         fontFamily: "Work Sans, sans-serif !important",
-                        background: { background },
+                        border: "none",
+                        background: "none",
                         "&:hover": {
-                            border: { border },
                             color: { color },
-                            background: { background }
-
+                            border: "none",
+                            background: "none",
                         }
                     }}>
                     Contact us

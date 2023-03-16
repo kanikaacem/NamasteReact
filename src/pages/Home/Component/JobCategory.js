@@ -32,7 +32,7 @@ const JobCategory = () => {
         className="hs_job_categroies_wrapper"
         sx={{
           display: "flex",
-          flexDirextion: "column",
+          flexDirection: "column",
           alignItem: "center",
           padding: "50px 30px",
           backgroundColor: "#FFFFFF",
@@ -51,13 +51,11 @@ const JobCategory = () => {
             columnGap: "20px",
             rowGap: "20px",
           }}>
-          {JobCategories.map((item) => {
+          {JobCategories.map((item, index) => {
             return (
               <>
-                <div className="CategoryItem" key={item.id} id={item.id} >
-                  {/* <div className="CategoryLogo" >
-                    <img src={item.logo} alt={item.title} width="100%" />
-                  </div> */}
+                <div className="CategoryItem" key={index} id={item.id} >
+
                   <div className="CategoryTitle" >
                     <span
                       style={{

@@ -12,7 +12,13 @@ const AboutUs = () => {
                 background: "#FAF7FE",
 
             }}>
-            <Box className="Header" sx={{ padding: "20px" }} >
+            <Box className="Header" sx={{
+                padding: "20px",
+                background: "#FAFAFA",
+                position: "sticky",
+                top: 0,
+                zIndex: "3387"
+            }} >
                 <HeaderSec
                     color="black"
                     border="2px solid #8E8E8E"

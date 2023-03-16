@@ -1,34 +1,18 @@
 import { PostImageRequest } from "../../utils/ApiRequests";
 import { uploadFileURL } from "../../utils/ApiUrls";
 
-import { Box, Stack, Typography, Button, Input, Radio, RadioGroup, FormControlLabel, FormControl, Snackbar, Alert } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
-import { Formik, Field, Form } from "formik";
-
-import DatePicker from "react-datepicker";
-
-import { WorkHistorySchema } from "../../Validation/CandidateValidation";
-
-import HeaderSec from "../Common/HeaderSec";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
-import Error from '../../ThemeComponent/Common/Error';
-import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
-import ButtonType2 from "../../ThemeComponent/Common/ButtonType1";
 import ButtonType3 from "../Common/ButtonType3";
 
-import { SocialBox, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
-import { Navigate } from 'react-router-dom';
+import { ThemeButtonType2, } from "../../utils/Theme";
 
 import { useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
 
 import ThemeMessage from "../Common/ThemeMessage";
 const UploadResume = ({ setActiveStep }) => {
-    const dispatch = useDispatch();
-    const isLoggedIn = useSelector(state => state.isLoggedIn);
     const [formSubmitted, setFormSubmitted] = useState(false);
-
-
 
     const uploadFile = async (event) => {
         // console.log(event.target.files[0]);

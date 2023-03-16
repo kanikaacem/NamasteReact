@@ -110,7 +110,7 @@ const HomeSection = () => {
                 <Carousel responsive={responsive}>
                     {categoryData.map((item, index) => {
                         return (<>
-                            <div>
+                            <div key={index}>
                                 <Stack gap={2} alignItems="center"
                                     sx={{ cursor: "pointer" }}
                                     key={item.id}
@@ -138,45 +138,12 @@ const HomeSection = () => {
                         </>)
                     })}
                 </Carousel>
-                {/* <Stack direction="row" gap={2} alignItems="center" justifyContent={{ "lg": "space-between", "md": "center", "xs": "center" }}
-                    sx={{
-                        padding: { "lg": "50px 100px", md: "20px", "xs": "20px" },
-                        flexWrap: "wrap"
-                    }}>
-                    {
-                        categoryData.map((item) => {
-                            return (<>
-                                <Stack gap={2} alignItems="center"
-                                    sx={{ cursor: "pointer" }}
-                                    key={item.id}
-                                    onClick={() => setActiveHomeCategory(item && item.name)}>
-                                    <Box
-                                    >
-                                        {activeHomeCategory === item.name ?
-                                            <img src={window.location.origin + item.image2} alt="Group2" />
-                                            :
-                                            <img src={window.location.origin + item.image1} alt="Group" />}
 
-                                    </Box>
-                                    <Typography variant="div"
-                                        sx={{
-                                            color: activeHomeCategory === item.name ? "#FC9A7E" : "#2B1E44",
-                                            fontSize: "25px",
-                                        }}>
-                                        {item && item.Text}
-
-                                    </Typography>
-
-                                </Stack>
-                            </>)
-                        })
-                    }
-                </Stack> */}
             </Box>
             <Stack
                 direction="row"
                 alignItems="center"
-                justifyContent="center" gap={3}
+                justifyContent="flex-start" gap={3}
                 sx={{
                     maxWidth: "1565px",
                     padding: { "lg": "50px 20px", md: "20px", "xs": "20px" },
