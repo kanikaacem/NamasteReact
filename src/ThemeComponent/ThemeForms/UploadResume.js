@@ -40,7 +40,7 @@ const UploadResume = ({ setActiveStep }) => {
         let response = await PostImageRequest(uploadFileURL, formData);
 
         setFormSubmitted(true);
-        // console.log(formSubmitted)
+        // console.log(formSubmitted
 
 
 
