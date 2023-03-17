@@ -5,7 +5,6 @@ import RecommendedJobs from "../Home/Component/RecommendedJobs";
 import Filter from "../../ThemeComponent/Filter";
 import DashboardGreeting from "../../ThemeComponent/Common/DashboardGreeting";
 
-import { useState, useEffect } from "react";
 const CandidateHome = () => {
     const user = useOutletContext();
 
@@ -15,7 +14,8 @@ const CandidateHome = () => {
                 padding: "20px"
             }}>
 
-            <DashboardGreeting username={user && user.personalInfo && user.personalInfo.fullname} userType="candidate" />
+            <DashboardGreeting username={user && user.personalInfo && user.personalInfo.fullname !== undefined ? user.personalInfo.fullname : "Name not mentioned"} userProfileCompleted={user && user.profilecompleted} userType="candidate" />
+
             <Stack direction="column" >
                 <Stack direction="row" gap={1} sx={{ minHeight: `calc(100vh-70px)` }}>
 

@@ -5,7 +5,6 @@ import { Box, Stack, Button, Autocomplete, TextField } from '@mui/material';
 import { ExperienceHome, CTCHome } from "../utils/Data";
 
 import ClickAwayListener from '@mui/base/ClickAwayListener';
-import CustomizeSelect from "../ThemeComponent/CustomizeSelect";
 import Error from './Common/Error';
 
 import { useEffect, useState, useCallback } from 'react';
@@ -150,7 +149,6 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                         width: { "lg": "238px", "md": "100%", "xs": "100%" },
                         padding: "0px 10px"
                     }}>
-                    {/* <CustomizeSelect ref={cityRef} placeholder="City" id_data="city" data={cities} /> */}
                     <Autocomplete
                         disablePortal
                         id="city"
@@ -186,11 +184,8 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                         id="experience"
                         options={ExperienceHome}
 
-                        // sx={{ width: 300 }}
                         sx={{
-                            // border: "1px solid blue",
                             "& .MuiOutlinedInput-root": {
-                                // border: "1px solid yellow",
                                 borderRadius: "0",
                                 padding: "2px",
                                 border: "none"
@@ -216,12 +211,8 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                         disablePortal
                         id="ctc"
                         options={CTCHome}
-
-                        // sx={{ width: 300 }}
                         sx={{
-                            // border: "1px solid blue",
                             "& .MuiOutlinedInput-root": {
-                                // border: "1px solid yellow",
                                 borderRadius: "0",
                                 padding: "2px",
                                 border: "none"
@@ -258,37 +249,6 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                 <Error text="Please enter keywords to search relevant jobs" /></Box>}
         </Box >
 
-        {/* <Box
-            sx={{
-                padding: "0px 20px",
-                height: "fit-content",
-                margin: '20px 0px',
-                display: { md: "none", xs: "block" }
-            }}>
-            <Stack
-                direction="column" gap={2}
-                divider={<Divider orientation="horizontal" />}
-                sx={{
-                    padding: "20px"
-                }}
-
-            >
-                <Stack direction="row">
-                    <SearchIcon></SearchIcon>
-                    <input
-                        style={{ width: "500px" }}
-                        type="text" ref={searchRef} placeholder="Search" className='Search' />
-                    <span>|</span>
-                    <CustomizeSelect ref={cityRef} placeholder="City" data={cities} />
-                    <span>|</span>
-                    <CustomizeSelect ref={experienceRef} placeholder="Experience" data={Experience} />
-                    <span>|</span>
-                    <CustomizeSelect ref={ctcRef} placeholder="CTC" data={Experience} />
-                    <ThemeButtontype1 onClick={searchJob} > Search</ThemeButtontype1>
-
-                </Stack>
-            </Stack>
-        </Box> */}
     </>)
 }
 export default SearchBar;

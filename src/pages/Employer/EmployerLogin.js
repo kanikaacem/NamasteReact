@@ -130,7 +130,6 @@ const EmployerLogin = () => {
             <Stack className="EmployerLoginPageInnerWrapper"
                 sx=
                 {{
-                    // width: "100%",
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
@@ -277,156 +276,13 @@ const EmployerLogin = () => {
                                 </Form>
                             )}
                         </Formik>
-                        {/* <Typography component="span" sx={{ fontSize: "16px", display: "flex" }}>
-                            <hr style={{ width: "150px", height: "0px", color: "#DAD9D9" }}></hr> or login in with <hr style={{ width: "150px", height: "0px" }}></hr>
-                        </Typography> */}
-                        {/* <Stack direction="row" gap={3} justifyContent="center">
-                            {
-                                socialLogin.map((item) => {
-                                    return (<>
-                                        <SocialBox key={item.id}>
-                                            <img src={item.image_url} alt={item.value} />
-                                        </SocialBox>
-                                    </>)
-                                })
-                            }
-                        </Stack> */}
+
                     </Stack>
                 </Stack>
             </Stack>
 
         </Box>
-        {/* <Header /> */}
 
-        {/* <Box className="EmployerLoginPage"
-            sx={{
-                height: "93vh",
-                backgroundColor: "#FAFAFA"
-            }}>
-            <Container
-                sx={{
-                    height: "inherit"
-                }}>
-                <Stack direction={{ xs: 'column', sm: 'row' }} gap={4} >
-                    <Box sx={{ width: { md: "60%", sm: "100%" }, padding: { md: "200px 0px", sm: "0px" } }}>
-                        <Typography component="span" sx={{ display: { sm: "block", md: "inline" }, textAlign: { sm: "center" } }}>
-                            We &hearts;	Recuriting
-                        </Typography>
-                        <Typography component="H1"
-                            sx={{ fontSize: "50px", fontWeight: "700" }}>
-                            Hire great
-                            <Typography component="span"
-                                sx={{ backgroundColor: "#2B1E44", color: "#FFFFFF", fontSize: "50px", borderRadius: "10px", margin: "0px 10px", padding: "5px" }}>
-                                tech
-                            </Typography>
-                            talent
-                        </Typography>
-                        <Typography component="div"
-                            sx={{ margin: "10px 0px", lineHeight: '2' }}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu purus a libero suscipit dictum non nec odio.
-                            Integer vitae congue arcu. Curabitur euismod semper turpis ac tincidunt. Curabitur luctus arcu a odio ultricies,
-                            ac hendrerit orci ultricies. Quisque vulputate et augue eget ultrices.
-                            Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam tempus augue eu risus semper lacinia.
-                        </Typography>
-                    </Box>
-                    <Box sx={{ width: { md: "40%", sm: "100%" } }} >
-                        <Box
-                            sx={{
-                                borderRadius: "10px",
-                                padding: "27px 40px 20px 35px",
-                                borderTop: "5px solid #2B1E44",
-                                background: "#FFFFFF",
-                                margin: { md: "100px 0px", sm: "0px" },
-                                minHeight: "400px"
-                            }}>
-                            <Typography component="h3" sx={{ fontSize: "30px", fontWeight: "600", textAlign: "center", color: "#2B1E44", margin: "30px 0px" }}>
-                                Login
-                            </Typography>
-                            <Box sx={{ margin: "20px 0px" }}>
-                                <Formik
-
-                                    initialValues={defaultValue}
-                                    validationSchema={employerLoginValidationSchema}
-                                    onSubmit={handleSubmit}
-                                >
-                                    {({ errors, touched }) => (
-                                        <Form className="EmployerLoginForm">
-                                            <ThemeFInputDiv >
-                                                <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="email_address" LableText="Email Address" />
-                                                    <Field
-
-                                                        size="small"
-                                                        error={errors.email_address && touched.email_address}
-                                                        as={TextField}
-                                                        id="email_address"
-                                                        placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
-                                                    {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
-
-                                                </ThemeFInputDiv>
-                                                <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="password" LableText="Password" />
-                                                    <Field
-                                                        size="small"
-                                                        error={errors.password && touched.password}
-                                                        id="password"
-                                                        as={TextField}
-                                                        placeholder="Enter Password" type="password" name="password" fullWidth />
-                                                    {errors.password && touched.password && <Error text={errors.password} />}
-                                                </ThemeFInputDiv>
-                                            </ThemeFInputDiv>
-
-
-                                            <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                                <ThemeButtontype1 variant="contained" type="submit">Sign In</ThemeButtontype1>
-                                            </Box>
-                                        </Form>
-                                    )}
-                                </Formik>
-                            </Box>
-
-                            <Typography component="span" sx={{ fontSize: "15px", textAlign: "center", display: "block" }}>
-                                Don't have a Account ?
-                                <Typography component="span" sx={{ color: "#2B1E44", margin: "0px 4px", cursor: "pointer" }}>
-                                    <Link style={{ textDecoration: "none", fontWeight: "500" }}
-                                        to="/employer-register">Register</Link>
-                                </Typography>
-                            </Typography>
-                        </Box>
-                    </Box>
-
-                </Stack>
-
-            </Container>
-
-        </Box> */}
-        {/* <Stack direction="column" gap={2} >
-
-                                                <Box className="input-item">
-                                                    <ThemeLabel LableFor="email_address" LableText="Email Address" />
-                                                    <Field
-                                                        size="small"
-                                                        error={errors.email_address && touched.email_address}
-                                                        as={TextField}
-                                                        id="email_address"
-                                                        placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
-                                                    {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
-
-                                                </Box>
-
-                                                <Box className="input-item">
-                                                    <ThemeLabel LableFor="password" LableText="Password" />
-                                                    <Field
-                                                        size="small"
-                                                        error={errors.password && touched.password}
-                                                        id="password"
-                                                        as={TextField}
-                                                        placeholder="Enter Password" type="password" name="password" fullWidth />
-                                                    {errors.password && touched.password && <Error text={errors.password} />}
-
-
-                                                </Box>
-                                            </Stack> */}
 
     </>)
 

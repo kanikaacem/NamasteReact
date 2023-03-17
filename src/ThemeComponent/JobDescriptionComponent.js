@@ -2,12 +2,12 @@ import { postRequest, getRequestWithToken } from "../utils/ApiRequests";
 import { ApplyForJob } from "../utils/ApiUrls";
 import parse from 'html-react-parser';
 
-import { Box, Stack, Typography, Snackbar, Alert } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
 import { ThemeButtonType2 } from "../utils/Theme";
-import { RWebShare } from "react-web-share";
 
 import { useState, useEffect } from "react";
+import ThemeMessage from "./Common/ThemeMessage";
 const JobDescriptionComponent = ({ userType, data }) => {
 
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -30,9 +30,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
         }
 
     }
-    const handleClose = (event) => {
-        setFormSubmitted(false);
-    };
+
 
     useEffect(() => {
         const IsjobApplied = async () => {
@@ -47,17 +45,9 @@ const JobDescriptionComponent = ({ userType, data }) => {
         IsjobApplied();
     }, [data])
     return (<>
+        <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted}
+            message=" you applied for the job." type="success" />
 
-        <Snackbar
-            open={formSubmitted}
-            autoHideDuration={6000} onClose={handleClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        >
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                you applied for the job.
-            </Alert>
-
-        </Snackbar >
         <Stack
             direction="column"
             gap={3}
@@ -170,25 +160,12 @@ const JobDescriptionComponent = ({ userType, data }) => {
                     <Stack direction="row" gap={2} alignItems="center" justifyContent="center"
                         sx={{ cursor: "pointer" }}>
                         <img height="20px" src={window.location.origin + "/assets/BookMark.png"} alt="Book Mark" />
-                        {/* <RWebShare
-                            data={{
-                                text: "Job Opportunity",
-                                url: window.location.origin + "/job-description/" + data._id,
-                                title: "Job Opportunity",
-                            }}
-                            onClick={() => console.log("shared successfully!")}
-                        > */}
+
                         <img height="20px" src={window.location.origin + "/assets/Share.png"} alt="Share" />
 
-                        {/* </RWebShare> */}
                     </Stack>
                 </>}
-                {/* <Stack direction="row" gap={2} alignItems="center" justifyContent="center" >
-                    <img height="20px" src={window.location.origin + "/assets/AppliedCandidate.png"} alt="Applied Candidate" />
-                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-                        50 Applicants
-                    </Typography>
-                </Stack> */}
+
             </Stack>
 
             <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600", color: "#4E3A67" }}>
@@ -223,12 +200,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                             Hiring since January 2022
                         </Typography>
                     </Stack>
-                    {/* <Stack direction="row" gap={2} alignItems="center">
-                        <img src={window.location.origin + "/assets/Suitcase.png"} height="20px" alt="Suitcase" />
-                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
-                            16 Job Opportunities Posted
-                        </Typography>
-                    </Stack> */}
+
 
                 </Stack>
 
@@ -267,22 +239,6 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         </Stack>
                     </>)
                 })}
-
-
-                {/* <Stack direction="row" sx={{
-                    background: "#FFFFFF",
-                    border: "1px solid #E2D7F0",
-                    borderRadius: "11px",
-                    padding: "15px",
-                    gap: "5px",
-                    alignItems: "center",
-                    justifyContent: "center"
-                }}>
-
-                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-                        Kotlin
-                    </Typography>
-                </Stack> */}
 
             </Stack>
 

@@ -1,7 +1,4 @@
-import { Box, Stack, Container, Typography } from "@mui/material";
-
-import Heading from "../Component/Heading";
-import { aboutUS } from "../../../utils/Data";
+import { Box, Stack, Typography } from "@mui/material";
 
 const AboutUs = () => {
     return (<>
@@ -84,16 +81,6 @@ const AboutUs = () => {
 
                         </Stack>
                     </Box>
-
-                    {/* {aboutUS.map((item) => {
-                        return (<>
-                            <div className="secDescItem" key={item.id}
-                                style={{ background: item.background, color: item.color ? item.color : '#00000' }}>
-                                <h2 style={{ margin: '0px' }}>{item.per}</h2>
-                                <span style={{ textAlign: 'center' }}>{item.description}</span>
-                            </div>
-                        </>)
-                    })} */}
                 </Stack>
                 <Box className="description" sx={{
                     color: "#2B1E44",

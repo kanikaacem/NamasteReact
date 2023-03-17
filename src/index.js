@@ -6,6 +6,7 @@ import App from './App';
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 import { json } from 'react-router-dom';
+import { LocalSeeOutlined } from '@mui/icons-material';
 const initialState = {
   isLoggedIn : localStorage.getItem("isLoggedIn") == null ? false : localStorage.getItem("isLoggedIn"),
   categoryActive : {
@@ -19,7 +20,8 @@ const initialState = {
   activeJob : '',
   candidateInfo: '',
   CandidateRegistration:false,
-  user:localStorage.getItem("user") == null ? {} : JSON.parse(localStorage.getItem("user"))
+  user:localStorage.getItem("user") == null ? {} : JSON.parse(localStorage.getItem("user")),
+  action:localStorage.getItem("action") == null ? " " : localStorage.getItem("action")
 };
 const reducer = (state, action) =>{
   switch(action.type){
@@ -33,9 +35,10 @@ const reducer = (state, action) =>{
       // let data = action.payload;
       localStorage.setItem('isLoggedIn',true);
       localStorage.setItem('user',JSON.stringify(action.payload));
+      localStorage.setItem('action',"login")
       // localStorage.setItem('auth_token',token);
 
-      return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:JSON.parse(localStorage.getItem("user"))};
+      return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:JSON.parse(localStorage.getItem("user")),action:localStorage.getItem("action")};
 
     case "LOGOUT":
       localStorage.clear();
@@ -46,8 +49,8 @@ const reducer = (state, action) =>{
       // localStorage.setItem("password","");
       return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn")};
 
-    case "SHOW_HIDE_PROFILE":
-       return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),showProfile: ! state.showProfile}
+    // case "SHOW_HIDE_PROFILE":
+    //    return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),showProfile: ! state.showProfile}
 
     case "CHANGE_EMPLOYEE_MENU" :
       let selected_menu= action.payload;
@@ -68,7 +71,14 @@ const reducer = (state, action) =>{
       // localStorage.setItem('user',JSON.stringify(candidateInfo.data['personalInfo']));
 
       return {...initialState,candidateInfo:candidateInfo,CandidateRegistration:true}
-
+      
+    case "LOGIN_REGISTRATION":
+        
+        localStorage.setItem('isLoggedIn',true);
+        localStorage.setItem('user',JSON.stringify(action.payload));
+        localStorage.setItem('action',"registration");
+  
+        return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:JSON.parse(localStorage.getItem("user")),action:"registration"};
    
     default:
       return state;
@@ -287,3 +297,5 @@ root.render(
 
 //https://medium.com/@sakshisubedi/optimizing-event-handler-of-input-without-affecting-browser-and-application-performance-in-react-js-7fc4f39b0889
 //-1 Try this event in React , it worked for me. onMouseLeave(). Use this if onBlur() and onFocusOut does not work for you.
+//https://www.npmjs.com/package/react-notifications
+//https://authkit.arkadip.dev/installation/

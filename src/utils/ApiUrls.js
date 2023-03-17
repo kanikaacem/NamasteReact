@@ -66,6 +66,7 @@ export const saveCandidateUserNameAndPasswordURL = "https://backend.jobsyahan.co
 /*Middle Step */
 export const checkBlueCollarJob = "https://backend.jobsyahan.com/api/file/findjobtype?jobtype";
 export const SaveCandidatePersonalInformation = "https://backend.jobsyahan.com/api/users/updateuserpersonalinfo";
+export const BlueCollarProfileCompleted = "https://backend.jobsyahan.com/api/file/updateprofilecomplete";
 /*STEP 3 */
 export const SaveCandidateProfessionalInformation = "https://backend.jobsyahan.com/api/users/updateusereducationalinfo";
 /*STEP 4 */
@@ -82,7 +83,7 @@ export const CandidateQuestion = "https://backend.jobsyahan.com/api/file/getques
 export const ApplyForJob = "https://backend.jobsyahan.com/api/job/applyforjob";
 
 /*uploading Resume */
-export const uploadResumeURL = "https://backend.jobsyahan.com/api/file/upload";
+export const uploadFileURL = "https://backend.jobsyahan.com/api/file/upload";
 
 /*Website */
 export const JobSearchPageURL = "https://backend.jobsyahan.com/api/job/searchjobs";

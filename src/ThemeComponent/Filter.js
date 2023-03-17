@@ -29,7 +29,6 @@ const Filter = () => {
     return (<>
         <Box sx={{
             width: "100%",
-            // minHeight: "729px",
             background: "#FFFFFF",
             border: "1px solid #E1D4F2",
             borderRadius: "19px",
@@ -102,93 +101,6 @@ const Filter = () => {
                         </Box>
 
                     </ThemeFInputDiv>
-
-
-                    {/* <ThemeFInputDiv sx={{ width: "100%" }}>
-                        <ThemeLabel LableFor="area" LableText="Area" />
-                        <input
-                            style={{
-                                background: "#FFFFFF",
-                                border: " 1px solid #E7D5FF",
-                                borderRadius: "11px",
-                                padding: "20px",
-                                fontSize: "16px"
-                            }} type="text" name="area" placeholder="Area" />
-
-                    </ThemeFInputDiv> */}
-
-
-                    {/* 
-                <ThemeFInputDiv sx={{ width: "100%" }} className="SalarySlider">
-                    <ThemeLabel LableFor="desired_salary" LableText="Desired Salary" />
-                    <Slider
-                        aria-label="Salary"
-                        defaultValue={500}
-                        valueLabelDisplay="auto"
-                        step={2000}
-                        marks
-                        min={0}
-                        max={10000}
-                    />
-                </ThemeFInputDiv>
-
-                <Stack direction="row" gap={8}>
-                    <Typography component="div"
-                        sx={{
-                            fontSize: "16px",
-                            color: "#4E3A67",
-                            fontFamily: "Montserrat",
-                            fontWeight: "500"
-                        }}>
-                        0
-                    </Typography>
-                    <Typography component="div"
-                        sx={{
-                            fontSize: "16px",
-                            color: "#4E3A67",
-                            fontFamily: "Montserrat",
-                            fontWeight: "500"
-                        }}>
-                        2K
-                    </Typography>
-                    <Typography component="div"
-                        sx={{
-                            fontSize: "16px",
-                            color: "#4E3A67",
-                            fontFamily: "Montserrat",
-                            fontWeight: "500"
-                        }}>
-                        4K
-                    </Typography>
-                    <Typography component="div"
-                        sx={{
-                            fontSize: "16px",
-                            color: "#4E3A67",
-                            fontFamily: "Montserrat",
-                            fontWeight: "500"
-                        }}>
-                        6K
-                    </Typography>
-                    <Typography component="div"
-                        sx={{
-                            fontSize: "16px",
-                            color: "#4E3A67",
-                            fontFamily: "Montserrat",
-                            fontWeight: "500"
-                        }}>
-                        8K
-                    </Typography>
-                    <Typography component="div"
-                        sx={{
-                            fontSize: "16px",
-                            color: "#4E3A67",
-                            fontFamily: "Montserrat",
-                            fontWeight: "500"
-                        }}>
-                        10K
-                    </Typography>
-
-                </Stack> */}
 
                     <ThemeFInputDiv>
                         <Button

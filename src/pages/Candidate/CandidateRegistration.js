@@ -1,31 +1,24 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { saveCandidateUserNameAndPasswordURL, CandidateLoginURL, EmailExist } from "../../utils/ApiUrls";
+import { saveCandidateUserNameAndPasswordURL, EmailExist } from "../../utils/ApiUrls";
 
 import { Box, Stack, Typography, TextField } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 import { CandidateRegistrationSchema } from "../../Validation/CandidateValidation";
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
-import ShowMessageToastr from "../../ThemeComponent/Common/ShowMessageToastr";
 import Error from '../../ThemeComponent/Common/Error';
-
-import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
+import { useState } from "react";
 
 const CandidateRegistration = () => {
 
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
     const [showLoginButton, setShowLoginButton] = useState(false);
 
-    const CandidateRegistration = useSelector(state => state.CandidateRegistration);
-
-    const dispatch = useDispatch();
     const defaultValue = {
         email_id: "",
         password: "",
@@ -51,8 +44,6 @@ const CandidateRegistration = () => {
         else {
             response = await postRequest(saveCandidateUserNameAndPasswordURL, CandidateLoginForm);
             if (response.status == '1') {
-                localStorage.setItem("useremail", values.email_id);
-                localStorage.setItem("password", values.password)
                 localStorage.setItem('auth_token', response.token);
                 localStorage.setItem('user', JSON.stringify(response.data));
                 document.getElementById("continue").disabled = "true"
@@ -65,9 +56,9 @@ const CandidateRegistration = () => {
 
     return (<>
 
-        <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)}
-            message="Email Verification Link is send . "
-            messageType="success" />
+
+        <ThemeMessage open={showEmailVerifiedMessage} setOpen={setShowEmailVerifiedMessage}
+            message="Email Verification Link is send ." type="success" />
 
         <Box className="CandidateLoginPage"
             sx={{

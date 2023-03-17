@@ -1,33 +1,31 @@
-import { getRequest } from "../../utils/ApiRequests";
-import { getJobTypeURL, getSKillOnJobType, checkBlueCollarJob } from "../../utils/ApiUrls";
+import { getRequest, postRequest } from "../../utils/ApiRequests";
+import { getJobTypeURL, checkBlueCollarJob, PostAnswerCandidate } from "../../utils/ApiUrls";
 import { JobTypePageSchema } from "../../Validation/PostJobValidation";
 
 import { Box, Stack, Typography, TextField, Select as SelectField, MenuItem } from "@mui/material";
-import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 
 import { useState, useEffect } from "react";
 
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
 
-import { Formik, Field, Form } from "formik";
+import { Formik, Form } from "formik";
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 
 import ThemeLabel from '../../ThemeComponent/ThemeForms/ThemeLabel';
 import Error from '../../ThemeComponent/Common/Error';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 const JobTypePage = () => {
 
     const [jobType, setJobType] = useState(" ");
     const [jobTypeData, setJobTypeData] = useState([]);
-    const [skillData, setSkillData] = useState([]);
-    const [selectedOptions, setSelectedOptions] = useState([]);
 
-    const animatedComponents = makeAnimated();
+    const [autoData, setAutoData] = useState([]);
+    const [menubar, setMenuBar] = useState(false);
+    const [area, setArea] = useState("");
 
     const defaultValue = {
         job_type: "",
-        skills: ""
+        area: ""
     }
 
     useEffect(() => {
@@ -39,37 +37,44 @@ const JobTypePage = () => {
 
     }, [])
 
-    const getSkillByJobType = async (jobTypeFilter) => {
-        let SkillsData = [];
-        let response = await getRequest(getSKillOnJobType + "=" + jobTypeFilter);
-        // setIndustryData(response.data);
-        response.data.map(item => {
-            // {item[0].toString()}
-            SkillsData.push({
-                label: item,
-                value: item
-            })
-        });
-        // console.log(SkillsData);
-        setSkillData(SkillsData.sort());
-    }
-
-    const handleSubmit1 = async (values, { resetForm }) => {
+    const handleSubmit1 = async (values) => {
+        FormSubmit("job_type", values.job_type, values.job_type);
+        FormSubmit("area", values.area, values.job_type);
         let response = await getRequest(checkBlueCollarJob + "=" + values.job_type);
-        console.log(response);
 
         if (response.data)
-            window.location.href = window.location.origin + "/" + values.job_type.toLowerCase().replace("_", "-") + "/profile/0"
+            window.location.href = window.location.origin + "/candidate-dashboard/" + values.job_type.toLowerCase().replace("_", "-") + "/profile/0"
         else
-            window.location.href = window.location.origin + "/profile/0"
+            window.location.href = window.location.origin + "/candidate-dashboard/profile/0"
 
 
+
+    }
+
+    const getAddress = async (value) => {
+        let response = await getRequest("https://backend.jobsyahan.com/api/map/autocompleteplaces?input=" + value);
+        setAutoData(response.data);
+    }
+    const FormSubmit = async (question, ans, JobType) => {
+
+        let FormData = {};
+        FormData = {
+            tag: question,
+            answers: ans,
+            jobtype: JobType
+
+        }
+
+        let response = await postRequest(PostAnswerCandidate, FormData);
+        if (response.status === '1') {
+            console.log(response);
+        }
 
     }
     return (<>
         <Box className="JobTypePage"
             sx={{
-                height: "100vh",
+                minHeight: "100vh",
                 background: "#FFFFFF",
                 backgroundRepeat: " no-repeat",
                 backgroundPosition: "left 100px bottom 0px"
@@ -80,9 +85,7 @@ const JobTypePage = () => {
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
-                <HeaderSec
-                    color="black"
-                    border="2px solid #8E8E8E" />
+
                 <Stack gap={3} direction="row" justifyContent="space-between"
                     sx={{
                         margin: "50px"
@@ -113,8 +116,7 @@ const JobTypePage = () => {
 
                     <Box sx={{ width: "50%" }}>
                         <Box sx={{
-                            // width: "763px",
-                            // height: "153px",
+
                             background: "#F8F8F8",
                             border: "1px solid #EAEAEA",
                             boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
@@ -135,13 +137,11 @@ const JobTypePage = () => {
                         </Box>
                         <Box sx={{
                             boxSizing: "border-box",
-                            // width: "865px",
                             height: "647",
                             background: "#FFFFFF",
                             border: "1px solid #EDEDED",
                             borderRadius: "19px",
                             position: "relative",
-                            // top: "197px",
                             padding: "30px 50px",
                             paddingBottom: "100px"
 
@@ -153,7 +153,7 @@ const JobTypePage = () => {
                                 validationSchema={JobTypePageSchema}
                                 onSubmit={handleSubmit1}
                             >
-                                {({ values, errors, touched, setFieldValue }) => (
+                                {({ errors, touched, setFieldValue }) => (
                                     <Form className="JobTypePage1" >
 
                                         <ThemeFInputDiv >
@@ -169,7 +169,6 @@ const JobTypePage = () => {
                                                     onChange={(event) => {
                                                         setJobType(event.target.value);
                                                         setFieldValue("job_type", event.target.value);
-                                                        getSkillByJobType(event.target.value);
                                                     }}
                                                     sx={{
                                                         background: " #FFFFFF",
@@ -194,29 +193,59 @@ const JobTypePage = () => {
                                                 {errors.job_type && touched.job_type && <Error text={errors.job_type} />}
                                             </ThemeFInputDiv>
 
-                                            <ThemeFInputDiv>
-                                                <ThemeLabel LableFor="skills" LableText="Skills *" />
-                                                <Field
+                                            <ThemeFInputDiv sx={{ position: "relative" }}>
+                                                <ThemeLabel LableFor="area" LableText="Area *" />
+                                                <Box sx={{ width: "100%", margin: "10px 0px" }}>
 
-                                                    variant="standard"
-                                                    error={errors.skills && touched.skills}
-                                                    component={Select}
-                                                    name="skills"
-                                                    options={skillData}
-                                                    components={animatedComponents}
-                                                    onChange={(options) => {
-                                                        let optionvalue = [];
-                                                        setSelectedOptions(options);
-                                                        options.map((item) => {
-                                                            optionvalue.push(item.value);
-                                                        })
-                                                        setFieldValue("skills", optionvalue.join(","));
-                                                    }}
-                                                    isMulti
-                                                    placeholder="Select Skills " data={skillData} fullWidth />
+                                                    <TextField id="outlined-basic"
+                                                        placeholder="Enter Area(eg.Haridwar, Uttarakhand, India)"
+                                                        value={area}
+                                                        onChange={(event) => {
+                                                            setArea(event.target.value);
+                                                            setFieldValue("area", event.target.value);
+                                                            getAddress(event.target.value);
+                                                            setMenuBar(true)
+                                                        }}
+                                                        variant="outlined" fullWidth />
+                                                </Box>
+                                                {errors.area && touched.area && <Error text={errors.area} />}
 
+                                                {menubar && autoData && autoData != "no record please enter some word" && <>
+                                                    <ClickAwayListener onClickAway={() => setAutoData(false)}>
 
-                                                {errors.skills && touched.skills && <Error text={errors.skills} />}
+                                                        <Box
+                                                            sx={{
+                                                                position: "absolute",
+                                                                top: "110px",
+                                                                background: "#FFFFFF",
+                                                                width: "94%",
+                                                                padding: "20px",
+                                                                height: "fit-content",
+                                                                zIndex: "34",
+                                                                boxShadow: "0px 47px 52px #f4ecff",
+                                                                border: "3px solid #E1D4F2",
+                                                                borderRadius: "11px"
+                                                            }}>
+                                                            {autoData && autoData != "no record please enter some word" && autoData.map((item) => {
+                                                                return (<>
+                                                                    <Box sx={{
+                                                                        padding: "20px",
+                                                                        borderBottom: "1px solid #E1D4F2",
+                                                                        cursor: "pointer"
+                                                                    }}
+                                                                        onClick={(event) => {
+                                                                            setArea(item.description);
+                                                                            setFieldValue("area", item.description)
+                                                                            setMenuBar(false)
+                                                                        }}> {item.description}</Box></>)
+                                                            })}
+
+                                                        </Box>
+                                                    </ClickAwayListener>
+                                                </>
+
+                                                }
+                                                {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
 
                                             </ThemeFInputDiv>
                                         </ThemeFInputDiv>

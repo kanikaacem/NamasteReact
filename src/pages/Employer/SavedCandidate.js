@@ -67,12 +67,7 @@ const SavedCandidate = () => {
                 </Stack>
             </Stack>
 
-            <Box sx={{
-                // position: "fixed",
-                // right: "0px",
-                // height: "100vh",
-                // background: "#f2f5fa"
-            }}>
+            <Box >
                 <ChatAssistant />
                 <ChatComponent />
                 <ChatComponent />

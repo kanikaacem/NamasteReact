@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
 
 /*Email Verification Page*/
 import EmployerVerficationPage from './Pages/Common/EmailVerficationPage';
@@ -18,9 +17,7 @@ import AccountSetting from './Pages/Employer/AccountSetting';
 import CandidateRecommendation from './Pages/Employer/CandidateRecommendation';
 import SavedCandidate from "./Pages/Employer/SavedCandidate";
 import AppliedCandidate from './Pages/Employer/AppliedCandidate';
-import Chat from "./Pages/Common/Chat";
 import ViewProfile from './Pages/Employer/ViewProfile';
-// import CandidateProfilePage from "./ThemeComponent/Common/CandidateProfilePage";
 
 /*Candidate Component*/
 import CandidateProfile from './Pages/Candidate/CandidateProfile';
@@ -29,13 +26,11 @@ import CandidateRegistration from "./Pages/Candidate/CandidateRegistration";
 import CandidateLogin from "./Pages/Candidate/CandidateLogin";
 import CandidateDashboard from "./Pages/Candidate/CandidateDashboard";
 import CandidateProfilePage from "./Pages/Candidate/CandidateProfilePage";
-import CandidateJobPerferences from "./Pages/Candidate/CandidateJobPerferences";
-import SavedJobs from './Pages/Candidate/SavedJobs';
-import ProfileComponent from './ThemeComponent/Common/ProfileComponent';
+import CandidateMobileVerify from './ThemeComponent/ThemeForms/CandidateMobileVerify';
 
 /*Website Page*/
 import Home from "./Pages/Home/Home";
-import NotFound from "./Pages/NotFound";
+import ErrorPage from "./Pages/ErrorPage";
 import PrivateRoute from "./utils/PrivateRoute";
 import Dashboard from './Pages/Common/Dashboard';
 import JobDescription from './Pages/JobDescription';
@@ -58,9 +53,6 @@ function App() {
           <Route path="/contact-us" element={<ContactUs></ContactUs>} />
           <Route path="/about-us" element={<AboutUs></AboutUs>} />
 
-          <Route path="/job-type" element={<JobTypePage></JobTypePage>} />
-          <Route path="/personal-info" element={<PersonalInformationInformation2></PersonalInformationInformation2>} ></Route>
-
           <Route path="/forgot-password/employer" element={<ForgotPasswordPage user="employer" />} />
           <Route path="/reset-password/employer/:token" element={<ResetPasswordPage user="employer" />} />
 
@@ -72,11 +64,11 @@ function App() {
 
           <Route path="/employer-register" element={<EmployerRegister></EmployerRegister>} />
           <Route path="/employer-login" element={<EmployerLogin></EmployerLogin>} />
+          <Route path="/personal-info" element={<PersonalInformationInformation2></PersonalInformationInformation2>} ></Route>
 
           <Route path="/candidate-login" element={<CandidateLogin></CandidateLogin>}></Route>
           <Route path="/candidate-register" element={<CandidateRegistration />} />
-          <Route path="/profile/:step" element={<CandidateProfile></CandidateProfile>} />
-          <Route path=":jobType/profile/:step" element={<CandidateProfile></CandidateProfile>} />
+
           <Route path="/job" element={<JobSearch></JobSearch>} />
 
           <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
@@ -89,27 +81,25 @@ function App() {
             <Route path="saved-candidates" element={<SavedCandidate></SavedCandidate>} />
             <Route path="account-setting" element={<AccountSetting></AccountSetting>} />
             <Route path="view-profile/:id" element={<ViewProfile ></ViewProfile>} />
-            <Route path="chats" element={<Chat></Chat>} />
+            <Route path="*" element={<ErrorPage errorMessage="Page not Found"></ErrorPage>} />
           </Route>
 
-          <Route path="/view-profile" element={<CandidateProfile></CandidateProfile>} />
-
-          {/* <Route path="/update-profile" element={<UpdateProfile></UpdateProfile>} /> */}
-          {/* <Route path="/candidate-profile" element={<CandidateProfilePage></CandidateProfilePage>}></Route> */}
 
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             <Route path="" element={<CandidateDashboard></CandidateDashboard>} />
             <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
             <Route path="profile" element={<CandidateProfilePage></CandidateProfilePage>} />
-            <Route path="saved-jobs" element={<SavedJobs></SavedJobs>} />
-            <Route path="perferences" element={<CandidateJobPerferences></CandidateJobPerferences>} />
-            <Route path="*" element={<NotFound></NotFound>} />
+            <Route path="mobile-verify" element={<CandidateMobileVerify></CandidateMobileVerify>} />
+            <Route path="job-type" element={<JobTypePage></JobTypePage>} />
+            <Route path="profile/:step" element={<CandidateProfile></CandidateProfile>} />
+            <Route path=":jobType/profile/:step" element={<CandidateProfile></CandidateProfile>} />
+            <Route path="*" element={<ErrorPage errorMessage="Page not Found"></ErrorPage>} />
           </Route>
 
 
           <Route path="/job-description/:id" element={<PrivateRoute Component={JobDescription}></PrivateRoute>} />
 
-          <Route path="*" element={<NotFound></NotFound>} />
+          <Route path="*" element={<ErrorPage errorMessage=" Page not Found "></ErrorPage>} />
         </Routes>
       </BrowserRouter>
     </>

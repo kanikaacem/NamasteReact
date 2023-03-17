@@ -1,17 +1,15 @@
 import { getRequest } from "../../utils/ApiRequests"
-import { getAllJobs, JobSearchPageURL } from "../../utils/ApiUrls";
+import { JobSearchPageURL } from "../../utils/ApiUrls";
 
 import { Box, Stack, Pagination } from "@mui/material";
 import JobComponent from "../JobComponent";
 import Footer from "../../ThemeComponent/Common/Footer";
 import SearchBar from "../SearchBar";
 
-import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Filter from "../Filter"
 import HeaderSec from "./HeaderSec";
-import { QrCodeScannerOutlined } from "@mui/icons-material";
 const JobSearch = () => {
 
     const [data, setData] = useState([]);
@@ -82,9 +80,7 @@ const JobSearch = () => {
                         jobs.length > 0 && jobs.map((item) => {
                             return (<>
                                 <JobComponent key={item._id} data={item} data_id={item._id} userType="candidate"
-                                    OnClickfun={() => {
-                                        // getJobDescription(item._id)
-                                    }} />
+                                />
                             </>)
                         })
 

@@ -8,7 +8,6 @@ const AllJobCategories = () => {
         fontSize: "24px"
     })
     return (<>
-        {/* <span> Browse All Categories</span> */}
         <Stack direction={{ "lg": "row", "md": "column", "xs": "column" }}
             gap={3}
             sx={{ margin: "0 auto" }}>

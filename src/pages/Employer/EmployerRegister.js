@@ -1,8 +1,8 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { EmployerLoginURL } from "../../utils/ApiUrls";
 
-import { Box, Stack, Typography, Container } from "@mui/material";
-import { useState, useEffect, useRef } from "react";
+import { Box, Stack, Typography } from "@mui/material";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
@@ -16,10 +16,8 @@ import ReactGA from 'react-ga';
 ReactGA.initialize('AW-11080443279/AeoHCJzJ2YkYEI_LyKMp');
 ReactGA.pageview(window.location.pathname + window.location.search);
 
-const CLIENT_ID = "716443310647-ss6mebccjfbjinc0jfa188lnm6vo38o7.apps.googleusercontent.com";
 const EmployerRegister = () => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
-    const api_url = useSelector(state => state.api_url);
     const dispatch = useDispatch();
 
     const [emailSignupForm, setEmailSignupForm] = useState(true);
@@ -27,17 +25,10 @@ const EmployerRegister = () => {
     const [verifyMobileForm, setVerifyMobileForm] = useState(false);
     const [companyInfoForm, setCompanyInfoForm] = useState(false);
 
-    const emailsignupwrapper = useRef(null);
-    const passwordgenerationForm = useRef(null);
-    const mobileoptverificationwrapper = useRef(null);
-    const hrinformationwrapper = useRef(null);
-    const companyinformationwrapper = useRef(null);
-
 
     const [email, setEmail] = useState("");
     const [mobile_number, setMobileNumber] = useState("");
     const [userId, setUserId] = useState();
-    const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
     const [isEmailVerified, setIsEmailVerified] = useState(false);
 
     useEffect(() => {
@@ -49,7 +40,6 @@ const EmployerRegister = () => {
             })
 
             if (response.status == '1') {
-                // console.log(response);
                 if (response.data.isemailverified && !response.data.ismobileverified) {
                     setEmailSignupForm(false);
                     setVerifyMobileForm(true);
@@ -109,9 +99,6 @@ const EmployerRegister = () => {
 
                         <Box sx={{
                             width: { 'lg': "60%", 'md': '100%', 'xs': '100%' },
-                            // position: "absolute",
-                            // marginTop: { 'lg': "236px", 'md': '0px', 'xs': '0px' },
-                            // marginLeft: { 'lg': "204px", 'md': '0px', 'xs': '0px' }
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center"
@@ -158,10 +145,7 @@ const EmployerRegister = () => {
                             </Box>
                         </Box>
                         <Stack
-                            sx={{
-                                // width: { "lg": "40%", "md": "100%", "xs": "100%" },
-                                // alignItems: "flex-end"
-                            }}>
+                        >
                             <Stack gap={2} sx={{
                                 width: { "lg": "449px", "md": "85%", "xs": "85%" },
                                 height: "730px",

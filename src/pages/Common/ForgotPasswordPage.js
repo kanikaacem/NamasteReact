@@ -1,5 +1,5 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { CheckEmployerEmailExist, ForgotPasswordEmployerEmailURL, ForgotPasswordCandidateEmailURL } from "../../utils/ApiUrls";
+import { ForgotPasswordEmployerEmailURL, ForgotPasswordCandidateEmailURL } from "../../utils/ApiUrls";
 
 import { Box, Stack, Typography, TextField } from "@mui/material";
 import { Formik, Field, Form } from "formik";
@@ -12,14 +12,11 @@ import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
 import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 
-import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 const ForgotPasswordPage = ({ user }) => {
 
     const [emailSend, setEmailSend] = useState(false);
-
-
     const defaultValue = {
         email_address: ""
     }
@@ -52,7 +49,6 @@ const ForgotPasswordPage = ({ user }) => {
                     color="black"
                     border="2px solid #8E8E8E" />
                 <Stack direction="row" gap={2}
-                    // sx={{ height: "100%" }}
                     sx={{
                         margin: { "lg": "100px 0px", "md": "100px 0px", "xs": "20px 0px" }
                     }}
@@ -98,13 +94,10 @@ const ForgotPasswordPage = ({ user }) => {
                         <Box
                             sx={{
                                 boxSizing: "border-box",
-                                // maxWidth: "865px",
                                 minHeight: "647",
                                 background: "#FFFFFF",
                                 border: "1px solid #EDEDED",
                                 borderRadius: "19px",
-                                // position: "absolute",
-                                // top: "197px",
                                 padding: "30px 50px",
                                 paddingBottom: "100px"
                             }}>
@@ -131,7 +124,7 @@ const ForgotPasswordPage = ({ user }) => {
                                 validationSchema={emailFormValidationSchema}
                                 onSubmit={handleSubmit}
                             >
-                                {({ errors, touched, values, setFieldValue }) => (
+                                {({ errors, touched }) => (
                                     <Form className="EmailSignupForm">
                                         <ThemeFInputDiv>
                                             <ThemeFInputDiv>

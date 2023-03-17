@@ -1,3 +1,5 @@
+import { PostImageRequest } from "../../utils/ApiRequests";
+import { uploadFileURL } from "../../utils/ApiUrls";
 import { Box, Button, Stack, Typography, Divider, Tabs, Tab, MenuItem, Select } from "@mui/material";
 
 import { MeetingType } from "../../utils/Data";
@@ -6,11 +8,38 @@ import { useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import Moment from 'react-moment';
 
-const ProfileComponent = ({ userData, userType }) => {
-    const [value, setValue] = useState(userType === "employer" ? 1 : 0);
-    const [meetingType, setMeetingType] = useState(" ");
+import CreateIcon from '@mui/icons-material/Create';
+import ThemeMessage from "./ThemeMessage";
 
+const ProfileComponent = ({ userData, userType }) => {
+    console.log(userType)
+    const [value, setValue] = useState(userType === "employer" ? 1 : 0);
+    console.log(value);
+    const [meetingType, setMeetingType] = useState(" ");
+    const [userImage, setUserImage] = useState(userData.profile_image ? userData.profile_image : window.location.origin + "/assets/Avatar.png");
+    const [userResume, setUserResume] = useState(userData.resume && userData.resume.resume && userData.resume.resume);
+    const [fileUpdated, setFileUpdated] = useState(false);
+
+    const uploadProfileImage = async (event, imageType) => {
+        let file = event.target.files[0];
+        let formData = new FormData();
+        formData.append('image', file);
+        formData.append('ImageType', imageType);
+        let response = await PostImageRequest(uploadFileURL, formData);
+        // console.log(response);
+        if (response.status === 1) {
+            setFileUpdated(true);
+            if (imageType === "Candidate") setUserImage(response.data[0].location);
+            if (imageType === "CandiateResume") setUserResume(response.data[0].location);
+            console.log(userResume);
+            console.log(userImage);
+        }
+    }
     return (<>
+        {console.log(value)}
+        <ThemeMessage open={fileUpdated} setOpen={setFileUpdated}
+            message="File is updated Successfully." type="success" />
+
         <Stack className="CandidateProfilePage" direction="row" gap={2} sx={{
             padding: { "lg": "20px 100px", "md": "20px", "xs": "20px" },
             background: "#f9f9f9",
@@ -19,12 +48,17 @@ const ProfileComponent = ({ userData, userType }) => {
             <Box sx={{ width: { "lg": "71%", "md": "100%", "xs": "100%" }, minHeight: "700px" }}>
                 <Stack direction="row"
                     alignItems="center" justifyContent="flex-start" gap={3} sx={{ height: "150px", padding: "20px" }}>
-                    <Box sx={{ width: "100px" }}>
-                        <img src={window.location.origin + "/assets/profile.png"} width="100%" alt="Profile" style={{ borderRadius: "50%" }} />
+                    <Box sx={{ width: "100px", height: "100px", position: "relative" }}>
+                        <img src={userImage} width="100%" alt="Profile" style={{ borderRadius: "50%", cursor: "pointer" }}
+                            onClick={() => document.getElementById("profileImage").click()}
+                        />
+
+                        <input type="file" id="profileImage" style={{ display: "none" }} onChange={(event) => uploadProfileImage(event, "Candidate")} />
                     </Box>
+
                     <Box>
                         <Typography component="div" sx={{ fontSize: { "lg": "30px", "md": "30px", "xs": "24px" }, fontWeight: "700", color: "#4E3A67" }}>
-                            {userData && userData.personalInfo && userData.personalInfo.fullname ? userData.personalInfo.fullname : " Gyanendra Chaudhary"}
+                            {userData && userData.personalInfo && userData.personalInfo.fullname ? userData.personalInfo.fullname : " Not mentioned"}
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
                             {userData && userData.lastlogin ? "Last Login : " + userData.lastlogin : "Last Login: 20-01-2023"}
@@ -40,13 +74,11 @@ const ProfileComponent = ({ userData, userType }) => {
                                 }}>
                                 <Button variant="outlined"
                                     sx={{
-                                        // background: "#FFFFFF",
                                         border: "1px solid #E2D7F0",
                                         borderRadius: "7px",
                                         color: "#4E3A67",
                                         fontWeight: "700",
                                         "&:hover": {
-                                            // background: "#FFFFFF",
                                             border: "1px solid #E2D7F0",
                                             borderRadius: "7px",
                                             color: "#4E3A67",
@@ -79,6 +111,7 @@ const ProfileComponent = ({ userData, userType }) => {
                         </>}
 
                     </Box>
+
                 </Stack>
 
                 <Stack direction="row" alignItems="center" justifyContent="flex-start" sx={{
@@ -94,7 +127,7 @@ const ProfileComponent = ({ userData, userType }) => {
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
 
-                            {userData && userData.personalInfo && userData.personalInfo.state ? userData.personalInfo.state : " "}
+                            {userData && userData.personalInfo && userData.personalInfo.state ? userData.personalInfo.state : "Not mentioned"}
 
                         </Typography>
                     </Stack>
@@ -105,7 +138,7 @@ const ProfileComponent = ({ userData, userType }) => {
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
                             {userData && userData.personalInfo && userData.personalInfo.preffered_location ?
-                                userData.personalInfo.preffered_location : "Perferred Location"}
+                                userData.personalInfo.preffered_location : "Not mentioned"}
                         </Typography>
                     </Stack>
 
@@ -117,7 +150,7 @@ const ProfileComponent = ({ userData, userType }) => {
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
                             {userData && userData.personalInfo && userData.personalInfo.total_work_experience ?
-                                userData.personalInfo.total_work_experience + " Yrs" : "Experience"}
+                                userData.personalInfo.total_work_experience + " Yrs" : "Not mentioned"}
                         </Typography>
                     </Stack>
 
@@ -127,7 +160,7 @@ const ProfileComponent = ({ userData, userType }) => {
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
                             {userData && userData.personalInfo && userData.personalInfo.current_salary ?
-                                userData.personalInfo.current_salary : "2 Lpa"}
+                                userData.personalInfo.current_salary : "Not mentioned"}
                         </Typography>
                     </Stack>
                 </Stack>
@@ -143,7 +176,7 @@ const ProfileComponent = ({ userData, userType }) => {
                         padding: "20px",
                         borderRadius: "20px"
                     }}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider', background: "#FFFFFF" }}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider', background: "#FFFFFF", position: "relative" }}>
                         <Tabs
                             value={value}
                             textColor="primary"
@@ -153,21 +186,50 @@ const ProfileComponent = ({ userData, userType }) => {
                                 console.log(value);
                             }}
                         >
-                            {userType === "candidate" && <Tab label="RESUME" />}
+                            {userType === "candidate" &&
+                                <Tab label="RESUME" />
+
+                            }
                             <Tab label="PROFILE" />
                         </Tabs>
+                        {value === 0 &&
+                            <Box sx={{
+                                position: "absolute",
+                                right: "30px",
+                                top: "60px",
+                                cursor: "pointer",
+                                zIndex: "23"
+                            }}>
+                                <CreateIcon onClick={() => document.getElementById("upload_resume").click()} />
+                                <input type="file" style={{ display: "none" }} id="upload_resume"
+                                    onChange={(event) => uploadProfileImage(event, "CandidateResume")} />
+                            </Box>}
                     </Box>
+
                     {
-                        value == 0 && (<>
-                            <Box sx={{ overflowY: "scroll", height: "700px" }} >
-                                <PDFReader showAllPage={true} url={userData &&
-                                    userData.resume && userData.resume.resume ? userData.resume.resume : "https://jobyahanp.s3.ap-south-1.amazonaws.com/1678433116491_sample.pdf"} />
+                        value === 0 && (<>
+                            <Box sx={{
+                                overflowY: "scroll", height: "700px", display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center", position: "relative"
+                            }} >
+                                {userData.resume && userData.resume.resume ?
+                                    <PDFReader showAllPage={true} url={userResume
+                                    } /> :
+                                    <Box> Not Uploaded </Box>}
+
+
                             </Box>
+
+
+
+
+
                         </>)
 
                     }
                     {
-                        value == 1 && (<>
+                        value === 1 && (<>
                             <Stack direction="column" gap={2} sx={{
                                 padding: {
                                     "lg": "30px", "md": "0px", "xs": "0px"
@@ -182,14 +244,15 @@ const ProfileComponent = ({ userData, userType }) => {
                                         Professional Details
                                     </Typography>
                                     <Stack direction="column" gap={1}>
-                                        {userData && userData.workHistory && userData.workHistory.map((item) => {
+                                        {userData && userData.workHistory && userData.workHistory.length <= 0 && "Not mentioned"}
+                                        {userData && userData.workHistory && userData.workHistory.length > 0 && userData.workHistory.map((item) => {
                                             return (<>
                                                 <Box>
                                                     <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", fontWeight: "600" }}>
-                                                        {item.company_name ? item.company_name : "Company name"}
+                                                        {item.company_name ? item.company_name : "Not mentioned"}
                                                     </Typography>
                                                     <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
-                                                        {item.designation ? item.designation : "Designation"}
+                                                        {item.designation ? item.designation : "Not Mentioned"}
                                                     </Typography>
                                                     <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
                                                         <Moment format="DD/MM/YYYY">{item.starting_year}</Moment>{" to "}
@@ -210,7 +273,8 @@ const ProfileComponent = ({ userData, userType }) => {
                                         Educational Details
                                     </Typography>
                                     <Stack direction="column" gap={1}>
-                                        {userData && userData.educationalInfo && userData.educationalInfo.map((item) => {
+                                        {userData && userData.educationalInfo && userData.educationalInfo.length <= 0 && "Not mentioned"}
+                                        {userData && userData.educationalInfo && userData.educationalInfo.length > 0 && userData.educationalInfo.map((item) => {
                                             return (<>
                                                 <Box>
                                                     <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", fontWeight: "600" }}>
@@ -242,7 +306,7 @@ const ProfileComponent = ({ userData, userType }) => {
                                                 Current Location:
                                             </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                {userData && userData.personalInfo && userData.personalInfo.state ? userData.personalInfo.state : "  "}
+                                                {userData && userData.personalInfo && userData.personalInfo.state ? userData.personalInfo.state : "Not mentioned"}
                                             </Typography>
                                         </Stack>
                                         <Stack direction="row" sx={{
@@ -252,7 +316,7 @@ const ProfileComponent = ({ userData, userType }) => {
                                                 Perferred Location:
                                             </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                {userData && userData.personalInfo && userData.personalInfo.preffered_location ? userData.personalInfo.preffered_location : "Perferred Location "}
+                                                {userData && userData.personalInfo && userData.personalInfo.preffered_location ? userData.personalInfo.preffered_location : "Not mentioned "}
                                             </Typography>
                                         </Stack>
                                         <Stack direction="row" sx={{
@@ -262,7 +326,7 @@ const ProfileComponent = ({ userData, userType }) => {
                                                 Current Salary:
                                             </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                {userData && userData.personalInfo && userData.personalInfo.current_salary ? userData.personalInfo.current_salary : "Current Salary "}
+                                                {userData && userData.personalInfo && userData.personalInfo.current_salary ? userData.personalInfo.current_salary : "Not mentioned "}
                                             </Typography>
                                         </Stack>
                                         <Stack direction="row" sx={{
@@ -271,7 +335,7 @@ const ProfileComponent = ({ userData, userType }) => {
                                             <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
                                                 Expected Salary:                                            </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                {userData && userData.personalInfo && userData.personalInfo.expected_salary ? userData.personalInfo.expected_salary : "Excepted Salary "}
+                                                {userData && userData.personalInfo && userData.personalInfo.expected_salary ? userData.personalInfo.expected_salary : "Not mentioned"}
 
                                             </Typography>
                                         </Stack>
@@ -282,7 +346,7 @@ const ProfileComponent = ({ userData, userType }) => {
                                                 Experience:
                                             </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                {userData && userData.personalInfo && userData.personalInfo.total_work_experience ? userData.personalInfo.total_work_experience + " Yrs " : "Experience "}
+                                                {userData && userData.personalInfo && userData.personalInfo.total_work_experience ? userData.personalInfo.total_work_experience + " Yrs " : "Not mentioned "}
                                             </Typography>
                                         </Stack>
                                         <Stack direction="row" sx={{
@@ -292,71 +356,8 @@ const ProfileComponent = ({ userData, userType }) => {
                                                 Gender:
                                             </Typography>
                                             <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                {userData && userData.personalInfo && userData.personalInfo.gender ? userData.personalInfo.gender : "Gender "}
+                                                {userData && userData.personalInfo && userData.personalInfo.gender ? userData.personalInfo.gender : "Not mentioned "}
 
-                                            </Typography>
-                                        </Stack>
-
-                                        {/* <Stack direction="row" sx={{
-                                            flexWrap: "wrap"
-                                        }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
-                                                Age:
-                                            </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                <Moment fromNow ago >{userData && userData.dob}</Moment>
-                                            </Typography>
-                                        </Stack> */}
-                                        {/* <Stack direction="row" sx={{
-                                            flexWrap: "wrap"
-                                        }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
-                                                Notice Period:
-                                            </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                Immediately                                            </Typography>
-                                        </Stack>
-                                        <Stack direction="row" sx={{
-                                            flexWrap: "wrap"
-                                        }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
-                                                Application Date:
-                                            </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                20-01-2023                                            </Typography>
-                                        </Stack> */}
-
-
-                                    </Stack>
-                                </Box>
-
-                                {/* <Box sx={{
-
-                                    padding: "30px"
-                                }}>
-                                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
-                                        Additional Information
-                                    </Typography>
-
-                                    <Stack direction="column" gap={1}>
-                                        <Stack direction="row" sx={{
-                                            flexWrap: "wrap"
-                                        }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
-                                                Language:
-                                            </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
-                                                English
-                                            </Typography>
-                                        </Stack>
-                                        <Stack direction="row" sx={{
-                                            flexWrap: "wrap"
-                                        }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
-                                                CAT Percentile::
-                                            </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
-                                                0.0
                                             </Typography>
                                         </Stack>
 
@@ -365,7 +366,9 @@ const ProfileComponent = ({ userData, userType }) => {
 
 
                                     </Stack>
-                                </Box> */}
+                                </Box>
+
+
 
                             </Stack>
                         </>)
@@ -398,13 +401,11 @@ const ProfileComponent = ({ userData, userType }) => {
                             <Button variant="outlined"
 
                                 sx={{
-                                    // background: "#FFFFFF",
                                     border: "1px solid #E2D7F0",
                                     borderRadius: "7px",
                                     color: "#4E3A67",
                                     fontWeight: "700",
                                     "&:hover": {
-                                        // background: "#FFFFFF",
                                         border: "1px solid #E2D7F0",
                                         borderRadius: "7px",
                                         color: "#4E3A67",
@@ -450,7 +451,6 @@ const ProfileComponent = ({ userData, userType }) => {
                         <Button variant="outlined"
 
                             sx={{
-                                // background: "#FFFFFF",
                                 border: "1px solid #E2D7F0",
                                 borderRadius: "7px",
                                 color: "#4E3A67",
@@ -458,7 +458,6 @@ const ProfileComponent = ({ userData, userType }) => {
                                 width: "100%",
                                 padding: "10px",
                                 "&:hover": {
-                                    // background: "#FFFFFF",
                                     border: "1px solid #E2D7F0",
                                     borderRadius: "7px",
                                     color: "#4E3A67",
@@ -484,12 +483,10 @@ const ProfileComponent = ({ userData, userType }) => {
                         }}>
                         <Button variant="outlined"
                             sx={{
-                                // background: "#FFFFFF",
                                 border: "1px solid #E2D7F0",
                                 borderRadius: "7px",
                                 color: "#4E3A67",
                                 "&:hover": {
-                                    // background: "#FFFFFF",
                                     border: "1px solid #E2D7F0",
                                     borderRadius: "7px",
                                     color: "#4E3A67",
@@ -522,29 +519,7 @@ const ProfileComponent = ({ userData, userType }) => {
                     </Stack>
 
 
-                    {/* <Stack direction="column" gap={1}>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "600" }}>
-                            Contact Information
-                        </Typography>
-                        <Stack direction="row" justifyContent="space-between">
-                            <Box >
-                                <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
-                                    Phone
-                                </Typography>
-                                <Typography component="div" sx={{ fontSize: "20px", color: "#FC9A7E" }}>
-                                    9818032487
-                                </Typography>
-                            </Box>
-                            <Box>
-                                <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
-                                    E-mail
-                                </Typography>
-                                <Typography component="div" sx={{ fontSize: "20px", color: "#FC9A7E" }}>
-                                    demo@gmail.com
-                                </Typography>
-                            </Box>
-                        </Stack>
-                    </Stack> */}
+
 
 
                 </Stack>

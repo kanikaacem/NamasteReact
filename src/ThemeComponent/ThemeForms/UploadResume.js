@@ -1,84 +1,44 @@
 import { PostImageRequest } from "../../utils/ApiRequests";
-import { uploadResumeURL } from "../../utils/ApiUrls";
+import { uploadFileURL } from "../../utils/ApiUrls";
 
-import { Box, Stack, Typography, Button, Input, Radio, RadioGroup, FormControlLabel, FormControl, Snackbar, Alert } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
-import { Formik, Field, Form } from "formik";
-
-import DatePicker from "react-datepicker";
-
-import { WorkHistorySchema } from "../../Validation/CandidateValidation";
-
-import HeaderSec from "../Common/HeaderSec";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
-import Error from '../../ThemeComponent/Common/Error';
-import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
-import ButtonType2 from "../../ThemeComponent/Common/ButtonType1";
 import ButtonType3 from "../Common/ButtonType3";
 
-import { SocialBox, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
-import { Navigate } from 'react-router-dom';
+import { ThemeButtonType2, } from "../../utils/Theme";
 
 import { useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
 
+import ThemeMessage from "../Common/ThemeMessage";
 const UploadResume = ({ setActiveStep }) => {
-    const dispatch = useDispatch();
-    const isLoggedIn = useSelector(state => state.isLoggedIn);
-    const api_url = useSelector(state => state.api_url);
-    let userid = useSelector(state => state.candidateInfo);
-
-    if (userid != '') {
-        userid = JSON.parse(userid);
-        userid = userid.data;
-    }
-
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const [file, setFile] = useState();
-
-    const handleClose = (event) => {
-        setFormSubmitted(false);
-    };
 
     const uploadFile = async (event) => {
-        console.log("hello");
-        console.log(event.target.files[0]);
         let file = event.target.files[0];
         let formData = new FormData();
         formData.append('image', file);
         formData.append('ImageType', 'CandidateResume');
-        console.log(formData)
-        let response = await PostImageRequest(uploadResumeURL, formData);
+        let response = await PostImageRequest(uploadFileURL, formData);
 
         setFormSubmitted(true);
-        console.log(formSubmitted)
 
 
 
     }
 
     const goToDashboard = async () => {
-        dispatch({ type: 'LOGIN', payload: JSON.parse(localStorage.getItem("user")) });
+        localStorage.setItem("action", "login");
+        window.location.href = window.location.origin + "/candidate-dashboard";
 
     }
 
     return (<>
-        {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>}
-
-        <Snackbar
-            open={formSubmitted}
-            autoHideDuration={6000} onClose={handleClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        >
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                Your Resume is uploaded
-            </Alert>
-
-        </Snackbar>
+        <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message="Your Resume is uploaded. User is registered Successfully." type="success" />
 
         <Box className="WorkHistoryPage"
             sx={{
-                height: "100vh",
+                minHeight: "100vh",
                 background: "#FFFFFF",
                 backgroundRepeat: " no-repeat",
                 backgroundPosition: "left 100px bottom 0px"
@@ -89,9 +49,7 @@ const UploadResume = ({ setActiveStep }) => {
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
-                <HeaderSec
-                    color="black"
-                    border="2px solid #8E8E8E" />
+
                 <Stack alignItems="flex-end" sx={{ position: "relative" }}>
 
 

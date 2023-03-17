@@ -1,6 +1,5 @@
 import { getRequestWithToken } from "../utils/ApiRequests";
 import { Box, Stack, Typography, Button } from "@mui/material";
-import { RWebShare } from "react-web-share";
 import { useState, useEffect } from "react";
 const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
 
@@ -10,7 +9,6 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
             let response = await getRequestWithToken("https://backend.jobsyahan.com/api/job/details?jobid=" + data_id);
             if (response !== undefined && response.status === "1") {
                 if (response.data[0].jobapply) {
-                    // console.log(response.data[0].jobapply)
                     setJobApplied(true)
                 }
             }
@@ -66,7 +64,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                 {data ? data.city[0] : "Demo City"}
                             </Typography>
                         </Stack>
-                        {/* <Stack direction="row" sx={{
+                        <Stack direction="row" sx={{
                             background: "#FFFFFF",
                             border: "1px solid #E2D7F0",
                             borderRadius: "11px",
@@ -79,9 +77,9 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                 <img src={window.location.origin + "/assets/RJ1.png"} alt="RJ1"></img>
                             </Box>
                             <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-                                5 Openings
+                                {data && data.vacancy ? data.vacancy + "Openings" : "No Openings"}
                             </Typography>
-                        </Stack> */}
+                        </Stack>
                         <Stack direction="row" sx={{
                             background: "#FFFFFF",
                             border: "1px solid #E2D7F0",
@@ -129,7 +127,12 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                     > View Candidates</a>}
 
 
-                    <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
+                    <Typography component="div" sx={{
+                        fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap"
+                    }}>
                         {data && data.job_responsibilty}
                     </Typography>
 
@@ -162,14 +165,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                         }
                                     }} variant="contained">{jobApplied ? "Applied" : "Apply Now"}</Button>
 
-                                {/* <RWebShare
-                                    data={{
-                                        text: "Job Opportunity",
-                                        url: window.location.origin + "/job-description/" + data._id,
-                                        title: "Job Opportunity",
-                                    }}
-                                    onClick={() => console.log("shared successfully!")}
-                                > */}
+
                                 <Button variant="outlined"
                                     sx={{
                                         fontFamily: 'Montserrat',
@@ -194,7 +190,6 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                         }
                                     }}>Share</Button>
 
-                                {/* </RWebShare> */}
 
 
                             </Stack>
@@ -210,14 +205,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                             </Box>
                         </Stack> </>
                     }
-
-
                 </Box>
-
-
-
-
-
             </Box>
         </Box>
     </>)

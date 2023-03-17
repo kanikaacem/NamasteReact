@@ -1,49 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material";
-
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-import PlaceIcon from '@mui/icons-material/Place';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-
-import Moment from 'react-moment';
-
-import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
-import { borderRadius } from "@mui/system";
-
 const JobComponent2 = ({ company, data, setshowJobDescription }) => {
     const user = localStorage.user && JSON.parse(localStorage.user);
-    const api_url = useSelector(state => state.api_url);
-    const deletePostedJob = (id) => {
-        console.log(id);
-    }
 
-
-    // const JobAction = async (jobId, jobAction) => {
-    //     let url = "";
-    //     if (jobAction == "apply") url = api_url + "/api/job/applyforjob";
-    //     else if (jobAction == "save") url = api_url + "/api/job/savejob";
-
-    //     let response = await fetch(url, {
-    //         method: "POST",
-    //         headers: {
-    //             'Access-Control-Allow-Origin': '*',
-    //             'Content-Type': 'application/json; charset=UTF-8'
-    //         },
-    //         body: JSON.stringify({
-    //             userid: user._id,
-    //             jobsid: jobId
-
-    //         }),
-    //     })
-    //     if (response.ok) {
-    //         response = await response.json();
-    //         console.log(response);
-
-    //     }
-
-    // }
     return (<>
         <Box className="jobItem"
             onClick={() => setshowJobDescription(data._id)}

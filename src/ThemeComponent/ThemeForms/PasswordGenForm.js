@@ -6,14 +6,13 @@ import { Formik, Field, Form } from "formik";
 import { PasswordGenFormValidationSchema } from "../../Validation/EmployerValidation";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
-import ShowMessageToastr from "../../ThemeComponent/Common/ShowMessageToastr";
 import BackButton from "../Common/BackButton";
 import Error from "../../ThemeComponent/Common/Error";
 
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import { useState } from "react";
 
-import { useDispatch } from "react-redux";
+import ThemeMessage from "../Common/ThemeMessage";
 const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenForm, setVerifyMobileForm }) => {
     const [sHPassword, setSHPassword] = useState(false);
     const [sHConfirmPassword, setSHConfirmPassword] = useState(false);
@@ -26,8 +25,9 @@ const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenF
         confirm_password: ""
     }
 
-    const dispatch = useDispatch();
     const handleSubmit = async (values) => {
+        console.log(email);
+
         document.getElementById("next").disabled = "true";
         let formData = new FormData();
         formData = {
@@ -55,10 +55,9 @@ const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenF
 
 
     return (<>
-
-        <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)}
-            message="Email Verification Link is send . Please verify the Email before going further "
-            messageType="success" />
+        <ThemeMessage open={showEmailVerifiedMessage} setOpen={
+            setShowEmailVerifiedMessage
+        } message="Email Verification Link is send . Please verify the Email before going further " type="success" />
 
         <BackButton GoBack={GoBack} />
         <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>

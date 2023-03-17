@@ -1,19 +1,19 @@
-import { StatesURL, EmployerCompanyInformationURL, UplaodImageURL } from "../../utils/ApiUrls";
+import { StatesURL, UplaodImageURL } from "../../utils/ApiUrls";
 import { postRequest, PostImageRequest, getRequest } from "../../utils/ApiRequests";
 
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { Box, Stack, TextField, Typography, MenuItem, Select } from "@mui/material";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import { companyInfoValidationSchema, companyInfoValidationSchema1, companyInfoValidationSchema2 } from "../../Validation/EmployerValidation";
 
-import { cities, ProfileType, CompanyType } from "../../utils/Data";
+import { CompanyType } from "../../utils/Data";
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
 import ButtonType3 from "../Common/ButtonType3";
 import BackButton from "../Common/BackButton";
-import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv, NextButton } from "../../utils/Theme";
+import { ThemeButtonType2, ThemeFInputDiv, NextButton } from "../../utils/Theme";
 
 import { useState, useRef, useEffect } from "react";
 import { Navigate } from 'react-router-dom';
@@ -27,21 +27,10 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const dispatch = useDispatch();
 
-    const companyImageRef = useRef();
-    const companyGSTRef = useRef();
-    const companyPanRef = useRef();
-
-    const [companyLogoImage, setCompanyLogoImage] = useState();
-    const [companyGST, setCompanyGST] = useState();
-    const [companyPan, setCompanyPan] = useState();
-
-    const [companyLogoError, setcompanyLogoError] = useState("");
-
     const [city, setCity] = useState(" ");
     const [state, setState] = useState(" ");
     const [CountryState, setCountryState] = useState([]);
     const [District, setDistrict] = useState([]);
-    const [profileType, setProfileType] = useState(" ");
     const [companyType, setCompanyType] = useState(localStorage.getItem("company_form_data")
         ? JSON.parse(localStorage.getItem("company_form_data"))['company_type'] : " ")
 
@@ -206,7 +195,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         }
 
         let response = await postRequest("https://backend.jobsyahan.com/api/employer/postemployer3", data);
-        // console.log(response);
         if (response.status == 1) {
             localStorage.setItem("formpage", 1);
             dispatch({ type: 'LOGIN', payload: response.data });
@@ -223,17 +211,13 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     }, [])
 
     const getDistrictByState = async (statefilter) => {
-        // console.log(statefilter);
         let response = await getRequest("https://backend.jobsyahan.com/api/map/districts?states=" + statefilter);
-        // console.log(response.data[0].districts);
         setDistrict(response.data[0].districts);
-        // console.log(response);
     }
 
     const getAddress = async (value) => {
         let response = await getRequest("https://backend.jobsyahan.com/api/map/autocompleteplaces?input=" + value);
         setAutoData(response.data);
-        // console.log(response.data);
     }
     return (<>
 
@@ -243,9 +227,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                 sx={{
                     height: "100vh",
                     background: "#FFFFFF",
-                    // backgroundImage: "url('../assets/g11.png')",
-                    // backgroundRepeat: " no-repeat",
-                    // backgroundPosition: "left 100px bottom 0px"
+
                 }}>
                 <Stack className="EmployerRegisterPageWrapper"
                     sx=
@@ -294,20 +276,11 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                             </Stack>
                         </Box>
 
-                        {/* <Box sx={{
-                            height: "31px",
-                            width: "352px",
-                            left: "148px",
-                            top: "266px",
-                            borderRadius: "0px",
-                            background: "#FFD5C9",
-                            position: "absolute"
-                        }}></Box> */}
+
                         <Box sx={{
                             width: { "lg": "50%", "md": "100%", "xs": "100%" }
                         }}>
                             <Box sx={{
-                                // width: {"lg":"763px","md":"700px"},
                                 maxWidth: "763px",
                                 minHeight: "153px",
                                 background: "#F8F8F8",
@@ -413,7 +386,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                             </Box>
                             <Box sx={{
                                 boxSizing: "border-box",
-                                // maxWidth: "865px",
                                 maxWidth: "865px",
                                 height: "647px",
                                 background: "#FFFFFF",
@@ -421,9 +393,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 borderRadius: "19px",
                                 position: "relative",
                                 top: "-10px",
-                                // top: "197px",
-                                // position: "absolute",
-                                // top: "197px",
                                 padding: "30px 50px",
                                 margin: "0 auto"
 
@@ -505,11 +474,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                 </ThemeFInputDiv>
 
                                                 <ThemeFInputDiv sx={{ width: "200px" }}>
-                                                    {/* <Box sx={{
-                                                    position: "absolute",
-                                                    top: "0px",
-                                                    background: "white"
-                                                }}> <CloseIcon></CloseIcon></Box> */}
+
                                                     <img id="companyLogo" width="100%" />
                                                 </ThemeFInputDiv>
 
@@ -557,10 +522,8 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                 <Box className="EmployerRegisterPage"
                     sx={{
                         height: "100vh",
-                        background: "#FFFFFF",
-                        // backgroundImage: "url('../assets/g12.png')",
-                        // backgroundRepeat: " no-repeat",
-                        // backgroundPosition: "left 100px bottom 0px"
+                        background: "#FFFFFF"
+
                     }}>
                     <Stack className="EmployerRegisterPageWrapper"
                         sx=
@@ -577,11 +540,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 display: { 'lg': "block", 'md': "none", 'xs': 'none' }
                             }}>
                                 <Stack sx={{
-                                    // position: "absolute",
-                                    // top: "111px",
-                                    // left: "152px",
-                                    // width: "573px",
-                                    // zIndex: "78798"
+
                                     margin: "50px",
                                     direction: "row",
                                     gap: "100px",
@@ -608,15 +567,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                         src={window.location.origin + "/assets/g12.png"} alt="G12" />
                                 </Stack>
                             </Box>
-                            {/* <Box sx={{
-                                height: "31px",
-                                width: "170px",
-                                left: "145px",
-                                top: "167px",
-                                borderRadius: "0px",
-                                background: "#FFD5C9",
-                                position: "absolute"
-                            }}></Box> */}
+
                             <Box
                                 sx={{
                                     width: { "lg": "50%", "md": "100%", "xs": "100%" }
@@ -735,8 +686,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     background: "#FFFFFF",
                                     border: "1px solid #EDEDED",
                                     borderRadius: "19px",
-                                    // position: "absolute",
-                                    // top: "197px",
+
                                     padding: "30px 50px",
                                     position: "relative",
                                     top: '-10px',
@@ -858,28 +808,13 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                         }}
                                         src={window.location.origin + "/assets/g13.png"} alt="G13"></img>
                                 </Stack>
-                                {/* <Box sx={{
-                                position: "absolute",
-                                width: "381px",
-                                height: "31px",
-                                left: "271px",
-                                top: "148px",
-                                background: "#FFD5C9"
-                            }}></Box> */}
+
 
                                 <Stack sx={{
-                                    // margin: "50px",
                                     direction: "row",
                                     marginTop: "130px",
                                     alignItems: "flex-end"
-                                    // margin: "130px 50px 50px 50px",
-                                    // position: "relative",
-                                    // right: "-223px"
-                                    // position: "absolute",
-                                    // top: "880px",
-                                    // left: "223px",
-                                    // width: "618px",
-                                    // zIndex: "78798"
+
 
                                 }}>
                                     <Typography component="box" sx={{
@@ -897,14 +832,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                         width="600px"
                                         src={window.location.origin + "/assets/g52.png"} alt="g52" />
                                 </Stack>
-                                {/* <Box sx={{
-                                position: "absolute",
-                                width: "381px",
-                                height: "31px",
-                                left: "271px",
-                                top: "148px",
-                                background: "#FFD5C9"
-                            }}></Box> */}
+
 
                             </Stack>
 
@@ -1020,12 +948,10 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 </Box>
                                 <Box sx={{
                                     boxSizing: "border-box",
-                                    // maxWidth: "865px",
                                     background: "#FFFFFF",
                                     border: "1px solid #EDEDED",
                                     borderRadius: "19px",
-                                    // position: "absolute",
-                                    // top: "197px",
+
                                     padding: "30px 50px",
                                     position: "relative",
                                     top: '-10px',
@@ -1052,7 +978,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                                 label="Age"
                                                                 onChange={(event) => {
                                                                     let stateValue = event.target.value;
-                                                                    // console.log(event.target.value);
                                                                     setState(stateValue);
                                                                     setFieldValue("state", event.target.value);
                                                                     getDistrictByState(event.target.value);

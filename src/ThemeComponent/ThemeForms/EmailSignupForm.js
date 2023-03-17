@@ -14,9 +14,6 @@ import { socialLogin } from "../../utils/Data";
 
 import { LoginSocialGoogle } from 'reactjs-social-login';
 
-import { useSelector } from "react-redux";
-
-import { useEffect } from "react";
 const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenForm, isEmailVerified }) => {
 
 
@@ -102,14 +99,6 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                                     </SocialBox>
 
                                 </LoginSocialGoogle>
-
-                                {/* <SocialBox>
-                                    <img src={socialLogin[1].image_url} alt={socialLogin[1].value} />
-                                </SocialBox>
-
-                                <SocialBox>
-                                    <img src={socialLogin[2].image_url} alt={socialLogin[2].value} />
-                                </SocialBox> */}
 
                             </Stack>
 

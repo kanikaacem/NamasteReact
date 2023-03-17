@@ -2,9 +2,9 @@ import { Box, Stack, Typography } from "@mui/material";
 
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-const DashboardAccountSetting = ({ userName, userEmail, userLastLogin, userType }) => {
+const DashboardAccountSetting = ({ userName, userEmail, userLastLogin }) => {
     const dispatch = useDispatch();
 
     return (<>
@@ -38,20 +38,13 @@ const DashboardAccountSetting = ({ userName, userEmail, userLastLogin, userType 
             <Stack gap={2} direction="column" sx={{ background: "#FFFFFF", padding: "20px" }}>
 
                 <Stack direction="row" gap={2} sx={{ cursor: "pointer" }}
-                // onClick={() => window.location.href = window.location.origin + '/employer-dashboard/account-setting'}
                 >
                     <PersonIcon />
                     <Typography component="div" sx={{ fontSize: "14px" }}>
                         Account Setting
                     </Typography>
 
-                    {/* <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                Basic Postings : Unlimited
-                                            </Typography>
 
-                                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                Premium Posting : {user && user.employer_plan} credits
-                                            </Typography> */}
                 </Stack>
 
                 <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => {

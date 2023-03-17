@@ -1,35 +1,22 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { PostAnswerCandidate, CandidateLoginURL } from "../../utils/ApiUrls";
+import { PostAnswerCandidate, BlueCollarProfileCompleted } from "../../utils/ApiUrls";
 
-import { Stack, TextField, FormControlLabel, Radio, FormControl, Box, RadioGroup, Select as SelectField, MenuItem, Select, Typography, Autocomplete } from "@mui/material";
+import { Stack, TextField, Box, Select as SelectField, MenuItem, Select, Typography, Autocomplete } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { ThemeButtonType2, ThemeFInputDiv, ThemeButtonType3 } from "../../utils/Theme";
 import ThemeLabel from "./ThemeLabel";
-import Error from '../Common/Error';
 
-import HeaderSec from "../Common/HeaderSec";
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { useState } from "react";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
+import ThemeMessage from "../Common/ThemeMessage";
 const PersonalInformation2 = ({ questions }) => {
 
-    // const [date, setDate] = useState(null);
-    // const [qualification, setQualification] = useState(" ");
-    // const [gender, setGender] = useState("");
-    // const [martialStatus, setMaritalStatus] = useState(" ");
-
-    // const [workArea, setWorkArea] = useState(" ");
-    // const [workExperience, setWorkExperience] = useState(" ");
-    // const [previouslyWorked, setPreviouslyWorked] = useState(" ");
-    // const [nestedValue,setNestedValue] = useState(false);
-
-    // const handleSubmit = async (values, { resetForm }) => {
-    //     console.log(values);
-    // }
-    const dispatch = useDispatch();
-    const isLoggedIn = useSelector(state => state.isLoggedIn);
+    const [date, setDate] = useState(null);
     const JobType = window.location.pathname.split('/')[1];
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
     const FormSubmit = async (question, ans) => {
 
@@ -40,12 +27,6 @@ const PersonalInformation2 = ({ questions }) => {
             jobtype: JobType
 
         }
-        // FormData[question] = ans;
-        console.log(FormData);
-        // if(localStorage.getItem("questions") == null)
-        //     localStorage.setItem("questions", JSON.stringify(FormData));
-        // else 
-        //     localStorage.setItem("questions",localStorage.getItem("questions")+JSON.stringify(FormData))
 
         let response = await postRequest(PostAnswerCandidate, FormData);
         if (response.status === '1') {
@@ -55,40 +36,21 @@ const PersonalInformation2 = ({ questions }) => {
     }
 
     const LoginUser = async () => {
-        let CandidateLoginForm = new FormData();
-        CandidateLoginForm = {
-            email: localStorage.getItem("useremail"),
-            password: localStorage.getItem("password")
-        }
-
-        let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
-        if (response.status == '1') {
-            localStorage.setItem("auth_token", response.token);
-            // console.log(response)
-            // if (response.data.isemailverified && response.data.profilecompleted >= 50)
-            //     dispatch({ type: 'LOGIN', payload: response.data });
-            if (response.data.isemailverified)
-                dispatch({ type: 'LOGIN', payload: response.data });
-            else
-                alert("Please fill all the required fields");
+        let response = await postRequest(BlueCollarProfileCompleted, {});
+        console.log(response);
+        if (response.status == 1) {
+            localStorage.setItem("action", "login");
+            window.location.href = window.location.origin + "/candidate-dashboard";
         }
 
     }
     return (<>
-        {/* {console.log(questions)} */}
-        {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>}
+        <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message="Candidate is registered Successfully." type="success" />
 
         <Box className="PersonalInformation2" sx={{
             background: "FAFAFA"
 
         }}>
-
-            <Box sx={{ padding: "20px" }}>
-                <HeaderSec
-                    color="black"
-                    border="2px solid #8E8E8E" />
-            </Box>
-
             <Stack direction="row" gap={2}
                 sx={{
                     padding: { "lg": "50px 80px", "md": "20px", "xs": "20px" },
@@ -158,7 +120,6 @@ const PersonalInformation2 = ({ questions }) => {
                     width: { "lg": "50%", "md": "100%", "xs": "100%" }
                 }}>
                     <Box sx={{
-                        // width: {"lg":"763px","md":"700px"},
                         maxWidth: "763px",
                         background: "#F8F8F8",
                         border: "1px solid #EAEAEA",
@@ -197,12 +158,9 @@ const PersonalInformation2 = ({ questions }) => {
 
                     }}>
                         <Formik
-                            // initialValues={initialData}
-                            // enableReinitialize
-                            // initialValues={props.initialValues}
+
                             initialValues={{}}
-                        // validationSchema={ProfessionalDetailSchema}
-                        // onSubmit={handleSubmit}
+
                         >
                             {({ errors, touched, values, setFieldValue }) => (
                                 <Form className="ProfessionalDetailForm">
@@ -217,14 +175,30 @@ const PersonalInformation2 = ({ questions }) => {
                                                                 <Field
                                                                     onKeyUp={(event) => FormSubmit(item.questiontag, event.target.value)
                                                                     }
-                                                                    // error={errors.name && touched.name}
                                                                     as={TextField}
                                                                     id={item.questiontag}
                                                                     placeholder={item.question} type="text" name={item.questiontag} fullWidth />
-                                                                {/* {errors.job_type && touched.job_type && <Error text={errors.job_type} />} */}
 
                                                             </>
 
+                                                        }
+                                                        {
+                                                            item.questiontype === "date" && <>
+                                                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                                    <DatePicker
+                                                                        id="date_of_birth"
+                                                                        value={date}
+                                                                        onChange={(newValue) => {
+                                                                            setDate(newValue);
+                                                                            FormSubmit(item.questiontag, new Date(newValue))
+                                                                        }}
+                                                                        disableFuture={true}
+                                                                        renderInput={(params) => <TextField
+
+                                                                            {...params} />}
+                                                                    />
+                                                                </LocalizationProvider>
+                                                            </>
                                                         }
                                                         {
                                                             item.questiontype === "dropdown" && <>
@@ -255,7 +229,6 @@ const PersonalInformation2 = ({ questions }) => {
                                                                     <ThemeLabel LableFor={item.questionsnested[0].questiontag} LableText={item.questionsnested[0].question} />
 
                                                                     <Field
-                                                                        // error={errors.name && touched.name}
                                                                         as={TextField}
                                                                         id={item.questionsnested[0].questiontag}
                                                                         placeholder={item.questionsnested[0].question} type="text" name={item.questionsnested[0].questiontag} fullWidth />
@@ -266,26 +239,49 @@ const PersonalInformation2 = ({ questions }) => {
                                                         {
                                                             item.questiontype === "radio" && <>
                                                                 {
-                                                                    item.questionoption.map((option) => {
-                                                                        return (
-                                                                            <>
-                                                                                <Stack direction="row" gap={2} alignItems="center">
-                                                                                    <input
-                                                                                        onChange={(event) => {
-                                                                                            // console.log(event.target)
-                                                                                            // setFieldValue(item.questiontag, event.target.value)
-                                                                                            FormSubmit(item.questiontag, event.target.value)
+                                                                    <Stack direction="row" >
+                                                                        {
+                                                                            item.questionoption.map((option) => {
+                                                                                return (
+                                                                                    <>
+                                                                                        <Stack direction="row" gap={2} alignItems="center">
+                                                                                            <input
+                                                                                                onChange={(event) => {
+                                                                                                    if (event.target.value === item.questionopentime && item.questionsnested.length > 0) {
+                                                                                                        document.getElementById(item.questionsnested[0].questiontag).style.display = "block"
+                                                                                                    }
+                                                                                                    FormSubmit(item.questiontag, event.target.value)
 
-                                                                                        }}
-                                                                                        type="radio" id={item.questiontag} name={item.questiontag} value={option} />
-                                                                                    <label for={item.questiontag}>{option}</label><br></br>
-                                                                                </Stack>
+                                                                                                }}
+                                                                                                type="radio" id={item.questiontag} name={item.questiontag} value={option} />
+                                                                                            <label for={item.questiontag}>{option}</label><br></br>
+                                                                                        </Stack>
 
-                                                                            </>
-                                                                        )
-                                                                    })
+                                                                                    </>
+                                                                                )
+                                                                            })
+                                                                        }
+                                                                    </Stack>
+
                                                                 }
+                                                                <div >
+                                                                    {item.questionsnested.length > 0 &&
+                                                                        <Box
+                                                                            id={item.questionsnested[0].questiontag}
+                                                                            style={{ display: 'none' }}>
+                                                                            <ThemeLabel LableFor={item.questionsnested[0].questiontag} LableText={item.questionsnested[0].question} />
+
+                                                                            <Field
+                                                                                onKeyUp={(event) => FormSubmit(item.questionsnested[0].questiontag, event.target.value)}
+                                                                                as={TextField}
+                                                                                placeholder={item.questionsnested[0].question} type="text" name={item.questionsnested[0].questiontag} fullWidth />
+                                                                        </Box>}
+                                                                </div>
+
+
                                                             </>
+
+
                                                         }
 
                                                     </ThemeFInputDiv>

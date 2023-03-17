@@ -1,24 +1,11 @@
-import { postRequest } from "../../utils/ApiRequests";
-import { EmployerLoginURL, ReSendEmailVerificationURL } from "../../utils/ApiUrls";
-import { Avatar, Box, Badge, Typography, List, ListItem, ListItemIcon, ListItemText, Stack, Button, TextField } from "@mui/material";
+
+import { Box, Typography, Stack, Button, TextField } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { contactUsValidationSchema } from "../../Validation/EmployerValidation";
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
-import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
-
-import { NavLink, Link, Outlet } from "react-router-dom";
 
 import { useState } from "react";
-
-
-import PersonIcon from '@mui/icons-material/Person';
-import LogoutIcon from '@mui/icons-material/Logout';
-
-import WorkIcon from '@mui/icons-material/Work';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 
 import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
 import Error from "../../ThemeComponent/Common/Error";
@@ -205,7 +192,6 @@ const ContactUs = () => {
                     }}
                 >
                     <Stack gap={2} sx={{
-                        // maxWidth: { 'lg': "449px", 'md': '70%', 'xs': '70%' },
                         width: "60%",
                         background: "#FBF8FF",
                         boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
@@ -254,7 +240,10 @@ const ContactUs = () => {
                                                     multiline
                                                     rows={5}
                                                     maxRows={5}
-                                                    onChange={(event) => setFieldValue("message", event.target.value)}
+                                                    onChange={(event) => {
+                                                        setFieldValue("message", event.target.value);
+                                                        SetMessage(event.target.value)
+                                                    }}
                                                 />
                                             </Box>
 

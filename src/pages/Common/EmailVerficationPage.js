@@ -21,7 +21,6 @@ const EmployerVerficationPage = () => {
         }
         let response = await getRequest(api_url);
 
-        // console.log(response.status)
         if (response.status == '1') {
             window.location.href = redirect_url;
         }

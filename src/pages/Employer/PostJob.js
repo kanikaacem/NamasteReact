@@ -2,10 +2,9 @@ import { postRequest, getRequest } from "../../utils/ApiRequests";
 import { StatesURL, getJobTypeURL, getSKillOnJobType, PostJob1, PostJob2 } from "../../utils/ApiUrls";
 
 import {
-    Box, Stack, TextField, Checkbox, Select as SelectField,
-    MenuItem, Snackbar, IconButton, Alert, Typography, FormControlLabel,
-    Radio, RadioGroup, FormControl, Input,
-    ListItemText
+    Box, Stack, TextField, Select as SelectField,
+    MenuItem, Typography, FormControlLabel,
+    Radio, RadioGroup, FormControl
 } from '@mui/material';
 
 import ClickAwayListener from '@mui/base/ClickAwayListener';
@@ -18,18 +17,15 @@ import { Formik, Field, Form } from "formik";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 
-import { WithContext as ReactTags } from 'react-tag-input';
 import { DefaultEditor } from 'react-simple-wysiwyg';
-import { useSelector } from 'react-redux';
 
 import { useState, useEffect } from "react";
 
-import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import { postJobValidationSchema, postJobSchema2 } from "../../Validation/PostJobValidation";
 import {
     CandidateEducation,
-    Experience, Skills, JobType, AssociationType,
-    PaymentType, WorkingDays, WorkingShift, SalaryType, SalaryCTC, EducationType,
+    AssociationType,
+    WorkingDays, WorkingShift, SalaryType, EducationType,
     Proficiency,
     ExtraBenefitsData,
     WeeklyOffData,
@@ -38,41 +34,35 @@ import {
     JobWorkingPlaceData
 } from "../../utils/Data";
 
-import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv, NextButton } from "../../utils/Theme";
+import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 
 
 import Error from '../../ThemeComponent/Common/Error';
 import ThemeLabel from '../../ThemeComponent/ThemeForms/ThemeLabel';
 import Loader from "../Common/Loader";
 import BackButton from "../../ThemeComponent/Common/BackButton";
+import CurrencyFormat from 'react-currency-format';
 
-
+import { useNavigate } from "react-router-dom";
 const PostJob = () => {
     const [postJobStep, setPostJobStep] = useState(1);
-    const user = localStorage.user && JSON.parse(localStorage.user);
 
     const [showLoader, setShowLoader] = useState(false);
 
     const [city, setCity] = useState(" ");
     const [selectedOptions, setSelectedOptions] = useState([]);
-    const [formSubmitted, setFormSubmitted] = useState(localStorage.getItem("formSubmitted") ? localStorage.getItem("formSubmitted") : false);
     const [jobType, setJobType] = useState(" ");
     const [associationType, setAssociationType] = useState(" ");
     const [industryType, setIndustryType] = useState(" ");
-    const [experience, setExperience] = useState(" ");
-    const [jobWorkingType, setJobWorkingType] = useState(" ");
+
     const [workShift, setWorkShift] = useState(" ");
-    const [paymentType, setPaymentType] = useState(" ");
-    const [startingTime, setStartingTime] = useState(" ");
-    const [endingTime, setEndingTime] = useState(" ");
+    const [startingTime, setStartingTime] = useState(null);
+    const [endingTime, setEndingTime] = useState(null);
 
     const [JobWorkingDays, setJobWorkingDays] = useState(" ");
     const [JobWorkingPlace, setJobWorkingPlace] = useState(" ");
 
     const [salaryType, setSalaryType] = useState(" ");
-    const [satStartTime, setSatStartTime] = useState("");
-    const [satEndTime, setSatEndTime] = useState(" ");
-    const [CTCSalary, setCTCSalary] = useState(" ");
 
     const [state, setState] = useState(" ");
     const [companyAddress, setCompanyAddress] = useState("");
@@ -80,19 +70,11 @@ const PostJob = () => {
     const [CountryState, setCountryState] = useState([]);
     const [District, setDistrict] = useState([]);
     const [menubar, setMenuBar] = useState(false);
-    const [companyName, setCompanyName] = useState("");
-    const [salary, setSalary] = useState("");
     const [extraBenefits, setExtraBenefits] = useState("");
-    const [jobDescription, setJobDescription] = useState("");
-    const [jobPlace, setJobPlace] = useState("");
-    const [jobTitle, setJobTitle] = useState("");
-    const [responsibilty, setResponsibilty] = useState("");
-    const [SKill, setSKill] = useState(" ");
-    const [weeklyOff, setWeeklyOff] = useState("");
+
     const [jobTypeData, setJobTypeData] = useState([]);
     const [industryTypeData, setIndustryData] = useState([]);
     const [industryTypeCollection, setIndustryTypeCollection] = useState([]);
-    const [extraBenefitsData, setExtraBenefitsData] = useState(" ");
     /* Next Form */
     const [minExp, setMinExp] = useState(" ");
     const [maxExp, setMaxExp] = useState(" ");
@@ -102,14 +84,10 @@ const PostJob = () => {
     const [localLanguageData, setLocalLanguageData] = useState([]);
 
     const [educationType, setEducationType] = useState(" ");
-    const [educationDegree, setEducationDegree] = useState(" ");
     const [perferredDegree, setPerferredDegree] = useState(" ");
-    const [hindiReq, setHindiReq] = useState(" ");
-    const [englishReq, setEnglishReq] = useState(" ");
     const [gender, setGender] = useState("");
 
-    const [jobInformation, setJobInformation] = useState({});
-
+    const [salaryDisclosed, setSalaryDisclosed] = useState(false);
 
     const animatedComponents = makeAnimated();
     const defaultValue = {
@@ -127,19 +105,18 @@ const PostJob = () => {
         starting_time: "",
         ending_time: "",
         salary_type: "",
-        salary: "",
+        salary_disclosed: salaryDisclosed,
+        max_salary: "",
+        min_salary: "",
         weekly_off: "",
         state: "",
         city: "",
         company_address: "",
-        extra_benefits: ""
+        extra_benefits: "",
+        vacancy: ""
     }
 
     const defaultValue2 = {
-        minAge: "",
-        maxAge: "",
-        minExp: "",
-        maxExp: "",
         education_type: "",
         education_degree: "",
         perferred_degree: "",
@@ -149,85 +126,107 @@ const PostJob = () => {
         english_required: ""
 
     }
+    const navigate = useNavigate();
+    const handleSubmit1 = async (values, { setFieldError }) => {
+        if (parseInt(values.min_salary) > parseInt(values.max_salary)) {
+            setFieldError("max_salary", "Min Salary should be not greater than Max Salary")
 
-    const handleClose = (event) => {
-        setFormSubmitted(false);
-        localStorage.setItem("formSubmitted", "")
-    };
-
-    const handleSubmit1 = async (values, { resetForm }) => {
-        setShowLoader(true);
-        let formData = new FormData();
-        formData = {
-            company_name: values.company_name,
-            title: values.job_title,
-            jobtype: values.job_type,
-            skills: values.skills.split(','),
-            industrytype: values.industry_type,
-            associationtype: values.association_type,
-            jobplace: values.job_place,
-            job_place: values.job_place,
-            jobresponsibilty: values.responsibilites,
-            shortdescription: values.job_description,
-            workingdays: [values.working_days],
-            Workshifttiming: {
-                startting_time: values.starting_time,
-                leaving_time: values.ending_time
-            },
-            salary: {
-                saltype: values.salary_type,
-                salary: values.ctc_salary.trim()
-            },
-            weekly_off: values.weekly_off.split(","),
-            location_state: values.state,
-            city: [
-                values.city
-            ],
-            company_address: values.company_address,
-            extrabenefits: values.extra_benefits
         }
-        let response = await postRequest(PostJob1, formData);
-        if (response.status == '1') {
-            console.log(response);
-            localStorage.setItem("post_id", response.data._id);
+        else {
+
+            setShowLoader(true);
+            let formData = new FormData();
+            formData = {
+                company_name: values.company_name,
+                title: values.job_title,
+                jobtype: values.job_type,
+                skills: values.skills.split(','),
+                industrytype: values.industry_type,
+                associationtype: values.association_type,
+                jobplace: values.job_place,
+                job_place: values.job_place,
+                jobresponsibilty: values.responsibilites,
+                shortdescription: values.job_description,
+                workingdays: [values.working_days],
+                Workshifttiming: {
+                    startting_time: values.starting_time,
+                    leaving_time: values.ending_time
+                },
+                salary: {
+                    salarytype: values.salary_type,
+                    minimumSalary: values.min_salary,
+                    maximumSalary: values.max_salary,
+                    currency: "INR",
+                    hideSalary: values.salary_disclosed
+                },
+                weekly_off: values.weekly_off.split(","),
+                location_state: values.state,
+                city: [
+                    values.city
+                ],
+                company_address: values.company_address,
+                extrabenefits: values.extra_benefits,
+                vacancy: values.vacancy
+            }
+            let response = await postRequest(PostJob1, formData);
+            if (response.status == '1') {
+                console.log(response);
+                localStorage.setItem("post_id", response.data._id);
+                setShowLoader(false);
+                setPostJobStep(2);
+            }
             setShowLoader(false);
             setPostJobStep(2);
+            window.scrollTo({ top: '0', behaviour: 'smooth' })
+
         }
-        // setShowLoader(false);
-        // setPostJobStep(2);
+
+
+
+
     }
 
-    const handleSubmit2 = async (values, { resetForm }) => {
-        console.log(values);
+    const handleSubmit2 = async (values, { setFieldError, resetForm }) => {
+        let isFormValid = true;
 
-        let formData = new FormData();
-        formData = {
-            _id: localStorage.getItem("post_id") ?
-                localStorage.getItem("post_id") : "",
-            candidate_experience: {
-                min_age: values.min_exp,
-                max_age: values.max_exp
-            },
-            candidateage: {
-                min_age: values.min_age,
-                max_age: values.max_age
-            },
-            educationtype: values.education_type,
-            educationdegree: values.education_degree,
-            prefereddegree: values.perferred_degree,
-            preferedgender: values.gender,
-            hindirequirement: values.hindi_required,
-            mandatorylocallanguage: values.mandatory_local_language,
-            englishrequirement: values.english_required
+        if (values.min_age > values.max_age) {
+            isFormValid = false;
+            setFieldError("max_age", "Max age should not be less than Min age.")
+        }
+        if (values.min_exp > values.max_exp) {
+            isFormValid = false;
+            setFieldError("max_exp", "Max exp should not be less than Min exp.")
         }
 
-        let response = await postRequest(PostJob2, formData);
-        if (response.status == '1') {
-            setFormSubmitted(true)
-            setPostJobStep(1);
-            localStorage.setItem('formSubmitted', true);
-            window.location.reload();
+        if (isFormValid) {
+            let formData = new FormData();
+            formData = {
+                _id: localStorage.getItem("post_id") ?
+                    localStorage.getItem("post_id") : "",
+                candidate_experience: {
+                    min_age: values.min_exp,
+                    max_age: values.max_exp
+                },
+                candidateage: {
+                    min_age: values.min_age,
+                    max_age: values.max_age
+                },
+                educationtype: values.education_type,
+                educationdegree: values.education_degree,
+                prefereddegree: values.perferred_degree,
+                preferedgender: values.gender,
+                hindirequirement: values.hindi_required,
+                mandatorylocallanguage: values.mandatory_local_language,
+                englishrequirement: values.english_required
+            }
+
+            let response = await postRequest(PostJob2, formData);
+            if (response.status == '1') {
+                navigate('/employer-dashboard', { state: { jobPosted: true } });
+            }
+
         }
+
     }
 
     useEffect(() => {
@@ -252,14 +251,13 @@ const PostJob = () => {
         getJobType();
         getLocalLanguage();
         getIndustryType();
+
+
     }, [])
 
     const getDistrictByState = async (statefilter) => {
-        // console.log(statefilter);
         let response = await getRequest("https://backend.jobsyahan.com/api/map/districts?states=" + statefilter);
-        // console.log(response.data[0].districts);
         setDistrict(response.data[0].districts.sort());
-        // console.log(response);
     }
 
     const getIndustryTypeByJobType = async (jobTypeFilter) => {
@@ -267,33 +265,19 @@ const PostJob = () => {
         let response = await getRequest(getSKillOnJobType + "=" + jobTypeFilter);
 
         response.data.map(item => {
-            // {item[0].toString()}
             SkillsData.push({
                 label: item,
                 value: item
             })
         });
-        // console.log(SkillsData);
         setIndustryData(SkillsData.sort());
     }
     const getAddress = async (value) => {
         let response = await getRequest("https://backend.jobsyahan.com/api/map/autocompleteplaces?input=" + value);
         setAutoData(response.data);
-
-        // console.log(response.data);
     }
     return (<>
 
-        <Snackbar
-            open={formSubmitted}
-            autoHideDuration={6000} onClose={handleClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        >
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                Your Job is saved . It will be publised after reviewing.
-            </Alert>
-
-        </Snackbar >
         <Loader showLoader={showLoader} />
 
         <Box className="PostJobPage"
@@ -305,9 +289,7 @@ const PostJob = () => {
                 display: (postJobStep == 1) ? "block" : "none",
 
             }}>
-            {/* < HeaderSec
-                    color="black"
-                    border="2px solid #8E8E8E" /> */}
+
             <Stack direction="row"
                 sx={{
                     gap: { "lg": "50px", "md": "0px", "xs": "0px" },
@@ -350,15 +332,7 @@ const PostJob = () => {
                         </Typography>
                         <img src={window.location.origin + "/assets/g52.png"} alt="g52" />
                     </Stack>
-                    {/* <Box sx={{
-                            height: "31px",
-                            width: "352px",
-                            left: "148px",
-                            top: "266px",
-                            borderRadius: "0px",
-                            background: "#FFD5C9",
-                            position: "absolute"
-                        }}></Box> */}
+
                 </Stack>
                 <Box sx={{ width: { "lg": "50%", "md": "100%", "xs": "100%" } }}>
 
@@ -752,33 +726,39 @@ const PostJob = () => {
                                             <Stack direction="row" gap={5}>
                                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                                                     <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                        <Box sx={{
-                                                            margin: "15px 0px"
-                                                        }}> Starting Time </Box>
+                                                        <Box > Starting Time </Box>
                                                         {/* <ThemeLabel LableFor="starting_time" sx={{ fontSize: "16px !important" }} LableText="Starting Time" /> */}
                                                         <TimePicker
+
                                                             value={startingTime}
                                                             onChange={(newValue) => {
                                                                 setStartingTime(new Date(newValue).getTime())
                                                                 setFieldValue("starting_time", new Date(newValue).getTime())
                                                             }}
-                                                            renderInput={(params) => <TextField {...params} />}
+                                                            inputProps={{
+                                                                placeholder: "Starting Time"
+                                                            }}
+                                                            renderInput={(params) =>
+                                                                <TextField
+                                                                    {...params} />
+                                                            }
                                                         />
                                                         {errors.starting_time && touched.starting_time && <Error text={errors.starting_time} />}
 
                                                     </ThemeFInputDiv>
                                                     <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                        <Box sx={{
-                                                            margin: "15px 0px"
-                                                        }}>Ending Time</Box>
-                                                        {/* <ThemeLabel LableFor="ending_time" LableText="Ending Time" sx={{ fontSize: "16px !important" }} /> */}
+                                                        <Box >Ending Time</Box>
                                                         <TimePicker
                                                             value={endingTime}
                                                             onChange={(newValue) => {
                                                                 setEndingTime(new Date(newValue).getTime())
                                                                 setFieldValue("ending_time", new Date(newValue).getTime())
                                                             }}
-                                                            renderInput={(params) => <TextField {...params} />}
+                                                            inputProps={{
+                                                                placeholder: "Ending Time"
+                                                            }}
+                                                            renderInput={(params) => <TextField
+                                                                {...params} />}
                                                         />
 
                                                         {errors.ending_time && touched.ending_time && <Error text={errors.ending_time} />}
@@ -817,43 +797,61 @@ const PostJob = () => {
                                                 )}
                                             </SelectField>
                                             {
-                                                (salaryType === "Per Day" || salaryType === "Per Hour") && <>
-                                                    <Field
-                                                        error={errors.salary && touched.salary}
-                                                        as={TextField}
-                                                        id="ctc_salary"
-                                                        placeholder="Enter Salary " type="text" name="ctc_salary" fullWidth />
+                                                (salaryType === "Per Day" || salaryType === "Per Hour" || salaryType === "Monthly" || salaryType === "Yearly") && <>
+                                                    <Stack direction="row" justifyContent="space-between">
+                                                        <ThemeFInputDiv sx={{ width: "50%" }}>
+                                                            <Box > Min. Salary</Box>
+
+                                                            <CurrencyFormat style={{
+                                                                fontSize: "20px",
+                                                                outline: "none",
+                                                                width: "92%",
+                                                                border: "1px solid #EAEAEA",
+                                                                borderRadius: "12px",
+                                                                padding: "15px 10px"
+                                                            }}
+                                                                hintText="Enter Min. Salary"
+                                                                thousandSeparator={true} prefix={'₹'}
+                                                                onChange={(event) => {
+
+                                                                    setFieldValue("min_salary", event.target.value.slice(1).replaceAll(",", ""))
+                                                                }} />
+                                                        </ThemeFInputDiv>
+
+
+                                                        <ThemeFInputDiv sx={{ width: "50%" }}>
+                                                            <Box > Max. Salary</Box>
+
+                                                            <CurrencyFormat style={{
+                                                                fontSize: "20px",
+                                                                outline: "none",
+                                                                width: "92%",
+                                                                border: "1px solid #EAEAEA",
+                                                                borderRadius: "12px",
+                                                                padding: "15px 10px"
+                                                            }}
+                                                                onChange={(event) => {
+                                                                    setFieldValue("max_salary", event.target.value.slice(1).replaceAll(",", ""))
+                                                                }}
+                                                                hintText="Enter Max. Salary"
+                                                                thousandSeparator={true} prefix={'₹'} />
+                                                        </ThemeFInputDiv>
+
+
+                                                    </Stack>
+                                                    <Stack direction="row" gap={2}>
+                                                        <input type="checkbox" name="salary_disclosed" onChange={() => {
+                                                            setSalaryDisclosed(!salaryDisclosed)
+                                                            setFieldValue("salary_disclosed", !salaryDisclosed)
+                                                        }} />
+                                                        <Box >Salary  Not Disclosed</Box>
+                                                    </Stack>
+
+
                                                 </>
                                             }
 
-                                            {(salaryType === "Monthly" || salaryType === "Yearly") &&
-                                                <SelectField
-                                                    labelId="demo-simple-select-label"
-                                                    name="association_type"
-                                                    value={CTCSalary}
-                                                    label="role"
-                                                    onChange={(event) => {
-                                                        setCTCSalary(event.target.value);
-                                                        setFieldValue("ctc_salary", event.target.value);
-                                                    }}
-                                                    sx={{
-                                                        background: " #FFFFFF",
-                                                        border: "1px solid #EAEAEA",
-                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                        borderRadius: "7px",
-                                                        width: "101%",
-                                                        fontSize: "16px",
-                                                        fontamily: 'Montserrat',
-                                                        padding: "8px"
-                                                    }}
-                                                >
-                                                    <MenuItem value=" ">Select CTC Salary</MenuItem>
-                                                    {SalaryCTC.map((item) =>
-                                                        <MenuItem value={item.value} key={item.id}>{item.value}</MenuItem>
-                                                    )}
-                                                </SelectField>
-                                            }
-                                            {errors.salary && touched.salary && <Error text={errors.salary} />}
+                                            {errors.max_salary && touched.max_salary && <Error text={errors.max_salary} />}
                                         </ThemeFInputDiv>
 
                                         <ThemeFInputDiv>
@@ -1028,6 +1026,16 @@ const PostJob = () => {
                                             {errors.extra_benefits && touched.extra_benefits && <Error text={errors.extra_benefits} />}
                                         </ThemeFInputDiv>
 
+                                        <ThemeFInputDiv>
+                                            <ThemeLabel LableFor="vacancy" LableText="Vacancy*" />
+                                            <Field
+                                                error={errors.vacancy && touched.vacancy}
+                                                as={TextField}
+                                                id="vacancy"
+                                                placeholder="Vacancy" type="text" name="vacancy" fullWidth />
+                                            {errors.vacancy && touched.vacancy && <Error text={errors.vacancy} />}
+                                        </ThemeFInputDiv>
+
                                     </ThemeFInputDiv>
 
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
@@ -1051,8 +1059,6 @@ const PostJob = () => {
                 visibility: (postJobStep == 2) ? "visible" : "hidden",
                 height: (postJobStep == 2) ? "fit-content" : "0px",
                 display: (postJobStep == 2) ? "block" : "none",
-                // height:;
-                // padding: 0px;
             }}>
             <Stack className="PosrJobWrapper"
                 sx=
@@ -1060,9 +1066,7 @@ const PostJob = () => {
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
-                {/* <HeaderSec
-                        color="black"
-                        border="2px solid #8E8E8E" /> */}
+
                 <Stack direction="row" gap={2} sx={{ position: "relative" }}>
                     <Box sx={{
                         width: { "lg": "35%", "md": "0px", "xs": "0px" },
@@ -1098,15 +1102,7 @@ const PostJob = () => {
 
 
                         </Stack>
-                        {/* <Box sx={{
-                                height: "31px",
-                                width: "352px",
-                                left: "148px",
-                                top: "266px",
-                                borderRadius: "0px",
-                                background: "#FFD5C9",
-                                position: "absolute"
-                            }}></Box> */}
+
                     </Box>
 
                     <Box sx={{ width: { "lg": "50%", "md": "100%", "xs": "100%" } }}>
@@ -1258,7 +1254,6 @@ const PostJob = () => {
                                                                 <MenuItem value={item} key={item}>{item}</MenuItem>
                                                             )}
                                                         </SelectField>
-                                                        {errors.min_exp && touched.min_exp && <Error text={errors.min_exp} />}
                                                     </Box>
 
                                                     <Box sx={{ width: "50%" }}>
@@ -1291,13 +1286,9 @@ const PostJob = () => {
                                                                 <MenuItem value={item} key={item}>{item}</MenuItem>
                                                             )}
                                                         </SelectField>
-                                                        {errors.max_exp && touched.max_exp && <Error text={errors.max_exp} />}
                                                     </Box>
-
-
-
-
                                                 </Stack>
+                                                {errors.max_exp && touched.max_exp && <Error text={errors.max_exp} />}
 
                                             </ThemeFInputDiv>
 
@@ -1335,7 +1326,6 @@ const PostJob = () => {
                                                                 <MenuItem value={item} key={item}>{item}</MenuItem>
                                                             )}
                                                         </SelectField>
-                                                        {errors.min_age && touched.min_age && <Error text={errors.min_age} />}
                                                     </Box>
 
                                                     <Box sx={{ width: "50%" }}>
@@ -1368,15 +1358,10 @@ const PostJob = () => {
                                                                 <MenuItem value={item} key={item}>{item}</MenuItem>
                                                             )}
                                                         </SelectField>
-                                                        {errors.max_age && touched.max_age && <Error text={errors.max_age} />}
                                                     </Box>
-
-
-
-
                                                 </Stack>
 
-                                                {errors.age && touched.age && <Error text={errors.age} />}
+                                                {errors.max_age && touched.max_age && <Error text={errors.max_age} />}
                                             </ThemeFInputDiv>
 
                                             <Stack direction="row" gap={2}

@@ -1,56 +1,52 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { CandidateLoginURL, ReSendCandidateEmailVerificationURL } from "../../utils/ApiUrls";
 
-import { Box, TextField, Typography, Container, Stack, Button } from "@mui/material";
+import { Box, TextField, Typography, Stack } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom'
 import { Navigate } from 'react-router-dom';
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import { candidateLoginValidationSchema } from "../../Validation/CandidateValidation";
-import { socialLogin } from "../../utils/Data";
 
-import ShowMessageToastr from "../../ThemeComponent/Common/ShowMessageToastr";
 import Error from "../../ThemeComponent/Common/Error";
-import { SocialBox, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
+import { ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
 
-import { useState, useEffect } from "react";
-
+import { useState, } from "react";
+import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 const CandidateLogin = () => {
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
     const [sendVerificationLink, setSendVerificationLink] = useState(false);
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     const isLoggedIn = useSelector(state => state.isLoggedIn);
+    const user = useSelector(state => state.user);
+    const action = useSelector(state => state.action);
 
     const dispatch = useDispatch();
-    const [authenticationError, setauthenticationError] = useState("");
-    const [showPassword, setshowPassword] = useState(false);
+
     const defaultValue = {
         email_address: "",
         password: ""
     }
 
     const handleSubmit = async (values, { setFieldError }) => {
-        // document.getElementById("login").disabled = "true";
         let CandidateLoginForm = new FormData();
         CandidateLoginForm = {
             email: values.email_address,
             password: values.password
         }
-        localStorage.setItem("useremail", values.email_address);
-        localStorage.setItem("password", values.password);
+
         let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
         if (response.status == '1') {
             localStorage.setItem("auth_token", response.token);
-            // console.log(response)
-            if (response.data.isemailverified && response.data.profilecompleted >= 50)
+            if (response.data.isemailverified && response.data.ismobileverified)
                 dispatch({ type: 'LOGIN', payload: response.data });
 
-            else if (response.data.isemailverified && response.data.profilecompleted < 50)
-                window.location.href = window.location.origin + "/job-type";
+            else if (!response.data.ismobileverified) {
+                dispatch({ type: 'LOGIN_REGISTRATION', payload: response.data });
+            }
 
             else {
                 setShowEmailVerifiedMessage(true);
@@ -70,38 +66,21 @@ const CandidateLogin = () => {
         })
         if (response.status == '1') {
             setSendVerificationLink(true);
+            setIsEmailVerified(false);
         }
 
 
     }
 
-    useEffect(() => {
-        let userData = localStorage.getItem("auth_token");
-        const getUserData = async () => {
-            let response = await postRequest(CandidateLoginURL, {
-                email: localStorage.getItem("useremail"),
-                password: localStorage.getItem("password")
-            })
-            if (response.status == '1') {
-                if (response.data.isemailverified && response.data.profilecompleted < 50) {
-                    window.location.href = window.location.origin + "/job-type";
-                }
 
-                if (!response.data.isEmailVerified && response.data.profilecompleted < 50) {
-                    if (localStorage.getItem("useremail")) {
-                        setIsEmailVerified(true)
-                    }
-                }
-            }
-        }
-
-        (userData != " " && userData != null) && getUserData();
-
-    }, []);
     return (<>
-        {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>}
-        <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)} message="Email Address is not verified. Please Verify your email First" messageType="success" />
-        <ShowMessageToastr value={sendVerificationLink} handleClose={() => setSendVerificationLink(false)} message="Email Verification link is send" messageType="success" />
+        {isLoggedIn == 'true' && user.ismobileverified && user.isemailverified && action === "login" && < Navigate to="/candidate-dashboard"></Navigate>}
+        {isLoggedIn == 'true' && !user.ismobileverified && action === "registration" && < Navigate to="/candidate-dashboard/mobile-verify"></Navigate>}
+        <ThemeMessage open={showEmailVerifiedMessage} setOpen={setShowEmailVerifiedMessage}
+            message="Email Address is not verified. Please Verify your email First" type="error" />
+
+        <ThemeMessage open={sendVerificationLink} setOpen={setSendVerificationLink}
+            message="Email Verification Link is send ." type="success" />
 
         <Box className="CandidateLoginPage"
             sx={{

@@ -1,48 +1,22 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { CandidateQuestion } from "../../utils/ApiUrls";
 
-import { Box, Container, Stack, Typography, TextField, Button, Stepper, Step, StepLabel } from "@mui/material";
+import { Box } from "@mui/material";
 
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 
-import Header from "../../ThemeComponent/Common/Header";
 import PersonalInformation2 from "../../ThemeComponent/ThemeForms/PersonalInformation2";
 import PersonalInformation from "../../ThemeComponent/ThemeForms/PersonalInformation";
 import ProfessionalDetail from "../../ThemeComponent/ThemeForms/ProfessionalDetail";
 import WorkHistory from "../../ThemeComponent/ThemeForms/WorkHistory";
 import UploadResume from "../../ThemeComponent/ThemeForms/UploadResume";
-import ErrorPage from "../Common/ErrorPage";
 
 import { useEffect } from "react";
 const CandidateProfile = () => {
     const { jobType, step } = useParams();
-
-    function getSteps() {
-        return ['Personal Details', 'Professional Details', 'Work History', 'Upload Resume'];
-    }
-
-    function getStepContent(step) {
-        switch (step) {
-            case 0:
-                return 'Personal Details';
-            case 1:
-                return 'Professional Details';
-            case 2:
-                return 'Work History';
-            case 3:
-                return 'Upload Resume'
-            default:
-                return 'Unknown step';
-        }
-    }
-    const isStepSkipped = (step) => {
-        return skipped.has(step);
-    };
     const [activeStep, setActiveStep] = useState(step);
-    const [skipped, setSkipped] = useState(new Set());
     const [questions, setQuestions] = useState([]);
-    const steps = getSteps();
 
     useEffect(() => {
         const getQuestion = async () => {
@@ -58,10 +32,7 @@ const CandidateProfile = () => {
         jobType && getQuestion();
     }, [jobType]);
     return (<>
-        {/* {console.log(jobType)} */}
-        {/* ( 
-            questions&& questions.length > 0  ? <PersonalInformation2 questions={questions} /> :
-        <ErrorPage/> ) */}
+
         {jobType ? (
             <PersonalInformation2 questions={questions} />)
             :

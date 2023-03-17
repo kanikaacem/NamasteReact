@@ -212,77 +212,15 @@ export const CandidateMenu = [
         url: "profile",
         image: "profile.png"
     },
-    // {
-    //     id: 2,
-    //     MenuName: "Refer App",
-    //     value: "refer_app",
-    //     url: "/",
-    //     image: "booking.png"
-    // },
-    // {
-    //     id: 3,
-    //     MenuName: "Notification",
-    //     value: "notification",
-    //     url: "",
-    //     image: "notification.png"
-    // },
-    // {
-    //     id: 4,
-    //     MenuName: "Recommend Jobs",
-    //     value: "recommend_jobs",
-    //     url: "",
-    //     image: "Job.png"
-    // },
+
     {
-        id: 5,
+        id: 2,
         MenuName: "Applied Jobs",
         value: "applied_jobs",
         url: "",
         image: "AllJob.png"
-    },
-    // {
-    //     id: 6,
-    //     MenuName: "Suggested Jobs",
-    //     value: "suggested_jobs",
-    //     url: "/",
-    //     image: "Job.png"
-    // },
-    // {
-    //     id: 7,
-    //     MenuName: "Messages",
-    //     value: "messages",
-    //     url: "",
-    //     image: "chat.png"
-    // },
-    // {
-    //     id: 8,
-    //     MenuName: "Saved Jobs",
-    //     value: "saved_jobs",
-    //     url: "",
-    //     image: "SavedJob.png"
-    // },
+    }
 
-    // {
-    //     id: 9,
-    //     MenuName: "Top company jobs",
-    //     value: "top_company_jobs",
-    //     url: "",
-    //     image: "SavedJob.png"
-    // },
-    // {
-    //     id: 10,
-    //     MenuName: "Search Appearance",
-    //     value: "search_apperances",
-    //     url: "/",
-    //     image: "Search.png"
-    // },
-    // {
-    //     id: 11,
-    //     MenuName: "Interested Employer",
-    //     value: "interested_employer",
-    //     url: "/",
-    //     image: "user.png"
-    // },
 ]
 
 export const CandidateLogoutMenu = [
@@ -364,22 +302,6 @@ export const EmployerMenu = [
         url: "applied-candidates"
 
     },
-    // {
-    //     id: 5,
-    //     Menu: "WorkOutlineIcon",
-    //     MenuName: "Saved Candidates",
-    //     value: "saved_candidates",
-    //     url: "saved-candidates"
-
-    // },
-    // {
-    //     id: 6,
-    //     Menu: "WorkOutlineIcon",
-    //     MenuName: "Subscription Plans",
-    //     value: "subscription_plans",
-    //     url: "subscription-plan"
-
-    // },
 
     {
         id: 5,
@@ -388,15 +310,8 @@ export const EmployerMenu = [
         value: "account-setting",
         url: "account-setting"
 
-    },
-    // {
-    //     id: 8,
-    //     Menu: "WorkOutlineIcon",
-    //     MenuName: "Change Password",
-    //     value: "change-password",
-    //     url: "change-password"
+    }
 
-    // }
 ]
 export const AccountSettingMenu = [
     {
@@ -495,6 +410,8 @@ export const CandidateEducation = [
     { id: 23, Name: "Passed CFA Level 2", value: "Passed CFA Level 2" },
     { id: 24, Name: "Passed CFA Level 3", value: "Passed CFA Level 3" },
     { id: 25, Name: "PGDDA", value: "PGDDA" },
+    { id: 26, Name: "10th", value: "10" },
+    { id: 27, Name: "12th", value: "12" }
 
 ]
 
@@ -521,31 +438,7 @@ export const CompanyType = [
         value: "big_corporate_(more_than_1K_employee)",
         name: "Big Corporate (More than 1K employee)"
     },
-    // {
-    //     id: 5,
-    //     value: "fintech_startup",
-    //     name: "FinTech startup"
-    // },
-    // {
-    //     id: 6,
-    //     value: "al_ml_startup",
-    //     name: "AL/ML Startup"
-    // },
-    // {
-    //     id: 7,
-    //     value: 'agri_tech_startup',
-    //     name: "ACOM startup"
-    // },
-    // {
-    //     id: 8,
-    //     value: "consultant",
-    //     name: "Consultant"
-    // },
-    // {
-    //     id: 9,
-    //     value: "technology",
-    //     name: "Technology service Company"
-    // }
+
 ]
 /* Role Data*/
 export const Role = [
@@ -648,20 +541,7 @@ export const AssociationType = [
         Name: "Freelancing"
     }
 ]
-/*
-/*Job Working Type */
-// export const JobWorkingType = [
-//     {
-//         id: 1,
-//         value: "work_from_home",
-//         Name: "Work From Home"
-//     },
-//     {
-//         id: 2,
-//         value: "Office",
-//         Name: "Office"
-//     }
-// ]
+
 /* Job Payment Type */
 export const PaymentType = [
     {
@@ -812,17 +692,8 @@ export const socialLogin = [
         id: 1,
         value: "Google Login",
         image_url: "../assets/image_10.png"
-    },
-    // {
-    //     id: 2,
-    //     value: "Linkedin Login",
-    //     image_url: "../assets/image_11.png"
-    // },
-    // {
-    //     id: 3,
-    //     value: "facebook Login",
-    //     image_url: "../assets/image_12.png"
-    // }
+    }
+
 ]
 
 export const WorkingDays = [
@@ -1095,71 +966,85 @@ export const categoryData = [
 export const supply_chain = [
     {
         id: 1,
-        value: "/assets/supply_chain1.png"
+        value: "/assets/supply_chain1.png",
+        url: "loaders"
     },
     {
         id: 2,
-        value: "/assets/supply_chain2.png"
+        value: "/assets/supply_chain2.png",
+        url: "drivers"
     },
     {
         id: 3,
-        value: "/assets/supply_chain3.png"
+        value: "/assets/supply_chain3.png",
+        url: "delivery-rider"
     },
     {
         id: 4,
-        value: "/assets/supply_chain4.png"
+        value: "/assets/supply_chain4.png",
+        url: "courier-partner"
     }
 ]
 
 export const service_jobs = [
     {
         id: 1,
-        value: "/assets/service_job1.png"
+        value: "/assets/service_job1.png",
+        url: "office-boy"
     },
     {
         id: 2,
-        value: "/assets/service_job2.png"
+        value: "/assets/service_job2.png",
+        url: "janitors"
     },
     {
         id: 3,
-        value: "/assets/service_job3.png"
+        value: "/assets/service_job3.png",
+        url: "beauticians"
     },
     {
         id: 4,
-        value: "/assets/service_job4.png"
+        value: "/assets/service_job4.png",
+        url: "nurse"
     }
 ]
 
 export const digital = [
     {
         id: 1,
-        value: "/assets/digital1.png"
+        value: "/assets/digital1.png",
+        url: "android-developer"
     },
     {
         id: 2,
-        value: "/assets/digital2.png"
+        value: "/assets/digital2.png",
+        url: "web-developer"
     },
     {
         id: 3,
-        value: "/assets/digital3.png"
+        value: "/assets/digital3.png",
+        url: "ai-developer"
     }
 ]
 
 export const marketing = [
     {
         id: 1,
-        value: "/assets/marketing1.png"
+        value: "/assets/marketing1.png",
+        url: "brand-marketing"
     },
     {
         id: 2,
-        value: "/assets/marketing2.png"
+        value: "/assets/marketing2.png",
+        url: "digital-marketing"
     }
 ]
 
 export const sales = [
     {
         id: 1,
-        value: "/assets/sales1.png"
+        value: "/assets/sales1.png",
+        url: "field-sales"
     }
 ]
 

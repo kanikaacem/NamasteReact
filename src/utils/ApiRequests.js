@@ -9,11 +9,9 @@ export const postRequest = async (api_url, bodyData) => {
 
     if (token != null)
         header = {
-            // 'Access-Control-Allow-Origin': "*",
             'Content-Type': 'application/json; charset=UTF-8',
             'authorization': 'Bearer ' + token
         };
-    // console.log(token)
     let data = await fetch(api_url, {
         method: "POST",
         headers: header,
@@ -21,14 +19,7 @@ export const postRequest = async (api_url, bodyData) => {
     });
     data = await data.json();
     return data;
-    // if (data.ok) {
-    //     data = await data.json();
-    //     return data;
-    // }
-    // else {
-    //     data = await data.json();
-    //     return data;
-    // }
+
 }
 
 /*Post Request for image uploading */
@@ -55,7 +46,6 @@ export const PostImageRequest = async (api_url, bodyData) => {
 export const getRequest = async (api_url) => {
     let token = localStorage.getItem("auth_token");
 
-    // if (token != null) header.append('authorization', 'Bearer' + token);
     let data = await fetch(api_url, {
         method: "GET",
         headers: header,
