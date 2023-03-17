@@ -1,7 +1,7 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { JobDescriptionURL, GetCandidateOnParticularJob } from "../../utils/ApiUrls";
 
-import { Box, Button, Stack, Typography, Divider, Tabs, Tab, MenuItem, Select, Badge } from "@mui/material";
+import { Box, Button, Stack, Typography,Pagination } from "@mui/material";
 import CandidateComponent from "../../ThemeComponent/Common/CandidateComponent";
 import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
 import SocialMedia from "../../ThemeComponent/Common/SocialMedia";
