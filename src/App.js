@@ -30,7 +30,7 @@ import CandidateMobileVerify from './ThemeComponent/ThemeForms/CandidateMobileVe
 
 /*Website Page*/
 import Home from "./Pages/Home/Home";
-import NotFound from "./Pages/NotFound";
+import ErrorPage from "./Pages/ErrorPage";
 import PrivateRoute from "./utils/PrivateRoute";
 import Dashboard from './Pages/Common/Dashboard';
 import JobDescription from './Pages/JobDescription';
@@ -81,7 +81,7 @@ function App() {
             <Route path="saved-candidates" element={<SavedCandidate></SavedCandidate>} />
             <Route path="account-setting" element={<AccountSetting></AccountSetting>} />
             <Route path="view-profile/:id" element={<ViewProfile ></ViewProfile>} />
-
+            <Route path="*" element={<ErrorPage errorMessage="Page not Found"></ErrorPage>} />
           </Route>
 
 
@@ -93,13 +93,13 @@ function App() {
             <Route path="job-type" element={<JobTypePage></JobTypePage>} />
             <Route path="profile/:step" element={<CandidateProfile></CandidateProfile>} />
             <Route path=":jobType/profile/:step" element={<CandidateProfile></CandidateProfile>} />
-            <Route path="*" element={<NotFound></NotFound>} />
+            <Route path="*" element={<ErrorPage errorMessage="Page not Found"></ErrorPage>} />
           </Route>
 
 
           <Route path="/job-description/:id" element={<PrivateRoute Component={JobDescription}></PrivateRoute>} />
 
-          <Route path="*" element={<NotFound></NotFound>} />
+          <Route path="*" element={<ErrorPage errorMessage=" Page not Found "></ErrorPage>} />
         </Routes>
       </BrowserRouter>
     </>

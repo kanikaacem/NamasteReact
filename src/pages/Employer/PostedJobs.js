@@ -9,12 +9,14 @@ import JobComponent from "../../ThemeComponent/JobComponent";
 
 import { useState, useEffect } from "react";
 
+import ErrorPage from "../ErrorPage";
 const PostedJobs = () => {
 
     const [jobFilter, setJobFilter] = useState(" ");
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage, setDataPerPage] = useState(10);
+    const [isDataLoaded, setIsDataLoaded] = useState(false);
 
     //Pagination 
     const IndexOfLastData = currentPage * dataPerPage;
@@ -26,15 +28,17 @@ const PostedJobs = () => {
         const getpostedjobs = async () => {
             try {
                 let data = await postRequest(getAllPostedJobs);
-                console.log(data);
                 if (data.status === '0') {
                     setData([])
+                    setIsDataLoaded(true);
                 } else {
+                    setIsDataLoaded(true);
                     setData(data.data);
 
                 }
             } catch (err) {
                 setData([]);
+                setIsDataLoaded(true);
 
             }
 
@@ -43,7 +47,10 @@ const PostedJobs = () => {
 
     }, []);
 
+
+
     return (<>
+        {console.log(data)}
         <Stack direction="row" sx={{ padding: "20px" }} className="PostedJobPage" gap={2}>
             <Stack sx={{ width: { "lg": "80%", "md": "100%", "xs": "100%" } }} gap={1}>
                 <Stack direction="row" justifyContent="space-between">
@@ -68,17 +75,16 @@ const PostedJobs = () => {
                 </Stack>
                 <Box sx={{ minHeight: 500, width: '100%' }}>
                     <Stack direction="column" gap={2}>
-                        {data.length <= 0 &&
-
-                            <Typography component="box" sx={{
-                                fontSize: "24px",
-                                fontWeight: "600",
-                                color: "#4E3A67"
-                            }}>
-                                You haven't posted any Job yet.
-                            </Typography>}
                         {
-                            data.length > 0 && jobs.map((item) => {
+                            isDataLoaded && data && data.length <= 0 &&
+
+                            <ErrorPage errorMessage="Data Not Present" />
+
+
+                        }
+
+                        {
+                            isDataLoaded && data && data.length > 0 && jobs.map((item) => {
                                 return (<>
                                     <JobComponent key={item._id} data={item} data_id={item._id} userType="employer" />
                                 </>)
