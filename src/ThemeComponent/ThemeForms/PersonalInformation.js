@@ -1,15 +1,10 @@
 import { postRequest, getRequest } from "../../utils/ApiRequests";
 import { SaveCandidatePersonalInformation, StatesURL } from "../../utils/ApiUrls";
-
-import ClickAwayListener from '@mui/base/ClickAwayListener';
-
-import { Box, Container, Stack, Typography, TextField, Select as SelectField, MenuItem, Button, Radio, RadioGroup, FormControlLabel, FormControl } from "@mui/material";
-
+import { Box, Stack, Typography, TextField, Select as SelectField, MenuItem, Radio, RadioGroup, FormControlLabel, FormControl } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import Moment from 'react-moment';
 
 // import DatePicker from "react-datepicker";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -17,28 +12,20 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
-import { PersonalRegistrationSchema1, PersonalRegistrationSchema } from "../../Validation/CandidateValidation";
-import { Skills, PerferredLocation, MaritalStatus } from "../../utils/Data";
+import { PersonalRegistrationSchema } from "../../Validation/CandidateValidation";
+import { Skills, MaritalStatus } from "../../utils/Data";
 
-import { SocialBox, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
-import { socialLogin } from "../../utils/Data";
-
-import { ThemeButtontype1 } from "../../utils/Theme";
+import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from '../../ThemeComponent/Common/Error';
-import HeaderSec from "../Common/HeaderSec";
-// import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
-import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import CurrencyFormat from 'react-currency-format';
 
 const PersonalInformation = ({ setActiveStep }) => {
     const animatedComponents = makeAnimated();
 
-    const [personalInfoForm, setPersonalInfoForm] = useState(1);
     const [selectedOptions, setSelectedOptions] = useState([]);
-    const [perferredLocation, setPerferredLocation] = useState([]);
     const [date, setDate] = useState(null);
     const [gender, setGender] = useState("");
     const [city, setCity] = useState(" ");
@@ -46,10 +33,8 @@ const PersonalInformation = ({ setActiveStep }) => {
     const [CountryState, setCountryState] = useState([]);
     const [District, setDistrict] = useState([]);
     const [autoData, setAutoData] = useState([]);
-    const [menubar, setMenuBar] = useState(false);
 
     const [martialStatus, setMaritalStatus] = useState(" ");
-    const [currentAddress, setCurrentAddress] = useState("");
 
     const defaultValue = {
         full_name: "",
@@ -97,11 +82,7 @@ const PersonalInformation = ({ setActiveStep }) => {
         if (response.status == 1) {
             localStorage.setItem("user", JSON.stringify(response.data));
             window.location.href = window.location.origin + '/candidate-dashboard/profile/1';
-            // setActiveStep(1)
         }
-
-
-
     }
 
 
@@ -114,20 +95,9 @@ const PersonalInformation = ({ setActiveStep }) => {
     }, [])
 
     const getDistrictByState = async (statefilter) => {
-        // console.log(statefilter);
         let response = await getRequest("https://backend.jobsyahan.com/api/map/districts?states=" + statefilter);
-        // console.log(response.data[0].districts);
         setDistrict(response.data[0].districts);
-        // console.log(response);
     }
-
-    const getAddress = async (value) => {
-        let response = await getRequest("https://backend.jobsyahan.com/api/map/autocompleteplaces?input=" + value);
-        console.log(response)
-        setAutoData(response.data);
-        // console.log(response.data);
-    }
-
 
     return (<>
         <Box className="PersonalInformationPage"
@@ -143,9 +113,7 @@ const PersonalInformation = ({ setActiveStep }) => {
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
-                {/* <HeaderSec
-                    color="black"
-                    border="2px solid #8E8E8E" /> */}
+
                 <Stack direction="row" gap={3} sx={{ position: "relative" }}>
                     <Stack
                         gap={2} sx={{ width: "50%", padding: "100px" }}>
@@ -631,7 +599,6 @@ const PersonalInformation = ({ setActiveStep }) => {
                                                         label="Age"
                                                         onChange={(event) => {
                                                             let stateValue = event.target.value;
-                                                            // console.log(event.target.value);
                                                             setState(stateValue);
                                                             setFieldValue("state", event.target.value);
                                                             getDistrictByState(event.target.value);
@@ -689,57 +656,7 @@ const PersonalInformation = ({ setActiveStep }) => {
                                                     {errors.city && touched.city && <Error text={errors.city} />}
                                                 </ThemeFInputDiv>
                                             </Stack>
-                                            {/* <ThemeFInputDiv sx={{ position: "relative" }}>
-                                                <ThemeLabel LableFor="current_location" LableText="Area" />
 
-
-                                                <TextField id="outlined-basic"
-                                                    placeholder="Enter Area (eg.Haridwar, Uttarakhand, India)"
-                                                    value={currentAddress}
-                                                    onChange={(event) => {
-                                                        setCurrentAddress(event.target.value);
-                                                        setFieldValue("area", event.target.value);
-                                                        getAddress(event.target.value);
-                                                        setMenuBar(true)
-                                                    }}
-                                                    variant="outlined" fullWidth />
-
-                                                {menubar && autoData && autoData != "no record please enter some word" && <>
-                                                    <ClickAwayListener onClickAway={() => setAutoData(false)}>
-
-                                                        <Box
-                                                            sx={{
-                                                                position: "absolute",
-                                                                top: "110px",
-                                                                background: "#FFFFFF",
-                                                                width: "94%",
-                                                                padding: "20px",
-                                                                height: "fit-content",
-                                                                zIndex: "34",
-                                                                boxShadow: "0px 47px 52px #f4ecff",
-                                                                border: "3px solid #E1D4F2",
-                                                                borderRadius: "11px"
-                                                            }}>
-                                                            {autoData && autoData != "no record please enter some word" && autoData.map((item) => {
-                                                                return (<>
-                                                                    <Box sx={{
-                                                                        padding: "20px",
-                                                                        borderBottom: "1px solid #E1D4F2",
-                                                                        cursor: "pointer"
-                                                                    }}
-                                                                        onClick={(event) => {
-                                                                            setCurrentAddress(item.description);
-                                                                            setFieldValue("current_location", item.description)
-                                                                            setMenuBar(false)
-                                                                        }}> {item.description}</Box></>)
-                                                            })}
-
-                                                        </Box>
-                                                    </ClickAwayListener>
-                                                </>}
-                                                {errors.area && touched.area && <Error text={errors.area} />}
-
-                                            </ThemeFInputDiv> */}
 
                                             <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="complete_address" LableText="Complete Address" />

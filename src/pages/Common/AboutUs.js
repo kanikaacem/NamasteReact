@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, TextField } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import Footer from "../../ThemeComponent/Common/Footer";
@@ -38,9 +38,7 @@ const AboutUs = () => {
                 </Box>
                 <Box sx={{
                     position: "absolute",
-                    // width: " 403.7px",
                     height: "380px",
-                    // left: "1632px",
                     top: "805px",
                     right: "0px",
                     zIndex: "1"
@@ -50,7 +48,6 @@ const AboutUs = () => {
                 <Box
                     sx={{
                         position: "absolute",
-                        // width: "344px",
                         height: "320.38px",
                         left: "0px",
                         top: " 1388px",
@@ -66,7 +63,6 @@ const AboutUs = () => {
                     margin: "0 auto",
                     border: "1px solid #E1D4F2",
                     borderRadius: "19px",
-                    // minHeight: "1663px",
                     padding: { "lg": "60px 120px", "md": "60px 120px", "xs": "20px" },
                     position: "relative",
                     zIndex: "2"

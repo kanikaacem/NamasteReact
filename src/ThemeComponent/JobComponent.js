@@ -1,6 +1,5 @@
 import { getRequestWithToken } from "../utils/ApiRequests";
 import { Box, Stack, Typography, Button } from "@mui/material";
-import { RWebShare } from "react-web-share";
 import { useState, useEffect } from "react";
 const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
 
@@ -10,7 +9,6 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
             let response = await getRequestWithToken("https://backend.jobsyahan.com/api/job/details?jobid=" + data_id);
             if (response !== undefined && response.status === "1") {
                 if (response.data[0].jobapply) {
-                    // console.log(response.data[0].jobapply)
                     setJobApplied(true)
                 }
             }
@@ -129,7 +127,12 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                     > View Candidates</a>}
 
 
-                    <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
+                    <Typography component="div" sx={{
+                        fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap"
+                    }}>
                         {data && data.job_responsibilty}
                     </Typography>
 
@@ -162,14 +165,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                         }
                                     }} variant="contained">{jobApplied ? "Applied" : "Apply Now"}</Button>
 
-                                {/* <RWebShare
-                                    data={{
-                                        text: "Job Opportunity",
-                                        url: window.location.origin + "/job-description/" + data._id,
-                                        title: "Job Opportunity",
-                                    }}
-                                    onClick={() => console.log("shared successfully!")}
-                                > */}
+
                                 <Button variant="outlined"
                                     sx={{
                                         fontFamily: 'Montserrat',
@@ -194,7 +190,6 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                         }
                                     }}>Share</Button>
 
-                                {/* </RWebShare> */}
 
 
                             </Stack>

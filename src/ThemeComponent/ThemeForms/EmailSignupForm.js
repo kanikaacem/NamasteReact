@@ -14,9 +14,6 @@ import { socialLogin } from "../../utils/Data";
 
 import { LoginSocialGoogle } from 'reactjs-social-login';
 
-import { useSelector } from "react-redux";
-
-import { useEffect } from "react";
 const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenForm, isEmailVerified }) => {
 
 

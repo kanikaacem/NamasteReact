@@ -19,7 +19,8 @@ function Home() {
     return (<>
         {isLoggedIn == 'true' && (user && user.employer_type == 'employer') && <Navigate to="/employer-dashboard"></Navigate>}
         <Box sx={{
-            padding: "20px 40px", background: "#FAFAFA",
+            padding: "20px 40px",
+            background: "#FAFAFA",
             position: "sticky",
             top: 0,
             zIndex: "3387"

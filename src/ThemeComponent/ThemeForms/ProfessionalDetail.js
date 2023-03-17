@@ -1,12 +1,9 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { SaveCandidateProfessionalInformation } from "../../utils/ApiUrls";
 
-import { Box, Select, Stack, Typography, Button, TextField, Radio, RadioGroup, FormControlLabel, FormControl, Snackbar, Alert, MenuItem } from "@mui/material";
+import { Box, Select, Stack, Typography, TextField, Radio, RadioGroup, FormControlLabel, FormControl, MenuItem } from "@mui/material";
 
 import { Formik, Field, Form } from "formik";
-
-// import DatePicker from "react-datepicker";
-
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -15,16 +12,12 @@ import { ProfessionalDetailSchema } from "../../Validation/CandidateValidation";
 import { CandidateEducation } from "../../utils/Data";
 import Error from '../../ThemeComponent/Common/Error';
 
-import { SocialBox, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
+import { ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 
-import HeaderSec from "../Common/HeaderSec";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import ThemeMessage from "../Common/ThemeMessage";
 const ProfessionalDetail = ({ setActiveStep }) => {
-
-
     const defaultValue = {
         institue_name: "",
         qualification: "",
@@ -54,7 +47,6 @@ const ProfessionalDetail = ({ setActiveStep }) => {
         }
 
         let response = await postRequest(SaveCandidateProfessionalInformation, formData);
-        // console.log(response);
         if (response.status == 1) {
             localStorage.setItem("user", JSON.stringify(response.data));
             resetForm("");
@@ -84,9 +76,7 @@ const ProfessionalDetail = ({ setActiveStep }) => {
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
-                {/* <HeaderSec
-                    color="black"
-                    border="2px solid #8E8E8E" /> */}
+
                 <Stack direction="row" gap={3} sx={{ position: "relative" }}>
                     <Stack
                         gap={2} sx={{ width: "40%", padding: "100px" }}>

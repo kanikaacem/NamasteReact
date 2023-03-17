@@ -50,7 +50,6 @@ const ProfileComponent = ({ userData, userType }) => {
                     alignItems="center" justifyContent="flex-start" gap={3} sx={{ height: "150px", padding: "20px" }}>
                     <Box sx={{ width: "100px", height: "100px", position: "relative" }}>
                         <img src={userImage} width="100%" alt="Profile" style={{ borderRadius: "50%", cursor: "pointer" }}
-                            // onMouseOver={() => console.log("hello")}
                             onClick={() => document.getElementById("profileImage").click()}
                         />
 
@@ -75,13 +74,11 @@ const ProfileComponent = ({ userData, userType }) => {
                                 }}>
                                 <Button variant="outlined"
                                     sx={{
-                                        // background: "#FFFFFF",
                                         border: "1px solid #E2D7F0",
                                         borderRadius: "7px",
                                         color: "#4E3A67",
                                         fontWeight: "700",
                                         "&:hover": {
-                                            // background: "#FFFFFF",
                                             border: "1px solid #E2D7F0",
                                             borderRadius: "7px",
                                             color: "#4E3A67",
@@ -364,75 +361,14 @@ const ProfileComponent = ({ userData, userType }) => {
                                             </Typography>
                                         </Stack>
 
-                                        {/* <Stack direction="row" sx={{
-                                            flexWrap: "wrap"
-                                        }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
-                                                Age:
-                                            </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                <Moment fromNow ago >{userData && userData.dob}</Moment>
-                                            </Typography>
-                                        </Stack> */}
-                                        {/* <Stack direction="row" sx={{
-                                            flexWrap: "wrap"
-                                        }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
-                                                Notice Period:
-                                            </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                Immediately                                            </Typography>
-                                        </Stack>
-                                        <Stack direction="row" sx={{
-                                            flexWrap: "wrap"
-                                        }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
-                                                Application Date:
-                                            </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
-                                                20-01-2023                                            </Typography>
-                                        </Stack> */}
+
+
 
 
                                     </Stack>
                                 </Box>
 
-                                {/* <Box sx={{
 
-                                    padding: "30px"
-                                }}>
-                                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
-                                        Additional Information
-                                    </Typography>
-
-                                    <Stack direction="column" gap={1}>
-                                        <Stack direction="row" sx={{
-                                            flexWrap: "wrap"
-                                        }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
-                                                Language:
-                                            </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
-                                                English
-                                            </Typography>
-                                        </Stack>
-                                        <Stack direction="row" sx={{
-                                            flexWrap: "wrap"
-                                        }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
-                                                CAT Percentile::
-                                            </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
-                                                0.0
-                                            </Typography>
-                                        </Stack>
-
-
-
-
-
-                                    </Stack>
-                                </Box> */}
 
                             </Stack>
                         </>)
@@ -465,13 +401,11 @@ const ProfileComponent = ({ userData, userType }) => {
                             <Button variant="outlined"
 
                                 sx={{
-                                    // background: "#FFFFFF",
                                     border: "1px solid #E2D7F0",
                                     borderRadius: "7px",
                                     color: "#4E3A67",
                                     fontWeight: "700",
                                     "&:hover": {
-                                        // background: "#FFFFFF",
                                         border: "1px solid #E2D7F0",
                                         borderRadius: "7px",
                                         color: "#4E3A67",
@@ -517,7 +451,6 @@ const ProfileComponent = ({ userData, userType }) => {
                         <Button variant="outlined"
 
                             sx={{
-                                // background: "#FFFFFF",
                                 border: "1px solid #E2D7F0",
                                 borderRadius: "7px",
                                 color: "#4E3A67",
@@ -525,7 +458,6 @@ const ProfileComponent = ({ userData, userType }) => {
                                 width: "100%",
                                 padding: "10px",
                                 "&:hover": {
-                                    // background: "#FFFFFF",
                                     border: "1px solid #E2D7F0",
                                     borderRadius: "7px",
                                     color: "#4E3A67",
@@ -551,12 +483,10 @@ const ProfileComponent = ({ userData, userType }) => {
                         }}>
                         <Button variant="outlined"
                             sx={{
-                                // background: "#FFFFFF",
                                 border: "1px solid #E2D7F0",
                                 borderRadius: "7px",
                                 color: "#4E3A67",
                                 "&:hover": {
-                                    // background: "#FFFFFF",
                                     border: "1px solid #E2D7F0",
                                     borderRadius: "7px",
                                     color: "#4E3A67",
@@ -589,29 +519,7 @@ const ProfileComponent = ({ userData, userType }) => {
                     </Stack>
 
 
-                    {/* <Stack direction="column" gap={1}>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "600" }}>
-                            Contact Information
-                        </Typography>
-                        <Stack direction="row" justifyContent="space-between">
-                            <Box >
-                                <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
-                                    Phone
-                                </Typography>
-                                <Typography component="div" sx={{ fontSize: "20px", color: "#FC9A7E" }}>
-                                    9818032487
-                                </Typography>
-                            </Box>
-                            <Box>
-                                <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
-                                    E-mail
-                                </Typography>
-                                <Typography component="div" sx={{ fontSize: "20px", color: "#FC9A7E" }}>
-                                    demo@gmail.com
-                                </Typography>
-                            </Box>
-                        </Stack>
-                    </Stack> */}
+
 
 
                 </Stack>

@@ -1,7 +1,7 @@
 import { getRequest, postRequest } from "../../../utils/ApiRequests"
 import { getAllJobs, JobDescriptionURL } from "../../../utils/ApiUrls";
 
-import { Box, Stack, styled, Typography, Pagination, Button } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
 import { useState, useEffect } from "react";
 import JobComponent from "../../../ThemeComponent/JobComponent";
@@ -15,7 +15,6 @@ const RecommendedJobs = ({ fixed }) => {
             let response = await getRequest(getAllJobs);
 
             if (response.status == 1) {
-                // console.log(response.data)
                 setData(response.data);
                 setCanJobDes(response.data[0])
             }
@@ -37,7 +36,6 @@ const RecommendedJobs = ({ fixed }) => {
             setCanJobDes(response.data);
             window.scrollTo(0, 0);
         }
-        // console.log(response);
     }
     return (<>
         <Stack direction="row" className="RecommendedJobs" gap={2}

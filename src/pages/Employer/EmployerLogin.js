@@ -130,7 +130,6 @@ const EmployerLogin = () => {
             <Stack className="EmployerLoginPageInnerWrapper"
                 sx=
                 {{
-                    // width: "100%",
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
@@ -277,20 +276,7 @@ const EmployerLogin = () => {
                                 </Form>
                             )}
                         </Formik>
-                        {/* <Typography component="span" sx={{ fontSize: "16px", display: "flex" }}>
-                            <hr style={{ width: "150px", height: "0px", color: "#DAD9D9" }}></hr> or login in with <hr style={{ width: "150px", height: "0px" }}></hr>
-                        </Typography> */}
-                        {/* <Stack direction="row" gap={3} justifyContent="center">
-                            {
-                                socialLogin.map((item) => {
-                                    return (<>
-                                        <SocialBox key={item.id}>
-                                            <img src={item.image_url} alt={item.value} />
-                                        </SocialBox>
-                                    </>)
-                                })
-                            }
-                        </Stack> */}
+
                     </Stack>
                 </Stack>
             </Stack>

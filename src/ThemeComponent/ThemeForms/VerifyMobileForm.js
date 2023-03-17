@@ -1,12 +1,12 @@
-import { postRequest, PostImageRequest, getRequest } from "../../utils/ApiRequests";
+import { postRequest } from "../../utils/ApiRequests";
 
-import { Box, TextField, Typography, Snackbar, IconButton, Stack, Button } from "@mui/material";
+import { TextField, Typography, Snackbar, IconButton, Stack, Button } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { Formik, Field, Form } from "formik";
 
 import { OTPValidationSchema, MobileVerifyFormValidationSchema } from "../../Validation/EmployerValidation";
 
-import { ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
+import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
 import { useState } from "react";
@@ -46,7 +46,6 @@ const VerifyMobileForm = ({ email, setVerifyMobileForm, setCompanyInfoForm, setM
         otp: ""
     }
     const handleSubmit1 = async (values, { setFieldError }) => {
-        // console.log(values.mobile_number);
         ReactGA.event({
             category: values.mobile_number,
             action: "test",
@@ -55,7 +54,6 @@ const VerifyMobileForm = ({ email, setVerifyMobileForm, setCompanyInfoForm, setM
         })
         let response = await postRequest("https://backend.jobsyahan.com/api/sendotp/+91" + values.mobile_number);
         if (response.status == '1')
-            //     // setMobileNumber(values.mobile_number);
             setSendOtp(true);
     }
     const handleSubmit2 = async (values, { setFieldError }) => {

@@ -9,11 +9,9 @@ export const postRequest = async (api_url, bodyData) => {
 
     if (token != null)
         header = {
-            // 'Access-Control-Allow-Origin': "*",
             'Content-Type': 'application/json; charset=UTF-8',
             'authorization': 'Bearer ' + token
         };
-    // console.log(token)
     let data = await fetch(api_url, {
         method: "POST",
         headers: header,

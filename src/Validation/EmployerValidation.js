@@ -80,7 +80,6 @@ export const CompanyUpdateInformationSchema = yup.object().shape({
     company_website: yup.string().required("Company Website is required"),
     company_pincode: yup.string().required("Company Lan Number is required").max(6),
     company_address: yup.string().required("Company Address is required"),
-    // company_gst_number: yup.string().required("GST Number is required")
 })
 
 

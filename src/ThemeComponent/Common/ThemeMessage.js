@@ -19,7 +19,6 @@ const ThemeMessage = ({ open, setOpen, message, type }) => {
             <Modal
                 sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
                 open={open}
-                // onClose={() => setOpen(false)}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >

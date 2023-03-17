@@ -2,10 +2,9 @@ import { postRequest, getRequest } from "../../utils/ApiRequests";
 import { StatesURL, getJobTypeURL, getSKillOnJobType, PostJob1, PostJob2 } from "../../utils/ApiUrls";
 
 import {
-    Box, Stack, TextField, Checkbox, Select as SelectField,
-    MenuItem, Snackbar, IconButton, Alert, Typography, FormControlLabel,
-    Radio, RadioGroup, FormControl, Input,
-    ListItemText
+    Box, Stack, TextField, Select as SelectField,
+    MenuItem, Typography, FormControlLabel,
+    Radio, RadioGroup, FormControl
 } from '@mui/material';
 
 import ClickAwayListener from '@mui/base/ClickAwayListener';
@@ -18,18 +17,15 @@ import { Formik, Field, Form } from "formik";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 
-import { WithContext as ReactTags } from 'react-tag-input';
 import { DefaultEditor } from 'react-simple-wysiwyg';
-import { useSelector } from 'react-redux';
 
 import { useState, useEffect } from "react";
 
-import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import { postJobValidationSchema, postJobSchema2 } from "../../Validation/PostJobValidation";
 import {
     CandidateEducation,
-    Experience, Skills, JobType, AssociationType,
-    PaymentType, WorkingDays, WorkingShift, SalaryType, SalaryCTC, EducationType,
+    AssociationType,
+    WorkingDays, WorkingShift, SalaryType, EducationType,
     Proficiency,
     ExtraBenefitsData,
     WeeklyOffData,
@@ -38,7 +34,7 @@ import {
     JobWorkingPlaceData
 } from "../../utils/Data";
 
-import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv, NextButton } from "../../utils/Theme";
+import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 
 
 import Error from '../../ThemeComponent/Common/Error';
@@ -49,21 +45,17 @@ import CurrencyFormat from 'react-currency-format';
 
 import { useNavigate } from "react-router-dom";
 const PostJob = () => {
-    const [postJobStep, setPostJobStep] = useState(2);
-    const user = localStorage.user && JSON.parse(localStorage.user);
+    const [postJobStep, setPostJobStep] = useState(1);
 
     const [showLoader, setShowLoader] = useState(false);
 
     const [city, setCity] = useState(" ");
     const [selectedOptions, setSelectedOptions] = useState([]);
-    const [formSubmitted, setFormSubmitted] = useState(localStorage.getItem("formSubmitted") ? localStorage.getItem("formSubmitted") : false);
     const [jobType, setJobType] = useState(" ");
     const [associationType, setAssociationType] = useState(" ");
     const [industryType, setIndustryType] = useState(" ");
-    const [experience, setExperience] = useState(" ");
-    const [jobWorkingType, setJobWorkingType] = useState(" ");
+
     const [workShift, setWorkShift] = useState(" ");
-    const [paymentType, setPaymentType] = useState(" ");
     const [startingTime, setStartingTime] = useState(null);
     const [endingTime, setEndingTime] = useState(null);
 
@@ -71,9 +63,6 @@ const PostJob = () => {
     const [JobWorkingPlace, setJobWorkingPlace] = useState(" ");
 
     const [salaryType, setSalaryType] = useState(" ");
-    const [satStartTime, setSatStartTime] = useState("");
-    const [satEndTime, setSatEndTime] = useState(" ");
-    const [CTCSalary, setCTCSalary] = useState(" ");
 
     const [state, setState] = useState(" ");
     const [companyAddress, setCompanyAddress] = useState("");
@@ -81,19 +70,11 @@ const PostJob = () => {
     const [CountryState, setCountryState] = useState([]);
     const [District, setDistrict] = useState([]);
     const [menubar, setMenuBar] = useState(false);
-    const [companyName, setCompanyName] = useState("");
-    const [salary, setSalary] = useState("");
     const [extraBenefits, setExtraBenefits] = useState("");
-    const [jobDescription, setJobDescription] = useState("");
-    const [jobPlace, setJobPlace] = useState("");
-    const [jobTitle, setJobTitle] = useState("");
-    const [responsibilty, setResponsibilty] = useState("");
-    const [SKill, setSKill] = useState(" ");
-    const [weeklyOff, setWeeklyOff] = useState("");
+
     const [jobTypeData, setJobTypeData] = useState([]);
     const [industryTypeData, setIndustryData] = useState([]);
     const [industryTypeCollection, setIndustryTypeCollection] = useState([]);
-    const [extraBenefitsData, setExtraBenefitsData] = useState(" ");
     /* Next Form */
     const [minExp, setMinExp] = useState(" ");
     const [maxExp, setMaxExp] = useState(" ");
@@ -103,13 +84,9 @@ const PostJob = () => {
     const [localLanguageData, setLocalLanguageData] = useState([]);
 
     const [educationType, setEducationType] = useState(" ");
-    const [educationDegree, setEducationDegree] = useState(" ");
     const [perferredDegree, setPerferredDegree] = useState(" ");
-    const [hindiReq, setHindiReq] = useState(" ");
-    const [englishReq, setEnglishReq] = useState(" ");
     const [gender, setGender] = useState("");
 
-    const [jobInformation, setJobInformation] = useState({});
     const [salaryDisclosed, setSalaryDisclosed] = useState(false);
 
     const animatedComponents = makeAnimated();
@@ -150,7 +127,7 @@ const PostJob = () => {
 
     }
     const navigate = useNavigate();
-    const handleSubmit1 = async (values, { setFieldError, resetForm }) => {
+    const handleSubmit1 = async (values, { setFieldError }) => {
         if (parseInt(values.min_salary) > parseInt(values.max_salary)) {
             setFieldError("max_salary", "Min Salary should be not greater than Max Salary")
 
@@ -298,8 +275,6 @@ const PostJob = () => {
     const getAddress = async (value) => {
         let response = await getRequest("https://backend.jobsyahan.com/api/map/autocompleteplaces?input=" + value);
         setAutoData(response.data);
-
-        // console.log(response.data);
     }
     return (<>
 
@@ -314,9 +289,7 @@ const PostJob = () => {
                 display: (postJobStep == 1) ? "block" : "none",
 
             }}>
-            {/* < HeaderSec
-                    color="black"
-                    border="2px solid #8E8E8E" /> */}
+
             <Stack direction="row"
                 sx={{
                     gap: { "lg": "50px", "md": "0px", "xs": "0px" },
@@ -359,15 +332,7 @@ const PostJob = () => {
                         </Typography>
                         <img src={window.location.origin + "/assets/g52.png"} alt="g52" />
                     </Stack>
-                    {/* <Box sx={{
-                            height: "31px",
-                            width: "352px",
-                            left: "148px",
-                            top: "266px",
-                            borderRadius: "0px",
-                            background: "#FFD5C9",
-                            position: "absolute"
-                        }}></Box> */}
+
                 </Stack>
                 <Box sx={{ width: { "lg": "50%", "md": "100%", "xs": "100%" } }}>
 
@@ -783,7 +748,6 @@ const PostJob = () => {
                                                     </ThemeFInputDiv>
                                                     <ThemeFInputDiv sx={{ width: "50%" }}>
                                                         <Box >Ending Time</Box>
-                                                        {/* <ThemeLabel LableFor="ending_time" LableText="Ending Time" sx={{ fontSize: "16px !important" }} /> */}
                                                         <TimePicker
                                                             value={endingTime}
                                                             onChange={(newValue) => {
@@ -1095,8 +1059,6 @@ const PostJob = () => {
                 visibility: (postJobStep == 2) ? "visible" : "hidden",
                 height: (postJobStep == 2) ? "fit-content" : "0px",
                 display: (postJobStep == 2) ? "block" : "none",
-                // height:;
-                // padding: 0px;
             }}>
             <Stack className="PosrJobWrapper"
                 sx=
@@ -1104,9 +1066,7 @@ const PostJob = () => {
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
-                {/* <HeaderSec
-                        color="black"
-                        border="2px solid #8E8E8E" /> */}
+
                 <Stack direction="row" gap={2} sx={{ position: "relative" }}>
                     <Box sx={{
                         width: { "lg": "35%", "md": "0px", "xs": "0px" },
@@ -1142,15 +1102,7 @@ const PostJob = () => {
 
 
                         </Stack>
-                        {/* <Box sx={{
-                                height: "31px",
-                                width: "352px",
-                                left: "148px",
-                                top: "266px",
-                                borderRadius: "0px",
-                                background: "#FFD5C9",
-                                position: "absolute"
-                            }}></Box> */}
+
                     </Box>
 
                     <Box sx={{ width: { "lg": "50%", "md": "100%", "xs": "100%" } }}>

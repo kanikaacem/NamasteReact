@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
 
 /*Email Verification Page*/
 import EmployerVerficationPage from './Pages/Common/EmailVerficationPage';
@@ -19,7 +18,6 @@ import CandidateRecommendation from './Pages/Employer/CandidateRecommendation';
 import SavedCandidate from "./Pages/Employer/SavedCandidate";
 import AppliedCandidate from './Pages/Employer/AppliedCandidate';
 import ViewProfile from './Pages/Employer/ViewProfile';
-// import CandidateProfilePage from "./ThemeComponent/Common/CandidateProfilePage";
 
 /*Candidate Component*/
 import CandidateProfile from './Pages/Candidate/CandidateProfile';
@@ -28,9 +26,6 @@ import CandidateRegistration from "./Pages/Candidate/CandidateRegistration";
 import CandidateLogin from "./Pages/Candidate/CandidateLogin";
 import CandidateDashboard from "./Pages/Candidate/CandidateDashboard";
 import CandidateProfilePage from "./Pages/Candidate/CandidateProfilePage";
-import CandidateJobPerferences from "./Pages/Candidate/CandidateJobPerferences";
-import SavedJobs from './Pages/Candidate/SavedJobs';
-import ProfileComponent from './ThemeComponent/Common/ProfileComponent';
 import CandidateMobileVerify from './ThemeComponent/ThemeForms/CandidateMobileVerify';
 
 /*Website Page*/
@@ -89,15 +84,12 @@ function App() {
 
           </Route>
 
-          {/* <Route path="/view-profile" element={<CandidateProfile></CandidateProfile>} /> */}
 
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             <Route path="" element={<CandidateDashboard></CandidateDashboard>} />
             <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
             <Route path="profile" element={<CandidateProfilePage></CandidateProfilePage>} />
-            <Route path="saved-jobs" element={<SavedJobs></SavedJobs>} />
             <Route path="mobile-verify" element={<CandidateMobileVerify></CandidateMobileVerify>} />
-            <Route path="perferences" element={<CandidateJobPerferences></CandidateJobPerferences>} />
             <Route path="job-type" element={<JobTypePage></JobTypePage>} />
             <Route path="profile/:step" element={<CandidateProfile></CandidateProfile>} />
             <Route path=":jobType/profile/:step" element={<CandidateProfile></CandidateProfile>} />

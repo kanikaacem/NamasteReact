@@ -1,14 +1,11 @@
-import { Box, Stack, Typography, Input, TextField, Divider } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Stack, Typography, TextField, Divider } from "@mui/material";
 
 import { Formik, Field, Form } from "formik";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
-import ButtonType3 from "../../ThemeComponent/Common/ButtonType3";
 import ChangePassword from "../Common/ChangePassword";
 import SubscriptionPlan from "./SubscriptionPlan";
-import { ThemeButtontype1 } from "../../utils/Theme";
 import { useOutletContext } from "react-router-dom";
 
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
@@ -16,7 +13,7 @@ import UploadFile from "../../ThemeComponent/Common/UploadFile";
 import { CompanyUpdateInformationSchema, CreateSubUserValidationSchema } from "../../Validation/EmployerValidation";
 import { AccountSettingMenu } from "../../utils/Data";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 const AccountSetting = () => {
     const [currentMenu, setCurrentMenu] = useState("create_sub_user");
     const user = useOutletContext();
@@ -57,25 +54,6 @@ const AccountSetting = () => {
 
         var output = document.getElementById('companyLogo');
         output.src = URL.createObjectURL(event.target.files[0]);
-
-        // if (file != 'png' && file != 'jpeg' && file != 'jpg')
-        //     setcompanyLogoError("File type should be JPEG and PNG.")
-        // else if (file_size > 3000000) {
-        //     setcompanyLogoError("File Size should be less than and equal to 3MB.")
-        // }
-        // else {
-        // let formData = new FormData();
-        // formData.append('image', event.target.files[0]);
-        // formData.append('imagetype', "comlogo");
-        // formData.append('userid', userId);
-        // let response = await fetch(api_url + "/api/employer/updateimage", {
-        //     method: "POST",
-        //     body: formData,
-        // })
-        // if (response.ok) {
-        //     response = await response.json();
-        //     console.log(response);
-        // }
     }
 
     const handleCompanyInformation = async (values) => {
@@ -105,29 +83,8 @@ const AccountSetting = () => {
     const handleProfileLogo = async (event) => {
         let file = event.target.files[0];
         let file_size = file.size;
-        // setCompanyLogoImage(file);
-        // console.log(companyLogoImage);
         var output = document.getElementById('profileLogo');
         output.src = URL.createObjectURL(event.target.files[0]);
-
-        // if (file != 'png' && file != 'jpeg' && file != 'jpg')
-        //     setcompanyLogoError("File type should be JPEG and PNG.")
-        // else if (file_size > 3000000) {
-        //     setcompanyLogoError("File Size should be less than and equal to 3MB.")
-        // }
-        // else {
-        // let formData = new FormData();
-        // formData.append('image', event.target.files[0]);
-        // formData.append('imagetype', "comlogo");
-        // formData.append('userid', userId);
-        // let response = await fetch(api_url + "/api/employer/updateimage", {
-        //     method: "POST",
-        //     body: formData,
-        // })
-        // if (response.ok) {
-        //     response = await response.json();
-        //     console.log(response);
-        // }
     }
     const handleHrInformation = async (values) => {
         let formData = new FormData();
@@ -269,7 +226,6 @@ const AccountSetting = () => {
                         divider={<Divider orientation="horizontal" flexItem />}
                         gap={2}
                         sx={{
-                            // margin: "0 auto",
                             background: "#FFFFFF",
                             padding: "50px",
                             borderRadius: "14px",
@@ -418,7 +374,6 @@ const AccountSetting = () => {
                         divider={<Divider orientation="horizontal" flexItem />}
                         gap={2}
                         sx={{
-                            // margin: "0 auto",
                             background: "#FFFFFF",
                             padding: "50px",
                             borderRadius: "14px",
@@ -439,10 +394,9 @@ const AccountSetting = () => {
                             <Formik
 
                                 initialValues={defaultValue3}
-                                // validationSchema={ForgotPasswordValidation}
                                 onSubmit={handleHrInformation}
                             >
-                                {({ errors, touched, values, setFieldValue }) => (
+                                {({ errors, touched }) => (
                                     <Form className="HrInformationUpdateForm">
                                         <ThemeFInputDiv>
                                             <ThemeFInputDiv>
@@ -513,4 +467,3 @@ const AccountSetting = () => {
 
 }
 export default AccountSetting;
-//getuserbyId

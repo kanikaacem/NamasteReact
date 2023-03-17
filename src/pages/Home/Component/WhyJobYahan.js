@@ -5,7 +5,6 @@ const WhyJobYahan = () => {
         <Stack
             direction="row" sx={{
                 background: "#FAFAFA",
-                // padding: "100px",
                 position: "relative",
                 gap: "35px",
                 flexWrap: "wrap",
@@ -67,12 +66,6 @@ const WhyJobYahan = () => {
             <Stack sx={{
                 width: { "lg": "44%", "md": "100%", "xs": "100%" },
                 alignItems: "flex-end",
-                // maxWidth: "726px",
-                // position: "relative",
-                // right: "0",
-                // top: "120px"
-                // margin: { "lg": "0", "md": "0 auto", "xs": "0 auto" },
-                // top: "120px"
             }}>
                 <Box sx={{
                     maxWidth: "600px"

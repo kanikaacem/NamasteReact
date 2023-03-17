@@ -35,7 +35,6 @@ const HomeSection = () => {
                 position: "relative",
                 paddingTop: "50px",
                 paddingBottom: "20px",
-                // padding: "100px 0px",
                 position: "relative",
                 background: "#FAFAFA"
             }}
@@ -105,7 +104,6 @@ const HomeSection = () => {
                 background: "#FFFFFF",
                 boxShadow: "20px 5px 11px rgba(214, 214, 214, 0.25)",
                 padding: { "lg": "50px 20px", "md": "50px 30px", "xs": "50px 30px" }
-                // minHeight: "231px"
             }}>
                 <Carousel responsive={responsive}>
                     {categoryData.map((item, index) => {

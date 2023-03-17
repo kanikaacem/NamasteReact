@@ -1,14 +1,7 @@
 import { Stack, Button } from "@mui/material";
-import { NavLink, Link, Outlet } from "react-router-dom";
-import { Avatar, Box, Badge, Typography, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 
-import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
-
-import WorkIcon from '@mui/icons-material/Work';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 
 import Moment from 'react-moment';
 import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
@@ -81,16 +74,16 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                             width: "200px",
                             borderRadius: "44px",
                             fontSize: "18px",
-                            border: { border },
                             color: { color },
                             textTransform: "capitalize",
                             fontWeight: "600",
                             fontFamily: "Work Sans, sans-serif !important",
-                            background: { background },
+                            border: "none",
+                            background: "none",
                             "&:hover": {
-                                border: { border },
                                 color: { color },
-                                background: { background }
+                                border: "none",
+                                background: "none",
 
                             }
                         }}>Dashboard
@@ -164,16 +157,6 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
 
                                 (<>
                                     <Stack gap={2} direction="column" sx={{ background: "#FFFFFF", padding: "20px" }}>
-                                        {/* <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Basic Postings : Unlimited
-                                        </Typography>
-
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Premium Posting : 300 credits
-                                        </Typography> */}
-
-
-
                                         <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={
                                             () => {
                                                 localStorage.clear();
@@ -203,7 +186,6 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                         }
                     }
                     sx={{
-                        width: "max-content",
                         fontSize: "18px",
                         color: { color },
                         textTransform: "capitalize",
@@ -227,7 +209,6 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                         window.location.href = window.location.origin + "/contact-us";
                     }}
                     sx={{
-                        width: "200px",
                         borderRadius: "44px",
                         fontSize: "18px",
                         color: { color },

@@ -5,7 +5,6 @@ import RecommendedJobs from "../Home/Component/RecommendedJobs";
 import Filter from "../../ThemeComponent/Filter";
 import DashboardGreeting from "../../ThemeComponent/Common/DashboardGreeting";
 
-import { useState, useEffect } from "react";
 const CandidateHome = () => {
     const user = useOutletContext();
 

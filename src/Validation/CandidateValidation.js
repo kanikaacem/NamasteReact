@@ -1,4 +1,3 @@
-import { yearPickerClasses } from "@mui/x-date-pickers";
 import * as yup from "yup";
 //Employer Login Validation
 export const candidateLoginValidationSchema = yup.object().shape({
@@ -14,7 +13,6 @@ export const NewEmailValidation = yup.object().shape({
 
 //Candidate Registration Step 1
 export const CandidateRegistrationSchema = yup.object().shape({
-    // full_name: yup.string().required("Full Name is required"),
     email_id: yup.string().required("Email Id is required").email("Email Id should not valid"),
     password: yup.string().required("Password is requied").matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
@@ -22,8 +20,7 @@ export const CandidateRegistrationSchema = yup.object().shape({
     ),
     confirm_password: yup.string().required("Confirm Password is required")
         .oneOf([yup.ref('password'), null], 'Passwords must match')
-    // mobile_number: yup.string().required("Mobile Number is required").min(10),
-    // work_status: yup.string().required("Work status is required")
+
 })
 
 //Candidate Registration Step 2 ->Step 1
@@ -41,7 +38,6 @@ export const PersonalRegistrationSchema = yup.object().shape({
     date_of_birth: yup.string().required("Date of Birth is required"),
     state: yup.string().required("State is required"),
     city: yup.string().required("City is required"),
-    // area: yup.string().required("Area is required"),
     complete_address: yup.string().required("Complete address is required"),
     phone_number: yup.number().min(10).required("Phone Number is required"),
     marital_status: yup.string().required("Martial Status is required"),

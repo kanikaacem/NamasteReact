@@ -15,16 +15,13 @@ const UploadResume = ({ setActiveStep }) => {
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     const uploadFile = async (event) => {
-        // console.log(event.target.files[0]);
         let file = event.target.files[0];
         let formData = new FormData();
         formData.append('image', file);
         formData.append('ImageType', 'CandidateResume');
-        // console.log(formData)
         let response = await PostImageRequest(uploadFileURL, formData);
 
         setFormSubmitted(true);
-        // console.log(formSubmitted
 
 
 
@@ -33,7 +30,6 @@ const UploadResume = ({ setActiveStep }) => {
     const goToDashboard = async () => {
         localStorage.setItem("action", "login");
         window.location.href = window.location.origin + "/candidate-dashboard";
-        // dispatch({ type: 'LOGIN', payload: JSON.parse(localStorage.getItem("user")) });
 
     }
 
@@ -53,9 +49,7 @@ const UploadResume = ({ setActiveStep }) => {
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
-                {/* <HeaderSec
-                    color="black"
-                    border="2px solid #8E8E8E" /> */}
+
                 <Stack alignItems="flex-end" sx={{ position: "relative" }}>
 
 

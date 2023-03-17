@@ -1,29 +1,20 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { PostAnswerCandidate, BlueCollarProfileCompleted } from "../../utils/ApiUrls";
 
-import { Stack, TextField, FormControlLabel, Radio, FormControl, Box, RadioGroup, Select as SelectField, MenuItem, Select, Typography, Autocomplete } from "@mui/material";
+import { Stack, TextField, Box, Select as SelectField, MenuItem, Select, Typography, Autocomplete } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { ThemeButtonType2, ThemeFInputDiv, ThemeButtonType3 } from "../../utils/Theme";
 import ThemeLabel from "./ThemeLabel";
-import Error from '../Common/Error';
 
-import HeaderSec from "../Common/HeaderSec";
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-
+import { useState } from "react";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 import ThemeMessage from "../Common/ThemeMessage";
-import { gridColumnsTotalWidthSelector } from "@mui/x-data-grid";
 const PersonalInformation2 = ({ questions }) => {
 
     const [date, setDate] = useState(null);
-
-    const dispatch = useDispatch();
-    const isLoggedIn = useSelector(state => state.isLoggedIn);
     const JobType = window.location.pathname.split('/')[1];
     const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -36,12 +27,6 @@ const PersonalInformation2 = ({ questions }) => {
             jobtype: JobType
 
         }
-        // FormData[question] = ans;
-        // console.log(FormData);
-        // if(localStorage.getItem("questions") == null)
-        //     localStorage.setItem("questions", JSON.stringify(FormData));
-        // else 
-        //     localStorage.setItem("questions",localStorage.getItem("questions")+JSON.stringify(FormData))
 
         let response = await postRequest(PostAnswerCandidate, FormData);
         if (response.status === '1') {
@@ -135,7 +120,6 @@ const PersonalInformation2 = ({ questions }) => {
                     width: { "lg": "50%", "md": "100%", "xs": "100%" }
                 }}>
                     <Box sx={{
-                        // width: {"lg":"763px","md":"700px"},
                         maxWidth: "763px",
                         background: "#F8F8F8",
                         border: "1px solid #EAEAEA",
@@ -174,12 +158,9 @@ const PersonalInformation2 = ({ questions }) => {
 
                     }}>
                         <Formik
-                            // initialValues={initialData}
-                            // enableReinitialize
-                            // initialValues={props.initialValues}
+
                             initialValues={{}}
-                        // validationSchema={ProfessionalDetailSchema}
-                        // onSubmit={handleSubmit}
+
                         >
                             {({ errors, touched, values, setFieldValue }) => (
                                 <Form className="ProfessionalDetailForm">
@@ -194,11 +175,9 @@ const PersonalInformation2 = ({ questions }) => {
                                                                 <Field
                                                                     onKeyUp={(event) => FormSubmit(item.questiontag, event.target.value)
                                                                     }
-                                                                    // error={errors.name && touched.name}
                                                                     as={TextField}
                                                                     id={item.questiontag}
                                                                     placeholder={item.question} type="text" name={item.questiontag} fullWidth />
-                                                                {/* {errors.job_type && touched.job_type && <Error text={errors.job_type} />} */}
 
                                                             </>
 
@@ -212,7 +191,6 @@ const PersonalInformation2 = ({ questions }) => {
                                                                         onChange={(newValue) => {
                                                                             setDate(newValue);
                                                                             FormSubmit(item.questiontag, new Date(newValue))
-                                                                            // setFieldValue("date_of_birth", new Date(newValue))
                                                                         }}
                                                                         disableFuture={true}
                                                                         renderInput={(params) => <TextField
@@ -251,7 +229,6 @@ const PersonalInformation2 = ({ questions }) => {
                                                                     <ThemeLabel LableFor={item.questionsnested[0].questiontag} LableText={item.questionsnested[0].question} />
 
                                                                     <Field
-                                                                        // error={errors.name && touched.name}
                                                                         as={TextField}
                                                                         id={item.questionsnested[0].questiontag}
                                                                         placeholder={item.questionsnested[0].question} type="text" name={item.questionsnested[0].questiontag} fullWidth />
@@ -270,10 +247,7 @@ const PersonalInformation2 = ({ questions }) => {
                                                                                         <Stack direction="row" gap={2} alignItems="center">
                                                                                             <input
                                                                                                 onChange={(event) => {
-                                                                                                    // console.log(event.target.value);
-                                                                                                    // console.log(item.questionopentime)
                                                                                                     if (event.target.value === item.questionopentime && item.questionsnested.length > 0) {
-                                                                                                        console.log("Iamg running")
                                                                                                         document.getElementById(item.questionsnested[0].questiontag).style.display = "block"
                                                                                                     }
                                                                                                     FormSubmit(item.questiontag, event.target.value)
@@ -298,7 +272,6 @@ const PersonalInformation2 = ({ questions }) => {
                                                                             <ThemeLabel LableFor={item.questionsnested[0].questiontag} LableText={item.questionsnested[0].question} />
 
                                                                             <Field
-                                                                                // error={errors.name && touched.name}
                                                                                 onKeyUp={(event) => FormSubmit(item.questionsnested[0].questiontag, event.target.value)}
                                                                                 as={TextField}
                                                                                 placeholder={item.questionsnested[0].question} type="text" name={item.questionsnested[0].questiontag} fullWidth />

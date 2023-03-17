@@ -1,15 +1,8 @@
 import { Box, Badge, Button, Stack, Typography } from "@mui/material";
 
-import PhoneIcon from '@mui/icons-material/Phone';
-import ChatIcon from '@mui/icons-material/Chat';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
-
 import Moment from 'react-moment';
-const CandidateComponent = ({ CandidateData, AppliedDate, CandidateStatus }) => {
-    // { console.log(AppliedDate) }
-    // let appliedDate = new Date(AppliedDate);
-    // { console.log(AppliedDate) };
+const CandidateComponent = ({ CandidateData }) => {
+
     return (<>
         {console.log(CandidateData)}
         <Box sx={{
@@ -58,20 +51,9 @@ const CandidateComponent = ({ CandidateData, AppliedDate, CandidateStatus }) => 
                             Applied on:
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
-                            {/* <Moment format="DD/MM/YYYY">{AppliedDate}</Moment> */}
-                            {/* {new Date(AppliedDate)} */}
+
                         </Typography>
                     </Stack>
-                    {/* <Stack direction="row" gap={2}>
-                        <Typography component="div" sx={{ fontSize: "18px", color: "#4E3A67", fontWeight: "700" }}>
-                            Notice Period:
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
-                            Immediately Available
-                        </Typography>
-                    </Stack> */}
-
-
                 </Stack>
                 <Stack direction="column" sx={{
                     width: { "lg": "25%", "md": "25%", "xs": "100%" }

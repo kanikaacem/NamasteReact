@@ -1,7 +1,6 @@
 import { postRequest } from "../../utils/ApiRequests";
 
-import { Box, TextField, Typography, IconButton, Stack, Button } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import { Box, TextField, Typography, Stack, Button } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
 import { OTPValidationSchema, MobileVerifyFormValidationSchema } from "../../Validation/EmployerValidation";
@@ -11,10 +10,7 @@ import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
 import { useState } from "react";
 
-import HeaderSec from "../Common/HeaderSec";
 import ThemeMessage from "../Common/ThemeMessage";
-
-
 
 const CandidateMobileVerify = () => {
     const [sendOtp, setSendOtp] = useState(false);
@@ -60,9 +56,7 @@ const CandidateMobileVerify = () => {
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
-                {/* <HeaderSec
-                    color="black"
-                    border="2px solid #8E8E8E" /> */}
+
                 <Stack gap={3} direction="row" justifyContent="space-between"
                     sx={{
                         margin: "50px"
@@ -186,7 +180,7 @@ const CandidateMobileVerify = () => {
                                 validationSchema={OTPValidationSchema}
                                 onSubmit={handleSubmit2}
                             >
-                                {({ errors, touched, values, setFieldValue }) => (
+                                {({ errors, touched }) => (
                                     <Form className="VerifyOTPForm">
 
                                         <ThemeFInputDiv>

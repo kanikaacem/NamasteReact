@@ -1,14 +1,13 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { JobDescriptionURL, GetCandidateOnParticularJob } from "../../utils/ApiUrls";
 
-import { Box, Button, Stack, Typography, Divider, Tabs, Tab, MenuItem, Select, Badge } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import CandidateComponent from "../../ThemeComponent/Common/CandidateComponent";
 import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
 import SocialMedia from "../../ThemeComponent/Common/SocialMedia";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 const AppliedCandidate = () => {
-    const [value, setValue] = useState(0)
     const [jobData, setJobData] = useState([]);
     const [jobCanData, setJobCanData] = useState([]);
     const { id } = useParams();
@@ -26,7 +25,6 @@ const AppliedCandidate = () => {
 
         const getJobDescription = async () => {
             let response = await postRequest(JobDescriptionURL, { jobid: id });
-            // console.log(response.data);
             if (response.status === '1') setJobData(response.data);
 
         }
@@ -77,39 +75,10 @@ const AppliedCandidate = () => {
                         }}>
                             Applications({jobCanData.length})
                         </Typography>
-                        {/* <Typography component="div" sx={{ fontSize: "26px", color: "#4E3A67", fontWeight: "700" }}>
-                            Recommended Candidates (10)
-                        </Typography> */}
+
                     </Stack>
 
-                    {/* <Stack direction="row" gap={2}
-                        justifyContent={{ "xl": "space-between" }}
-                        sx={{
-                            margin: "20px 0px",
-                            flexWrap: "wrap"
-                        }}>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "700" }}>
-                            ALL (110)
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "700" }}>
-                            UNREAD (4)
-                        </Typography>
-                        <Typography component="div" sx={{
-                            fontSize: "20px", color: "#FC9A7E", fontWeight: "700"
-                        }}>
-                            REVIEWED (76)
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "700" }}>
-                            SHORTLISTED (29)
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "700" }}>
-                            REJECTED (0)
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "700" }}>
-                            SAVED (1)
-                        </Typography>
 
-                    </Stack> */}
                     <hr sx={{
                         border: "1px solid #E1D4F2"
 
@@ -132,7 +101,6 @@ const AppliedCandidate = () => {
 
                     sx={{
                         padding: "20px",
-                        // visibility: { "lg": "visible", "md": "hidden", "xs": "hidden" }
                         display: { "lg": "block", "md": "none", "xs": "none" }
                     }}>
                     <ChatComponent />

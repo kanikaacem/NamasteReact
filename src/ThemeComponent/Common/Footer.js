@@ -1,4 +1,4 @@
-import { Box, Typography, Stack, styled } from "@mui/material";
+import { Box, Typography, Stack } from "@mui/material";
 import SocialMedia from "./SocialMedia";
 import { FooterData, FooterData2, FooterData3 } from "../../utils/Data";
 import { FooterBox } from "../../utils/Theme";

@@ -94,7 +94,6 @@ const ResetPasswordPage = ({ user }) => {
                         <Box
                             sx={{
                                 boxSizing: "border-box",
-                                // maxWidth: "865px",
                                 minHeight: "647",
                                 background: "#FFFFFF",
                                 border: "1px solid #EDEDED",

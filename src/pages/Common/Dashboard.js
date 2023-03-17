@@ -1,7 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { Avatar, Box, Stack, Badge, List, ListItem, ListItemText } from "@mui/material";
+import { Avatar, Box, Stack, List, ListItem, ListItemText } from "@mui/material";
 
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ReorderIcon from '@mui/icons-material/Reorder';
 
 import { EmployerMenu, CandidateMenu } from "../../utils/Data.js";
@@ -14,13 +13,9 @@ import Footer from "../../ThemeComponent/Common/Footer";
 
 import DashboardAccountSetting from "../../ThemeComponent/Common/DashboardAccountSetting";
 
-// import PostJob from "./PostJob";
 const Dashboard = () => {
-    // const user = localStorage.user && JSON.parse(localStorage.user);
-
     const [openProfile, setOpenProfile] = useState(false);
     const [openMenu, setOpenMenu] = useState(false);
-    // const [userInformation, setUserInformation] = useState(user);
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
     const EmployeeMenuSelected = useSelector(state => state.EmployeeMenuSelected);
@@ -186,10 +181,6 @@ const Dashboard = () => {
 
                         </>
                         )}
-                        {/* <Badge badgeContent={4} color="primary" sx={{ cursor: "pointer" }}
-                            onClick={() => window.location.href = window.location.origin + '/employer-dashboard/chats'}>
-                            <MailOutlineIcon></MailOutlineIcon>
-                        </Badge> */}
 
                         <Box sx={{ cursor: "pointer" }} onClick={() => setOpenProfile(!openProfile)}>
                             <Avatar alt={user.fullname} />

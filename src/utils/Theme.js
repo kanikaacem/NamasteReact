@@ -1,4 +1,4 @@
-import { Button, Stack, styled, Typography } from "@mui/material";
+import { Button, Stack, styled } from "@mui/material";
 import { Box } from "@mui/system";
 
 //Theme Button

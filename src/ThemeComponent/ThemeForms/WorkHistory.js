@@ -33,7 +33,6 @@ const WorkHistory = ({ setActiveStep }) => {
 
 
     const handleSubmit = async (values, { resetForm }) => {
-        // console.log(values);
 
         let formData = new FormData();
         formData = {
@@ -73,9 +72,7 @@ const WorkHistory = ({ setActiveStep }) => {
                     padding: "20px 50px",
                     gap: "24px"
                 }}>
-                {/* <HeaderSec
-                    color="black"
-                    border="2px solid #8E8E8E" /> */}
+
                 <Stack direction="row" gap={3} sx={{ position: "relative" }}>
 
 

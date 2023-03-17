@@ -212,77 +212,15 @@ export const CandidateMenu = [
         url: "profile",
         image: "profile.png"
     },
-    // {
-    //     id: 2,
-    //     MenuName: "Refer App",
-    //     value: "refer_app",
-    //     url: "/",
-    //     image: "booking.png"
-    // },
-    // {
-    //     id: 3,
-    //     MenuName: "Notification",
-    //     value: "notification",
-    //     url: "",
-    //     image: "notification.png"
-    // },
-    // {
-    //     id: 4,
-    //     MenuName: "Recommend Jobs",
-    //     value: "recommend_jobs",
-    //     url: "",
-    //     image: "Job.png"
-    // },
+
     {
-        id: 5,
+        id: 2,
         MenuName: "Applied Jobs",
         value: "applied_jobs",
         url: "",
         image: "AllJob.png"
-    },
-    // {
-    //     id: 6,
-    //     MenuName: "Suggested Jobs",
-    //     value: "suggested_jobs",
-    //     url: "/",
-    //     image: "Job.png"
-    // },
-    // {
-    //     id: 7,
-    //     MenuName: "Messages",
-    //     value: "messages",
-    //     url: "",
-    //     image: "chat.png"
-    // },
-    // {
-    //     id: 8,
-    //     MenuName: "Saved Jobs",
-    //     value: "saved_jobs",
-    //     url: "",
-    //     image: "SavedJob.png"
-    // },
+    }
 
-    // {
-    //     id: 9,
-    //     MenuName: "Top company jobs",
-    //     value: "top_company_jobs",
-    //     url: "",
-    //     image: "SavedJob.png"
-    // },
-    // {
-    //     id: 10,
-    //     MenuName: "Search Appearance",
-    //     value: "search_apperances",
-    //     url: "/",
-    //     image: "Search.png"
-    // },
-    // {
-    //     id: 11,
-    //     MenuName: "Interested Employer",
-    //     value: "interested_employer",
-    //     url: "/",
-    //     image: "user.png"
-    // },
 ]
 
 export const CandidateLogoutMenu = [
@@ -364,22 +302,6 @@ export const EmployerMenu = [
         url: "applied-candidates"
 
     },
-    // {
-    //     id: 5,
-    //     Menu: "WorkOutlineIcon",
-    //     MenuName: "Saved Candidates",
-    //     value: "saved_candidates",
-    //     url: "saved-candidates"
-
-    // },
-    // {
-    //     id: 6,
-    //     Menu: "WorkOutlineIcon",
-    //     MenuName: "Subscription Plans",
-    //     value: "subscription_plans",
-    //     url: "subscription-plan"
-
-    // },
 
     {
         id: 5,
@@ -388,15 +310,8 @@ export const EmployerMenu = [
         value: "account-setting",
         url: "account-setting"
 
-    },
-    // {
-    //     id: 8,
-    //     Menu: "WorkOutlineIcon",
-    //     MenuName: "Change Password",
-    //     value: "change-password",
-    //     url: "change-password"
+    }
 
-    // }
 ]
 export const AccountSettingMenu = [
     {
@@ -523,31 +438,7 @@ export const CompanyType = [
         value: "big_corporate_(more_than_1K_employee)",
         name: "Big Corporate (More than 1K employee)"
     },
-    // {
-    //     id: 5,
-    //     value: "fintech_startup",
-    //     name: "FinTech startup"
-    // },
-    // {
-    //     id: 6,
-    //     value: "al_ml_startup",
-    //     name: "AL/ML Startup"
-    // },
-    // {
-    //     id: 7,
-    //     value: 'agri_tech_startup',
-    //     name: "ACOM startup"
-    // },
-    // {
-    //     id: 8,
-    //     value: "consultant",
-    //     name: "Consultant"
-    // },
-    // {
-    //     id: 9,
-    //     value: "technology",
-    //     name: "Technology service Company"
-    // }
+
 ]
 /* Role Data*/
 export const Role = [
@@ -650,20 +541,7 @@ export const AssociationType = [
         Name: "Freelancing"
     }
 ]
-/*
-/*Job Working Type */
-// export const JobWorkingType = [
-//     {
-//         id: 1,
-//         value: "work_from_home",
-//         Name: "Work From Home"
-//     },
-//     {
-//         id: 2,
-//         value: "Office",
-//         Name: "Office"
-//     }
-// ]
+
 /* Job Payment Type */
 export const PaymentType = [
     {
@@ -814,17 +692,8 @@ export const socialLogin = [
         id: 1,
         value: "Google Login",
         image_url: "../assets/image_10.png"
-    },
-    // {
-    //     id: 2,
-    //     value: "Linkedin Login",
-    //     image_url: "../assets/image_11.png"
-    // },
-    // {
-    //     id: 3,
-    //     value: "facebook Login",
-    //     image_url: "../assets/image_12.png"
-    // }
+    }
+
 ]
 
 export const WorkingDays = [

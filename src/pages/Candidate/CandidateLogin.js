@@ -1,23 +1,20 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { CandidateLoginURL, ReSendCandidateEmailVerificationURL } from "../../utils/ApiUrls";
 
-import { Box, TextField, Typography, Container, Stack, Button } from "@mui/material";
+import { Box, TextField, Typography, Stack } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom'
 import { Navigate } from 'react-router-dom';
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import { candidateLoginValidationSchema } from "../../Validation/CandidateValidation";
-import { socialLogin } from "../../utils/Data";
 
-import ShowMessageToastr from "../../ThemeComponent/Common/ShowMessageToastr";
 import Error from "../../ThemeComponent/Common/Error";
-import { SocialBox, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
+import { ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
 
-import { useState, useEffect } from "react";
+import { useState, } from "react";
 import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 const CandidateLogin = () => {
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
@@ -28,8 +25,7 @@ const CandidateLogin = () => {
     const action = useSelector(state => state.action);
 
     const dispatch = useDispatch();
-    const [authenticationError, setauthenticationError] = useState("");
-    const [showPassword, setshowPassword] = useState(false);
+
     const defaultValue = {
         email_address: "",
         password: ""
@@ -76,31 +72,8 @@ const CandidateLogin = () => {
 
     }
 
-    // useEffect(() => {
-    //     let userData = localStorage.getItem("auth_token");
-    //     const getUserData = async () => {
-    //         let response = await postRequest(CandidateLoginURL, {
-    //             email: localStorage.getItem("useremail"),
-    //             password: localStorage.getItem("password")
-    //         })
-    //         if (response.status == '1') {
-    //             if (response.data.isemailverified && response.data.profilecompleted < 50) {
-    //                 window.location.href = window.location.origin + "/job-type";
-    //             }
 
-    //             if (!response.data.isEmailVerified) {
-    //                 if (localStorage.getItem("useremail")) {
-    //                     setIsEmailVerified(true)
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    //     (userData != " " && userData != null) && getUserData();
-
-    // }, []);
     return (<>
-        {console.log(action)}
         {isLoggedIn == 'true' && user.ismobileverified && user.isemailverified && action === "login" && < Navigate to="/candidate-dashboard"></Navigate>}
         {isLoggedIn == 'true' && !user.ismobileverified && action === "registration" && < Navigate to="/candidate-dashboard/mobile-verify"></Navigate>}
         <ThemeMessage open={showEmailVerifiedMessage} setOpen={setShowEmailVerifiedMessage}
