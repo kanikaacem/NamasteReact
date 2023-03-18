@@ -217,7 +217,23 @@ export const CandidateMenu = [
         id: 2,
         MenuName: "Applied Jobs",
         value: "applied_jobs",
-        url: "",
+        url: "applied-jobs",
+        image: "AllJob.png"
+    },
+
+    {
+        id: 3,
+        MenuName: "Saved Jobs",
+        value: "saved_jobs",
+        url: "saved-jobs",
+        image: "AllJob.png"
+    },
+
+    {
+        id: 4,
+        MenuName: "Liked Jobs",
+        value: "liked_jobs",
+        url: "liked-jobs",
         image: "AllJob.png"
     }
 

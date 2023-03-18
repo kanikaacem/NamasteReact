@@ -11,6 +11,7 @@ import ThemeMessage from "./Common/ThemeMessage";
 const JobDescriptionComponent = ({ userType, data }) => {
 
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [cannotApply,setCannotApply] = useState(false);
     const [jobApplied, setJobApplied] = useState(false);
     const JobApplied = async () => {
         if (window.location.pathname === '/candidate-dashboard') {
@@ -25,6 +26,10 @@ const JobDescriptionComponent = ({ userType, data }) => {
             if (response.status === '1') {
                 setFormSubmitted(true)
                 setJobApplied(true)
+            }
+            
+            else{
+                setCannotApply(true)
             }
 
         }
@@ -47,6 +52,9 @@ const JobDescriptionComponent = ({ userType, data }) => {
     return (<>
         <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted}
             message=" you applied for the job." type="success" />
+
+        <ThemeMessage open={cannotApply} setOpen={setCannotApply}
+            message="You need 50 % profile completed to apply for this job" type="error" />
 
         <Stack
             direction="column"
@@ -98,7 +106,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                             {data && data.city ? data.city.toString() : " Indiranagar"}
                         </Typography>
                     </Stack>
-                    {/* <Stack direction="row" sx={{
+                    <Stack direction="row" sx={{
                     background: "#FFFFFF",
                     border: "1px solid #E2D7F0",
                     borderRadius: "11px",
@@ -111,9 +119,9 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         <img src={window.location.origin + "/assets/RJ1.png"} alt="RJ1"></img>
                     </Box>
                     <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-                        5 Openings
-                    </Typography>
-                </Stack> */}
+                    {data && data.vacancy ? data.vacancy + " Openings" : "Not Mentioned"}                  
+                      </Typography>
+                </Stack>
                     <Stack direction="row" sx={{
                         background: "#FFFFFF",
                         border: "1px solid #E2D7F0",
@@ -181,7 +189,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
 
             <Typography component="div" sx={{ fontSize: "20px", lineHeight: '1.5' }}>
                 {data && data.short_description ? parse(data.short_description) :
-                    " Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,when an unknown printer took a galley of type. And scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."}
+                    "Not mentioned"}
             </Typography>
 
             <Box sx={{
@@ -197,7 +205,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                     <Stack direction="row" gap={2} alignItems="center">
                         <img src={window.location.origin + "/assets/Timeline.png"} height="20px" alt="Timeline" />
                         <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
-                            Hiring since January 2022
+                            Hiring since {" "+new Date(data.createdAt).toLocaleDateString()}
                         </Typography>
                     </Stack>
 
@@ -243,7 +251,11 @@ const JobDescriptionComponent = ({ userType, data }) => {
             </Stack>
 
             {userType !== "employer" &&
-                <ThemeButtonType2 onClick={JobApplied}> {jobApplied ? "Applied" : "Apply Now"} </ThemeButtonType2>}
+                <ThemeButtonType2 onClick={() => {
+                    if(!jobApplied) {
+                        JobApplied();
+                    }
+                }}> {jobApplied ? "Applied" : "Apply Now"} </ThemeButtonType2>}
 
 
         </Stack>

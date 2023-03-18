@@ -77,7 +77,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                 <img src={window.location.origin + "/assets/RJ1.png"} alt="RJ1"></img>
                             </Box>
                             <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-                                {data && data.vacancy ? data.vacancy + "Openings" : "No Openings"}
+                                {data && data.vacancy ? data.vacancy + " Openings" : "Not Mentioned"}
                             </Typography>
                         </Stack>
                         <Stack direction="row" sx={{

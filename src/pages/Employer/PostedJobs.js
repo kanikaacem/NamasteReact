@@ -50,7 +50,6 @@ const PostedJobs = () => {
 
 
     return (<>
-        {console.log(data)}
         <Stack direction="row" sx={{ padding: "20px" }} className="PostedJobPage" gap={2}>
             <Stack sx={{ width: { "lg": "80%", "md": "100%", "xs": "100%" } }} gap={1}>
                 <Stack direction="row" justifyContent="space-between">

@@ -11,7 +11,6 @@ const JobDescription = () => {
     const { id } = useParams();
     const user = useOutletContext();
     const [data, setdata] = useState("");
-
     useEffect(() => {
         let JobFormData = new FormData();
         JobFormData = { jobid: id }

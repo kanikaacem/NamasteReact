@@ -12,9 +12,7 @@ import CreateIcon from '@mui/icons-material/Create';
 import ThemeMessage from "./ThemeMessage";
 
 const ProfileComponent = ({ userData, userType }) => {
-    console.log(userType)
     const [value, setValue] = useState(userType === "employer" ? 1 : 0);
-    console.log(value);
     const [meetingType, setMeetingType] = useState(" ");
     const [userImage, setUserImage] = useState(userData.profile_image ? userData.profile_image : window.location.origin + "/assets/Avatar.png");
     const [userResume, setUserResume] = useState(userData.resume && userData.resume.resume && userData.resume.resume);
@@ -50,7 +48,10 @@ const ProfileComponent = ({ userData, userType }) => {
                     alignItems="center" justifyContent="flex-start" gap={3} sx={{ height: "150px", padding: "20px" }}>
                     <Box sx={{ width: "100px", height: "100px", position: "relative" }}>
                         <img src={userImage} width="100%" alt="Profile" style={{ borderRadius: "50%", cursor: "pointer" }}
-                            onClick={() => document.getElementById("profileImage").click()}
+                            onClick={() =>{
+                                if(userType === "candidate") 
+                                document.getElementById("profileImage").click()
+                            }}
                         />
 
                         <input type="file" id="profileImage" style={{ display: "none" }} onChange={(event) => uploadProfileImage(event, "Candidate")} />

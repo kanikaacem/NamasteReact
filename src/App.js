@@ -27,7 +27,7 @@ import CandidateLogin from "./Pages/Candidate/CandidateLogin";
 import CandidateDashboard from "./Pages/Candidate/CandidateDashboard";
 import CandidateProfilePage from "./Pages/Candidate/CandidateProfilePage";
 import CandidateMobileVerify from './ThemeComponent/ThemeForms/CandidateMobileVerify';
-
+import CandidateAppliedSaveLikedJobs from "./Pages/Candidate/CandidateAppliedSaveLikedJobs";
 /*Website Page*/
 import Home from "./Pages/Home/Home";
 import ErrorPage from "./Pages/ErrorPage";
@@ -93,6 +93,9 @@ function App() {
             <Route path="job-type" element={<JobTypePage></JobTypePage>} />
             <Route path="profile/:step" element={<CandidateProfile></CandidateProfile>} />
             <Route path=":jobType/profile/:step" element={<CandidateProfile></CandidateProfile>} />
+            <Route path="applied-jobs" element={<CandidateAppliedSaveLikedJobs  JobAction="Applied Jobs"></CandidateAppliedSaveLikedJobs>} />
+            <Route path="saved-jobs" element={<CandidateAppliedSaveLikedJobs  JobAction="Saved Jobs"></CandidateAppliedSaveLikedJobs>} />
+            <Route path="liked-jobs" element={<CandidateAppliedSaveLikedJobs  JobAction="Liked Jobs"></CandidateAppliedSaveLikedJobs>} />
             <Route path="*" element={<ErrorPage errorMessage="Page not Found"></ErrorPage>} />
           </Route>
 
