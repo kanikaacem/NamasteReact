@@ -15,9 +15,12 @@ import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
 import DashboardGreeting from "../../ThemeComponent/Common/DashboardGreeting";
 import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 
+
 import { Bar } from 'react-chartjs-2'
 import { useLayoutEffect } from "react";
 ChartJS.register(...registerables);
+
+
 const EmployerDashboard = () => {
     const user = useOutletContext();
 
@@ -100,7 +103,6 @@ const EmployerDashboard = () => {
                             `calc(100vw - 412px)`, "md": "100%", "xs": "100%"
                     }
                 }}>
-
                     <Stack
                         className="EmployerDashboardInfo"
                         sx={{

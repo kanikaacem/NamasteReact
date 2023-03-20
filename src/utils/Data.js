@@ -201,7 +201,7 @@ export const CandidateMenu = [
     {
         id: 0,
         MenuName: "Home",
-        value: "home",
+        value: "candidate_dashboard",
         url: "",
 
     },
@@ -289,7 +289,7 @@ export const EmployerMenu = [
         id: 1,
         Menu: "WorkOutlineIcon",
         MenuName: "Dashboard",
-        value: "dashboard",
+        value: "employer_dashboard",
         url: ""
 
     },

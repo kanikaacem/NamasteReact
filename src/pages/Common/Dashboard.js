@@ -1,3 +1,6 @@
+import { GetUserInformation } from "../../utils/ApiUrls";
+import { getRequestWithToken } from "../../utils/ApiRequests";
+
 import { NavLink, Outlet } from "react-router-dom";
 import { Avatar, Box, Stack, List, ListItem, ListItemText } from "@mui/material";
 
@@ -13,6 +16,7 @@ import Footer from "../../ThemeComponent/Common/Footer";
 
 import DashboardAccountSetting from "../../ThemeComponent/Common/DashboardAccountSetting";
 
+import { useEffect } from "react";
 const Dashboard = () => {
     const [openProfile, setOpenProfile] = useState(false);
     const [openMenu, setOpenMenu] = useState(false);
@@ -20,6 +24,17 @@ const Dashboard = () => {
     const dispatch = useDispatch();
     const EmployeeMenuSelected = useSelector(state => state.EmployeeMenuSelected);
     const CandidateMenuSelected = useSelector(state => state.CandidateMenuSelected);
+
+    useEffect(() => {
+
+        const getLoginUserDetail = async () => {
+            let response = await getRequestWithToken(GetUserInformation);
+            if (response.status === '1') {
+                console.log(response.data);
+            }
+        }
+        getLoginUserDetail();
+    }, []);
 
     return (<>
         <Box

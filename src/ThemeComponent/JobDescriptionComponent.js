@@ -8,10 +8,11 @@ import { ThemeButtonType2 } from "../utils/Theme";
 
 import { useState, useEffect } from "react";
 import ThemeMessage from "./Common/ThemeMessage";
+
 const JobDescriptionComponent = ({ userType, data }) => {
 
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const [cannotApply,setCannotApply] = useState(false);
+    const [cannotApply, setCannotApply] = useState(false);
     const [jobApplied, setJobApplied] = useState(false);
     const JobApplied = async () => {
         if (window.location.pathname === '/candidate-dashboard') {
@@ -27,8 +28,8 @@ const JobDescriptionComponent = ({ userType, data }) => {
                 setFormSubmitted(true)
                 setJobApplied(true)
             }
-            
-            else{
+
+            else {
                 setCannotApply(true)
             }
 
@@ -41,14 +42,19 @@ const JobDescriptionComponent = ({ userType, data }) => {
         const IsjobApplied = async () => {
             let response = await getRequestWithToken("https://backend.jobsyahan.com/api/job/details?jobid=" + data._id);
             if (response.status === "1") {
-                if (response.data[0].jobapply) {
+                if (Object.keys(response.data).length > 0 && response.data[0].jobapply) {
+                    console.log(response.data[0].jobapply)
                     setJobApplied(true)
+                }
+                else {
+                    setJobApplied(false);
                 }
             }
 
         }
         IsjobApplied();
-    }, [data])
+    }, [data._id])
+
     return (<>
         <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted}
             message=" you applied for the job." type="success" />
@@ -107,21 +113,21 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         </Typography>
                     </Stack>
                     <Stack direction="row" sx={{
-                    background: "#FFFFFF",
-                    border: "1px solid #E2D7F0",
-                    borderRadius: "11px",
-                    padding: "15px",
-                    gap: "5px",
-                    alignItems: "center",
-                    justifyContent: "center"
-                }}>
-                    <Box>
-                        <img src={window.location.origin + "/assets/RJ1.png"} alt="RJ1"></img>
-                    </Box>
-                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
-                    {data && data.vacancy ? data.vacancy + " Openings" : "Not Mentioned"}                  
-                      </Typography>
-                </Stack>
+                        background: "#FFFFFF",
+                        border: "1px solid #E2D7F0",
+                        borderRadius: "11px",
+                        padding: "15px",
+                        gap: "5px",
+                        alignItems: "center",
+                        justifyContent: "center"
+                    }}>
+                        <Box>
+                            <img src={window.location.origin + "/assets/RJ1.png"} alt="RJ1"></img>
+                        </Box>
+                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                            {data && data.vacancy ? data.vacancy + " Openings" : "Not Mentioned"}
+                        </Typography>
+                    </Stack>
                     <Stack direction="row" sx={{
                         background: "#FFFFFF",
                         border: "1px solid #E2D7F0",
@@ -205,7 +211,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                     <Stack direction="row" gap={2} alignItems="center">
                         <img src={window.location.origin + "/assets/Timeline.png"} height="20px" alt="Timeline" />
                         <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
-                            Hiring since {" "+new Date(data.createdAt).toLocaleDateString()}
+                            Hiring since {" " + new Date(data.createdAt).toLocaleDateString()}
                         </Typography>
                     </Stack>
 
@@ -252,10 +258,11 @@ const JobDescriptionComponent = ({ userType, data }) => {
 
             {userType !== "employer" &&
                 <ThemeButtonType2 onClick={() => {
-                    if(!jobApplied) {
+                    if (!jobApplied) {
                         JobApplied();
                     }
-                }}> {jobApplied ? "Applied" : "Apply Now"} </ThemeButtonType2>}
+                }}> {jobApplied}
+                    {jobApplied ? "Applied" : "Apply Now"} </ThemeButtonType2>}
 
 
         </Stack>

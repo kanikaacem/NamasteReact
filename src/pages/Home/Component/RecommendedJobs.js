@@ -24,14 +24,14 @@ const RecommendedJobs = ({ fixed }) => {
     }, []);
 
     const getJobDescription = async (data_id) => {
-        console.log(data_id);
-        let JobFormData = new FormData();
-        JobFormData = {
+        // console.log(data_id);
+        // let JobFormData = new FormData();
+        // JobFormData = {
 
-            jobid: data_id
+        //     jobid: data_id
 
-        }
-        let response = await postRequest(JobDescriptionURL, JobFormData);
+        // }
+        let response = await postRequest(JobDescriptionURL + "?jobid=" + data_id);
         if (response.status === '1') {
             setCanJobDes(response.data);
             window.scrollTo(0, 0);

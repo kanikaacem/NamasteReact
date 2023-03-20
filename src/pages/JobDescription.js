@@ -12,10 +12,10 @@ const JobDescription = () => {
     const user = useOutletContext();
     const [data, setdata] = useState("");
     useEffect(() => {
-        let JobFormData = new FormData();
-        JobFormData = { jobid: id }
+        // let JobFormData = new FormData();
+        // JobFormData = { jobid: id }
         const getJobDescription = async () => {
-            let response = await postRequest(JobDescriptionURL, JobFormData);
+            let response = await postRequest(JobDescriptionURL + "?jobid=" + id);
             if (response.status === '1')
                 setdata(response.data);
 

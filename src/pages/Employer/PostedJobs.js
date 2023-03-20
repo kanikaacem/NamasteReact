@@ -1,7 +1,7 @@
 import { getAllPostedJobs } from "../../utils/ApiUrls";
 import { postRequest } from "../../utils/ApiRequests";
 
-import { Box, Stack, Select, MenuItem, Pagination, Typography } from "@mui/material";
+import { Box, Stack, Select, MenuItem, Pagination } from "@mui/material";
 
 import { JobFilter } from "../../utils/Data";
 import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
@@ -10,6 +10,7 @@ import JobComponent from "../../ThemeComponent/JobComponent";
 import { useState, useEffect } from "react";
 
 import ErrorPage from "../ErrorPage";
+
 const PostedJobs = () => {
 
     const [jobFilter, setJobFilter] = useState(" ");

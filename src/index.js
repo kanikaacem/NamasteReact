@@ -5,8 +5,7 @@ import App from './App';
 //redux 
 import {createStore} from "redux";
 import {Provider} from "react-redux";
-import { json } from 'react-router-dom';
-import { LocalSeeOutlined } from '@mui/icons-material';
+
 const initialState = {
   isLoggedIn : localStorage.getItem("isLoggedIn") == null ? false : localStorage.getItem("isLoggedIn"),
   categoryActive : {
@@ -15,8 +14,12 @@ const initialState = {
   },
   api_url: 'https://13.126.115.3:3001',
   showProfile : false,
-  EmployeeMenuSelected : "dashboard",
-  CandidateMenuSelected : "home",
+  EmployeeMenuSelected :  (window.location.pathname !== null && window.location.pathname==="/employer-login") ? 
+  window.location.pathname.split('/')?.slice(-1)?.toString()?.replaceAll("-","_") : "employer_dashboard",
+
+  // "dashboard",
+  CandidateMenuSelected : (window.location.pathname !== null   && window.location.pathname==="/candidate-login" )?
+  window.location.pathname.split('/')?.slice(-1)?.toString()?.replaceAll("-","_") : "candidate_dashboard",
   activeJob : '',
   candidateInfo: '',
   CandidateRegistration:false,
@@ -54,10 +57,12 @@ const reducer = (state, action) =>{
 
     case "CHANGE_EMPLOYEE_MENU" :
       let selected_menu= action.payload;
+      console.log(selected_menu);
       return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),EmployeeMenuSelected:selected_menu }
     
     case "CHANGE_CANDIDATE_MENU":
       let candidate_selected_menu = action.payload;
+      console.log(candidate_selected_menu)
       return {...initialState , isLoggedIn: localStorage.getItem("isLoggedIn"),CandidateMenuSelected:candidate_selected_menu}
     
     case "JOB_DESCRIPTION":
