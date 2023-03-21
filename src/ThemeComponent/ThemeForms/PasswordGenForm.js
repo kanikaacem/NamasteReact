@@ -37,12 +37,7 @@ const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenF
 
         let response = await postRequest(EmployerSaveEmailAndPassword, formData);
         if (response.status == 1) {
-            console.log(response);
-            localStorage.setItem("useremail", email);
-            localStorage.setItem("password", values.password)
             localStorage.setItem('auth_token', response.data);
-            localStorage.setItem("userid", response._id);
-            localStorage.setItem("removeLocalStorageData", true);
             setShowEmailVerifiedMessage(true);
 
         }

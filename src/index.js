@@ -14,77 +14,47 @@ const initialState = {
   },
   api_url: 'https://13.126.115.3:3001',
   showProfile : false,
-  EmployeeMenuSelected :  (window.location.pathname !== null && window.location.pathname==="/employer-login") ? 
-  window.location.pathname.split('/')?.slice(-1)?.toString()?.replaceAll("-","_") : "employer_dashboard",
-
-  // "dashboard",
-  CandidateMenuSelected : (window.location.pathname !== null   && window.location.pathname==="/candidate-login" )?
-  window.location.pathname.split('/')?.slice(-1)?.toString()?.replaceAll("-","_") : "candidate_dashboard",
+  
+  MenuSelected : (window.location.pathname !== null) ? window.location.pathname.split('/')?.slice(-1)?.toString()?.replaceAll("-","_") :
+  (window.location.pathname === "/employer-login") ? "employer_dashboard" : "candidate_dashboard",
   activeJob : '',
   candidateInfo: '',
   CandidateRegistration:false,
-  user:localStorage.getItem("user") == null ? {} : JSON.parse(localStorage.getItem("user")),
+  user:{},
   action:localStorage.getItem("action") == null ? " " : localStorage.getItem("action")
 };
 const reducer = (state, action) =>{
   switch(action.type){
     case "LOGIN":
-      // let {data,token,user} = action.payload;
-      // console.log(data);
-      // console.log(user);
-      // console.log(token);
-      
-      // console.log(action.payload);
-      // let data = action.payload;
       localStorage.setItem('isLoggedIn',true);
-      localStorage.setItem('user',JSON.stringify(action.payload));
+      // localStorage.setItem('user',JSON.stringify(action.payload));
       localStorage.setItem('action',"login")
-      // localStorage.setItem('auth_token',token);
 
-      return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:JSON.parse(localStorage.getItem("user")),action:localStorage.getItem("action")};
+      return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn")};
 
     case "LOGOUT":
       localStorage.clear();
-      // localStorage.setItem("user","")
-      // localStorage.setItem("auth_token","")
-      // localStorage.setItem("isLoggedIn", false);
-      // localStorage.setItem("useremail","");
-      // localStorage.setItem("password","");
+    
       return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn")};
 
-    // case "SHOW_HIDE_PROFILE":
-    //    return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),showProfile: ! state.showProfile}
-
-    case "CHANGE_EMPLOYEE_MENU" :
-      let selected_menu= action.payload;
-      console.log(selected_menu);
-      return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),EmployeeMenuSelected:selected_menu }
     
-    case "CHANGE_CANDIDATE_MENU":
-      let candidate_selected_menu = action.payload;
-      console.log(candidate_selected_menu)
-      return {...initialState , isLoggedIn: localStorage.getItem("isLoggedIn"),CandidateMenuSelected:candidate_selected_menu}
-    
+    case "CHANGE_SELECTED_MENU":
+      let selected_menu = action.payload;
+      return {...initialState,isLoggedIn:localStorage.getItem("isLoggedIn"),MenuSelected:selected_menu}
+      
     case "JOB_DESCRIPTION":
       let job_id = action.payload;
       return {...initialState, isLoggedIn:localStorage.getItem("isLoggedIn"),activeJob:job_id}
 
-    case "USER_REGISTRATION":
-      let candidateInfo = action.payload;
-      console.log(candidateInfo.data);
-      localStorage.setItem('auth_token',candidateInfo.token);
-      // localStorage.setItem('user',JSON.stringify(candidateInfo.data['personalInfo']));
-
-      return {...initialState,candidateInfo:candidateInfo,CandidateRegistration:true}
-      
-    case "LOGIN_REGISTRATION":
+   case "LOGIN_REGISTRATION":
         
         localStorage.setItem('isLoggedIn',true);
         localStorage.setItem('user',JSON.stringify(action.payload));
         localStorage.setItem('action',"registration");
   
         return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:JSON.parse(localStorage.getItem("user")),action:"registration"};
-   
+ 
+
     default:
       return state;
   }

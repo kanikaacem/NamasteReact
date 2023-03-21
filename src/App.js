@@ -18,6 +18,8 @@ import CandidateRecommendation from './Pages/Employer/CandidateRecommendation';
 import SavedCandidate from "./Pages/Employer/SavedCandidate";
 import AppliedCandidate from './Pages/Employer/AppliedCandidate';
 import ViewProfile from './Pages/Employer/ViewProfile';
+import VerifyMobileForm from './ThemeComponent/ThemeForms/VerifyMobileForm';
+import CompanyInfoForm from './ThemeComponent/ThemeForms/CompanyInfoForm';
 
 /*Candidate Component*/
 import CandidateProfile from './Pages/Candidate/CandidateProfile';
@@ -38,7 +40,9 @@ import JobSearch from './ThemeComponent/Common/JobSearch';
 import ContactUs from "./Pages/Common/ContactUs";
 import AboutUs from './Pages/Common/AboutUs';
 import PersonalInformationInformation2 from "./ThemeComponent/ThemeForms/PersonalInformation2";
+import ThemeErrorPage from './Pages/Common/ThemeErrorPage';
 import { useEffect } from "react";
+
 function App() {
 
   useEffect(() => {
@@ -49,6 +53,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/login-error" element={<ThemeErrorPage></ThemeErrorPage>} />
+
           <Route exact path="/" element={<Home></Home>} />
           <Route path="/contact-us" element={<ContactUs></ContactUs>} />
           <Route path="/about-us" element={<AboutUs></AboutUs>} />
@@ -73,6 +79,8 @@ function App() {
 
           <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
             <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
+            <Route path="mobile-verify" element={<VerifyMobileForm></VerifyMobileForm>} />
+            <Route path="company-information" element={<CompanyInfoForm></CompanyInfoForm>} />
             <Route path="post-a-job" element={<PostJob></PostJob>} />
             <Route path="posted-jobs" element={<PostedJobs></PostedJobs>} />
             <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
@@ -93,9 +101,9 @@ function App() {
             <Route path="job-type" element={<JobTypePage></JobTypePage>} />
             <Route path="profile/:step" element={<CandidateProfile></CandidateProfile>} />
             <Route path=":jobType/profile/:step" element={<CandidateProfile></CandidateProfile>} />
-            <Route path="applied-jobs" element={<CandidateAppliedSaveLikedJobs  JobAction="Applied Jobs"></CandidateAppliedSaveLikedJobs>} />
-            <Route path="saved-jobs" element={<CandidateAppliedSaveLikedJobs  JobAction="Saved Jobs"></CandidateAppliedSaveLikedJobs>} />
-            <Route path="liked-jobs" element={<CandidateAppliedSaveLikedJobs  JobAction="Liked Jobs"></CandidateAppliedSaveLikedJobs>} />
+            <Route path="applied-jobs" element={<CandidateAppliedSaveLikedJobs JobAction="Applied Jobs"></CandidateAppliedSaveLikedJobs>} />
+            <Route path="saved-jobs" element={<CandidateAppliedSaveLikedJobs JobAction="Saved Jobs"></CandidateAppliedSaveLikedJobs>} />
+            <Route path="liked-jobs" element={<CandidateAppliedSaveLikedJobs JobAction="Liked Jobs"></CandidateAppliedSaveLikedJobs>} />
             <Route path="*" element={<ErrorPage errorMessage="Page not Found"></ErrorPage>} />
           </Route>
 

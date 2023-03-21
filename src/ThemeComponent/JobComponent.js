@@ -8,8 +8,11 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
         const IsjobApplied = async () => {
             let response = await getRequestWithToken("https://backend.jobsyahan.com/api/job/details?jobid=" + data_id);
             if (response !== undefined && response.status === "1") {
-                if (response.data[0].jobapply) {
-                    setJobApplied(true)
+                if (Object.keys(response.data).length > 0 && response.data[0].jobapply) {
+                    setJobApplied(true);
+                }
+                else {
+                    setJobApplied(false);
                 }
             }
 

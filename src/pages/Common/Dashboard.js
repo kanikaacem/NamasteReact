@@ -20,17 +20,17 @@ import { useEffect } from "react";
 const Dashboard = () => {
     const [openProfile, setOpenProfile] = useState(false);
     const [openMenu, setOpenMenu] = useState(false);
-    const user = useSelector(state => state.user);
+    // const user = useSelector(state => state.user);
     const dispatch = useDispatch();
-    const EmployeeMenuSelected = useSelector(state => state.EmployeeMenuSelected);
-    const CandidateMenuSelected = useSelector(state => state.CandidateMenuSelected);
 
+    const MenuSelected = useSelector(state => state.MenuSelected);
+    const [user, setUser] = useState({});
     useEffect(() => {
 
         const getLoginUserDetail = async () => {
             let response = await getRequestWithToken(GetUserInformation);
             if (response.status === '1') {
-                console.log(response.data);
+                setUser(response.data);
             }
         }
         getLoginUserDetail();
@@ -63,31 +63,31 @@ const Dashboard = () => {
                     }}>
                         <List sx={{ display: "flex" }}>
 
-                            {user && user.employer_type == "employer" && EmployerMenu.map((item) => {
+                            {user && user.employer_type == "employer" && user.isemailverified && user.ismobileverified && user.stage === "hrpage" && EmployerMenu.map((item) => {
                                 return (<>
                                     <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
                                         button key={item.id} to={item.url} component={NavLink}
                                         className="menu"
                                         id={item.id}
-                                        onClick={() => { dispatch({ type: "CHANGE_EMPLOYEE_MENU", payload: item.value }) }} >
+                                        onClick={() => { dispatch({ type: "CHANGE_SELECTED_MENU", payload: item.value }) }} >
                                         <ListItemText
                                             disableTypography
                                             sx={{
                                                 fontSize: { "lg": `20px !important`, "md": "16px !important" }, color: "#4E3A67"
                                             }}
-                                            className={EmployeeMenuSelected === item.value && "EmployeeMenuSelected"} primary={item.MenuName} />
+                                            className={MenuSelected === item.value && "MenuSelected"} primary={item.MenuName} />
                                     </ListItem>
                                 </>)
                             })}
 
 
-                            {user && user.type == "candidate" && user.isemailverified && user.ismobileverified && CandidateMenu.map((item) => {
+                            {user && user.type == "candidate" && user.isemailverified && user.ismobileverified && user.profilecompleted >= 50 && CandidateMenu.map((item) => {
                                 return (<>
                                     <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
                                         button key={item.id} to={item.url} component={NavLink}
-                                        className={CandidateMenuSelected === item.value && "CandidateMenuSelected"}
+                                        className={MenuSelected === item.value && "MenuSelected"}
                                         id={item.id}
-                                        onClick={() => { dispatch({ type: "CHANGE_CANDIDATE_MENU", payload: item.value }) }} >
+                                        onClick={() => { dispatch({ type: "CHANGE_SELECTED_MENU", payload: item.value }) }} >
 
                                         <ListItemText
                                             disableTypography
@@ -134,13 +134,13 @@ const Dashboard = () => {
                                                         button key={item.id} to={item.url} component={NavLink}
                                                         className="menu"
                                                         id={item.id}
-                                                        onClick={() => { dispatch({ type: "CHANGE_EMPLOYEE_MENU", payload: item.value }) }} >
+                                                        onClick={() => { dispatch({ type: "CHANGE_SELECTED_MENU", payload: item.value }) }} >
                                                         <ListItemText
                                                             disableTypography
                                                             sx={{
                                                                 fontSize: { "lg": "20px !important", "md": "16px !important" }, color: "#4E3A67"
                                                             }}
-                                                            className={EmployeeMenuSelected === item.value && "EmployeeMenuSelected"} primary={item.MenuName} />
+                                                            className={MenuSelected === item.value && "MenuSelected"} primary={item.MenuName} />
                                                     </ListItem>
                                                 </>)
                                             })}
@@ -176,13 +176,13 @@ const Dashboard = () => {
                                                         button key={item.id} to={item.url} component={NavLink}
                                                         className="menu"
                                                         id={item.id}
-                                                        onClick={() => { dispatch({ type: "CHANGE_CANDIDATE_MENU", payload: item.value }) }} >
+                                                        onClick={() => { dispatch({ type: "CHANGE_SELECTED_MENU", payload: item.value }) }} >
                                                         <ListItemText
                                                             disableTypography
                                                             sx={{
                                                                 fontSize: { "lg": "20px !important", "md": "16px !important" }, color: "#4E3A67"
                                                             }}
-                                                            className={CandidateMenuSelected === item.value && "CandidateMenuSelected"}
+                                                            className={MenuSelected === item.value && "MenuSelected"}
                                                             primary={item.MenuName} />
                                                     </ListItem>
                                                 </>)
@@ -231,7 +231,7 @@ const Dashboard = () => {
 
             </Stack>
 
-            <Footer />
+            {user.isemailverified && user.ismobileverified && <Footer />}
 
         </Box >
 

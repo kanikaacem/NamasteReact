@@ -116,69 +116,6 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
                     </Button>
                 }
 
-                {
-                    localStorage.getItem("removeLocalStorageData") && localStorage.getItem("removeLocalStorageData") == "true"
-                    && (<>
-                        <Stack direction="row" gap={3} justifyContent="flex-end" alignItems="center" sx={{ width: "20%" }}>
-
-
-                            <Box sx={{ cursor: "pointer" }} onClick={() => setOpenProfile(!openProfile)}>
-                                <Avatar alt={localStorage.getItem("useremail") ? localStorage.getItem("useremail") : "User Email "} />
-                            </Box>
-                        </Stack>
-
-                        {openProfile && (<>
-                            <Box sx={{
-                                position: "absolute",
-                                top: "75px",
-                                background: "#FFFFFF",
-                                right: "10px",
-                                width: "300px",
-                                zIndex: "345235"
-                            }}>
-                                <Box sx={{ background: "#1f8f75", padding: "20px", height: "70px" }}>
-
-                                    <Typography component="div" sx={{ fontSize: "16px", color: "#FFFFFF" }}>
-                                        {localStorage.getItem("useremail") ? localStorage.getItem("useremail") : "User Email "}
-                                    </Typography>
-                                </Box>
-                                <Box sx={{
-                                    background: "#0a6e56",
-                                    color: "#FFFFFF",
-                                    padding: "5px",
-                                    fontSize: "12px"
-                                }}>
-                                    Last Login :
-                                    <Moment format="DD/MM/YYYY">
-                                        {new Date()}
-                                    </Moment>
-                                </Box>
-
-
-                                (<>
-                                    <Stack gap={2} direction="column" sx={{ background: "#FFFFFF", padding: "20px" }}>
-                                        <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={
-                                            () => {
-                                                localStorage.clear();
-                                                window.location.reload();
-                                            }
-                                        }>
-                                            <LogoutIcon />
-                                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                Logout
-                                            </Typography>
-                                        </Stack>
-                                    </Stack></>)
-
-
-
-
-                            </Box>
-                        </>
-                        )}
-                    </>)
-                }
-
                 <Button type="button" variant="filled"
                     onClick={
                         () => {

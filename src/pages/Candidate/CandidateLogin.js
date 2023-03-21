@@ -55,6 +55,9 @@ const CandidateLogin = () => {
 
             }
         }
+        if (response.status === '0' && Object.keys(response.data).length === 0)
+            window.location.href = window.location.origin + "/login-error";
+
         if (response.status == '0')
             setFieldError("password", response.data);
     }

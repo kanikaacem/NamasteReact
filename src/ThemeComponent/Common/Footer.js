@@ -2,8 +2,7 @@ import { Box, Typography, Stack } from "@mui/material";
 import SocialMedia from "./SocialMedia";
 import { FooterData, FooterData2, FooterData3 } from "../../utils/Data";
 import { FooterBox } from "../../utils/Theme";
-const Footer = () => {
-
+const Footer = ({ user }) => {
     return (<>
         <Box sx={{ background: "#2B1E44", minheight: "400px", padding: "50px 150px" }}>
             <Stack direction={{ lg: "row", md: "column", xs: "column" }} gap={5} sx={{ padding: "50px 0px" }}>

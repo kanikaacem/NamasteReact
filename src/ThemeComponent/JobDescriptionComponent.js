@@ -43,7 +43,6 @@ const JobDescriptionComponent = ({ userType, data }) => {
             let response = await getRequestWithToken("https://backend.jobsyahan.com/api/job/details?jobid=" + data._id);
             if (response.status === "1") {
                 if (Object.keys(response.data).length > 0 && response.data[0].jobapply) {
-                    console.log(response.data[0].jobapply)
                     setJobApplied(true)
                 }
                 else {

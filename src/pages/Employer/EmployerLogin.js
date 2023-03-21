@@ -1,6 +1,7 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { EmployerLoginURL, ReSendEmailVerificationURL } from "../../utils/ApiUrls";
 
+
 import { TextField, Box, Typography, Stack } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
@@ -21,9 +22,10 @@ const EmployerLogin = () => {
     const [sendVerificationLink, setSendVerificationLink] = useState(false);
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     const isLoggedIn = useSelector(state => state.isLoggedIn);
-
+    const action = useSelector(state => state.action);
+    const [registerUser, setRegisterUser] = useState({});
     const dispatch = useDispatch();
-    const user = localStorage.user && JSON.parse(localStorage.user);
+    // const user = localStorage.user && JSON.parse(localStorage.user);
 
     const defaultValue = {
         email_address: "",
@@ -37,9 +39,8 @@ const EmployerLogin = () => {
             email: values.email_address,
             password: values.password
         }
-        localStorage.setItem('useremail', values.email_address);
-        localStorage.setItem('password', values.password);
         let response = await postRequest(EmployerLoginURL, EmployerLoginForm);
+        setRegisterUser(response.data);
         if (response.status === '1') {
             if (!response.data.isemailverified) {
                 setShowEmailVerifiedMessage(true);
@@ -48,12 +49,10 @@ const EmployerLogin = () => {
             }
             else if (!response.data.ismobileverified) {
                 localStorage.setItem("auth_token", response.token);
-                localStorage.setItem("removeLocalStorageData", true);
-                window.location.href = window.location.origin + "/employer-register";
+                dispatch({ type: 'LOGIN_REGISTRATION', payload: response.data });
             }
             else if (response.data.isemailverified && response.data.ismobileverified && response.data.stage === "savememailandpass") {
-                localStorage.setItem("removeLocalStorageData", true);
-                window.location.href = window.location.origin + "/employer-register";
+                window.location.href = window.location.origin + "/employer-dashboard/company-information";
             }
             else {
                 localStorage.setItem("auth_token", response.token);
@@ -62,6 +61,9 @@ const EmployerLogin = () => {
             }
 
         }
+        if (response.status === '0' && Object.keys(response.data).length === 0)
+            window.location.href = window.location.origin + "/login-error";
+
         if (response.status === '0')
             setFieldError("password", response.data);
 
@@ -78,41 +80,17 @@ const EmployerLogin = () => {
 
 
     }
-    useEffect(() => {
-        let userData = localStorage.getItem("auth_token");
-        let action = localStorage.getItem("action");
-        console.log(action);
-        const getUserData = async () => {
-            let response = await postRequest(EmployerLoginURL, {
-                email: localStorage.getItem("useremail"),
-                password: localStorage.getItem("password")
-            })
-            if (response.status === '1') {
-                if (!response.data.isemailverified) {
-                    setShowEmailVerifiedMessage(true);
-                    setIsEmailVerified(true);
-                    localStorage.setItem("removeLocalStorageData", true);
-                }
-                else if (!response.data.ismobileverified) {
-                    localStorage.setItem("removeLocalStorageData", true);
-                    window.location.href = window.location.origin + "/employer-register";
-                }
-                else if (response.data.isemailverified && response.data.ismobileverified && response.data.stage === "savememailandpass") {
-                    localStorage.setItem("removeLocalStorageData", true);
-                    window.location.href = window.location.origin + "/employer-register";
-                }
-                else {
-                    localStorage.setItem("auth_token", response.token)
-                    dispatch({ type: 'LOGIN', payload: response.data });
-                }
-            }
+
+    return (<>
+
+        {isLoggedIn == 'true' &&
+            (registerUser && registerUser.employer_type === "employer") &&
+            registerUser.isemailverified && registerUser.ismobileverified && action === "login" &&
+            registerUser.stage === "hrpage" && < Navigate to="/employer-dashboard"></Navigate>
         }
 
-        ((userData !== " " && userData !== null) && (action !== "login" && action !== " " && action !== null)) && getUserData();
+        {isLoggedIn == 'true' && !registerUser.ismobileverified && action === "registration" && < Navigate to="/employer-dashboard/mobile-verify"></Navigate>}
 
-    }, []);
-    return (<>
-        {isLoggedIn === 'true' && (user && user.employer_type === "employer") && <Navigate to="/employer-dashboard"></Navigate>}
         <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)} message="Email Address is not verified. Please Verify your email First" messageType="success" />
         <ShowMessageToastr value={sendVerificationLink} handleClose={() => setSendVerificationLink(false)} message="Email Verification link is send" messageType="success" />
 

@@ -36,7 +36,6 @@ const CandidateRegistration = () => {
         let response = await postRequest(EmailExist, {
             email: values.email_id
         });
-        console.log(response)
         if (response.status === '0') {
             setShowLoginButton(true);
             setFieldError("email_id", response.msg);

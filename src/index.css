@@ -54,11 +54,7 @@ nav {
   margin-right: 10px;
 }
 
-/* Login Page */
-/* .LoginPage {
-  background: #FAFAFA;
-  height: 100%;
-} */
+
 
 .login-wrapper,
 .info-wrapper,
@@ -80,16 +76,7 @@ nav {
   justify-content: center;
 }
 
-.LoginWrapper {
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-  /* display: flex;
-  width: 100%; */
-  /* height: 100vh; */
-  /* align-items: center;
-  justify-content: center; */
-}
+
 
 .info-title {
   font-size: 25px;
@@ -219,12 +206,6 @@ nav {
   color: green;
 }
 
-/* employer sign up page */
-/* .employer-register-div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
 
 .employer-register-page-wrapper {
   padding: 2rem;
@@ -257,14 +238,6 @@ nav {
 .company-information-wrapper {
   width: 100%;
 }
-
-/* .input-item input,
-textarea {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
 
 .signup-with-google,
 .signin-with-google {
@@ -423,13 +396,7 @@ textarea {
   margin: "20px 0px" !important;
 }
 
-/* .css-1s2u09g-control {
-  border: none !important;
-  width: 97% !important;
-  background: #f2f4f8 !important;
-  border-radius: 10px !important;
-  font-size: 13px !important;
-} */
+
 
 .css-1pahdxg-control:hover {
   border: 2px solid #f2f4f8 !important;
@@ -450,27 +417,6 @@ textarea {
   font-size: 13px !important;
 }
 
-
-/* Show Job Description */
-/* .jobDescriptionPage {
-  width: 100%;
-  
-  position: absolute;
-  
-  right: 0px;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  z-index: 335;
-} */
-
-.jobDescriptionPage.active {
-  /* display: block;
-  height: 100vh;
-  overflow: hidden; */
-  /* visibility: visible; */
-
-}
 
 .jobDescriptionWrapper {
   padding: 40px;
@@ -508,17 +454,6 @@ textarea {
   top: 50%;
 }
 
-/* Employer Dashboard */
-/* .employer-dashboard { */
-/* background: #FAFAFA; */
-/* padding: 20px;
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center; */
-/* align-items: center; */
-/* } */
-
 .employer-left-Side {
   height: fit-content;
   width: 20%;
@@ -553,38 +488,6 @@ textarea {
   font-size: 20px;
   text-align: center;
   text-transform: capitalize;
-}
-
-/* .employer-left-Side .menus .menuItem {
-  margin: 20px 0px;
-  cursor: pointer;
-}
-
-.employer-left-Side .menus .menuItem.active {
-  background: #2B1E44;
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-} */
-
-/* .LogoutButton {
-  display: block;
-  margin: 0 auto;
-} */
-
-/* .LogoutButton {
-  margin: 150px auto 0px auto !important;
-  display: block !important;
-} */
-
-
-/* Employee Dashboard */
-.menu.active {
-  /* color: #5bb8a4;
-  font-weight: 600; */
-  /* background: white;
-  border-radius: 10px;
-  width: 330px; */
 }
 
 .all-tab-information {
@@ -703,18 +606,13 @@ textarea {
 }
 
 /*Employer Dashboard account setting */
-.EmployeeMenuSelected,
+
 .AccountMenu,
 .SettingMenu,
-.CandidateMenuSelected {
-  /* color: #62459b; */
+.MenuSelected {
   color: #4E3A67;
   font-weight: 600 !important;
 }
-
-/* .CandidateMenuSelected {
-  border-right: 3px solid #007FFF !important;
-} */
 
 #permanant_address,
 #current_location,
@@ -757,84 +655,6 @@ textarea {
   background: #f1f1f1;
 }
 
-/* #mui-component-select-marital_status {
-  margin: 10px 0px;
-  width: 97%;
-  padding: 10px;
-  border: 1px solid #d0d0d0;
-
-} */
-
-/* Registration and Login Form */
-/* .EmployerLoginForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
-
-/* .EmailSignupForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
-/* 
-.PasswordGenerationForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
-
-/* .SendOTPForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-}
-
-.VerifyOTPForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
-
-/* .CompanyInformationForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
-
-/* .candidateLogin .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-}
-
-.CandidateRegistration .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
-
-/* .PostJobForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
-
-/* .updateCompanyInformationForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
 
 .HrInformationUpdateForm .input-item input {
   border: none;

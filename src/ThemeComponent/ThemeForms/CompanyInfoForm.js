@@ -7,7 +7,6 @@ import { Formik, Field, Form } from "formik";
 import { companyInfoValidationSchema, companyInfoValidationSchema1, companyInfoValidationSchema2 } from "../../Validation/EmployerValidation";
 
 import { CompanyType } from "../../utils/Data";
-import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
@@ -25,6 +24,7 @@ ReactGA.initialize(TRACKING_ID)
 
 const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
+    const action = useSelector(state => state.action);
     const dispatch = useDispatch();
 
     const [city, setCity] = useState(" ");
@@ -56,6 +56,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const [companyAddress, setCompanyAddress] = useState("");
     const [autoData, setAutoData] = useState([]);
     const [menubar, setMenuBar] = useState(false);
+    const [registerUser, setRegisterUser] = useState({});
 
     const defaultValue = {
         hr_name: hrName,
@@ -196,8 +197,8 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
         let response = await postRequest("https://backend.jobsyahan.com/api/employer/postemployer3", data);
         if (response.status == 1) {
-            localStorage.setItem("formpage", 1);
-            dispatch({ type: 'LOGIN', payload: response.data });
+
+            window.location.href = window.location.origin + "/employer-dashboard";
         }
 
     }
@@ -221,11 +222,9 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     }
     return (<>
 
-        {isLoggedIn == 'true' && <Navigate to="/employer-dashboard"></Navigate>}
         {companyInfoForm == 1 && <>
             <Box className="EmployerRegisterPage"
                 sx={{
-                    height: "100vh",
                     background: "#FFFFFF",
 
                 }}>
@@ -235,9 +234,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                         padding: "20px 50px",
                         gap: "24px"
                     }}>
-                    <HeaderSec
-                        color="black"
-                        border="2px solid #8E8E8E" />
+
                     <Stack direction="row" gap={2} sx={{ position: "relative" }}>
                         <Box sx={{
                             width: { 'lg': "50%", 'md': '100%', 'xs': '100%' },
@@ -387,7 +384,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                             <Box sx={{
                                 boxSizing: "border-box",
                                 maxWidth: "865px",
-                                height: "647px",
+                                minHeight: "647px",
                                 background: "#FFFFFF",
                                 border: "1px solid #EDEDED",
                                 borderRadius: "19px",
@@ -521,7 +518,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
             <>
                 <Box className="EmployerRegisterPage"
                     sx={{
-                        height: "100vh",
                         background: "#FFFFFF"
 
                     }}>
@@ -531,9 +527,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                             padding: "20px 50px",
                             gap: "24px"
                         }}>
-                        <HeaderSec
-                            color="black"
-                            border="2px solid #8E8E8E" />
+
                         <Stack direction="row" gap={2} sx={{ position: "relative" }}>
                             <Box sx={{
                                 width: { 'lg': "50%", 'md': '100%', 'xs': '100%' },
@@ -760,7 +754,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
             <>
                 <Box className="EmployerRegisterPage"
                     sx={{
-                        minHeight: "100vh",
                         background: "#FFFFFF",
 
                     }}>
@@ -770,9 +763,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                             padding: "20px 50px",
                             gap: "24px"
                         }}>
-                        <HeaderSec
-                            color="black"
-                            border="2px solid #8E8E8E" />
+
                         <Stack direction="row" gap={2} sx={{ position: "relative" }} >
                             <Stack sx={{
                                 width: { 'lg': "50%", 'md': '100%', 'xs': '100%' },
