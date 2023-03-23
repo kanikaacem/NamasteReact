@@ -210,7 +210,6 @@ export const CandidateMenu = [
         MenuName: "Profile",
         value: "profile",
         url: "profile",
-        image: "profile.png"
     },
 
     {
@@ -218,7 +217,6 @@ export const CandidateMenu = [
         MenuName: "Applied Jobs",
         value: "applied_jobs",
         url: "applied-jobs",
-        image: "AllJob.png"
     },
 
     {
@@ -226,7 +224,6 @@ export const CandidateMenu = [
         MenuName: "Saved Jobs",
         value: "saved_jobs",
         url: "saved-jobs",
-        image: "AllJob.png"
     },
 
     {
@@ -234,7 +231,6 @@ export const CandidateMenu = [
         MenuName: "Liked Jobs",
         value: "liked_jobs",
         url: "liked-jobs",
-        image: "AllJob.png"
     }
 
 ]
