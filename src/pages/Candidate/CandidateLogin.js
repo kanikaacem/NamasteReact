@@ -21,8 +21,9 @@ const CandidateLogin = () => {
     const [sendVerificationLink, setSendVerificationLink] = useState(false);
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     const isLoggedIn = useSelector(state => state.isLoggedIn);
-    const user = useSelector(state => state.user);
+    // const user = useSelector(state => state.user);
     const action = useSelector(state => state.action);
+    const [registerUser, setRegisterUser] = useState({});
 
     const dispatch = useDispatch();
 
@@ -39,7 +40,10 @@ const CandidateLogin = () => {
         }
 
         let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
+
         if (response.status == '1') {
+            setRegisterUser(response.data);
+
             localStorage.setItem("auth_token", response.token);
             if (response.data.isemailverified && response.data.ismobileverified)
                 dispatch({ type: 'LOGIN', payload: response.data });
@@ -77,8 +81,8 @@ const CandidateLogin = () => {
 
 
     return (<>
-        {isLoggedIn == 'true' && user.ismobileverified && user.isemailverified && action === "login" && < Navigate to="/candidate-dashboard"></Navigate>}
-        {isLoggedIn == 'true' && !user.ismobileverified && action === "registration" && < Navigate to="/candidate-dashboard/mobile-verify"></Navigate>}
+        {isLoggedIn == 'true' && registerUser.ismobileverified && registerUser.isemailverified && action === "login" && < Navigate to="/candidate-dashboard"></Navigate>}
+        {isLoggedIn == 'true' && !registerUser.ismobileverified && action === "registration" && < Navigate to="/candidate-dashboard/mobile-verify"></Navigate>}
         <ThemeMessage open={showEmailVerifiedMessage} setOpen={setShowEmailVerifiedMessage}
             message="Email Address is not verified. Please Verify your email First" type="error" />
 

@@ -24,7 +24,7 @@ const AppliedCandidate = () => {
         }
 
         const getJobDescription = async () => {
-            let response = await postRequest(JobDescriptionURL, { jobid: id });
+            let response = await postRequest(JobDescriptionURL + "?jobid=" + id);
             if (response.status === '1') setJobData(response.data);
 
         }
@@ -88,8 +88,9 @@ const AppliedCandidate = () => {
                         {jobCanData && jobCanData.map((item) => {
                             return (<>
                                 <CandidateComponent CandidateData={item.candidate}
-                                    AppliedDate={item.candidateapplieddate}
+                                    AppliedDate={parseInt(item.candidateapplieddate)}
                                     CandidateStatus={item.candidatestatus}
+                                    jobId={jobData._id}
                                 />
                             </>)
                         })}

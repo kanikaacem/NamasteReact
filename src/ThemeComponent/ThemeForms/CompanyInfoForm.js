@@ -91,7 +91,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
         let formData = new FormData();
         formData.append('image', event.target.files[0]);
-        formData.append('imagetype', "comlogo");
+        formData.append('ImageType', "Company_logo");
         let response = await PostImageRequest(UplaodImageURL, formData);
         console.log(response);
 
@@ -102,7 +102,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         output.src = URL.createObjectURL(event.target.files[0]);
         let formData = new FormData();
         formData.append('image', event.target.files[0]);
-        formData.append('imagetype', "panimage");
+        formData.append('ImageType', "Pan_Doc");
         let response = await PostImageRequest(UplaodImageURL, formData);
         console.log(response);
 
@@ -116,7 +116,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         output.src = URL.createObjectURL(event.target.files[0]);
         let formData = new FormData();
         formData.append('image', event.target.files[0]);
-        formData.append('imagetype', "gstimage");
+        formData.append('ImageType', "Gst_Doc");
         let response = await PostImageRequest(UplaodImageURL, formData);
         console.log(response);
 

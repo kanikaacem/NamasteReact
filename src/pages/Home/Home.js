@@ -15,9 +15,8 @@ import "./Home.css";
 
 function Home() {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
-    const user = localStorage.user && JSON.parse(localStorage.user);
     return (<>
-        {isLoggedIn == 'true' && (user && user.employer_type == 'employer') && <Navigate to="/employer-dashboard"></Navigate>}
+        {isLoggedIn == 'true' && <Navigate to="/employer-dashboard"></Navigate>}
         <Box sx={{
             padding: "20px 40px",
             background: "#FAFAFA",

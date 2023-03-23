@@ -96,3 +96,5 @@ export const GetCandidateOnParticularJob = "https://backend.jobsyahan.com/api/jo
 export const GetSpecificCandidateDetail = "https://backend.jobsyahan.com/api/employer/getcandidatebyid";
 
 export const GetUserInformation = "https://backend.jobsyahan.com/api/users/getuser";
+
+export const ShortlistRejectCandidate = "https://backend.jobsyahan.com/api/job/appliedandrejectcand";

@@ -16,7 +16,7 @@ import { employerLoginValidationSchema } from "../../Validation/EmployerValidati
 import ShowMessageToastr from "../../ThemeComponent/Common/ShowMessageToastr";
 import Error from "../../ThemeComponent/Common/Error";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 const EmployerLogin = () => {
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
     const [sendVerificationLink, setSendVerificationLink] = useState(false);
@@ -25,7 +25,6 @@ const EmployerLogin = () => {
     const action = useSelector(state => state.action);
     const [registerUser, setRegisterUser] = useState({});
     const dispatch = useDispatch();
-    // const user = localStorage.user && JSON.parse(localStorage.user);
 
     const defaultValue = {
         email_address: "",
@@ -45,7 +44,6 @@ const EmployerLogin = () => {
             if (!response.data.isemailverified) {
                 setShowEmailVerifiedMessage(true);
                 setIsEmailVerified(true);
-                // localStorage.setItem("removeLocalStorageData", true);
             }
             else if (!response.data.ismobileverified) {
                 localStorage.setItem("auth_token", response.token);
@@ -83,7 +81,7 @@ const EmployerLogin = () => {
 
     return (<>
 
-        {isLoggedIn == 'true' &&
+        {isLoggedIn === 'true' &&
             (registerUser && registerUser.employer_type === "employer") &&
             registerUser.isemailverified && registerUser.ismobileverified && action === "login" &&
             registerUser.stage === "hrpage" && < Navigate to="/employer-dashboard"></Navigate>

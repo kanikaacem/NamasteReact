@@ -11,12 +11,14 @@ import Moment from 'react-moment';
 import CreateIcon from '@mui/icons-material/Create';
 import ThemeMessage from "./ThemeMessage";
 
+import { useEffect } from "react";
 const ProfileComponent = ({ userData, userType }) => {
     const [value, setValue] = useState(userType === "employer" ? 1 : 0);
     const [meetingType, setMeetingType] = useState(" ");
-    const [userImage, setUserImage] = useState(userData.profile_image ? userData.profile_image : window.location.origin + "/assets/Avatar.png");
-    const [userResume, setUserResume] = useState(userData.resume && userData.resume.resume && userData.resume.resume);
+    const [userImage, setUserImage] = useState(window.location.origin + "/assets/Avatar.png");
+    const [userResume, setUserResume] = useState(" ");
     const [fileUpdated, setFileUpdated] = useState(false);
+    const [fileUploadError, setFileUploadError] = useState(false);
 
     const uploadProfileImage = async (event, imageType) => {
         let file = event.target.files[0];
@@ -24,19 +26,33 @@ const ProfileComponent = ({ userData, userType }) => {
         formData.append('image', file);
         formData.append('ImageType', imageType);
         let response = await PostImageRequest(uploadFileURL, formData);
-        // console.log(response);
-        if (response.status === 1) {
+
+        if (response.status === "1") {
+            console.log(imageType)
             setFileUpdated(true);
             if (imageType === "Candidate") setUserImage(response.data[0].location);
-            if (imageType === "CandiateResume") setUserResume(response.data[0].location);
-            console.log(userResume);
-            console.log(userImage);
+            if (imageType === "CandidateResume") {
+                setUserResume(response.data[0].location);
+            }
+
+        }
+        else {
+            setFileUploadError(true);
         }
     }
+
+    useEffect(() => {
+        setUserImage(userData.profile_image);
+        setUserResume(userData.resume && userData.resume.resume)
+    }, [userData]);
+
     return (<>
-        {console.log(value)}
         <ThemeMessage open={fileUpdated} setOpen={setFileUpdated}
             message="File is updated Successfully." type="success" />
+
+        <ThemeMessage open={fileUploadError} setOpen={setFileUploadError}
+            message="File size too large. Maximum file size is 2MB."
+            type="error" />
 
         <Stack className="CandidateProfilePage" direction="row" gap={2} sx={{
             padding: { "lg": "20px 100px", "md": "20px", "xs": "20px" },
@@ -48,9 +64,9 @@ const ProfileComponent = ({ userData, userType }) => {
                     alignItems="center" justifyContent="flex-start" gap={3} sx={{ height: "150px", padding: "20px" }}>
                     <Box sx={{ width: "100px", height: "100px", position: "relative" }}>
                         <img src={userImage} width="100%" alt="Profile" style={{ borderRadius: "50%", cursor: "pointer" }}
-                            onClick={() =>{
-                                if(userType === "candidate") 
-                                document.getElementById("profileImage").click()
+                            onClick={() => {
+                                if (userType === "candidate")
+                                    document.getElementById("profileImage").click()
                             }}
                         />
 
@@ -167,7 +183,49 @@ const ProfileComponent = ({ userData, userType }) => {
                 </Stack>
 
 
+                {userType === "candidate" && (<>
+                    <Stack direction="row" gap={2} alignItems="center"  >
+                        <Button variant="outlined"
+                            sx={{
+                                background: "#FC9A7E",
+                                border: "1px solid #E2D7F0",
+                                borderRadius: "7px",
+                                color: "#4E3A67",
+                                fontWeight: "700",
+                                "&:hover": {
+                                    background: "#FC9A7E",
+                                    border: "1px solid #E2D7F0",
+                                    borderRadius: "7px",
+                                    color: "#4E3A67",
+                                    fontWeight: "700",
+                                }
+                            }}
+                            onClick={() => document.getElementById("upload_resume").click()}> Update Resume</Button>
 
+                        <input type="file" style={{ display: "none" }} id="upload_resume"
+                            onChange={(event) => uploadProfileImage(event, "CandidateResume")} />
+                        <a href={userResume} variant="outlined"
+
+                            style={{
+                                border: "1px solid #E2D7F0",
+                                borderRadius: "7px",
+                                color: "#4E3A67",
+                                fontWeight: "700",
+                                padding: "8px",
+                                cursor: "pointer",
+                                "&:hover": {
+                                    border: "1px solid #E2D7F0",
+                                    borderRadius: "7px",
+                                    color: "#4E3A67",
+                                    fontWeight: "700",
+                                    padding: "8px",
+                                    cursor: "pointer",
+                                }
+                            }}
+                        > Download Resume</a>
+                    </Stack>
+                </>)
+                }
                 <Box className="UserInformation"
                     sx={{
                         maxWidth: "1200px",
@@ -193,18 +251,7 @@ const ProfileComponent = ({ userData, userType }) => {
                             }
                             <Tab label="PROFILE" />
                         </Tabs>
-                        {value === 0 &&
-                            <Box sx={{
-                                position: "absolute",
-                                right: "30px",
-                                top: "60px",
-                                cursor: "pointer",
-                                zIndex: "23"
-                            }}>
-                                <CreateIcon onClick={() => document.getElementById("upload_resume").click()} />
-                                <input type="file" style={{ display: "none" }} id="upload_resume"
-                                    onChange={(event) => uploadProfileImage(event, "CandidateResume")} />
-                            </Box>}
+
                     </Box>
 
                     {
@@ -214,7 +261,7 @@ const ProfileComponent = ({ userData, userType }) => {
                                 justifyContent: "center",
                                 alignItems: "center", position: "relative"
                             }} >
-                                {userData.resume && userData.resume.resume ?
+                                {userResume ?
                                     <PDFReader showAllPage={true} url={userResume
                                     } /> :
                                     <Box> Not Uploaded </Box>}
@@ -375,8 +422,11 @@ const ProfileComponent = ({ userData, userType }) => {
                         </>)
                     }
 
+
                 </Box>
+
             </Box>
+
             {userType === "employer" && <>
 
                 <Stack direction="column" sx={{ width: { "lg": "25%", "md": "100%", "xs": "100%" }, padding: "20px" }}>

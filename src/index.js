@@ -27,18 +27,14 @@ const reducer = (state, action) =>{
   switch(action.type){
     case "LOGIN":
       localStorage.setItem('isLoggedIn',true);
-      // localStorage.setItem('user',JSON.stringify(action.payload));
       localStorage.setItem('action',"login")
-
-      return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn")};
+      return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),action:localStorage.getItem("action")};
 
     case "LOGOUT":
       localStorage.clear();
-    
       return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn")};
 
-    
-    case "CHANGE_SELECTED_MENU":
+  case "CHANGE_SELECTED_MENU":
       let selected_menu = action.payload;
       return {...initialState,isLoggedIn:localStorage.getItem("isLoggedIn"),MenuSelected:selected_menu}
       

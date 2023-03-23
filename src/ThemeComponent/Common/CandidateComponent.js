@@ -1,10 +1,19 @@
+import { ShortlistRejectCandidate } from "../../utils/ApiUrls";
+import { postRequest } from "../../utils/ApiRequests";
 import { Box, Badge, Button, Stack, Typography } from "@mui/material";
 
 import Moment from 'react-moment';
-const CandidateComponent = ({ CandidateData }) => {
+import { useState } from "react";
+const CandidateComponent = ({ CandidateData, CandidateStatus, AppliedDate, jobId }) => {
+    const [candStatus, setCandStatus] = useState(CandidateStatus && CandidateStatus);
+    const CandidateAction = async (jobId, canId, status) => {
+        let response = await postRequest(ShortlistRejectCandidate, { jobid: jobId, candidateid: canId, status: status });
+        if (response.status === '1') {
+            setCandStatus(status);
+        }
 
+    }
     return (<>
-        {console.log(CandidateData)}
         <Box sx={{
             background: " #FFFFFF",
             border: "1px solid #E2D7F0",
@@ -51,7 +60,9 @@ const CandidateComponent = ({ CandidateData }) => {
                             Applied on:
                         </Typography>
                         <Typography component="div" sx={{ fontSize: "18px", color: "#806E96" }}>
-
+                            {new Date(
+                                AppliedDate
+                            ).toLocaleDateString()}
                         </Typography>
                     </Stack>
                 </Stack>
@@ -109,18 +120,14 @@ const CandidateComponent = ({ CandidateData }) => {
                     rowGap: "15px",
                     justifyContent: { "lg": "space-between", "md": "center", "xs": "center" }
                 }}>
-                <Stack direction="row" gap={2}>
-                    <Button type="button"
-                        sx={{
-                            background: " #FC9A7E",
-                            border: "1px solid #E2D7F0",
-                            borderRadius: "7px",
-                            color: " #4E3A67",
-                            padding: "10px",
-                            fontWeight: "700",
-                            minWidth: "225px",
-                            fontSize: "18px",
-                            "&:hover": {
+                {candStatus === "pending" ? <>
+                    <Stack direction="row" gap={2}>
+                        <Button type="button"
+                            onClick={(event) => {
+                                CandidateAction(jobId, CandidateData._id, "shortlist");
+                                event.stopPropagation();
+                            }}
+                            sx={{
                                 background: " #FC9A7E",
                                 border: "1px solid #E2D7F0",
                                 borderRadius: "7px",
@@ -129,20 +136,24 @@ const CandidateComponent = ({ CandidateData }) => {
                                 fontWeight: "700",
                                 minWidth: "225px",
                                 fontSize: "18px",
-                            }
-                        }}> Shortlist</Button>
-                    <Button type="button"
-                        sx={{
-                            background: "#FFFFFF",
-                            border: " 1px solid #E2D7F0",
-                            borderRadius: "7px",
-                            color: " #4E3A67",
-                            padding: "10px",
-                            fontWeight: "700",
-                            minWidth: "225px",
-                            fontSize: "18px",
+                                "&:hover": {
+                                    background: " #FC9A7E",
+                                    border: "1px solid #E2D7F0",
+                                    borderRadius: "7px",
+                                    color: " #4E3A67",
+                                    padding: "10px",
+                                    fontWeight: "700",
+                                    minWidth: "225px",
+                                    fontSize: "18px",
+                                }
+                            }}> Shortlist</Button>
+                        <Button type="button"
+                            onClick={(event) => {
+                                CandidateAction(jobId, CandidateData._id, "rejected");
+                                event.stopPropagation();
+                            }}
 
-                            "&:hover": {
+                            sx={{
                                 background: "#FFFFFF",
                                 border: " 1px solid #E2D7F0",
                                 borderRadius: "7px",
@@ -151,63 +162,27 @@ const CandidateComponent = ({ CandidateData }) => {
                                 fontWeight: "700",
                                 minWidth: "225px",
                                 fontSize: "18px",
-                            }
-                        }}> Reject</Button>
 
-                </Stack>
-                <Stack direction="row" gap={2}>
-                    <Button type="button"
-                        sx={{
-                            background: "#FFFFFF",
-                            border: " 1px solid #E2D7F0",
-                            borderRadius: "7px",
-                            color: " #4E3A67",
-                            padding: "10px",
-                            fontWeight: "700",
-                            minWidth: "225px",
-                            fontSize: "18px",
+                                "&:hover": {
+                                    background: "#FFFFFF",
+                                    border: " 1px solid #E2D7F0",
+                                    borderRadius: "7px",
+                                    color: " #4E3A67",
+                                    padding: "10px",
+                                    fontWeight: "700",
+                                    minWidth: "225px",
+                                    fontSize: "18px",
+                                }
+                            }}> Reject</Button>
 
-                            "&:hover": {
-                                background: "#FFFFFF",
-                                border: " 1px solid #E2D7F0",
-                                borderRadius: "7px",
-                                color: " #4E3A67",
-                                padding: "10px",
-                                fontWeight: "700",
-                                minWidth: "225px",
-                                fontSize: "18px",
-                            }
-                        }}>
-                        <Stack direction="row" gap={2} alignItems="center">
-                            <img src={window.location.origin + '/assets/Call.png'} alt="call" ></img>
-                            <Box> Call</Box>
-                        </Stack></Button>
+                    </Stack>
 
-                    <Button type="button"
-                        sx={{
-                            background: "#FFFFFF",
-                            border: " 1px solid #E2D7F0",
-                            borderRadius: "7px",
-                            color: " #4E3A67",
-                            padding: "10px",
-                            fontWeight: "700",
-                            minWidth: "225px",
-                            fontSize: "18px",
+                </> :
+                    <Typography component="div" sx={{ fontSize: "18px", color: "#806E96", textTransform: "capitalize" }}>
+                        {candStatus}
+                    </Typography>
+                }
 
-                            "&:hover": {
-                                background: "#FFFFFF",
-                                border: " 1px solid #E2D7F0",
-                                borderRadius: "7px",
-                                color: " #4E3A67",
-                                padding: "10px",
-                                fontWeight: "700",
-                                minWidth: "225px",
-                                fontSize: "18px",
-                            }
-                        }}>
-                        Other Actions
-                    </Button>
-                </Stack>
             </Stack>
         </Box>
 
