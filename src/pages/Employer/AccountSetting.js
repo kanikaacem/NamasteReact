@@ -15,7 +15,7 @@ import { AccountSettingMenu } from "../../utils/Data";
 
 import { useState } from "react";
 const AccountSetting = () => {
-    const [currentMenu, setCurrentMenu] = useState("create_sub_user");
+    const [currentMenu, setCurrentMenu] = useState("company_information");
     const user = useOutletContext();
 
     /*Creating Sub User*/
@@ -37,14 +37,14 @@ const AccountSetting = () => {
 
     /* Updating the Company Information */
     const defaultValue1 = {
-        company_name: user.companyName,
-        company_email: user.companyEmail,
-        company_lan_number: user.companyLanNumber,
-        company_website: user.companyWebsite,
-        company_pincode: user.companyPincode,
-        company_address: user.companyAddress,
-        company_pan_number: user.companyPancard,
-        company_gst_number: user.companyGstnumber
+        company_name: user.company_name,
+        company_email: user.company_email ? user.company_email : " ",
+        company_lan_number: user.company_lanNumber ? user.company_lanNumber : " ",
+        company_website: user.company_website ? user.company_website : " ",
+        company_pincode: user.company_pincode ? user.company_pincode : " ",
+        company_address: user.company_address ? user.company_address : " ",
+        company_pan_number: user.company_pancard ? user.company_pancard : " ",
+        company_gst_number: user.company_gstnumber ? user.company_gstnumber : " "
     }
 
     /* uploading the company Logo */
@@ -98,6 +98,7 @@ const AccountSetting = () => {
 
 
     return (<>
+        {console.log(user.company_name)}
         <Stack className="AccountSettingPage" direction="row" gap={2} sx={{
             padding: "20px",
             minHeight: "100vh",

@@ -306,14 +306,14 @@ export const EmployerMenu = [
         url: "post-a-job"
 
     },
-    {
-        id: 4,
-        Menu: "WorkOutlineIcon",
-        MenuName: "Applied Candidates",
-        value: "applied_candidates",
-        url: "applied-candidates"
+    // {
+    //     id: 4,
+    //     Menu: "WorkOutlineIcon",
+    //     MenuName: "Applied Candidates",
+    //     value: "applied_candidates",
+    //     url: "applied-candidates"
 
-    },
+    // },
 
     {
         id: 5,

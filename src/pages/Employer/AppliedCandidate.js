@@ -1,7 +1,7 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { JobDescriptionURL, GetCandidateOnParticularJob } from "../../utils/ApiUrls";
 
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, Pagination } from "@mui/material";
 import CandidateComponent from "../../ThemeComponent/Common/CandidateComponent";
 import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
 import SocialMedia from "../../ThemeComponent/Common/SocialMedia";
@@ -10,6 +10,15 @@ import { useState, useEffect } from "react";
 const AppliedCandidate = () => {
     const [jobData, setJobData] = useState([]);
     const [jobCanData, setJobCanData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [dataPerPage, setDataPerPage] = useState(10);
+
+
+    //Pagination 
+    const IndexOfLastData = currentPage * dataPerPage;
+    const IndexOfFirstData = IndexOfLastData - dataPerPage;
+    const appliedCandidate = jobCanData.length > 0 && jobCanData.slice(IndexOfFirstData, IndexOfLastData);
+
     const { id } = useParams();
     useEffect(() => {
 
@@ -85,7 +94,7 @@ const AppliedCandidate = () => {
                     }}></hr>
 
                     <Stack className="Candidates" direction="column" gap={2} >
-                        {jobCanData && jobCanData.map((item) => {
+                        {appliedCandidate.length > 0 && appliedCandidate.map((item) => {
                             return (<>
                                 <CandidateComponent CandidateData={item.candidate}
                                     AppliedDate={parseInt(item.candidateapplieddate)}
@@ -94,6 +103,12 @@ const AppliedCandidate = () => {
                                 />
                             </>)
                         })}
+
+                        {jobCanData && jobCanData.length > 0 &&
+                            <Box >
+                                <Pagination count={jobCanData && Math.ceil(jobCanData.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
+                            </Box>
+                        }
 
                     </Stack>
 
