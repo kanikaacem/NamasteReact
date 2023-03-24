@@ -362,7 +362,7 @@ const PersonalInformation2 = ({ questions }) => {
                                     width: "max-content"
 
                                 }}>
-                                    Work History
+                                    Work Details
                                 </Typography>
                                 <Box>
                                     <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
@@ -389,7 +389,8 @@ const PersonalInformation2 = ({ questions }) => {
                                     width: "max-content"
 
                                 }}>
-                                    Perferences
+
+                                    General Details
                                 </Typography>
                                 <Box>
                                     <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
