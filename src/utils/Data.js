@@ -306,14 +306,14 @@ export const EmployerMenu = [
         url: "post-a-job"
 
     },
-    // {
-    //     id: 4,
-    //     Menu: "WorkOutlineIcon",
-    //     MenuName: "Applied Candidates",
-    //     value: "applied_candidates",
-    //     url: "applied-candidates"
+    {
+        id: 4,
+        Menu: "WorkOutlineIcon",
+        MenuName: "Applied Candidates",
+        value: "applied_candidates",
+        url: "applied-candidates"
 
-    // },
+    },
 
     {
         id: 5,
@@ -603,18 +603,21 @@ export const JobFilter = [
     }
 ]
 /*Candidate Filter */
+
 export const CandidateFilter = [
     {
         id: 1,
-        value: "shortlisted",
-        name: "Shortlisted"
+        value: "shortlisted_candidates",
+        name: "Shortlisted Candidates",
+
     },
     {
         id: 2,
-        value: "rejected",
-        name: "Rejected"
+        value: "saved_candidates",
+        name: "Saved Candidates"
     }
 ]
+
 /* Interivew Meeting Type */
 export const MeetingType = [
     {
