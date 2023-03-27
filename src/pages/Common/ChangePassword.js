@@ -1,9 +1,9 @@
-import { Box, Typography,  TextField, Snackbar, Alert } from "@mui/material";
+import { Box, Typography, TextField, Snackbar, Alert } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { ForgotPasswordValidation } from "../../Validation/EmployerValidation";
 
 import { useSelector } from 'react-redux';
-import {  ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
+import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
 import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
@@ -12,7 +12,6 @@ import { useState, useEffect } from "react";
 
 const ChangePassword = () => {
     const user = localStorage.user && JSON.parse(localStorage.user);
-    const api_url = useSelector(state => state.api_url);
 
     const [formSubmitted, setFormSubmitted] = useState(false);
     const defaultValue = {
@@ -77,15 +76,16 @@ const ChangePassword = () => {
             background: "#FFFFFF",
             padding: "50px",
             borderRadius: "14px",
-            border:"1px solid #E1D4F2"
+            border: "1px solid #E1D4F2"
         }}>
-            <Typography component="div" sx={{ 
-                                color: "#2B1E44",
-                                textTransform: "capitalize", margin: "10px 0px",
-                                fontSize: "40px",
-                                fontFamily: "Work Sans,sans-serif",
-                                fontWeight: "700" }}>
-                                Change Password
+            <Typography component="div" sx={{
+                color: "#2B1E44",
+                textTransform: "capitalize", margin: "10px 0px",
+                fontSize: "40px",
+                fontFamily: "Work Sans,sans-serif",
+                fontWeight: "700"
+            }}>
+                Change Password
             </Typography>
 
             <Formik

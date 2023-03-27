@@ -2,7 +2,7 @@ import { postRequest } from "../../utils/ApiRequests";
 import { PostAnswerCandidate, BlueCollarProfileCompleted } from "../../utils/ApiUrls";
 
 import { Stack, TextField, Box, Typography, Autocomplete } from "@mui/material";
-import { Formik, Field, Form } from "formik";
+import { Formik, Form } from "formik";
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "./ThemeLabel";
 
@@ -13,7 +13,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useParams } from "react-router-dom";
 import ThemeMessage from "../Common/ThemeMessage";
 import Select from 'react-select';
-import { OpenInBrowser } from "@mui/icons-material";
 
 const PersonalInformation2 = ({ questions }) => {
     const { step } = useParams();

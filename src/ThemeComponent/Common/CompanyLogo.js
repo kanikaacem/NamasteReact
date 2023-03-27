@@ -3,9 +3,16 @@ import {
 } from '@mui/material';
 
 const CompanyLogo = ({ color }) => {
+    const FunLogoClick = () => {
+        if (window.location.pathname === "/employer-dashboard")
+            window.location.href = window.location.origin + "/employer-dashboard"
+        else
+            window.location.href = window.location.origin
+    }
     return (<>
         <Box sx={{ cursor: "pointer" }}
-            onClick={() => window.location.href = window.location.origin}>
+            onClick={FunLogoClick}
+        >
             <Typography component="span"
                 sx={{
                     fontSize: "24px",

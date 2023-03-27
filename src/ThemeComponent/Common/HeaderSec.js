@@ -1,20 +1,13 @@
 import { Stack, Button } from "@mui/material";
-import { Avatar, Box, Typography } from "@mui/material";
-
-import LogoutIcon from '@mui/icons-material/Logout';
-
-import Moment from 'react-moment';
 import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Details } from "@mui/icons-material";
 
-const HeaderSec = ({ color, background, border, buttonText }) => {
-    const [openProfile, setOpenProfile] = useState(false);
-    const user = useSelector((state) => state.user);
+const HeaderSec = ({ color, background, border, buttonText, userType }) => {
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
     const [showCandidateButton, setShowCandidateButton] = useState(false);
     const [showEmployerButton, setShowEmployerButton] = useState(false);
-
     useEffect(() => {
 
         if (window.location.pathname === "/") {
@@ -65,8 +58,8 @@ const HeaderSec = ({ color, background, border, buttonText }) => {
 
 
                 {
-                    showCandidateButton && (isLoggedIn && user) && user && user.type === "candidate" &&
-                    <Button type="button" variant="outlined"
+                    showCandidateButton && isLoggedIn && userType === "candidate" &&
+                    < Button type="button" variant="outlined"
                         onClick={() => {
                             window.location.href = window.location.origin + "/candidate-dashboard";
                         }}

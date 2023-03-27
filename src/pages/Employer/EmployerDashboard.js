@@ -15,11 +15,7 @@ import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
 import DashboardGreeting from "../../ThemeComponent/Common/DashboardGreeting";
 import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 
-
-import { Bar } from 'react-chartjs-2'
 import { useLayoutEffect } from "react";
-ChartJS.register(...registerables);
-
 
 const EmployerDashboard = () => {
     const user = useOutletContext();
@@ -28,27 +24,7 @@ const EmployerDashboard = () => {
     const [jobInfo, setJobInfo] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage, setDataPerPage] = useState(2);
-    const DashboardValues = [
-        {
-            id: 1,
-            count: 1,
-            name: "Active Jobs",
-            logo: ""
-        },
 
-        {
-            id: 2,
-            count: 10,
-            name: "Shortlisted Candidate to be reviewed",
-            logo: ""
-        },
-        {
-            id: 3,
-            count: 0,
-            name: "Interview schedule for Today",
-            logo: ""
-        }
-    ]
     useLayoutEffect(() => {
         const getpostedjobs = async () => {
             try {
@@ -87,7 +63,6 @@ const EmployerDashboard = () => {
 
     const { jobPosted } = newState.state !== null && newState.state;
     return (<>
-
         <ThemeMessage open={jobPosted} setOpen="JobPosted" message="Your Job is saved . It will be publised after reviewing." type="success" />
 
         <Stack direction="column" gap={2} sx={{ padding: "30px" }} className="EmployerData">

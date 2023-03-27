@@ -1,7 +1,7 @@
 import { GetUserInformation } from "../../utils/ApiUrls";
 import { getRequestWithToken } from "../../utils/ApiRequests";
 
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useResolvedPath } from "react-router-dom";
 import { Avatar, Box, Stack, List, ListItem, ListItemText } from "@mui/material";
 
 import ReorderIcon from '@mui/icons-material/Reorder';
@@ -17,22 +17,40 @@ import Footer from "../../ThemeComponent/Common/Footer";
 import DashboardAccountSetting from "../../ThemeComponent/Common/DashboardAccountSetting";
 
 import { useEffect } from "react";
+import ErrorPage from "../ErrorPage";
 const Dashboard = () => {
     const [openProfile, setOpenProfile] = useState(false);
     const [openMenu, setOpenMenu] = useState(false);
-    // const user = useSelector(state => state.user);
+    const [pageAuthenticate, setPageAuthenticate] = useState(false);
     const dispatch = useDispatch();
 
     const MenuSelected = useSelector(state => state.MenuSelected);
     const [user, setUser] = useState({});
+
+    const url = useResolvedPath("").pathname;
+
+
     useEffect(() => {
 
         const getLoginUserDetail = async () => {
             let response = await getRequestWithToken(GetUserInformation);
             if (response.status === '1') {
                 setUser(response.data);
+                checkRoleToShowPage(response.data);
+
             }
         }
+
+        const checkRoleToShowPage = async (user) => {
+            if (user.employer_type === "employer" && url === "/employer-dashboard")
+                setPageAuthenticate(true)
+
+            if (user.type === "candidate" && url === "/candidate-dashboard")
+                setPageAuthenticate(true);
+
+        }
+
+
         getLoginUserDetail();
     }, []);
 
@@ -63,25 +81,26 @@ const Dashboard = () => {
                     }}>
                         <List sx={{ display: "flex" }}>
 
-                            {user && user.employer_type == "employer" && user.isemailverified && user.ismobileverified && user.stage === "hrpage" && EmployerMenu.map((item) => {
-                                return (<>
-                                    <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
-                                        button key={item.id} to={item.url} component={NavLink}
-                                        className="menu"
-                                        id={item.id}
-                                        onClick={() => { dispatch({ type: "CHANGE_SELECTED_MENU", payload: item.value }) }} >
-                                        <ListItemText
-                                            disableTypography
-                                            sx={{
-                                                fontSize: { "lg": `20px !important`, "md": "16px !important" }, color: "#4E3A67"
-                                            }}
-                                            className={MenuSelected === item.value && "MenuSelected"} primary={item.MenuName} />
-                                    </ListItem>
-                                </>)
-                            })}
+                            {user &&
+                                user.employer_type === "employer" && user.isemailverified && user.ismobileverified && user.stage === "hrpage" && EmployerMenu.map((item) => {
+                                    return (<>
+                                        <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
+                                            button key={item.id} to={item.url} component={NavLink}
+                                            className="menu"
+                                            id={item.id}
+                                            onClick={() => { dispatch({ type: "CHANGE_SELECTED_MENU", payload: item.value }) }} >
+                                            <ListItemText
+                                                disableTypography
+                                                sx={{
+                                                    fontSize: { "lg": `20px !important`, "md": "16px !important" }, color: "#4E3A67"
+                                                }}
+                                                className={MenuSelected === item.value && "MenuSelected"} primary={item.MenuName} />
+                                        </ListItem>
+                                    </>)
+                                })}
 
 
-                            {user && user.type == "candidate" && user.isemailverified && user.ismobileverified && user.profilecompleted >= 50 && CandidateMenu.map((item) => {
+                            {user && user.type === "candidate" && user.isemailverified && user.ismobileverified && user.profilecompleted >= 50 && CandidateMenu.map((item) => {
                                 return (<>
                                     <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
                                         button key={item.id} to={item.url} component={NavLink}
@@ -112,7 +131,7 @@ const Dashboard = () => {
                         }}>
                             <ReorderIcon onClick={() => setOpenMenu(!openMenu)} />
                         </Box>
-                        {openMenu && user && user.employer_type == "employer" && (<>
+                        {openMenu && user && user.employer_type === "employer" && (<>
                             <ClickAwayListener onClickAway={() => setOpenMenu(!openMenu)}>
 
                                 <Box sx={{
@@ -154,7 +173,7 @@ const Dashboard = () => {
                         </>
                         )}
 
-                        {openMenu && user && user.type == "candidate" && (<>
+                        {openMenu && user && user.type === "candidate" && (<>
                             <ClickAwayListener onClickAway={() => setOpenMenu(!openMenu)}>
 
                                 <Box sx={{
@@ -203,7 +222,7 @@ const Dashboard = () => {
                     </Stack>
                     {openProfile && (<>
 
-                        {user && user.employer_type == "employer" &&
+                        {user && user.employer_type === "employer" &&
                             <DashboardAccountSetting
                                 userName={user && user.employer_name}
                                 userEmail={user && user.employer_email}
@@ -211,7 +230,7 @@ const Dashboard = () => {
                                 userType="employer" />
                         }
 
-                        {user && user.type == "candidate" &&
+                        {user && user.type === "candidate" &&
                             <DashboardAccountSetting
                                 userName={user && user.personalInfo && user.personalInfo.fullname}
                                 userEmail={user && user.personalInfo && user.personalInfo.email}
@@ -226,7 +245,12 @@ const Dashboard = () => {
 
                 {/* Dashboard based on the user */}
                 <Box sx={{ background: "#FAFAFA", minHeight: `calc(100vh - 50px)`, width: '100%' }}>
-                    <Outlet context={user}></Outlet>
+                    {/* {!pageAuthenticate && <ErrorPage errorMessage="Page not Found" subMessage="Unfortunately the page you are looking for could not be found" />} */}
+                    {<Outlet context={user} >
+                    </Outlet>}
+
+
+
                 </Box>
 
             </Stack>

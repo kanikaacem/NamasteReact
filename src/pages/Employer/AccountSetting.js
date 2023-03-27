@@ -98,7 +98,6 @@ const AccountSetting = () => {
 
 
     return (<>
-        {console.log(user.company_name)}
         <Stack className="AccountSettingPage" direction="row" gap={2} sx={{
             padding: "20px",
             minHeight: "100vh",

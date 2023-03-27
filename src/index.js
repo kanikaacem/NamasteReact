@@ -20,7 +20,7 @@ const initialState = {
   activeJob : '',
   candidateInfo: '',
   CandidateRegistration:false,
-  user:{},
+  userDetail:{},
   action:localStorage.getItem("action") == null ? " " : localStorage.getItem("action")
 };
 const reducer = (state, action) =>{
@@ -34,7 +34,7 @@ const reducer = (state, action) =>{
       localStorage.clear();
       return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn")};
 
-  case "CHANGE_SELECTED_MENU":
+    case "CHANGE_SELECTED_MENU":
       let selected_menu = action.payload;
       return {...initialState,isLoggedIn:localStorage.getItem("isLoggedIn"),MenuSelected:selected_menu}
       
