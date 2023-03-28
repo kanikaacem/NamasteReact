@@ -198,6 +198,7 @@ const JobTypePage = () => {
                                                 <Box sx={{ width: "100%", margin: "10px 0px" }}>
 
                                                     <TextField id="outlined-basic"
+                                                        autoComplete="off"
                                                         placeholder="Enter Area(eg.Haridwar, Uttarakhand, India)"
                                                         value={area}
                                                         onChange={(event) => {

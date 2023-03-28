@@ -2,11 +2,9 @@ import { Box, Typography, TextField, Snackbar, Alert } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { ForgotPasswordValidation } from "../../Validation/EmployerValidation";
 
-import { useSelector } from 'react-redux';
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
-import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
 
 import { useState, useEffect } from "react";
 
@@ -33,23 +31,23 @@ const ChangePassword = () => {
 
         }
 
-        let response = await fetch(api_url + "/api/employer/changepassword", {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify(data),
-        })
+        // let response = await fetch(api_url + "/api/employer/changepassword", {
+        //     method: "POST",
+        //     headers: {
+        //         'Access-Control-Allow-Origin': '*',
+        //         'Content-Type': 'application/json; charset=UTF-8'
+        //     },
+        //     body: JSON.stringify(data),
+        // })
 
-        if (response.ok) {
-            response = await response.json();
-            console.log(response);
-            if (response.status == 1) {
-                setFormSubmitted(true);
-            }
+        // if (response.ok) {
+        //     response = await response.json();
+        //     console.log(response);
+        //     if (response.status == 1) {
+        //         setFormSubmitted(true);
+        //     }
 
-        }
+        // }
 
 
     }

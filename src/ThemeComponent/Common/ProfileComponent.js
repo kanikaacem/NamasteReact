@@ -1,5 +1,5 @@
-import { PostImageRequest } from "../../utils/ApiRequests";
-import { uploadFileURL } from "../../utils/ApiUrls";
+import { PostImageRequest, getRequest } from "../../utils/ApiRequests";
+import { uploadFileURL, checkBlueCollarJob } from "../../utils/ApiUrls";
 import { Box, Button, Stack, Typography, Divider, Tabs, Tab, MenuItem, Select } from "@mui/material";
 
 import { MeetingType } from "../../utils/Data";
@@ -19,6 +19,7 @@ const ProfileComponent = ({ userData, userType }) => {
     const [userResume, setUserResume] = useState(" ");
     const [fileUpdated, setFileUpdated] = useState(false);
     const [fileUploadError, setFileUploadError] = useState(false);
+    const [blueCollarJob, setBlueCollarJob] = useState(false);
 
     const uploadProfileImage = async (event, imageType) => {
         let file = event.target.files[0];
@@ -44,9 +45,16 @@ const ProfileComponent = ({ userData, userType }) => {
     useEffect(() => {
         setUserImage(userData.profile_image);
         setUserResume(userData.resume && userData.resume.resume)
+        const getJobType = async () => {
+            let response = await getRequest(checkBlueCollarJob + "=" + userData.job_type);
+            if (response.data)
+                setBlueCollarJob(true);
+        }
+        getJobType();
     }, [userData]);
 
     return (<>
+        {console.log(userData)}
         <ThemeMessage open={fileUpdated} setOpen={setFileUpdated}
             message="File is updated Successfully." type="success" />
 
@@ -277,7 +285,7 @@ const ProfileComponent = ({ userData, userType }) => {
 
                     }
                     {
-                        value === 1 && (<>
+                        value === 1 && !blueCollarJob && (<>
                             <Stack direction="column" gap={2} sx={{
                                 padding: {
                                     "lg": "30px", "md": "0px", "xs": "0px"

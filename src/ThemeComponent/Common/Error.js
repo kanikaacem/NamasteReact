@@ -5,7 +5,8 @@ const Error = ({ text }) => {
                 color: "#c72929",
                 fontSize: "14px",
                 fontWeight: "500",
-                display: "block"
+                display: "block",
+                textTransform: "capitalize"
             }}> {text}</span></>)
 }
 

@@ -1,12 +1,11 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { PostAnswerCandidate, BlueCollarProfileCompleted } from "../../utils/ApiUrls";
+import { PostAnswerCandidate, BlueCollarProfileCompleted, CandidateQuestion } from "../../utils/ApiUrls";
 
 import { Stack, TextField, Box, Typography, Autocomplete } from "@mui/material";
 import { Formik, Form } from "formik";
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "./ThemeLabel";
 
-import { useState } from "react";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -14,11 +13,31 @@ import { useParams } from "react-router-dom";
 import ThemeMessage from "../Common/ThemeMessage";
 import Select from 'react-select';
 
-const PersonalInformation2 = ({ questions }) => {
+import { useState, useEffect } from "react";
+const PersonalInformation2 = ({ jobType }) => {
     const { step } = useParams();
-
     const JobType = window.location.pathname.split('/')[1];
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [questions, setQuestions] = useState([]);
+
+    useEffect(() => {
+        const getQuestion = async () => {
+            let questiontype = "";
+            if (step === '0') questiontype = "pd";
+            if (step === '1') questiontype = "we";
+            if (step === '2') questiontype = "ed";
+            let response = await postRequest(CandidateQuestion, {
+                jobtype: jobType,
+                questiontype: questiontype
+            })
+            if (response.status === '1')
+                response.data.questions.length > 0 ?
+                    setQuestions(response.data.questions)
+                    :
+                    setQuestions([])
+        }
+        jobType && getQuestion();
+    }, [jobType]);
 
     const FormSubmit = async (question, ans) => {
 
@@ -219,7 +238,6 @@ const PersonalInformation2 = ({ questions }) => {
 
 
     return (<>
-        {console.log(questions)}
         <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message="Candidate is registered Successfully." type="success" />
 
         <Box className="PersonalInformation2" sx={{
@@ -438,9 +456,18 @@ const PersonalInformation2 = ({ questions }) => {
                                     </ThemeFInputDiv >
 
                                     <Stack direction="row" sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                                        {(step === '0' || step === '1') ?
+                                            <ThemeButtonType2 variant="contained" type="button"
+                                                onClick={() => window.location.href = window.location.origin + "/candidate-dashboard/" + jobType + "/profile/" + (step === "0" ? 1 : 2)
+                                                }
+                                                sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
+                                            >Next</ThemeButtonType2>
+                                            :
+                                            <ThemeButtonType2 variant="contained" type="button" onClick={LoginUser} sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
+                                            >Save</ThemeButtonType2>
+                                        }
 
-                                        <ThemeButtonType2 variant="contained" type="button" onClick={LoginUser} sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
-                                        >Save</ThemeButtonType2>
+
 
                                     </Stack>
 

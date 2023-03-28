@@ -13,9 +13,9 @@ import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import { ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import { employerLoginValidationSchema } from "../../Validation/EmployerValidation";
-import ShowMessageToastr from "../../ThemeComponent/Common/ShowMessageToastr";
 import Error from "../../ThemeComponent/Common/Error";
 
+import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 import { useState } from "react";
 const EmployerLogin = () => {
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
@@ -38,32 +38,36 @@ const EmployerLogin = () => {
             email: values.email_address,
             password: values.password
         }
-        let response = await postRequest(EmployerLoginURL, EmployerLoginForm);
-        setRegisterUser(response.data);
-        if (response.status === '1') {
-            if (!response.data.isemailverified) {
-                setShowEmailVerifiedMessage(true);
-                setIsEmailVerified(true);
-            }
-            else if (!response.data.ismobileverified) {
-                localStorage.setItem("auth_token", response.token);
-                dispatch({ type: 'LOGIN_REGISTRATION', payload: response.data });
-            }
-            else if (response.data.isemailverified && response.data.ismobileverified && response.data.stage === "savememailandpass") {
-                window.location.href = window.location.origin + "/employer-dashboard/company-information";
-            }
-            else {
-                localStorage.setItem("auth_token", response.token);
-                localStorage.setItem("action", "login");
-                dispatch({ type: 'LOGIN', payload: response.data });
+        try {
+            let response = await postRequest(EmployerLoginURL, EmployerLoginForm);
+            if (response.status === '1') {
+                setRegisterUser(response.data);
+
+                if (!response.data.isemailverified) {
+                    setShowEmailVerifiedMessage(true);
+                    setIsEmailVerified(true);
+                }
+                else if (!response.data.ismobileverified) {
+                    localStorage.setItem("auth_token", response.token);
+                    dispatch({ type: 'LOGIN_REGISTRATION', payload: response.data });
+                }
+                else if (response.data.isemailverified && response.data.ismobileverified && response.data.stage === "savememailandpass") {
+                    window.location.href = window.location.origin + "/employer-dashboard/company-information";
+                }
+                else {
+                    localStorage.setItem("auth_token", response.token);
+                    localStorage.setItem("action", "login");
+                    dispatch({ type: 'LOGIN', payload: response.data });
+                }
+
             }
 
-        }
-        if (response.status === '0' && Object.keys(response.data).length === 0)
+            if (response.status === '0')
+                setFieldError("password", response.msg);
+        } catch (err) {
             window.location.href = window.location.origin + "/login-error";
+        }
 
-        if (response.status === '0')
-            setFieldError("password", response.data);
 
     }
 
@@ -89,8 +93,9 @@ const EmployerLogin = () => {
 
         {isLoggedIn == 'true' && !registerUser.ismobileverified && action === "registration" && < Navigate to="/employer-dashboard/mobile-verify"></Navigate>}
 
-        <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)} message="Email Address is not verified. Please Verify your email First" messageType="success" />
-        <ShowMessageToastr value={sendVerificationLink} handleClose={() => setSendVerificationLink(false)} message="Email Verification link is send" messageType="success" />
+        <ThemeMessage open={showEmailVerifiedMessage} setOpen={setShowEmailVerifiedMessage} message="Email Address is not verified. Please Verify your email First" type="error" />
+        <ThemeMessage open={sendVerificationLink} setOpen={setSendVerificationLink} message="Email Verification link is send" type="success" />
+
 
         <Box className="EmployerLoginPage"
             sx={{

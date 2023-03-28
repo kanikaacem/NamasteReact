@@ -98,6 +98,7 @@ const AccountSetting = () => {
 
 
     return (<>
+        {console.log(user)}
         <Stack className="AccountSettingPage" direction="row" gap={2} sx={{
             padding: "20px",
             minHeight: "100vh",
@@ -425,9 +426,7 @@ const AccountSetting = () => {
                                                         id="email_address"
                                                         as={TextField}
                                                         placeholder="Enter Email Address" type="text" name="email_address" fullWidth />
-                                                    <Box>
-                                                        Verified
-                                                    </Box>
+
                                                 </Stack>
                                                 {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
 
@@ -440,7 +439,6 @@ const AccountSetting = () => {
                                                         id="mobile_number"
                                                         as={TextField}
                                                         placeholder="Enter Mobile Number" type="text" name="mobile_number" fullWidth />
-                                                    <Box>Verified</Box>
                                                 </Stack>
                                                 {errors.mobile_number && touched.mobile_number && <Error text={errors.mobile_number} />}
 

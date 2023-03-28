@@ -78,7 +78,7 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                             </Stack>
 
                             <Typography component="span" sx={{ fontSize: "16px", display: "flex" }}>
-                                <hr style={{ width: "150px", height: "0px", color: "#DAD9D9" }}></hr> or login in with <hr style={{ width: "150px", height: "0px" }}></hr>
+                                <hr style={{ width: "150px", height: "0px", color: "#DAD9D9" }}></hr> or Sign up with <hr style={{ width: "150px", height: "0px" }}></hr>
                             </Typography>
 
                             <Stack direction="row" gap={3} justifyContent="center">
