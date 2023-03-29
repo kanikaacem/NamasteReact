@@ -10,12 +10,12 @@ import { useState } from "react";
 import JobComponent from "../../ThemeComponent/JobComponent";
 import SocialMedia from "../../ThemeComponent/Common/SocialMedia";
 
-import { Chart as ChartJS, registerables } from 'chart.js';
 import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
 import DashboardGreeting from "../../ThemeComponent/Common/DashboardGreeting";
 import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 
 import { useLayoutEffect } from "react";
+import Template1 from "../../ThemeComponent/LoadingTemplate/Template1";
 
 const EmployerDashboard = () => {
     const user = useOutletContext();
@@ -24,15 +24,18 @@ const EmployerDashboard = () => {
     const [jobInfo, setJobInfo] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage, setDataPerPage] = useState(2);
+    const [jobDataLoaded, setJobDataLoaded] = useState(false);
 
     useLayoutEffect(() => {
         const getpostedjobs = async () => {
             try {
                 let data = await postRequest(getAllPostedJobs);
                 if (data.status === '0') {
-                    setData([])
+                    setData([]);
+                    setJobDataLoaded(true);
                 } else {
                     setData(data.data);
+                    setJobDataLoaded(true);
 
                 }
             } catch (err) {
@@ -166,38 +169,53 @@ const EmployerDashboard = () => {
                             width: { "lg": "60%", "md": "100%", "xs": "100%" }
                         }}>
                             <Stack direction="column" gap={2} sx={{ width: "100%", height: "600" }}>
+
                                 <Box>
                                     <Box sx={{ margin: "30px 0px" }}>
                                         <Typography component="span" sx={{ fontSize: "24px", fontWeight: "600", color: "#4E3A67" }}>
                                             Recent Jobs
                                         </Typography>
                                     </Box>
-                                    <Stack direction="column" gap={2} sx={{ height: "700px" }}>
-                                        {jobs && jobs.length <= 0 && <Typography component="box" sx={{
-                                            fontSize: "24px",
-                                            fontWeight: "600",
-                                            color: "#4E3A67"
-                                        }}>
-                                            You haven't posted any Job yet.
-                                        </Typography>}
+                                    {!jobDataLoaded && <>
+                                        <Stack direction="column" gap={2}>
+                                            <Template1></Template1>
+                                            <Template1></Template1>
+                                        </Stack>
 
-                                        {
-                                            jobs && jobs.length > 0 && jobs.map((item) => {
-                                                return (<>
+                                    </>}
+                                    {
+                                        jobDataLoaded && jobs && jobs.length > 0 && <>
+                                            <Stack direction="column" gap={2} sx={{ height: "700px" }}>
 
-                                                    <JobComponent key={item._id} data={item} data_id={item._id} userType="employer" />
-                                                </>)
-                                            })
+                                                {
+                                                    jobs.map((item) => {
+                                                        return (<>
+
+                                                            <JobComponent key={item._id} data={item} data_id={item._id} userType="employer" />
+                                                        </>)
+                                                    })
 
 
-                                        }
-                                    </Stack>
-                                    {jobs.length > 0 &&
-                                        <Box >
-                                            <Pagination count={data && Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
-                                        </Box>
+                                                }
+                                            </Stack>
+                                            <Box >
+                                                <Pagination count={data && Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
+                                            </Box>
+                                        </>
                                     }
+                                    {
+                                        jobDataLoaded && jobs && jobs.length <= 0 && <>
+                                            <Stack direction="column" gap={2} sx={{ height: "700px" }} alignItems="center">
+                                                <Typography component="span" sx={{ fontSize: "24px", color: "#4E3A67" }}>
+                                                    You haven't posted any job Yet.
+                                                </Typography>
+
+                                            </Stack>
+                                        </>
+                                    }
+
                                 </Box>
+
 
                             </Stack>
 

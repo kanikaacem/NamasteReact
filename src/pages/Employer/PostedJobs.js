@@ -10,7 +10,7 @@ import JobComponent from "../../ThemeComponent/JobComponent";
 import { useState, useEffect } from "react";
 
 import ErrorPage from "../ErrorPage";
-
+import Template1 from "../../ThemeComponent/LoadingTemplate/Template1";
 const PostedJobs = () => {
 
     const [jobFilter, setJobFilter] = useState(" ");
@@ -76,6 +76,12 @@ const PostedJobs = () => {
                 <Box sx={{ minHeight: 500, width: '100%' }}>
                     <Stack direction="column" gap={2}>
                         {
+                            !isDataLoaded && <Stack direction="column" gap={2}>
+                                <Template1 />
+                                <Template1 />
+                                <Template1 />
+                            </Stack>}
+                        {
                             isDataLoaded && data && data.length <= 0 &&
 
                             <ErrorPage errorMessage="Data Not Present" />
@@ -93,7 +99,7 @@ const PostedJobs = () => {
                     </Stack>
                     {data.length > 0 &&
                         <Box >
-                            <Pagination count={data && Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
+                            <Pagination count={data && Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(value) => setCurrentPage(value)} />
                         </Box>
                     }
 

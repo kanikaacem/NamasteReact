@@ -15,9 +15,9 @@ import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
 import Footer from "../../ThemeComponent/Common/Footer";
 
 import DashboardAccountSetting from "../../ThemeComponent/Common/DashboardAccountSetting";
+import Skeleton from "react-loading-skeleton";
 
 import { useEffect } from "react";
-import ErrorPage from "../ErrorPage";
 const Dashboard = () => {
     const [openProfile, setOpenProfile] = useState(false);
     const [openMenu, setOpenMenu] = useState(false);
@@ -52,6 +52,9 @@ const Dashboard = () => {
 
 
         getLoginUserDetail();
+
+
+
     }, []);
 
     return (<>
@@ -94,7 +97,7 @@ const Dashboard = () => {
                                                 sx={{
                                                     fontSize: { "lg": `20px !important`, "md": "16px !important" }, color: "#4E3A67"
                                                 }}
-                                                className={MenuSelected === item.value && "MenuSelected"} primary={item.MenuName} />
+                                                className={MenuSelected === item.value && "MenuSelected"} primary={item.MenuName ? item.MenuName : <Skeleton />} />
                                         </ListItem>
                                     </>)
                                 })}
@@ -113,7 +116,7 @@ const Dashboard = () => {
                                             sx={{
                                                 fontSize: { "lg": `20px !important`, "md": "16px !important" }, color: "#4E3A67"
                                             }}
-                                            primary={item.MenuName} />
+                                            primary={item.MenuName ? item.MenuName : <Skeleton />} />
                                     </ListItem>
 
                                 </>

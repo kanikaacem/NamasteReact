@@ -1,6 +1,8 @@
 import { getRequestWithToken } from "../utils/ApiRequests";
 import { Box, Stack, Typography, Button } from "@mui/material";
 import { useState, useEffect } from "react";
+import { RWebShare } from "react-web-share";
+
 const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
 
     const [jobApplied, setJobApplied] = useState(false);
@@ -38,14 +40,14 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
             <Box >
                 <Stack direction="row" justifyContent="space-between" sx={{ padding: "20px", color: "#4E3A67" }}>
                     <Typography component="div" sx={{ fontSize: { "lg": "26px", "md": "26px", "xs": "20px" }, fontWeight: "600", textTransform: "capitalize" }}>
-                        {data ? data.job_title : " Linux Solution Engineer"}
+                        {data ? data.job_title : "Not Mentioned"}
                     </Typography>
                     <Typography component="div" sx={{ fontSize: { "lg": "26px", "md": "26px", "xs": "20px" }, fontWeight: "600" }}>
-                        {(data && data.salarytype) ? data.salarytype.salary : "Rs 25,000- Rs 99,999"}
+                        {(data && data.salarytype) ? data.salarytype.salary : "Not Mentioned"}
                     </Typography>
                 </Stack>
                 <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, color: "#3D3B3F", padding: "0px 20px" }}>
-                    {data ? data.company_name : "Vays Infotech Private Limited"}
+                    {data ? data.company_name : "Not Mentioned"}
                 </Typography>
 
                 <Box></Box>
@@ -64,7 +66,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                 <img src={window.location.origin + "/assets/RJ.png"} alt="RJ"></img>
                             </Box>
                             <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "800px" }}>
-                                {data ? data.city[0] : "Demo City"}
+                                {data ? data.city[0] : "Not Mentioned"}
                             </Typography>
                         </Stack>
                         <Stack direction="row" sx={{
@@ -96,7 +98,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                 <img src={window.location.origin + "/assets/RJ2.png"} alt="RJ2"></img>
                             </Box>
                             <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "800px" }}>
-                                Min. {data && data.candidate_experience && data.candidate_experience.min_age} Years
+                                Min. {data && data.candidate_experience ? data.candidate_experience.min_age + " Years" : "Not Mentioned"}
                             </Typography>
                         </Stack>
 
@@ -113,7 +115,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                 <img src={window.location.origin + "/assets/RJ3.png"} alt="RJ3"></img>
                             </Box>
                             <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "800px" }}>
-                                {data && data.prefered_degree[0]}
+                                {data && data.prefered_degree[0] ? data.prefered_degree[0] : "Not Mentioned"}
                             </Typography>
                         </Stack>
                     </Stack>
@@ -168,19 +170,13 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                         }
                                     }} variant="contained">{jobApplied ? "Applied" : "Apply Now"}</Button>
 
-
-                                <Button variant="outlined"
-                                    sx={{
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: "500",
-                                        fontSize: { "lg": "20px", "md": "16px", "xs": "16px" },
-                                        background: "#FAF7FE",
-                                        border: "1px solid #E7D5FF",
-                                        borderRadius: "7px",
-                                        color: "#3A2D49",
-                                        textTransform: "capitalize",
-                                        fontWeight: "600",
-                                        "&:hover": {
+                                <RWebShare
+                                    data={{
+                                        url: window.location.origin + "/job-description/" + data_id,
+                                    }}
+                                >
+                                    <Button variant="outlined"
+                                        sx={{
                                             fontFamily: 'Montserrat',
                                             fontWeight: "500",
                                             fontSize: { "lg": "20px", "md": "16px", "xs": "16px" },
@@ -190,11 +186,19 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                             color: "#3A2D49",
                                             textTransform: "capitalize",
                                             fontWeight: "600",
-                                        }
-                                    }}>Share</Button>
-
-
-
+                                            "&:hover": {
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: "500",
+                                                fontSize: { "lg": "20px", "md": "16px", "xs": "16px" },
+                                                background: "#FAF7FE",
+                                                border: "1px solid #E7D5FF",
+                                                borderRadius: "7px",
+                                                color: "#3A2D49",
+                                                textTransform: "capitalize",
+                                                fontWeight: "600",
+                                            }
+                                        }}>Share</Button>
+                                </RWebShare>
                             </Stack>
 
                             <Box>

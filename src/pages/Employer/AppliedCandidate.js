@@ -19,6 +19,7 @@ const AppliedCandidate = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage, setDataPerPage] = useState(10);
     const [pageType, setPageType] = useState("");
+    const [canDataLoaded, setCanDataLoaded] = useState(false);
     //All applied Candidate 
     const [jobFilter, setJobFilter] = useState(" ");
     const [canFilter, setCanFilter] = useState(" ");
@@ -34,8 +35,8 @@ const AppliedCandidate = () => {
         const getCandidateOnJob = async () => {
             let response = await postRequest(GetCandidateOnParticularJob + id);
             if (response.status === "1") {
-                console.log(response.data)
                 setJobCanData(response.data);
+                setCanDataLoaded(true);
             }
         }
 

@@ -6,9 +6,12 @@ import { Box, Stack } from "@mui/material";
 import { useState, useEffect } from "react";
 import JobComponent from "../../../ThemeComponent/JobComponent";
 import JobDescriptionComponent from "../../../ThemeComponent/JobDescriptionComponent";
-const RecommendedJobs = ({ fixed }) => {
+
+import Template1 from "../../../ThemeComponent/LoadingTemplate/Template1";
+const RecommendedJobs = () => {
     const [data, setData] = useState([]);
     const [canJobDes, setCanJobDes] = useState([]);
+    const [dataLoaded, setDataLoaded] = useState(false);
 
     useEffect(() => {
         const getData = async () => {
@@ -16,7 +19,13 @@ const RecommendedJobs = ({ fixed }) => {
 
             if (response.status == 1) {
                 setData(response.data);
-                setCanJobDes(response.data[0])
+                setDataLoaded(true);
+                setCanJobDes(response.data[0]);
+
+                // setTimeout(() => {
+                //     setCanJobDes(response.data[0])
+
+                // }, 2000);
             }
         };
 
@@ -24,13 +33,6 @@ const RecommendedJobs = ({ fixed }) => {
     }, []);
 
     const getJobDescription = async (data_id) => {
-        // console.log(data_id);
-        // let JobFormData = new FormData();
-        // JobFormData = {
-
-        //     jobid: data_id
-
-        // }
         let response = await postRequest(JobDescriptionURL + "?jobid=" + data_id);
         if (response.status === '1') {
             setCanJobDes(response.data);
@@ -48,7 +50,16 @@ const RecommendedJobs = ({ fixed }) => {
                     overflowX: "scroll"
                 }}>
                 {
-                    data.length > 0 && data.map((item) => {
+                    !dataLoaded && <>
+                        <Template1 />
+                        <Template1 />
+                        <Template1 />
+                        <Template1 />
+
+                    </>
+                }
+                {
+                    dataLoaded && data.length > 0 && data.map((item) => {
                         return (<>
                             <JobComponent key={item._id} data={item} data_id={item._id} userType="candidate" OnClickfun={() => {
                                 getJobDescription(item._id)

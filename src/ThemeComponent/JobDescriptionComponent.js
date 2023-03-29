@@ -8,12 +8,17 @@ import { ThemeButtonType2 } from "../utils/Theme";
 
 import { useState, useEffect } from "react";
 import ThemeMessage from "./Common/ThemeMessage";
+import { RWebShare } from "react-web-share";
+
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const JobDescriptionComponent = ({ userType, data }) => {
 
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [cannotApply, setCannotApply] = useState(false);
     const [jobApplied, setJobApplied] = useState(false);
+
     const JobApplied = async () => {
         if (window.location.pathname === '/candidate-dashboard') {
             window.location.href = window.location.origin + '/candidate-dashboard/job-description/' + data._id
@@ -52,6 +57,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
 
         }
         IsjobApplied();
+
     }, [data._id])
 
     return (<>
@@ -84,11 +90,11 @@ const JobDescriptionComponent = ({ userType, data }) => {
 
             <Stack direction="column" gap={1} sx={{ margin: "30px 0px" }}>
                 <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600", color: "#4E3A67", textTransform: "capitalize" }}>
-                    {data && data.job_title ? data.job_title : "Linux Solution Engineer"}
+                    {data ? (data.job_title ? data.job_title : "Not Mentioned") : <Skeleton />}
                 </Typography>
 
                 <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#BDB5C7" }}>
-                    {data && data.company_name ? data.company_name : "Vays Infotech Private Limited"}
+                    {data && data.company_name ? data.company_name : "Not Mentioned"}
                 </Typography>
             </Stack>
 
@@ -173,8 +179,14 @@ const JobDescriptionComponent = ({ userType, data }) => {
                     <Stack direction="row" gap={2} alignItems="center" justifyContent="center"
                         sx={{ cursor: "pointer" }}>
                         <img height="20px" src={window.location.origin + "/assets/BookMark.png"} alt="Book Mark" />
+                        <RWebShare
+                            data={{
+                                url: window.location.origin + "/job-description/" + data._id,
+                            }}
+                        >
+                            <img height="20px" src={window.location.origin + "/assets/Share.png"} alt="Share" />
 
-                        <img height="20px" src={window.location.origin + "/assets/Share.png"} alt="Share" />
+                        </RWebShare>
 
                     </Stack>
                 </>}
