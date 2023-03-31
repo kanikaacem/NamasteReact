@@ -74,8 +74,8 @@ const AccountSetting = () => {
 
     //changing the Hr Information
     const defaultValue3 = {
-        full_name: user.employername,
-        email_address: user.email_address,
+        full_name: user.employer_name ? user.employer_name : " ",
+        email_address: user.employer_email ? user.employer_email : " ",
         mobile_number: user.mobile
     }
 
@@ -85,6 +85,7 @@ const AccountSetting = () => {
         let file_size = file.size;
         var output = document.getElementById('profileLogo');
         output.src = URL.createObjectURL(event.target.files[0]);
+
     }
     const handleHrInformation = async (values) => {
         let formData = new FormData();
@@ -98,12 +99,11 @@ const AccountSetting = () => {
 
 
     return (<>
-        {console.log(user)}
         <Stack className="AccountSettingPage" direction="row" gap={2} sx={{
             padding: "20px",
             minHeight: "100vh",
-            background: "linear-gradient(231.41deg, #FDFCFF 13.04%, #FAF7FE 57.79%)"
-            , flexWrap: "wrap"
+            background: "linear-gradient(231.41deg, #FDFCFF 13.04%, #FAF7FE 57.79%)",
+            flexWrap: "wrap"
         }}>
             <Box sx={{ width: { "lg": "30%", "md": "100%", "xs": "100%" } }}>
                 <Stack direction="column" gap={2} sx={{ padding: { "lg": "0px 50px", "md": "0px 50px", "xs": "0px" } }}>

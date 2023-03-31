@@ -35,8 +35,7 @@ function Home() {
     }, [])
 
     return (<>
-        {isLoggedIn == 'true' && user && user.employer_type === "employer" && <Navigate to="/employer-dashboard"></Navigate>}
-        {console.log(user)}
+        {/* {isLoggedIn == 'true' && user && user.employer_type === "employer" && <Navigate to="/employer-dashboard"></Navigate>} */}
         <Box sx={{
             padding: "20px 40px",
             background: "#FAFAFA",

@@ -39,10 +39,10 @@ const ThemeMessage = ({ open, setOpen, message, type }) => {
                     }}>
                     <Box sx={{ height: "200px", width: "200px" }} >
                         {
-                            type == "success" && <img width="100%" height="100%" src={window.location.origin + "/assets/Success.png"} alt="success" />
+                            type == "success" && <img width="100%" height="100%" src={window.location.origin + "/assets/Success.gif"} alt="success" />
                         }
                         {
-                            type == "error" && <img height="100%" src={window.location.origin + "/assets/Error.png"} alt="error" />
+                            type == "error" && <img height="100%" src={window.location.origin + "/assets/Error.gif"} alt="error" />
                         }
                     </Box>
                     <Typography id="modal-modal-title" variant="h6" component="h2">

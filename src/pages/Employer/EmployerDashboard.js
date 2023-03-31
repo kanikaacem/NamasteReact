@@ -16,6 +16,7 @@ import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 
 import { useLayoutEffect } from "react";
 import Template1 from "../../ThemeComponent/LoadingTemplate/Template1";
+import { useDispatch } from "react-redux";
 
 const EmployerDashboard = () => {
     const user = useOutletContext();
@@ -26,6 +27,7 @@ const EmployerDashboard = () => {
     const [dataPerPage, setDataPerPage] = useState(2);
     const [jobDataLoaded, setJobDataLoaded] = useState(false);
 
+    const dispatch = useDispatch();
     useLayoutEffect(() => {
         const getpostedjobs = async () => {
             try {
@@ -52,8 +54,13 @@ const EmployerDashboard = () => {
             }
         }
 
+        const MenuSelect = () => {
+            dispatch({ type: "CHANGE_SELECTED_MENU", payload: "employer_dashboard" })
+        }
+
         getpostedjobs();
         getJobInfo();
+        MenuSelect();
 
     }, []);
 

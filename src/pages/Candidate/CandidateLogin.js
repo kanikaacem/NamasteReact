@@ -5,7 +5,7 @@ import { Box, TextField, Typography, Stack } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
@@ -109,42 +109,46 @@ const CandidateLogin = () => {
                     border="2px solid rgba(255, 255, 255, 0.25)"
                     color="#FFFFFF"
                     background="#432C60" />
-                <Stack alignItems="flex-end" sx={{ position: "relative" }}>
+                <Stack direction="row" gap={2} sx={{ position: "relative" }}>
 
-                    <Box sx={{
-                        position: "absolute",
-                        top: "90px",
-                        left: "204px",
-                        width: "800px"
+                    <Stack sx={{
+                        width: "60%",
+                        alignItems: "center",
                     }}>
-                        <Typography component="box" sx={{
-                            fontSize: "64px",
-                            fontFamily: "Work Sans, sans-serif",
-                            fontWeight: "700",
-                            color: "#FC9A7E",
-                            display: "block",
-                            lineHeight: "40px"
-                        }}>
-                            Choose a job you love,
+                        <Box sx={{
+                            width: "800px",
+                            marginTop: "100px"
 
+                        }}>
                             <Typography component="box" sx={{
                                 fontSize: "64px",
                                 fontFamily: "Work Sans, sans-serif",
                                 fontWeight: "700",
-                                color: "#FFFFFF",
+                                color: "#FC9A7E",
                                 display: "block",
-                                margin: "10px 0px",
-                                lineHeight: "1.0 !important"
+                                lineHeight: "40px"
                             }}>
-                                and you never have to
-                                work a day in your life
+                                Choose a job you love,
+
+                                <Typography component="box" sx={{
+                                    fontSize: "64px",
+                                    fontFamily: "Work Sans, sans-serif",
+                                    fontWeight: "700",
+                                    color: "#FFFFFF",
+                                    display: "block",
+                                    margin: "10px 0px",
+                                    lineHeight: "1.0 !important"
+                                }}>
+                                    and you never have to
+                                    work a day in your life
+
+                                </Typography>
 
                             </Typography>
 
-                        </Typography>
 
-
-                    </Box>
+                        </Box>
+                    </Stack>
 
                     <Stack sx={{
                         width: "449px",
@@ -195,14 +199,10 @@ const CandidateLogin = () => {
                                     </ThemeFInputDiv>
 
                                     <ThemeFInputDiv>
-                                        <a href="#" onClick={
-                                            () => {
-                                                window.location.href = window.location.origin + "/forgot-password/candidate";
-                                            }
-                                        }
-                                            style={{ marginTop: "20px" }}>
-                                            Forgot Password ?
-                                        </a>
+                                        <Link to="/forgot-password/candidate" style={{ "margin": "20px 0px" }}>
+                                            Forgot Password?
+                                        </Link>
+
                                     </ThemeFInputDiv>
 
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
@@ -224,9 +224,9 @@ const CandidateLogin = () => {
                                         <ThemeButtonType2 variant="contained" type="submit" id="log_in" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
                                         <ThemeButtonType3 variant="outlined"
                                             type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
-                                            onClick={() => {
-                                                window.location.href = window.location.origin + "/candidate-register"
-                                            }}
+                                            component={Link}
+                                            to="/candidate-register"
+
                                         >Sign up</ThemeButtonType3>
                                     </Stack>
                                 </Form>

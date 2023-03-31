@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
+
 import { Stack, Button } from "@mui/material";
 import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Details } from "@mui/icons-material";
 
 const HeaderSec = ({ color, background, border, buttonText, userType }) => {
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
@@ -32,9 +33,10 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                 {
                     showEmployerButton &&
                     <Button type="button" variant="outlined"
-                        onClick={() => {
-                            window.location.href = window.location.origin + "/employer-login";
-                        }}
+                        component={Link} to="/employer-login"
+                        // onClick={() => {
+                        //     window.location.href = window.location.origin + "/employer-login";
+                        // }}
                         sx={{
                             width: "200px",
                             borderRadius: "44px",
@@ -60,9 +62,8 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                 {
                     showCandidateButton && isLoggedIn && userType === "candidate" &&
                     < Button type="button" variant="outlined"
-                        onClick={() => {
-                            window.location.href = window.location.origin + "/candidate-dashboard";
-                        }}
+                        component={Link} to="/candidate-dashboard"
+
                         sx={{
                             width: "200px",
                             borderRadius: "44px",
@@ -86,9 +87,7 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                 {
                     showCandidateButton && !isLoggedIn &&
                     < Button type="button" variant="outlined"
-                        onClick={() => {
-                            window.location.href = window.location.origin + "/candidate-login";
-                        }}
+                        component={Link} to="/candidate-login"
                         sx={{
                             width: "200px",
                             fontSize: "18px",
@@ -110,11 +109,7 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                 }
 
                 <Button type="button" variant="filled"
-                    onClick={
-                        () => {
-                            window.location.href = window.location.origin + "/about-us"
-                        }
-                    }
+                    component={Link} to="/about-us"
                     sx={{
                         fontSize: "18px",
                         color: { color },
@@ -135,9 +130,8 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                 </Button>
 
                 <Button type="button" variant="outlined"
-                    onClick={() => {
-                        window.location.href = window.location.origin + "/contact-us";
-                    }}
+                    component={Link} to="/contact-us"
+
                     sx={{
                         borderRadius: "44px",
                         fontSize: "18px",

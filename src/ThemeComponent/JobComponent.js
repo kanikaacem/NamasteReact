@@ -3,9 +3,13 @@ import { Box, Stack, Typography, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import { RWebShare } from "react-web-share";
 
+import { Link, useNavigate } from "react-router-dom";
+
 const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
 
     const [jobApplied, setJobApplied] = useState(false);
+    const navigate = useNavigate();
+
     useEffect(() => {
         const IsjobApplied = async () => {
             let response = await getRequestWithToken("https://backend.jobsyahan.com/api/job/details?jobid=" + data_id);
@@ -20,7 +24,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
 
         }
         IsjobApplied();
-    }, [data])
+    }, [data_id])
     return (<>
         <Box sx={{
             background: "#FFFFFF",
@@ -50,7 +54,6 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                     {data ? data.company_name : "Not Mentioned"}
                 </Typography>
 
-                <Box></Box>
                 <Box sx={{ padding: "20px" }}>
                     <Stack direction="row" gap={2} sx={{ flexWrap: "wrap" }}>
                         <Stack direction="row" sx={{
@@ -123,13 +126,17 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                     <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
                         {data && data.applied_count > 0 ? data.applied_count : '0'} Applicants Applied
                     </Typography>
-                    {data && data.applied_count > 0 && userType === "employer" && <a
-                        href="#"
-                        onClick={(event) => {
-                            event.stopPropagation()
-                            window.location.href = window.location.origin + "/employer-dashboard/applied-candidates/" + data_id
-                        }}
-                    > View Candidates</a>}
+                    {data && data.applied_count > 0 && userType === "employer" &&
+                        <a
+                            href="#"
+                            onClick={(event) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+                                navigate("/employer-dashboard/applied-candidates/" + data_id)
+                                // window.location.href = window.location.origin + "/employer-dashboard/applied-candidates/" + data_id
+                            }}
+                        > View Candidates</a>
+                    }
 
 
                     <Typography component="div" sx={{
@@ -145,10 +152,9 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                         <Stack direction="row" gap={2} sx={{ margin: "50px 0px", flexWrap: "wrap" }} justifyContent="space-between">
                             <Stack direction="row" gap={1}>
                                 <Button
-                                    onClick={() => {
+                                    component={Link}
+                                    to={"/candidate-dashboard/job-description/" + data_id}
 
-                                        window.location.href = window.location.origin + '/candidate-dashboard/job-description/' + data_id
-                                    }}
                                     sx={{
                                         fontFamily: 'Montserrat',
                                         fontWeight: "500",

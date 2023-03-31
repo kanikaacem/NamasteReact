@@ -6,7 +6,7 @@ import { TextField, Box, Typography, Stack } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 
@@ -91,7 +91,7 @@ const EmployerLogin = () => {
             registerUser.stage === "hrpage" && < Navigate to="/employer-dashboard"></Navigate>
         }
 
-        {isLoggedIn == 'true' && !registerUser.ismobileverified && action === "registration" && < Navigate to="/employer-dashboard/mobile-verify"></Navigate>}
+        {isLoggedIn === 'true' && !registerUser.ismobileverified && action === "registration" && < Navigate to="/employer-dashboard/mobile-verify"></Navigate>}
 
         <ThemeMessage open={showEmailVerifiedMessage} setOpen={setShowEmailVerifiedMessage} message="Email Address is not verified. Please Verify your email First" type="error" />
         <ThemeMessage open={sendVerificationLink} setOpen={setSendVerificationLink} message="Email Verification link is send" type="success" />
@@ -119,17 +119,11 @@ const EmployerLogin = () => {
                     color="#FFFFFF"
                     background="#432C60" />
                 <Stack direction="row" sx={{ position: "relative", gap: "40px" }}>
-                    <Box sx={{
-                        minWidth: "60%",
-                        maxWidth: "100%",
-                        display: { 'lg': 'block', 'md': 'none', 'xs': 'none' }
+                    <Stack sx={{
+                        width: "60%",
+                        alignItems: "center"
                     }}>
-                        <Box sx={{
-
-                            marginTop: "150px",
-                            marginLeft: "204px"
-
-                        }}>
+                        <Box sx={{ marginTop: "100px" }}>
                             <Typography component="box" sx={{
                                 fontSize: "64px",
                                 fontFamily: "Work Sans, sans-serif",
@@ -177,7 +171,7 @@ const EmployerLogin = () => {
 
                             </Typography>
                         </Box>
-                    </Box>
+                    </Stack>
 
 
                     <Stack gap={2} sx={{
@@ -221,14 +215,11 @@ const EmployerLogin = () => {
                                         </ThemeFInputDiv>
                                     </ThemeFInputDiv>
                                     <ThemeFInputDiv>
-                                        <a href="#" onClick={
-                                            () => {
-                                                window.location.href = window.location.origin + "/forgot-password/employer";
-                                            }
-                                        }
-                                            style={{ marginTop: "20px" }}>
-                                            Forgot Password ?
-                                        </a>
+
+                                        <Link to="/forgot-password/employer" style={{ "margin": "20px 0px" }}>
+                                            Forgot Password?
+                                        </Link>
+
                                     </ThemeFInputDiv>
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
                                         {isEmailVerified && (<>
@@ -248,9 +239,9 @@ const EmployerLogin = () => {
                                         <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
                                         <ThemeButtonType3 variant="outlined" type="button"
                                             sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
-                                            onClick={() => {
-                                                window.location.href = window.location.origin + "/employer-register"
-                                            }}
+                                            component={Link}
+                                            to="/employer-register"
+
                                         >Sign up</ThemeButtonType3>
 
                                     </Stack>

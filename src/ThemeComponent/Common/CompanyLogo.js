@@ -2,12 +2,14 @@ import {
     Box, Typography
 } from '@mui/material';
 
+import { useNavigate } from 'react-router-dom';
 const CompanyLogo = ({ color }) => {
+    const navigate = useNavigate();
     const FunLogoClick = () => {
-        if (window.location.pathname === "/employer-dashboard")
-            window.location.href = window.location.origin + "/employer-dashboard"
+        if (window.location.pathname.includes("/employer-dashboard"))
+            navigate("/employer-dashboard");
         else
-            window.location.href = window.location.origin
+            navigate("/");
     }
     return (<>
         <Box sx={{ cursor: "pointer" }}
