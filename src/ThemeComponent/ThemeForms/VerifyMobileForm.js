@@ -56,7 +56,7 @@ const VerifyMobileForm = () => {
 
         <Box className="FormTemplate"
             sx={{
-                minHeight: "100vh",
+                height: { "xs": "1000px", "sm": "1000px", "md": "100vh", "lg": "100vh", "xl": "100vh" },
                 background: "#2B1E44",
                 backgroundImage:
                     "url('../assets/g10.png')",
@@ -67,7 +67,7 @@ const VerifyMobileForm = () => {
             <Stack className="FormTemplateWrapper"
                 sx=
                 {{
-                    padding: "20px 50px",
+                    padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
                     gap: "24px"
                 }}>
 
@@ -81,13 +81,11 @@ const VerifyMobileForm = () => {
 
                     }}>
                         <Box
-                            sx={{
-                                width: `calc(60 % - 20px)`,
-
-                            }}
+                            sx={{ width: "inherit" }}
                         >
                             <Typography component="box" sx={{
-                                fontSize: "36px",
+                                fontSize: { "xs": "12px", "sm": "12px", "md": "36px", "lg": "36px", "xl": "36px" },
+
                                 fontFamily: "Montserrat",
                                 fontWeight: "600",
                                 color: "#FFFFFF",
@@ -98,7 +96,7 @@ const VerifyMobileForm = () => {
                             </Typography>
 
                             <Typography component="box" sx={{
-                                fontSize: "64px",
+                                fontSize: { "xs": "26px", "sm": "26px", "md": "64px", "lg": "64px", "xl": "64px" },
                                 fontFamily: "Work Sans, sans-serif",
                                 fontWeight: "700",
                                 color: "#FC9A7E",
@@ -108,7 +106,8 @@ const VerifyMobileForm = () => {
                                 Founders, Business
 
                                 <Typography component="box" sx={{
-                                    fontSize: "64px",
+                                    fontSize: { "xs": "26px", "sm": "26px", "md": "64px", "lg": "64px", "xl": "64px" },
+
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "700",
                                     color: "#FC9A7E",
@@ -118,22 +117,24 @@ const VerifyMobileForm = () => {
                                 </Typography>
                             </Typography>
 
-                            <img src={window.location.origin + "/assets/g10.png"} alt="g10" />
                         </Box>
                     </Box>
                     <Stack
                     >
 
                         <Stack gap={2} sx={{
-                            width: { "lg": "449px", "md": "85%", "xs": "85%" },
-                            height: "730px",
+                            width: { 'lg': "449px", 'md': '92%', 'xs': '92%' },
+                            height: { "xs": "fit-content", "sm": "fit-content", "md": "730px", "lg": "730px", "xl": "730px" },
                             background: "#FBF8FF",
                             boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                             borderRadius: "19px",
-                            padding: { 'lg': "50px 100px", 'md': '50px', 'xs': '50px' }
+                            padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "15px" }
 
                         }}>
-                            <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
+                            <Typography component="box" sx={{
+                                fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" }
+                                , fontFamily: "Work Sans, sans-serif", fontWeight: "700"
+                            }}>
                                 Verify Mobile No.
                             </Typography>
 
@@ -154,6 +155,7 @@ const VerifyMobileForm = () => {
                                                 as={TextField}
                                                 placeholder="Enter Mobile Number (eg. 9313170822 )" type="text" name="mobile_number" />
                                             <Button
+                                                id="sendOTPButton"
                                                 type="submit"
                                                 sx={{
                                                     position: "absolute",
@@ -223,7 +225,7 @@ const VerifyMobileForm = () => {
 
                 </Stack>
             </Stack>
-        </Box>
+        </Box >
 
     </>)
 }

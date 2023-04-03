@@ -231,7 +231,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                 <Stack className="EmployerRegisterPageWrapper"
                     sx=
                     {{
-                        padding: "20px 50px",
+                        padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
                         gap: "24px"
                     }}>
 
@@ -284,12 +284,12 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 border: "1px solid #EAEAEA",
                                 boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                                 borderRadius: "19px",
-                                padding: "35px 50px",
+                                padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
                                 margin: "0 auto",
 
                             }}>
                                 <Typography component="box" sx={{
-                                    fontSize: "40px",
+                                    fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" },
                                     fontFamily: "Montserrat",
                                     fontWeight: "600",
                                     color: "#4E3A67",
@@ -306,16 +306,17 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     <Stack direction="row" gap={1} alignItems="center" justifyContent="center"
                                     >
                                         <Box sx={{
-                                            width: "27px",
-                                            height: "27px",
+                                            width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                            height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
                                             background: "#FC9A7E",
                                             borderRadius: "50%",
                                             display: "flex",
                                             alignItems: "center",
-                                            justifyContent: "center"
+                                            justifyContent: "center",
+                                            fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
                                         }}>1</Box>
                                         <Typography component="box" sx={{
-                                            fontSize: "19px",
+                                            fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
                                             fontFamily: "Montserrat",
                                             fontWeight: "600",
                                             color: "#4E3A67",
@@ -331,16 +332,17 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                     <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
                                         <Box sx={{
-                                            width: "27px",
-                                            height: "27px",
+                                            width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                            height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
                                             background: "#FC9A7E",
                                             borderRadius: "50%",
                                             display: "flex",
                                             alignItems: "center",
-                                            justifyContent: "center"
+                                            justifyContent: "center",
+                                            fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
                                         }}>2</Box>
                                         <Typography component="box" sx={{
-                                            fontSize: "19px",
+                                            fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
                                             fontFamily: "Montserrat",
                                             fontWeight: "600",
                                             color: "#4E3A67",
@@ -356,16 +358,17 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                     <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
                                         <Box sx={{
-                                            width: "27px",
-                                            height: "27px",
+                                            width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                            height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
                                             background: "#FC9A7E",
                                             borderRadius: "50%",
                                             display: "flex",
                                             alignItems: "center",
-                                            justifyContent: "center"
+                                            justifyContent: "center",
+                                            fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
                                         }}>3</Box>
                                         <Typography component="box" sx={{
-                                            fontSize: "19px",
+                                            fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
                                             fontFamily: "Montserrat",
                                             fontWeight: "600",
                                             color: "#4E3A67",
@@ -390,7 +393,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 borderRadius: "19px",
                                 position: "relative",
                                 top: "-10px",
-                                padding: "30px 50px",
+                                padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
                                 margin: "0 auto"
 
                             }}>
@@ -489,7 +492,10 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                         fullWidth />
 
 
-                                                    <ButtonType3 ButtonText="Upload Company Logo" imageURL="/assets/InsertPicture.png" ClickEvent={() => document.getElementById("upload_company_logo").click()}></ButtonType3>
+                                                    <ButtonType3
+                                                        sx={{
+                                                            height: { "xs": "30px", "sm": "30px", "md": "50px", "xl": "50px", "lg": "50px" }
+                                                        }} ButtonText="Upload Company Logo" imageURL="/assets/InsertPicture.png" ClickEvent={() => document.getElementById("upload_company_logo").click()}></ButtonType3>
                                                 </ThemeFInputDiv>
 
 

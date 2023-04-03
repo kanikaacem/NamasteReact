@@ -100,7 +100,7 @@ const EmployerLogin = () => {
         <Box className="EmployerLoginPage"
             sx={{
                 width: "100%",
-                minHeight: "100vh",
+                height: { "xs": "1200px", "sm": "100vh", "md": "100vh", "lg": "100vh", "xl": "100vh" },
                 background: "#2B1E44",
                 backgroundImage:
                     "url('../assets/g10.png')",
@@ -111,21 +111,24 @@ const EmployerLogin = () => {
             <Stack className="EmployerLoginPageInnerWrapper"
                 sx=
                 {{
-                    padding: "20px 50px",
+                    padding: { "xs": "15px", "sm": "20px 50px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
                     gap: "24px"
                 }}>
                 <HeaderSec
                     border="2px solid rgba(255, 255, 255, 0.25)"
                     color="#FFFFFF"
                     background="#432C60" />
-                <Stack direction="row" sx={{ position: "relative", gap: "40px" }}>
+                <Stack direction={{ "xs": "column", "sm": "row", "md": "row", "lg": "row", "xl": "row" }} sx={{ position: "relative", gap: "40px" }}>
                     <Stack sx={{
-                        width: "60%",
+                        width: { 'lg': "60%", 'md': '100%', 'xs': '100%' },
                         alignItems: "center"
                     }}>
-                        <Box sx={{ marginTop: "100px" }}>
+                        <Box sx={{
+                            marginTop: { "xs": "0px", "sm": "100px", "md": "100px", "lg": "100px", "xl": "100px" }
+                            , textAlign: { "xs": "center", "sm": "start", "md": "start", "lg": "start", "xl": "start" }
+                        }}>
                             <Typography component="box" sx={{
-                                fontSize: "64px",
+                                fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "lg": "64px", "xl": "64px" },
                                 fontFamily: "Work Sans, sans-serif",
                                 fontWeight: "700",
                                 color: "#FC9A7E",
@@ -135,7 +138,7 @@ const EmployerLogin = () => {
                                 We settle for nothing
 
                                 <Typography component="box" sx={{
-                                    fontSize: "64px",
+                                    fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "lg": "64px", "xl": "64px" },
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "700",
                                     color: "#FC9A7E",
@@ -147,7 +150,7 @@ const EmployerLogin = () => {
 
 
                             <Typography component="box" sx={{
-                                fontSize: "24px",
+                                fontSize: { "xs": "16px", "sm": "24px", "md": "24px", "lg": "24px", "xl": "24px" },
                                 fontFamily: "Montserrat",
                                 fontWeight: "800",
                                 color: "#FFFFFF",
@@ -157,7 +160,7 @@ const EmployerLogin = () => {
                                 We Love Recruiting
                             </Typography>
                             <Typography component="box" sx={{
-                                fontSize: "24px",
+                                fontSize: { "xs": "12px", "sm": "24px", "md": "24px", "lg": "24px", "xl": "24px" },
                                 fontFamily: "Montserrat",
                                 fontWeight: "500",
                                 color: "#FFFFFF",
@@ -175,14 +178,14 @@ const EmployerLogin = () => {
 
 
                     <Stack gap={2} sx={{
-                        minWidth: { 'lg': "449px", 'md': '100%', 'xs': '100%' },
+                        width: { 'lg': "449px", 'md': '100%', 'xs': '92%' },
                         maxHeight: "730px",
                         background: "#FBF8FF",
                         boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                         borderRadius: "19px",
-                        padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "30px" }
+                        padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "15px" }
                     }}>
-                        <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
+                        <Typography component="box" sx={{ fontSize: { "xs": "26px", "sm": "40px", "md": "40px", "lg": "40px", "xl": "40px" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
                             Log in
                         </Typography>
                         <Formik
@@ -216,12 +219,21 @@ const EmployerLogin = () => {
                                     </ThemeFInputDiv>
                                     <ThemeFInputDiv>
 
-                                        <Link to="/forgot-password/employer" style={{ "margin": "20px 0px" }}>
-                                            Forgot Password?
-                                        </Link>
+                                        <Box sx={{
+                                            fontSize: { "xs": "10px", "sm": "16px", "md": "16px", "lg": "16px", "xl": "16px" },
+                                            margin: { "xs": "10px 0px", "sm": "20px 0px", "md": "20px 0px", "lg": "20px 0px", "xl": "20px 0px" }
+                                        }}>
+                                            <Link to="/forgot-password/employer"  >
+                                                Forgot Password?
+                                            </Link>
+                                        </Box>
 
                                     </ThemeFInputDiv>
-                                    <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                                    <Stack sx={{
+                                        width: "100%", margin: {
+                                            "xs": "20px 0px", "sm": "40px 0px", "md": "40px 0px", "lg": "40px 0px", "xl": "40px 0px"
+                                        }, gap: "20px"
+                                    }}>
                                         {isEmailVerified && (<>
                                             <a href="#" onClick={
                                                 () => {
@@ -253,7 +265,7 @@ const EmployerLogin = () => {
                 </Stack>
             </Stack>
 
-        </Box>
+        </Box >
 
 
     </>)

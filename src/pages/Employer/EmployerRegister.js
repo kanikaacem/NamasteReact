@@ -80,7 +80,7 @@ const EmployerRegister = () => {
             !companyInfoForm ?
                 <Box className="EmployerRegisterPage"
                     sx={{
-                        minHeight: "100vh",
+                        height: { "xs": "1000px", "sm": "1000px", "md": "100vh", "lg": "100vh", "xl": "100vh" },
                         background: !companyInfoForm ? "#2B1E44" : "#FFFFFF",
                         backgroundImage: !companyInfoForm &&
                             "url('../assets/g10.png')",
@@ -90,7 +90,7 @@ const EmployerRegister = () => {
                     <Stack className="EmployerRegisterPageWrapper"
                         sx=
                         {{
-                            padding: "20px 50px",
+                            padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
                             gap: "24px"
                         }}>
                         <HeaderSec
@@ -114,7 +114,7 @@ const EmployerRegister = () => {
                                     }}
                                 >
                                     <Typography component="box" sx={{
-                                        fontSize: "36px",
+                                        fontSize: { "xs": "26px", "sm": "36px", "md": "36px", "xl": "36px", "lg": "36px" },
                                         fontFamily: "Montserrat",
                                         fontWeight: "600",
                                         color: "#FFFFFF",
@@ -125,7 +125,7 @@ const EmployerRegister = () => {
                                     </Typography>
 
                                     <Typography component="box" sx={{
-                                        fontSize: "64px",
+                                        fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "xl": "64px", "lg": "64px" },
                                         fontFamily: "Work Sans, sans-serif",
                                         fontWeight: "700",
                                         color: "#FC9A7E",
@@ -135,7 +135,7 @@ const EmployerRegister = () => {
                                         Founders, Business
 
                                         <Typography component="box" sx={{
-                                            fontSize: "64px",
+                                            fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "xl": "64px", "lg": "64px" },
                                             fontFamily: "Work Sans, sans-serif",
                                             fontWeight: "700",
                                             color: "#FC9A7E",
@@ -150,12 +150,12 @@ const EmployerRegister = () => {
                             <Stack
                             >
                                 <Stack gap={2} sx={{
-                                    width: { "lg": "449px", "md": "85%", "xs": "85%" },
-                                    height: "730px",
+                                    width: { 'lg': "449px", 'md': '92%', 'xs': '92%' },
+                                    height: { "xs": "fit-content", "sm": "fit-content", "md": "730px", "lg": "730px", "xl": "730px" },
                                     background: "#FBF8FF",
                                     boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                                     borderRadius: "19px",
-                                    padding: { 'lg': "50px 100px", 'md': '50px', 'xs': '50px' }
+                                    padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "15px" }
 
                                 }}>
 
@@ -182,7 +182,7 @@ const EmployerRegister = () => {
 
                         </Stack>
                     </Stack>
-                </Box>
+                </Box >
                 :
                 <CompanyInfoForm email={email} mobile={mobile_number}></CompanyInfoForm>
         }

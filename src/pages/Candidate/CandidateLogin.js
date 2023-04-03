@@ -91,7 +91,7 @@ const CandidateLogin = () => {
 
         <Box className="CandidateLoginPage"
             sx={{
-                minHeight: "100vh",
+                height: { "xs": "1200px", "sm": "100vh", "md": "100vh", "lg": "100vh", "xl": "100vh" },
                 background: "#2B1E44",
                 backgroundImage:
                     "url('../assets/g50.png')",
@@ -102,26 +102,28 @@ const CandidateLogin = () => {
             <Stack className="CandidateLoginPageInnerWrapper"
                 sx=
                 {{
-                    padding: "20px 50px",
+                    padding: { "xs": "15px", "sm": "20px 50px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
+
                     gap: "24px"
                 }}>
                 <HeaderSec
                     border="2px solid rgba(255, 255, 255, 0.25)"
                     color="#FFFFFF"
                     background="#432C60" />
-                <Stack direction="row" gap={2} sx={{ position: "relative" }}>
+                <Stack direction={{ "xs": "column", "sm": "row", "md": "row", "lg": "row", "xl": "row" }} gap={2} sx={{ position: "relative" }}>
 
                     <Stack sx={{
-                        width: "60%",
+                        width: { "xs": "100%", "sm": "60%", "md": "60%", "lg": "60%", "xl": "60%" },
                         alignItems: "center",
                     }}>
                         <Box sx={{
-                            width: "800px",
-                            marginTop: "100px"
+                            width: { "xs": "100%", "sm": "800px", "md": "800px", "lg": "800px", "xl": "800px" },
+                            marginTop: { "xs": "0px", "sm": "100px", "md": "100px", "lg": "100px", "xl": "100px" },
+
 
                         }}>
                             <Typography component="box" sx={{
-                                fontSize: "64px",
+                                fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "lg": "64px", "xl": "64px" },
                                 fontFamily: "Work Sans, sans-serif",
                                 fontWeight: "700",
                                 color: "#FC9A7E",
@@ -131,7 +133,7 @@ const CandidateLogin = () => {
                                 Choose a job you love,
 
                                 <Typography component="box" sx={{
-                                    fontSize: "64px",
+                                    fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "lg": "64px", "xl": "64px" },
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "700",
                                     color: "#FFFFFF",
@@ -151,17 +153,18 @@ const CandidateLogin = () => {
                     </Stack>
 
                     <Stack sx={{
-                        width: "449px",
-                        height: "730px",
+                        width: { 'lg': "449px", 'md': '100%', 'xs': '92%' },
+                        // height: "730px",
                         background: "#FBF8FF",
                         boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                         borderRadius: "19px",
-                        padding: "50px 100px"
+                        padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "15px" }
+
                     }}>
-                        <Typography component="box" sx={{ fontSize: "20px", fontFamily: "Work Sans, sans-serif" }}>
+                        <Typography component="box" sx={{ fontSize: { "xs": "16px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" }, fontFamily: "Work Sans, sans-serif" }}>
                             Welcome Guest,
                         </Typography>
-                        <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700", marginBottom: "30px" }}>
+                        <Typography component="box" sx={{ fontSize: { "xs": "26px", "sm": "40px", "md": "40px", "lg": "40px", "xl": "40px" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700", marginBottom: "30px" }}>
                             Sign In for JobsYahan
                         </Typography>
 
@@ -197,13 +200,15 @@ const CandidateLogin = () => {
 
                                         </ThemeFInputDiv>
                                     </ThemeFInputDiv>
-
-                                    <ThemeFInputDiv>
-                                        <Link to="/forgot-password/candidate" style={{ "margin": "20px 0px" }}>
+                                    <Box sx={{
+                                        fontSize: { "xs": "10px", "sm": "16px", "md": "16px", "lg": "16px", "xl": "16px" },
+                                        margin: { "xs": "10px 0px", "sm": "20px 0px", "md": "20px 0px", "lg": "20px 0px", "xl": "20px 0px" }
+                                    }}>
+                                        <Link to="/forgot-password/candidate" >
                                             Forgot Password?
                                         </Link>
+                                    </Box>
 
-                                    </ThemeFInputDiv>
 
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
 
@@ -237,7 +242,7 @@ const CandidateLogin = () => {
                 </Stack>
             </Stack>
 
-        </Box>
+        </Box >
 
 
     </>)

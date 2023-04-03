@@ -49,7 +49,7 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
 
 
     return (<>
-        <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
+        <Typography component="box" sx={{ fontSize: { "xs": "26px", "sm": "40px", "md": "40px", "lg": "40px", "xl": "40px" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
             Create Account
         </Typography>
         <Box>
@@ -77,7 +77,11 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                                 }
                             </Stack>
 
-                            <Typography component="span" sx={{ fontSize: "16px", display: "flex" }}>
+                            <Typography component="span" sx={{
+                                fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
+                                display: "flex",
+                                textAlign: "center"
+                            }}>
                                 <hr style={{ width: "150px", height: "0px", color: "#DAD9D9" }}></hr> or Sign up with <hr style={{ width: "150px", height: "0px" }}></hr>
                             </Typography>
 
@@ -94,8 +98,11 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                                         console.log(err);
                                     }}
 
-                                >  <SocialBox >
-                                        <img src={socialLogin[0].image_url} alt={socialLogin[0].value} />
+                                >  <SocialBox sx={{
+                                    width: { "xs": "20px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" },
+                                    height: { "xs": "20px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" }
+                                }}>
+                                        <img src={socialLogin[0].image_url} alt={socialLogin[0].value} width="100%" height="100%" />
                                     </SocialBox>
 
                                 </LoginSocialGoogle>
@@ -106,7 +113,7 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                     </Form>
                 )}
             </Formik>
-        </Box>
+        </Box >
     </>)
 }
 

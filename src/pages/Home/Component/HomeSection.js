@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography, Container } from '@mui/material';
 import SearchBar from "../../../ThemeComponent/SearchBar";
 
 import { categoryData, supply_chain, service_jobs, digital, marketing, sales } from "../../../utils/Data";
@@ -42,31 +42,34 @@ const HomeSection = () => {
         >
 
             <Stack alignItems="center" justifyContent="center">
-                <Typography variant="h1"
-                    sx={{
-                        color: "#2B1E44",
+                <Container>
+                    <Typography variant="h1"
+                        sx={{
+                            color: "#2B1E44",
+                            textAlign: "center",
+                            fontWeight: "700",
+                            fontSize: { "lg": '70px', "md": "70px", "xs": "32px" },
+                            maxWidth: "1300px",
+                            lineHeight: "1.0",
+                            zIndex: "1",
+                            marginBottom: "20px"
+                        }}>
+                        Find Suitable Jobs & Candidates Here! (Launching Soon)
+
+                    </Typography>
+
+                    <Typography component="span" sx={{
                         textAlign: "center",
-                        fontWeight: "700",
-                        fontSize: { "lg": '70px', "md": "70px", "xs": "40px" },
-                        maxWidth: "1300px",
-                        lineHeight: "1.0",
-                        zIndex: "1",
-                        marginBottom: "20px"
+                        display: "block",
+                        margin: "3px 0px",
+                        fontWeight: "500",
+                        fontSize: { "lg": "23px", "md": "23px", "xs": "12px" },
+                        maxWidth: "1069px"
                     }}>
-                    Find Suitable Jobs & Candidates Here! (Launching Soon)
+                        JobsYahan is where employers can get suitable candidates for frontline jobs
+                    </Typography>
 
-                </Typography>
-
-                <Typography component="span" sx={{
-                    textAlign: "center",
-                    display: "block",
-                    margin: "3px 0px",
-                    fontWeight: "500",
-                    fontSize: { "lg": "23px", "md": "23px", "xs": "20px" },
-                    maxWidth: "1069px"
-                }}>
-                    JobsYahan is where employers can get suitable candidates for frontline jobs
-                </Typography>
+                </Container>
 
             </Stack>
 
@@ -74,7 +77,7 @@ const HomeSection = () => {
                 sx={{
                     position: "absolute",
                     top: "134px",
-                    display: { "lg": "block", "md": "block", "xs": "none" }
+                    display: { "xs": "none", "sm": "block", "md": "block", "lg": "block", "xl": "block" }
                 }}>
                 <img src={window.location.origin + "/assets/Mg1.png"} alt="Mg1" />
             </Box>
@@ -82,132 +85,148 @@ const HomeSection = () => {
                 sx={{
                     position: "absolute",
                     right: "0px",
-                    top: "134px"
+                    top: "134px",
+                    display: { "xs": "none", "sm": "block", "md": "block", "lg": "block", "xl": "block" }
                 }}>
                 <img src={window.location.origin + "/assets/Mg2.png"} alt="Mg2" />
             </Box>
 
-            <Box sx={{ margin: { "lg": "100px 0px", "md": "0px", "xs": "0px" } }}>
+            <Box sx={{
+                margin: { "xs": "50px 0px 50px 0px", "sm": "100px 0px", "md": "100px 0px", "lg": "100px 0px", "xl": "100px 0px" }
+            }} >
                 <SearchBar></SearchBar>
             </Box>
 
-            <Stack direction="row" gap={1} alignItems="center" justifyContent="center">
+
+            <Stack direction="row" gap="5px" alignItems="center" justifyContent="center"
+                sx={{ marginBottom: "10px" }}>
                 <Typography component="span" sx={{
-                    fontSize: "20px",
+                    fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
                 }}>
                     Scroll
                 </Typography>
-                <img src={window.location.origin + "/assets/g3.png"} alt="g3" />
-            </Stack>
-
-            <Box sx={{
-                background: "#FFFFFF",
-                boxShadow: "20px 5px 11px rgba(214, 214, 214, 0.25)",
-                padding: { "lg": "50px 20px", "md": "50px 30px", "xs": "50px 30px" }
-            }}>
-                <Carousel responsive={responsive}>
-                    {categoryData.map((item, index) => {
-                        return (<>
-                            <div key={index}>
-                                <Stack gap={2} alignItems="center"
-                                    sx={{ cursor: "pointer" }}
-                                    key={item.id}
-                                    onClick={() => setActiveHomeCategory(item && item.name)}>
-                                    <Box
-
-                                    >
-                                        {activeHomeCategory === item.name ?
-                                            <img src={window.location.origin + item.image2} alt="Group2" width="100%" height="100%" />
-                                            :
-                                            <img src={window.location.origin + item.image1} alt="Group" width="100%" height="100%" />}
-
-                                    </Box>
-                                    <Typography variant="div"
-                                        sx={{
-                                            color: activeHomeCategory === item.name ? "#FC9A7E" : "#2B1E44",
-                                            fontSize: { "lg": "25px", "md": "18px", "xs": "16px" },
-                                        }}>
-                                        {item && item.Text}
-
-                                    </Typography>
-
-                                </Stack>
-                            </div>
-                        </>)
-                    })}
-                </Carousel>
-
-            </Box>
-            <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="flex-start" gap={3}
-                sx={{
-                    maxWidth: "1565px",
-                    padding: { "lg": "50px 20px", md: "20px", "xs": "20px" },
-                    background: "#FFFFFF",
-                    boxShadow: "0px 4px 4px rgba(204, 204, 204, 0.25)",
-                    borderRadius: "0px 0px 101px 0px",
-                    flexWrap: "wrap"
+                <Box sx={{
+                    width: { "xs": "8px", "sm": "14px", "md": "14px", "lg": "14px", "xl": '14px' },
+                    position: "relative",
+                    top: "-3px"
                 }}>
-                {
-                    activeHomeCategory === "supply_chain" && supply_chain.map((item, index) => {
-                        return (<>
-                            <div key={index}>
-                                <img src={window.location.origin + item.value} alt={"item-" + index} />
-                            </div>
-                        </>)
-                    })
-                }
-
-                {
-                    activeHomeCategory === "service_jobs" && service_jobs.map((item, index) => {
-                        return (<>
-                            <div key={index}>
-                                <img src={window.location.origin + item.value} alt={"item-" + index} />
-                            </div>
-                        </>)
-                    })
-                }
-
-                {
-
-                    activeHomeCategory === "digital" && digital.map((item, index) => {
-                        return (<>
-                            <div key={index}>
-                                <img src={window.location.origin + item.value} alt={"item-" + index} />
-                            </div>
-                        </>)
-                    })
-                }
-
-                {
-
-                    activeHomeCategory === "marketing" && marketing.map((item, index) => {
-                        return (<>
-                            <div key={index}>
-                                <img src={window.location.origin + item.value} alt={"item-" + index} />
-                            </div>
-                        </>)
-                    })
-                }
-                {
-
-                    activeHomeCategory === "sales" && sales.map((item, index) => {
-                        return (<>
-                            <div key={index}>
-                                <img src={window.location.origin + item.value} alt={"item-" + index} />
-                            </div>
-                        </>)
-                    })
-                }
-
-
+                    <img src={window.location.origin + "/assets/g3.png"} alt="g3" width="100%" />
+                </Box>
             </Stack>
 
+            <Box className="JobCategoriesSection"
+                sx={{
+                    display: { "xs": "none", "sm": "block", "md": "block", "lg": "block", "xl": "block" }
+                }}>
+                <Box sx={{
+                    background: "#FFFFFF",
+                    boxShadow: "20px 5px 11px rgba(214, 214, 214, 0.25)",
+                    padding: { "lg": "50px 20px", "md": "50px 30px", "xs": "50px 30px" }
+                }}>
+                    <Carousel responsive={responsive}>
+                        {categoryData.map((item, index) => {
+                            return (<>
+                                <div key={index}>
+                                    <Stack gap={2} alignItems="center"
+                                        sx={{ cursor: "pointer" }}
+                                        key={item.id}
+                                        onClick={() => setActiveHomeCategory(item && item.name)}>
+                                        <Box
+
+                                        >
+                                            {activeHomeCategory === item.name ?
+                                                <img src={window.location.origin + item.image2} alt="Group2" width="100%" height="100%" />
+                                                :
+                                                <img src={window.location.origin + item.image1} alt="Group" width="100%" height="100%" />}
+
+                                        </Box>
+                                        <Typography variant="div"
+                                            sx={{
+                                                color: activeHomeCategory === item.name ? "#FC9A7E" : "#2B1E44",
+                                                fontSize: { "lg": "25px", "md": "18px", "xs": "16px" },
+                                            }}>
+                                            {item && item.Text}
+
+                                        </Typography>
+
+                                    </Stack>
+                                </div>
+                            </>)
+                        })}
+                    </Carousel>
+
+                </Box>
+                <Stack
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="flex-start" gap={3}
+                    sx={{
+                        maxWidth: "1565px",
+                        padding: { "lg": "50px 20px", md: "20px", "xs": "20px" },
+                        background: "#FFFFFF",
+                        boxShadow: "0px 4px 4px rgba(204, 204, 204, 0.25)",
+                        borderRadius: "0px 0px 101px 0px",
+                        flexWrap: "wrap"
+                    }}>
+                    {
+                        activeHomeCategory === "supply_chain" && supply_chain.map((item, index) => {
+                            return (<>
+                                <div key={index}>
+                                    <img src={window.location.origin + item.value} alt={"item-" + index} />
+                                </div>
+                            </>)
+                        })
+                    }
+
+                    {
+                        activeHomeCategory === "service_jobs" && service_jobs.map((item, index) => {
+                            return (<>
+                                <div key={index}>
+                                    <img src={window.location.origin + item.value} alt={"item-" + index} />
+                                </div>
+                            </>)
+                        })
+                    }
+
+                    {
+
+                        activeHomeCategory === "digital" && digital.map((item, index) => {
+                            return (<>
+                                <div key={index}>
+                                    <img src={window.location.origin + item.value} alt={"item-" + index} />
+                                </div>
+                            </>)
+                        })
+                    }
+
+                    {
+
+                        activeHomeCategory === "marketing" && marketing.map((item, index) => {
+                            return (<>
+                                <div key={index}>
+                                    <img src={window.location.origin + item.value} alt={"item-" + index} />
+                                </div>
+                            </>)
+                        })
+                    }
+                    {
+
+                        activeHomeCategory === "sales" && sales.map((item, index) => {
+                            return (<>
+                                <div key={index}>
+                                    <img src={window.location.origin + item.value} alt={"item-" + index} />
+                                </div>
+                            </>)
+                        })
+                    }
 
 
+                </Stack>
+            </Box>
         </Box>
+
+
+
 
     </>)
 }

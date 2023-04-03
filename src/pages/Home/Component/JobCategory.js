@@ -26,8 +26,8 @@ const JobCategory = () => {
   const [showCategory, setshowCategory] = useState(false);
 
   return (<>
-    <Box className="hs_job_categories">
-
+    <Box className="hs_job_categories"
+      sx={{ display: { "xs": "none", "sm": "block", "md": "block", "lg": "block", "xl": "block" } }}>
       <Stack
         className="hs_job_categroies_wrapper"
         sx={{

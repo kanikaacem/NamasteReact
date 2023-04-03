@@ -17,7 +17,7 @@ const CompanyLogo = ({ color }) => {
         >
             <Typography component="span"
                 sx={{
-                    fontSize: "24px",
+                    fontSize: { "xs": "14px", "sm": "24px", "md": "24px", "lg": "24px", "xl": "24px" },
                     fontWeight: "600",
                     color: color ? color : "#ffffff",
                     fontFamily: "Work Sans, sans-serif"
@@ -26,7 +26,7 @@ const CompanyLogo = ({ color }) => {
             </Typography>
             <Typography component="span"
                 sx={{
-                    fontSize: "24px",
+                    fontSize: { "xs": "14px", "sm": "24px", "md": "24px", "lg": "24px", "xl": "24px" },
                     color: color ? color : "#ffffff",
                     fontFamily: "Work Sans, sans-serif"
                 }}>

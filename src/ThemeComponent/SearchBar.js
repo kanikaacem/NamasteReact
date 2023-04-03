@@ -67,19 +67,19 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                 justifyContent: "center",
             }}>
             <Stack
-                direction={{ "lg": "row", "md": "column", "xs": "column" }}
+                direction="row"
                 sx={{
                     boxSizing: "border-box",
                     width: { "lg": `calc(100vw - 420px)`, "md": " calc(100vw - 50px);", "xs": " calc(100vw - 50px)" },
                     height: "fit-content",
                     background: "#FFFFFF",
-                    border: "3px solid #E1D4F2",
+                    border: { "xs": "1px solid #E1D4F2", "sm": "3px solid #E1D4F2", "md": "3px solid #E1D4F2", "lg": "3px solid #E1D4F2", "xl": "3px solid #E1D4F2" },
                     boxShadow: { "lg": "0px 47px 52px #f4ecff", "md": "none", "xs": "none" },
                     borderRadius: "15px",
                     alignItems: "center",
                     justifyContent: "space-between",
                     gap: "20px",
-                    padding: { "lg": " 10px 20px", "md": "20px", "xs": "20px" },
+                    padding: { "lg": " 10px 20px", "md": "20px", "xs": "8px" },
                 }}
             >
                 <Stack direction="column" gap={1} sx={{
@@ -88,7 +88,8 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                 }}>
                     <input
                         style={{
-                            width: "100%"
+                            width: "100%",
+                            fontSize: "12px"
                         }}
                         id="Search"
                         type="text" placeholder="Search" className='Search'
@@ -107,24 +108,27 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                             <Box
                                 sx={{
                                     position: "absolute",
-                                    top: "60px",
+                                    top: { "xs": "40px", "sm": "60px", "md": "60px", "lg": "60px", "xl": "60px" },
                                     background: "#FFFFFF",
-                                    padding: "20px",
+                                    padding: { "xs": "5px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
                                     maxHeight: "300px",
                                     zIndex: "34",
                                     boxShadow: "0px 47px 52px #f4ecff",
-                                    border: "3px solid #E1D4F2",
+                                    border: { "xs": "1px solid #E1D4F2", "sm": "3px solid #E1D4F2", "md": "3px solid #E1D4F2", "lg": "3px solid #E1D4F2", "xl": "3px solid #E1D4F2" },
+
                                     borderRadius: "11px",
                                     overflowY: "scroll",
                                     width: "100%",
-                                    left: "-19px"
+                                    left: { "xs": "-8px", "sm": "-19px", "md": "-19px", "lg": "-19px", "xl": "-19px" }
                                 }}>
                                 {autoData && autoData.length <= 0 ? "No record found" : autoData.map((item) => {
                                     return (<>
                                         <Box sx={{
-                                            padding: "20px",
+                                            padding: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
                                             borderBottom: "1px solid #E1D4F2",
-                                            cursor: "pointer"
+                                            cursor: "pointer",
+                                            fontSize: { "xs": "10px", "md": "16px", "sm": "16px", "lg": "16px", "xl": "16px" }
+
                                         }}
                                             onClick={() => {
                                                 console.log(item)
@@ -147,7 +151,8 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                         borderRadius: "11px",
                         border: " 1px solid rgba(255, 195, 177, 0.3)",
                         width: { "lg": "238px", "md": "100%", "xs": "100%" },
-                        padding: "0px 10px"
+                        padding: "0px 10px",
+                        display: { "xs": "none", "sm": "block", "md": "block", "lg": "block", "xl": "block" }
                     }}>
                     <Autocomplete
                         disablePortal
@@ -177,7 +182,8 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                         borderRadius: "11px",
                         border: " 1px solid rgba(255, 195, 177, 0.3)",
                         width: { "lg": "238px", "md": "100%", "xs": "100%" },
-                        padding: "0px 10px"
+                        padding: "0px 10px",
+                        display: { "xs": "none", "sm": "block", "md": "block", "lg": "block", "xl": "block" }
                     }}>
                     <Autocomplete
                         disablePortal
@@ -205,7 +211,8 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                         borderRadius: "11px",
                         border: " 1px solid rgba(255, 195, 177, 0.3)",
                         width: { "lg": "238px", "md": "100%", "xs": "100%" },
-                        padding: "0px 10px"
+                        padding: "0px 10px",
+                        display: { "xs": "none", "sm": "block", "md": "block", "lg": "block", "xl": "block" }
                     }}>
                     <Autocomplete
                         disablePortal
@@ -228,20 +235,22 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                 <Button
                     sx={{
                         background: "#2B1E44",
-                        width: "56px",
-                        height: "56px",
+                        width: { "xs": "30px", "sm": "56px", "md": "56px", "lg": "56px", "xl": "56px" },
+                        height: { "xs": "30px", "sm": "56px", "md": "56px", "lg": "56px", "xl": "56px" },
                         background: "#4E3A67",
                         borderRadius: "11px",
                         "&:hover": {
                             background: "#2B1E44",
-                            width: "56px",
-                            height: "56px",
+                            width: { "xs": "30px", "sm": "56px", "md": "56px", "lg": "56px", "xl": "56px" },
+                            height: { "xs": "30px", "sm": "56px", "md": "56px", "lg": "56px", "xl": "56px" },
                             background: "#4E3A67",
                             borderRadius: "11px"
                         }
                     }}
                     type="button" onClick={searchJob}>
-                    <img src={window.location.origin + "/assets/g2.png"} alt="g2" />
+                    <Box sx={{ width: { "xs": "10px", "md": "30px", "sm": "30px", "lg": "30px", "xl": "30px" } }}>
+                        <img src={window.location.origin + "/assets/g2.png"} alt="g2" width="100%" />
+                    </Box>
                 </Button>
 
             </Stack>

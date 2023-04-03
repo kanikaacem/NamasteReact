@@ -6,12 +6,18 @@ import { FooterBox } from "../../utils/Theme";
 import { Link } from "react-router-dom";
 const Footer = () => {
     return (<>
-        <Box sx={{ background: "#2B1E44", minheight: "400px", padding: "50px 150px" }}>
-            <Stack direction={{ lg: "row", md: "column", xs: "column" }} gap={5} sx={{ padding: "50px 0px" }}>
-                <Box sx={{ width: { lg: "40%", md: "100%", xs: "100%" } }}>
+        <Box sx={{
+            background: "#2B1E44",
+            height: { "xs": "600px", "sm": "400px", "md": "400px", "lg": "400px", "xl": "400px" },
+            padding: { "xs": "20px", "sm": "50px 150px", "md": "50px 150px", "lg": "50px 150px", "xl": "50px 150px" }
+        }}>
+            <Stack direction="row" sx={{
+                flexWrap: "wrap",
+            }}>
+                <Box sx={{ width: { xs: "44%", "sm": "25%", "md": "25%", "lg": "25%", "lg": "25%" } }}>
                     <Typography component="span"
                         sx={{
-                            fontSize: "20px",
+                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
                             color: "#FC9A7E",
                             margin: "10px 0px",
                             fontWeight: "600"
@@ -19,7 +25,7 @@ const Footer = () => {
                         Job
                         <Typography component="span"
                             sx={{
-                                fontSize: "20px",
+                                fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
                                 color: "#FC9A7E",
                                 margin: "10px 0px",
                             }}>
@@ -30,7 +36,7 @@ const Footer = () => {
                     <Typography component="span"
                         sx={{
                             display: "block",
-                            fontSize: "20px",
+                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
                             color: "#FFFFFF",
                             margin: "10px 0px",
                             width: "150px"
@@ -40,7 +46,7 @@ const Footer = () => {
                     <Typography component="span"
                         sx={{
                             display: "block",
-                            fontSize: "20px",
+                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
                             color: "#FFFFFF",
                             width: "150px",
                             fontWeight: '100',
@@ -52,11 +58,11 @@ const Footer = () => {
 
 
                 </Box>
-                <Box sx={{ width: { lg: "35%", md: "100%", xs: "100%" } }}>
+                <Box sx={{ width: { xs: "44%", "sm": "25%", "md": "25%", "lg": "25%", "lg": "25%" } }}>
                     <Typography component="span"
                         sx={{
                             display: "block",
-                            fontSize: "20px",
+                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
                             color: "#FFFFFF",
                             fontWeight: "700",
                             margin: "10px 0px",
@@ -70,7 +76,9 @@ const Footer = () => {
                                     style={{
                                         textDecoration: "none"
                                     }} >
-                                    <FooterBox key={index}> {item.name}</FooterBox>
+                                    <FooterBox sx={{
+                                        fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                                    }} key={index}> {item.name}</FooterBox>
                                 </Link>
 
                             </>)
@@ -78,26 +86,29 @@ const Footer = () => {
                     }
                 </Box>
 
-                <Box sx={{ width: { lg: "35%", md: "100%", xs: "100%" } }}>
+                <Box sx={{ width: { xs: "44%", "sm": "25%", "md": "25%", "lg": "25%", "lg": "25%" } }}>
                     <Typography component="span"
                         sx={{
                             display: "block",
-                            fontSize: "20px",
+                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
                             color: "#FFFFFF",
                             fontWeight: "600",
                             margin: "10px 0px",
                         }}>
                         Support
                     </Typography>
-                    <FooterBox> jobyahan@gmail.com</FooterBox>
+                    <FooterBox
+                        sx={{
+                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                        }}> jobyahan@gmail.com</FooterBox>
                     <SocialMedia />
 
                 </Box>
-                <Box sx={{ width: { lg: "35%", md: "100%", xs: "100%" } }}>
+                <Box sx={{ width: { xs: "44%", "sm": "25%", "md": "25%", "lg": "25%", "lg": "25%" } }}>
                     <Typography component="span"
                         sx={{
                             display: "block",
-                            fontSize: "20px",
+                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
                             color: "#FFFFFF",
                             fontWeight: "600",
                             margin: "10px 0px",
@@ -111,7 +122,10 @@ const Footer = () => {
                                     style={{
                                         textDecoration: "none"
                                     }}>
-                                    <FooterBox key={index}> {item.name}</FooterBox>
+                                    <FooterBox
+                                        sx={{
+                                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                                        }} key={index}> {item.name}</FooterBox>
                                 </Link>
                             </>)
                         })
@@ -124,7 +138,7 @@ const Footer = () => {
                 margin: "10px 0px"
             }}></hr>
 
-            <Stack direction="row" gap={2} sx={{
+            <Stack direction="row" gap={1} sx={{
                 flexWrap: "wrap"
             }}>
                 {
@@ -132,9 +146,12 @@ const Footer = () => {
                         return (<>
                             <Link to={item.url}
                                 style={{
-                                    textDecoration: "none"
+                                    textDecoration: "none",
                                 }}>
-                                <FooterBox key={index}> {item.name}</FooterBox>
+                                <FooterBox
+                                    sx={{
+                                        fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                                    }} key={index}> {item.name}</FooterBox>
                             </Link>
                         </>)
                     })
@@ -144,7 +161,7 @@ const Footer = () => {
             <Typography component="span"
                 sx={{
                     display: "block",
-                    fontSize: "16px",
+                    fontSize: { "xs": "10px", "sm": "16px", "md": "16px", "lg": "16px", "xl": "16px" },
                     color: "#FFFFFF",
                     margin: "10px 0px",
                     fontWeight: "100",

@@ -72,7 +72,10 @@ const Dashboard = () => {
                 }}>
 
 
-                <Stack direction="row" gap={3} sx={{ height: "50px", padding: "20px 50px", alignItems: "center", justifyContent: "space-between" }}>
+                <Stack direction="row" gap={3} sx={{
+                    height: { "xs": "25px", "sm": "25px", "md": "50px", "lg": "50px", "xl": "50px" },
+                    padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" }, alignItems: "center", justifyContent: "space-between"
+                }}>
                     <Box sx={{ maxWidth: "15%" }}>
                         <Box sx={{ width: "fit-content", marginTop: "10px", height: "50px" }} >
                             <CompanyLogo color="#4E3A67" />
@@ -132,7 +135,10 @@ const Dashboard = () => {
                             display: { "lg": "none", "md": "none", "xs": "block" },
                             position: "relative"
                         }}>
-                            <ReorderIcon onClick={() => setOpenMenu(!openMenu)} />
+                            {user && user.isemailverified && user.ismobileverified && user.stage === "hrpage" &&
+                                <ReorderIcon onClick={() => setOpenMenu(!openMenu)} />
+                            }
+
                         </Box>
                         {openMenu && user && user.employer_type === "employer" && (<>
                             <ClickAwayListener onClickAway={() => setOpenMenu(!openMenu)}>

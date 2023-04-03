@@ -13,14 +13,18 @@ const DashboardAccountSetting = ({ userName, userEmail, userLastLogin }) => {
             top: "75px",
             background: "#FFFFFF",
             right: "10px",
-            width: "300px",
+            width: { "xs": "200px", "sm": "200px", "md": "300px", "xl": "300px", "lg": "300px" },
             zIndex: "345235"
         }}>
             <Box sx={{ background: "#1f8f75", padding: "20px", height: "70px" }}>
-                <Typography component="div" sx={{ fontSize: "20px", color: "#FFFFFF" }}>
+                <Typography component="div" sx={{
+                    fontSize: {
+                        "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px"
+                    }, color: "#FFFFFF"
+                }}>
                     {userName}
                 </Typography>
-                <Typography component="div" sx={{ fontSize: "16px", color: "#FFFFFF" }}>
+                <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px", color: "#FFFFFF" } }}>
                     {userEmail}
                 </Typography>
             </Box>
@@ -40,7 +44,7 @@ const DashboardAccountSetting = ({ userName, userEmail, userLastLogin }) => {
                 <Stack direction="row" gap={2} sx={{ cursor: "pointer" }}
                 >
                     <PersonIcon />
-                    <Typography component="div" sx={{ fontSize: "14px" }}>
+                    <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "14px", "lg": "14px", "xl": "14px" } }}>
                         Account Setting
                     </Typography>
 
@@ -52,13 +56,13 @@ const DashboardAccountSetting = ({ userName, userEmail, userLastLogin }) => {
                     dispatch({ type: "LOGOUT" })
                 }}>
                     <LogoutIcon />
-                    <Typography component="div" sx={{ fontSize: "14px" }}>
+                    <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "14px", "lg": "14px", "xl": "14px" } }}>
                         Logout
                     </Typography>
                 </Stack>
             </Stack>
 
-        </Box>
+        </Box >
 
     </>)
 }

@@ -19,7 +19,11 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
     }, []);
     return (<>
         <Stack direction={{ "lg": "row", "md": "row", "xs": "column" }}
-            gap={4} justifyContent="space-between"
+            justifyContent="space-between"
+            alignItems="center"
+            sx={{
+                "gap": { "xs": "0px", "sm": "32px", "md": "32px", "lg": "32px", "xl": "32px" }
+            }}
         >
             <CompanyLogo color={color} />
             <Stack direction="row"
@@ -34,13 +38,11 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                     showEmployerButton &&
                     <Button type="button" variant="outlined"
                         component={Link} to="/employer-login"
-                        // onClick={() => {
-                        //     window.location.href = window.location.origin + "/employer-login";
-                        // }}
+
                         sx={{
                             width: "200px",
                             borderRadius: "44px",
-                            fontSize: "18px",
+                            fontSize: { "xs": "14px", "sm": "18px", "md": "18px", "lg": "18px", "xl": "18px" },
                             border: { border },
                             color: { color },
                             textTransform: "capitalize",
@@ -67,7 +69,7 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                         sx={{
                             width: "200px",
                             borderRadius: "44px",
-                            fontSize: "18px",
+                            fontSize: { "xs": "14px", "sm": "18px", "md": "18px", "lg": "18px", "xl": "18px" },
                             color: { color },
                             textTransform: "capitalize",
                             fontWeight: "600",
@@ -90,7 +92,8 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                         component={Link} to="/candidate-login"
                         sx={{
                             width: "200px",
-                            fontSize: "18px",
+                            fontSize: { "xs": "14px", "sm": "18px", "md": "18px", "lg": "18px", "xl": "18px" },
+
                             color: { color },
                             textTransform: "capitalize",
                             fontWeight: "600",
@@ -111,7 +114,7 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                 <Button type="button" variant="filled"
                     component={Link} to="/about-us"
                     sx={{
-                        fontSize: "18px",
+                        fontSize: { "xs": "14px", "sm": "18px", "md": "18px", "lg": "18px", "xl": "18px" },
                         color: { color },
                         textTransform: "capitalize",
                         fontWeight: "600",
@@ -134,7 +137,7 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
 
                     sx={{
                         borderRadius: "44px",
-                        fontSize: "18px",
+                        fontSize: { "xs": "14px", "sm": "18px", "md": "18px", "lg": "18px", "xl": "18px" },
                         color: { color },
                         textTransform: "capitalize",
                         fontWeight: "600",

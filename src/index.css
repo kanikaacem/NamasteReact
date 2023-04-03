@@ -790,3 +790,111 @@ nav {
   position: fixed;
   top: 10px
 }
+
+.Search::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  font-size: 16px;
+}
+
+.Search::-moz-placeholder {
+  /* Firefox 19+ */
+  font-size: 16px;
+}
+
+.Search::-ms-input-placeholder {
+  /* IE 10+ */
+  font-size: 16px;
+}
+
+.Search::-moz-placeholder {
+  /* Firefox 18- */
+  font-size: 16px;
+}
+
+.themeLabel {
+  font-size: 24px;
+}
+
+@media screen and (max-width: 600px) {
+  .themeLabel {
+    font-size: 14px;
+  }
+
+  .Search::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    font-size: 12px;
+  }
+
+  .Search::-moz-placeholder {
+    /* Firefox 19+ */
+    font-size: 12px;
+  }
+
+  .Search::-ms-input-placeholder {
+    /* IE 10+ */
+    font-size: 12px;
+  }
+
+  .Search::-moz-placeholder {
+    /* Firefox 18- */
+    font-size: 12px;
+  }
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    border-radius: 11px;
+    font-size: 12px !important;
+    font-family: 'Montserrat' !important;
+    font-weight: 500 !important;
+    padding: 10px !important;
+  }
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    font-size: 12px;
+  }
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input ::-moz-placeholder {
+    /* Firefox 19+ */
+    font-size: 12px;
+  }
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input::-moz-placeholder {
+    /* Firefox 18- */
+    font-size: 12px;
+  }
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input::-moz-placeholder {
+    /* Firefox 18- */
+    font-size: 12px;
+  }
+
+  .MuiButton-contained,
+  .MuiButton-outlined {
+    font-size: 12px !important;
+  }
+
+  .PasswordGenerationForm img {
+    top: 46px !important;
+  }
+
+  #sendOTPButton {
+    min-width: 30px;
+    height: 32px;
+    top: 40px
+  }
+
+  #sendOTPButton img {
+    width: 10px
+  }
+
+  .MuiAvatar-circular {
+    width: 25px !important;
+    height: 25px !important;
+  }
+
+  .MuiSelect-select {
+    font-size: 12px !important;
+    padding: 8px !important
+  }
+
+}

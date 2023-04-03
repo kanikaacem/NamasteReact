@@ -7,20 +7,20 @@ const WhyJobYahan = () => {
                 background: "#FAFAFA",
                 position: "relative",
                 gap: "35px",
-                flexWrap: "wrap",
                 alignItems: "center",
-                justifyContent: "center"
+                justifyContent: "center",
+                flexWrap: "wrap-reverse"
             }}>
             <Box sx={{
                 margin: {
                     "lg": "100px 0px  100px 100px",
                     "md": "100px 0px  100px 0px",
-                    "xs": "100px 0px  100px 0px"
+                    "xs": "-50px"
                 },
                 width: { "lg": `calc(100vw - 55%)`, "md": "100%", "xs": "95%" },
                 background: "#FFFFFF",
                 color: "#445578",
-                padding: { "lg": "100px", "md": "100px", "xs": "50px" },
+                padding: { "lg": "100px", "md": "100px", "xs": "30px" },
                 borderRadius: "10px",
                 fontsize: "25px",
                 boxSizing: "border-box",
@@ -31,7 +31,7 @@ const WhyJobYahan = () => {
                 <Typography component="span"
                     sx={{
                         display: "block",
-                        fontSize: { lg: "90px", md: "50px", xs: "50px" },
+                        fontSize: { lg: "90px", md: "50px", xs: "24px" },
                         color: "#2B1E44",
                         fontWeight: "600",
 
@@ -40,7 +40,7 @@ const WhyJobYahan = () => {
                 </Typography>
                 <Typography component="span"
                     sx={{
-                        fontSize: { lg: "90px", md: "50px", xs: "50px" },
+                        fontSize: { lg: "90px", md: "50px", xs: "24px" },
                         color: "#2B1E44",
                         fontWeight: "600",
 
@@ -48,7 +48,7 @@ const WhyJobYahan = () => {
                     Jobs
                     <Typography component="span"
                         sx={{
-                            fontSize: { lg: "90px", md: "50px", xs: "50px" },
+                            fontSize: { lg: "90px", md: "50px", xs: "24px" },
                             color: "#2B1E44"
                         }}>
                         Yahan
@@ -56,11 +56,18 @@ const WhyJobYahan = () => {
 
                 </Typography>
 
-                <Box sx={{ lineHeight: "2", color: "#3A2D49" }}>
+                <Box sx={{
+                    lineHeight: {
+                        "xs": "1.5", "sm": "2", "md": "2", "lg": "2", "xl": "2"
+                    }, color: "#3A2D49",
+                    margin: { "xs": "10px 0px", "sm": "0px", "md": "0px", "lg": "0px", "xl": "0px" },
+                    fontWeight: "300"
+                }}>
                     JobsYahan is a job portal every employer and employee would like.
-                    While employers get suitable candidates for jobs, employees get suitable
-                    jobs through the portal. You can even get delivery jobs on JobsYahan, which may
-                    not be the case on other job portals. So, try us now!
+                    While employers get suitable candidates for jobs, employees get
+                    suitable jobs through the portal. You can even get delivery jobs on
+                    JobsYahan, which may not be the case on other job portals.
+                    Means,<b> JobsYahan is Sabhi Ke Liye.</b> So, try us now!
                 </Box>
             </Box>
             <Stack sx={{
@@ -68,7 +75,8 @@ const WhyJobYahan = () => {
                 alignItems: "flex-end",
             }}>
                 <Box sx={{
-                    maxWidth: "600px"
+                    width: { "xs": "300px", "sm": "600px", "md": "600px", "lg": "600px", "xl": "600px" },
+                    margin: { "xs": "0 auto", "sm": "0px", "md": "0px", "lg": "0px", "xl": "0px" }
                 }}>
                     <img src={window.location.origin + "/assets/g4.png"} alt="g4" width="100%" height="100%" />
                 </Box>
