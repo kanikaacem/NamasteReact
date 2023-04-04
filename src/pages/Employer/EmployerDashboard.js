@@ -75,7 +75,11 @@ const EmployerDashboard = () => {
     return (<>
         <ThemeMessage open={jobPosted} setOpen="JobPosted" message="Your Job is saved . It will be publised after reviewing." type="success" />
 
-        <Stack direction="column" gap={2} sx={{ padding: "30px" }} className="EmployerData">
+        <Stack direction="column" gap={2} sx={{
+            padding: {
+                "xs": "10px", "sm": "10px", "md": "30px", "lg": "30px", "xl": "30px"
+            }
+        }} className="EmployerData">
             <DashboardGreeting username={user && user.employer_name} userType="employer" />
             <Stack direction="row" gap={2}
                 sx={{
@@ -91,83 +95,169 @@ const EmployerDashboard = () => {
                     <Stack
                         className="EmployerDashboardInfo"
                         sx={{
-                            visibility: { "lg": "visible", "md": "hidden", "xs": "hidden" },
-                            height: { "lg": "fit-content", "md": "0px", "xs": "0px" },
                             maxWidth: "1500px !important",
                             background: "#FFFFFF",
                             border: "1px solid #E1D4F2",
                             borderRadius: "14px",
 
                         }}>
+                        <Box sx={{
+                            display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" }
+                        }}>
+                            <Stack
+                                gap={2} direction="row" divider={<Divider orientation="vertical" flexItem />}
+                                justifyContent="center" alignItems="center"
+                                sx={{
 
-                        <Stack
-                            gap={2} direction="row" divider={<Divider orientation="vertical" flexItem />}
-                            justifyContent="center" alignItems="center"
-                            sx={{ height: "fit-content", borderRadius: "10px", padding: "30px", flexWrap: "wrap", rowGap: "80px" }}>
+                                    height: "fit-content",
+                                    borderRadius: "10px", padding: "30px", flexWrap: "wrap", rowGap: "80px",
+                                }}>
+                                <Stack gap={1} sx={{ width: { "xs": "150px", "sm": "150px", "md": "230px", "lg": "230px", "xl": "230px" } }}>
+                                    <Stack direction="row" justifyContent="space-between">
+                                        <Typography component="div" sx={{ fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
+                                            {jobInfo && jobInfo.allposted_jobscount}
+                                        </Typography>
+                                        <img src={window.location.origin + "/assets/V1.png"} alt="V1" height="35px" />
 
-
-                            <Stack gap={1} sx={{ minWidth: "230px" }}>
-                                <Stack direction="row" justifyContent="space-between">
-                                    <Typography component="div" sx={{ fontSize: "40px", color: "#4E3A67", fontWeight: "700" }}>
-                                        {jobInfo && jobInfo.allposted_jobscount}
+                                    </Stack>
+                                    <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                        Posted Jobs
                                     </Typography>
-                                    <img src={window.location.origin + "/assets/V1.png"} alt="V1" height="35px" />
-
                                 </Stack>
-                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
-                                    Posted Jobs
-                                </Typography>
-                            </Stack>
-                            <Stack gap={1} sx={{ minWidth: "230px" }}>
-                                <Stack direction="row" justifyContent="space-between">
-                                    <Typography component="div" sx={{ fontSize: "40px", color: "#4E3A67", fontWeight: "700" }}>
-                                        {jobInfo && jobInfo.all_saved_candidate}
+                                <Stack gap={1} sx={{ width: { "xs": "150px", "sm": "150px", "md": "230px", "lg": "230px", "xl": "230px" } }}>
+                                    <Stack direction="row" justifyContent="space-between">
+                                        <Typography component="div" sx={{ fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
+                                            {jobInfo && jobInfo.all_saved_candidate}
+                                        </Typography>
+                                        <img src={window.location.origin + "/assets/V2.png"} alt="V2" height="35px" />
+
+                                    </Stack>
+                                    <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                        Saved Candidate
                                     </Typography>
-                                    <img src={window.location.origin + "/assets/V2.png"} alt="V2" height="35px" />
-
                                 </Stack>
-                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
-                                    Saved Candidate
-                                </Typography>
-                            </Stack>
-                            <Stack gap={1} sx={{ minWidth: "230px" }}>
-                                <Stack direction="row" justifyContent="space-between">
-                                    <Typography component="div" sx={{ fontSize: "40px", color: "#4E3A67", fontWeight: "700" }}>
-                                        {jobInfo && jobInfo.publishedjobscount}
+
+                                <Stack gap={1} sx={{ width: { "xs": "150px", "sm": "150px", "md": "230px", "lg": "230px", "xl": "230px" } }}>
+                                    <Stack direction="row" justifyContent="space-between">
+                                        <Typography component="div" sx={{ fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
+                                            {jobInfo && jobInfo.publishedjobscount}
+                                        </Typography>
+                                        <img src={window.location.origin + "/assets/V3.png"} alt="V3" height="35px" />
+
+                                    </Stack>
+                                    <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                        Active Jobs
                                     </Typography>
-                                    <img src={window.location.origin + "/assets/V3.png"} alt="V3" height="35px" />
-
                                 </Stack>
-                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
-                                    Active Jobs
-                                </Typography>
-                            </Stack>
-                            <Stack gap={1} sx={{ minWidth: "230px" }}>
-                                <Stack direction="row" justifyContent="space-between">
-                                    <Typography component="div" sx={{ fontSize: "40px", color: "#4E3A67", fontWeight: "700" }}>
-                                        0
+                                <Stack gap={1} sx={{ width: { "xs": "150px", "sm": "150px", "md": "230px", "lg": "230px", "xl": "230px" } }}>
+                                    <Stack direction="row" justifyContent="space-between">
+                                        <Typography component="div" sx={{ fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
+                                            0
+                                        </Typography>
+                                        <img src={window.location.origin + "/assets/V4.png"} alt="V4" height="35px" />
+
+                                    </Stack>
+                                    <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                        Shortlisted Candidate to be reviewed
                                     </Typography>
-                                    <img src={window.location.origin + "/assets/V4.png"} alt="V4" height="35px" />
-
                                 </Stack>
-                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
-                                    Shortlisted Candidate to be reviewed
-                                </Typography>
-                            </Stack>
 
-                            <Stack gap={1} sx={{ minWidth: "230px" }}>
-                                <Stack direction="row" justifyContent="space-between">
-                                    <Typography component="div" sx={{ fontSize: "40px", color: "#4E3A67", fontWeight: "700" }}>
-                                        0
+
+                                <Stack gap={1} sx={{ width: { "xs": "150px", "sm": "150px", "md": "230px", "lg": "230px", "xl": "230px" } }}>
+                                    <Stack direction="row" justifyContent="space-between">
+                                        <Typography component="div" sx={{ fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
+                                            0
+                                        </Typography>
+                                        <img src={window.location.origin + "/assets/V5.png"} alt="V5" height="35px" />
+
+                                    </Stack>
+                                    <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                        Interview schedule for Today
                                     </Typography>
-                                    <img src={window.location.origin + "/assets/V5.png"} alt="V5" height="35px" />
-
                                 </Stack>
-                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
-                                    Interview schedule for Today
-                                </Typography>
                             </Stack>
-                        </Stack>
+                        </Box>
+
+                        {/* <Box sx={{
+                            display: { "xs": "block", "sm": "block", "md": "none", "lg": "none", "xl": "none" }
+                        }}>
+                            <Stack
+                                gap={2} direction="row"
+                                justifyContent="center" alignItems="center"
+                                sx={{
+
+                                    height: "fit-content",
+                                    borderRadius: "10px", flexWrap: "wrap",
+                                }}>
+                                <Stack gap={1} sx={{ width: { "xs": "150px", "sm": "150px", "md": "230px", "lg": "230px", "xl": "230px" } }}>
+                                    <Stack direction="row" justifyContent="space-between">
+                                        <Typography component="div" sx={{ fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
+                                            {jobInfo && jobInfo.allposted_jobscount}
+                                        </Typography>
+                                        <img src={window.location.origin + "/assets/V1.png"} alt="V1" height="35px" />
+
+                                    </Stack>
+                                    <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                        Posted Jobs
+                                    </Typography>
+                                </Stack>
+
+                                <Stack gap={1} sx={{ width: { "xs": "150px", "sm": "150px", "md": "230px", "lg": "230px", "xl": "230px" } }}>
+                                    <Stack direction="row" justifyContent="space-between">
+                                        <Typography component="div" sx={{ fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
+                                            {jobInfo && jobInfo.all_saved_candidate}
+                                        </Typography>
+                                        <img src={window.location.origin + "/assets/V2.png"} alt="V2" height="35px" />
+
+                                    </Stack>
+                                    <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                        Saved Candidate
+                                    </Typography>
+                                </Stack>
+
+
+                                <Stack gap={1} sx={{ width: { "xs": "150px", "sm": "150px", "md": "230px", "lg": "230px", "xl": "230px" } }}>
+                                    <Stack direction="row" justifyContent="space-between">
+                                        <Typography component="div" sx={{ fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
+                                            {jobInfo && jobInfo.publishedjobscount}
+                                        </Typography>
+                                        <img src={window.location.origin + "/assets/V3.png"} alt="V3" height="35px" />
+
+                                    </Stack>
+                                    <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                        Active Jobs
+                                    </Typography>
+                                </Stack>
+                                <Stack gap={1} sx={{ width: { "xs": "150px", "sm": "150px", "md": "230px", "lg": "230px", "xl": "230px" } }}>
+                                    <Stack direction="row" justifyContent="space-between">
+                                        <Typography component="div" sx={{ fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
+                                            0
+                                        </Typography>
+                                        <img src={window.location.origin + "/assets/V4.png"} alt="V4" height="35px" />
+
+                                    </Stack>
+                                    <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                        Shortlisted Candidate to be reviewed
+                                    </Typography>
+                                </Stack>
+
+
+
+                                <Stack gap={1} sx={{ width: { "xs": "150px", "sm": "150px", "md": "230px", "lg": "230px", "xl": "230px" } }}>
+                                    <Stack direction="row" justifyContent="space-between">
+                                        <Typography component="div" sx={{ fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
+                                            0
+                                        </Typography>
+                                        <img src={window.location.origin + "/assets/V5.png"} alt="V5" height="35px" />
+
+                                    </Stack>
+                                    <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                                        Interview schedule for Today
+                                    </Typography>
+                                </Stack>
+                            </Stack>
+                        </Box> */}
+
                     </Stack>
 
                     <Stack direction="row" gap={2}>
@@ -178,8 +268,17 @@ const EmployerDashboard = () => {
                             <Stack direction="column" gap={2} sx={{ width: "100%", height: "600" }}>
 
                                 <Box>
-                                    <Box sx={{ margin: "30px 0px" }}>
-                                        <Typography component="span" sx={{ fontSize: "24px", fontWeight: "600", color: "#4E3A67" }}>
+                                    <Box sx={{
+                                        margin: {
+                                            "xs": "0px 0px 10px 0px ", "sm": "0px 0px 10px 0px",
+                                            "md": "30px 0px", "lg": "30px 0px", "xl": "30px 0px"
+                                        }
+                                    }}>
+                                        <Typography component="span" sx={{
+                                            fontSize: {
+                                                "xs": "16px", "sm": "16px", "md": "24px", "lg": "24px", "xl": "24px"
+                                            }, fontWeight: "600", color: "#4E3A67"
+                                        }}>
                                             Recent Jobs
                                         </Typography>
                                     </Box>
@@ -283,8 +382,7 @@ const EmployerDashboard = () => {
                 </Stack>
 
                 <Stack direction="column" sx={{
-                    width: "312px",
-                    visibility: { "lg": "visible", "md": "hidden", "xs": "hidden" },
+                    width: { "xs": "500px", "sm": "500px", "md": "312px", "lg": "312px", "xl": "312px" },
                     gap: "12px"
                 }}>
                     <Stack sx={{
@@ -316,7 +414,7 @@ const EmployerDashboard = () => {
                                 onClick={() => window.location.href = window.location.origin}>
                                 <Typography component="span"
                                     sx={{
-                                        fontSize: "50px",
+                                        fontSize: { "xs": "26px ", "sm": "26px", "md": "50px", "lg": "50px", "xl": "50px" },
                                         fontWeight: "600",
                                         color: "#4E3A67",
                                         fontFamily: "Work Sans, sans-serif"
@@ -325,7 +423,7 @@ const EmployerDashboard = () => {
                                 </Typography>
                                 <Typography component="span"
                                     sx={{
-                                        fontSize: "50px",
+                                        fontSize: { "xs": "26px ", "sm": "26px", "md": "50px", "lg": "50px", "xl": "50px" },
                                         color: "#4E3A67",
                                         fontFamily: "Work Sans, sans-serif"
                                     }}>
@@ -335,11 +433,11 @@ const EmployerDashboard = () => {
 
                             <Stack direction="row" alignItems="center" justifyContent="center">
                                 <Typography component="div" sx={{
-                                    fontSize: "16px", color: "#FC9A7E", fontWeight: "600"
+                                    fontSize: { "xs": "12px ", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#FC9A7E", fontWeight: "600"
                                 }}>
                                     Read More
                                 </Typography>
-                                <img height="16px" src={window.location.origin + "/assets/RightArrow.png"} alt="RightArrow" />
+                                <img height="10px" src={window.location.origin + "/assets/RightArrow.png"} alt="RightArrow" />
                             </Stack>
                         </Stack>
                         <Stack
@@ -355,24 +453,24 @@ const EmployerDashboard = () => {
 
                             }}>
                             <Box>
-                                <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "600" }}>
+                                <Typography component="div" sx={{ fontSize: { "xs": "12px ", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#4E3A67", fontWeight: "600" }}>
                                     For Sales Enquiries
                                 </Typography>
 
-                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67" }}>
+                                <Typography component="div" sx={{ fontSize: { "xs": "12px ", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#4E3A67" }}>
                                     Call On: 1800-103-7344
                                 </Typography>
-                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67" }}>
+                                <Typography component="div" sx={{ fontSize: { "xs": "12px ", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#4E3A67" }}>
                                     ( Toll Free: 9:30 AM to 6:30 PM)
                                 </Typography>
                             </Box>
 
                             <Box>
-                                <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "600" }}>
+                                <Typography component="div" sx={{ fontSize: { "xs": "12px ", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#4E3A67", fontWeight: "600" }}>
                                     Socials
                                 </Typography>
 
-                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67" }}>
+                                <Typography component="div" sx={{ fontSize: { "xs": "12px ", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#4E3A67" }}>
                                     jobsyahan@gmail.com
                                 </Typography>
 

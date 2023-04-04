@@ -892,9 +892,38 @@ nav {
     height: 25px !important;
   }
 
-  .MuiSelect-select {
+  .companyItem {
     font-size: 12px !important;
     padding: 8px !important
+  }
+
+  .NextButtonEmployer {
+    height: 30px !important;
+    width: 30px !important;
+    padding: 0px !important;
+    min-width: 30px !important;
+  }
+
+  .RegistrationBackButton {
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  .MuiSelect-select,
+  .MuiMenuItem-gutters {
+    padding: 8px !important;
+    font-size: 12px !important;
+    min-height: 10px !important;
+  }
+
+  .RegisterAutoSuggestDiv {
+    padding: 10px !important;
+    border: 1px solid #E1D4F2 !important;
+  }
+
+  .RegisterAutoSuggestList {
+    padding: 10px !important;
+    font-size: 12px !important;
   }
 
 }

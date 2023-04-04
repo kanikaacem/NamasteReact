@@ -20,7 +20,7 @@ const ChatComponent = () => {
                     <Box sx={{ height: "20px" }}>
                         <img src={window.location.origin + "/assets/Chat1.png"} width="100%" height="100%" alt="Chat1" />
                     </Box>
-                    <Typography component="div" sx={{ fontSize: "24px", color: "#4E3A67", fontWeight: "600" }}>
+                    <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "24px", "lg": "24px", "xl": "24px" }, color: "#4E3A67", fontWeight: "600" }}>
                         Your Chats
                     </Typography>
                 </Stack>

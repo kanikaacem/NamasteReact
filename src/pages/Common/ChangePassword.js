@@ -79,7 +79,7 @@ const ChangePassword = () => {
             <Typography component="div" sx={{
                 color: "#2B1E44",
                 textTransform: "capitalize", margin: "10px 0px",
-                fontSize: "40px",
+                fontSize: { "sx": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
                 fontFamily: "Work Sans,sans-serif",
                 fontWeight: "700"
             }}>

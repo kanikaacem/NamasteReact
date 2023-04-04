@@ -34,7 +34,7 @@ const JobDescription = () => {
             }}>
 
             <Box className="JobDescriptionContent"
-                sx={{ padding: "100px 20px" }}>
+                sx={{ padding: { "xs": "10px", "sm": "10px", "md": "100px 20px", "lg": "100px 20px", "xl": "100px 20px" } }}>
 
 
                 <Box

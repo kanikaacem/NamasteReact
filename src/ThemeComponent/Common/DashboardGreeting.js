@@ -19,7 +19,7 @@ const DashboardGreeting = ({ username, userType, userProfileCompleted }) => {
                 background: "#FFFFFF",
                 border: "1px solid #E1D4F2",
                 borderRadius: "14px",
-                padding: "20px"
+                padding: { "xs": "5px", "sm": "5pz", "md": "20px", "lg": "20px", "xl": "20px" }
             }}
         >
             <Stack
@@ -29,7 +29,7 @@ const DashboardGreeting = ({ username, userType, userProfileCompleted }) => {
                 gap={2} >
 
                 <Typography component="box" sx={{
-                    fontSize: "24px",
+                    fontSize: { "xs": "16px", "sm": "16px", "md": "24px", "lg": "24px", "xl": "24px" },
                     fontFamily: "Montserrat",
                     fontWeight: "600",
                     color: "#4E3A67"

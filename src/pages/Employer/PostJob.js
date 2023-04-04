@@ -283,7 +283,7 @@ const PostJob = () => {
         <Box className="PostJobPage"
             direction="column"
             sx={{
-                padding: (postJobStep == 1) ? "30px 50px" : "0px",
+                padding: (postJobStep == 1) ? { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" } : "0px",
                 gap: "50px",
                 visibility: (postJobStep == 1) ? "visible" : "hidden",
                 display: (postJobStep == 1) ? "block" : "none",
@@ -303,7 +303,7 @@ const PostJob = () => {
                 }} >
                     <Stack direction="column" gap={2}>
                         <Typography component="box" sx={{
-                            fontSize: "64px",
+                            fontSize: { "xs": "26px", "sm": "26px", "md": "64px", "lg": "64px", "xl": "64px" },
                             fontFamily: "Montserrat",
                             fontWeight: "600",
                             color: "#4E3A67",
@@ -318,7 +318,7 @@ const PostJob = () => {
 
                     <Stack direction="column" gap={2}>
                         <Typography component="box" sx={{
-                            fontSize: "64px",
+                            fontSize: { "xs": "26px", "sm": "26px", "md": "64px", "lg": "64px", "xl": "64px" },
                             fontFamily: "Montserrat",
                             fontWeight: "600",
                             color: "#4E3A67",
@@ -344,10 +344,11 @@ const PostJob = () => {
                         border: "1px solid #EAEAEA",
                         boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                         borderRadius: "19px",
-                        padding: "35px 50px"
+                        padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
+
                     }}>
                         <Typography component="box" sx={{
-                            fontSize: "40px",
+                            fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" },
                             fontFamily: "Montserrat",
                             fontWeight: "600",
                             color: "#4E3A67",
@@ -360,8 +361,9 @@ const PostJob = () => {
                         <Stack direction="row" gap={2} sx={{ margin: "25px 0px" }}>
                             <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
                                 <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
+                                    width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                    height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
                                     background: "#FC9A7E",
                                     borderRadius: "50%",
                                     display: "flex",
@@ -369,7 +371,7 @@ const PostJob = () => {
                                     justifyContent: "center"
                                 }}>1</Box>
                                 <Typography component="box" sx={{
-                                    fontSize: "19px",
+                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
                                     fontFamily: "Montserrat",
                                     fontWeight: "600",
                                     display: "block",
@@ -385,8 +387,9 @@ const PostJob = () => {
 
                             <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
                                 <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
+                                    width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                    height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
                                     background: "#FC9A7E",
                                     borderRadius: "50%",
                                     display: "flex",
@@ -394,7 +397,7 @@ const PostJob = () => {
                                     justifyContent: "center"
                                 }}>2</Box>
                                 <Typography component="box" sx={{
-                                    fontSize: "19px",
+                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
                                     fontFamily: "Montserrat",
                                     fontWeight: "600",
                                     color: "#4E3A67",
@@ -416,14 +419,14 @@ const PostJob = () => {
                         background: "#FFFFFF",
                         border: "1px solid #EDEDED",
                         borderRadius: "19px",
-                        padding: "30px 50px",
+                        padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
                         position: "relative",
                         top: "-30px"
 
                     }}>
 
                         <Typography component="box" sx={{
-                            fontSize: "32px",
+                            fontSize: { "xs": "16px", "sm": "16px", "md": "32px", "lg": "32px", "xl": "32px" },
                             fontFamily: "Montserrat",
                             fontWeight: "600",
                             color: "#4E3A67",

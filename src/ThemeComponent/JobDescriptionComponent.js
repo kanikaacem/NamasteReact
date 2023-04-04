@@ -129,18 +129,18 @@ const JobDescriptionComponent = ({ userType, data }) => {
 
         <Stack
             direction="column"
-            gap={3}
             sx={{
                 background: "#FFFFFF",
                 border: " 1px solid #E1D4F2",
                 borderRadius: "19px",
-                padding: "20px"
+                padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" },
+                gap: { "xs": "8px", "sm": "8px", "md": "24px", "lg": "24px", "xl": "24px" }
             }}>
 
             <Stack direction="row" gap={2}>
                 <img src={window.location.origin + "/assets/ActivelyHiring.png"} alt="Active Hiring" />
                 <Typography component="box" sx={{
-                    fontSize: "16ox",
+                    fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
                     fontFamily: "Montserrat",
                     color: "#4E3A67"
                 }}>
@@ -148,12 +148,12 @@ const JobDescriptionComponent = ({ userType, data }) => {
                 </Typography>
             </Stack>
 
-            <Stack direction="column" gap={1} sx={{ margin: "30px 0px" }}>
-                <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600", color: "#4E3A67", textTransform: "capitalize" }}>
+            <Stack direction="column" gap={1} sx={{ margin: { "xs": "10px 0px", "sm": "10px 0px", "md": "30px 0px", "lg": "30px 0px", "xl": "30px 0px" } }}>
+                <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "26px", "lg": "26px", "xl": "26px" }, fontWeight: "600", color: "#4E3A67", textTransform: "capitalize" }}>
                     {data ? (data.job_title ? data.job_title : "Not Mentioned") : <Skeleton />}
                 </Typography>
 
-                <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#BDB5C7" }}>
+                <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "600", color: "#BDB5C7" }}>
                     {data ? (data.company_name ? data.company_name : "Not Mentioned") : <Skeleton />}
                 </Typography>
             </Stack>
@@ -165,7 +165,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         background: "#FFFFFF",
                         border: "1px solid #E2D7F0",
                         borderRadius: "11px",
-                        padding: "15px",
+                        padding: { "xs": "8px", "sm": "8px", "md": "15px", "lg": "15px", "xl": "15px" },
                         gap: "5px",
                         alignItems: "center",
                         justifyContent: "center"
@@ -173,7 +173,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         <Box>
                             <img src={window.location.origin + "/assets/RJ.png"} alt="RJ"></img>
                         </Box>
-                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
                             {data ? (data.city ? data.city.toString() : " Not Mentioned") : <Skeleton />}
                         </Typography>
                     </Stack>
@@ -181,7 +181,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         background: "#FFFFFF",
                         border: "1px solid #E2D7F0",
                         borderRadius: "11px",
-                        padding: "15px",
+                        padding: { "xs": "8px", "sm": "8px", "md": "15px", "lg": "15px", "xl": "15px" },
                         gap: "5px",
                         alignItems: "center",
                         justifyContent: "center"
@@ -189,7 +189,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         <Box>
                             <img src={window.location.origin + "/assets/RJ1.png"} alt="RJ1"></img>
                         </Box>
-                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
                             {data ? (data.vacancy ? data.vacancy + " Openings" : "Not Mentioned") : <Skeleton />}
                         </Typography>
                     </Stack>
@@ -197,7 +197,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         background: "#FFFFFF",
                         border: "1px solid #E2D7F0",
                         borderRadius: "11px",
-                        padding: "15px",
+                        padding: { "xs": "8px", "sm": "8px", "md": "15px", "lg": "15px", "xl": "15px" },
                         gap: "5px",
                         alignItems: "center",
                         justifyContent: "center"
@@ -205,7 +205,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         <Box>
                             <img src={window.location.origin + "/assets/RJ2.png"} alt="RJ2"></img>
                         </Box>
-                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
                             {data ? (data.candidate_experience && data.candidate_experience.min_age ? "Min ." + data.candidate_experience.min_age + " Years" : "  Not Mentioned ") : <Skeleton />}
                         </Typography>
                     </Stack>
@@ -213,7 +213,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         background: "#FFFFFF",
                         border: "1px solid #E2D7F0",
                         borderRadius: "11px",
-                        padding: "15px",
+                        padding: { "xs": "8px", "sm": "8px", "md": "15px", "lg": "15px", "xl": "15px" },
                         gap: "5px",
                         alignItems: "center",
                         justifyContent: "center"
@@ -221,7 +221,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         <Box>
                             <img src={window.location.origin + "/assets/RJ3.png"} alt="RJ3"></img>
                         </Box>
-                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
                             {data ? (data.prefered_degree ? data.prefered_degree.toString() : "Not Mentioned") : <Skeleton />}
                         </Typography>
                     </Stack>
@@ -231,7 +231,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
 
             <Stack direction="row" justifyContent="space-between" sx={{ margin: "20px 0px" }}>
                 <Box>
-                    <Typography component="div" sx={{ fontSize: { "lg": "20px", "md": "16px", "xs": "16px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
+                    <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
                         {data ? (data.applied_count > 0 ? data.applied_count + " Applicants Applied" : '0  Applicants Applied') : <Skeleton />}
                     </Typography>
                 </Box>
@@ -268,12 +268,12 @@ const JobDescriptionComponent = ({ userType, data }) => {
 
             </Stack>
 
-            <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600", color: "#4E3A67" }}>
+            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "26px", "lg": "26px", "xl": "26px" }, fontWeight: "600", color: "#4E3A67" }}>
                 {data ? (data.company_name ? data.company_name : "Not Mentioned") : <Skeleton />}
             </Typography>
 
             <Stack direction="row" gap={2} sx={{ color: "#EB6F4B" }} alignItems="center" >
-                <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
                     Website
                 </Typography>
                 <img src={window.location.origin + "/assets/Website.png"} height="20px" alt="Website" />
@@ -289,14 +289,14 @@ const JobDescriptionComponent = ({ userType, data }) => {
                 padding: "20px",
                 borderRadius: "11px"
             }}>
-                <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
+                <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "600", color: "#4E3A67" }}>
                     Activity On JobsYahan
                 </Typography>
 
                 <Stack direction="row" justifyContent="space-between" >
                     <Stack direction="row" gap={2} alignItems="center">
                         <img src={window.location.origin + "/assets/Timeline.png"} height="20px" alt="Timeline" />
-                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "600", color: "#4E3A67" }}>
                             Hiring since {" " + new Date(data.createdAt).toLocaleDateString()}
                         </Typography>
                     </Stack>
@@ -306,16 +306,16 @@ const JobDescriptionComponent = ({ userType, data }) => {
 
             </Box>
 
-            <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600", color: "#4E3A67" }}>
+            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "26px", "lg": "26px", "xl": "26px" }, fontWeight: "600", color: "#4E3A67" }}>
                 About the Job
             </Typography>
 
-            <Typography component="div" sx={{ fontSize: "20px", lineHeight: '1.5' }}>
+            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, lineHeight: '1.5' }}>
                 {data ? (data.job_responsibilty ? data.job_responsibilty :
                     " Not Mentioned") : <Skeleton />}
             </Typography>
 
-            <Typography component="div" sx={{ fontSize: "26px", fontWeight: "600", color: "#4E3A67" }}>
+            <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "26px", "lg": "26px", "xl": "26px" }, fontWeight: "600", color: "#4E3A67" }}>
                 Skill(s) Required
             </Typography>
 
@@ -327,13 +327,13 @@ const JobDescriptionComponent = ({ userType, data }) => {
                             background: "#FFFFFF",
                             border: "1px solid #E2D7F0",
                             borderRadius: "11px",
-                            padding: "15px",
+                            padding: { "xs": "8px", "sm": "8px", "md": "15px", "lg": "15px", "xl": "15px" },
                             gap: "5px",
                             alignItems: "center",
                             justifyContent: "center"
                         }}>
 
-                            <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
                                 {item}
                             </Typography>
                         </Stack>
@@ -343,13 +343,13 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         background: "#FFFFFF",
                         border: "1px solid #E2D7F0",
                         borderRadius: "11px",
-                        padding: "15px",
+                        padding: { "xs": "8px", "sm": "8px", "md": "15px", "lg": "15px", "xl": "15px" },
                         gap: "5px",
                         alignItems: "center",
                         justifyContent: "center"
                     }}>
 
-                        <Typography component="div" sx={{ fontSize: "20px", fontWeight: "800px" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
                             <Skeleton />
                         </Typography>
                     </Stack>

@@ -244,11 +244,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 margin: "50px",
                                 direction: "row",
                                 gap: "100px",
-                                // position: "absolute",
-                                // top: "111px",
-                                // left: "152px",
-                                // width: "573px",
-                                // zIndex: "78798"
 
                             }}>
                                 <Typography component="box" sx={{
@@ -504,7 +499,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                             <Stack alignItems="flex-end">
 
-                                                <NextButton type="submit"><img src={window.location.origin + "/assets/CompanyInfoRight.png"} alt="Next" width="14px" height="14px" ></img></NextButton>
+                                                <NextButton className="NextButtonEmployer" type="submit"><img src={window.location.origin + "/assets/CompanyInfoRight.png"} alt="Next" width="14px" height="14px" ></img></NextButton>
                                             </Stack>
                                         </Form>)}
                                 </Formik>
@@ -530,7 +525,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                     <Stack className="EmployerRegisterPageWrapper"
                         sx=
                         {{
-                            padding: "20px 50px",
+                            padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
                             gap: "24px"
                         }}>
 
@@ -579,7 +574,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     border: "1px solid #EAEAEA",
                                     boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                                     borderRadius: "19px",
-                                    padding: "35px 50px",
+                                    padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
                                     margin: "0 auto",
 
                                 }}>
@@ -591,7 +586,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                         } ></BackButton>
 
                                     <Typography component="box" sx={{
-                                        fontSize: "40px",
+                                        fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" },
                                         fontFamily: "Montserrat",
                                         fontWeight: "600",
                                         color: "#4E3A67",
@@ -604,16 +599,18 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     <Stack direction="row" gap={2} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
                                         <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
                                             <Box sx={{
-                                                width: "27px",
-                                                height: "27px",
+                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
                                                 background: "#FC9A7E",
                                                 borderRadius: "50%",
                                                 display: "flex",
                                                 alignItems: "center",
-                                                justifyContent: "center"
+                                                justifyContent: "center",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+
                                             }}>1</Box>
                                             <Typography component="box" sx={{
-                                                fontSize: "19px",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
                                                 fontFamily: "Montserrat",
                                                 fontWeight: "600",
                                                 color: "#4E3A67",
@@ -629,16 +626,18 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                         <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
                                             <Box sx={{
-                                                width: "27px",
-                                                height: "27px",
+                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
                                                 background: "#FC9A7E",
                                                 borderRadius: "50%",
                                                 display: "flex",
                                                 alignItems: "center",
-                                                justifyContent: "center"
+                                                justifyContent: "center",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+
                                             }}>2</Box>
                                             <Typography component="box" sx={{
-                                                fontSize: "19px",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
                                                 fontFamily: "Montserrat",
                                                 fontWeight: "600",
                                                 color: "#4E3A67",
@@ -654,16 +653,18 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                         <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
                                             <Box sx={{
-                                                width: "27px",
-                                                height: "27px",
+                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
                                                 background: "#FC9A7E",
                                                 borderRadius: "50%",
                                                 display: "flex",
                                                 alignItems: "center",
-                                                justifyContent: "center"
+                                                justifyContent: "center",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+
                                             }}>3</Box>
                                             <Typography component="box" sx={{
-                                                fontSize: "19px",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
                                                 fontFamily: "Montserrat",
                                                 fontWeight: "600",
                                                 color: "#4E3A67",
@@ -686,8 +687,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     background: "#FFFFFF",
                                     border: "1px solid #EDEDED",
                                     borderRadius: "19px",
-
-                                    padding: "30px 50px",
+                                    padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
                                     position: "relative",
                                     top: '-10px',
                                     margin: "0 auto"
@@ -739,7 +739,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                                 <Stack alignItems="flex-end" sx={{ margin: "20px 0px" }}>
 
-                                                    <NextButton type="submit"><img src={window.location.origin + "/assets/CompanyInfoRight.png"} alt="Next" width="14px" height="14px" ></img></NextButton>
+                                                    <NextButton className="NextButtonEmployer" type="submit"><img src={window.location.origin + "/assets/CompanyInfoRight.png"} alt="Next" width="14px" height="14px" ></img></NextButton>
                                                 </Stack>
                                             </Form>)}
                                     </Formik>
@@ -766,7 +766,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                     <Stack className="EmployerRegisterPageWrapper"
                         sx=
                         {{
-                            padding: "20px 50px",
+                            padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
                             gap: "24px"
                         }}>
 
@@ -779,11 +779,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 <Stack sx={{
                                     margin: "50px",
                                     direction: "row",
-                                    // position: "absolute",
-                                    // top: "-3px",
-                                    // left: "152px",
-                                    // width: "573px",
-                                    // zIndex: "78798"
 
                                 }}>
                                     <Typography component="box" sx={{
@@ -843,7 +838,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     border: "1px solid #EAEAEA",
                                     boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                                     borderRadius: "19px",
-                                    padding: "35px 50px",
+                                    padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
                                     margin: "0 auto",
 
                                 }}>
@@ -855,7 +850,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                         } ></BackButton>
 
                                     <Typography component="box" sx={{
-                                        fontSize: "40px",
+                                        fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" },
                                         fontFamily: "Montserrat",
                                         fontWeight: "600",
                                         color: "#4E3A67",
@@ -868,16 +863,18 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     <Stack direction="row" gap={2} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
                                         <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
                                             <Box sx={{
-                                                width: "27px",
-                                                height: "27px",
+                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
                                                 background: "#FC9A7E",
                                                 borderRadius: "50%",
                                                 display: "flex",
                                                 alignItems: "center",
-                                                justifyContent: "center"
+                                                justifyContent: "center",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+
                                             }}>1</Box>
                                             <Typography component="box" sx={{
-                                                fontSize: "19px",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
                                                 fontFamily: "Montserrat",
                                                 fontWeight: "600",
                                                 color: "#4E3A67",
@@ -893,16 +890,18 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                         <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
                                             <Box sx={{
-                                                width: "27px",
-                                                height: "27px",
+                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
                                                 background: "#FC9A7E",
                                                 borderRadius: "50%",
                                                 display: "flex",
                                                 alignItems: "center",
-                                                justifyContent: "center"
+                                                justifyContent: "center",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+
                                             }}>2</Box>
                                             <Typography component="box" sx={{
-                                                fontSize: "19px",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
                                                 fontFamily: "Montserrat",
                                                 fontWeight: "600",
                                                 color: "#4E3A67",
@@ -918,16 +917,18 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                         <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
                                             <Box sx={{
-                                                width: "27px",
-                                                height: "27px",
+                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
                                                 background: "#FC9A7E",
                                                 borderRadius: "50%",
                                                 display: "flex",
                                                 alignItems: "center",
-                                                justifyContent: "center"
+                                                justifyContent: "center",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+
                                             }}>3</Box>
                                             <Typography component="box" sx={{
-                                                fontSize: "19px",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
                                                 fontFamily: "Montserrat",
                                                 fontWeight: "600",
                                                 color: "#4E3A67",
@@ -948,8 +949,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     background: "#FFFFFF",
                                     border: "1px solid #EDEDED",
                                     borderRadius: "19px",
-
-                                    padding: "30px 50px",
+                                    padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
                                     position: "relative",
                                     top: '-10px',
 
@@ -1053,7 +1053,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                         {menubar && autoData && autoData != "no record please enter some word" && <>
                                                             <ClickAwayListener onClickAway={() => setAutoData(false)}>
 
-                                                                <Box
+                                                                <Box className="RegisterAutoSuggestDiv"
                                                                     sx={{
                                                                         position: "absolute",
                                                                         top: "110px",
@@ -1068,11 +1068,13 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                                     }}>
                                                                     {autoData && autoData != "no record please enter some word" && autoData.map((item) => {
                                                                         return (<>
-                                                                            <Box sx={{
-                                                                                padding: "20px",
-                                                                                borderBottom: "1px solid #E1D4F2",
-                                                                                cursor: "pointer"
-                                                                            }}
+                                                                            <Box
+                                                                                className="RegisterAutoSuggestList"
+                                                                                sx={{
+                                                                                    padding: "20px",
+                                                                                    borderBottom: "1px solid #E1D4F2",
+                                                                                    cursor: "pointer"
+                                                                                }}
                                                                                 onClick={(event) => {
                                                                                     setCompanyAddress(item.description);
                                                                                     setFieldValue("area", item.description)
