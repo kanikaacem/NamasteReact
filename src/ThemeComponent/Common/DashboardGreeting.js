@@ -19,7 +19,7 @@ const DashboardGreeting = ({ username, userType, userProfileCompleted }) => {
                 background: "#FFFFFF",
                 border: "1px solid #E1D4F2",
                 borderRadius: "14px",
-                padding: { "xs": "5px", "sm": "5pz", "md": "20px", "lg": "20px", "xl": "20px" }
+                padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" }
             }}
         >
             <Stack
@@ -47,7 +47,7 @@ const DashboardGreeting = ({ username, userType, userProfileCompleted }) => {
             </Stack>
             {userType === "candidate" && <>
                 <Typography component="box" sx={{
-                    fontSize: "18px",
+                    fontSize: { "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px" },
                     fontFamily: "Montserrat",
                     color: "#4E3A67"
                 }}>

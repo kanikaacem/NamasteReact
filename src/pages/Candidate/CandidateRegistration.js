@@ -61,7 +61,7 @@ const CandidateRegistration = () => {
 
         <Box className="CandidateLoginPage"
             sx={{
-                minHeight: "100vh",
+                height: { "xs": "1000px", "sm": "1000px", "md": "100vh", "lg": "100vh", "xl": "100vh" },
                 background: "#2B1E44",
                 backgroundImage:
                     "url('../assets/g50.png')",
@@ -72,62 +72,72 @@ const CandidateRegistration = () => {
             <Stack className="CandidateLoginPageInnerWrapper"
                 sx=
                 {{
-                    padding: "20px 50px",
+                    padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
                     gap: "24px"
                 }}>
                 <HeaderSec
                     border="2px solid rgba(255, 255, 255, 0.25)"
                     color="#FFFFFF"
                     background="#432C60" />
-                <Stack alignItems="flex-end" sx={{ position: "relative" }}>
+                <Stack direction={{ 'lg': "row", 'md': 'column', 'xs': 'column' }} sx={{ gap: "40px" }}>
 
                     <Box sx={{
-                        position: "absolute",
-                        top: "90px",
-                        left: "204px",
-                        width: "800px"
-                    }}>
-                        <Typography component="box" sx={{
-                            fontSize: "64px",
-                            fontFamily: "Work Sans, sans-serif",
-                            fontWeight: "700",
-                            color: "#FC9A7E",
-                            display: "block",
-                            lineHeight: "40px"
-                        }}>
-                            Choose a job you love,
+                        width: { 'lg': "60%", 'md': '100%', 'xs': '100%' },
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center"
 
+                    }}>
+                        <Box
+                            sx={{
+                                width: "800px",
+                                marginTop: { "xs": "0px", "sm": "0px", "md": "70px", "lg": "70px", "xl": "70px" },
+                                textAlign: "center"
+                            }}
+                        >
                             <Typography component="box" sx={{
-                                fontSize: "64px",
+                                fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "xl": "64px", "lg": "64px" },
                                 fontFamily: "Work Sans, sans-serif",
                                 fontWeight: "700",
-                                color: "#FFFFFF",
+                                color: "#FC9A7E",
                                 display: "block",
-                                margin: "10px 0px",
-                                lineHeight: "1.0 !important"
+                                lineHeight: "40px"
                             }}>
-                                and you never have to
-                                work a day in your life
+                                Choose a job you love,
+
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "xl": "64px", "lg": "64px" },
+                                    fontFamily: "Work Sans, sans-serif",
+                                    fontWeight: "700",
+                                    color: "#FFFFFF",
+                                    display: "block",
+                                    margin: "10px 0px",
+                                    lineHeight: "1.0 !important"
+                                }}>
+                                    and you never have to
+                                    work a day in your life
+
+                                </Typography>
 
                             </Typography>
-
-                        </Typography>
+                        </Box>
 
 
                     </Box>
 
+
                     <Stack sx={{
-                        width: "449px",
-                        height: "730px",
+                        width: { 'lg': "449px", 'md': '92%', 'xs': '92%' },
+                        height: { "xs": "fit-content", "sm": "fit-content", "md": "730px", "lg": "730px", "xl": "730px" },
                         background: "#FBF8FF",
                         boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                         borderRadius: "19px",
-                        padding: "50px 100px"
+                        padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "15px" }
                     }}>
-                        <Typography component="box" sx={{ fontSize: "20px", fontFamily: "Work Sans, sans-serif" }}>
+                        <Typography component="box" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontFamily: "Work Sans, sans-serif" }}>
                             Welcome Guest,
                         </Typography>
-                        <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700", marginBottom: "30px" }}>
+                        <Typography component="box" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "40px", "lg": "40px", "xl": "40px" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700", marginBottom: "30px" }}>
                             Sign Up for JobsYahan
                         </Typography>
 

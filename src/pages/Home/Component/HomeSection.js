@@ -6,8 +6,11 @@ import { useState } from 'react';
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { useTranslation } from 'react-i18next';
 
 const HomeSection = () => {
+    const { t } = useTranslation();
+
     const [activeHomeCategory, setActiveHomeCategory] = useState("supply_chain");
     const responsive = {
         superLargeDesktop: {
@@ -57,6 +60,7 @@ const HomeSection = () => {
                         Find Suitable Jobs & Candidates Here! (Launching Soon)
 
                     </Typography>
+
 
                     <Typography component="span" sx={{
                         textAlign: "center",

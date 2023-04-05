@@ -10,6 +10,8 @@ import { useState, useEffect } from "react";
 
 import Filter from "../Filter"
 import HeaderSec from "./HeaderSec";
+
+import ErrorPage from "../../Pages/ErrorPage";
 const JobSearch = () => {
 
     const [data, setData] = useState([]);
@@ -41,8 +43,12 @@ const JobSearch = () => {
             let response = await getRequest(path_url);
 
             if (response.status == 1) {
-                console.log(response.jobdata);
-                setData(response.jobdata);
+
+                // console.log(response.jobdata);
+                if (Object.keys(response.data).length > 0)
+                    setData(response.data);
+                else
+                    setData([]);
             }
 
 
@@ -58,7 +64,6 @@ const JobSearch = () => {
     const jobs = data.length > 0 && data.slice(IndexOfFirstData, IndexOfLastData);
 
     return (<>
-
         <Box className="jobSearchPage"
             sx={{ background: "#FAFAFA" }}>
             <Box sx={{ padding: "20px 40px" }}>
@@ -76,6 +81,7 @@ const JobSearch = () => {
                     <Filter />
                 </Box>
                 <Stack sx={{ width: "70%" }} gap={2}>
+                    {!jobs && <ErrorPage errorMessage="Data is not present" />}
                     {
                         jobs.length > 0 && jobs.map((item) => {
                             return (<>

@@ -15,7 +15,7 @@ const CandidateDashboard = () => {
     }, [dispatch]);
     return (<>
         <Stack direction="column" sx={{
-            padding: "0px 10px"
+            padding: { "xs": "0px", "sm": "0px", "md": "0px 10px", "lg": "0px 10px", "xl": "0px 10px" }
         }}>
             {(MenuSelected === "candidate_dashboard") && (<><CandidateHome /></>)}
         </Stack>

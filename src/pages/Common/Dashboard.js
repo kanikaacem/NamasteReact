@@ -135,7 +135,7 @@ const Dashboard = () => {
                             display: { "lg": "none", "md": "none", "xs": "block" },
                             position: "relative"
                         }}>
-                            {user && user.isemailverified && user.ismobileverified && user.stage === "hrpage" &&
+                            {user && user.isemailverified && user.ismobileverified && (user.stage === "hrpage" || user.profilecompleted >= 0) &&
                                 <ReorderIcon onClick={() => setOpenMenu(!openMenu)} />
                             }
 

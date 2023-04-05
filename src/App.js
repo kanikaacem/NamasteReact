@@ -42,6 +42,32 @@ import AboutUs from './Pages/Common/AboutUs';
 import PersonalInformationInformation2 from "./ThemeComponent/ThemeForms/PersonalInformation2";
 import ThemeErrorPage from './Pages/Common/ThemeErrorPage';
 import { useEffect } from "react";
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+i18n
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: {
+        translation: {
+          "Hello": "Hello",
+          "Welcome to React": "Welcome to React and react-i18next"
+        }
+      },
+      fr: {
+        translation: {
+          "Hello": "Bonjour",
+          "Welcome to React": "Bienvenue à React et react-i18next"
+        }
+      }
+    },
+    lng: 'fr',
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false
+    }
+  });
 
 function App() {
 

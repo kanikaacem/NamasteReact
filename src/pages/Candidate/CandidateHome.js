@@ -12,7 +12,7 @@ const CandidateHome = () => {
 
         <Stack direction="column" gap={2}
             sx={{
-                padding: "20px"
+                padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" }
             }}>
 
             <DashboardGreeting username={user && user.personalInfo && user.personalInfo.fullname !== undefined ? user.personalInfo.fullname : "Name not mentioned"} userProfileCompleted={user && user.profilecompleted} userType="candidate" />

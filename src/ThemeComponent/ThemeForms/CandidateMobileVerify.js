@@ -45,23 +45,23 @@ const CandidateMobileVerify = () => {
 
         <Box className="CandidateMobileVerify"
             sx={{
-                minHeight: "100vh",
+                height: { "xs": "1000px", "sm": "1000px", "md": "100vh", "lg": "100vh", "xl": "100vh" },
                 background: "#FFFFFF",
                 backgroundRepeat: " no-repeat",
                 backgroundPosition: "left 100px bottom 0px"
             }}>
-            <Stack className="JobTypePageWrapper"
+            <Stack className="CandidateMobileVerifyPageWrapper"
                 sx=
                 {{
-                    padding: "20px 50px",
+                    padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
                     gap: "24px"
                 }}>
 
                 <Stack gap={3} direction="row" justifyContent="space-between"
                     sx={{
-                        margin: "50px"
+                        margin: { "xs": "0px", "sm": "0px", "md": "50px", "lg": "50px", "xl": "50px" },
                     }}>
-                    <Box sx={{ width: "50%", margin: "0 auto" }}>
+                    <Box sx={{ width: "50%", margin: "0 auto", display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" } }}>
                         <Typography component="box" sx={{
                             fontSize: "64px",
                             fontFamily: "Montserrat",
@@ -85,17 +85,17 @@ const CandidateMobileVerify = () => {
 
                     </Box>
 
-                    <Box sx={{ width: "50%" }}>
+                    <Box sx={{ width: { "xs": "100%", "sm": "100%", "md": "50%", "lg": "50%", "xl": "50%" } }}>
                         <Box sx={{
 
                             background: "#F8F8F8",
                             border: "1px solid #EAEAEA",
                             boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                             borderRadius: "19px",
-                            padding: "35px 50px"
+                            padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
                         }}>
                             <Typography component="box" sx={{
-                                fontSize: "40px",
+                                fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
                                 fontFamily: "Montserrat",
                                 fontWeight: "600",
                                 color: "#4E3A67",
@@ -115,7 +115,7 @@ const CandidateMobileVerify = () => {
                                 border: "1px solid #EDEDED",
                                 borderRadius: "19px",
                                 position: "relative",
-                                padding: "30px 50px",
+                                padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
                                 paddingBottom: "100px"
 
 
@@ -137,6 +137,7 @@ const CandidateMobileVerify = () => {
                                                 as={TextField}
                                                 placeholder="Enter Mobile Number (eg. 9313170822 )" type="text" name="mobile_number" />
                                             <Button
+                                                id="sendOTPButton"
                                                 type="submit"
                                                 sx={{
                                                     position: "absolute",

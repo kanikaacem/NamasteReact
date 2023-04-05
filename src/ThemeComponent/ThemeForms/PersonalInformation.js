@@ -102,7 +102,7 @@ const PersonalInformation = ({ setActiveStep }) => {
     return (<>
         <Box className="PersonalInformationPage"
             sx={{
-                minHeight: "100vh",
+                // minHeight: "100vh",
                 background: "#FFFFFF",
                 backgroundRepeat: " no-repeat",
                 backgroundPosition: "left 100px bottom 0px"
@@ -110,14 +110,23 @@ const PersonalInformation = ({ setActiveStep }) => {
             <Stack className="PersonalInformationPageWrapper"
                 sx=
                 {{
-                    padding: "20px 50px",
+                    padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
                     gap: "24px"
                 }}>
 
-                <Stack direction="row" gap={3} sx={{ position: "relative" }}>
+                <Stack direction="row" sx={{
+                    position: "relative",
+                    gap: { "xs": "0px", "sm": "0px", "md": "24px", "lg": "24px", "xl": "24px" }
+                }}>
                     <Stack
-                        gap={2} sx={{ width: "50%", padding: "100px" }}>
-                        <Box>
+                        gap={2} sx={{
+                            width: {
+                                "xs": "0%", "sm": "0%", "md": "50%", "lg": "50%", "xl": "50%"
+                            }, padding: { "xs": "0px", "sm": "0px", "md": "100px", "lg": "100px", "xl": "100px" }, visibility: { "xs": "hidden", "sm": "hidden", "md": "visible", "lg": "visible", "xl": "visible" }
+                        }}>
+                        <Box sx={{
+                            display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" }
+                        }}>
                             <Typography component="box" sx={{
                                 fontSize: "64px",
                                 fontFamily: "Montserrat",
@@ -150,7 +159,9 @@ const PersonalInformation = ({ setActiveStep }) => {
                             <img src={window.location.origin + "/assets/g51.png"} alt="g51" style={{ margin: "40px 20px" }} />
                         </Box>
 
-                        <Box>
+                        <Box sx={{
+                            display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" }
+                        }}>
                             <Typography component="box" sx={{
                                 fontSize: "64px",
                                 fontFamily: "Montserrat",
@@ -172,23 +183,22 @@ const PersonalInformation = ({ setActiveStep }) => {
                                 the Jobs in Your City
                             </Typography>
                             <img src={window.location.origin + "/assets/g52.png"} alt="g52" style={{ margin: "40px 20px" }} />
-
                         </Box>
 
                     </Stack>
 
-                    <Box>
+                    <Box sx={{ width: { "xs": "100%", "sm": "100%", "md": "50%", "lg": "50%", "xl": "50%" } }}>
                         <Box sx={{
-                            width: "763px",
-                            height: "153px",
+                            maxWidth: "763px",
+                            minHeight: "153px",
                             background: "#F8F8F8",
                             border: "1px solid #EAEAEA",
                             boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                             borderRadius: "19px",
-                            padding: "35px 50px"
+                            padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
                         }}>
                             <Typography component="box" sx={{
-                                fontSize: "40px",
+                                fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
                                 fontFamily: "Montserrat",
                                 fontWeight: "600",
                                 color: "#4E3A67",
@@ -198,19 +208,21 @@ const PersonalInformation = ({ setActiveStep }) => {
                                 Personal Details
                             </Typography>
 
-                            <Stack direction="row" gap={1} sx={{ margin: "25px 0px" }}>
+                            <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
                                 <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
                                     <Box sx={{
-                                        width: "27px",
-                                        height: "27px",
+                                        width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                        height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
                                         background: "#FC9A7E",
                                         borderRadius: "50%",
                                         display: "flex",
                                         alignItems: "center",
-                                        justifyContent: "center"
+                                        justifyContent: "center",
+                                        fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+
                                     }}>1</Box>
                                     <Typography component="box" sx={{
-                                        fontSize: "16px",
+                                        fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
                                         fontFamily: "Montserrat",
                                         fontWeight: "600",
                                         color: "#4E3A67",
@@ -224,19 +236,20 @@ const PersonalInformation = ({ setActiveStep }) => {
                                     </Box>
                                 </Stack>
 
-
                                 <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
                                     <Box sx={{
-                                        width: "27px",
-                                        height: "27px",
+                                        width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                        height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
                                         background: "#FC9A7E",
                                         borderRadius: "50%",
                                         display: "flex",
                                         alignItems: "center",
-                                        justifyContent: "center"
+                                        justifyContent: "center",
+                                        fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+
                                     }}>2</Box>
                                     <Typography component="box" sx={{
-                                        fontSize: "16px",
+                                        fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
                                         fontFamily: "Montserrat",
                                         fontWeight: "600",
                                         color: "#4E3A67",
@@ -251,19 +264,20 @@ const PersonalInformation = ({ setActiveStep }) => {
                                     </Box>
                                 </Stack>
 
-
                                 <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
                                     <Box sx={{
-                                        width: "27px",
-                                        height: "27px",
+                                        width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                        height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
                                         background: "#FC9A7E",
                                         borderRadius: "50%",
                                         display: "flex",
                                         alignItems: "center",
-                                        justifyContent: "center"
+                                        justifyContent: "center",
+                                        fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+
                                     }}>3</Box>
                                     <Typography component="box" sx={{
-                                        fontSize: "16px",
+                                        fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
                                         fontFamily: "Montserrat",
                                         fontWeight: "600",
                                         color: "#4E3A67",
@@ -280,16 +294,18 @@ const PersonalInformation = ({ setActiveStep }) => {
 
                                 <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
                                     <Box sx={{
-                                        width: "27px",
-                                        height: "27px",
+                                        width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                        height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
                                         background: "#FC9A7E",
                                         borderRadius: "50%",
                                         display: "flex",
                                         alignItems: "center",
-                                        justifyContent: "center"
-                                    }}>3</Box>
+                                        justifyContent: "center",
+                                        fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+
+                                    }}>4</Box>
                                     <Typography component="box" sx={{
-                                        fontSize: "16px",
+                                        fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
                                         fontFamily: "Montserrat",
                                         fontWeight: "600",
                                         color: "#4E3A67",
@@ -309,14 +325,13 @@ const PersonalInformation = ({ setActiveStep }) => {
                         </Box>
                         <Box sx={{
                             boxSizing: "border-box",
-                            width: "865px",
-                            height: "647",
+                            width: { "xl": "865px", "lg": "865px", "md": "865px", "sm": "100%", "xs": "100%" },
                             background: "#FFFFFF",
                             border: "1px solid #EDEDED",
                             borderRadius: "19px",
                             position: "relative",
                             top: "-12px",
-                            padding: "30px 50px",
+                            padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
                             paddingBottom: "100px"
 
 
@@ -353,7 +368,7 @@ const PersonalInformation = ({ setActiveStep }) => {
                                                 <ThemeFInputDiv sx={{ width: "370px" }}>
                                                     <ThemeLabel LableFor="current_salary" LableText="Current Salary" />
                                                     <CurrencyFormat style={{
-                                                        fontSize: "20px",
+                                                        fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" },
                                                         outline: "none",
                                                         width: "92%",
                                                         border: "1px solid #EAEAEA",
@@ -373,7 +388,7 @@ const PersonalInformation = ({ setActiveStep }) => {
                                                     <ThemeLabel LableFor="excepted_salary" LableText="Excepted Salary" />
 
                                                     <CurrencyFormat style={{
-                                                        fontSize: "20px",
+                                                        fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" },
                                                         outline: "none",
                                                         width: "92%",
                                                         border: "1px solid #EAEAEA",
@@ -477,11 +492,11 @@ const PersonalInformation = ({ setActiveStep }) => {
                                                                 setFieldValue("gender", event.target.value)
                                                             }}
                                                         >
-                                                            <Stack direction="row" gap={3}>
+                                                            <Stack direction="row" gap={3} sx={{ flexWrap: "wrap" }}>
 
                                                                 <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
                                                                     sx={{
-                                                                        height: "59px",
+                                                                        height: { "xs": "36px", "sm": "36px", "md": "59px", "lg": "59px", "xl": "59px" },
                                                                         width: "230px",
                                                                         borderRadius: "7px",
                                                                         border: " 2px solid #EAEAEA"
@@ -492,7 +507,7 @@ const PersonalInformation = ({ setActiveStep }) => {
 
                                                                 <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
                                                                     sx={{
-                                                                        height: "59px",
+                                                                        height: { "xs": "36px", "sm": "36px", "md": "59px", "lg": "59px", "xl": "59px" },
                                                                         width: "230px",
                                                                         borderRadius: "7px",
                                                                         border: " 2px solid #EAEAEA"
@@ -503,7 +518,7 @@ const PersonalInformation = ({ setActiveStep }) => {
 
                                                                 <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
                                                                     sx={{
-                                                                        height: "59px",
+                                                                        height: { "xs": "36px", "sm": "36px", "md": "59px", "lg": "59px", "xl": "59px" },
                                                                         width: "231px",
                                                                         borderRadius: "7px",
                                                                         border: " 2px solid #EAEAEA"
