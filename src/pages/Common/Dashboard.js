@@ -106,7 +106,7 @@ const Dashboard = () => {
                                 })}
 
 
-                            {user && user.type === "candidate" && user.isemailverified && user.ismobileverified && user.profilecompleted >= 50 && CandidateMenu.map((item) => {
+                            {user && user.type === "candidate" && user.isemailverified && user.ismobileverified && user.profilecompleted >= 0 && CandidateMenu.map((item) => {
                                 return (<>
                                     <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
                                         button key={item.id} to={item.url} component={NavLink}
@@ -145,9 +145,9 @@ const Dashboard = () => {
 
                                 <Box sx={{
                                     position: "absolute",
-                                    top: "75px",
+                                    top: "30px",
                                     background: "#FFFFFF",
-                                    right: "10px",
+                                    right: "65px",
                                     width: "300px",
                                     zIndex: "345235"
                                 }}>
@@ -187,9 +187,9 @@ const Dashboard = () => {
 
                                 <Box sx={{
                                     position: "absolute",
-                                    top: "75px",
+                                    top: "30px",
                                     background: "#FFFFFF",
-                                    right: "10px",
+                                    right: "65px",
                                     width: "300px",
                                     zIndex: "345235"
                                 }}>

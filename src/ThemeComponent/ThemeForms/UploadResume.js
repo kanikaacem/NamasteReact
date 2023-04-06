@@ -11,7 +11,11 @@ import { ThemeButtonType2, } from "../../utils/Theme";
 import { useState } from "react";
 
 import ThemeMessage from "../Common/ThemeMessage";
-const UploadResume = ({ setActiveStep }) => {
+
+import { data1 } from "../../utils/Data";
+import FormMenu from "../Common/FormMenu";
+
+const UploadResume = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     const uploadFile = async (event) => {
@@ -46,14 +50,14 @@ const UploadResume = ({ setActiveStep }) => {
             <Stack className="WorkHistorypageWrapper"
                 sx=
                 {{
-                    padding: "20px 50px",
-                    gap: "24px"
+                    padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
+                    gap: { "xs": "0px", "sm": "0px", "md": "24px", "lg": "24px", "xl": "24px" }
                 }}>
 
                 <Stack direction="row" gap={2} justifyContent="space-between" sx={{ position: "relative" }}>
-                    <Box>
+                    <Box sx={{ display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" } }}>
                         <Typography component="box" sx={{
-                            fontSize: "64px",
+                            fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
                             fontFamily: "Montserrat",
                             fontWeight: "600",
                             color: "#4E3A67",
@@ -61,7 +65,7 @@ const UploadResume = ({ setActiveStep }) => {
                         }}> Unlimited Job
                         </Typography>
                         <Typography component="box" sx={{
-                            fontSize: "64px",
+                            fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
                             fontFamily: "Montserrat",
                             fontWeight: "600",
                             color: "#4E3A67",
@@ -75,18 +79,18 @@ const UploadResume = ({ setActiveStep }) => {
 
                     </Box>
 
-                    <Stack direction="column">
+                    <Stack direction="column" sx={{ width: { "xs": "100%", "sm": "100%", "md": "50%", "lg": "50%", "xl": "50%" } }}>
                         <Box sx={{
-                            width: "763px",
+                            width: { "xs": "92%", "sm": "92%", "md": "763px", "lg": "763px", "xl": "763px" },
                             height: "153px",
                             background: "#F8F8F8",
                             border: "1px solid #EAEAEA",
                             boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                             borderRadius: "19px",
-                            padding: "35px 50px"
+                            padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" }
                         }}>
                             <Typography component="box" sx={{
-                                fontSize: "40px",
+                                fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
                                 fontFamily: "Montserrat",
                                 fontWeight: "600",
                                 color: "#4E3A67",
@@ -96,123 +100,22 @@ const UploadResume = ({ setActiveStep }) => {
                                 Work History
                             </Typography>
 
-                            <Stack direction="row" gap={1} sx={{ margin: "25px 0px" }}>
-                                <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                    <Box sx={{
-                                        width: "27px",
-                                        height: "27px",
-                                        background: "#FC9A7E",
-                                        borderRadius: "50%",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center"
-                                    }}>1</Box>
-                                    <Typography component="box" sx={{
-                                        fontSize: "16px",
-                                        fontFamily: "Montserrat",
-                                        fontWeight: "600",
-                                        color: "#4E3A67",
-                                        display: "block",
-                                        width: "max-content"
-                                    }}>
-                                        Personal Details
-                                    </Typography>
-                                    <Box>
-                                        <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                    </Box>
-                                </Stack>
-
-
-                                <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                    <Box sx={{
-                                        width: "27px",
-                                        height: "27px",
-                                        background: "#FC9A7E",
-                                        borderRadius: "50%",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center"
-                                    }}>2</Box>
-                                    <Typography component="box" sx={{
-                                        fontSize: "16px",
-                                        fontFamily: "Montserrat",
-                                        fontWeight: "600",
-                                        color: "#4E3A67",
-                                        display: "block",
-                                        width: "max-content"
-
-                                    }}>
-                                        Professional Details
-                                    </Typography>
-                                    <Box>
-                                        <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                    </Box>
-                                </Stack>
-
-
-                                <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }} >
-                                    <Box sx={{
-                                        width: "27px",
-                                        height: "27px",
-                                        background: "#FC9A7E",
-                                        borderRadius: "50%",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center"
-                                    }}>3</Box>
-                                    <Typography component="box" sx={{
-                                        fontSize: "16px",
-                                        fontFamily: "Montserrat",
-                                        fontWeight: "600",
-                                        color: "#4E3A67",
-                                        display: "block",
-                                        width: "max-content"
-
-                                    }}>
-                                        Work History
-                                    </Typography>
-                                    <Box>
-                                        <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                    </Box>
-                                </Stack>
-
-                                <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
-                                    <Box sx={{
-                                        width: "27px",
-                                        height: "27px",
-                                        background: "#FC9A7E",
-                                        borderRadius: "50%",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center"
-                                    }}>3</Box>
-                                    <Typography component="box" sx={{
-                                        fontSize: "16px",
-                                        fontFamily: "Montserrat",
-                                        fontWeight: "600",
-                                        color: "#4E3A67",
-                                        display: "block",
-                                        width: "max-content"
-
-                                    }}>
-                                        Upload Resume
-                                    </Typography>
-                                    <Box>
-                                        <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                    </Box>
-                                </Stack>
-
+                            <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
+                                {
+                                    data1 && data1.map((item) => {
+                                        return <FormMenu data={item} />
+                                    })
+                                }
                             </Stack>
 
                         </Box>
                         <Box sx={{
                             boxSizing: "border-box",
-                            width: "865px",
-                            height: "647",
+                            width: { "xs": "100%", "sm": "100%", "md": "865px", "lg": "865px", "xl": "865px" },
                             background: "#FFFFFF",
                             border: "1px solid #EDEDED",
                             borderRadius: "19px",
-                            padding: "30px 50px",
+                            padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
                             paddingBottom: "100px"
 
 

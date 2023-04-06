@@ -1,5 +1,5 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { JobDescriptionURL, GetCandidateOnParticularJob, getAllPostedJobs } from "../../utils/ApiUrls";
+import { JobDescriptionURL, GetCandidateOnParticularJob, getAllPostedJobs, AppliedCandidateOnPostedJob } from "../../utils/ApiUrls";
 
 import {
     Box, Stack, Typography,
@@ -31,6 +31,7 @@ const AppliedCandidate = () => {
     const { id } = useParams();
 
     useEffect(() => {
+        console.log(id);
         setJobCanData([]);
         const getCandidateOnJob = async () => {
             let response = await postRequest(GetCandidateOnParticularJob + id);
@@ -61,8 +62,23 @@ const AppliedCandidate = () => {
             }
 
         };
+        const getCandidateOnAllJob = async () => {
+            try {
+                let data = await postRequest(AppliedCandidateOnPostedJob);
+                // console.log(data);
+                if (data.status === '0') {
+                    setJobCanData([])
+                } else {
+                    setJobCanData(data.message);
 
-        id !== undefined ? (getCandidateOnJob() && getJobDescription()) : getpostedjobs();
+                }
+            } catch (err) {
+                setJobCanData([]);
+
+            }
+        }
+
+        id !== undefined ? (getCandidateOnJob() && getJobDescription()) : (getpostedjobs() && getCandidateOnAllJob());
         id !== undefined ? setPageType("ParticularJobCandidate") : setPageType("AllJobCandidate")
     }, [id])
     return (<>
@@ -121,8 +137,11 @@ const AppliedCandidate = () => {
                     </>}
                     {
                         pageType === "AllJobCandidate" && <>
-                            <Stack direction="row" gap={3}>
-                                <Select
+
+                            <Stack direction="row" gap={3} sx={{
+                                marginBottom: "15px"
+                            }}>
+                                {/* <Select
                                     variant="standard"
                                     labelId="demo-simple-select-label"
                                     name="role"
@@ -138,7 +157,7 @@ const AppliedCandidate = () => {
                                     {CandidateFilter.map((item) =>
                                         <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
                                     )}
-                                </Select>
+                                </Select> */}
 
                                 <Select
                                     variant="standard"
@@ -159,6 +178,35 @@ const AppliedCandidate = () => {
                                 </Select>
 
                             </Stack>
+
+                            <Stack direction="row" justifyContent="space-between">
+                                <Box>
+                                    <Typography component="div" sx={{ fontSize: "26px", color: "#4E3A67", fontWeight: "700" }}>
+                                        {jobFilter === " " ? "All Jobs" : jobFilter}
+                                    </Typography>
+                                </Box>
+                            </Stack>
+
+                            <Stack direction="row" gap={2}
+
+                                sx={{
+                                    margin: "20px 0px"
+                                }}>
+
+                                <Typography component="div" sx={{
+                                    fontSize: "26px", color: "#FC9A7E", fontWeight: "700"
+                                }}>
+                                    {jobCanData.length > 0 && "Applications (" + jobCanData.length + ") "}
+                                </Typography>
+
+                            </Stack>
+
+
+                            <hr sx={{
+                                border: "1px solid #E1D4F2"
+
+                            }}></hr>
+
                         </>
                     }
 

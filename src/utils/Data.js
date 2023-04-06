@@ -1146,3 +1146,22 @@ export const ExperienceHome =
 export const CTCHome = [
     '1 lpa', '2 lpa', '3 lpa', '4 lpa', '5 lpa', '6 lpa', '7 lpa', '8 lpa', '9 lpa', '10 lpa', '11 lpa', '12 lpa', '13 lpa', '14 lpa', '15 lpa', '16 lpa', '17 lpa', '18 lpa', '19 lpa', '20 lpa', '21 lpa', '22 lpa', '23 lpa', '24 lpa', '25 lpa', '26 lpa', '27 lpa', '28 lpa', '29 lpa', 'above 30 lpa'
 ]
+
+export const data1 = [
+    {
+        id: 1,
+        text: "Personal Details"
+    },
+    {
+        id: 2,
+        text: "Professional Details"
+    },
+    {
+        id: 3,
+        text: "Work History"
+    },
+    {
+        id: 4,
+        text: "Upload Resume"
+    }
+]

@@ -7,6 +7,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShareIcon from '@mui/icons-material/Share';
 import { ThemeButtonType2 } from "../utils/Theme";
 
 import { useState, useEffect } from "react";
@@ -138,7 +139,12 @@ const JobDescriptionComponent = ({ userType, data }) => {
             }}>
 
             <Stack direction="row" gap={2}>
-                <img src={window.location.origin + "/assets/ActivelyHiring.png"} alt="Active Hiring" />
+                <Box sx={{
+                    width: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" },
+                    height: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }
+                }}>
+                    <img src={window.location.origin + "/assets/ActivelyHiring.png"} alt="Active Hiring" width="100%" height="100%" />
+                </Box>
                 <Typography component="box" sx={{
                     fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
                     fontFamily: "Montserrat",
@@ -259,8 +265,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                                 url: window.location.origin + "/job-description/" + data._id,
                             }}
                         >
-                            <img height="20px" src={window.location.origin + "/assets/Share.png"} alt="Share" />
-
+                            <ShareIcon />
                         </RWebShare>
 
                     </Stack>
@@ -279,7 +284,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                 <img src={window.location.origin + "/assets/Website.png"} height="20px" alt="Website" />
             </Stack>
 
-            <Typography component="div" sx={{ fontSize: "20px", lineHeight: '1.5' }}>
+            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, lineHeight: '1.5' }}>
                 {data ? (data.short_description ? parse(data.short_description) :
                     "Not Mentioned") : <Skeleton />}
             </Typography>
@@ -358,7 +363,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
             </Stack>
 
             {userType !== "employer" &&
-                <ThemeButtonType2 onClick={() => {
+                <ThemeButtonType2 className="ApplyButton" onClick={() => {
                     if (!jobApplied) {
                         JobApplied();
                     }

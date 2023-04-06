@@ -102,3 +102,9 @@ export const ShortlistRejectCandidate = "https://backend.jobsyahan.com/api/job/a
 export const JobSavedUrl = "https://backend.jobsyahan.com/api/job/savejob";
 
 export const JobLikedUrl = "https://backend.jobsyahan.com/api/job/likejobs";
+
+export const JobAppliedByCandidateUrl = "https://backend.jobsyahan.com/api/job/viewapplyjobslist";
+export const LikedJobByCandidateUrl = "https://backend.jobsyahan.com/api/job/viewlikedjobslist";
+export const SavedJobByCandidateUrl = "https://backend.jobsyahan.com/api/job/viewsavedjobslist";
+
+export const AppliedCandidateOnPostedJob = "https://backend.jobsyahan.com/api/job/viewcandidateonpostedjobs";

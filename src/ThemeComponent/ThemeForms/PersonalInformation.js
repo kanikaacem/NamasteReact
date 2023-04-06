@@ -22,6 +22,9 @@ import Error from '../../ThemeComponent/Common/Error';
 import { useState, useEffect } from "react";
 import CurrencyFormat from 'react-currency-format';
 
+
+import { data1 } from "../../utils/Data";
+import FormMenu from "../Common/FormMenu";
 const PersonalInformation = ({ setActiveStep }) => {
     const animatedComponents = makeAnimated();
 
@@ -122,7 +125,8 @@ const PersonalInformation = ({ setActiveStep }) => {
                         gap={2} sx={{
                             width: {
                                 "xs": "0%", "sm": "0%", "md": "50%", "lg": "50%", "xl": "50%"
-                            }, padding: { "xs": "0px", "sm": "0px", "md": "100px", "lg": "100px", "xl": "100px" }, visibility: { "xs": "hidden", "sm": "hidden", "md": "visible", "lg": "visible", "xl": "visible" }
+                            }, padding: { "xs": "0px", "sm": "0px", "md": "100px", "lg": "100px", "xl": "100px" },
+                            visibility: { "xs": "hidden", "sm": "hidden", "md": "visible", "lg": "visible", "xl": "visible" }
                         }}>
                         <Box sx={{
                             display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" }
@@ -209,117 +213,12 @@ const PersonalInformation = ({ setActiveStep }) => {
                             </Typography>
 
                             <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
-                                <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
-                                    <Box sx={{
-                                        width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                        height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                        background: "#FC9A7E",
-                                        borderRadius: "50%",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
 
-                                    }}>1</Box>
-                                    <Typography component="box" sx={{
-                                        fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
-                                        fontFamily: "Montserrat",
-                                        fontWeight: "600",
-                                        color: "#4E3A67",
-                                        display: "block",
-                                        width: "max-content"
-                                    }}>
-                                        Personal Details
-                                    </Typography>
-                                    <Box>
-                                        <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                    </Box>
-                                </Stack>
-
-                                <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                    <Box sx={{
-                                        width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                        height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                        background: "#FC9A7E",
-                                        borderRadius: "50%",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
-
-                                    }}>2</Box>
-                                    <Typography component="box" sx={{
-                                        fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
-                                        fontFamily: "Montserrat",
-                                        fontWeight: "600",
-                                        color: "#4E3A67",
-                                        display: "block",
-                                        width: "max-content"
-
-                                    }}>
-                                        Professional Details
-                                    </Typography>
-                                    <Box>
-                                        <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                    </Box>
-                                </Stack>
-
-                                <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                    <Box sx={{
-                                        width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                        height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                        background: "#FC9A7E",
-                                        borderRadius: "50%",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
-
-                                    }}>3</Box>
-                                    <Typography component="box" sx={{
-                                        fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
-                                        fontFamily: "Montserrat",
-                                        fontWeight: "600",
-                                        color: "#4E3A67",
-                                        display: "block",
-                                        width: "max-content"
-
-                                    }}>
-                                        Work History
-                                    </Typography>
-                                    <Box>
-                                        <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                    </Box>
-                                </Stack>
-
-                                <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                    <Box sx={{
-                                        width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                        height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                        background: "#FC9A7E",
-                                        borderRadius: "50%",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
-
-                                    }}>4</Box>
-                                    <Typography component="box" sx={{
-                                        fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
-                                        fontFamily: "Montserrat",
-                                        fontWeight: "600",
-                                        color: "#4E3A67",
-                                        display: "block",
-                                        width: "max-content"
-
-                                    }}>
-                                        Upload Resume
-                                    </Typography>
-                                    <Box>
-                                        <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                    </Box>
-                                </Stack>
-
+                                {
+                                    data1 && data1.map((item) => {
+                                        return <FormMenu data={item} />
+                                    })
+                                }
                             </Stack>
 
                         </Box>

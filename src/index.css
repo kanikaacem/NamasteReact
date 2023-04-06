@@ -926,4 +926,16 @@ nav {
     font-size: 12px !important;
   }
 
+  .css-r46vv0-MuiList-root {
+    font-size: 12px
+  }
+
+  .ApplyButton {
+    font-size: 12px !important;
+  }
+
+  .MuiSvgIcon-root {
+    width: 16px !important;
+    height: 16px !important;
+  }
 }

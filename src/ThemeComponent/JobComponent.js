@@ -69,7 +69,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                 <img src={window.location.origin + "/assets/RJ.png"} alt="RJ"></img>
                             </Box>
                             <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
-                                {data ? data.city[0] : "Not Mentioned"}
+                                {data && data.city[0] ? data.city[0] : "Not Mentioned"}
                             </Typography>
                         </Stack>
                         <Stack direction="row" sx={{

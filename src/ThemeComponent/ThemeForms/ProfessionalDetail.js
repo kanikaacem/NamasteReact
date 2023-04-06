@@ -16,6 +16,8 @@ import { ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import ThemeMessage from "../Common/ThemeMessage";
 
+import { data1 } from "../../utils/Data";
+import FormMenu from "../Common/FormMenu";
 import { useState, useEffect } from "react";
 
 function AddProfessionalForm() {
@@ -53,24 +55,24 @@ function AddProfessionalForm() {
 
         }
     }
+
     return <>
         <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message=" Your Professional Details is submitted successfully." type="success" />
 
-        <Stack sx={{
-            margin: "20px 0px"
+        <Box >
 
-        }}>
             <Box sx={{
-                width: "763px",
-                height: "153px",
+                width: { "xs": "92%", "sm": "92%", "md": "763px", "lg": "763px", "xl": "763px" },
+                minHeight: "153px",
                 background: "#F8F8F8",
                 border: "1px solid #EAEAEA",
                 boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                 borderRadius: "19px",
-                padding: "35px 50px",
+                padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
+
             }}>
                 <Typography component="box" sx={{
-                    fontSize: "40px",
+                    fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
                     fontFamily: "Montserrat",
                     fontWeight: "600",
                     color: "#4E3A67",
@@ -80,124 +82,25 @@ function AddProfessionalForm() {
                     Professional Details
                 </Typography>
 
-                <Stack direction="row" gap={1} sx={{ margin: "25px 0px" }}>
-                    <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                        <Box sx={{
-                            width: "27px",
-                            height: "27px",
-                            background: "#FC9A7E",
-                            borderRadius: "50%",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center"
-                        }}>1</Box>
-                        <Typography component="box" sx={{
-                            fontSize: "16px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                            width: "max-content"
-                        }}>
-                            Personal Details
-                        </Typography>
-                        <Box>
-                            <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                        </Box>
-                    </Stack>
+                <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
 
-
-                    <Stack direction="row" gap={1} alignItems="center" justifyContent="center">
-                        <Box sx={{
-                            width: "27px",
-                            height: "27px",
-                            background: "#FC9A7E",
-                            borderRadius: "50%",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center"
-                        }}>2</Box>
-                        <Typography component="box" sx={{
-                            fontSize: "16px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                            width: "max-content"
-
-                        }}>
-                            Professional Details
-                        </Typography>
-                        <Box>
-                            <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                        </Box>
-                    </Stack>
-
-
-                    <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                        <Box sx={{
-                            width: "27px",
-                            height: "27px",
-                            background: "#FC9A7E",
-                            borderRadius: "50%",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center"
-                        }}>3</Box>
-                        <Typography component="box" sx={{
-                            fontSize: "16px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                            width: "max-content"
-
-                        }}>
-                            Work History
-                        </Typography>
-                        <Box>
-                            <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                        </Box>
-                    </Stack>
-
-                    <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                        <Box sx={{
-                            width: "27px",
-                            height: "27px",
-                            background: "#FC9A7E",
-                            borderRadius: "50%",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center"
-                        }}>3</Box>
-                        <Typography component="box" sx={{
-                            fontSize: "16px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                            width: "max-content"
-
-                        }}>
-                            Upload Resume
-                        </Typography>
-                        <Box>
-                            <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                        </Box>
-                    </Stack>
+                    {
+                        data1 && data1.map((item) => {
+                            return <FormMenu data={item} />
+                        })
+                    }
 
                 </Stack>
 
             </Box>
             <Box sx={{
                 boxSizing: "border-box",
-                width: "865px",
-                height: "647",
+                width: { "xl": "865px", "lg": "865px", "md": "865px", "sm": "100%", "xs": "100%" },
                 background: "#FFFFFF",
                 border: "1px solid #EDEDED",
                 borderRadius: "19px",
                 top: "-12px",
-                padding: "30px 50px",
+                padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
                 paddingBottom: "100px"
 
 
@@ -279,6 +182,7 @@ function AddProfessionalForm() {
                                 <ThemeFInputDiv>
                                     <ThemeLabel LableFor="qualification" LableText="Qualification" />
                                     <Select
+
                                         labelId="demo-simple-select-label"
                                         name="profile_type"
                                         value={qualification}
@@ -294,7 +198,7 @@ function AddProfessionalForm() {
                                             borderRadius: "7px",
                                             fontSize: "16px",
                                             fontamily: 'Montserrat',
-                                            BorderBottom: 'none'
+                                            BorderBottom: 'none',
                                         }}
                                         disableUnderline
                                     >
@@ -320,11 +224,11 @@ function AddProfessionalForm() {
                                                     setFieldValue("course_type", event.target.value)
                                                 }}
                                             >
-                                                <Stack direction="row" gap={3}>
+                                                <Stack direction="row" gap={3} sx={{ flexWrap: "wrap" }}>
 
                                                     <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
                                                         sx={{
-                                                            height: "59px",
+                                                            height: { "xs": "36px", "sm": "36px", "md": "59px", "lg": "59px", "xl": "59px" },
                                                             width: "230px",
                                                             borderRadius: "7px",
                                                             border: " 2px solid #EAEAEA"
@@ -380,12 +284,12 @@ function AddProfessionalForm() {
 
                             </ThemeFInputDiv >
 
-                            <Stack direction="row" sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                            <Stack direction="row" sx={{ width: "100%", margin: "40px 0px", gap: "20px", flexWrap: "wrap" }}>
                                 <ThemeButtonType3 variant="outlined" type="submit"
-                                    sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
+                                    sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600", width: { "xs": "100%", "sm": "100%", "md": "50%", "lg": "50%", "xl": "50%" } }}
                                 > Save</ThemeButtonType3>
 
-                                <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
+                                <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600", width: { "xs": "100%", "sm": "100%", "md": "47%", "lg": "47%", "xl": "47%" } }}
                                     onClick={() => {
                                         window.location.href = window.location.origin + '/candidate-dashboard/profile/2';
 
@@ -401,7 +305,7 @@ function AddProfessionalForm() {
 
 
             </Box>
-        </Stack>
+        </Box>
     </>;
 };
 
@@ -433,15 +337,25 @@ const ProfessionalDetail = ({ setActiveStep }) => {
             <Stack className="ProfessionalInformationPageWrapper"
                 sx=
                 {{
-                    padding: "20px 50px",
+                    padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
                     gap: "24px"
                 }}>
 
-                <Stack direction="row" gap={3} sx={{ position: "relative" }}>
+                <Stack direction="row" sx={{
+                    position: "relative",
+                    gap: { "xs": "0px", "sm": "0px", "md": "24px", "lg": "24px", "xl": "24px" }
+                }}>
                     <Stack
-                        gap={2} sx={{ width: "40%", padding: "100px" }}>
+                        gap={2} sx={{
+                            width: {
+                                "xs": "0%", "sm": "0%", "md": "40%", "lg": "40%", "xl": "40%"
+                            }, padding: { "xs": "0px", "sm": "0px", "md": "100px", "lg": "100px", "xl": "100px" },
+                            visibility: { "xs": "hidden", "sm": "hidden", "md": "visible", "lg": "visible", "xl": "visible" }
+                        }}>
 
-                        <Box>
+                        <Box sx={{
+                            display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" }
+                        }}>
                             <Typography component="box" sx={{
                                 fontSize: "64px",
                                 fontFamily: "Montserrat",
@@ -466,7 +380,7 @@ const ProfessionalDetail = ({ setActiveStep }) => {
                         </Box>
                     </Stack>
 
-                    <Box id="ProfessionalDiv">
+                    <Box id="ProfessionalDiv" sx={{ width: { "xs": "100%", "sm": "100%", "md": "50%", "lg": "50%", "xl": "50%" } }}>
                         <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600", margin: "20px 0px", width: "fit-content" }}
                             onClick={handleAddComponent}>Add + </ThemeButtonType2>
                         {components}
