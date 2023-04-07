@@ -1,3 +1,6 @@
+import { PostImageRequest } from "../../utils/ApiRequests";
+import { uploadFileURL } from "../../utils/ApiUrls";
+
 import { Box, Stack, Typography, TextField, Divider } from "@mui/material";
 
 import { Formik, Field, Form } from "formik";
@@ -13,9 +16,12 @@ import UploadFile from "../../ThemeComponent/Common/UploadFile";
 import { CompanyUpdateInformationSchema, CreateSubUserValidationSchema } from "../../Validation/EmployerValidation";
 import { AccountSettingMenu } from "../../utils/Data";
 
+import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
+
 import { useState } from "react";
 const AccountSetting = () => {
     const [currentMenu, setCurrentMenu] = useState("company_information");
+    const [formSubmitted, setFormSubmitted] = useState(false);
     const user = useOutletContext();
 
     /*Creating Sub User*/
@@ -85,6 +91,12 @@ const AccountSetting = () => {
         let file_size = file.size;
         var output = document.getElementById('profileLogo');
         output.src = URL.createObjectURL(event.target.files[0]);
+        let formData = new FormData();
+        formData.append('image', file);
+        formData.append('ImageType', 'Employer_profile');
+        let response = await PostImageRequest(uploadFileURL, formData);
+
+        setFormSubmitted(true);
 
     }
     const handleHrInformation = async (values) => {
@@ -94,13 +106,17 @@ const AccountSetting = () => {
             email_address: values.password,
             mobile_number: values.mobile_number
         }
-        console.log(formData)
     }
 
 
     return (<>
+        <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted}
+            message="Your Resume is uploaded. User is registered Successfully." type="success" />
+
         <Stack className="AccountSettingPage" direction="row" gap={2} sx={{
-            padding: "20px",
+            padding: {
+                "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px"
+            },
             minHeight: "100vh",
             background: "linear-gradient(231.41deg, #FDFCFF 13.04%, #FAF7FE 57.79%)",
             flexWrap: "wrap"
@@ -130,7 +146,7 @@ const AccountSetting = () => {
                             {AccountSettingMenu && AccountSettingMenu.map((item) => {
                                 return (<Typography key={item.id} className={currentMenu == item.menu_name && "AccountMenu "} component="div"
                                     sx={{
-                                        fontSize: "16px",
+                                        fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
                                         color: "#4E3A67",
                                         margin: "5 0px",
                                         cursor: "pointer",
@@ -156,7 +172,7 @@ const AccountSetting = () => {
                         gap={2}
                         sx={{
                             background: "#FFFFFF",
-                            padding: "50px",
+                            padding: { "xs": "20px", "sm": "20px", "md": "50px", "lg": "50px", "xl": "50px" },
                             borderRadius: "14px",
                             border: "1px solid #E1D4F2"
                         }}>
@@ -228,7 +244,7 @@ const AccountSetting = () => {
                         gap={2}
                         sx={{
                             background: "#FFFFFF",
-                            padding: "50px",
+                            padding: { "xs": "20px", "sm": "20px", "md": "50px", "lg": "50px", "xl": "50px" },
                             borderRadius: "14px",
                             border: "1px solid #E1D4F2"
                         }}>
@@ -376,7 +392,7 @@ const AccountSetting = () => {
                         gap={2}
                         sx={{
                             background: "#FFFFFF",
-                            padding: "50px",
+                            padding: { "xs": "20px", "sm": "20px", "md": "50px", "lg": "50px", "xl": "50px" },
                             borderRadius: "14px",
                             border: "1px solid #E1D4F2"
                         }}>

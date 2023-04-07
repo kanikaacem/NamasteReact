@@ -938,4 +938,32 @@ nav {
     width: 16px !important;
     height: 16px !important;
   }
+
+  .SelectBlueCollarQuestion {
+    font-size: 12px;
+  }
+
+  .ViewCandidateLink {
+    font-size: 12px;
+  }
+
+  .PostJobForm1 .css-1s2u09g-control {
+    padding: 0px !important;
+    border-radius: 11px !important;
+    font-size: 12px !important;
+  }
+
+  .css-1g8u92u-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root,
+  .css-1nmpxh9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+    padding: 0px !important;
+  }
+
+  .MuiFormGroup-root .css-dmmspl-MuiFormGroup-root {
+    font-size: 12px !important;
+  }
+
+  .css-1o5jst9-MuiStack-root,
+  .css-x0fw4u-MuiStack-root {
+    height: 30px !important;
+  }
 }

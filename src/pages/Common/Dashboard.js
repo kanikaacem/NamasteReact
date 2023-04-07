@@ -162,7 +162,10 @@ const Dashboard = () => {
                                                         button key={item.id} to={item.url} component={NavLink}
                                                         className="menu"
                                                         id={item.id}
-                                                        onClick={() => { dispatch({ type: "CHANGE_SELECTED_MENU", payload: item.value }) }} >
+                                                        onClick={() => {
+                                                            setOpenMenu(!openMenu)
+                                                            dispatch({ type: "CHANGE_SELECTED_MENU", payload: item.value })
+                                                        }} >
                                                         <ListItemText
                                                             disableTypography
                                                             sx={{
@@ -204,7 +207,10 @@ const Dashboard = () => {
                                                         button key={item.id} to={item.url} component={NavLink}
                                                         className="menu"
                                                         id={item.id}
-                                                        onClick={() => { dispatch({ type: "CHANGE_SELECTED_MENU", payload: item.value }) }} >
+                                                        onClick={() => {
+                                                            setOpenMenu(!openMenu)
+                                                            dispatch({ type: "CHANGE_SELECTED_MENU", payload: item.value })
+                                                        }} >
                                                         <ListItemText
                                                             disableTypography
                                                             sx={{
@@ -225,9 +231,49 @@ const Dashboard = () => {
                         </>
                         )}
 
-                        <Box sx={{ cursor: "pointer" }} onClick={() => setOpenProfile(!openProfile)}>
-                            <Avatar alt={user.fullname} />
+                        {/* {user && user.employer_type === "employer" && <Box sx={{
+                            cursor: "pointer",
+                            width: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" },
+                            height: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" }
+                        }} onClick={() => setOpenProfile(!openProfile)}>
+                            {
+
+                                user.employer_profilepic ?
+                                    <img src={user.employer_profilepic} alt={user.employer_name} width="100%" height="100%" style={{ borderRadius: "50%" }} />
+                                    :
+                                    <Avatar alt={user.employer_name} />
+
+                            }
                         </Box>
+                        }
+
+                        {user && user.employer_type === "candidate" && <Box sx={{
+                            cursor: "pointer",
+                            width: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" },
+                            height: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" }
+                        }} onClick={() => setOpenProfile(!openProfile)}>
+                            {
+
+                                user.profile_image ?
+                                    <img src={user.profile_image} alt={user && user.personalInfo && user.personalInfo.fullname} width="100%" height="100%" style={{ borderRadius: "50%" }} /> :
+                                    <Avatar alt={user && user.personalInfo && user.personalInfo.fullname} />
+
+                            }
+                        </Box>
+                        } */}
+                        <Box sx={{
+                            cursor: "pointer",
+                            width: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" },
+                            height: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" }
+                        }} onClick={() => setOpenProfile(!openProfile)}>
+
+                            <Avatar alt={user.employer_name} />
+
+
+                        </Box>
+
+
+
                     </Stack>
                     {openProfile && (<>
 

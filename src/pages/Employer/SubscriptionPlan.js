@@ -38,7 +38,10 @@ const SubscriptionPlan = () => {
     })
     return (<>
         <Box>
-            <Container sx={{ padding: "20px 0px" }}>
+            <Container sx={{
+                padding: "20px"
+            }}
+            >
                 {!subscriptionPlan && (<>
                     <Box>
                         <Box>
@@ -155,7 +158,7 @@ const SubscriptionPlan = () => {
 
 
             </Container>
-        </Box>
+        </Box >
     </>)
 }
 export default SubscriptionPlan;

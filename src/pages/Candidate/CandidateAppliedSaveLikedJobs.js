@@ -6,12 +6,12 @@ import { useState, useEffect } from "react";
 
 import ErrorPage from "../ErrorPage";
 import JobComponent from "../../ThemeComponent/JobComponent";
-
+import Template1 from "../../ThemeComponent/LoadingTemplate/Template1";
 const CandidateAppliedSaveLikedJobs = ({ JobAction }) => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage, setDataPerPage] = useState(10);
-    const [isDataLoaded, setIsDataLoaded] = useState(true);
+    const [isDataLoaded, setIsDataLoaded] = useState(false);
     const [errorMessage, setErroMessage] = useState("");
     //Pagination 
     const IndexOfLastData = currentPage * dataPerPage;
@@ -19,6 +19,8 @@ const CandidateAppliedSaveLikedJobs = ({ JobAction }) => {
     const jobs = data.length > 0 && data.slice(IndexOfFirstData, IndexOfLastData);
 
     useEffect(() => {
+        setIsDataLoaded(false)
+
         let url = "";
         let error_message = "";
 
@@ -44,9 +46,11 @@ const CandidateAppliedSaveLikedJobs = ({ JobAction }) => {
             let response = await postRequest(url, {});
 
             if (response.status === '1') {
-                console.log(response.data);
-                if (Object.keys(response.data).length > 0)
+                if (Object.keys(response.data).length > 0) {
+                    setIsDataLoaded(true)
                     setData(response.data)
+
+                }
                 else
                     setErroMessage(error_message);
 
@@ -63,6 +67,16 @@ const CandidateAppliedSaveLikedJobs = ({ JobAction }) => {
                 <Box sx={{ minHeight: 500, width: '100%' }}>
                     <Container>
                         <Stack direction="column" gap={2}>
+                            {!isDataLoaded && <>
+                                <Stack direction="column" gap={2}>
+                                    <Template1></Template1>
+                                    <Template1></Template1>
+                                    <Template1></Template1>
+                                    <Template1></Template1>
+
+                                </Stack>
+
+                            </>}
                             {
                                 isDataLoaded && data && data.length <= 0 &&
 

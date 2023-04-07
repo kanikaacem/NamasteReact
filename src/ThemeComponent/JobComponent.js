@@ -33,13 +33,13 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
             cursor: "pointer"
         }}
             onClick={() => {
-                if (userType === "employer")
-                    window.location.href = window.location.origin + '/employer-dashboard/job-description/' + data_id
-                else if (userType === "candidate" && window.location.pathname === "/job")
-                    window.location.href = window.location.origin + '/candidate-dashboard/job-description/' + data_id
-
-                else
+                if (window.location.pathname === '/candidate-dashboard')
                     OnClickfun()
+                else {
+                    navigate((userType === "employer" ? "/employer-dashboard" : "/candidate-dashboard") + "/job-description/" + data_id)
+                }
+
+
             }}>
             <Box >
                 <Stack direction="row" justifyContent="space-between" sx={{ padding: "20px", color: "#4E3A67" }}>
@@ -50,7 +50,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                         {(data && data.salarytype) ? data.salarytype.salary : "Not Mentioned"}
                     </Typography>
                 </Stack>
-                <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#3D3B3F", padding: "0px 20px" }}>
+                <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#3D3B3F", padding: "0px 20px" }}>
                     {data ? data.company_name : "Not Mentioned"}
                 </Typography>
 
@@ -68,7 +68,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                             <Box>
                                 <img src={window.location.origin + "/assets/RJ.png"} alt="RJ"></img>
                             </Box>
-                            <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
+                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
                                 {data && data.city[0] ? data.city[0] : "Not Mentioned"}
                             </Typography>
                         </Stack>
@@ -84,7 +84,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                             <Box>
                                 <img src={window.location.origin + "/assets/RJ1.png"} alt="RJ1"></img>
                             </Box>
-                            <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
+                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
                                 {data && data.vacancy ? data.vacancy + " Openings" : "Not Mentioned"}
                             </Typography>
                         </Stack>
@@ -100,7 +100,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                             <Box>
                                 <img src={window.location.origin + "/assets/RJ2.png"} alt="RJ2"></img>
                             </Box>
-                            <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
+                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
                                 Min. {data && data.candidate_experience ? data.candidate_experience.min_age + " Years" : "Not Mentioned"}
                             </Typography>
                         </Stack>
@@ -117,17 +117,17 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                             <Box>
                                 <img src={window.location.origin + "/assets/RJ3.png"} alt="RJ3"></img>
                             </Box>
-                            <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
+                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
                                 {data && data.prefered_degree[0] ? data.prefered_degree[0] : "Not Mentioned"}
                             </Typography>
                         </Stack>
                     </Stack>
 
-                    <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
+                    <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
                         {data && data.applied_count > 0 ? data.applied_count : '0'} Applicants Applied
                     </Typography>
                     {data && data.applied_count > 0 && userType === "employer" &&
-                        <a
+                        <a className="ViewCandidateLink"
                             href="#"
                             onClick={(event) => {
                                 event.preventDefault();
@@ -139,7 +139,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
 
 
                     <Typography component="div" sx={{
-                        fontSize: { "xs": "16px", "sm": "16px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px",
+                        fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                         whiteSpace: "nowrap"
@@ -210,7 +210,10 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                 <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px", padding: "0px 20px", color: '#A69CB2' }}>
                                     {data && data.candidate_experience && data.candidate_experience.min_age === 0 && "Jobs For Freshers"}
                                 </Typography>
-                                <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px", padding: "0px 20px", color: "#A69CB2", textTransform: "capitalize" }}>
+                                <Typography component="div" sx={{
+                                    fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px",
+                                    padding: { "xs": "0px", "sm": "0px", "md": "0px 20px", "lg": "0px 20px", "xl": "0px 20px" }, color: "#A69CB2", textTransform: "capitalize"
+                                }}>
                                     {(data && data.prefered_gender === "both" ?
                                         " Job for Men , Women" : "Job for " + data.prefered_gender)}
                                 </Typography>

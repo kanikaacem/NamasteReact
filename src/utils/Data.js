@@ -1165,3 +1165,18 @@ export const data1 = [
         text: "Upload Resume"
     }
 ]
+
+export const data2 = [
+    {
+        id: 1,
+        text: "Personal Details"
+    },
+    {
+        id: 2,
+        text: "Work Details"
+    },
+    {
+        id: 3,
+        text: "General Details"
+    },
+]

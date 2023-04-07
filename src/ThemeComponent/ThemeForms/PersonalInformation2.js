@@ -14,6 +14,10 @@ import ThemeMessage from "../Common/ThemeMessage";
 import Select from 'react-select';
 
 import { useState, useEffect } from "react";
+
+import { data2 } from "../../utils/Data";
+import FormMenu from "../Common/FormMenu";
+
 const PersonalInformation2 = ({ jobType }) => {
     const { step } = useParams();
     const JobType = window.location.pathname.split('/')[1];
@@ -76,7 +80,7 @@ const PersonalInformation2 = ({ jobType }) => {
                     padding: "13px",
                     borderRadius: "11px",
                     border: "1px solid #EAEAEA",
-                    fontSize: "16px"
+                    fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }
                 }} type="text" name={QuestionItem && QuestionItem.questiontag} placeholder={QuestionItem && QuestionItem.question} />
         </>)
     }
@@ -119,7 +123,8 @@ const PersonalInformation2 = ({ jobType }) => {
                     "& .MuiOutlinedInput-root": {
                         borderRadius: "4px",
                         padding: "2px",
-                        border: "1px solid #EAEAEA"
+                        border: "1px solid #EAEAEA",
+                        fontSize: { "xs": "12px", "sm": "12px", "md": "14px", "lg": "14px", "xl": "14px" }
                     },
                     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
                         border: "none"
@@ -246,7 +251,7 @@ const PersonalInformation2 = ({ jobType }) => {
         }}>
             <Stack direction="row" gap={2}
                 sx={{
-                    padding: { "lg": "50px 80px", "md": "20px", "xs": "20px" },
+                    padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
 
                 }}>
 
@@ -318,104 +323,30 @@ const PersonalInformation2 = ({ jobType }) => {
                         border: "1px solid #EAEAEA",
                         boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                         borderRadius: "19px",
-                        padding: "35px 50px",
+                        padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
                         margin: "0 auto",
 
                     }}>
                         <Typography component="box" sx={{
-                            fontSize: "40px",
+                            fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
                             fontFamily: "Montserrat",
                             fontWeight: "600",
                             color: "#4E3A67",
                             display: "block",
                             marginTop: "20px"
                         }}>
-                            Candidate Details
+                            {step === "0" && "Candidate Details"}
+                            {step === "1" && "Work Details"}
+                            {step === "2" && "General Details"}
                         </Typography>
 
-                        <Stack direction="row" gap={1} sx={{ margin: "25px 0px" }}>
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: step === '0' ? '1' : '0.5' }}>
-                                <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>1</Box>
-                                <Typography component="box" sx={{
-                                    fontSize: "16px",
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                    width: "max-content"
-                                }}>
-                                    Personal Details
-                                </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                </Box>
-                            </Stack>
+                        <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
 
-
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: step === '1' ? '1' : '0.5' }}>
-                                <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>2</Box>
-                                <Typography component="box" sx={{
-                                    fontSize: "16px",
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                    width: "max-content"
-
-                                }}>
-                                    Work Details
-                                </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                </Box>
-                            </Stack>
-
-
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: step === '2' ? '1' : '0.5' }}>
-                                <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>3</Box>
-                                <Typography component="box" sx={{
-                                    fontSize: "16px",
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                    width: "max-content"
-
-                                }}>
-
-                                    General Details
-                                </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                </Box>
-                            </Stack>
-
-
-
+                            {
+                                data2 && data2.map((item) => {
+                                    return <FormMenu data={item} />
+                                })
+                            }
                         </Stack>
                     </Box>
 

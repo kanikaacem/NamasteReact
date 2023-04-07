@@ -72,7 +72,7 @@ const ChangePassword = () => {
 
         <Box sx={{
             background: "#FFFFFF",
-            padding: "50px",
+            padding: { "xs": "20px", "sm": "20px", "md": "50px", "lg": "50px", "xl": "50px" },
             borderRadius: "14px",
             border: "1px solid #E1D4F2"
         }}>

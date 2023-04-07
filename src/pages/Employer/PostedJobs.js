@@ -51,7 +51,7 @@ const PostedJobs = () => {
 
 
     return (<>
-        <Stack direction="row" sx={{ padding: "20px" }} className="PostedJobPage" gap={2}>
+        <Stack direction="row" sx={{ padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" } }} className="PostedJobPage" gap={2}>
             <Stack sx={{ width: { "lg": "80%", "md": "100%", "xs": "100%" } }} gap={1}>
                 <Stack direction="row" justifyContent="space-between">
                     <Select

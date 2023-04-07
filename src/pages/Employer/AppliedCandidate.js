@@ -11,7 +11,7 @@ import SocialMedia from "../../ThemeComponent/Common/SocialMedia";
 import { CandidateFilter } from "../../utils/Data";
 
 import ErrorPage from "../ErrorPage";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 const AppliedCandidate = () => {
     const [jobData, setJobData] = useState([]);
@@ -29,9 +29,9 @@ const AppliedCandidate = () => {
     const appliedCandidate = jobCanData.length > 0 && jobCanData.slice(IndexOfFirstData, IndexOfLastData);
 
     const { id } = useParams();
-
+    const navigate = useNavigate();
     useEffect(() => {
-        console.log(id);
+        // console.log(id);
         setJobCanData([]);
         const getCandidateOnJob = async () => {
             let response = await postRequest(GetCandidateOnParticularJob + id);
@@ -82,30 +82,36 @@ const AppliedCandidate = () => {
         id !== undefined ? setPageType("ParticularJobCandidate") : setPageType("AllJobCandidate")
     }, [id])
     return (<>
-
         <Box className="AppliedCandidatePage"
             sx={{
                 minHeight: "100vh"
             }}>
             <Stack direction="row" gap={2} className="AppliedCandidatePageWrapper" sx={{
                 padding: {
-                    "lg": "10px 20px", "md": "0px", "xs": "0px"
+                    padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" }
                 }
             }}>
                 <Box sx={{
-                    width: {
-                        "lg":
-                            `calc(100vw - 451px)`, "md": "100%", "xs": "100%",
-                        padding: "20px"
-                    }
+                    width: { "xs": "87%", "sm": "87%", "md": `calc(100vw-451px)`, "lg": `calc(100vw-451px)`, "xl": `calc(100vw-451px)` },
+                    padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" }
+
                 }}>
                     {pageType === "ParticularJobCandidate" && <>
                         <Stack direction="row" justifyContent="space-between">
                             <Box>
-                                <Typography component="div" sx={{ fontSize: "26px", color: "#4E3A67", fontWeight: "700" }}>
+                                <Typography component="div" sx={{
+                                    fontSize: {
+                                        "xs": "16px", "sm": "16px", "md": "26px", "lg": "26px", "xl": "26px"
+                                    }, color: "#4E3A67", fontWeight: "700"
+                                }}>
                                     {jobData && jobData.job_title ? jobData.job_title : " "}
                                 </Typography>
-                                <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
+                                <Typography component="div" sx={{
+                                    fontSize: {
+                                        "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px"
+
+                                    }, color: "#4E3A67"
+                                }}>
                                     {jobData && jobData.location_state ? jobData.location_state + "  " : " "}
                                     {jobData && jobData.candidate_experience ?
                                         "," + jobData.candidate_experience.min_age + " - " + jobData.candidate_experience.max_age + "Yrs" : " "}
@@ -121,7 +127,10 @@ const AppliedCandidate = () => {
                             }}>
 
                             <Typography component="div" sx={{
-                                fontSize: "26px", color: "#FC9A7E", fontWeight: "700"
+                                fontSize: {
+                                    "xs": "16px", "sm": "16px", "md": "26px", "lg": "26px", "xl": "26px"
+
+                                }, color: "#FC9A7E", fontWeight: "700"
                             }}>
                                 {jobCanData.length > 0 && "Applications (" + jobCanData.length + ") "}
                             </Typography>
@@ -167,6 +176,11 @@ const AppliedCandidate = () => {
                                     label="role"
                                     onChange={(event) => {
                                         setJobFilter(event.target.value);
+                                        // getCandidateOnJob(event.target.value);
+                                        navigate("/employer-dashboard/applied-candidates/" + event.target.value)
+                                        // window.history.pushState("state", "", "/" + jobFilter);
+
+
                                     }}
                                     sx={{ width: "350px", display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
                                     disableUnderline
@@ -179,13 +193,14 @@ const AppliedCandidate = () => {
 
                             </Stack>
 
-                            <Stack direction="row" justifyContent="space-between">
+
+                            {/* <Stack direction="row" justifyContent="space-between">
                                 <Box>
                                     <Typography component="div" sx={{ fontSize: "26px", color: "#4E3A67", fontWeight: "700" }}>
-                                        {jobFilter === " " ? "All Jobs" : jobFilter}
+                                         {jobFilter === " " ? "All Jobs" : jobFilter}
                                     </Typography>
                                 </Box>
-                            </Stack>
+                            </Stack> */}
 
                             <Stack direction="row" gap={2}
 
@@ -194,7 +209,10 @@ const AppliedCandidate = () => {
                                 }}>
 
                                 <Typography component="div" sx={{
-                                    fontSize: "26px", color: "#FC9A7E", fontWeight: "700"
+                                    fontSize: {
+                                        "xs": "16px", "sm": "16px", "md": "26px", "lg": "26px", "xl": "26px"
+
+                                    }, color: "#FC9A7E", fontWeight: "700"
                                 }}>
                                     {jobCanData.length > 0 && "Applications (" + jobCanData.length + ") "}
                                 </Typography>
@@ -221,6 +239,7 @@ const AppliedCandidate = () => {
                                     AppliedDate={parseInt(item.candidateapplieddate)}
                                     CandidateStatus={item.candidatestatus}
                                     jobId={jobData._id}
+                                    jobInformation={item.jobsid}
                                 />
                             </>)
                         })}
@@ -333,7 +352,7 @@ const AppliedCandidate = () => {
                         </Stack>
                     </Stack>
                 </Box>
-            </Stack>
+            </Stack >
         </Box >
     </>)
 }
