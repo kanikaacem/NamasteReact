@@ -1004,4 +1004,21 @@ nav {
   .MuiTab-root {
     font-size: 12px !important;
   }
+
+  .ProgressBarDiv div div {
+    height: 10px !important;
+  }
+
+  .ProgressBarDiv div div div {
+    height: 10px !important;
+  }
+
+  .ProgressBarDiv div div div span {
+    font-size: 10px !important;
+  }
+
+  .updateResume {
+    font-size: 12px !important;
+  }
+
 }

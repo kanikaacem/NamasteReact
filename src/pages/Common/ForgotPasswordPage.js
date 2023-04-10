@@ -61,7 +61,7 @@ const ForgotPasswordPage = ({ user }) => {
                         <Stack direction="column" gap={2} alignItems="center" justifyContent="center">
                             <Box>
                                 <Typography component="box" sx={{
-                                    fontSize: { "lg": "64px", "md": "50px", "xs": "50px" },
+                                    fontSize: { "lg": "64px", "md": "50px", "xs": "26px" },
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "700",
                                     color: "#4E3A67",
@@ -71,7 +71,7 @@ const ForgotPasswordPage = ({ user }) => {
                                     Forgot
 
                                     <Typography component="box" sx={{
-                                        fontSize: { "lg": "64px", "md": "50px", "xs": "50px" },
+                                        fontSize: { "lg": "64px", "md": "50px", "xs": "26px" },
                                         fontFamily: "Work Sans, sans-serif",
                                         fontWeight: "700",
                                         color: "#4E3A67",
@@ -102,7 +102,7 @@ const ForgotPasswordPage = ({ user }) => {
                                 paddingBottom: "100px"
                             }}>
                             <Typography component="box" sx={{
-                                fontSize: "32px",
+                                fontSize: { "xs": "26px", "sm": "26px", "md": "32px", "lg": "32px", "xl": "32px" },
                                 fontFamily: "Montserrat",
                                 display: "block",
                                 margin: "20px 0px"
@@ -111,7 +111,7 @@ const ForgotPasswordPage = ({ user }) => {
                             </Typography>
 
                             <Typography component="box" sx={{
-                                fontSize: "16px",
+                                fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
                                 fontFamily: "Montserrat",
                                 display: "block",
                                 margin: "20px 0px"

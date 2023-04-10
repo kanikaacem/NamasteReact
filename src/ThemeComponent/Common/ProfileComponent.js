@@ -301,8 +301,7 @@ const ProfileComponent = ({ userData, userType }) => {
                             }}
                                 divider={<Divider orientation="horizontal" flexItem />} >
                                 <Box sx={{
-
-                                    padding: "30px"
+                                    padding: { "xs": "10px", "sm": "10px", "md": "30px", "lg": "30px", "xl": "30px" }
                                 }}>
                                     <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
                                         Professional Details
@@ -312,13 +311,13 @@ const ProfileComponent = ({ userData, userType }) => {
                                         {userData && userData.workHistory && userData.workHistory.length > 0 && userData.workHistory.map((item) => {
                                             return (<>
                                                 <Box>
-                                                    <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", fontWeight: "600" }}>
+                                                    <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#806E96", fontWeight: "600" }}>
                                                         {item.company_name ? item.company_name : "Not mentioned"}
                                                     </Typography>
-                                                    <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                                    <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#806E96" }}>
                                                         {item.designation ? item.designation : "Not Mentioned"}
                                                     </Typography>
-                                                    <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                                    <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#806E96" }}>
                                                         <Moment format="DD/MM/YYYY">{item.starting_year}</Moment>{" to "}
                                                         <Moment format="DD/MM/YYYY">{item.ending_year}</Moment>
                                                     </Typography>
@@ -330,8 +329,8 @@ const ProfileComponent = ({ userData, userType }) => {
                                 </Box>
 
                                 <Box sx={{
+                                    padding: { "xs": "10px", "sm": "10px", "md": "30px", "lg": "30px", "xl": "30px" }
 
-                                    padding: "30px"
                                 }}>
                                     <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
                                         Educational Details
@@ -341,10 +340,10 @@ const ProfileComponent = ({ userData, userType }) => {
                                         {userData && userData.educationalInfo && userData.educationalInfo.length > 0 && userData.educationalInfo.map((item) => {
                                             return (<>
                                                 <Box>
-                                                    <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", fontWeight: "600" }}>
+                                                    <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#806E96", fontWeight: "600" }}>
                                                         {item.institude_name ? item.institude_name : "Institute name"}
                                                     </Typography>
-                                                    <Typography component="div" sx={{ fontSize: "16px", color: "#806E96" }}>
+                                                    <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#806E96" }}>
                                                         {item.qualification + " ( " + item.course_type.replace("_", " ").toUpperCase() + " )" + " | "}
                                                         <Moment format="YYYY">{item.starting_year}</Moment>{" to "}
                                                         <Moment format="YYYY">{item.ending_year}</Moment>
@@ -356,49 +355,51 @@ const ProfileComponent = ({ userData, userType }) => {
                                 </Box>
 
                                 <Box sx={{
+                                    padding: { "xs": "10px", "sm": "10px", "md": "30px", "lg": "30px", "xl": "30px" }
 
-                                    padding: "30px"
                                 }}>
-                                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600", color: "#4E3A67" }}>
-                                        More Information                                    </Typography>
+                                    <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "600", color: "#4E3A67" }}>
+                                        More Information
+                                    </Typography>
 
                                     <Stack direction="column" gap={1}>
                                         <Stack direction="row" sx={{
                                             flexWrap: "wrap"
                                         }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                            <Typography component="div" sx={{ width: { "xs": "250px", "sm": "250px", "md": "300px", "lg": "300px", "xl": "300px" }, fontSize: { "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px" }, color: "#806E96" }}>
                                                 Current Location:
                                             </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
+                                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#806E96", textTransform: "capitalize" }}>
                                                 {userData && userData.personalInfo && userData.personalInfo.state ? userData.personalInfo.state : "Not mentioned"}
                                             </Typography>
                                         </Stack>
                                         <Stack direction="row" sx={{
                                             flexWrap: "wrap"
                                         }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                            <Typography component="div" sx={{ width: { "xs": "250px", "sm": "250px", "md": "300px", "lg": "300px", "xl": "300px" }, fontSize: { "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px" }, color: "#806E96" }}>
                                                 Perferred Location:
                                             </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
+                                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#806E96", textTransform: "capitalize" }}>
                                                 {userData && userData.personalInfo && userData.personalInfo.preffered_location ? userData.personalInfo.preffered_location : "Not mentioned "}
                                             </Typography>
                                         </Stack>
                                         <Stack direction="row" sx={{
                                             flexWrap: "wrap"
                                         }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                            <Typography component="div" sx={{ width: { "xs": "250px", "sm": "250px", "md": "300px", "lg": "300px", "xl": "300px" }, fontSize: { "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px" }, color: "#806E96" }}>
                                                 Current Salary:
                                             </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
+                                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#806E96", textTransform: "capitalize" }}>
                                                 {userData && userData.personalInfo && userData.personalInfo.current_salary ? userData.personalInfo.current_salary : "Not mentioned "}
                                             </Typography>
                                         </Stack>
                                         <Stack direction="row" sx={{
                                             flexWrap: "wrap"
                                         }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
-                                                Expected Salary:                                            </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
+                                            <Typography component="div" sx={{ width: { "xs": "250px", "sm": "250px", "md": "300px", "lg": "300px", "xl": "300px" }, fontSize: { "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px" }, color: "#806E96" }}>
+                                                Expected Salary:
+                                            </Typography>
+                                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#806E96", textTransform: "capitalize" }}>
                                                 {userData && userData.personalInfo && userData.personalInfo.expected_salary ? userData.personalInfo.expected_salary : "Not mentioned"}
 
                                             </Typography>
@@ -406,20 +407,20 @@ const ProfileComponent = ({ userData, userType }) => {
                                         <Stack direction="row" sx={{
                                             flexWrap: "wrap"
                                         }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                            <Typography component="div" sx={{ width: { "xs": "250px", "sm": "250px", "md": "300px", "lg": "300px", "xl": "300px" }, fontSize: { "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px" }, color: "#806E96" }}>
                                                 Experience:
                                             </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
+                                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#806E96", textTransform: "capitalize" }}>
                                                 {userData && userData.personalInfo && userData.personalInfo.total_work_experience ? userData.personalInfo.total_work_experience + " Yrs " : "Not mentioned "}
                                             </Typography>
                                         </Stack>
                                         <Stack direction="row" sx={{
                                             flexWrap: "wrap"
                                         }}>
-                                            <Typography component="div" sx={{ width: "300px", fontSize: "18px", color: "#806E96" }}>
+                                            <Typography component="div" sx={{ width: { "xs": "250px", "sm": "250px", "md": "300px", "lg": "300px", "xl": "300px" }, fontSize: { "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px" }, color: "#806E96" }}>
                                                 Gender:
                                             </Typography>
-                                            <Typography component="div" sx={{ fontSize: "16px", color: "#806E96", textTransform: "capitalize" }}>
+                                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#806E96", textTransform: "capitalize" }}>
                                                 {userData && userData.personalInfo && userData.personalInfo.gender ? userData.personalInfo.gender : "Not mentioned "}
 
                                             </Typography>

@@ -10,7 +10,7 @@ const ThemeMessage = ({ open, setOpen, message, type }) => {
         else if (window.location.pathname === "/forgot-password/candidate")
             window.location.href = window.location.origin + "/candidate-login";
         else if (setOpen === "JobPosted")
-            navigate("/", { state: { jobPosted: false } });
+            navigate("/employer-dashboard", { state: { jobPosted: false } });
         else
             setOpen(false)
     }

@@ -41,7 +41,7 @@ const DashboardAccountSetting = ({ userName, userEmail, userLastLogin }) => {
 
             <Stack gap={2} direction="column" sx={{ background: "#FFFFFF", padding: "20px" }}>
 
-                <Stack direction="row" gap={2} sx={{ cursor: "pointer" }}
+                {/* <Stack direction="row" gap={2} sx={{ cursor: "pointer" }}
                 >
                     <PersonIcon />
                     <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "14px", "lg": "14px", "xl": "14px" } }}>
@@ -49,7 +49,7 @@ const DashboardAccountSetting = ({ userName, userEmail, userLastLogin }) => {
                     </Typography>
 
 
-                </Stack>
+                </Stack> */}
 
                 <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => {
 
