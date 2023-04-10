@@ -8,9 +8,11 @@ import { JobCategories } from "../../../utils/Data";
 import { useState } from "react";
 
 import AllJobCategories from "./AllJobCategories";
+import { useNavigate } from 'react-router-dom';
 
 const JobCategory = () => {
 
+  const navigate = useNavigate();
   const ShowLessCategoryButton = styled(Button)({
     textTransform: "capitalize",
     color: "#FFFFFF",
@@ -54,7 +56,7 @@ const JobCategory = () => {
           {JobCategories.map((item, index) => {
             return (
               <>
-                <div className="CategoryItem" key={index} id={item.id} >
+                <div className="CategoryItem" key={index} id={item.id} onClick={() => navigate("job?name=" + item.title.toLowerCase())} >
 
                   <div className="CategoryTitle" >
                     <span

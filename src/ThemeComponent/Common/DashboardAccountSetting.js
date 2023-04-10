@@ -10,7 +10,7 @@ const DashboardAccountSetting = ({ userName, userEmail, userLastLogin }) => {
     return (<>
         <Box sx={{
             position: "absolute",
-            top: "75px",
+            top: { "xl": "75px", "lg": "75px", "md": "75px", "sm": "45px", "xs": "45px" },
             background: "#FFFFFF",
             right: "10px",
             width: { "xs": "200px", "sm": "200px", "md": "300px", "xl": "300px", "lg": "300px" },

@@ -74,14 +74,21 @@ const JobSearch = () => {
                     background="#FAFAFA" />
             </Box>
             <SearchBar name={name} city={city} exp={exp} ctc={ctc} />
-            <Stack direction="row" gap={2} sx={{ marginTop: "30px", padding: "30px" }}>
+            <Stack direction="row" gap={2} sx={{
+                marginTop: {
+                    "xs": "0px", "sm": "0px", "md": "30px", "lg": "30px", "xl": "30px"
+                }, padding: {
+                    "xs": "10px", "sm": "10px", "md": "30px", "lg": "30px", "xl": "30px"
+                }
+            }}>
                 <Box sx={{
+                    display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" },
                     width: "30%"
                 }}>
                     <Filter />
                 </Box>
-                <Stack sx={{ width: "70%" }} gap={2}>
-                    {!jobs && <ErrorPage errorMessage="Data is not present" />}
+                <Stack sx={{ width: { "xs": "100%", "sm": "100%", "md": "70%", "lg": "70%", "xl": "70%" } }} gap={2}>
+                    {!jobs && <ErrorPage errorMessage="No Job Found" />}
                     {
                         jobs.length > 0 && jobs.map((item) => {
                             return (<>

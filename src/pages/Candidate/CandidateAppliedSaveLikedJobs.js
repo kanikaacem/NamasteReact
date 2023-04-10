@@ -61,7 +61,11 @@ const CandidateAppliedSaveLikedJobs = ({ JobAction }) => {
     }, [JobAction])
     return (<>
 
-        <Stack className="CandidateAppliedSaveLikedJobsPage" direction="row" sx={{ padding: "20px" }} gap={2}>
+        <Stack className="CandidateAppliedSaveLikedJobsPage" direction="row" sx={{
+            padding: {
+                "xs": "0px", "sm": "0px", "md": "20px", "lg": "20px", "xl": "20px"
+            }
+        }} gap={2}>
             <Stack sx={{ width: { "lg": "100%", "md": "100%", "xs": "100%" } }} gap={1}>
 
                 <Box sx={{ minHeight: 500, width: '100%' }}>

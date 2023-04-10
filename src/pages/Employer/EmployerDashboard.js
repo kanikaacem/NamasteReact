@@ -194,7 +194,7 @@ const EmployerDashboard = () => {
                                     width: { "xs": "64px", "sm": "64px", "md": "230px", "lg": "230px", "xl": "230px" },
                                     height: "98px"
                                 }}>
-                                    <img src={window.location.origin + "/assets/V1.png"} alt="V1" height="20px" width="20px" />
+                                    <img src={window.location.origin + "/assets/V1.png"} alt="V1" height="14px" width="14px" />
 
                                     <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
                                         {jobInfo && jobInfo.allposted_jobscount}
@@ -203,7 +203,7 @@ const EmployerDashboard = () => {
                                     <Typography component="div" sx={{
                                         fontSize: {
                                             "xs": "10px", "sm": "10px", "md": "16px", "lg": "16px", "xl": "16px"
-                                        }, color: "#4E3A67", fontWeight: "600"
+                                        }, color: "#4E3A67"
                                     }}>
                                         Posted Jobs
                                     </Typography>
@@ -213,7 +213,7 @@ const EmployerDashboard = () => {
                                     width: { "xs": "64px", "sm": "64px", "md": "230px", "lg": "230px", "xl": "230px" },
                                     height: "98px"
                                 }}>
-                                    <img src={window.location.origin + "/assets/V2.png"} alt="V2" height="20px" width="20px" />
+                                    <img src={window.location.origin + "/assets/V2.png"} alt="V2" height="14px" width="14px" />
 
                                     <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
                                         {jobInfo && jobInfo.all_saved_candidate}
@@ -222,7 +222,7 @@ const EmployerDashboard = () => {
                                     <Typography component="div" sx={{
                                         fontSize: {
                                             "xs": "10px", "sm": "10px", "md": "16px", "lg": "16px", "xl": "16px"
-                                        }, color: "#4E3A67", fontWeight: "600"
+                                        }, color: "#4E3A67"
                                     }}>
                                         Saved Candidate
                                     </Typography>
@@ -233,7 +233,7 @@ const EmployerDashboard = () => {
                                     width: { "xs": "64px", "sm": "64px", "md": "230px", "lg": "230px", "xl": "230px" },
                                     height: "98px"
                                 }}>
-                                    <img src={window.location.origin + "/assets/V3.png"} alt="V3" height="20px" width="20px" />
+                                    <img src={window.location.origin + "/assets/V3.png"} alt="V3" height="14px" width="14px" />
 
                                     <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
                                         {jobInfo && jobInfo.publishedjobscount}
@@ -243,7 +243,7 @@ const EmployerDashboard = () => {
                                         fontSize: {
                                             "xs": "10px", "sm": "10px", "md": "16px", "lg": "16px", "xl": "16px"
 
-                                        }, color: "#4E3A67", fontWeight: "600"
+                                        }, color: "#4E3A67"
                                     }}>
                                         Active Jobs
                                     </Typography>
@@ -252,7 +252,7 @@ const EmployerDashboard = () => {
                                     width: { "xs": "64px", "sm": "64px", "md": "230px", "lg": "230px", "xl": "230px" },
                                     height: "98px"
                                 }}>
-                                    <img src={window.location.origin + "/assets/V4.png"} alt="V4" height="20px" width="20px" />
+                                    <img src={window.location.origin + "/assets/V4.png"} alt="V4" height="14px" width="14px" />
 
                                     <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
                                         0
@@ -262,7 +262,7 @@ const EmployerDashboard = () => {
                                         fontSize: {
                                             "xs": "10px", "sm": "10px", "md": "16px", "lg": "16px", "xl": "16px"
 
-                                        }, color: "#4E3A67", fontWeight: "600"
+                                        }, color: "#4E3A67"
                                     }}>
                                         Shortlisted Candidate to be reviewed
                                     </Typography>
@@ -274,7 +274,7 @@ const EmployerDashboard = () => {
                                     width: { "xs": "64px", "sm": "64px", "md": "230px", "lg": "230px", "xl": "230px" },
                                     height: "98px"
                                 }}>
-                                    <img src={window.location.origin + "/assets/V5.png"} alt="V5" height="20px" width="20px" />
+                                    <img src={window.location.origin + "/assets/V5.png"} alt="V5" height="14px" width="14px" />
 
                                     <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
                                         0
@@ -284,7 +284,7 @@ const EmployerDashboard = () => {
                                         fontSize: {
                                             "xs": "10px", "sm": "10px", "md": "16px", "lg": "16px", "xl": "16px"
 
-                                        }, color: "#4E3A67", fontWeight: "600"
+                                        }, color: "#4E3A67"
                                     }}>
                                         Interview schedule for Today
                                     </Typography>
@@ -325,7 +325,12 @@ const EmployerDashboard = () => {
                                     </>}
                                     {
                                         jobDataLoaded && jobs && jobs.length > 0 && <>
-                                            <Stack direction="column" gap={2} sx={{ height: "700px" }}>
+                                            <Stack direction="column" gap={2} sx={{
+                                                height: {
+                                                    "xs": "fit-content",
+                                                    "sm": "fit-content", "md": "700px", "lg": "700px", "xl": "700px"
+                                                }
+                                            }}>
 
                                                 {
                                                     jobs.map((item) => {

@@ -27,9 +27,18 @@ const CandidateComponent = ({ CandidateData, CandidateStatus, AppliedDate, jobId
             <Stack direction={{ "lg": "row", "md": "row", "xs": "column" }} gap={1} >
                 <Box sx={{ width: { "lg": "8%", "md": "8%", "xs": "100%" } }}>
                     <Badge color="secondary" variant="dot" >
+
                         {CandidateData && CandidateData.profile_image ?
-                            <img src={CandidateData && CandidateData.profile_image}
-                                alt={CandidateData && CandidateData.personalInfo && CandidateData.personalInfo.fullname} />
+                            <>
+                                <Box sx={{ width: "100px", height: "100px", position: "relative" }}>
+
+
+                                    <img src={CandidateData && CandidateData.profile_image}
+                                        alt={CandidateData && CandidateData.personalInfo && CandidateData.personalInfo.fullname}
+                                        width="100%" style={{ borderRadius: "50%", cursor: "pointer" }} />
+                                </Box>
+                            </>
+
 
                             : <Avatar alt={CandidateData && CandidateData.personalInfo && CandidateData.personalInfo.fullname} />}
                     </Badge>

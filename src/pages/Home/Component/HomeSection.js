@@ -1,5 +1,5 @@
-import { Box, Stack, Typography, Container } from '@mui/material';
-import SearchBar from "../../../ThemeComponent/SearchBar";
+import { Box, Stack, Typography, Container, Drawer, Button, List, Divider, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+
 
 import { categoryData, supply_chain, service_jobs, digital, marketing, sales } from "../../../utils/Data";
 import { useState } from 'react';
@@ -8,10 +8,17 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useTranslation } from 'react-i18next';
 
+import SearchBar from '../../../ThemeComponent/SearchBar';
+import ReorderIcon from '@mui/icons-material/Reorder';
+import CompanyLogo from '../../../ThemeComponent/Common/CompanyLogo';
+
+import { useNavigate } from 'react-router-dom';
 const HomeSection = () => {
     const { t } = useTranslation();
 
     const [activeHomeCategory, setActiveHomeCategory] = useState("supply_chain");
+    const [openMenu, setOpenMenu] = useState(false);
+    const navigate = useNavigate();
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -32,6 +39,42 @@ const HomeSection = () => {
         }
     };
     return (<>
+        <Box sx={{
+            display: { "xs": "block", "sm": "none", "md": "none", "lg": "none", "xl": "none" },
+            padding: "5px"
+        }}>
+            <ReorderIcon onClick={() => setOpenMenu(true)} />
+            <Drawer
+                sx={{
+                    display: { "xs": "block", "sm": "none", "md": "none", "lg": "none", "xl": "none" },
+                    width: "50%",
+                    padding: "10px",
+                    zIndex: 478485
+
+                }}
+                // anchor={anchor}
+                open={openMenu}
+                onClose={() => setOpenMenu(false)}
+            >
+                <CompanyLogo color="black" />
+                <Box className='SideMenus' sx={{
+                    marginTop: "20px"
+                }}>
+                    <List>
+                        <ListItem key="Employeer Login" disablePadding >
+                            <ListItemText primary="Employeer Login" onClick={() => navigate("/employer-login")} />
+                        </ListItem>
+                        <ListItem key="Candidate Login" disablePadding>
+                            <ListItemText primary="Candidate Login" onClick={() => navigate("/candidate-login")} />
+                        </ListItem>
+                        <ListItem key="About us" disablePadding>
+                            <ListItemText primary="About us" onClick={() => navigate("/about-us")} />
+                        </ListItem>
+                    </List>
+                </Box>
+            </Drawer>
+        </Box>
+
         <Box
             className="home-banner-section"
             sx={{
@@ -43,6 +86,7 @@ const HomeSection = () => {
             }}
 
         >
+
 
             <Stack alignItems="center" justifyContent="center">
                 <Container>

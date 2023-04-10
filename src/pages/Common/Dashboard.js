@@ -130,9 +130,9 @@ const Dashboard = () => {
                         </List>
 
                     </Box>
-                    <Stack direction="row" gap={3} justifyContent="flex-end" alignItems="center" sx={{ maxWidth: "10%" }}>
+                    <Stack direction="row" gap={1} justifyContent="flex-end" alignItems="center" >
                         <Box sx={{
-                            display: { "lg": "none", "md": "none", "xs": "block" },
+                            display: { "xl": "none", "lg": "none", "md": "none", "sm": "block", "xs": "block" },
                             position: "relative"
                         }}>
                             {user && user.isemailverified && user.ismobileverified && (user.stage === "hrpage" || user.profilecompleted >= 0) &&
@@ -231,7 +231,7 @@ const Dashboard = () => {
                         </>
                         )}
 
-                        {/* {user && user.employer_type === "employer" && <Box sx={{
+                        {user && user.employer_type === "employer" && <Box sx={{
                             cursor: "pointer",
                             width: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" },
                             height: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" }
@@ -247,7 +247,7 @@ const Dashboard = () => {
                         </Box>
                         }
 
-                        {user && user.employer_type === "candidate" && <Box sx={{
+                        {user && user.type === "candidate" && <Box sx={{
                             cursor: "pointer",
                             width: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" },
                             height: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" }
@@ -260,17 +260,8 @@ const Dashboard = () => {
 
                             }
                         </Box>
-                        } */}
-                        <Box sx={{
-                            cursor: "pointer",
-                            width: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" },
-                            height: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" }
-                        }} onClick={() => setOpenProfile(!openProfile)}>
+                        }
 
-                            <Avatar alt={user.employer_name} />
-
-
-                        </Box>
 
 
 

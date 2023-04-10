@@ -68,7 +68,7 @@ const AboutUs = () => {
                     zIndex: "2"
                 }}>
                     <Typography component="box" sx={{
-                        fontSize: { "lg": "96px", "md": "96px", "xs": "50px" },
+                        fontSize: { "lg": "96px", "md": "96px", "xs": "26px" },
                         fontFamily: "Work Sans, sans-serif",
                         fontWeight: "700",
                         color: "#2B1E44",
@@ -83,7 +83,7 @@ const AboutUs = () => {
                         <img src={window.location.origin + "/assets/About4.png"} alt="About4" height="20px" />
                         <Typography component="box"
                             sx={{
-                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "14px" },
                                 fontFamily: "Work Sans, sans-serif",
                                 fontWeight: "600",
                                 color: "#2B1E44",
@@ -97,7 +97,7 @@ const AboutUs = () => {
                     <Stack direction="column" gap={3}>
                         <Typography component="box"
                             sx={{
-                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "12px" },
                                 fontWeight: "400",
                                 color: "#2B1E44",
                                 display: "block",
@@ -111,7 +111,7 @@ const AboutUs = () => {
 
                         <Typography component="box"
                             sx={{
-                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "12px" },
                                 fontWeight: "400",
                                 color: "#2B1E44",
                                 display: "block",
@@ -127,7 +127,7 @@ const AboutUs = () => {
 
                         <Typography component="box"
                             sx={{
-                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "14px" },
                                 fontWeight: "600",
                                 color: "#2B1E44",
                                 display: "block",
@@ -137,7 +137,7 @@ const AboutUs = () => {
                         </Typography>
                         <Typography component="box"
                             sx={{
-                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "12px" },
                                 fontWeight: "400",
                                 color: "#2B1E44",
                                 display: "block",
@@ -152,7 +152,7 @@ const AboutUs = () => {
 
                         <Typography component="box"
                             sx={{
-                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "14px" },
                                 fontWeight: "600",
                                 color: "#2B1E44",
                                 display: "block",
@@ -162,7 +162,7 @@ const AboutUs = () => {
                         </Typography>
                         <Typography component="box"
                             sx={{
-                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "12px" },
                                 fontWeight: "400",
                                 color: "#2B1E44",
                                 display: "block",
@@ -173,7 +173,7 @@ const AboutUs = () => {
                             staff, etc. Both experienced and freshers can grab this wonderful opportunity.
                             <Typography component="box"
                                 sx={{
-                                    fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                    fontSize: { "lg": "24px", "md": "24px", "xs": "12px" },
                                     fontWeight: "600",
                                     color: "#2B1E44",
                                     display: "block",
@@ -187,13 +187,13 @@ const AboutUs = () => {
                     </Stack>
 
                     <Typography component="box" sx={{
-                        fontSize: { "lg": "32px", "md": "32px", "xs": "28px" },
+                        fontSize: { "lg": "32px", "md": "32px", "xs": "26px" },
                         fontFamily: "Work Sans, sans-serif",
                         fontWeight: "700",
                         color: "#2B1E44",
                         display: "block",
                         lineHeight: "1.2",
-                        marginTop: "100px"
+                        marginTop: { "xs": "10px", "sm": "10px", "md": "100px", "lg": "100px", "xl": "100px" }
                     }}>
                         Our Vision
                     </Typography>
@@ -204,7 +204,7 @@ const AboutUs = () => {
                         <img src={window.location.origin + "/assets/About5.png"} alt="About5" height="20px" />
                         <Typography component="box"
                             sx={{
-                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "14px" },
                                 fontFamily: "Work Sans, sans-serif",
                                 fontWeight: "600",
                                 color: "#2B1E44",
@@ -218,7 +218,7 @@ const AboutUs = () => {
                     <Stack direction="column" gap={3}>
                         <Typography component="box"
                             sx={{
-                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "12px" },
                                 fontWeight: "400",
                                 color: "#2B1E44",
                                 display: "block",
@@ -233,7 +233,7 @@ const AboutUs = () => {
 
                         <Typography component="box"
                             sx={{
-                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "12px" },
                                 fontWeight: "400",
                                 color: "#2B1E44",
                                 display: "block",
@@ -247,7 +247,7 @@ const AboutUs = () => {
 
                         <Typography component="box"
                             sx={{
-                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "12px" },
                                 fontWeight: "400",
                                 color: "#2B1E44",
                                 display: "block",
@@ -273,7 +273,7 @@ const AboutUs = () => {
                             <img src={window.location.origin + "/assets/About6.png"} alt="About6" height="20px" />
                             <Typography component="box"
                                 sx={{
-                                    fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                    fontSize: { "lg": "24px", "md": "24px", "xs": "14px" },
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "600",
                                     color: "#2B1E44",
@@ -285,7 +285,7 @@ const AboutUs = () => {
                         </Stack>
                         <Typography component="box"
                             sx={{
-                                fontSize: { "lg": "24px", "md": "24px", "xs": "18px" },
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "12px" },
                                 fontWeight: "400",
                                 color: "#2B1E44",
                                 display: "block",

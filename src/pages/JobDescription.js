@@ -18,7 +18,6 @@ const JobDescription = () => {
             let response = await postRequest(JobDescriptionURL + "?jobid=" + id);
             if (response.status === '1')
                 setdata(response.data);
-
         }
 
 

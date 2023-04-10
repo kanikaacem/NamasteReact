@@ -63,14 +63,20 @@ const ProfileComponent = ({ userData, userType }) => {
             type="error" />
 
         <Stack className="CandidateProfilePage" direction="row" gap={2} sx={{
-            padding: { "lg": "20px 100px", "md": "20px", "xs": "20px" },
+            padding: { "lg": "20px 100px", "md": "20px", "xs": "10px" },
             background: "#f9f9f9",
             flexWrap: "wrap"
         }}>
             <Box sx={{ width: { "lg": "71%", "md": "100%", "xs": "100%" }, minHeight: "700px" }}>
                 <Stack direction="row"
-                    alignItems="center" justifyContent="flex-start" gap={3} sx={{ height: "150px", padding: "20px" }}>
-                    <Box sx={{ width: "100px", height: "100px", position: "relative" }}>
+                    alignItems="center" justifyContent="flex-start" gap={3} sx={{
+                        height:
+                            { "xs": "80px", "sm": "80px", "md": "150px", "lg": "150px", "xl": "150px" }, padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" }
+                    }}>
+                    <Box sx={{
+                        width: { "xs": "50px", "sm": "50px", "md": "100px", "lg": "100px", "xl": "100px" },
+                        height: { "xs": "50px", "sm": "50px", "md": "100px", "lg": "100px", "xl": "100px" }, position: "relative"
+                    }}>
                         <img src={userImage} width="100%" alt="Profile" style={{ borderRadius: "50%", cursor: "pointer" }}
                             onClick={() => {
                                 if (userType === "candidate")
@@ -82,14 +88,14 @@ const ProfileComponent = ({ userData, userType }) => {
                     </Box>
 
                     <Box>
-                        <Typography component="div" sx={{ fontSize: { "lg": "30px", "md": "30px", "xs": "24px" }, fontWeight: "700", color: "#4E3A67" }}>
+                        <Typography component="div" sx={{ fontSize: { "lg": "30px", "md": "30px", "xs": "16px" }, fontWeight: "700", color: "#4E3A67" }}>
                             {userData && userData.personalInfo && userData.personalInfo.fullname ? userData.personalInfo.fullname : " Not mentioned"}
                         </Typography>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#4E3A67" }}>
                             {userData && userData.lastlogin ? "Last Login : " + userData.lastlogin : "Last Login: 20-01-2023"}
                         </Typography>
                         {userType === "candidate" && <>
-                            <Box sx={{ margin: '10px 0px' }}>
+                            <Box className="ProgressBarDiv" sx={{ margin: '10px 0px' }}>
                                 <ProgressBar bgColor="#4E3A67" completed={userData && userData.profilecompleted} />
                             </Box></>}
                         {userType === "employer" && <>
@@ -140,17 +146,17 @@ const ProfileComponent = ({ userData, userType }) => {
                 </Stack>
 
                 <Stack direction="row" alignItems="center" justifyContent="flex-start" sx={{
-                    minHeight: "50px", margin: "10px 0px", padding: "10px",
+                    minHeight: "50px", margin: "10px 0px", padding: { "xs": "0px", "sm": "0px", "md": "10px", "lg": "10px", "xl": "10px" },
                     flexWrap: 'wrap',
-                    gap: "40px"
+                    gap: { "xs": "10px", "sm": "10px", "md": "40px", "lg": "40px", "xl": "40px" }
                 }}
                     divider={<Divider orientation="vertical" flexItem />}>
 
                     <Stack direction="column" gap={1}>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "600" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#4E3A67", fontWeight: "600" }}>
                             Current Location
                         </Typography>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#4E3A67" }}>
 
                             {userData && userData.personalInfo && userData.personalInfo.state ? userData.personalInfo.state : "Not mentioned"}
 
@@ -158,10 +164,10 @@ const ProfileComponent = ({ userData, userType }) => {
                     </Stack>
 
                     <Stack direction="column" gap={1}>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "600" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#4E3A67", fontWeight: "600" }}>
                             Perferred Location
                         </Typography>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#4E3A67" }}>
                             {userData && userData.personalInfo && userData.personalInfo.preffered_location ?
                                 userData.personalInfo.preffered_location : "Not mentioned"}
                         </Typography>
@@ -170,20 +176,20 @@ const ProfileComponent = ({ userData, userType }) => {
 
 
                     <Stack direction="column" gap={1}>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "600" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#4E3A67", fontWeight: "600" }}>
                             Experience
                         </Typography>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#4E3A67" }}>
                             {userData && userData.personalInfo && userData.personalInfo.total_work_experience ?
                                 userData.personalInfo.total_work_experience + " Yrs" : "Not mentioned"}
                         </Typography>
                     </Stack>
 
                     <Stack direction="column" gap={1}>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "600" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#4E3A67", fontWeight: "600" }}>
                             Current Salary
                         </Typography>
-                        <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67" }}>
+                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#4E3A67" }}>
                             {userData && userData.personalInfo && userData.personalInfo.current_salary ?
                                 userData.personalInfo.current_salary : "Not mentioned"}
                         </Typography>
@@ -194,6 +200,7 @@ const ProfileComponent = ({ userData, userType }) => {
                 {userType === "candidate" && (<>
                     <Stack direction="row" gap={2} alignItems="center"  >
                         <Button variant="outlined"
+                            className="updateResume"
                             sx={{
                                 background: "#FC9A7E",
                                 border: "1px solid #E2D7F0",
@@ -213,6 +220,7 @@ const ProfileComponent = ({ userData, userType }) => {
                         <input type="file" style={{ display: "none" }} id="upload_resume"
                             onChange={(event) => uploadProfileImage(event, "CandidateResume")} />
                         <a href={userResume} variant="outlined"
+                            className="downloadResume"
 
                             style={{
                                 border: "1px solid #E2D7F0",
@@ -240,7 +248,7 @@ const ProfileComponent = ({ userData, userType }) => {
                         margin: "20px auto",
                         borderRadius: "11px",
                         background: "#ffffff",
-                        padding: "20px",
+                        padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" },
                         borderRadius: "20px"
                     }}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider', background: "#FFFFFF", position: "relative" }}>

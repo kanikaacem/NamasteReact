@@ -177,7 +177,7 @@ const Reviews = () => {
                 <Box
                     sx={{
                         position: "absolute",
-                        left: "437px",
+                        left: "453px",
                         top: "434px"
                     }}>
                     <Box sx={{ position: "relative" }}>

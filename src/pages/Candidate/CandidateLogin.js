@@ -24,6 +24,7 @@ const CandidateLogin = () => {
     // const user = useSelector(state => state.user);
     const action = useSelector(state => state.action);
     const [registerUser, setRegisterUser] = useState({});
+    const [loginError, setLoginError] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -63,7 +64,7 @@ const CandidateLogin = () => {
             window.location.href = window.location.origin + "/login-error";
 
         if (response.status == '0')
-            setFieldError("password", response.data);
+            setFieldError("password", "Something Went Wrong");
     }
 
     const resendEmailVerificationLink = async () => {
@@ -71,10 +72,11 @@ const CandidateLogin = () => {
         let response = await postRequest(ReSendCandidateEmailVerificationURL, {
             email: document.getElementById("email_address").value
         })
-        if (response.status == '1') {
+        if (response.status === '1') {
             setSendVerificationLink(true);
             setIsEmailVerified(false);
         }
+
 
 
     }

@@ -7,7 +7,7 @@ import { ExperienceHome, CTCHome } from "../utils/Data";
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import Error from './Common/Error';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 const SearchBar = ({ name, city, exp, ctc }) => {
 
     const [cities, setCities] = useState([]);
@@ -65,6 +65,7 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
+                zIndex: { "xs": 0, "sm": 0, "md": 38998, "lg": 38998, "xl": 38998 }
             }}>
             <Stack
                 direction="row"
@@ -80,6 +81,7 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                     justifyContent: "space-between",
                     gap: "20px",
                     padding: { "lg": " 10px 20px", "md": "20px", "xs": "8px" },
+                    zIndex: 3989
                 }}
             >
                 <Stack direction="column" gap={1} sx={{
@@ -89,7 +91,7 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                     <input
                         style={{
                             width: "100%",
-                            fontSize: "12px"
+                            fontSize: "16px"
                         }}
                         id="Search"
                         type="text" placeholder="Search" className='Search'
@@ -248,7 +250,7 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                         }
                     }}
                     type="button" onClick={searchJob}>
-                    <Box sx={{ width: { "xs": "10px", "md": "30px", "sm": "30px", "lg": "30px", "xl": "30px" } }}>
+                    <Box sx={{ width: { "xs": "10px", "md": "25px", "sm": "10px", "lg": "25px", "xl": "25px" } }}>
                         <img src={window.location.origin + "/assets/g2.png"} alt="g2" width="100%" />
                     </Box>
                 </Button>

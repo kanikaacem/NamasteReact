@@ -215,7 +215,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                     padding: { "xs": "0px", "sm": "0px", "md": "0px 20px", "lg": "0px 20px", "xl": "0px 20px" }, color: "#A69CB2", textTransform: "capitalize"
                                 }}>
                                     {(data && data.prefered_gender === "both" ?
-                                        " Job for Men , Women" : "Job for " + data.prefered_gender)}
+                                        " Job for Male , Female" : "Job for " + data.prefered_gender)}
                                 </Typography>
                             </Box>
                         </Stack> </>

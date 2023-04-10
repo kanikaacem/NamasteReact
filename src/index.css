@@ -815,7 +815,21 @@ nav {
   font-size: 24px;
 }
 
+
+
 @media screen and (max-width: 600px) {
+  #Search {
+    font-size: 12px !important;
+  }
+
+  .downloadResume {
+    font-size: 12px !important;
+  }
+
+  .uploadResume {
+    font-size: 12px !important;
+  }
+
   .themeLabel {
     font-size: 14px;
   }
@@ -870,7 +884,7 @@ nav {
 
   .MuiButton-contained,
   .MuiButton-outlined {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 
   .PasswordGenerationForm img {
@@ -965,5 +979,29 @@ nav {
   .css-1o5jst9-MuiStack-root,
   .css-x0fw4u-MuiStack-root {
     height: 30px !important;
+  }
+
+  .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root {
+    min-width: 20px !important;
+    height: 20px !important;
+    font-size: 12px !important;
+  }
+
+  .MuiPaper-elevation {
+    width: 50%;
+    padding: 10px;
+  }
+
+  .SideMenus .MuiTypography-body1 {
+    font-size: 12px !important;
+  }
+
+  .css-ol3sl3-MuiButtonBase-root-MuiButton-root {
+
+    min-width: max-content !important;
+  }
+
+  .MuiTab-root {
+    font-size: 12px !important;
   }
 }

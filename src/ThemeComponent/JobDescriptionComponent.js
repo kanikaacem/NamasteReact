@@ -25,6 +25,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [jobSaving, setJobSaving] = useState(false);
     const [jobLiking, setJobLiking] = useState(false);
+    const [jobNotApproved, setJobNotApproved] = useState(false);
     const [jobSavedMessage, setJobSavedMessage] = useState("");
     const [jobLikedMessage, setJobLikedMessage] = useState("");
     const [cannotApply, setCannotApply] = useState(false);
@@ -46,8 +47,10 @@ const JobDescriptionComponent = ({ userType, data }) => {
                 setFormSubmitted(true)
                 setJobApplied(true)
             }
+            else if (response.status === "-1")
+                setJobNotApproved(true);
 
-            else {
+            else if (response.status === '-2') {
                 setCannotApply(true)
             }
 
@@ -127,6 +130,9 @@ const JobDescriptionComponent = ({ userType, data }) => {
 
         <ThemeMessage open={cannotApply} setOpen={setCannotApply}
             message="You need 50 % profile completed to apply for this job" type="error" />
+
+        <ThemeMessage open={jobNotApproved} setOpen={setJobNotApproved}
+            message="This Job is not Approved for applying ." type="error" />
 
         <Stack
             direction="column"
