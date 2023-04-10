@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, Container, Drawer, Button, List, Divider, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Box, Stack, Typography, Container, Drawer, List, ListItem, ListItemText } from '@mui/material';
 
 
 import { categoryData, supply_chain, service_jobs, digital, marketing, sales } from "../../../utils/Data";
@@ -6,18 +6,20 @@ import { useState } from 'react';
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { useTranslation } from 'react-i18next';
 
 import SearchBar from '../../../ThemeComponent/SearchBar';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import CompanyLogo from '../../../ThemeComponent/Common/CompanyLogo';
 
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
+
 const HomeSection = () => {
-    const { t } = useTranslation();
 
     const [activeHomeCategory, setActiveHomeCategory] = useState("supply_chain");
     const [openMenu, setOpenMenu] = useState(false);
+    const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
     const navigate = useNavigate();
     const responsive = {
         superLargeDesktop: {
@@ -52,7 +54,6 @@ const HomeSection = () => {
                     zIndex: 478485
 
                 }}
-                // anchor={anchor}
                 open={openMenu}
                 onClose={() => setOpenMenu(false)}
             >
@@ -64,9 +65,14 @@ const HomeSection = () => {
                         <ListItem key="Employeer Login" disablePadding >
                             <ListItemText primary="Employeer Login" onClick={() => navigate("/employer-login")} />
                         </ListItem>
-                        <ListItem key="Candidate Login" disablePadding>
-                            <ListItemText primary="Candidate Login" onClick={() => navigate("/candidate-login")} />
-                        </ListItem>
+                        {isLoggedIn ? <ListItem key="Candidate Login" disablePadding>
+                            <ListItemText primary="Dashboard" onClick={() => navigate("/candidate-dashboard")} />
+                        </ListItem> :
+                            <ListItem key="Candidate Login" disablePadding>
+                                <ListItemText primary="Candidate Login" onClick={() => navigate("/candidate-login")} />
+                            </ListItem>
+                        }
+
                         <ListItem key="About us" disablePadding>
                             <ListItemText primary="About us" onClick={() => navigate("/about-us")} />
                         </ListItem>

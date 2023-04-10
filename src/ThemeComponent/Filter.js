@@ -1,4 +1,4 @@
-import { HomeCities } from '../utils/ApiUrls';
+import { HomeCities, getJobTypeURL } from '../utils/ApiUrls';
 import { getRequest } from "../utils/ApiRequests";
 import {
     Box, Stack, Typography,
@@ -10,8 +10,9 @@ import { ThemeFInputDiv } from "../utils/Theme";
 
 import { useState, useEffect } from "react";
 
-
 const Filter = () => {
+    const [cities, setCities] = useState([]);
+    const [jobTypeData, setJobTypeData] = useState([]);
 
     useEffect(() => {
         const getCities = async () => {
@@ -20,11 +21,17 @@ const Filter = () => {
                 setCities(data.data.sort());
 
         }
+        const getJobType = async () => {
+            let response = await getRequest(getJobTypeURL);
+            response = response.data.toString().replaceAll("_", " ").split(",");
+            setJobTypeData(response);
+        }
+        getJobType();
         getCities();
 
     }, []);
 
-    const [cities, setCities] = useState([]);
+
 
     return (<>
         <Box sx={{
@@ -60,14 +67,34 @@ const Filter = () => {
                 }}>
                     <ThemeFInputDiv sx={{ width: "100%" }}>
                         <ThemeLabel LableFor="job_type" LableText="Job Type" />
-                        <input
-                            style={{
-                                background: "#FFFFFF",
-                                border: " 1px solid #E7D5FF",
-                                borderRadius: "11px",
-                                padding: "20px",
-                                fontSize: "16px"
-                            }} type="text" name="jobType" placeholder="Job Type" />
+                        <Box sx={{
+                            background: " rgb(255, 255, 255)",
+                            border: " 1px solid rgb(231, 213, 255)",
+                            borderRadius: "11px",
+                            fontSize: "16px",
+                            padding: "8px"
+                        }}>
+                            <Autocomplete
+                                disablePortal
+                                id="job_type"
+                                options={jobTypeData}
+                                sx={{
+                                    "& .MuiOutlinedInput-root": {
+                                        borderRadius: "0",
+                                        padding: "2px",
+                                        border: "none"
+                                    },
+                                    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                                        border: "none"
+                                    }
+                                }}
+                                renderInput={(params) => <TextField
+                                    placeholder='Job Type'
+                                    {...params} />}
+                            />
+                        </Box>
+
+
                     </ThemeFInputDiv>
 
                     <ThemeFInputDiv sx={{ width: "100%" }}>
