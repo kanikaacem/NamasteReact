@@ -10,6 +10,7 @@ import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
 import SocialMedia from "../../ThemeComponent/Common/SocialMedia";
 import { CandidateFilter } from "../../utils/Data";
 
+import Template1 from "../../ThemeComponent/LoadingTemplate/Template1";
 import ErrorPage from "../ErrorPage";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -31,14 +32,17 @@ const AppliedCandidate = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     useEffect(() => {
-        // console.log(id);
         setJobCanData([]);
         const getCandidateOnJob = async () => {
             let response = await postRequest(GetCandidateOnParticularJob + id);
             if (response.status === "1") {
                 setJobCanData(response.data);
                 setCanDataLoaded(true);
+            } else {
+                setCanDataLoaded(true);
+
             }
+
         }
 
         const getJobDescription = async () => {
@@ -70,6 +74,8 @@ const AppliedCandidate = () => {
                     setJobCanData([])
                 } else {
                     setJobCanData(data.message);
+                    setCanDataLoaded(true);
+
 
                 }
             } catch (err) {
@@ -229,11 +235,15 @@ const AppliedCandidate = () => {
                     }
 
                     <Stack className="Candidates" direction="column" gap={2} >
-                        {jobCanData && jobCanData.length <= 0 && <>
-
-                            <ErrorPage errorMessage="There is no data Present" />
+                        {!canDataLoaded && <>
+                            <Template1 />
+                            <Template1 />
                         </>}
-                        {jobCanData && jobCanData.length > 0 && appliedCandidate.map((item) => {
+                        {canDataLoaded && jobCanData && jobCanData.length <= 0 && <>
+
+                            <ErrorPage errorMessage="There is no candidate associated with this Job." />
+                        </>}
+                        {canDataLoaded && jobCanData && jobCanData.length > 0 && appliedCandidate.map((item) => {
                             return (<>
                                 <CandidateComponent CandidateData={item.candidate}
                                     AppliedDate={parseInt(item.candidateapplieddate)}
@@ -244,7 +254,7 @@ const AppliedCandidate = () => {
                             </>)
                         })}
 
-                        {jobCanData && jobCanData.length > 0 &&
+                        {canDataLoaded && jobCanData && jobCanData.length > 0 &&
                             <Box >
                                 <Pagination count={jobCanData && Math.ceil(jobCanData.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
                             </Box>

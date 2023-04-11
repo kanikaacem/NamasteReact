@@ -19,6 +19,7 @@ const JobSearch = () => {
     const [city, setCity] = useState(" ");
     const [exp, setExp] = useState("");
     const [ctc, setCTC] = useState('');
+    const [dataLoaded, setDataLoaded] = useState(false);
     useEffect(() => {
         const params = new URL(window.location.href).searchParams;
         setName(params.get("name"));
@@ -43,8 +44,7 @@ const JobSearch = () => {
             let response = await getRequest(path_url);
 
             if (response.status == 1) {
-
-                // console.log(response.jobdata);
+                setDataLoaded(true);
                 if (Object.keys(response.data).length > 0)
                     setData(response.data);
                 else
@@ -75,6 +75,8 @@ const JobSearch = () => {
             </Box>
             <SearchBar name={name} city={city} exp={exp} ctc={ctc} />
             <Stack direction="row" gap={2} sx={{
+                width: { "xs": "92%", "sm": "92%", "md": `calc(100vw - 420px)`, "lg": `calc(100vw - 420px)`, "xl": `calc(100vw - 420px)` },
+                margin: "0 auto",
                 marginTop: {
                     "xs": "0px", "sm": "0px", "md": "30px", "lg": "30px", "xl": "30px"
                 }, padding: {
@@ -88,9 +90,9 @@ const JobSearch = () => {
                     <Filter />
                 </Box>
                 <Stack sx={{ width: { "xs": "100%", "sm": "100%", "md": "70%", "lg": "70%", "xl": "70%" } }} gap={2}>
-                    {!jobs && <ErrorPage errorMessage="No Job Found" />}
+                    {!jobs && dataLoaded && <ErrorPage errorMessage="No Job Found" />}
                     {
-                        jobs.length > 0 && jobs.map((item) => {
+                        dataLoaded && jobs.length > 0 && jobs.map((item) => {
                             return (<>
                                 <JobComponent key={item._id} data={item} data_id={item._id} userType="candidate"
                                 />
@@ -99,7 +101,7 @@ const JobSearch = () => {
 
 
                     }
-                    {jobs.length > 0 &&
+                    {dataLoaded && jobs.length > 0 &&
                         <Box >
                             <Pagination count={data && Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
                         </Box>

@@ -4,16 +4,33 @@ import { Avatar, Box, Badge, Button, Stack, Typography } from "@mui/material";
 
 import Moment from 'react-moment';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import ThemeMessage from "./ThemeMessage";
 const CandidateComponent = ({ CandidateData, CandidateStatus, AppliedDate, jobId, jobInformation }) => {
     const [candStatus, setCandStatus] = useState(CandidateStatus && CandidateStatus);
+    const [candidateAction, setCandidateAction] = useState(false);
+    const [candidateActionMessage, setCandidateActionMessage] = useState(false);
+
+    const navigate = useNavigate();
     const CandidateAction = async (jobId, canId, status) => {
         let response = await postRequest(ShortlistRejectCandidate, { jobid: jobId, candidateid: canId, status: status });
+        if (status === "shortlist")
+            setCandidateActionMessage("You have successfully shortlisted the Candidate.")
+        if (status === "rejected")
+            setCandidateActionMessage("You have successfully rejected the Candidate.")
+
         if (response.status === '1') {
             setCandStatus(status);
+            setCandidateAction(true);
+
         }
 
     }
     return (<>
+        <ThemeMessage open={candidateAction} setOpen={setCandidateAction}
+            message={candidateActionMessage} type="success" />
+
         <Box sx={{
             background: " #FFFFFF",
             border: "1px solid #E2D7F0",
@@ -22,8 +39,9 @@ const CandidateComponent = ({ CandidateData, CandidateStatus, AppliedDate, jobId
             width: { "lg": "100%", "md": "96%", "xs": "96%" },
             cursor: "pointer"
         }}
-            onClick={() => window.location.href = window.location.origin + '/employer-dashboard/view-profile/' + CandidateData._id}
-        >
+            onClick={() =>
+                navigate('/employer-dashboard/' + jobId + '/view-profile/' + CandidateData._id)
+            }>
             <Stack direction={{ "lg": "row", "md": "row", "xs": "column" }} gap={1} >
                 <Box sx={{ width: { "lg": "8%", "md": "8%", "xs": "100%" } }}>
                     <Badge color="secondary" variant="dot" >
@@ -194,7 +212,8 @@ const CandidateComponent = ({ CandidateData, CandidateStatus, AppliedDate, jobId
                 fontSize: {
                     "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
 
-                }, color: "#4E3A67"
+                }, color: "#4E3A67",
+                margin: "10px 0px"
             }}>
                 {jobInformation !== undefined && "Applied to :  " + jobInformation.job_title}
             </Typography>
@@ -288,7 +307,7 @@ const CandidateComponent = ({ CandidateData, CandidateStatus, AppliedDate, jobId
                 }
 
             </Stack>
-        </Box>
+        </Box >
 
 
     </>)

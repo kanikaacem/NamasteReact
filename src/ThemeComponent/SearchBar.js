@@ -100,6 +100,7 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                             (event) => {
                                 searchData(event.target.value)
                                 setValue(event.target.value)
+
                             }
                         } />
 
@@ -133,7 +134,6 @@ const SearchBar = ({ name, city, exp, ctc }) => {
 
                                         }}
                                             onClick={() => {
-                                                console.log(item)
                                                 setValue(item)
                                                 setMenuBar(false)
                                             }}> {item}</Box></>)

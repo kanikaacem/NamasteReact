@@ -116,7 +116,7 @@ function App() {
             </Route>
             <Route path="saved-candidates" element={<SavedCandidate></SavedCandidate>} />
             <Route path="account-setting" element={<AccountSetting></AccountSetting>} />
-            <Route path="view-profile/:id" element={<ViewProfile ></ViewProfile>} />
+            <Route path=":jobid/view-profile/:id" element={<ViewProfile ></ViewProfile>} />
             <Route path="*" element={<ErrorPage errorMessage="Page not Found"></ErrorPage>} />
           </Route>
 

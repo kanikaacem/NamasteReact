@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material";
 function ErrorPage({ errorMessage, subMessage }) {
     return (<>
-        <Stack className="ErrorPage" alignItems="center" justifyContent="center" sx={{ height: { "xs": "630px", "sm": "100vh", "md": "100vh", "lg": "100vh", "xl": "100vh" } }}>
+        <Stack className="ErrorPage" alignItems="center" justifyContent="center" >
             <Box sx={{
                 width: { "xs": "300px", "sm": "500px", "md": "500px", "lg": "500px", "xl": "500px" },
                 height: { "xs": "300px", "sm": "500px", "md": "500px", "lg": "500px", "xl": "500px" }

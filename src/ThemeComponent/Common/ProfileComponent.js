@@ -1,5 +1,5 @@
-import { PostImageRequest, getRequest } from "../../utils/ApiRequests";
-import { uploadFileURL, checkBlueCollarJob } from "../../utils/ApiUrls";
+import { PostImageRequest, getRequest, postRequest } from "../../utils/ApiRequests";
+import { uploadFileURL, checkBlueCollarJob, ShortlistRejectCandidate } from "../../utils/ApiUrls";
 import { Box, Button, Stack, Typography, Divider, Tabs, Tab, MenuItem, Select } from "@mui/material";
 
 import { MeetingType } from "../../utils/Data";
@@ -12,7 +12,8 @@ import CreateIcon from '@mui/icons-material/Create';
 import ThemeMessage from "./ThemeMessage";
 
 import { useEffect } from "react";
-const ProfileComponent = ({ userData, userType }) => {
+import { ConstructionOutlined } from "@mui/icons-material";
+const ProfileComponent = ({ userData, userType, userStatus, jobsId }) => {
     const [value, setValue] = useState(userType === "employer" ? 1 : 0);
     const [meetingType, setMeetingType] = useState(" ");
     const [userImage, setUserImage] = useState(window.location.origin + "/assets/Avatar.png");
@@ -20,6 +21,10 @@ const ProfileComponent = ({ userData, userType }) => {
     const [fileUpdated, setFileUpdated] = useState(false);
     const [fileUploadError, setFileUploadError] = useState(false);
     const [blueCollarJob, setBlueCollarJob] = useState(false);
+
+    const [candidateStatus, setCandidateStatus] = useState("");
+    const [candidateAction, setCandidateAction] = useState(false);
+    const [candidateActionMessage, setCandidateActionMessage] = useState(false);
 
     const uploadProfileImage = async (event, imageType) => {
         let file = event.target.files[0];
@@ -29,7 +34,6 @@ const ProfileComponent = ({ userData, userType }) => {
         let response = await PostImageRequest(uploadFileURL, formData);
 
         if (response.status === "1") {
-            console.log(imageType)
             setFileUpdated(true);
             if (imageType === "Candidate") setUserImage(response.data[0].location);
             if (imageType === "CandidateResume") {
@@ -42,19 +46,36 @@ const ProfileComponent = ({ userData, userType }) => {
         }
     }
 
+    const CandidateAction = async (jobId, canId, status) => {
+        let response = await postRequest(ShortlistRejectCandidate, { jobid: jobId, candidateid: canId, status: status });
+        if (status === "shortlist")
+            setCandidateActionMessage("You have successfully shortlisted the Candidate.")
+        if (status === "rejected")
+            setCandidateActionMessage("You have successfully rejected the Candidate.")
+
+        if (response.status === '1') {
+            setCandidateAction(true);
+            setCandidateStatus(status);
+        }
+
+    }
+
     useEffect(() => {
-        setUserImage(userData.profile_image);
-        setUserResume(userData.resume && userData.resume.resume)
+        setUserImage(userData && userData.profile_image);
+        setUserResume(userData && userData.resume && userData.resume.resume)
         const getJobType = async () => {
             let response = await getRequest(checkBlueCollarJob + "=" + userData.job_type);
             if (response.data)
                 setBlueCollarJob(true);
         }
         getJobType();
-    }, [userData]);
+        setCandidateStatus(userStatus)
+    }, [userData, userStatus]);
 
     return (<>
-        {console.log(userData)}
+        <ThemeMessage open={candidateAction} setOpen={setCandidateAction}
+            message={candidateActionMessage} type="success" />
+
         <ThemeMessage open={fileUpdated} setOpen={setFileUpdated}
             message="File is updated Successfully." type="success" />
 
@@ -91,9 +112,9 @@ const ProfileComponent = ({ userData, userType }) => {
                         <Typography component="div" sx={{ fontSize: { "lg": "30px", "md": "30px", "xs": "16px" }, fontWeight: "700", color: "#4E3A67" }}>
                             {userData && userData.personalInfo && userData.personalInfo.fullname ? userData.personalInfo.fullname : " Not mentioned"}
                         </Typography>
-                        <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#4E3A67" }}>
+                        {/* <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#4E3A67" }}>
                             {userData && userData.lastlogin ? "Last Login : " + userData.lastlogin : "Last Login: 20-01-2023"}
-                        </Typography>
+                        </Typography> */}
                         {userType === "candidate" && <>
                             <Box className="ProgressBarDiv" sx={{ margin: '10px 0px' }}>
                                 <ProgressBar bgColor="#4E3A67" completed={userData && userData.profilecompleted} />
@@ -116,9 +137,13 @@ const ProfileComponent = ({ userData, userType }) => {
                                             fontWeight: "700",
                                         }
                                     }
-                                    } ><Stack direction="row" gap={2} >
-                                        <Box><img src={window.location.origin + "/assets/Call.png"} alt="Call"></img></Box>
-                                        <Box>Call</Box></Stack>
+                                    } >
+                                    <Stack direction="row" gap={2} alignItems="center">
+                                        <Box className="ProfileActionImage">
+                                            <img src={window.location.origin + "/assets/Call.png"} alt="Call"></img>
+                                        </Box>
+                                        <Box className="ProfileActionText">Call</Box>
+                                    </Stack>
                                 </Button>
                                 <Button variant="outlined"
                                     sx={{
@@ -135,9 +160,11 @@ const ProfileComponent = ({ userData, userType }) => {
                                             fontWeight: "700",
                                         }
                                     }
-                                    } ><Stack direction="row" gap={2} >
-                                        <Box><img src={window.location.origin + "/assets/Share.png"} alt="Share"></img></Box>
-                                        <Box>Share</Box></Stack></Button>
+                                    } ><Stack direction="row" gap={2} alignItems="center">
+                                        <Box className="ProfileActionImage">
+                                            <img src={window.location.origin + "/assets/Share.png"} alt="Share">
+                                            </img></Box>
+                                        <Box className="ProfileActionText">Share</Box></Stack></Button>
                             </Stack>
                         </>}
 
@@ -451,36 +478,55 @@ const ProfileComponent = ({ userData, userType }) => {
                         divider={<Divider orientation="horizontal" flexItem />}
                         gap={1} >
                         <Stack direction="row" gap={2} alignItems="center" justifyContent="center" >
-                            <Button variant="outlined"
-                                sx={{
-                                    background: "#FC9A7E",
-                                    border: "1px solid #E2D7F0",
-                                    borderRadius: "7px",
-                                    color: "#4E3A67",
-                                    fontWeight: "700",
-                                    "&:hover": {
+                            {candidateStatus && candidateStatus === "pending" ? <>
+                                <Button variant="outlined"
+                                    onClick={(event) => {
+                                        CandidateAction(jobsId, userData && userData._id, "shortlist");
+                                    }}
+                                    className="ProfileActionText"
+                                    sx={{
                                         background: "#FC9A7E",
                                         border: "1px solid #E2D7F0",
                                         borderRadius: "7px",
                                         color: "#4E3A67",
                                         fontWeight: "700",
-                                    }
-                                }}> Shortlisted</Button>
-                            <Button variant="outlined"
-
-                                sx={{
-                                    border: "1px solid #E2D7F0",
-                                    borderRadius: "7px",
-                                    color: "#4E3A67",
-                                    fontWeight: "700",
-                                    "&:hover": {
+                                        "&:hover": {
+                                            background: "#FC9A7E",
+                                            border: "1px solid #E2D7F0",
+                                            borderRadius: "7px",
+                                            color: "#4E3A67",
+                                            fontWeight: "700",
+                                        }
+                                    }}> Shortlist</Button>
+                                <Button variant="outlined"
+                                    onClick={(event) => {
+                                        CandidateAction(jobsId, userData && userData._id, "rejected");
+                                    }}
+                                    className="ProfileActionText"
+                                    sx={{
                                         border: "1px solid #E2D7F0",
                                         borderRadius: "7px",
                                         color: "#4E3A67",
                                         fontWeight: "700",
-                                    }
-                                }}
-                            > Reject</Button>
+                                        "&:hover": {
+                                            border: "1px solid #E2D7F0",
+                                            borderRadius: "7px",
+                                            color: "#4E3A67",
+                                            fontWeight: "700",
+                                        }
+                                    }}
+                                > Reject</Button></>
+                                :
+                                <Typography component="div" sx={{
+                                    fontSize: {
+                                        "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                                    }, color: "#806E96", textTransform: "capitalize"
+                                }}>
+                                    {candidateStatus}
+                                </Typography>
+                            }
+
                         </Stack>
 
                         <Box sx={{
@@ -535,10 +581,10 @@ const ProfileComponent = ({ userData, userType }) => {
                                 }
                             }}
                         > <Stack direction="row" gap={2} alignItems="center" >
-                                <Box>
+                                <Box className="ProfileActionImage">
                                     <img src={window.location.origin + "/assets/Chat1.png"} alt="Chat" />
                                 </Box>
-                                <Box>
+                                <Box className="ProfileActionText">
                                     Chat with
                                     {userData && userData.personalInfo && userData.personalInfo.fullname ? " " + userData.personalInfo.fullname : " Gyanendra Chaudhary"}
 
@@ -563,8 +609,8 @@ const ProfileComponent = ({ userData, userType }) => {
                             } ><Stack direction="row" alignItems="center" justifyContent="center" sx={{
                                 gap: "6px"
                             }} >
-                                <Box><img src={window.location.origin + "/assets/Profile1.png"} alt="Profile1"></img></Box>
-                                <Box>Save for later</Box></Stack>
+                                <Box className="ProfileActionImage"><img src={window.location.origin + "/assets/Profile1.png"} alt="Profile1"></img></Box>
+                                <Box className="ProfileActionText">Save for later</Box></Stack>
                         </Button>
                         <Button variant="outlined"
                             sx={{
@@ -582,8 +628,8 @@ const ProfileComponent = ({ userData, userType }) => {
                             } ><Stack direction="row" alignItems="center" justifyContent="center" sx={{
                                 gap: "6px"
                             }}  >
-                                <Box><img src={window.location.origin + "/assets/Profile2.png"} alt="Profile2"></img></Box>
-                                <Box>Download Resume</Box></Stack></Button>
+                                <Box className="ProfileActionImage"><img src={window.location.origin + "/assets/Profile2.png"} alt="Profile2"></img></Box>
+                                <Box className="ProfileActionText">Download Resume</Box></Stack></Button>
                     </Stack>
 
 
