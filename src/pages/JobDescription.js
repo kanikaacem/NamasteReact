@@ -27,18 +27,13 @@ const JobDescription = () => {
 
 
     return (<>
-        <Box className="JobDescriptionPage"
-            sx={{
-                minHeight: "100vh"
-            }}>
+        <Box className="JobDescriptionPage">
 
             <Box className="JobDescriptionContent"
                 sx={{ padding: { "xs": "10px", "sm": "10px", "md": "100px 20px", "lg": "100px 20px", "xl": "100px 20px" } }}>
-
-
                 <Box
                     sx={{
-                        display: { "lg": "block", "md": "none", "xs": "none" },
+                        display: { "xs": "none", "sm": "none", "md": "none", "lg": 'none', "xl": "block" },
                         position: "absolute",
                         height: "320.38px",
                         left: "0px",
@@ -48,7 +43,7 @@ const JobDescription = () => {
                     <img src={window.location.origin + "/assets/About1.png"} alt="About1" />
                 </Box>
                 <Box sx={{
-                    display: { "lg": "block", "md": "none", "xs": "none" },
+                    display: { "xs": "none", "sm": "none", "md": "none", "lg": 'none', "xl": "block" },
                     position: "absolute",
                     height: "380px",
                     top: "805px",

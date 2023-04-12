@@ -46,9 +46,13 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                     <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "26px", "lg": "26px", "xl": "26px" }, fontWeight: "600", textTransform: "capitalize" }}>
                         {data ? data.job_title : "Not Mentioned"}
                     </Typography>
-                    <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "26px", "lg": "26px", "xl": "26px" }, fontWeight: "600" }}>
-                        {(data && data.salarytype) ? data.salarytype.salary : "Not Mentioned"}
-                    </Typography>
+                    {
+                        data && data.salarytype && data.salarytype.hideSalary ? "Not Disclosed" :
+                            <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "26px", "lg": "26px", "xl": "26px" }, fontWeight: "600" }}>
+                                {(data && data.salarytype) ? data.salarytype.label : "Not Mentioned"}
+                            </Typography>
+                    }
+
                 </Stack>
                 <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#3D3B3F", padding: "0px 20px" }}>
                     {data ? data.company_name : "Not Mentioned"}

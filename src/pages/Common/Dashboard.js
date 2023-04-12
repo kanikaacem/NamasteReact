@@ -18,6 +18,8 @@ import DashboardAccountSetting from "../../ThemeComponent/Common/DashboardAccoun
 import Skeleton from "react-loading-skeleton";
 
 import { useEffect } from "react";
+
+import ErrorPage from "../ErrorPage";
 const Dashboard = () => {
     const [openProfile, setOpenProfile] = useState(false);
     const [openMenu, setOpenMenu] = useState(false);
@@ -290,7 +292,11 @@ const Dashboard = () => {
                 </Stack>
 
                 {/* Dashboard based on the user */}
-                <Box sx={{ background: "#FAFAFA", minHeight: `calc(100vh - 50px)`, width: '100%' }}>
+                <Box sx={{
+                    background: "#FAFAFA",
+                    // minHeight: `calc(100vh - 50px)`, 
+                    width: '100%'
+                }}>
                     {/* {!pageAuthenticate && <ErrorPage errorMessage="Page not Found" subMessage="Unfortunately the page you are looking for could not be found" />} */}
                     {<Outlet context={user} >
                     </Outlet>}

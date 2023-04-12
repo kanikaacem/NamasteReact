@@ -61,7 +61,7 @@ const Filter = () => {
                     </Typography>
                 </Stack>
             </Box>
-            <Box sx={{ padding: "20px" }}>
+            <Box >
                 <Stack direction="column" gap={2} alignItems="center" sx={{
                     padding: " 20px",
                 }}>

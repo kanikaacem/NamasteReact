@@ -114,7 +114,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
             }
 
         }
-        JobDetailsLikeSaveApply();
+        data._id !== undefined && JobDetailsLikeSaveApply();
 
     }, [data._id])
 

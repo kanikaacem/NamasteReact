@@ -1085,7 +1085,7 @@ const PostJob = () => {
                             display: (postJobStep == 2) ? "block" : "none",
 
                         }}>
-                            <Box>
+                            <Box sx={{ display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" } }}>
                                 <Typography component="box" sx={{
                                     fontSize: "64px",
                                     fontFamily: "Montserrat",

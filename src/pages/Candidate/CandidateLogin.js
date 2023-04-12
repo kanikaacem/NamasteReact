@@ -24,7 +24,6 @@ const CandidateLogin = () => {
     // const user = useSelector(state => state.user);
     const action = useSelector(state => state.action);
     const [registerUser, setRegisterUser] = useState({});
-    const [loginError, setLoginError] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -41,7 +40,6 @@ const CandidateLogin = () => {
         }
 
         let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
-
         if (response.status == '1') {
             setRegisterUser(response.data);
 
@@ -63,8 +61,10 @@ const CandidateLogin = () => {
         if (response.status === '0' && Object.keys(response.data).length === 0)
             window.location.href = window.location.origin + "/login-error";
 
-        if (response.status == '0')
+        if (response.status === '0') {
             setFieldError("password", "Something Went Wrong");
+
+        }
     }
 
     const resendEmailVerificationLink = async () => {
@@ -93,7 +93,7 @@ const CandidateLogin = () => {
 
         <Box className="CandidateLoginPage"
             sx={{
-                height: { "xs": "1200px", "sm": "100vh", "md": "100vh", "lg": "100vh", "xl": "100vh" },
+                minHeight: "100vh",
                 background: "#2B1E44",
                 backgroundImage:
                     "url('../assets/g50.png')",
@@ -121,7 +121,7 @@ const CandidateLogin = () => {
                         <Box sx={{
                             width: { "xs": "100%", "sm": "800px", "md": "800px", "lg": "800px", "xl": "800px" },
                             marginTop: { "xs": "0px", "sm": "100px", "md": "100px", "lg": "100px", "xl": "100px" },
-
+                            textAlign: "center"
 
                         }}>
                             <Typography component="box" sx={{

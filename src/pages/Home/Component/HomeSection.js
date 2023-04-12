@@ -107,7 +107,7 @@ const HomeSection = () => {
                             zIndex: "1",
                             marginBottom: "20px"
                         }}>
-                        Find Suitable Jobs & Candidates Here! (Launching Soon)
+                        Find Suitable Jobs & Candidates Here!
 
                     </Typography>
 

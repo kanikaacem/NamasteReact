@@ -8,11 +8,9 @@ import { useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import Moment from 'react-moment';
 
-import CreateIcon from '@mui/icons-material/Create';
 import ThemeMessage from "./ThemeMessage";
 
 import { useEffect } from "react";
-import { ConstructionOutlined } from "@mui/icons-material";
 const ProfileComponent = ({ userData, userType, userStatus, jobsId }) => {
     const [value, setValue] = useState(userType === "employer" ? 1 : 0);
     const [meetingType, setMeetingType] = useState(" ");
@@ -68,7 +66,7 @@ const ProfileComponent = ({ userData, userType, userStatus, jobsId }) => {
             if (response.data)
                 setBlueCollarJob(true);
         }
-        getJobType();
+        userData.jobtype !== undefined && getJobType();
         setCandidateStatus(userStatus)
     }, [userData, userStatus]);
 

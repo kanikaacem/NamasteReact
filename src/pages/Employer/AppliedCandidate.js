@@ -31,6 +31,19 @@ const AppliedCandidate = () => {
 
     const { id } = useParams();
     const navigate = useNavigate();
+
+    const filterCandidate = async (id) => {
+        let response = await postRequest(GetCandidateOnParticularJob + id);
+        if (response.status === "1") {
+            setJobCanData(response.data);
+            setCanDataLoaded(true);
+        } else {
+            setJobCanData([]);
+            setCanDataLoaded(true);
+
+        }
+
+    }
     useEffect(() => {
         setJobCanData([]);
         const getCandidateOnJob = async () => {
@@ -182,8 +195,9 @@ const AppliedCandidate = () => {
                                     label="role"
                                     onChange={(event) => {
                                         setJobFilter(event.target.value);
+                                        filterCandidate(event.target.value)
                                         // getCandidateOnJob(event.target.value);
-                                        navigate("/employer-dashboard/applied-candidates/" + event.target.value)
+                                        // navigate("/employer-dashboard/applied-candidates/" + event.target.value)
                                         // window.history.pushState("state", "", "/" + jobFilter);
 
 
@@ -220,7 +234,7 @@ const AppliedCandidate = () => {
 
                                     }, color: "#FC9A7E", fontWeight: "700"
                                 }}>
-                                    {jobCanData.length > 0 && "Applications (" + jobCanData.length + ") "}
+                                    {jobCanData.length >= 0 && "Applications (" + jobCanData.length + ") "}
                                 </Typography>
 
                             </Stack>

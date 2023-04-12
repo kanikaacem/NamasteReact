@@ -100,7 +100,7 @@ const EmployerLogin = () => {
         <Box className="EmployerLoginPage"
             sx={{
                 width: "100%",
-                height: { "xs": "1200px", "sm": "100vh", "md": "100vh", "lg": "100vh", "xl": "100vh" },
+                minHeight: "100vh",
                 background: "#2B1E44",
                 backgroundImage:
                     "url('../assets/g10.png')",

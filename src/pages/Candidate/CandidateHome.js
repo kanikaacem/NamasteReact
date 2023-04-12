@@ -1,10 +1,9 @@
 import { Box, Stack } from "@mui/material";
-import { useOutletContext, Navigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 import RecommendedJobs from "../Home/Component/RecommendedJobs";
 import Filter from "../../ThemeComponent/Filter";
 import DashboardGreeting from "../../ThemeComponent/Common/DashboardGreeting";
-import { useEffect } from "react";
 
 const CandidateHome = () => {
     const user = useOutletContext();

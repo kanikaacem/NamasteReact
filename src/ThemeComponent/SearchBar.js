@@ -51,7 +51,8 @@ const SearchBar = ({ name, city, exp, ctc }) => {
 
     const searchData = async (value) => {
 
-        let response = await getRequest("https://backend.jobsyahan.com/api/file/skill?q=" + value);
+        // let response = await getRequest("https://backend.jobsyahan.com/api/file/skill?q=" + value);
+        let response = await getRequest("https://backend.jobsyahan.com/api/file/searchkeywords?q=" + value);
         console.log(response.data);
         setAutoData(response.data);
         setMenuBar(true);
@@ -65,7 +66,6 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                zIndex: { "xs": 0, "sm": 0, "md": 38998, "lg": 38998, "xl": 38998 }
             }}>
             <Stack
                 direction="row"
@@ -81,7 +81,7 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                     justifyContent: "space-between",
                     gap: "20px",
                     padding: { "lg": " 10px 20px", "md": "20px", "xs": "8px" },
-                    zIndex: 3989
+                    zIndex: 3386
                 }}
             >
                 <Stack direction="column" gap={1} sx={{

@@ -7,7 +7,7 @@ import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 
 import { useState } from "react";
 
-import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
+import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import Error from "../../ThemeComponent/Common/Error";
 
 const ContactUs = () => {
@@ -28,71 +28,17 @@ const ContactUs = () => {
                 backgroundImage:
                     "url('../assets/g8.png')",
                 backgroundRepeat: " no-repeat",
-                backgroundPosition: " left 200px bottom 0px"
+                backgroundPosition: " left 200px bottom 0px",
+                minHeight: "100vh"
 
             }}>
-            <Stack direction={{ "lg": "row", "md": "row", "xs": "column" }}
-                sx={{ padding: "20px" }}
-                gap={4} justifyContent="space-between">
-                <CompanyLogo color="#FFFFFF" />
+            <Box sx={{ padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" } }}>
+                <HeaderSec
+                    border="2px solid rgba(255, 255, 255, 0.25)"
+                    color="#FFFFFF"
+                    background="#432C60" />
+            </Box>
 
-                <Stack direction="row"
-                    sx={{
-                        width: { "lg": `calc(100vw - 73%)`, "md": `"fit-content"`, "xs": "fit-content" },
-                        flexWrap: "wrap",
-                        justifyContent: "flex-end"
-                    }}
-                    gap={2}
-                >
-                    <Button type="button" variant="outlined"
-                        onClick={() => {
-                            window.location.href = window.location.origin + "/about-us";
-                        }}
-                        sx={{
-                            width: "200px",
-                            borderRadius: "44px",
-                            fontSize: "18px",
-                            border: "2px solid #8E8E8E",
-                            color: "#FFFFFF",
-                            textTransform: "capitalize",
-                            fontWeight: "600",
-                            fontFamily: "Work Sans, sans-serif !important",
-                            background: "#432C60",
-                            "&:hover": {
-                                border: "2px solid #8E8E8E",
-                                color: "#FFFFFF",
-                                background: "#432C60"
-
-                            }
-                        }}>
-                        About Us
-                    </Button>
-
-                    <Button type="button" variant="outlined"
-                        onClick={() => {
-                            window.location.href = window.location.origin + "/employer-login";
-                        }}
-                        sx={{
-                            width: "200px",
-                            borderRadius: "44px",
-                            fontSize: "18px",
-                            border: "2px solid #8E8E8E",
-                            color: "#FFFFFF",
-                            textTransform: "capitalize",
-                            fontWeight: "600",
-                            fontFamily: "Work Sans, sans-serif !important",
-                            background: "#432C60",
-                            "&:hover": {
-                                border: "2px solid #8E8E8E",
-                                color: "#FFFFFF",
-                                background: "#432C60"
-
-                            }
-                        }}>
-                        Employeer Login
-                    </Button>
-                </Stack>
-            </Stack>
             <Stack
                 direction="row"
                 gap={1}
@@ -192,13 +138,13 @@ const ContactUs = () => {
                     }}
                 >
                     <Stack gap={2} sx={{
-                        width: "60%",
+                        width: { "xs": "87%", "sm": "87%", "md": "60%", "lg": "60%", "xl": "60%" },
                         background: "#FBF8FF",
                         boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                         borderRadius: "19px",
-                        padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "30px" }
+                        padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "10px" }
                     }}>
-                        <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
+                        <Typography component="box" sx={{ fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
                             We’re here for you
                         </Typography>
                         <Formik
