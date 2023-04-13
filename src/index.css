@@ -777,6 +777,8 @@ nav {
 #mui-component-select-job_type,
 #mui-component-select-industry_type {
   border-bottom: none;
+  font-family: 'Montserrat' !important;
+  opacity: 0.3;
 }
 
 .Mui-selected {

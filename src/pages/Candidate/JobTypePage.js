@@ -14,6 +14,7 @@ import ThemeLabel from '../../ThemeComponent/ThemeForms/ThemeLabel';
 import Error from '../../ThemeComponent/Common/Error';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 
+import ImageBox from "../Common/ImageBox";
 const JobTypePage = () => {
 
     const [jobType, setJobType] = useState(" ");
@@ -74,7 +75,7 @@ const JobTypePage = () => {
     return (<>
         <Box className="JobTypePage"
             sx={{
-                height: { "xs": "1000px", "sm": "1000px", "md": "100vh", "lg": "100vh", "xl": "100vh" },
+                minHeight: { "xs": "1000px", "sm": "1000px", "md": "100vh", "lg": "100vh", "xl": "100vh" },
                 background: "#FFFFFF",
                 backgroundRepeat: " no-repeat",
                 backgroundPosition: "left 100px bottom 0px"
@@ -113,7 +114,11 @@ const JobTypePage = () => {
                             Options
 
                         </Typography>
-                        <img src={window.location.origin + "/assets/g54.png"} alt="g54" style={{ margin: "40px 20px" }} />
+                        <Box>
+                            <ImageBox imgeUrl="/assets/g54.png" imgeText="g54" />
+                            {/* <img src={window.location.origin + "/assets/g54.png"} alt="g54" style={{ margin: "40px 20px" }} /> */}
+
+                        </Box>
 
                     </Box>
 
@@ -124,149 +129,156 @@ const JobTypePage = () => {
                             border: "1px solid #EAEAEA",
                             boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                             borderRadius: "19px",
-                            padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
                         }}>
-                            <Typography component="box" sx={{
-                                fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
-                                fontFamily: "Montserrat",
-                                fontWeight: "600",
-                                color: "#4E3A67",
-                                display: "block",
-                                marginTop: "20px"
+                            <Box sx={{
+                                padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
+
                             }}>
-                                Select Job Type
-                            </Typography>
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#4E3A67",
+                                    display: "block",
+                                    marginTop: "20px"
+                                }}>
+                                    Select Job Type
+                                </Typography>
+                            </Box>
 
-                        </Box>
-                        <Box sx={{
-                            boxSizing: "border-box",
-                            height: "647",
-                            background: "#FFFFFF",
-                            border: "1px solid #EDEDED",
-                            borderRadius: "19px",
-                            position: "relative",
-                            padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
-                            paddingBottom: "100px"
+                            <Box sx={{
+                                boxSizing: "border-box",
+                                height: "647",
+                                background: "#FFFFFF",
+                                border: "1px solid #EDEDED",
+                                borderBottomLeftRadius: "19px",
+                                borderBottomRightRadius: "19px",
+                                position: "relative",
+                                padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
+                                paddingBottom: "100px"
 
 
-                        }}>
-                            <Formik
+                            }}>
+                                <Formik
 
-                                initialValues={defaultValue}
-                                validationSchema={JobTypePageSchema}
-                                onSubmit={handleSubmit1}
-                            >
-                                {({ errors, touched, setFieldValue }) => (
-                                    <Form className="JobTypePage1" >
-
-                                        <ThemeFInputDiv >
-
+                                    initialValues={defaultValue}
+                                    validationSchema={JobTypePageSchema}
+                                    onSubmit={handleSubmit1}
+                                >
+                                    {({ errors, touched, setFieldValue }) => (
+                                        <Form className="JobTypePage1" >
 
                                             <ThemeFInputDiv >
-                                                <ThemeLabel LableFor="job_type" LableText="Job Type *" />
-                                                <SelectField
-                                                    labelId="demo-simple-select-label"
-                                                    name="job_type"
-                                                    value={jobType}
-                                                    label="role"
-                                                    onChange={(event) => {
-                                                        setJobType(event.target.value);
-                                                        setFieldValue("job_type", event.target.value);
-                                                    }}
-                                                    sx={{
-                                                        background: " #FFFFFF",
-                                                        border: "1px solid #EAEAEA",
-                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                        borderRadius: "7px",
-                                                        width: "101%",
-                                                        fontSize: "16px",
-                                                        fontamily: 'Montserrat',
-                                                        padding: { "xs": "0px", "sm": "0px", "md": "8px", "lg": "8px", "xl": "8px" }
 
-                                                    }}
 
-                                                >
-                                                    <MenuItem value=" ">Select Job Type</MenuItem>
-
-                                                    {jobTypeData && jobTypeData.map((item) =>
-                                                        <MenuItem sx={{ textTransform: "capitalize" }} value={item} key={item}>{item.replaceAll("_", " ")}</MenuItem>
-                                                    )}
-                                                </SelectField>
-
-                                                {errors.job_type && touched.job_type && <Error text={errors.job_type} />}
-                                            </ThemeFInputDiv>
-
-                                            <ThemeFInputDiv sx={{ position: "relative" }}>
-                                                <ThemeLabel LableFor="area" LableText="Area *" />
-                                                <Box sx={{ width: "100%", margin: "10px 0px" }}>
-
-                                                    <TextField id="outlined-basic"
-                                                        autoComplete="off"
-                                                        placeholder="Enter Area(eg.Haridwar, Uttarakhand, India)"
-                                                        value={area}
+                                                <ThemeFInputDiv >
+                                                    <ThemeLabel LableFor="job_type" LableText="Job Type *" />
+                                                    <SelectField
+                                                        labelId="demo-simple-select-label"
+                                                        name="job_type"
+                                                        value={jobType}
+                                                        label="role"
                                                         onChange={(event) => {
-                                                            setArea(event.target.value);
-                                                            setFieldValue("area", event.target.value);
-                                                            getAddress(event.target.value);
-                                                            setMenuBar(true)
+                                                            setJobType(event.target.value);
+                                                            setFieldValue("job_type", event.target.value);
                                                         }}
-                                                        variant="outlined" fullWidth />
-                                                </Box>
-                                                {errors.area && touched.area && <Error text={errors.area} />}
+                                                        sx={{
+                                                            background: " #FFFFFF",
+                                                            border: "1px solid #EAEAEA",
+                                                            boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                            borderRadius: "7px",
+                                                            width: "101%",
+                                                            fontSize: "16px",
+                                                            fontamily: 'Montserrat',
+                                                            padding: { "xs": "0px", "sm": "0px", "md": "8px", "lg": "8px", "xl": "8px" }
 
-                                                {menubar && autoData && autoData != "no record please enter some word" && <>
-                                                    <ClickAwayListener onClickAway={() => setAutoData(false)}>
+                                                        }}
 
-                                                        <Box
-                                                            className="RegisterAutoSuggestDiv"
-                                                            sx={{
-                                                                position: "absolute",
-                                                                top: "110px",
-                                                                background: "#FFFFFF",
-                                                                width: "94%",
-                                                                padding: "20px",
-                                                                height: "fit-content",
-                                                                zIndex: "34",
-                                                                boxShadow: "0px 47px 52px #f4ecff",
-                                                                border: "3px solid #E1D4F2",
-                                                                borderRadius: "11px"
-                                                            }}>
-                                                            {autoData && autoData != "no record please enter some word" && autoData.map((item) => {
-                                                                return (<>
-                                                                    <Box
-                                                                        className="RegisterAutoSuggestList" sx={{
-                                                                            padding: "20px",
-                                                                            borderBottom: "1px solid #E1D4F2",
-                                                                            cursor: "pointer"
-                                                                        }}
-                                                                        onClick={(event) => {
-                                                                            setArea(item.description);
-                                                                            setFieldValue("area", item.description)
-                                                                            setMenuBar(false)
-                                                                        }}> {item.description}</Box></>)
-                                                            })}
+                                                    >
+                                                        <MenuItem value=" ">Select Job Type</MenuItem>
 
-                                                        </Box>
-                                                    </ClickAwayListener>
-                                                </>
+                                                        {jobTypeData && jobTypeData.map((item) =>
+                                                            <MenuItem sx={{ textTransform: "capitalize" }} value={item} key={item}>{item.replaceAll("_", " ")}</MenuItem>
+                                                        )}
+                                                    </SelectField>
 
-                                                }
-                                                {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
+                                                    {errors.job_type && touched.job_type && <Error text={errors.job_type} />}
+                                                </ThemeFInputDiv>
 
+                                                <ThemeFInputDiv sx={{ position: "relative" }}>
+                                                    <ThemeLabel LableFor="area" LableText="Area *" />
+                                                    <Box sx={{ width: "100%", margin: "10px 0px" }}>
+
+                                                        <TextField id="outlined-basic"
+                                                            autoComplete="off"
+                                                            placeholder="Enter Area(eg.Haridwar, Uttarakhand, India)"
+                                                            value={area}
+                                                            onChange={(event) => {
+                                                                setArea(event.target.value);
+                                                                setFieldValue("area", event.target.value);
+                                                                getAddress(event.target.value);
+                                                                setMenuBar(true)
+                                                            }}
+                                                            variant="outlined" fullWidth />
+                                                    </Box>
+                                                    {errors.area && touched.area && <Error text={errors.area} />}
+
+                                                    {menubar && autoData && autoData != "no record please enter some word" && <>
+                                                        <ClickAwayListener onClickAway={() => setAutoData(false)}>
+
+                                                            <Box
+                                                                className="RegisterAutoSuggestDiv"
+                                                                sx={{
+                                                                    position: "absolute",
+                                                                    top: "110px",
+                                                                    background: "#FFFFFF",
+                                                                    width: "94%",
+                                                                    padding: "20px",
+                                                                    height: "fit-content",
+                                                                    zIndex: "34",
+                                                                    boxShadow: "0px 47px 52px #f4ecff",
+                                                                    border: "3px solid #E1D4F2",
+                                                                    borderRadius: "11px"
+                                                                }}>
+                                                                {autoData && autoData != "no record please enter some word" && autoData.map((item) => {
+                                                                    return (<>
+                                                                        <Box
+                                                                            className="RegisterAutoSuggestList" sx={{
+                                                                                padding: "20px",
+                                                                                borderBottom: "1px solid #E1D4F2",
+                                                                                cursor: "pointer"
+                                                                            }}
+                                                                            onClick={(event) => {
+                                                                                setArea(item.description);
+                                                                                setFieldValue("area", item.description)
+                                                                                setMenuBar(false)
+                                                                            }}> {item.description}</Box></>)
+                                                                })}
+
+                                                            </Box>
+                                                        </ClickAwayListener>
+                                                    </>
+
+                                                    }
+                                                    {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
+
+                                                </ThemeFInputDiv>
                                             </ThemeFInputDiv>
-                                        </ThemeFInputDiv>
 
-                                        <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                            <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue and Next</ThemeButtonType2>
-                                        </Stack>
+                                            <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                                                <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue and Next</ThemeButtonType2>
+                                            </Stack>
 
-                                    </Form>
-                                )}
-                            </Formik>
+                                        </Form>
+                                    )}
+                                </Formik>
 
 
+
+                            </Box>
 
                         </Box>
+
 
                     </Box>
                 </Stack>

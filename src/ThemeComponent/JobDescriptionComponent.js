@@ -332,23 +332,24 @@ const JobDescriptionComponent = ({ userType, data }) => {
 
             <Stack direction="row" gap={2} sx={{ flexWrap: "wrap" }}>
 
-                {data ? data.skills && data.skills.map((item) => {
-                    return (<>
-                        <Stack direction="row" sx={{
-                            background: "#FFFFFF",
-                            border: "1px solid #E2D7F0",
-                            borderRadius: "11px",
-                            padding: { "xs": "8px", "sm": "8px", "md": "15px", "lg": "15px", "xl": "15px" },
-                            gap: "5px",
-                            alignItems: "center",
-                            justifyContent: "center"
-                        }}>
+                {data ? data.skills && data.skills.map((index, item) => {
+                    return (
+                        <Stack direction="row"
+                            key={index} sx={{
+                                background: "#FFFFFF",
+                                border: "1px solid #E2D7F0",
+                                borderRadius: "11px",
+                                padding: { "xs": "8px", "sm": "8px", "md": "15px", "lg": "15px", "xl": "15px" },
+                                gap: "5px",
+                                alignItems: "center",
+                                justifyContent: "center"
+                            }}>
 
                             <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
                                 {item}
                             </Typography>
                         </Stack>
-                    </>)
+                    )
                 }) : <>
                     <Stack direction="row" sx={{
                         background: "#FFFFFF",

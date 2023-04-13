@@ -513,7 +513,7 @@ export const MaritalStatus = [
     {
         id: 1,
         value: "unmarried",
-        Name: "UnMarried"
+        Name: "Unmarried"
     },
     {
         id: 2,
@@ -900,8 +900,19 @@ export const ExtraBenefitsData = [
         value: "Insurance"
     },
     {
-        label: "A",
-        value: "B"
+        label: "Travelling Expenses",
+        value: "travelling expenses"
+    },
+    {
+        label: "Food Expenses",
+        value: "food expenses"
+    }, {
+        label: "Accomodation Expenses",
+        value: "accomodation expenses"
+    },
+    {
+        label: "Uniform Expenses",
+        value: "uniform expenses"
     }
 ]
 

@@ -334,10 +334,10 @@ const EmployerDashboard = () => {
 
                                                 {
                                                     jobs.map((item) => {
-                                                        return (<>
+                                                        return (
 
                                                             <JobComponent key={item._id} data={item} data_id={item._id} userType="employer" />
-                                                        </>)
+                                                        )
                                                     })
 
 

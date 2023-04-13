@@ -91,7 +91,7 @@ const Dashboard = () => {
 
                             {user &&
                                 user.employer_type === "employer" && user.isemailverified && user.ismobileverified && user.stage === "hrpage" && EmployerMenu.map((item) => {
-                                    return (<>
+                                    return (
                                         <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
                                             button key={item.id} to={item.url} component={NavLink}
                                             className="menu"
@@ -104,12 +104,12 @@ const Dashboard = () => {
                                                 }}
                                                 className={MenuSelected === item.value && "MenuSelected"} primary={item.MenuName ? item.MenuName : <Skeleton />} />
                                         </ListItem>
-                                    </>)
+                                    )
                                 })}
 
 
                             {user && user.type === "candidate" && user.isemailverified && user.ismobileverified && user.profilecompleted >= 0 && CandidateMenu.map((item) => {
-                                return (<>
+                                return (
                                     <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
                                         button key={item.id} to={item.url} component={NavLink}
                                         className={MenuSelected === item.value && "MenuSelected"}
@@ -124,7 +124,7 @@ const Dashboard = () => {
                                             primary={item.MenuName ? item.MenuName : <Skeleton />} />
                                     </ListItem>
 
-                                </>
+
                                 )
                             })}
 
@@ -159,7 +159,7 @@ const Dashboard = () => {
                                         <List sx={{ display: "flex", flexDirection: "column" }}>
 
                                             {EmployerMenu.map((item) => {
-                                                return (<>
+                                                return (
                                                     <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
                                                         button key={item.id} to={item.url} component={NavLink}
                                                         className="menu"
@@ -175,7 +175,7 @@ const Dashboard = () => {
                                                             }}
                                                             className={MenuSelected === item.value && "MenuSelected"} primary={item.MenuName} />
                                                     </ListItem>
-                                                </>)
+                                                )
                                             })}
                                         </List>
                                     </Box>

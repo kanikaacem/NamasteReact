@@ -71,17 +71,18 @@ const Footer = () => {
                     </Typography>
                     {
                         FooterData && FooterData.map((item, index) => {
-                            return (<>
+                            return (
                                 <Link to={item.url}
+                                    key={index}
                                     style={{
                                         textDecoration: "none"
                                     }} >
                                     <FooterBox sx={{
                                         fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                                    }} key={index}> {item.name}</FooterBox>
+                                    }}> {item.name}</FooterBox>
                                 </Link>
 
-                            </>)
+                            )
                         })
                     }
                 </Box>
@@ -117,17 +118,18 @@ const Footer = () => {
                     </Typography>
                     {
                         FooterData2 && FooterData2.map((item, index) => {
-                            return (<>
+                            return (
                                 <Link to={item.url}
+                                    key={index}
                                     style={{
                                         textDecoration: "none"
                                     }}>
                                     <FooterBox
                                         sx={{
                                             fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                                        }} key={index}> {item.name}</FooterBox>
+                                        }} > {item.name}</FooterBox>
                                 </Link>
-                            </>)
+                            )
                         })
                     }
 
@@ -143,17 +145,18 @@ const Footer = () => {
             }}>
                 {
                     FooterData3 && FooterData3.map((item, index) => {
-                        return (<>
+                        return (
                             <Link to={item.url}
+                                key={index}
                                 style={{
                                     textDecoration: "none",
                                 }}>
                                 <FooterBox
                                     sx={{
                                         fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                                    }} key={index}> {item.name}</FooterBox>
+                                    }} > {item.name}</FooterBox>
                             </Link>
-                        </>)
+                        )
                     })
                 }
             </Stack>

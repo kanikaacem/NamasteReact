@@ -60,11 +60,11 @@ const RecommendedJobs = () => {
                 }
                 {
                     dataLoaded && data.length > 0 && data.map((item) => {
-                        return (<>
+                        return (
                             <JobComponent key={item._id} data={item} data_id={item._id} userType="candidate" OnClickfun={() => {
                                 getJobDescription(item._id)
                             }} />
-                        </>)
+                        )
                     })
 
 
