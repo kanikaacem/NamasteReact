@@ -25,6 +25,7 @@ import CurrencyFormat from 'react-currency-format';
 
 import { data1 } from "../../utils/Data";
 import FormMenu from "../Common/FormMenu";
+import ImageBox from "../../Pages/Common/ImageBox";
 const PersonalInformation = ({ setActiveStep }) => {
     const animatedComponents = makeAnimated();
 
@@ -160,7 +161,7 @@ const PersonalInformation = ({ setActiveStep }) => {
                             }}>
                                 Next is You!
                             </Typography>
-                            <img src={window.location.origin + "/assets/g51.png"} alt="g51" style={{ margin: "40px 20px" }} />
+                            <ImageBox imgeUrl="/assets/g51.png" imgeText="g51"></ImageBox>
                         </Box>
 
                         <Box sx={{
@@ -186,7 +187,8 @@ const PersonalInformation = ({ setActiveStep }) => {
                             }}>
                                 the Jobs in Your City
                             </Typography>
-                            <img src={window.location.origin + "/assets/g52.png"} alt="g52" style={{ margin: "40px 20px" }} />
+                            <ImageBox imgeUrl="/assets/g52.png" imgeText="g52"></ImageBox>
+
                         </Box>
 
                     </Stack>
