@@ -368,10 +368,14 @@ nav {
   margin: 0 auto;
 }
 
-.PostJobForm1 .css-1s2u09g-control {
+.PersonalInformationPage .css-1s2u09g-control,
+.PersonalInformationPage .css-1pahdxg-control .PostJobForm1 .css-1s2u09g-control,
+.PostJobForm1 .css-1pahdxg-control {
   padding: 10px !important;
   border-radius: 11px !important;
 }
+
+
 
 /*tags */
 .tag-wrapper.ReactTags__tag {
@@ -398,7 +402,7 @@ nav {
 
 
 
-.css-1pahdxg-control:hover {
+/* .css-1pahdxg-control:hover {
   border: 2px solid #f2f4f8 !important;
   outline: none !important;
   box-shadow: none !important;
@@ -406,16 +410,16 @@ nav {
   border-radius: 10px !important;
   font-size: 13px !important;
 
-}
+} */
 
-.css-1pahdxg-control {
+/* .css-1pahdxg-control {
   border: 2px solid #f2f4f8 !important;
   outline: none !important;
   box-shadow: none !important;
   width: 97% !important;
   border-radius: 10px !important;
   font-size: 13px !important;
-}
+} */
 
 
 .jobDescriptionWrapper {
@@ -670,9 +674,9 @@ nav {
   outline: none;
 }
 
-.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+/* .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
   padding: 10px !important;
-}
+} */
 
 /*form font-family */
 .MuiInputBase-input .MuiOutlinedInput-input .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
@@ -703,13 +707,13 @@ nav {
   background: #EAEAEA;
 }
 
-.ProfessionalDetailForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+/* .ProfessionalDetailForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   background: #EAEAEA;
 }
 
 .workHistoryForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   background: #EAEAEA;
-}
+} */
 
 .PostJobForm1 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   background: #EAEAEA;
@@ -719,9 +723,9 @@ nav {
   border-radius: 11px !important;
 }
 
-.PersonalInformationForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+/* .PersonalInformationForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   background: #EAEAEA;
-}
+} */
 
 .CompanyInformationForm .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
   border-radius: 11px;
@@ -777,8 +781,6 @@ nav {
 #mui-component-select-job_type,
 #mui-component-select-industry_type {
   border-bottom: none;
-  font-family: 'Montserrat' !important;
-  opacity: 0.3;
 }
 
 .Mui-selected {
@@ -1030,4 +1032,14 @@ nav {
   .ProfileActionText {
     font-size: 10px !important;
   }
+}
+
+
+.MuiSelect-select {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.MuiInputBase-root {
+  border: none !important;
+
 }

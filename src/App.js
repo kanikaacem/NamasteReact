@@ -22,7 +22,7 @@ import VerifyMobileForm from './ThemeComponent/ThemeForms/VerifyMobileForm';
 import CompanyInfoForm from './ThemeComponent/ThemeForms/CompanyInfoForm';
 
 /*Candidate Component*/
-import CandidateProfile from './Pages/Candidate/CandidateProfile';
+import NormalCandidateRegistration from './Pages/Candidate/NormalCandidateRegistration';
 import JobTypePage from "./Pages/Candidate/JobTypePage";
 import CandidateRegistration from "./Pages/Candidate/CandidateRegistration";
 import CandidateLogin from "./Pages/Candidate/CandidateLogin";
@@ -39,7 +39,7 @@ import JobDescription from './Pages/JobDescription';
 import JobSearch from './ThemeComponent/Common/JobSearch';
 import ContactUs from "./Pages/Common/ContactUs";
 import AboutUs from './Pages/Common/AboutUs';
-import PersonalInformationInformation2 from "./ThemeComponent/ThemeForms/PersonalInformation2";
+import BlueCollarRegistrationForm from "./ThemeComponent/ThemeForms/BlueCollarRegistrationForm";
 import ThemeErrorPage from './Pages/Common/ThemeErrorPage';
 import { useEffect } from "react";
 import i18n from 'i18next';
@@ -96,7 +96,6 @@ function App() {
 
           <Route path="/employer-register" element={<EmployerRegister></EmployerRegister>} />
           <Route path="/employer-login" element={<EmployerLogin></EmployerLogin>} />
-          <Route path="/personal-info" element={<PersonalInformationInformation2></PersonalInformationInformation2>} ></Route>
 
           <Route path="/candidate-login" element={<CandidateLogin></CandidateLogin>}></Route>
           <Route path="/candidate-register" element={<CandidateRegistration />} />
@@ -127,8 +126,8 @@ function App() {
             <Route path="profile" element={<CandidateProfilePage></CandidateProfilePage>} />
             <Route path="mobile-verify" element={<CandidateMobileVerify></CandidateMobileVerify>} />
             <Route path="job-type" element={<JobTypePage></JobTypePage>} />
-            <Route path="profile/:step" element={<CandidateProfile></CandidateProfile>} />
-            <Route path=":jobType/profile/:step" element={<CandidateProfile></CandidateProfile>} />
+            <Route path="normal/:jobType/profile/:step" element={<NormalCandidateRegistration></NormalCandidateRegistration>} />
+            <Route path="blue-collar/:jobType/profile/:step" element={<BlueCollarRegistrationForm ></BlueCollarRegistrationForm>} />
             <Route path="applied-jobs" element={<CandidateAppliedSaveLikedJobs JobAction="Applied Jobs"></CandidateAppliedSaveLikedJobs>} />
             <Route path="saved-jobs" element={<CandidateAppliedSaveLikedJobs JobAction="Saved Jobs"></CandidateAppliedSaveLikedJobs>} />
             <Route path="liked-jobs" element={<CandidateAppliedSaveLikedJobs JobAction="Liked Jobs"></CandidateAppliedSaveLikedJobs>} />

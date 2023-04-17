@@ -1,5 +1,5 @@
 import { getRequest, postRequest } from "../../utils/ApiRequests";
-import { getJobTypeURL, checkBlueCollarJob, PostAnswerCandidate } from "../../utils/ApiUrls";
+import { getJobTypeURL, checkBlueCollarJob, PostAnswerCandidate, StatesURL } from "../../utils/ApiUrls";
 import { JobTypePageSchema } from "../../Validation/PostJobValidation";
 
 import { Box, Stack, Typography, TextField, Select as SelectField, MenuItem } from "@mui/material";
@@ -15,6 +15,8 @@ import Error from '../../ThemeComponent/Common/Error';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 import ImageBox from "../Common/ImageBox";
+import { CandidateEducation } from "../../utils/Data";
+import { useNavigate } from "react-router-dom";
 const JobTypePage = () => {
 
     const [jobType, setJobType] = useState(" ");
@@ -23,10 +25,20 @@ const JobTypePage = () => {
     const [autoData, setAutoData] = useState([]);
     const [menubar, setMenuBar] = useState(false);
     const [area, setArea] = useState("");
+    const [state, setState] = useState(" ");
+    const [city, setCity] = useState(" ");
+    const [District, setDistrict] = useState([]);
+    const [CountryState, setCountryState] = useState([]);
+    const [qualification, setQualification] = useState(" ");
+
+    const navigate = useNavigate();
 
     const defaultValue = {
         job_type: "",
-        area: ""
+        area: "",
+        state: "",
+        city: "",
+        qualification: ""
     }
 
     useEffect(() => {
@@ -39,14 +51,20 @@ const JobTypePage = () => {
     }, [])
 
     const handleSubmit1 = async (values) => {
-        FormSubmit("job_type", values.job_type, values.job_type);
-        FormSubmit("area", values.area, values.job_type);
+
+
+        // FormSubmit("job_type", values.job_type, values.job_type);
+        // FormSubmit("area", values.area, values.job_type);
+        // FormSubmit("state", values.state, values.job_type);
+        // FormSubmit("city", values.city, values.job_type);
+        // FormSubmit("qualification", values.qualification, values.job_type)
+
         let response = await getRequest(checkBlueCollarJob + "=" + values.job_type);
 
         if (response.data)
-            window.location.href = window.location.origin + "/candidate-dashboard/" + values.job_type.toLowerCase().replace("_", "-") + "/profile/0"
+            navigate("/candidate-dashboard/blue-collar/" + values.job_type.toLowerCase().replace("_", "-") + "/profile/0")
         else
-            window.location.href = window.location.origin + "/candidate-dashboard/profile/0"
+            navigate("/candidate-dashboard/normal/" + values.job_type.toLowerCase().replace("_", "-") + "/profile/0");
 
 
 
@@ -72,6 +90,19 @@ const JobTypePage = () => {
         }
 
     }
+
+    const getDistrictByState = async (statefilter) => {
+        let response = await getRequest("https://backend.jobsyahan.com/api/map/districts?states=" + statefilter);
+        setDistrict(response.data[0].districts);
+    }
+
+    useEffect(() => {
+        const getState = async () => {
+            let response = await getRequest(StatesURL);
+            setCountryState(response.data);
+        }
+        getState();
+    }, [])
     return (<>
         <Box className="JobTypePage"
             sx={{
@@ -116,7 +147,6 @@ const JobTypePage = () => {
                         </Typography>
                         <Box>
                             <ImageBox imgeUrl="/assets/g54.png" imgeText="g54" />
-                            {/* <img src={window.location.origin + "/assets/g54.png"} alt="g54" style={{ margin: "40px 20px" }} /> */}
 
                         </Box>
 
@@ -174,14 +204,17 @@ const JobTypePage = () => {
                                                 <ThemeFInputDiv >
                                                     <ThemeLabel LableFor="job_type" LableText="Job Type *" />
                                                     <SelectField
+                                                        classNamePrefix="react-select"
                                                         labelId="demo-simple-select-label"
                                                         name="job_type"
                                                         value={jobType}
-                                                        label="role"
                                                         onChange={(event) => {
                                                             setJobType(event.target.value);
                                                             setFieldValue("job_type", event.target.value);
                                                         }}
+                                                        displayEmpty
+                                                        inputProps={{ 'aria-label': 'Without label' }}
+
                                                         sx={{
                                                             background: " #FFFFFF",
                                                             border: "1px solid #EAEAEA",
@@ -195,7 +228,7 @@ const JobTypePage = () => {
                                                         }}
 
                                                     >
-                                                        <MenuItem value=" ">Select Job Type</MenuItem>
+                                                        <MenuItem value=" " disabled><Box style={{ color: "#e6e6e6" }}>Select Job Type</Box></MenuItem>
 
                                                         {jobTypeData && jobTypeData.map((item) =>
                                                             <MenuItem sx={{ textTransform: "capitalize" }} value={item} key={item}>{item.replaceAll("_", " ")}</MenuItem>
@@ -204,6 +237,76 @@ const JobTypePage = () => {
 
                                                     {errors.job_type && touched.job_type && <Error text={errors.job_type} />}
                                                 </ThemeFInputDiv>
+
+                                                <Stack direction="row" gap={2}>
+                                                    <ThemeFInputDiv sx={{ width: "50%" }}>
+                                                        <ThemeLabel LableFor="state" LableText="State *" />
+                                                        <SelectField
+                                                            classNamePrefix="react-select"
+                                                            labelId="demo-simple-select-label"
+                                                            name="state"
+                                                            value={state}
+                                                            displayEmpty
+                                                            inputProps={{ 'aria-label': 'Without label' }}
+                                                            onChange={(event) => {
+                                                                let stateValue = event.target.value;
+                                                                setState(stateValue);
+                                                                setFieldValue("state", event.target.value);
+                                                                getDistrictByState(event.target.value);
+                                                            }}
+                                                            sx={{
+                                                                background: " #FFFFFF",
+                                                                border: "1px solid #EAEAEA",
+                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                borderRadius: "7px",
+                                                                fontSize: "16px",
+                                                                fontamily: 'Montserrat',
+                                                                BorderBottom: 'none'
+                                                            }}
+                                                            disableUnderline
+                                                        >
+                                                            <MenuItem value=" " disabled><Box style={{ color: "#e6e6e6" }}>Select State</Box></MenuItem>
+                                                            {CountryState && CountryState.map((item) =>
+                                                                <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                            )}
+                                                        </SelectField>
+                                                        {errors.state && touched.state && <Error text={errors.state} />}
+                                                    </ThemeFInputDiv>
+
+                                                    <ThemeFInputDiv sx={{ width: "50%" }}>
+
+                                                        <ThemeLabel LableFor="city" LableText="City *" />
+                                                        <SelectField
+                                                            classNamePrefix="react-select"
+                                                            labelId="demo-simple-select-label"
+                                                            name="city"
+                                                            value={city}
+                                                            displayEmpty
+                                                            inputProps={{ 'aria-label': 'Without label' }}
+                                                            onChange={(event) => {
+                                                                setCity(event.target.value);
+                                                                setFieldValue("city", event.target.value);
+                                                            }}
+                                                            sx={{
+                                                                background: " #FFFFFF",
+                                                                border: "1px solid #EAEAEA",
+                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                borderRadius: "7px",
+                                                                fontSize: "16px",
+                                                                fontamily: 'Montserrat',
+                                                                BorderBottom: 'none'
+                                                            }}
+                                                            disableUnderline
+                                                        >
+                                                            <MenuItem value=" " disabled><Box style={{ color: "#e6e6e6" }}>Select City</Box></MenuItem>
+                                                            {District && District.map((item) =>
+                                                                <MenuItem value={item.name} key={item._id}>{item.name}</MenuItem>
+                                                            )}
+                                                        </SelectField>
+
+                                                        {errors.city && touched.city && <Error text={errors.city} />}
+                                                    </ThemeFInputDiv>
+                                                </Stack>
 
                                                 <ThemeFInputDiv sx={{ position: "relative" }}>
                                                     <ThemeLabel LableFor="area" LableText="Area *" />
@@ -263,6 +366,41 @@ const JobTypePage = () => {
                                                     {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
 
                                                 </ThemeFInputDiv>
+
+                                                <ThemeFInputDiv>
+                                                    <ThemeLabel LableFor="qualification" LableText="Qualification *" />
+                                                    <SelectField
+                                                        classNamePrefix="react-select"
+                                                        labelId="demo-simple-select-label"
+                                                        name="qualification"
+                                                        value={qualification}
+                                                        displayEmpty
+                                                        inputProps={{ 'aria-label': 'Without label' }}
+                                                        onChange={(event) => {
+                                                            setQualification(event.target.value);
+                                                            setFieldValue("qualification", event.target.value);
+                                                        }}
+                                                        sx={{
+                                                            background: " #FFFFFF",
+                                                            border: "1px solid #EAEAEA",
+                                                            boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                            borderRadius: "7px",
+                                                            fontSize: "16px",
+                                                            fontamily: 'Montserrat',
+                                                            BorderBottom: 'none'
+                                                        }}
+                                                        disableUnderline
+
+                                                    >
+                                                        <MenuItem value=" " disabled> <Box style={{ color: "#e6e6e6" }}>Select Qualification</Box></MenuItem>
+                                                        {CandidateEducation && CandidateEducation.map((item) =>
+                                                            <MenuItem value={item.value} key={item.value}>{item.value}</MenuItem>
+                                                        )}
+                                                    </SelectField>
+                                                    {errors.qualification && touched.qualification && <Error text={errors.qualification} />}
+                                                </ThemeFInputDiv>
+
+
                                             </ThemeFInputDiv>
 
                                             <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
@@ -283,7 +421,7 @@ const JobTypePage = () => {
                     </Box>
                 </Stack>
             </Stack>
-        </Box>
+        </Box >
 
 
     </>)

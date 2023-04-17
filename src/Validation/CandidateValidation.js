@@ -1,4 +1,6 @@
 import * as yup from "yup";
+import differenceInYears from 'date-fns/differenceInYears';
+
 //Employer Login Validation
 export const candidateLoginValidationSchema = yup.object().shape({
     email_address: yup.string().required("Email Address is required").email("Please enter a valid email Address"),
@@ -25,21 +27,20 @@ export const CandidateRegistrationSchema = yup.object().shape({
 
 //Candidate Registration Step 2 ->Step 1
 export const PersonalRegistrationSchema = yup.object().shape({
-    current_title: yup.string().required("Current Title is required"),
+    current_title: yup.string().required("Current Title is required").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
     current_salary: yup.number("Current Salary should be a number")
         .positive("Current Salary should be positive").required("Current Salary is required"),
     excepted_salary: yup.number("Excepted Salary should be a number")
         .positive("Excepted Salary should be positive").required("Excepted Salary is required"),
     skills: yup.string().required("Skills is required"),
-    perferred_location: yup.string().required("Perferred Location is required"),
     total_work_experience: yup.number("Total Work Experience should be a number")
         .positive("Total Work Experience should be positive").required("Total Work Experience is required"),
-    full_name: yup.string().required("FullName is required"),
-    date_of_birth: yup.string().required("Date of Birth is required"),
+    full_name: yup.string().required("Full Name is required").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
+    date_of_birth: yup.string().required("Date of Birth is required").test('DOB', 'Please Select a valid Date of Birth', value => {
+        return differenceInYears(new Date(), new Date(value)) >= 14;
+    }),
     state: yup.string().required("State is required"),
     city: yup.string().required("City is required"),
-    complete_address: yup.string().required("Complete address is required"),
-    phone_number: yup.number().min(10).required("Phone Number is required"),
     marital_status: yup.string().required("Martial Status is required"),
     gender: yup.string().required("Gender is required")
 })

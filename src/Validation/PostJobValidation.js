@@ -39,7 +39,7 @@ export const postJobSchema2 = yup.object().shape({
 })
 
 export const JobTypePageSchema = yup.object().shape({
-    job_type: yup.string().required("Job Type is required"),
-    area: yup.string().required("Area is required")
+    // job_type: yup.string().required("Job Type is required"),
+    // area: yup.string().required("Area is required")
     // skills: yup.string().required("Skills is required")
 })

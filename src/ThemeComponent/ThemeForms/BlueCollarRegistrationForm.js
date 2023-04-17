@@ -18,9 +18,11 @@ import { useState, useEffect } from "react";
 import { data2 } from "../../utils/Data";
 import FormMenu from "../Common/FormMenu";
 
-const PersonalInformation2 = ({ jobType }) => {
-    const { step } = useParams();
-    const JobType = window.location.pathname.split('/')[1];
+import { useNavigate } from "react-router-dom";
+const BlueCollarRegistrationForm = () => {
+    const navigate = useNavigate();
+    const { jobType, step } = useParams();
+    const JobType = jobType.toLowerCase();
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [questions, setQuestions] = useState([]);
 
@@ -31,7 +33,7 @@ const PersonalInformation2 = ({ jobType }) => {
             if (step === '1') questiontype = "we";
             if (step === '2') questiontype = "ed";
             let response = await postRequest(CandidateQuestion, {
-                jobtype: jobType,
+                jobtype: JobType,
                 questiontype: questiontype
             })
             if (response.status === '1')
@@ -41,7 +43,7 @@ const PersonalInformation2 = ({ jobType }) => {
                     setQuestions([])
         }
         jobType && getQuestion();
-    }, [jobType]);
+    }, [jobType, step]);
 
     const FormSubmit = async (question, ans) => {
 
@@ -65,7 +67,7 @@ const PersonalInformation2 = ({ jobType }) => {
         // console.log(response);
         if (response.status === "1") {
             localStorage.setItem("action", "login");
-            window.location.href = window.location.origin + "/candidate-dashboard";
+            navigate("/candidate-dashboard/profile");
         }
 
     }
@@ -256,16 +258,14 @@ const PersonalInformation2 = ({ jobType }) => {
                 }}>
 
                 <Box sx={{
-                    width: { 'lg': "50%", 'md': '100%', 'xs': '100%' },
+                    width: { 'lg': "40%", 'md': '100%', 'xs': '100%' },
                     display: { 'lg': "block", 'md': "none", 'xs': 'none' },
-
+                    padding: " 0 100px",
+                    marginTop: "30px"
                 }}>
                     <Stack sx={{
-                        margin: "50px",
                         direction: "row",
-                        gap: "100px",
-
-
+                        gap: "20px"
                     }}>
                         <Typography component="box" sx={{
                             fontSize: "64px",
@@ -273,7 +273,6 @@ const PersonalInformation2 = ({ jobType }) => {
                             fontWeight: "600",
                             color: "#4E3A67",
                             display: "block",
-                            marginTop: "20px"
                         }}>
                             Trust us for Getting suitable jobs!
                         </Typography>
@@ -287,9 +286,8 @@ const PersonalInformation2 = ({ jobType }) => {
                     </Stack>
 
                     <Stack sx={{
-                        margin: "50px",
                         direction: "row",
-                        gap: "100px",
+                        gap: "20px",
                         alignItems: "flex-end"
 
 
@@ -314,6 +312,7 @@ const PersonalInformation2 = ({ jobType }) => {
                         </Box>
                     </Stack>
                 </Box>
+
                 <Box sx={{
                     width: { "lg": "50%", "md": "100%", "xs": "100%" }
                 }}>
@@ -323,97 +322,101 @@ const PersonalInformation2 = ({ jobType }) => {
                         border: "1px solid #EAEAEA",
                         boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                         borderRadius: "19px",
-                        padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
                         margin: "0 auto",
 
                     }}>
-                        <Typography component="box" sx={{
-                            fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                            marginTop: "20px"
+                        <Box sx={{
+                            padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
                         }}>
-                            {step === "0" && "Candidate Details"}
-                            {step === "1" && "Work Details"}
-                            {step === "2" && "General Details"}
-                        </Typography>
+                            <Typography component="box" sx={{
+                                fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                                marginTop: "20px"
+                            }}>
+                                {step === "0" && "Candidate Details"}
+                                {step === "1" && "Work Details"}
+                                {step === "2" && "General Details"}
+                            </Typography>
 
-                        <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
+                            <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
 
-                            {
-                                data2 && data2.map((item) => {
-                                    return <FormMenu data={item} />
-                                })
-                            }
-                        </Stack>
+                                {
+                                    data2 && data2.map((item) => {
+                                        return <FormMenu data={item} />
+                                    })
+                                }
+                            </Stack>
+
+                        </Box>
+
+                        <Box sx={{
+                            boxSizing: "border-box",
+                            maxWidth: "865px",
+                            background: "#FFFFFF",
+                            border: "1px solid #EDEDED",
+                            borderBottomLeftRadius: "19px",
+                            borderBottomRightRadius: "19px",
+                            position: "relative",
+                            padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
+                            margin: "0 auto"
+
+                        }}>
+                            <Formik
+
+                                initialValues={{}}
+
+                            >
+                                {({ errors, touched, values, setFieldValue }) => (
+                                    <Form className="ProfessionalDetailForm">
+                                        <ThemeFInputDiv>
+                                            {
+                                                questions && questions.length > 0 && questions.map((item, index) => {
+                                                    return (<>
+                                                        <ThemeFInputDiv>
+                                                            <ThemeLabel LableFor={item.questiontag} LableText={item.question} />
+                                                            {getQuestionField(item)}
+
+                                                        </ThemeFInputDiv>
+                                                    </>)
+                                                })
+                                            }
+
+                                        </ThemeFInputDiv >
+
+                                        <Stack direction="row" sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                                            {(step === '0' || step === '1') ?
+                                                <ThemeButtonType2 variant="contained" type="button"
+                                                    onClick={() => navigate("/candidate-dashboard/blue-collar/" + jobType + "/profile/" + (step === "0" ? 1 : 2))
+                                                    }
+                                                    sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
+                                                >Next</ThemeButtonType2>
+                                                :
+                                                <ThemeButtonType2 variant="contained" type="button" onClick={LoginUser} sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
+                                                >Save</ThemeButtonType2>
+                                            }
+
+
+
+                                        </Stack>
+
+                                    </Form >
+
+                                )}
+                            </Formik >
+
+
+                        </Box>
                     </Box>
 
-                    <Box sx={{
-                        boxSizing: "border-box",
-                        maxWidth: "865px",
-                        minHeight: "647px",
-                        background: "#FFFFFF",
-                        border: "1px solid #EDEDED",
-                        borderRadius: "19px",
-                        position: "relative",
-                        top: "-10px",
 
-                        padding: "30px 50px",
-                        margin: "0 auto"
-
-                    }}>
-                        <Formik
-
-                            initialValues={{}}
-
-                        >
-                            {({ errors, touched, values, setFieldValue }) => (
-                                <Form className="ProfessionalDetailForm">
-                                    <ThemeFInputDiv>
-                                        {
-                                            questions && questions.length > 0 && questions.map((item, index) => {
-                                                return (<>
-                                                    <ThemeFInputDiv>
-                                                        <ThemeLabel LableFor={item.questiontag} LableText={item.question} />
-                                                        {getQuestionField(item)}
-
-                                                    </ThemeFInputDiv>
-                                                </>)
-                                            })
-                                        }
-
-                                    </ThemeFInputDiv >
-
-                                    <Stack direction="row" sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                        {(step === '0' || step === '1') ?
-                                            <ThemeButtonType2 variant="contained" type="button"
-                                                onClick={() => window.location.href = window.location.origin + "/candidate-dashboard/" + jobType + "/profile/" + (step === "0" ? 1 : 2)
-                                                }
-                                                sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
-                                            >Next</ThemeButtonType2>
-                                            :
-                                            <ThemeButtonType2 variant="contained" type="button" onClick={LoginUser} sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
-                                            >Save</ThemeButtonType2>
-                                        }
-
-
-
-                                    </Stack>
-
-                                </Form >
-
-                            )}
-                        </Formik >
-
-
-                    </Box>
                 </Box>
 
-            </Stack>
+            </Stack >
         </Box >
 
     </>)
 }
-export default PersonalInformation2;
+export default BlueCollarRegistrationForm;
