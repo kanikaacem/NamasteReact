@@ -32,7 +32,7 @@ const EmployerVerficationPage = () => {
     }
     return (<>
         <ThemeMessage open={emailVerified} setOpen={setEmailVerified}
-            message=" Your Email is verified.website will redirect to login page" type="success" />
+            message="You have successfully verified your email address. This Page will automatically redirect to Login Page" type="success" />
 
 
         <Box>

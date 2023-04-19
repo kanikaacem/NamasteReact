@@ -579,9 +579,6 @@ nav {
   /* color: #bebbbb; */
 }
 
-/* .react-select__placeholder {
-  color: #bebbbb !important;
-} */
 
 #mui-component-select-role,
 #mui-component-select-experience,
@@ -707,13 +704,6 @@ nav {
   background: #EAEAEA;
 }
 
-/* .ProfessionalDetailForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  background: #EAEAEA;
-}
-
-.workHistoryForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  background: #EAEAEA;
-} */
 
 .PostJobForm1 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   background: #EAEAEA;
@@ -723,9 +713,6 @@ nav {
   border-radius: 11px !important;
 }
 
-/* .PersonalInformationForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  background: #EAEAEA;
-} */
 
 .CompanyInformationForm .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
   border-radius: 11px;
@@ -1042,4 +1029,12 @@ nav {
 .MuiInputBase-root {
   border: none !important;
 
+}
+
+.BlueCollarRegistrationFormInput::-webkit-input-placeholder {
+  color: rgb(191 191 191);
+}
+
+.BlueCollarRegistrationFormInput::-moz-placeholder {
+  color: rgb(191 191 191);
 }

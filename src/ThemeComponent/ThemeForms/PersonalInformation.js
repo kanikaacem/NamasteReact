@@ -88,7 +88,7 @@ const PersonalInformation = ({ jobType }) => {
         let response = await postRequest(SaveCandidatePersonalInformation, formData);
         if (response.status == 1) {
             localStorage.setItem("user", JSON.stringify(response.data));
-            navigate("/candidate-dashboard/" + jobType + "/normal/profile/1");
+            window.location.href = window.location.origin + "/candidate-dashboard/normal/" + jobType + "/profile/1";
         }
     }
 

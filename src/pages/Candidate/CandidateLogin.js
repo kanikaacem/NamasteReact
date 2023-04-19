@@ -39,31 +39,35 @@ const CandidateLogin = () => {
             password: values.password
         }
 
-        let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
-        if (response.status == '1') {
-            setRegisterUser(response.data);
+        try {
+            let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
+            if (response.status == '1') {
+                setRegisterUser(response.data);
 
-            localStorage.setItem("auth_token", response.token);
-            if (response.data.isemailverified && response.data.ismobileverified)
-                dispatch({ type: 'LOGIN', payload: response.data });
+                localStorage.setItem("auth_token", response.token);
+                if (response.data.isemailverified && response.data.ismobileverified)
+                    dispatch({ type: 'LOGIN', payload: response.data });
 
-            else if (!response.data.ismobileverified) {
-                dispatch({ type: 'LOGIN_REGISTRATION', payload: response.data });
+                else if (!response.data.ismobileverified) {
+                    dispatch({ type: 'LOGIN_REGISTRATION', payload: response.data });
+                }
+
+                else {
+                    setShowEmailVerifiedMessage(true);
+                    setIsEmailVerified(true);
+                    document.getElementById("log_in").disabled = "true";
+
+                }
             }
+            if (response.status === '0' && Object.keys(response.data).length === 0)
+                window.location.href = window.location.origin + "/login-error";
 
-            else {
-                setShowEmailVerifiedMessage(true);
-                setIsEmailVerified(true);
-                document.getElementById("log_in").disabled = "true";
+            if (response.status === '0') {
+                setFieldError("password", "Something Went Wrong");
 
             }
-        }
-        if (response.status === '0' && Object.keys(response.data).length === 0)
-            window.location.href = window.location.origin + "/login-error";
-
-        if (response.status === '0') {
+        } catch (err) {
             setFieldError("password", "Something Went Wrong");
-
         }
     }
 

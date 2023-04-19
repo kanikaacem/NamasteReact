@@ -75,14 +75,14 @@ const BlueCollarRegistrationForm = () => {
     function InputDiv({ QuestionItem }
     ) {
         return (<>
-            <input
+            <input className="BlueCollarRegistrationFormInput"
                 onKeyUp={(event) => FormSubmit(QuestionItem && QuestionItem.questiontag, event.target.value)
                 }
                 style={{
-                    padding: "13px",
+                    padding: "18px",
                     borderRadius: "11px",
-                    border: "1px solid #EAEAEA",
-                    fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }
+                    border: "1px solid rgb(196 196 196)",
+                    fontSize: "16px"
                 }} type="text" name={QuestionItem && QuestionItem.questiontag} placeholder={QuestionItem && QuestionItem.question} />
         </>)
     }
@@ -123,10 +123,11 @@ const BlueCollarRegistrationForm = () => {
                 }}
                 sx={{
                     "& .MuiOutlinedInput-root": {
-                        borderRadius: "4px",
-                        padding: "2px",
-                        border: "1px solid #EAEAEA",
-                        fontSize: { "xs": "12px", "sm": "12px", "md": "14px", "lg": "14px", "xl": "14px" }
+                        borderRadius: "11px",
+                        padding: "7px",
+                        border: "1px solid rgb(196 196 196) !important",
+                        fontSize: { "xs": "12px", "sm": "12px", "md": "14px", "lg": "16px", "xl": "16px" },
+
                     },
                     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
                         border: "none"
@@ -247,7 +248,7 @@ const BlueCollarRegistrationForm = () => {
     return (<>
         <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message="Candidate is registered Successfully." type="success" />
 
-        <Box className="PersonalInformation2" sx={{
+        <Box className="BlueCollarRegistrationPage" sx={{
             background: "FAFAFA"
 
         }}>
@@ -370,7 +371,7 @@ const BlueCollarRegistrationForm = () => {
 
                             >
                                 {({ errors, touched, values, setFieldValue }) => (
-                                    <Form className="ProfessionalDetailForm">
+                                    <Form className="BlueCollarRegistrationForm">
                                         <ThemeFInputDiv>
                                             {
                                                 questions && questions.length > 0 && questions.map((item, index) => {

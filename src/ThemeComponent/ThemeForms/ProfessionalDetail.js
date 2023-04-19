@@ -19,16 +19,17 @@ import ThemeMessage from "../Common/ThemeMessage";
 import { data1 } from "../../utils/Data";
 import FormMenu from "../Common/FormMenu";
 import { useState, useEffect } from "react";
+import { Percent } from "@mui/icons-material";
 
-
-
-function AddProfessionalForm({ handleAddComponent }) {
+function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jobType }) {
 
     const [qualification, setQualification] = useState(" ");
     const [courseType, setCourseType] = useState('full_time');
     const [startingDate, setStartingDate] = useState(null);
     const [endingDate, setEndingDate] = useState(null);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [showAddButton, setShowAddButton] = useState(false);
+    const [showRemoveButton, setShowRemoveButton] = useState(false);
 
     const defaultValue = {
         institue_name: "",
@@ -39,7 +40,7 @@ function AddProfessionalForm({ handleAddComponent }) {
         percentage: "",
     }
 
-    const handleSubmit = async (values, { resetForm }) => {
+    const handleSubmit = async (values) => {
         let formData = new FormData();
         formData = {
             institude_name: values.institue_name,
@@ -54,16 +55,42 @@ function AddProfessionalForm({ handleAddComponent }) {
         if (response.status === "1") {
             localStorage.setItem("user", JSON.stringify(response.data));
             setFormSubmitted(true);
+            setShowAddButton(true);
 
         }
+
     }
 
+    const nextStepButton = async (values) => {
+        let InstitudeName = document.getElementById("institue_name").value;
+        let Qualification = document.getElementById("mui-component-select-profile_type").innerText;
+        let Percentage = document.getElementById("percentage").value;
 
+        let formData = new FormData();
+        formData = {
+            institude_name: InstitudeName,
+            qualification: Qualification,
+            course_type: courseType,
+            starting_year: new Date(startingDate),
+            ending_year: new Date(endingDate),
+            percentage: Percentage
+
+        }
+        if (InstitudeName !== "" && Qualification === "Select Qualification" && Percentage !== "") {
+            let response = await postRequest(SaveCandidateProfessionalInformation, formData);
+            if (response.status === "1") {
+                localStorage.setItem("user", JSON.stringify(response.data));
+                setFormSubmitted(true);
+
+            }
+        }
+        window.location.href = window.location.origin + "/candidate-dashboard/normal/" + jobType + "/profile/2";
+    }
 
     return <>
         <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message=" Your Professional Details is submitted successfully." type="success" />
 
-        <Box >
+        <Box id={id}>
             <Formik
 
                 initialValues={defaultValue}
@@ -173,6 +200,17 @@ function AddProfessionalForm({ handleAddComponent }) {
                                 {errors.course_type && touched.course_type && <Error text={errors.course_type} />}
                             </ThemeFInputDiv>
 
+                            <ThemeFInputDiv>
+                                <ThemeLabel LableFor="percentage" LableText="Percentage" />
+                                <Field
+                                    error={errors.percentage && touched.percentage}
+                                    as={TextField}
+                                    id="percentage"
+                                    placeholder="Enter Percentage" type="text" name="percentage" fullWidth />
+                                {errors.percentage && touched.percentage && <Error text={errors.percentage} />}
+
+                            </ThemeFInputDiv>
+
                             <Stack direction="row" gap={3} >
                                 <ThemeFInputDiv sx={{ width: "370px" }}>
                                     <ThemeLabel LableFor="starting_year" LableText="Starting Year" />
@@ -224,46 +262,47 @@ function AddProfessionalForm({ handleAddComponent }) {
 
                                 </ThemeFInputDiv>
                             </Stack>
-
-                            <ThemeFInputDiv>
-                                <ThemeLabel LableFor="percentage" LableText="Percentage" />
-                                <Field
-                                    error={errors.percentage && touched.percentage}
-                                    as={TextField}
-                                    id="percentage"
-                                    placeholder="Enter Percentage" type="text" name="percentage" fullWidth />
-                                {errors.percentage && touched.percentage && <Error text={errors.percentage} />}
-
-                            </ThemeFInputDiv>
-
-
                         </ThemeFInputDiv >
-                        <Stack direction="row" sx={{ width: "100%", gap: "20px", flexWrap: "wrap" }}>
 
-                            <ThemeButtonType3 variant="outlined" type="submit"
+                        <Stack direction="row" sx={{ width: "100%", gap: "30px", flexWrap: "wrap", margin: "10px 0px" }}>
+                            {showAddButton && <ThemeButtonType3 variant="outlined" type="submit"
                                 sx={{
-                                    fontFamily: "Work Sans, sans-serif",
-                                    fontWeight: "600", width: { "xs": "100%", "sm": "100%", "md": "47%", "lg": "47%", "xl": "47%" }
+                                    fontFamily: "Work Sans, sans-serif", fontWeight: "600",
+                                    width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
                                 }}
-                                onClick={handleAddComponent}>Add + </ThemeButtonType3>
-                            <ThemeButtonType2 variant="contained" type="button"
-                                sx={{
-                                    fontFamily: "Work Sans, sans-serif", fontWeight: "600", margin: "20px 0px",
-                                    width: { "xs": "100%", "sm": "100%", "md": "50%", "lg": "50%", "xl": "50%" }
+                                onClick={(event) => {
+                                    handleAddComponent();
+                                    event.preventDefault();
                                 }}
-                                onClick={handleAddComponent}>Remove - </ThemeButtonType2>
+                            > Add +</ThemeButtonType3>}
+
+
+                            {(showRemoveButton || id > 0) &&
+                                <ThemeButtonType2 variant="contained" type="button" sx={{
+                                    fontFamily: "Work Sans, sans-serif", fontWeight: "600",
+                                    width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
+                                }}
+                                    onClick={(event) => {
+                                        handleRemoveComponent();
+                                        event.preventDefault();
+                                    }}>Remove -</ThemeButtonType2>}
                         </Stack>
 
-                        <Stack direction="row" sx={{ width: "100%", gap: "20px", flexWrap: "wrap" }}>
-                            <ThemeButtonType3 variant="outlined" type="submit"
-                                sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600", width: { "xs": "100%", "sm": "100%", "md": "50%", "lg": "50%", "xl": "50%" } }}
+                        <Stack direction="row" sx={{ width: "100%", gap: "30px", flexWrap: "wrap" }}>
+                            <ThemeButtonType3 variant="outlined" type="submit" name="submit"
+                                sx={{
+                                    fontFamily: "Work Sans, sans-serif", fontWeight: "600",
+                                    width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
+                                }}
                             > Save</ThemeButtonType3>
 
-                            <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600", width: { "xs": "100%", "sm": "100%", "md": "47%", "lg": "47%", "xl": "47%" } }}
-                                onClick={() => {
-                                    window.location.href = window.location.origin + '/candidate-dashboard/profile/2';
-
-                                }}>Next Step</ThemeButtonType2>
+                            <ThemeButtonType2 variant="contained" type="button" name="nextStep"
+                                onClick={nextStepButton}
+                                sx={{
+                                    fontFamily: "Work Sans, sans-serif",
+                                    fontWeight: "600", width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
+                                }}
+                            >Next Step</ThemeButtonType2>
 
                         </Stack>
 
@@ -276,23 +315,32 @@ function AddProfessionalForm({ handleAddComponent }) {
 };
 
 
-const ProfessionalDetail = ({ setActiveStep }) => {
+const ProfessionalDetail = ({ jobType }) => {
 
-    const [newForm, setNewForm] = useState(0);
     const [components, setComponents] = useState([]);
 
     const handleAddComponent = () => {
-        const newComponent = <AddProfessionalForm key={components.length} handleAddComponent={handleAddComponent} />;
-        setComponents(prevComponents => [...prevComponents, newComponent]);
+        setComponents(prevComponents => [...prevComponents, <AddProfessionalForm
+            key={prevComponents.length} id={prevComponents.length} handleAddComponent={handleAddComponent}
+            handleRemoveComponent={handleRemoveComponent}
+            jobType={jobType}
+        />]);
+    };
+
+    const handleRemoveComponent = () => {
+        setComponents(prevComponents => {
+            const newDivs = [...prevComponents];
+            newDivs.pop();
+            return newDivs;
+        });
     };
 
     useEffect(() => {
         handleAddComponent();
-    }, [newForm]);
+    }, []);
 
 
     return (<>
-
         <Box className="ProfessionalInformationPage"
             sx={{
                 minHeight: "100vh",
@@ -320,7 +368,7 @@ const ProfessionalDetail = ({ setActiveStep }) => {
                         }}>
 
                         <Box sx={{
-                            display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" }
+                            display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
                         }}>
                             <Typography component="box" sx={{
                                 fontSize: "64px",

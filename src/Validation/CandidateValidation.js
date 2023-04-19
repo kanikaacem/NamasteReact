@@ -48,21 +48,21 @@ export const PersonalRegistrationSchema = yup.object().shape({
 
 //Candidate Registration Step 3
 export const ProfessionalDetailSchema = yup.object().shape({
-    institue_name: yup.string().required("Institue Name is required"),
+    institue_name: yup.string().required("Institue Name is required").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
     qualification: yup.string().required("Qualification is required"),
     course_type: yup.string().required("Course Type is required"),
-    starting_year: yup.string().required("Staring Year is required"),
-    ending_year: yup.string().required("Ending Year is required"),
+    starting_year: yup.date().required("Staring Year is required"),
+    ending_year: yup.date().required("Ending Year is required"),
     percentage: yup.string().required("Percentage is required"),
 })
 
 //Candidate WorkHistory Step 4
 export const WorkHistorySchema = yup.object().shape({
-    company_name: yup.string().required("Company Name is required"),
-    designation: yup.string().required("Designation is required"),
-    department: yup.string().required("Department is required"),
-    starting_year: yup.string().required("Staring Year is required"),
-    ending_year: yup.string().required("Ending Year is required"),
+    company_name: yup.string().required("Company Name is required").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
+    designation: yup.string().required("Designation is required").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
+    department: yup.string().required("Department is required").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
+    starting_year: yup.date().required("Staring Year is required"),
+    ending_year: yup.date().required("Ending Year is required"),
 })
 
 //Updating the Candidate Basic Info

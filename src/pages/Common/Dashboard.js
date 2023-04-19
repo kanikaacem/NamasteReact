@@ -294,7 +294,6 @@ const Dashboard = () => {
                 {/* Dashboard based on the user */}
                 <Box sx={{
                     background: "#FAFAFA",
-                    // minHeight: `calc(100vh - 50px)`, 
                     width: '100%'
                 }}>
                     {/* {!pageAuthenticate && <ErrorPage errorMessage="Page not Found" subMessage="Unfortunately the page you are looking for could not be found" />} */}

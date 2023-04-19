@@ -52,12 +52,11 @@ const JobTypePage = () => {
 
     const handleSubmit1 = async (values) => {
 
-
-        // FormSubmit("job_type", values.job_type, values.job_type);
-        // FormSubmit("area", values.area, values.job_type);
-        // FormSubmit("state", values.state, values.job_type);
-        // FormSubmit("city", values.city, values.job_type);
-        // FormSubmit("qualification", values.qualification, values.job_type)
+        FormSubmit("job_type", values.job_type, values.job_type);
+        FormSubmit("area", values.area, values.job_type);
+        FormSubmit("state", values.state, values.job_type);
+        FormSubmit("city", values.city, values.job_type);
+        FormSubmit("qualification", values.qualification, values.job_type)
 
         let response = await getRequest(checkBlueCollarJob + "=" + values.job_type);
 

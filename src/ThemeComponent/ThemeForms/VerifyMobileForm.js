@@ -119,9 +119,7 @@ const VerifyMobileForm = () => {
 
                         </Box>
                     </Box>
-                    <Stack
-                    >
-
+                    <Stack>
                         <Stack gap={2} sx={{
                             width: { 'lg': "449px", 'md': '92%', 'xs': '92%' },
                             height: { "xs": "fit-content", "sm": "fit-content", "md": "730px", "lg": "730px", "xl": "730px" },

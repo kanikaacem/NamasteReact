@@ -47,7 +47,7 @@ const RecommendedJobs = () => {
                     width: { "lg": "40%", "md": "100%", "xs": "100%" },
                     padding: { "lg": "0px 10px", md: "0px", "xs": "0px" },
                     height: "90vh",
-                    overflowX: "scroll"
+                    overflowY: "scroll"
                 }}>
                 {
                     !dataLoaded && <>
