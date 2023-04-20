@@ -15,6 +15,7 @@ import EmailSignupForm from "../../ThemeComponent/ThemeForms/EmailSignupForm";
 import PasswordGenForm from "../../ThemeComponent/ThemeForms/PasswordGenForm";
 import VerifyMobileForm from "../../ThemeComponent/ThemeForms/VerifyMobileForm";
 import CompanyInfoForm from "../../ThemeComponent/ThemeForms/CompanyInfoForm";
+import ThemeMobileImage from "../../ThemeComponent/Common/ThemeMobileImage";
 import ReactGA from 'react-ga';
 ReactGA.initialize('AW-11080443279/AeoHCJzJ2YkYEI_LyKMp');
 ReactGA.pageview(window.location.pathname + window.location.search);
@@ -80,17 +81,20 @@ const EmployerRegister = () => {
             !companyInfoForm ?
                 <Box className="EmployerRegisterPage"
                     sx={{
-                        height: { "xs": "1000px", "sm": "1000px", "md": "100vh", "lg": "100vh", "xl": "100vh" },
+                        minHeight: "100vh",
                         background: !companyInfoForm ? "#2B1E44" : "#FFFFFF",
-                        backgroundImage: !companyInfoForm &&
-                            "url('../assets/g10.png')",
+                        backgroundImage: !companyInfoForm && {
+                            "xs": "none", "sm": "none", "md": "none",
+                            "lg": "url('../assets/g10.png')", "xl": "url('../assets/g10.png')"
+                        }
+                        ,
                         backgroundRepeat: " no-repeat",
                         backgroundPosition: !companyInfoForm ? " left 0px bottom 0px" : "left 100px bottom 0px"
                     }}>
                     <Stack className="EmployerRegisterPageWrapper"
                         sx=
                         {{
-                            padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
+                            padding: { "xs": "20px", "sm": "20px 50px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
                             gap: "24px"
                         }}>
                         <HeaderSec
@@ -98,26 +102,26 @@ const EmployerRegister = () => {
                             color="#FFFFFF"
                             background="#432C60"
                         />
-                        <Stack direction={{ 'lg': "row", 'md': 'column', 'xs': 'column' }} sx={{ gap: "40px" }}>
+                        <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} sx={{
+                            gap: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "40px", "xl": "40px" }
+                        }}><Box sx={{
+                            width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "60%", "xl": "60%" },
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center"
 
-                            <Box sx={{
-                                width: { 'lg': "60%", 'md': '100%', 'xs': '100%' },
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center"
-
-                            }}>
+                        }}>
                                 <Box
                                     sx={{
-                                        width: `calc(60 % - 20px)`,
-
+                                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "60%", "xl": "60%" },
+                                        textAlign: { "xs": "center", "sm": "center", "md": "center", "lg": "start", "xl": "start" }
                                     }}
                                 >
                                     <Typography component="box" sx={{
-                                        fontSize: { "xs": "26px", "sm": "36px", "md": "36px", "xl": "36px", "lg": "36px" },
+                                        fontSize: { "xs": "1rem", "sm": "2rem", "md": "2rem", "xl": "2rem", "lg": "2rem" },
                                         fontFamily: "Montserrat",
                                         fontWeight: "600",
-                                        color: "#FFFFFF",
+                                        color: { "xs": "#FC9A7E", "sm": "#FC9A7E", "md": "#FC9A&E", "lg": "#FFFFFF", "xl": "#FFFFFF" },
                                         display: "block",
                                         marginTop: "20px"
                                     }}>
@@ -125,37 +129,40 @@ const EmployerRegister = () => {
                                     </Typography>
 
                                     <Typography component="box" sx={{
-                                        fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "xl": "64px", "lg": "64px" },
+                                        fontSize: { "xs": "1.6rem", "sm": "4rem", "md": "4rem", "xl": "4rem", "lg": "4rem" },
                                         fontFamily: "Work Sans, sans-serif",
                                         fontWeight: "700",
-                                        color: "#FC9A7E",
+                                        color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
                                         display: "block",
                                         lineHeight: "1.2"
                                     }}>
                                         Founders, Business
 
                                         <Typography component="box" sx={{
-                                            fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "xl": "64px", "lg": "64px" },
+                                            fontSize: { "xs": "1.6rem", "sm": "4rem", "md": "4rem", "xl": "4rem", "lg": "4rem" },
                                             fontFamily: "Work Sans, sans-serif",
                                             fontWeight: "700",
-                                            color: "#FC9A7E",
+                                            color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
                                             display: "block"
                                         }}>
                                             Owners and HRs.
                                         </Typography>
                                     </Typography>
+                                    <ThemeMobileImage imageUrl="/assets/g10Mobile.png" />
 
                                 </Box>
+
                             </Box>
-                            <Stack
-                            >
+                            <Stack sx={{
+                                width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "40%", "xl": "40%" },
+
+                            }}>
                                 <Stack gap={2} sx={{
-                                    width: { 'lg': "449px", 'md': '92%', 'xs': '92%' },
                                     height: { "xs": "fit-content", "sm": "fit-content", "md": "730px", "lg": "730px", "xl": "730px" },
                                     background: "#FBF8FF",
                                     boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                                     borderRadius: "19px",
-                                    padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "15px" }
+                                    padding: { "xs": "20px", "sm": "50px 100px", "md": "50px 100px", "lg": "50px 100px", "xl": "50px 100px" }
 
                                 }}>
 

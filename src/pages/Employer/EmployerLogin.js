@@ -206,7 +206,7 @@ const EmployerLogin = () => {
                                 </Typography>
                             </Box>
 
-                            <ThemeMobileImage imageUrl="/assets/g10.png" />
+                            <ThemeMobileImage imageUrl="/assets/g10Mobile.png" />
 
                         </Box>
                     </Stack>

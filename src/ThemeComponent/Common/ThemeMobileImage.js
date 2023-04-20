@@ -2,10 +2,10 @@ import { Box } from "@mui/material";
 const ThemeMobileImage = ({ imageUrl }) => {
     return (
         <Box sx={{
-            width: { "xs": "400px", "sm": "600px", "md": "900px" },
-            height: { "xs": "400px", "sm": "600px", "md": "900px" },
-
-            display: { "xs": "block", "sm": "block", "md": "block", "lg": "none", "xl": "none" }
+            width: { "xs": "250px", "sm": "450px", "md": "700px" },
+            height: { "xs": "250px", "sm": "450px", "md": "700px" },
+            display: { "xs": "block", "sm": "block", "md": "block", "lg": "none", "xl": "none" },
+            margin: "0 auto"
         }}>
             <img src={window.location.origin + imageUrl} width="100%" height="100%"></img>
         </Box>

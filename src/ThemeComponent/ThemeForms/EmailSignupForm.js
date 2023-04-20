@@ -49,7 +49,7 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
 
 
     return (<>
-        <Typography component="box" sx={{ fontSize: { "xs": "26px", "sm": "40px", "md": "40px", "lg": "40px", "xl": "40px" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
+        <Typography component="box" sx={{ fontSize: { "xs": "1.6rem", "sm": "2.5rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
             Create Account
         </Typography>
         <Box>
@@ -78,7 +78,7 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                             </Stack>
 
                             <Typography component="span" sx={{
-                                fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
+                                fontSize: { "xs": ".7rem", "sm": ".7rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
                                 display: "flex",
                                 textAlign: "center"
                             }}>
