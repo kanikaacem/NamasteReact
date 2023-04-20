@@ -219,7 +219,7 @@ const EmployerLogin = () => {
                             background: "#FBF8FF",
                             boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                             borderRadius: "19px",
-                            padding: { "xs": "20px", "sm": "50px 100px", "md": "50px 100px", "lg": "50px 100px", "xl": "50px 100px" }
+                            padding: { "xs": "20px", "sm": "30px", "md": "40px", "lg": "40px", "xl": "50px 100px" }
                         }}>
                             <Typography component="box" sx={{
                                 fontSize: {

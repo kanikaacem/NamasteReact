@@ -55,7 +55,7 @@ const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenF
         } message="Email Verification Link is send . Please verify the Email before going further " type="success" />
 
         <BackButton GoBack={GoBack} />
-        <Typography component="box" sx={{ fontSize: { "xs": "26px", "sm": "40px", "md": "40px", "lg": "40px", "xl": "40px" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
+        <Typography component="box" sx={{ fontSize: { "xs": "1.6rem", "sm": "2.5rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
             Create Password
         </Typography>
 

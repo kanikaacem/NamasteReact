@@ -9,7 +9,7 @@ import { emailFormValidationSchema } from "../../Validation/EmployerValidation";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
 
-import { SocialBox, ThemeButtontype1, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
+import { SocialBox, ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import { socialLogin } from "../../utils/Data";
 
 import { LoginSocialGoogle } from 'reactjs-social-login';

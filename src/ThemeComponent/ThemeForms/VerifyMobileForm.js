@@ -12,6 +12,7 @@ import Error from "../../ThemeComponent/Common/Error";
 import { useState } from "react";
 
 import ThemeMessage from "../Common/ThemeMessage";
+import ThemeMobileImage from "../Common/ThemeMobileImage";
 import ReactGA from 'react-ga';
 const TRACKING_ID = 'AW-11080443279/gVDECIfG2YkYEI_LyKMp'
 ReactGA.initialize(TRACKING_ID)
@@ -40,8 +41,6 @@ const VerifyMobileForm = () => {
             otp: values.otp
         })
         if (response.status == '1') {
-            // setVerifyMobileForm(false);
-            // setCompanyInfoForm(true);
             window.location.href = window.location.origin + "/employer-dashboard/company-information";
         }
         else {
@@ -56,10 +55,13 @@ const VerifyMobileForm = () => {
 
         <Box className="FormTemplate"
             sx={{
-                height: { "xs": "1000px", "sm": "1000px", "md": "100vh", "lg": "100vh", "xl": "100vh" },
+                minHeight: "100vh",
                 background: "#2B1E44",
                 backgroundImage:
-                    "url('../assets/g10.png')",
+                {
+                    "xs": "none", "sm": "none", "md": "none",
+                    "lg": "url('../assets/g10.png')", "xl": "url('../assets/g10.png')"
+                },
                 backgroundRepeat: " no-repeat",
                 backgroundPosition: " left 0px bottom 0px"
 
@@ -67,28 +69,34 @@ const VerifyMobileForm = () => {
             <Stack className="FormTemplateWrapper"
                 sx=
                 {{
-                    padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
+                    padding: { "xs": "20px", "sm": "20px 50px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
                     gap: "24px"
                 }}>
 
-                <Stack direction={{ 'lg': "row", 'md': 'column', 'xs': 'column' }} sx={{ gap: "40px" }}>
+                <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }}
+                    sx={{
+                        gap: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "40px", "xl": "40px" }
+                    }}>
 
                     <Box sx={{
-                        width: { 'lg': "60%", 'md': '100%', 'xs': '100%' },
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "60%", "xl": "60%" },
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center"
 
                     }}>
                         <Box
-                            sx={{ width: "inherit" }}
+                            sx={{
+                                width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "60%", "xl": "60%" },
+                                textAlign: { "xs": "center", "sm": "center", "md": "center", "lg": "start", "xl": "start" }
+
+                            }}
                         >
                             <Typography component="box" sx={{
-                                fontSize: { "xs": "12px", "sm": "12px", "md": "36px", "lg": "36px", "xl": "36px" },
-
+                                fontSize: { "xs": "1rem", "sm": "2rem", "md": "2rem", "xl": "2rem", "lg": "2rem" },
                                 fontFamily: "Montserrat",
                                 fontWeight: "600",
-                                color: "#FFFFFF",
+                                color: { "xs": "#FC9A7E", "sm": "#FC9A7E", "md": "#FC9A&E", "lg": "#FFFFFF", "xl": "#FFFFFF" },
                                 display: "block",
                                 marginTop: "20px"
                             }}>
@@ -96,41 +104,42 @@ const VerifyMobileForm = () => {
                             </Typography>
 
                             <Typography component="box" sx={{
-                                fontSize: { "xs": "26px", "sm": "26px", "md": "64px", "lg": "64px", "xl": "64px" },
+                                fontSize: { "xs": "1.6rem", "sm": "3rem", "md": "3rem", "xl": "4rem", "lg": "4rem" },
                                 fontFamily: "Work Sans, sans-serif",
                                 fontWeight: "700",
-                                color: "#FC9A7E",
+                                color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
                                 display: "block",
                                 lineHeight: "1.2"
                             }}>
                                 Founders, Business
 
                                 <Typography component="box" sx={{
-                                    fontSize: { "xs": "26px", "sm": "26px", "md": "64px", "lg": "64px", "xl": "64px" },
-
+                                    fontSize: { "xs": "1.6rem", "sm": "3rem", "md": "3rem", "xl": "4rem", "lg": "4rem" },
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "700",
-                                    color: "#FC9A7E",
+                                    color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
                                     display: "block"
                                 }}>
                                     Owners and HRs.
                                 </Typography>
                             </Typography>
+                            <ThemeMobileImage imageUrl="/assets/g10Mobile.png" />
 
                         </Box>
                     </Box>
-                    <Stack>
+                    <Stack sx={{
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "40%", "xl": "40%" }
+                    }}>
                         <Stack gap={2} sx={{
-                            width: { 'lg': "449px", 'md': '92%', 'xs': '92%' },
                             height: { "xs": "fit-content", "sm": "fit-content", "md": "730px", "lg": "730px", "xl": "730px" },
                             background: "#FBF8FF",
                             boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                             borderRadius: "19px",
-                            padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "15px" }
+                            padding: { "xs": "20px", "sm": "30px", "md": "40px", "lg": "40px", "xl": "50px 100px" }
 
                         }}>
                             <Typography component="box" sx={{
-                                fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" }
+                                fontSize: { "xs": "1.6rem", "sm": "1.6rem", "md": "2.5rem", "xl": "2.5rem", "lg": "2.5rem" }
                                 , fontFamily: "Work Sans, sans-serif", fontWeight: "700"
                             }}>
                                 Verify Mobile No.

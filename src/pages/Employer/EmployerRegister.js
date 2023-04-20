@@ -129,7 +129,7 @@ const EmployerRegister = () => {
                                     </Typography>
 
                                     <Typography component="box" sx={{
-                                        fontSize: { "xs": "1.6rem", "sm": "4rem", "md": "4rem", "xl": "4rem", "lg": "4rem" },
+                                        fontSize: { "xs": "1.6rem", "sm": "3rem", "md": "3rem", "xl": "4rem", "lg": "4rem" },
                                         fontFamily: "Work Sans, sans-serif",
                                         fontWeight: "700",
                                         color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
@@ -139,7 +139,7 @@ const EmployerRegister = () => {
                                         Founders, Business
 
                                         <Typography component="box" sx={{
-                                            fontSize: { "xs": "1.6rem", "sm": "4rem", "md": "4rem", "xl": "4rem", "lg": "4rem" },
+                                            fontSize: { "xs": "1.6rem", "sm": "3rem", "md": "3rem", "xl": "4rem", "lg": "4rem" },
                                             fontFamily: "Work Sans, sans-serif",
                                             fontWeight: "700",
                                             color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
@@ -162,7 +162,7 @@ const EmployerRegister = () => {
                                     background: "#FBF8FF",
                                     boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                                     borderRadius: "19px",
-                                    padding: { "xs": "20px", "sm": "50px 100px", "md": "50px 100px", "lg": "50px 100px", "xl": "50px 100px" }
+                                    padding: { "xs": "20px", "sm": "30px", "md": "40px", "lg": "40px", "xl": "50px 100px" }
 
                                 }}>
 

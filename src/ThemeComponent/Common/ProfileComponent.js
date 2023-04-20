@@ -66,7 +66,7 @@ const ProfileComponent = ({ userData, userType, userStatus, jobsId }) => {
             if (response.data)
                 setBlueCollarJob(true);
         }
-        userData.jobtype !== undefined && getJobType();
+        // userData.jobtype !== undefined && getJobType();
         setCandidateStatus(userStatus)
     }, [userData, userStatus]);
 

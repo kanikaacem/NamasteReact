@@ -687,6 +687,7 @@ nav {
   font-size: 16px !important;
   font-family: 'Montserrat' !important;
   font-weight: 500 !important;
+  background: #FFFFFF !important;
 }
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input::placeholder {

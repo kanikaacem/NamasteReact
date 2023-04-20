@@ -273,238 +273,243 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                             width: { "lg": "50%", "md": "100%", "xs": "100%" }
                         }}>
                             <Box sx={{
-                                maxWidth: "763px",
                                 minHeight: "153px",
                                 background: "#F8F8F8",
                                 border: "1px solid #EAEAEA",
                                 boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                                 borderRadius: "19px",
-                                padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
                                 margin: "0 auto",
 
                             }}>
-                                <Typography component="box" sx={{
-                                    fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" },
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                    marginTop: "20px"
-                                }}>
-                                    Company Details
-                                </Typography>
+                                <Box
+                                    sx={{
+                                        padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
 
-                                <Stack direction="row" gap={2} sx={{
-                                    margin: "25px 0px",
-                                    flexWrap: "wrap"
+                                    }}>
+                                    <Typography component="box" sx={{
+                                        fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" },
+                                        fontFamily: "Montserrat",
+                                        fontWeight: "600",
+                                        color: "#4E3A67",
+                                        display: "block",
+                                        marginTop: "20px"
+                                    }}>
+                                        Company Details
+                                    </Typography>
+
+                                    <Stack direction="row" gap={2} sx={{
+                                        margin: "25px 0px",
+                                        flexWrap: "wrap"
+                                    }}>
+                                        <Stack direction="row" gap={1} alignItems="center" justifyContent="center"
+                                        >
+                                            <Box sx={{
+                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                background: "#FC9A7E",
+                                                borderRadius: "50%",
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "center",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+                                            }}>1</Box>
+                                            <Typography component="box" sx={{
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
+                                                fontFamily: "Montserrat",
+                                                fontWeight: "600",
+                                                color: "#4E3A67",
+                                                display: "block",
+                                            }}>
+                                                Company Information
+                                            </Typography>
+                                            <Box>
+                                                <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
+                                            </Box>
+                                        </Stack>
+
+
+                                        <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
+                                            <Box sx={{
+                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                background: "#FC9A7E",
+                                                borderRadius: "50%",
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "center",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+                                            }}>2</Box>
+                                            <Typography component="box" sx={{
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
+                                                fontFamily: "Montserrat",
+                                                fontWeight: "600",
+                                                color: "#4E3A67",
+                                                display: "block",
+                                            }}>
+                                                Company Social
+                                            </Typography>
+                                            <Box>
+                                                <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
+                                            </Box>
+                                        </Stack>
+
+
+                                        <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
+                                            <Box sx={{
+                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                background: "#FC9A7E",
+                                                borderRadius: "50%",
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "center",
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+                                            }}>3</Box>
+                                            <Typography component="box" sx={{
+                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
+                                                fontFamily: "Montserrat",
+                                                fontWeight: "600",
+                                                color: "#4E3A67",
+                                                display: "block",
+                                            }}>
+                                                Company Address
+                                            </Typography>
+                                            <Box>
+                                                <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
+                                            </Box>
+                                        </Stack>
+
+                                    </Stack>
+                                </Box>
+
+                                <Box sx={{
+                                    boxSizing: "border-box",
+                                    minHeight: "647px",
+                                    background: "#FFFFFF",
+                                    border: "1px solid #EDEDED",
+                                    borderBottomLeftRadius: "19px",
+                                    borderBottomRightRadius: "19px",
+                                    position: "relative",
+                                    padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
+                                    margin: "0 auto"
+
                                 }}>
-                                    <Stack direction="row" gap={1} alignItems="center" justifyContent="center"
+                                    <Formik
+
+                                        initialValues={defaultValue}
+                                        validationSchema={companyInfoValidationSchema}
+                                        onSubmit={handleSubmit}
                                     >
-                                        <Box sx={{
-                                            width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                            height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                            background: "#FC9A7E",
-                                            borderRadius: "50%",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                            fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
-                                        }}>1</Box>
-                                        <Typography component="box" sx={{
-                                            fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                            fontFamily: "Montserrat",
-                                            fontWeight: "600",
-                                            color: "#4E3A67",
-                                            display: "block",
-                                        }}>
-                                            Company Information
-                                        </Typography>
-                                        <Box>
-                                            <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                        </Box>
-                                    </Stack>
+                                        {({ errors, touched, values, setFieldValue }) => (
+                                            <Form className="CompanyInformationForm">
+                                                <ThemeFInputDiv>
+                                                    <ThemeFInputDiv >
+                                                        <ThemeLabel LableFor="hr_name" LableText="HR Name *" />
+                                                        <Field
+                                                            error={errors.hr_name && touched.hr_name}
+                                                            id="hr_name"
+                                                            as={TextField}
+                                                            placeholder="Enter HR Name" type="text" name="hr_name" fullWidth />
+                                                        {errors.hr_name && touched.hr_name && <Error text={errors.hr_name} />}
+
+                                                    </ThemeFInputDiv>
+
+                                                    <ThemeFInputDiv>
+                                                        <ThemeLabel LableFor="company_name" LableText="Company Name *" />
+                                                        <Field
+                                                            error={errors.company_name && touched.company_name}
+                                                            id="company_name"
+                                                            as={TextField}
+                                                            placeholder="Enter Company Name (eg. XYZ Company )" type="text" name="company_name" fullWidth />
+                                                        {errors.company_name && touched.company_name && <Error text={errors.company_name} />}
+
+                                                    </ThemeFInputDiv>
+
+                                                    <ThemeFInputDiv>
+                                                        <ThemeLabel LableFor="company_pan_number" LableText="Company Pan Number *" />
+                                                        <Field
+                                                            error={errors.company_pan_number && touched.company_pan_number}
+                                                            id="company_pan_number"
+                                                            as={TextField}
+                                                            placeholder="Enter Company Pan Number" type="text" name="company_pan_number" fullWidth />
+                                                        {errors.company_pan_number && touched.company_pan_number && <Error text={errors.company_pan_number} />}
+
+                                                    </ThemeFInputDiv>
+
+                                                    <ThemeFInputDiv>
+                                                        <ThemeLabel LableFor="company_type" LableText="Company Type *" />
+                                                        <Select
+                                                            variant="outlined"
+                                                            classNamePrefix="react-select"
+                                                            labelId="demo-simple-select-label"
+                                                            name="company_type"
+                                                            value={companyType}
+                                                            label="Age"
+                                                            onChange={(event) => {
+                                                                setCompanyType(event.target.value);
+                                                                setFieldValue("company_type", event.target.value);
+                                                            }}
+                                                            sx={{
+                                                                background: " #FFFFFF",
+                                                                border: "1px solid #EAEAEA",
+                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                borderRadius: "7px",
+                                                                width: "101%",
+                                                                fontSize: "16px",
+                                                                fontamily: 'Montserrat',
+                                                                BorderBottom: 'none'
+                                                            }}
+                                                            disableUnderline
+                                                        >
+                                                            <MenuItem className="companyItem" sx={{ fontFamily: "Montserrat" }} value=" ">Select Company Type</MenuItem>
+                                                            {CompanyType.map((item) =>
+                                                                <MenuItem className="companyItem" sx={{ fontFamily: "Montserrat" }} value={item.value} key={item.id}>{item.name}</MenuItem>
+                                                            )}
+                                                        </Select>
+
+                                                        {errors.company_type && touched.company_type && <Error text={errors.company_type} />}
+                                                    </ThemeFInputDiv>
+
+                                                    <ThemeFInputDiv sx={{ width: "200px" }}>
+
+                                                        <img id="companyLogo" width="100%" />
+                                                    </ThemeFInputDiv>
+
+                                                    <ThemeFInputDiv>
+
+                                                        <ThemeLabel LableFor="upload_company_logo" LableText="Upload Company Logo" />
+
+                                                        <Field
+                                                            id="upload_company_logo"
+                                                            style={{ display: "none", outline: "none" }}
+                                                            type="file" name="upload_company_logo"
+                                                            onChange={
+                                                                uploadCompanyLogo
+                                                            }
+                                                            fullWidth />
 
 
-                                    <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                        <Box sx={{
-                                            width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                            height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                            background: "#FC9A7E",
-                                            borderRadius: "50%",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                            fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
-                                        }}>2</Box>
-                                        <Typography component="box" sx={{
-                                            fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                            fontFamily: "Montserrat",
-                                            fontWeight: "600",
-                                            color: "#4E3A67",
-                                            display: "block",
-                                        }}>
-                                            Company Social
-                                        </Typography>
-                                        <Box>
-                                            <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                        </Box>
-                                    </Stack>
+                                                        <ButtonType3
+                                                            sx={{
+                                                                height: { "xs": "30px", "sm": "30px", "md": "50px", "xl": "50px", "lg": "50px" }
+                                                            }} ButtonText="Upload Company Logo" imageURL="/assets/InsertPicture.png" ClickEvent={() => document.getElementById("upload_company_logo").click()}></ButtonType3>
+                                                    </ThemeFInputDiv>
 
 
-                                    <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                        <Box sx={{
-                                            width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                            height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                            background: "#FC9A7E",
-                                            borderRadius: "50%",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                            fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
-                                        }}>3</Box>
-                                        <Typography component="box" sx={{
-                                            fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                            fontFamily: "Montserrat",
-                                            fontWeight: "600",
-                                            color: "#4E3A67",
-                                            display: "block",
-                                        }}>
-                                            Company Address
-                                        </Typography>
-                                        <Box>
-                                            <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                        </Box>
-                                    </Stack>
+                                                </ThemeFInputDiv>
 
-                                </Stack>
+
+                                                <Stack alignItems="flex-end">
+
+                                                    <NextButton className="NextButtonEmployer" type="submit"><img src={window.location.origin + "/assets/CompanyInfoRight.png"} alt="Next" width="14px" height="14px" ></img></NextButton>
+                                                </Stack>
+                                            </Form>)}
+                                    </Formik>
+
+                                </Box>
 
                             </Box>
-                            <Box sx={{
-                                boxSizing: "border-box",
-                                maxWidth: "865px",
-                                minHeight: "647px",
-                                background: "#FFFFFF",
-                                border: "1px solid #EDEDED",
-                                borderRadius: "19px",
-                                position: "relative",
-                                top: "-10px",
-                                padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
-                                margin: "0 auto"
 
-                            }}>
-                                <Formik
-
-                                    initialValues={defaultValue}
-                                    validationSchema={companyInfoValidationSchema}
-                                    onSubmit={handleSubmit}
-                                >
-                                    {({ errors, touched, values, setFieldValue }) => (
-                                        <Form className="CompanyInformationForm">
-                                            <ThemeFInputDiv>
-                                                <ThemeFInputDiv >
-                                                    <ThemeLabel LableFor="hr_name" LableText="HR Name *" />
-                                                    <Field
-                                                        error={errors.hr_name && touched.hr_name}
-                                                        id="hr_name"
-                                                        as={TextField}
-                                                        placeholder="Enter HR Name" type="text" name="hr_name" fullWidth />
-                                                    {errors.hr_name && touched.hr_name && <Error text={errors.hr_name} />}
-
-                                                </ThemeFInputDiv>
-
-                                                <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="company_name" LableText="Company Name *" />
-                                                    <Field
-                                                        error={errors.company_name && touched.company_name}
-                                                        id="company_name"
-                                                        as={TextField}
-                                                        placeholder="Enter Company Name (eg. XYZ Company )" type="text" name="company_name" fullWidth />
-                                                    {errors.company_name && touched.company_name && <Error text={errors.company_name} />}
-
-                                                </ThemeFInputDiv>
-
-                                                <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="company_pan_number" LableText="Company Pan Number *" />
-                                                    <Field
-                                                        error={errors.company_pan_number && touched.company_pan_number}
-                                                        id="company_pan_number"
-                                                        as={TextField}
-                                                        placeholder="Enter Company Pan Number" type="text" name="company_pan_number" fullWidth />
-                                                    {errors.company_pan_number && touched.company_pan_number && <Error text={errors.company_pan_number} />}
-
-                                                </ThemeFInputDiv>
-
-                                                <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="company_type" LableText="Company Type *" />
-                                                    <Select
-                                                        variant="outlined"
-                                                        classNamePrefix="react-select"
-                                                        labelId="demo-simple-select-label"
-                                                        name="company_type"
-                                                        value={companyType}
-                                                        label="Age"
-                                                        onChange={(event) => {
-                                                            setCompanyType(event.target.value);
-                                                            setFieldValue("company_type", event.target.value);
-                                                        }}
-                                                        sx={{
-                                                            background: " #FFFFFF",
-                                                            border: "1px solid #EAEAEA",
-                                                            boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                            borderRadius: "7px",
-                                                            width: "101%",
-                                                            fontSize: "16px",
-                                                            fontamily: 'Montserrat',
-                                                            BorderBottom: 'none'
-                                                        }}
-                                                        disableUnderline
-                                                    >
-                                                        <MenuItem className="companyItem" sx={{ fontFamily: "Montserrat" }} value=" ">Select Company Type</MenuItem>
-                                                        {CompanyType.map((item) =>
-                                                            <MenuItem className="companyItem" sx={{ fontFamily: "Montserrat" }} value={item.value} key={item.id}>{item.name}</MenuItem>
-                                                        )}
-                                                    </Select>
-
-                                                    {errors.company_type && touched.company_type && <Error text={errors.company_type} />}
-                                                </ThemeFInputDiv>
-
-                                                <ThemeFInputDiv sx={{ width: "200px" }}>
-
-                                                    <img id="companyLogo" width="100%" />
-                                                </ThemeFInputDiv>
-
-                                                <ThemeFInputDiv>
-
-                                                    <ThemeLabel LableFor="upload_company_logo" LableText="Upload Company Logo" />
-
-                                                    <Field
-                                                        id="upload_company_logo"
-                                                        style={{ display: "none", outline: "none" }}
-                                                        type="file" name="upload_company_logo"
-                                                        onChange={
-                                                            uploadCompanyLogo
-                                                        }
-                                                        fullWidth />
-
-
-                                                    <ButtonType3
-                                                        sx={{
-                                                            height: { "xs": "30px", "sm": "30px", "md": "50px", "xl": "50px", "lg": "50px" }
-                                                        }} ButtonText="Upload Company Logo" imageURL="/assets/InsertPicture.png" ClickEvent={() => document.getElementById("upload_company_logo").click()}></ButtonType3>
-                                                </ThemeFInputDiv>
-
-
-                                            </ThemeFInputDiv>
-
-
-                                            <Stack alignItems="flex-end">
-
-                                                <NextButton className="NextButtonEmployer" type="submit"><img src={window.location.origin + "/assets/CompanyInfoRight.png"} alt="Next" width="14px" height="14px" ></img></NextButton>
-                                            </Stack>
-                                        </Form>)}
-                                </Formik>
-
-                            </Box>
                         </Box>
 
                     </Stack>
@@ -574,175 +579,182 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     border: "1px solid #EAEAEA",
                                     boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                                     borderRadius: "19px",
-                                    padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
                                     margin: "0 auto",
 
                                 }}>
-                                    <BackButton
-                                        GoBack={
-                                            () => {
-                                                setCompanyInfoForm(1)
-                                            }
-                                        } ></BackButton>
+                                    <Box sx={{
+                                        padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
 
-                                    <Typography component="box" sx={{
-                                        fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" },
-                                        fontFamily: "Montserrat",
-                                        fontWeight: "600",
-                                        color: "#4E3A67",
-                                        display: "block",
-                                        marginTop: "20px"
                                     }}>
-                                        Company Details
-                                    </Typography>
+                                        <BackButton
+                                            GoBack={
+                                                () => {
+                                                    setCompanyInfoForm(1)
+                                                }
+                                            } ></BackButton>
 
-                                    <Stack direction="row" gap={2} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
-                                        <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                            <Box sx={{
-                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                background: "#FC9A7E",
-                                                borderRadius: "50%",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+                                        <Typography component="box" sx={{
+                                            fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" },
+                                            fontFamily: "Montserrat",
+                                            fontWeight: "600",
+                                            color: "#4E3A67",
+                                            display: "block",
+                                            marginTop: "20px"
+                                        }}>
+                                            Company Details
+                                        </Typography>
 
-                                            }}>1</Box>
-                                            <Typography component="box" sx={{
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                                fontFamily: "Montserrat",
-                                                fontWeight: "600",
-                                                color: "#4E3A67",
-                                                display: "block",
-                                            }}>
-                                                Company Information
-                                            </Typography>
-                                            <Box>
-                                                <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                            </Box>
+                                        <Stack direction="row" gap={2} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
+                                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
+                                                <Box sx={{
+                                                    width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                    height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                    background: "#FC9A7E",
+                                                    borderRadius: "50%",
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    justifyContent: "center",
+                                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+
+                                                }}>1</Box>
+                                                <Typography component="box" sx={{
+                                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
+                                                    fontFamily: "Montserrat",
+                                                    fontWeight: "600",
+                                                    color: "#4E3A67",
+                                                    display: "block",
+                                                }}>
+                                                    Company Information
+                                                </Typography>
+                                                <Box>
+                                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
+                                                </Box>
+                                            </Stack>
+
+
+                                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
+                                                <Box sx={{
+                                                    width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                    height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                    background: "#FC9A7E",
+                                                    borderRadius: "50%",
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    justifyContent: "center",
+                                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+
+                                                }}>2</Box>
+                                                <Typography component="box" sx={{
+                                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
+                                                    fontFamily: "Montserrat",
+                                                    fontWeight: "600",
+                                                    color: "#4E3A67",
+                                                    display: "block",
+                                                }}>
+                                                    Company Social
+                                                </Typography>
+                                                <Box>
+                                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
+                                                </Box>
+                                            </Stack>
+
+
+                                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
+                                                <Box sx={{
+                                                    width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                    height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
+                                                    background: "#FC9A7E",
+                                                    borderRadius: "50%",
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    justifyContent: "center",
+                                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+
+                                                }}>3</Box>
+                                                <Typography component="box" sx={{
+                                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
+                                                    fontFamily: "Montserrat",
+                                                    fontWeight: "600",
+                                                    color: "#4E3A67",
+                                                    display: "block",
+                                                }}>
+                                                    Company Address
+                                                </Typography>
+                                                <Box>
+                                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
+                                                </Box>
+                                            </Stack>
+
                                         </Stack>
+                                    </Box>
 
+                                    <Box sx={{
+                                        boxSizing: "border-box",
+                                        maxWidth: "865px",
+                                        height: "508px",
+                                        background: "#FFFFFF",
+                                        border: "1px solid #EDEDED",
+                                        borderBottomLeftRadius: "19px",
+                                        borderBottomRightRadius: "19px",
+                                        padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
+                                        position: "relative",
+                                        top: '-10px',
+                                        margin: "0 auto"
 
-                                        <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
-                                            <Box sx={{
-                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                background: "#FC9A7E",
-                                                borderRadius: "50%",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+                                    }}>
+                                        <Formik
 
-                                            }}>2</Box>
-                                            <Typography component="box" sx={{
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                                fontFamily: "Montserrat",
-                                                fontWeight: "600",
-                                                color: "#4E3A67",
-                                                display: "block",
-                                            }}>
-                                                Company Social
-                                            </Typography>
-                                            <Box>
-                                                <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                            </Box>
-                                        </Stack>
-
-
-                                        <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                            <Box sx={{
-                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                background: "#FC9A7E",
-                                                borderRadius: "50%",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
-
-                                            }}>3</Box>
-                                            <Typography component="box" sx={{
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                                fontFamily: "Montserrat",
-                                                fontWeight: "600",
-                                                color: "#4E3A67",
-                                                display: "block",
-                                            }}>
-                                                Company Address
-                                            </Typography>
-                                            <Box>
-                                                <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                            </Box>
-                                        </Stack>
-
-                                    </Stack>
-
-                                </Box>
-                                <Box sx={{
-                                    boxSizing: "border-box",
-                                    maxWidth: "865px",
-                                    height: "508px",
-                                    background: "#FFFFFF",
-                                    border: "1px solid #EDEDED",
-                                    borderRadius: "19px",
-                                    padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
-                                    position: "relative",
-                                    top: '-10px',
-                                    margin: "0 auto"
-
-                                }}>
-                                    <Formik
-
-                                        initialValues={defaultValue1}
-                                        validationSchema={companyInfoValidationSchema1}
-                                        onSubmit={handleSubmit1}
-                                    >
-                                        {({ errors, touched, values, setFieldValue }) => (
-                                            <Form className="CompanyInformationForm">
-                                                <ThemeFInputDiv>
+                                            initialValues={defaultValue1}
+                                            validationSchema={companyInfoValidationSchema1}
+                                            onSubmit={handleSubmit1}
+                                        >
+                                            {({ errors, touched, values, setFieldValue }) => (
+                                                <Form className="CompanyInformationForm">
                                                     <ThemeFInputDiv>
-                                                        <ThemeLabel LableFor="company_email" LableText="Company Email *" />
-                                                        <Field
-                                                            error={errors.company_email && touched.company_email}
-                                                            id="company_email"
-                                                            as={TextField}
-                                                            placeholder="Enter Company Email ( eg. xyz@company.com )" type="text" name="company_email" fullWidth />
-                                                        {errors.company_email && touched.company_email && <Error text={errors.company_email} />}
+                                                        <ThemeFInputDiv>
+                                                            <ThemeLabel LableFor="company_email" LableText="Company Email *" />
+                                                            <Field
+                                                                error={errors.company_email && touched.company_email}
+                                                                id="company_email"
+                                                                as={TextField}
+                                                                placeholder="Enter Company Email ( eg. xyz@company.com )" type="text" name="company_email" fullWidth />
+                                                            {errors.company_email && touched.company_email && <Error text={errors.company_email} />}
+
+                                                        </ThemeFInputDiv>
+
+                                                        <ThemeFInputDiv>
+                                                            <ThemeLabel LableFor="company_lan_number" LableText="Company Landline Number *" />
+                                                            <Field
+                                                                error={errors.company_lan_number && touched.company_lan_number}
+                                                                id="company_lan_number"
+                                                                as={TextField}
+                                                                placeholder="Enter Company Landline Number ( eg. 9898989898 )" type="text" name="company_lan_number" fullWidth />
+                                                            {errors.company_lan_number && touched.company_lan_number && <Error text={errors.company_lan_number} />}
+                                                        </ThemeFInputDiv>
+
+                                                        <ThemeFInputDiv>
+                                                            <ThemeLabel LableFor="company_website" LableText="Company Website " />
+                                                            <Field
+                                                                error={errors.company_website && touched.company_website}
+                                                                id="company_website"
+                                                                as={TextField}
+                                                                placeholder="Enter Company Website ( eg. xyz.com )" type="text" name="company_website" fullWidth />
+                                                            {errors.company_website && touched.company_website && <Error text={errors.company_website} />}
+
+                                                        </ThemeFInputDiv>
 
                                                     </ThemeFInputDiv>
 
-                                                    <ThemeFInputDiv>
-                                                        <ThemeLabel LableFor="company_lan_number" LableText="Company Landline Number *" />
-                                                        <Field
-                                                            error={errors.company_lan_number && touched.company_lan_number}
-                                                            id="company_lan_number"
-                                                            as={TextField}
-                                                            placeholder="Enter Company Landline Number ( eg. 9898989898 )" type="text" name="company_lan_number" fullWidth />
-                                                        {errors.company_lan_number && touched.company_lan_number && <Error text={errors.company_lan_number} />}
-                                                    </ThemeFInputDiv>
 
-                                                    <ThemeFInputDiv>
-                                                        <ThemeLabel LableFor="company_website" LableText="Company Website " />
-                                                        <Field
-                                                            error={errors.company_website && touched.company_website}
-                                                            id="company_website"
-                                                            as={TextField}
-                                                            placeholder="Enter Company Website ( eg. xyz.com )" type="text" name="company_website" fullWidth />
-                                                        {errors.company_website && touched.company_website && <Error text={errors.company_website} />}
+                                                    <Stack alignItems="flex-end" sx={{ margin: "20px 0px" }}>
 
-                                                    </ThemeFInputDiv>
+                                                        <NextButton className="NextButtonEmployer" type="submit"><img src={window.location.origin + "/assets/CompanyInfoRight.png"} alt="Next" width="14px" height="14px" ></img></NextButton>
+                                                    </Stack>
+                                                </Form>)}
+                                        </Formik>
 
-                                                </ThemeFInputDiv>
+                                    </Box>
 
-
-                                                <Stack alignItems="flex-end" sx={{ margin: "20px 0px" }}>
-
-                                                    <NextButton className="NextButtonEmployer" type="submit"><img src={window.location.origin + "/assets/CompanyInfoRight.png"} alt="Next" width="14px" height="14px" ></img></NextButton>
-                                                </Stack>
-                                            </Form>)}
-                                    </Formik>
 
                                 </Box>
 

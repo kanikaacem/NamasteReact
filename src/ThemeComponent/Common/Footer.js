@@ -8,13 +8,12 @@ const Footer = () => {
     return (<>
         <Box sx={{
             background: "#2B1E44",
-            height: { "xs": "600px", "sm": "400px", "md": "400px", "lg": "400px", "xl": "400px" },
-            padding: { "xs": "20px", "sm": "50px 150px", "md": "50px 150px", "lg": "50px 150px", "xl": "50px 150px" }
+            padding: { "xs": "20px", "sm": "20px", "md": "20px", "lg": "50px 150px", "xl": "50px 150px" }
         }}>
             <Stack direction="row" sx={{
                 flexWrap: "wrap",
             }}>
-                <Box sx={{ width: { xs: "44%", "sm": "25%", "md": "25%", "lg": "25%", "lg": "25%" } }}>
+                <Box sx={{ width: { "xs": "44%", "sm": "50%", "md": "50%", "lg": "25%", "lg": "25%" } }}>
                     <Typography component="span"
                         sx={{
                             fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
@@ -58,7 +57,7 @@ const Footer = () => {
 
 
                 </Box>
-                <Box sx={{ width: { xs: "44%", "sm": "25%", "md": "25%", "lg": "25%", "lg": "25%" } }}>
+                <Box sx={{ width: { "xs": "44%", "sm": "50%", "md": "50%", "lg": "25%", "lg": "25%" } }}>
                     <Typography component="span"
                         sx={{
                             display: "block",
@@ -87,7 +86,7 @@ const Footer = () => {
                     }
                 </Box>
 
-                <Box sx={{ width: { xs: "44%", "sm": "25%", "md": "25%", "lg": "25%", "lg": "25%" } }}>
+                <Box sx={{ width: { "xs": "44%", "sm": "50%", "md": "50%", "lg": "25%", "lg": "25%" } }}>
                     <Typography component="span"
                         sx={{
                             display: "block",
@@ -105,7 +104,7 @@ const Footer = () => {
                     <SocialMedia />
 
                 </Box>
-                <Box sx={{ width: { xs: "44%", "sm": "25%", "md": "25%", "lg": "25%", "lg": "25%" } }}>
+                <Box sx={{ width: { "xs": "44%", "sm": "50%", "md": "50%", "lg": "25%", "lg": "25%" } }}>
                     <Typography component="span"
                         sx={{
                             display: "block",
@@ -170,7 +169,7 @@ const Footer = () => {
                     fontWeight: "100",
                     fontFamily: "Montserrat"
                 }}>
-                Copyright © 2010-2023 Freepik Company S.L. All rights reserved.
+                {/* Copyright © 2010-2023 Freepik Company S.L. All rights reserved. */}
             </Typography>
         </Box >
     </>)
