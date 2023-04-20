@@ -1,6 +1,5 @@
 import { Button, Stack, styled } from "@mui/material";
 import { Box } from "@mui/system";
-
 //Theme Button
 export const ThemeButtontype1 = styled(Button)({
     textTransform: "capitalize",

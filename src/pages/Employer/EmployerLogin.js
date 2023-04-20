@@ -16,6 +16,7 @@ import { employerLoginValidationSchema } from "../../Validation/EmployerValidati
 import Error from "../../ThemeComponent/Common/Error";
 
 import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
+import ThemeMobileImage from "../../ThemeComponent/Common/ThemeMobileImage";
 import { useState } from "react";
 const EmployerLogin = () => {
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
@@ -102,8 +103,9 @@ const EmployerLogin = () => {
                 width: "100%",
                 minHeight: "100vh",
                 background: "#2B1E44",
-                backgroundImage:
-                    "url('../assets/g10.png')",
+                backgroundImage: {
+                    "xs": "", "sm": "", "md": "", "lg": "url('../assets/g10.png')", "xl": "url('../assets/g10.png')"
+                },
                 backgroundRepeat: " no-repeat",
                 backgroundPosition: " left 0px bottom 0px"
 
@@ -111,157 +113,196 @@ const EmployerLogin = () => {
             <Stack className="EmployerLoginPageInnerWrapper"
                 sx=
                 {{
-                    padding: { "xs": "15px", "sm": "20px 50px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
+                    padding: { "xs": "20px", "sm": "20px 50px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
                     gap: "24px"
                 }}>
                 <HeaderSec
                     border="2px solid rgba(255, 255, 255, 0.25)"
                     color="#FFFFFF"
                     background="#432C60" />
-                <Stack direction={{ "xs": "column", "sm": "row", "md": "row", "lg": "row", "xl": "row" }} sx={{ position: "relative", gap: "40px" }}>
+                <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }}
+                    sx={{ gap: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "40px", "xl": "40px" } }}>
                     <Stack sx={{
-                        width: { 'lg': "60%", 'md': '100%', 'xs': '100%' },
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "60%", "xl": "60%" },
                         alignItems: "center"
                     }}>
                         <Box sx={{
                             marginTop: { "xs": "0px", "sm": "100px", "md": "100px", "lg": "100px", "xl": "100px" }
-                            , textAlign: { "xs": "center", "sm": "start", "md": "start", "lg": "start", "xl": "start" }
+                            , textAlign: { "xs": "center", "sm": "center", "md": "center", "lg": "start", "xl": "start" }
                         }}>
-                            <Typography component="box" sx={{
-                                fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "lg": "64px", "xl": "64px" },
-                                fontFamily: "Work Sans, sans-serif",
-                                fontWeight: "700",
-                                color: "#FC9A7E",
-                                display: "block",
-                                lineHeight: "1.2"
-                            }}>
-                                We settle for nothing
-
+                            <Box sx={{ display: { "xs": "block", "sm": "block", "md": "block", "lg": "none", "xl": "none" } }}>
                                 <Typography component="box" sx={{
-                                    fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "lg": "64px", "xl": "64px" },
+                                    fontSize: { "xs": "1rem", "sm": "2rem", "md": "2rem", "lg": "2rem", "xl": "2rem" },
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "800",
+                                    color: "#FC9A7E",
+                                    display: "block",
+                                }}>
+                                    We Love Recruiting
+                                </Typography>
+                            </Box>
+                            <Box sx={{ display: { "xs": "none", "sm": "block", "md": "block", "lg": "none", "xl": "none" } }}>
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "lg": "4rem", "xl": "4rem" },
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "700",
-                                    color: "#FC9A7E",
-                                    display: "block"
+                                    color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
+                                    display: "block",
+                                    lineHeight: "1.2"
                                 }}>
-                                    Less than the BEST
+                                    We settle for nothing Less than the BEST
                                 </Typography>
-                            </Typography>
+                            </Box>
+
+                            <Box sx={{ display: { "xs": "block", "sm": "none", "md": "none", "lg": "block", "xl": "block" } }}>
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "lg": "4rem", "xl": "4rem" },
+                                    fontFamily: "Work Sans, sans-serif",
+                                    fontWeight: "700",
+                                    color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
+                                    display: "block",
+                                    lineHeight: "1.2"
+                                }}>
+                                    We settle for nothing
 
 
-                            <Typography component="box" sx={{
-                                fontSize: { "xs": "16px", "sm": "24px", "md": "24px", "lg": "24px", "xl": "24px" },
-                                fontFamily: "Montserrat",
-                                fontWeight: "800",
-                                color: "#FFFFFF",
-                                display: "block",
-                                marginTop: "20px"
-                            }}>
-                                We Love Recruiting
-                            </Typography>
-                            <Typography component="box" sx={{
-                                fontSize: { "xs": "12px", "sm": "24px", "md": "24px", "lg": "24px", "xl": "24px" },
-                                fontFamily: "Montserrat",
-                                fontWeight: "500",
-                                color: "#FFFFFF",
-                                display: "block",
-                                maxWidth: "695px"
-                            }}>
-                                Employees get the work they look for through our impactful job portal
-                                that is monitored 24x7 for quality, transparency and success. Employers,
-                                the other hand, get the unique skills and experience of the champion employees,
-                                hired through us, for their growth.
+                                    <Typography component="span" sx={{
+                                        fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "lg": "4rem", "xl": "4rem" },
+                                        fontFamily: "Work Sans, sans-serif",
+                                        fontWeight: "700",
+                                        color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
+                                        display: "block"
+                                    }}>
+                                        Less than the BEST
+                                    </Typography>
+                                </Typography>
+                            </Box>
 
-                            </Typography>
+
+                            <Box sx={{ display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" } }}>
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "1rem", "sm": "1.5rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "800",
+                                    color: "#FFFFFF",
+                                    display: "block",
+                                    marginTop: "20px"
+                                }}>
+                                    We Love Recruiting
+                                </Typography>
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": ".75rem", "sm": "1.5rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "500",
+                                    color: "#FFFFFF",
+                                    display: "block",
+                                    maxWidth: "695px"
+                                }}>
+                                    Employees get the work they look for through our impactful job portal
+                                    that is monitored 24x7 for quality, transparency and success. Employers,
+                                    the other hand, get the unique skills and experience of the champion employees,
+                                    hired through us, for their growth.
+
+                                </Typography>
+                            </Box>
+
+                            <ThemeMobileImage imageUrl="/assets/g10.png" />
+
                         </Box>
                     </Stack>
 
-
-                    <Stack gap={2} sx={{
-                        width: { 'lg': "449px", 'md': '100%', 'xs': '92%' },
-                        maxHeight: "730px",
-                        background: "#FBF8FF",
-                        boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
-                        borderRadius: "19px",
-                        padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "15px" }
+                    <Box className="EmployerLoginForm" sx={{
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "40%", "xl": "40%" },
                     }}>
-                        <Typography component="box" sx={{ fontSize: { "xs": "26px", "sm": "40px", "md": "40px", "lg": "40px", "xl": "40px" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
-                            Log in
-                        </Typography>
-                        <Formik
+                        <Stack gap={2} sx={{
+                            maxHeight: "730px",
+                            background: "#FBF8FF",
+                            boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
+                            borderRadius: "19px",
+                            padding: { "xs": "20px", "sm": "50px 100px", "md": "50px 100px", "lg": "50px 100px", "xl": "50px 100px" }
+                        }}>
+                            <Typography component="box" sx={{
+                                fontSize: {
+                                    "xs": "1.6rem", "sm": "2.5rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem"
+                                }, fontFamily: "Work Sans, sans-serif", fontWeight: "700"
+                            }}>
+                                Log in
+                            </Typography>
+                            <Formik
 
-                            initialValues={defaultValue}
-                            validationSchema={employerLoginValidationSchema}
-                            onSubmit={handleSubmit}
-                        >
-                            {({ errors, touched }) => (
-                                <Form className="EmployerLoginForm">
-                                    <ThemeFInputDiv >
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="email_address" LableText="Email Address * " />
-                                            <Field
-                                                error={errors.email_address && touched.email_address}
-                                                as={TextField}
-                                                id="email_address"
-                                                placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
-                                            {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
+                                initialValues={defaultValue}
+                                validationSchema={employerLoginValidationSchema}
+                                onSubmit={handleSubmit}
+                            >
+                                {({ errors, touched }) => (
+                                    <Form className="EmployerLoginForm">
+                                        <ThemeFInputDiv >
+                                            <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="email_address" LableText="Email Address * " />
+                                                <Field
+                                                    error={errors.email_address && touched.email_address}
+                                                    as={TextField}
+                                                    id="email_address"
+                                                    placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
+                                                {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
 
+                                            </ThemeFInputDiv>
+                                            <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="password" LableText="Password *" />
+                                                <Field
+                                                    error={errors.password && touched.password}
+                                                    id="password"
+                                                    as={TextField}
+                                                    placeholder="Enter Password" type="password" name="password" fullWidth />
+                                                {errors.password && touched.password && <Error text={errors.password} />}
+                                            </ThemeFInputDiv>
                                         </ThemeFInputDiv>
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="password" LableText="Password *" />
-                                            <Field
-                                                error={errors.password && touched.password}
-                                                id="password"
-                                                as={TextField}
-                                                placeholder="Enter Password" type="password" name="password" fullWidth />
-                                            {errors.password && touched.password && <Error text={errors.password} />}
-                                        </ThemeFInputDiv>
-                                    </ThemeFInputDiv>
-                                    <ThemeFInputDiv>
 
-                                        <Box sx={{
-                                            fontSize: { "xs": "10px", "sm": "16px", "md": "16px", "lg": "16px", "xl": "16px" },
-                                            margin: { "xs": "10px 0px", "sm": "20px 0px", "md": "20px 0px", "lg": "20px 0px", "xl": "20px 0px" }
+                                            <Box sx={{
+                                                fontSize: { "xs": "0.6rem", "sm": "1rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
+                                                margin: { "xs": "10px 0px", "sm": "20px 0px", "md": "20px 0px", "lg": "20px 0px", "xl": "20px 0px" }
+                                            }}>
+                                                <Link to="/forgot-password/employer"  >
+                                                    Forgot Password?
+                                                </Link>
+                                            </Box>
+
+                                        </ThemeFInputDiv>
+                                        <Stack sx={{
+                                            width: "100%", margin: {
+                                                "xs": "20px 0px", "sm": "40px 0px", "md": "40px 0px", "lg": "40px 0px", "xl": "40px 0px"
+                                            }, gap: "20px"
                                         }}>
-                                            <Link to="/forgot-password/employer"  >
-                                                Forgot Password?
-                                            </Link>
-                                        </Box>
-
-                                    </ThemeFInputDiv>
-                                    <Stack sx={{
-                                        width: "100%", margin: {
-                                            "xs": "20px 0px", "sm": "40px 0px", "md": "40px 0px", "lg": "40px 0px", "xl": "40px 0px"
-                                        }, gap: "20px"
-                                    }}>
-                                        {isEmailVerified && (<>
-                                            <a href="#" onClick={
-                                                () => {
-                                                    resendEmailVerificationLink()
+                                            {isEmailVerified && (<>
+                                                <a href="#" onClick={
+                                                    () => {
+                                                        resendEmailVerificationLink()
+                                                    }
                                                 }
+                                                    style={{ textAlign: "center" }}>
+                                                    Resend Verification Link
+                                                </a>
+
+                                            </>)
+
                                             }
-                                                style={{ textAlign: "center" }}>
-                                                Resend Verification Link
-                                            </a>
 
-                                        </>)
+                                            <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
+                                            <ThemeButtonType3 variant="outlined" type="button"
+                                                sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
+                                                component={Link}
+                                                to="/employer-register"
 
-                                        }
+                                            >Sign up</ThemeButtonType3>
 
-                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
-                                        <ThemeButtonType3 variant="outlined" type="button"
-                                            sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
-                                            component={Link}
-                                            to="/employer-register"
+                                        </Stack>
+                                    </Form>
+                                )}
+                            </Formik>
 
-                                        >Sign up</ThemeButtonType3>
-
-                                    </Stack>
-                                </Form>
-                            )}
-                        </Formik>
-
-                    </Stack>
+                        </Stack>
+                    </Box>
                 </Stack>
             </Stack>
 

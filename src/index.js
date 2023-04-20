@@ -3,10 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 import App from './App';
-//redux 
+//Redux Store
 import {createStore} from "redux";
 import {Provider} from "react-redux";
+//Generating Custom Theme 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+// Define custom breakpoints in the theme
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 992,
+      lg: 1200,
+      xl: 1920,
+    },
+  },
+});
+//Creating the Redux Store State
 const initialState = {
   isLoggedIn : localStorage.getItem("isLoggedIn") == null ? false : localStorage.getItem("isLoggedIn"),
   categoryActive : {
@@ -61,7 +76,9 @@ const store = createStore(reducer,initialState);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-      <App />
+     <ThemeProvider theme={theme}>
+          <App />
+    </ThemeProvider>
   </Provider>
  
 );
