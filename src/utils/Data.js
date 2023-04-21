@@ -1191,3 +1191,18 @@ export const data2 = [
         text: "General Details"
     },
 ]
+
+export const data3 = [
+    {
+        id: 1,
+        text: "Company Information"
+    },
+    {
+        id: 2,
+        text: "Company Social"
+    },
+    {
+        id: 3,
+        text: "Company Address"
+    }
+]

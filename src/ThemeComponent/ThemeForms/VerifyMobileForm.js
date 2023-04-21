@@ -82,12 +82,12 @@ const VerifyMobileForm = () => {
                         width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "60%", "xl": "60%" },
                         display: "flex",
                         justifyContent: "center",
-                        alignItems: "center"
+                        marginTop: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "200px", "xl": "200px" }
 
                     }}>
                         <Box
                             sx={{
-                                width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "60%", "xl": "60%" },
+                                width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "65%", "xl": "65%" },
                                 textAlign: { "xs": "center", "sm": "center", "md": "center", "lg": "start", "xl": "start" }
 
                             }}
@@ -109,7 +109,7 @@ const VerifyMobileForm = () => {
                                 fontWeight: "700",
                                 color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
                                 display: "block",
-                                lineHeight: "1.2"
+                                lineHeight: "1"
                             }}>
                                 Founders, Business
 
@@ -118,7 +118,9 @@ const VerifyMobileForm = () => {
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "700",
                                     color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
-                                    display: "block"
+                                    display: "block",
+                                    lineHeight: "1"
+
                                 }}>
                                     Owners and HRs.
                                 </Typography>
@@ -128,14 +130,16 @@ const VerifyMobileForm = () => {
                         </Box>
                     </Box>
                     <Stack sx={{
-                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "40%", "xl": "40%" }
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "35%", "xl": "35%" },
+                        position: "relative",
+                        top: { "xs": '-11px', "sm": "-25px", "md": "-50px", "lg": "0px", "xl": "0px" }
                     }}>
                         <Stack gap={2} sx={{
-                            height: { "xs": "fit-content", "sm": "fit-content", "md": "730px", "lg": "730px", "xl": "730px" },
+                            height: { "xs": "fit-content", "sm": "fit-content", "md": "600px", "lg": "600px", "xl": "600px" },
                             background: "#FBF8FF",
                             boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                             borderRadius: "19px",
-                            padding: { "xs": "20px", "sm": "30px", "md": "40px", "lg": "40px", "xl": "50px 100px" }
+                            padding: { "xs": "20px", "sm": "30px", "md": "40px", "lg": "40px", "xl": "100px 120px" }
 
                         }}>
                             <Typography component="box" sx={{
@@ -160,7 +164,7 @@ const VerifyMobileForm = () => {
                                                 error={errors.mobile_number && touched.mobile_number}
                                                 id="mobile_number"
                                                 as={TextField}
-                                                placeholder="Enter Mobile Number (eg. 9313170822 )" type="text" name="mobile_number" />
+                                                placeholder="Enter Mobile No. (eg. 9313170822)" type="text" name="mobile_number" />
                                             <Button
                                                 id="sendOTPButton"
                                                 type="submit"

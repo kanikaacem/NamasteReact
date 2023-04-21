@@ -104,13 +104,13 @@ const EmployerRegister = () => {
                         />
                         <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} sx={{
                             gap: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "40px", "xl": "40px" }
-                        }}><Box sx={{
-                            width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "60%", "xl": "60%" },
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center"
-
                         }}>
+                            <Box sx={{
+                                width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "65%", "xl": "65%" },
+                                display: "flex",
+                                justifyContent: "center",
+                                marginTop: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "200px", "xl": "200px" }
+                            }}>
                                 <Box
                                     sx={{
                                         width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "60%", "xl": "60%" },
@@ -120,10 +120,10 @@ const EmployerRegister = () => {
                                     <Typography component="box" sx={{
                                         fontSize: { "xs": "1rem", "sm": "2rem", "md": "2rem", "xl": "2rem", "lg": "2rem" },
                                         fontFamily: "Montserrat",
-                                        fontWeight: "600",
+                                        fontWeight: { "xs": "400", "sm": "400", "md": "400", "lg": "600", "xl": "600" },
                                         color: { "xs": "#FC9A7E", "sm": "#FC9A7E", "md": "#FC9A&E", "lg": "#FFFFFF", "xl": "#FFFFFF" },
                                         display: "block",
-                                        marginTop: "20px"
+                                        marginTop: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "20px", "xl": "20px" }
                                     }}>
                                         Direct Hiring App for
                                     </Typography>
@@ -134,7 +134,7 @@ const EmployerRegister = () => {
                                         fontWeight: "700",
                                         color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
                                         display: "block",
-                                        lineHeight: "1.2"
+                                        lineHeight: "1"
                                     }}>
                                         Founders, Business
 
@@ -143,7 +143,9 @@ const EmployerRegister = () => {
                                             fontFamily: "Work Sans, sans-serif",
                                             fontWeight: "700",
                                             color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
-                                            display: "block"
+                                            display: "block",
+                                            lineHeight: "1"
+
                                         }}>
                                             Owners and HRs.
                                         </Typography>
@@ -153,16 +155,17 @@ const EmployerRegister = () => {
                                 </Box>
 
                             </Box>
-                            <Stack sx={{
-                                width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "40%", "xl": "40%" },
-
+                            <Stack className="EmployerRegisterForm" sx={{
+                                width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "35%", "xl": "35%" },
+                                position: "relative",
+                                top: { "xs": '-11px', "sm": "-25px", "md": "-50px", "lg": "0px", "xl": "0px" }
                             }}>
                                 <Stack gap={2} sx={{
-                                    height: { "xs": "fit-content", "sm": "fit-content", "md": "730px", "lg": "730px", "xl": "730px" },
+                                    height: { "xs": "fit-content", "sm": "fit-content", "md": "600px", "lg": "600px", "xl": "600px" },
                                     background: "#FBF8FF",
                                     boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                                     borderRadius: "19px",
-                                    padding: { "xs": "20px", "sm": "30px", "md": "40px", "lg": "40px", "xl": "50px 100px" }
+                                    padding: { "xs": "20px", "sm": "30px", "md": "40px", "lg": "40px", "xl": "100px 120px" }
 
                                 }}>
 

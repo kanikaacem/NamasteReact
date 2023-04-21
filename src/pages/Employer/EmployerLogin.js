@@ -123,18 +123,17 @@ const EmployerLogin = () => {
                 <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }}
                     sx={{ gap: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "40px", "xl": "40px" } }}>
                     <Stack sx={{
-                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "60%", "xl": "60%" },
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "65%", "xl": "65%" },
                         alignItems: "center"
                     }}>
                         <Box sx={{
-                            marginTop: { "xs": "0px", "sm": "100px", "md": "100px", "lg": "100px", "xl": "100px" }
+                            marginTop: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "100px", "xl": "100px" }
                             , textAlign: { "xs": "center", "sm": "center", "md": "center", "lg": "start", "xl": "start" }
                         }}>
                             <Box sx={{ display: { "xs": "block", "sm": "block", "md": "block", "lg": "none", "xl": "none" } }}>
                                 <Typography component="box" sx={{
                                     fontSize: { "xs": "1rem", "sm": "2rem", "md": "2rem", "lg": "2rem", "xl": "2rem" },
                                     fontFamily: "Montserrat",
-                                    fontWeight: "800",
                                     color: "#FC9A7E",
                                     display: "block",
                                 }}>
@@ -148,7 +147,6 @@ const EmployerLogin = () => {
                                     fontWeight: "700",
                                     color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
                                     display: "block",
-                                    lineHeight: "1.2"
                                 }}>
                                     We settle for nothing Less than the BEST
                                 </Typography>
@@ -161,7 +159,7 @@ const EmployerLogin = () => {
                                     fontWeight: "700",
                                     color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
                                     display: "block",
-                                    lineHeight: "1.2"
+                                    lineHeight: "0.3"
                                 }}>
                                     We settle for nothing
 
@@ -212,14 +210,16 @@ const EmployerLogin = () => {
                     </Stack>
 
                     <Box className="EmployerLoginForm" sx={{
-                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "40%", "xl": "40%" },
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "35%", "xl": "35%" },
+                        position: "relative",
+                        top: { "xs": '-11px', "sm": "-25px", "md": "-50px", "lg": "0px", "xl": "0px" }
                     }}>
                         <Stack gap={2} sx={{
                             maxHeight: "730px",
                             background: "#FBF8FF",
                             boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                             borderRadius: "19px",
-                            padding: { "xs": "20px", "sm": "30px", "md": "40px", "lg": "40px", "xl": "50px 100px" }
+                            padding: { "xs": "20px", "sm": "30px", "md": "40px", "lg": "40px", "xl": "100px 120px" }
                         }}>
                             <Typography component="box" sx={{
                                 fontSize: {

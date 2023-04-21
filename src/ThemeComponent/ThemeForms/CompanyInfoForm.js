@@ -6,7 +6,7 @@ import { Box, Stack, TextField, Typography, MenuItem, Select } from "@mui/materi
 import { Formik, Field, Form } from "formik";
 import { companyInfoValidationSchema, companyInfoValidationSchema1, companyInfoValidationSchema2 } from "../../Validation/EmployerValidation";
 
-import { CompanyType } from "../../utils/Data";
+import { CompanyType, data3 } from "../../utils/Data";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
@@ -15,9 +15,11 @@ import BackButton from "../Common/BackButton";
 import { ThemeButtonType2, ThemeFInputDiv, NextButton } from "../../utils/Theme";
 
 import { useState, useRef, useEffect } from "react";
-import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import FormMenu from "../Common/FormMenu";
+import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
+import ThemeMobileImage from "../Common/ThemeMobileImage";
 import ReactGA from 'react-ga';
 const TRACKING_ID = 'AW-11080443279/84LrCNKT24kYEI_LyKMp'
 ReactGA.initialize(TRACKING_ID)
@@ -235,42 +237,62 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                         gap: "24px"
                     }}>
 
-                    <Stack direction="row" gap={2} sx={{ position: "relative" }}>
+                    <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} gap={2} sx={{ position: "relative" }}>
                         <Box sx={{
-                            width: { 'lg': "50%", 'md': '100%', 'xs': '100%' },
-                            display: { 'lg': "block", 'md': "none", 'xs': 'none' }
+                            width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" },
                         }}>
                             <Stack sx={{
-                                margin: "50px",
+                                margin: { "xs": "10px", "sm": "10px", "md": "10px", "lg": "50px", "xl": "50px" },
                                 direction: "row",
-                                gap: "100px",
+                                gap: { "xs": "10px", "sm": "10px", "md": "10px", "lg": "64px", "xl": "64px" },
 
                             }}>
                                 <Typography component="box" sx={{
-                                    fontSize: "64px",
+                                    fontSize: { "xs": "1.8rem", "sm": "2rem", "md": "2.5rem", "lg": "4rem", "xl": "4rem" },
                                     fontFamily: "Montserrat",
                                     fontWeight: "600",
                                     color: "#4E3A67",
                                     display: "block",
-                                    marginTop: "20px"
+                                    marginTop: "20px",
+                                    display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
+
                                 }}>
                                     Get
-                                    registered  here
-                                </Typography>
+                                    <Typography component="box" sx={{
+                                        fontSize: { "xs": "1.8rem", "sm": "2rem", "md": "2.5rem", "lg": "4rem", "xl": "4rem" },
+                                        fontFamily: "Montserrat",
+                                        fontWeight: "600",
+                                        color: "#4E3A67",
+                                        display: "block",
+                                        lineHeight: "1"
+                                    }}>
+                                        Registered Here
+                                    </Typography>
 
-                                <img
-                                    width="100%"
-                                    style={{
-                                        position: "relative",
-                                        left: "-110px"
-                                    }}
-                                    src={window.location.origin + "/assets/g11.png"} alt="G11" />
+                                </Typography>
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "1.8rem", "sm": "2rem", "md": "2.5rem", "lg": "4rem", "xl": "4rem" },
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#4E3A67",
+                                    display: "block",
+                                    marginTop: "20px",
+                                    display: { "xs": "block", "sm": "block", "md": "block", "lg": "none", "xl": "none" }
+
+                                }}>
+                                    Get Registered Here
+                                </Typography>
+                                <ThemeMobileImage imageUrl="/assets/g11Mobile.png" alt="G11" />
+                                <Box sx={{
+                                    position: "relative",
+                                    left: "-150px"
+                                }}>
+                                    <ThemeWebsiteImage imageUrl="/assets/g11.png" alt="G11" />
+                                </Box>
                             </Stack>
                         </Box>
-
-
                         <Box sx={{
-                            width: { "lg": "50%", "md": "100%", "xs": "100%" }
+                            width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" },
                         }}>
                             <Box sx={{
                                 minHeight: "153px",
@@ -279,6 +301,8 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                 boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                                 borderRadius: "19px",
                                 margin: "0 auto",
+                                position: "relative",
+                                top: { "xs": "-40px", "sm": "-40px", "md": "-40px", "lg": "0px", "xl": "0px" }
 
                             }}>
                                 <Box
@@ -290,7 +314,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                         fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" },
                                         fontFamily: "Montserrat",
                                         fontWeight: "600",
-                                        color: "#4E3A67",
+                                        color: "#000000",
                                         display: "block",
                                         marginTop: "20px"
                                     }}>
@@ -300,84 +324,13 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     <Stack direction="row" gap={2} sx={{
                                         margin: "25px 0px",
                                         flexWrap: "wrap"
-                                    }}>
-                                        <Stack direction="row" gap={1} alignItems="center" justifyContent="center"
-                                        >
-                                            <Box sx={{
-                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                background: "#FC9A7E",
-                                                borderRadius: "50%",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
-                                            }}>1</Box>
-                                            <Typography component="box" sx={{
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                                fontFamily: "Montserrat",
-                                                fontWeight: "600",
-                                                color: "#4E3A67",
-                                                display: "block",
-                                            }}>
-                                                Company Information
-                                            </Typography>
-                                            <Box>
-                                                <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                            </Box>
-                                        </Stack>
-
-
-                                        <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                            <Box sx={{
-                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                background: "#FC9A7E",
-                                                borderRadius: "50%",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
-                                            }}>2</Box>
-                                            <Typography component="box" sx={{
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                                fontFamily: "Montserrat",
-                                                fontWeight: "600",
-                                                color: "#4E3A67",
-                                                display: "block",
-                                            }}>
-                                                Company Social
-                                            </Typography>
-                                            <Box>
-                                                <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                            </Box>
-                                        </Stack>
-
-
-                                        <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                            <Box sx={{
-                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                background: "#FC9A7E",
-                                                borderRadius: "50%",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
-                                            }}>3</Box>
-                                            <Typography component="box" sx={{
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                                fontFamily: "Montserrat",
-                                                fontWeight: "600",
-                                                color: "#4E3A67",
-                                                display: "block",
-                                            }}>
-                                                Company Address
-                                            </Typography>
-                                            <Box>
-                                                <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                            </Box>
-                                        </Stack>
+                                    }}
+                                        justifyContent={{ "xs": "center", "sm": "center", "md": "center", "lg": "flex-start", "xl": "flex-start" }}>
+                                        {
+                                            data3 && data3.map((item) => {
+                                                return <FormMenu data={item} formStep={0} />
+                                            })
+                                        }
 
                                     </Stack>
                                 </Box>
@@ -390,7 +343,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     borderBottomLeftRadius: "19px",
                                     borderBottomRightRadius: "19px",
                                     position: "relative",
-                                    padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
+                                    padding: { "xs": "20px", "sm": "30px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
                                     margin: "0 auto"
 
                                 }}>
