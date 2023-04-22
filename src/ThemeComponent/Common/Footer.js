@@ -1,92 +1,177 @@
-import { Box, Container, Typography, Stack } from "@mui/material";
+import { Box, Typography, Stack } from "@mui/material";
+import SocialMedia from "./SocialMedia";
+import { FooterData, FooterData2, FooterData3 } from "../../utils/Data";
+import { FooterBox } from "../../utils/Theme";
 
+import { Link } from "react-router-dom";
 const Footer = () => {
     return (<>
-        <Box sx={{ background: "#E4E4E4", minheight: "400px" }}>
-            <Container>
-                <Stack direction={{ lg: "row", md: "column", xs: "column" }} gap={5} sx={{ padding: "50px 0px" }}>
-                    <Box sx={{ width: { lg: "35%", md: "100%", xs: "100%" } }}>
-                        <Box
-                            sx={{ width: "80px", height: "80px" }}>
-                            <img src={window.location.origin + '/assets/companyLogo.png'} alt="LOGO" width="100%">
-                            </img>
-                        </Box>
+        <Box sx={{
+            background: "#2B1E44",
+            padding: { "xs": "20px", "sm": "20px", "md": "20px", "lg": "50px 150px", "xl": "50px 150px" }
+        }}>
+            <Stack direction="row" sx={{
+                flexWrap: "wrap",
+            }}>
+                <Box sx={{ width: { "xs": "44%", "sm": "50%", "md": "50%", "lg": "25%", "lg": "25%" } }}>
+                    <Typography component="span"
+                        sx={{
+                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                            color: "#FC9A7E",
+                            margin: "10px 0px",
+                            fontWeight: "600"
+                        }}>
+                        Job
                         <Typography component="span"
                             sx={{
-                                display: "block",
-                                fontSize: "20px",
-                                color: "#2B1E44",
-                                fontWeight: "600",
+                                fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                                color: "#FC9A7E",
                                 margin: "10px 0px",
                             }}>
-                            Chat Directly. Hire Instantly.
+                            Yahan
                         </Typography>
-                        <Typography component="span"
-                            sx={{
-                                display: "block",
-                                fontSize: "16px",
-                                color: "#2B1E44",
-                            }}>
-                            Trusted by 3.8M+ verified job seekers and
-                            190K+ verified recruiters.
-                        </Typography>
+                    </Typography>
+
+                    <Typography component="span"
+                        sx={{
+                            display: "block",
+                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                            color: "#FFFFFF",
+                            margin: "10px 0px",
+                            width: "150px"
+                        }}>
+                        Chat Directly. Hire Instantly.
+                    </Typography>
+                    <Typography component="span"
+                        sx={{
+                            display: "block",
+                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                            color: "#FFFFFF",
+                            width: "150px",
+                            fontWeight: '100',
+                            fontFamily: "Montserrat"
+                        }}>
+                        Trusted by 3.8M+ verified job seekers and
+                        190K+ verified recruiters.
+                    </Typography>
 
 
-                    </Box>
-                    <Box sx={{ width: { lg: "35%", md: "100%", xs: "100%" } }}>
-                        <Typography component="span"
-                            sx={{
-                                display: "block",
-                                fontSize: "20px",
-                                color: "#2B1E44",
-                                fontWeight: "600",
-                                margin: "10px 0px",
-                            }}>
-                            Jobyahan
-                        </Typography>
-                        <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#2B1E44" }}> Home</Box>
-                        <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#2B1E44" }}> About Us</Box>
-                        <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#2B1E44" }}> Recruiters</Box>
-                        <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#2B1E44" }}> Job Seekers</Box>
-                        <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#2B1E44" }}> Contact Us</Box>
+                </Box>
+                <Box sx={{ width: { "xs": "44%", "sm": "50%", "md": "50%", "lg": "25%", "lg": "25%" } }}>
+                    <Typography component="span"
+                        sx={{
+                            display: "block",
+                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                            color: "#FFFFFF",
+                            fontWeight: "700",
+                            margin: "10px 0px",
+                        }}>
+                        Company
+                    </Typography>
+                    {
+                        FooterData && FooterData.map((item, index) => {
+                            return (
+                                <Link to={item.url}
+                                    key={index}
+                                    style={{
+                                        textDecoration: "none"
+                                    }} >
+                                    <FooterBox sx={{
+                                        fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                                    }}> {item.name}</FooterBox>
+                                </Link>
 
+                            )
+                        })
+                    }
+                </Box>
 
-                    </Box>
+                <Box sx={{ width: { "xs": "44%", "sm": "50%", "md": "50%", "lg": "25%", "lg": "25%" } }}>
+                    <Typography component="span"
+                        sx={{
+                            display: "block",
+                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                            color: "#FFFFFF",
+                            fontWeight: "600",
+                            margin: "10px 0px",
+                        }}>
+                        Support
+                    </Typography>
+                    <FooterBox
+                        sx={{
+                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                        }}> jobyahan@gmail.com</FooterBox>
+                    <SocialMedia />
 
-                    <Box sx={{ width: { lg: "35%", md: "100%", xs: "100%" } }}>
-                        <Typography component="span"
-                            sx={{
-                                display: "block",
-                                fontSize: "20px",
-                                color: "#2B1E44",
-                                fontWeight: "600",
-                                margin: "10px 0px",
-                            }}>
-                            Support
-                        </Typography>
-                        <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#2B1E44" }}> jobyahan@gmail.com</Box>
+                </Box>
+                <Box sx={{ width: { "xs": "44%", "sm": "50%", "md": "50%", "lg": "25%", "lg": "25%" } }}>
+                    <Typography component="span"
+                        sx={{
+                            display: "block",
+                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                            color: "#FFFFFF",
+                            fontWeight: "600",
+                            margin: "10px 0px",
+                        }}>
+                        Legal
+                    </Typography>
+                    {
+                        FooterData2 && FooterData2.map((item, index) => {
+                            return (
+                                <Link to={item.url}
+                                    key={index}
+                                    style={{
+                                        textDecoration: "none"
+                                    }}>
+                                    <FooterBox
+                                        sx={{
+                                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                                        }} > {item.name}</FooterBox>
+                                </Link>
+                            )
+                        })
+                    }
 
-                    </Box>
-                    <Box sx={{ width: { lg: "35%", md: "100%", xs: "100%" } }}>
-                        <Typography component="span"
-                            sx={{
-                                display: "block",
-                                fontSize: "20px",
-                                color: "#2B1E44",
-                                fontWeight: "600",
-                                margin: "10px 0px",
-                            }}>
-                            Legal
-                        </Typography>
-                        <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#2B1E44" }}>Privacy Policy</Box>
-                        <Box sx={{ fontSize: "16px", color: "#2B!E44", margin: "10px 0px", color: "#2B1E44" }}> Terms & conditions</Box>
-                    </Box>
+                </Box>
 
-                </Stack>
-            </Container>
+            </Stack>
+            <hr style={{
+                margin: "10px 0px"
+            }}></hr>
 
+            <Stack direction="row" gap={1} sx={{
+                flexWrap: "wrap"
+            }}>
+                {
+                    FooterData3 && FooterData3.map((item, index) => {
+                        return (
+                            <Link to={item.url}
+                                key={index}
+                                style={{
+                                    textDecoration: "none",
+                                }}>
+                                <FooterBox
+                                    sx={{
+                                        fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
+                                    }} > {item.name}</FooterBox>
+                            </Link>
+                        )
+                    })
+                }
+            </Stack>
 
-        </Box>
+            <Typography component="span"
+                sx={{
+                    display: "block",
+                    fontSize: { "xs": "10px", "sm": "16px", "md": "16px", "lg": "16px", "xl": "16px" },
+                    color: "#FFFFFF",
+                    margin: "10px 0px",
+                    fontWeight: "100",
+                    fontFamily: "Montserrat"
+                }}>
+                {/* Copyright © 2010-2023 Freepik Company S.L. All rights reserved. */}
+            </Typography>
+        </Box >
     </>)
 }
 

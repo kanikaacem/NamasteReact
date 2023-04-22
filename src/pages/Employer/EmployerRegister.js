@@ -1,5 +1,11 @@
-import { Box, Stack, Typography, Container } from "@mui/material";
-import { useState, useRef } from "react";
+// import { postRequest } from "../../utils/ApiRequests";
+// import { EmployerLoginURL } from "../../utils/ApiUrls";
+
+import { GetUserInformation } from "../../utils/ApiUrls";
+import { getRequestWithToken } from "../../utils/ApiRequests";
+
+import { Box, Stack, Typography } from "@mui/material";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
@@ -9,11 +15,13 @@ import EmailSignupForm from "../../ThemeComponent/ThemeForms/EmailSignupForm";
 import PasswordGenForm from "../../ThemeComponent/ThemeForms/PasswordGenForm";
 import VerifyMobileForm from "../../ThemeComponent/ThemeForms/VerifyMobileForm";
 import CompanyInfoForm from "../../ThemeComponent/ThemeForms/CompanyInfoForm";
-const CLIENT_ID = "346122009616-5gsdqla59hflt7sg5f8n38valqs6p1q8.apps.googleusercontent.com";
+import ThemeMobileImage from "../../ThemeComponent/Common/ThemeMobileImage";
+import ReactGA from 'react-ga';
+ReactGA.initialize('AW-11080443279/AeoHCJzJ2YkYEI_LyKMp');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const EmployerRegister = () => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
-    const api_url = useSelector(state => state.api_url);
     const dispatch = useDispatch();
 
     const [emailSignupForm, setEmailSignupForm] = useState(true);
@@ -21,204 +29,173 @@ const EmployerRegister = () => {
     const [verifyMobileForm, setVerifyMobileForm] = useState(false);
     const [companyInfoForm, setCompanyInfoForm] = useState(false);
 
-    const emailsignupwrapper = useRef(null);
-    const passwordgenerationForm = useRef(null);
-    const mobileoptverificationwrapper = useRef(null);
-    const hrinformationwrapper = useRef(null);
-    const companyinformationwrapper = useRef(null);
-
-    const [formErrors, setformErrors] = useState({
-        email_error: "",
-        mobile_number_error: "",
-        otp_error: "",
-        otp_resend_error: "",
-        otp_information: "",
-        full_name_error: "",
-
-    });
-    const [passwordError, setPasswordError] = useState("");
-    const [confirmpasswordError, setconfirmpasswordError] = useState("");
-
-    const [companyNameError, setcompanyNameError] = useState("");
-    const [companyEmailError, setcompanyEmailError] = useState("");
-    const [companyMobileError, setcompanyMobileError] = useState("");
-    const [companyTypeError, setcompanyTypeError] = useState("");
-    const [companyWebsiteError, setcompanyWebsiteError] = useState("");
-    const [profileTypeError, setprofileTypeError] = useState("");
-    const [companyAddressError, setcompanyAddressError] = useState("");
-    const [companyCityError, setcompanyCityError] = useState("");
-    const [companyDescriptionError, setcompanyDescriptionError] = useState("");
-    const [companyPincodeError, setcompanyPincodeError] = useState("");
-    const [companyLogoError, setcompanyLogoError] = useState("");
-    const [companyPanImageError, setcompanyPanImageError] = useState("");
-    const [companyGSTImageError, setcompanyGSTImageError] = useState("");
-    const [companyPanError, setcompanyPanError] = useState("");
-    const [companyGSTError, setcompanyGSTError] = useState("");
 
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [mobile_number, setMobileNumber] = useState("");
-    const [resendOtp, setresendOtp] = useState(false);
+    const [registerUser, setRegisterUser] = useState({});
+    const [isEmailVerified, setIsEmailVerified] = useState(false);
 
-    const [companyLogo, setcompanyLogo] = useState("");
-    const [panImage, setpanImage] = useState("");
-    const [gstImage, setgstImage] = useState("");
+    const action = useSelector(state => state.action);
 
+    useEffect(() => {
+        const getUserData = async () => {
+            let response = await getRequestWithToken(GetUserInformation);
 
-    const [userId, setUserId] = useState();
+            if (response.status == '1') {
+                setRegisterUser(response.data);
+                // if (response.data.isemailverified && !response.data.ismobileverified) {
+                //     setEmailSignupForm(false);
+                //     setVerifyMobileForm(true);
+                //     dispatch({ type: 'LOGIN_REGISTRATION', payload: response.data });
+                // }
+                // else if (response.data.isemailverified && response.data.ismobileverified) {
+                //     setEmailSignupForm(false);
+                //     setVerifyMobileForm(false);
+                //     setCompanyInfoForm(true);
+                //     if (response.data.company_pancard && !response.data.company_email) {
+                //         localStorage.setItem("formpage", 2);
+                //     }
+                //     else if (response.data.company_email) {
+                //         localStorage.setItem("formpage", 3);
+                //     }
+                //     else {
+                //         localStorage.setItem("formpage", 1);
+                //     }
+                // }
+                // else {
+                //     if (localStorage.getItem("useremail")) {
+                //         setIsEmailVerified(true)
+                //     }
+                // }
+            }
+        }
 
+        (localStorage.getItem("auth_token") != " " && localStorage.getItem("auth_token") != null) && getUserData();
+
+    }, []);
     return (<>
 
-        {isLoggedIn == 'true' && <Navigate to="/"></Navigate>}
+        {isLoggedIn == 'true' && registerUser.isEmailVerified && registerUser.ismobileverified && action === "login" && < Navigate to="/employer-dashboard"></Navigate>}
 
-        {!companyInfoForm ?
-            <Box className="EmployerRegisterPage"
-                sx={{
-                    height: "100vh",
-                    background: !companyInfoForm ? "#2B1E44" : "#FFFFFF",
-                    backgroundImage: !companyInfoForm &&
-                        "url('../assets/g10.png')",
-                    backgroundRepeat: " no-repeat",
-                    backgroundPosition: !companyInfoForm ? " left 0px bottom 0px" : "left 100px bottom 0px"
-                }}>
-                <Stack className="EmployerRegisterPageWrapper"
-                    sx=
-                    {{
-                        padding: "20px 50px",
-                        gap: "24px"
+        {
+            !companyInfoForm ?
+                <Box className="EmployerRegisterPage"
+                    sx={{
+                        minHeight: "100vh",
+                        background: !companyInfoForm ? "#2B1E44" : "#FFFFFF",
+                        backgroundImage: !companyInfoForm && {
+                            "xs": "none", "sm": "none", "md": "none",
+                            "lg": "url('../assets/g10.png')", "xl": "url('../assets/g10.png')"
+                        }
+                        ,
+                        backgroundRepeat: " no-repeat",
+                        backgroundPosition: !companyInfoForm ? " left 0px bottom 0px" : "left 100px bottom 0px"
                     }}>
-                    <HeaderSec
-                        border="2px solid rgba(255, 255, 255, 0.25)"
-                        color="#FFFFFF"
-                        background="#432C60"
-                    />
-                    <Stack alignItems="flex-end" sx={{ position: "relative" }}>
-
-                        <Box sx={{
-                            position: "absolute",
-                            top: "236px",
-                            left: "204px"
+                    <Stack className="EmployerRegisterPageWrapper"
+                        sx=
+                        {{
+                            padding: { "xs": "20px", "sm": "20px 50px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
+                            gap: "24px"
                         }}>
-                            <Typography component="box" sx={{
-                                fontSize: "36px",
-                                fontFamily: "Montserrat",
-                                fontWeight: "600",
-                                color: "#FFFFFF",
-                                display: "block",
-                                marginTop: "20px"
+                        <HeaderSec
+                            border="2px solid rgba(255, 255, 255, 0.25)"
+                            color="#FFFFFF"
+                            background="#432C60"
+                        />
+                        <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} sx={{
+                            gap: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "40px", "xl": "40px" }
+                        }}>
+                            <Box sx={{
+                                width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "65%", "xl": "65%" },
+                                display: "flex",
+                                justifyContent: "center",
+                                marginTop: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "200px", "xl": "200px" }
                             }}>
-                                Direct Hiring App for
-                            </Typography>
+                                <Box
+                                    sx={{
+                                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "60%", "xl": "60%" },
+                                        textAlign: { "xs": "center", "sm": "center", "md": "center", "lg": "start", "xl": "start" }
+                                    }}
+                                >
+                                    <Typography component="box" sx={{
+                                        fontSize: { "xs": "1rem", "sm": "2rem", "md": "2rem", "xl": "2rem", "lg": "2rem" },
+                                        fontFamily: "Montserrat",
+                                        fontWeight: { "xs": "400", "sm": "400", "md": "400", "lg": "600", "xl": "600" },
+                                        color: { "xs": "#FC9A7E", "sm": "#FC9A7E", "md": "#FC9A&E", "lg": "#FFFFFF", "xl": "#FFFFFF" },
+                                        display: "block",
+                                        marginTop: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "20px", "xl": "20px" }
+                                    }}>
+                                        Direct Hiring App for
+                                    </Typography>
 
-                            <Typography component="box" sx={{
-                                fontSize: "64px",
-                                fontFamily: "Work Sans, sans-serif",
-                                fontWeight: "700",
-                                color: "#FC9A7E",
-                                display: "block",
-                                lineHeight: "40px"
+                                    <Typography component="box" sx={{
+                                        fontSize: { "xs": "1.6rem", "sm": "3rem", "md": "3rem", "xl": "4rem", "lg": "4rem" },
+                                        fontFamily: "Work Sans, sans-serif",
+                                        fontWeight: "700",
+                                        color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
+                                        display: "block",
+                                        lineHeight: "1"
+                                    }}>
+                                        Founders, Business
+
+                                        <Typography component="box" sx={{
+                                            fontSize: { "xs": "1.6rem", "sm": "3rem", "md": "3rem", "xl": "4rem", "lg": "4rem" },
+                                            fontFamily: "Work Sans, sans-serif",
+                                            fontWeight: "700",
+                                            color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
+                                            display: "block",
+                                            lineHeight: "1"
+
+                                        }}>
+                                            Owners and HRs.
+                                        </Typography>
+                                    </Typography>
+                                    <ThemeMobileImage imageUrl="/assets/g10Mobile.png" />
+
+                                </Box>
+
+                            </Box>
+                            <Stack className="EmployerRegisterForm" sx={{
+                                width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "35%", "xl": "35%" },
+                                position: "relative",
+                                top: { "xs": '-11px', "sm": "-25px", "md": "-50px", "lg": "0px", "xl": "0px" }
                             }}>
-                                Founders, Business
+                                <Stack gap={2} sx={{
+                                    height: { "xs": "fit-content", "sm": "fit-content", "md": "600px", "lg": "600px", "xl": "600px" },
+                                    background: "#FBF8FF",
+                                    boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
+                                    borderRadius: "19px",
+                                    padding: { "xs": "20px", "sm": "30px", "md": "40px", "lg": "40px", "xl": "100px 120px" }
 
-                                <Typography component="box" sx={{
-                                    fontSize: "64px",
-                                    fontFamily: "Work Sans, sans-serif",
-                                    fontWeight: "700",
-                                    color: "#FC9A7E",
-                                    display: "block"
                                 }}>
-                                    Owners and HRs.
-                                </Typography>
-                            </Typography>
-                        </Box>
 
-                        <Stack gap={2} sx={{
-                            width: "449px",
-                            height: "730px",
-                            background: "#FBF8FF",
-                            boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
-                            borderRadius: "19px",
-                            padding: "50px 100px"
-                        }}>
+                                    {emailSignupForm && <EmailSignupForm
+                                        email={email} setEmail={setEmail}
+                                        setEmailSignupForm={setEmailSignupForm}
+                                        setPasswordGenForm={setPasswordGenForm}
+                                        isEmailVerified={isEmailVerified} />}
 
-                            {emailSignupForm && <EmailSignupForm
-                                email={email} setEmail={setEmail}
-                                setEmailSignupForm={setEmailSignupForm}
-                                setPasswordGenForm={setPasswordGenForm} />}
+                                    {passwordGenForm && <PasswordGenForm email={email}
+                                        setPasswordGenForm={setPasswordGenForm}
+                                        setVerifyMobileForm={setVerifyMobileForm}
+                                        setEmailSignupForm={setEmailSignupForm} />}
 
-                            {passwordGenForm && <PasswordGenForm email={email}
-                                setUserId={setUserId}
-                                setPasswordGenForm={setPasswordGenForm}
-                                setVerifyMobileForm={setVerifyMobileForm} />}
+                                    {verifyMobileForm && <VerifyMobileForm
+                                        email={email}
+                                        setMobileNumber={setMobileNumber}
+                                        setVerifyMobileForm={setVerifyMobileForm}
+                                        setCompanyInfoForm={setCompanyInfoForm} />}
 
-                            {verifyMobileForm && <VerifyMobileForm
-                                setMobileNumber={setMobileNumber}
-                                setVerifyMobileForm={setVerifyMobileForm}
-                                setCompanyInfoForm={setCompanyInfoForm} />}
+                                </Stack>
+                            </Stack>
+
 
                         </Stack>
-
                     </Stack>
-                </Stack>
-            </Box>
-            :
-            <CompanyInfoForm email={email} userId={userId} mobile={mobile_number}></CompanyInfoForm>
+                </Box >
+                :
+                <CompanyInfoForm email={email} mobile={mobile_number}></CompanyInfoForm>
         }
-        {/* <Container
-                sx={{
-                    height: "inherit"
-                }}>
-                <Stack direction={{ xs: 'column', sm: 'row' }} gap={2} >
-                    <Box sx={{
-                        position: "fixed",
-                        width: "35%",
-                        top: "123px",
-                        display: { md: "block", xs: "none" }
-                    }} >
-                        <Typography component="span" sx={{ display: "block", fontSize: "30px", textAlign: { sm: "center" }, color: "#2B1E44", fontWeight: "600" }}>
-                            Direct Hiring App for Founders, Business Owners and HRs.
-                        </Typography>
-
-                    </Box>
-                    <Box sx={{
-                        width: { md: "55%", sm: "100%" },
-                        position: "relative",
-                        marginLeft: { md: "550px", xs: "0px" },
-
-                    }}>
-                        <Box
-                            sx={{
-                                borderRadius: "10px",
-                                padding: "27px 40px 20px 35px",
-                                background: "#FFFFFF",
-                                margin: { md: "50px 0px", sm: "0px" },
-                                minHeight: "400px",
-                                borderTop: "5px solid #2B1E44",
-
-                            }}>
-                            {emailSignupForm && <EmailSignupForm
-                                email={email} setEmail={setEmail}
-                                setEmailSignupForm={setEmailSignupForm}
-                                setPasswordGenForm={setPasswordGenForm} />}
-
-                            {passwordGenForm && <PasswordGenForm email={email}
-                                setUserId={setUserId}
-                                setPasswordGenForm={setPasswordGenForm}
-                                setVerifyMobileForm={setVerifyMobileForm} />}
-
-                            {verifyMobileForm && <VerifyMobileForm
-                                setMobileNumber={setMobileNumber}
-                                setVerifyMobileForm={setVerifyMobileForm}
-                                setCompanyInfoForm={setCompanyInfoForm} />}
-
-                            {companyInfoForm && <CompanyInfoForm email={email} userId={userId} mobile={mobile_number}></CompanyInfoForm>}
-
-                        </Box>
-                    </Box>
-
-                </Stack>
-
-            </Container> */}
 
     </>)
 }

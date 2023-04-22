@@ -1,109 +1,233 @@
-import { Box, Stack } from "@mui/material";
+import { getRequestWithToken } from "../utils/ApiRequests";
+import { Box, Stack, Typography, Button } from "@mui/material";
+import { useState, useEffect } from "react";
+import { RWebShare } from "react-web-share";
 
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-import PlaceIcon from '@mui/icons-material/Place';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import { Link, useNavigate } from "react-router-dom";
 
-import Moment from 'react-moment';
+const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
 
-import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
+    const [jobApplied, setJobApplied] = useState(false);
+    const navigate = useNavigate();
 
-const JobComponent = ({ company, data }) => {
-    const [showJobDescription, setshowJobDescription] = useState();
-    const user = localStorage.user && JSON.parse(localStorage.user);
-    const api_url = useSelector(state => state.api_url);
-    const deletePostedJob = (id) => {
-        console.log(id);
-    }
-    const showDescription = (id) => {
-        // console.log(id);
-        // setshowJobDescription(id);
-        window.location.href = "/job-description/" + id;
-        // dispatch({ type: 'JOB_DESCRIPTION', payload: id });
-
-    }
-    const closeDescription =
-        () => {
-            setshowJobDescription(0);
-        }
-
-
-    const JobAction = async (jobId, jobAction) => {
-        let url = "";
-        if (jobAction == "apply") url = api_url + "/api/job/applyforjob";
-        else if (jobAction == "save") url = api_url + "/api/job/savejob";
-
-        let response = await fetch(url, {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify({
-                userid: "637e078a29dc3fa6c141e534",
-                jobsid: jobId
-
-            }),
-        })
-        if (response.ok) {
-            response = await response.json();
-            console.log(response);
+    useEffect(() => {
+        const IsjobApplied = async () => {
+            let response = await getRequestWithToken("https://backend.jobsyahan.com/api/job/details?jobid=" + data_id);
+            if (response !== undefined && response.status === "1") {
+                if (Object.keys(response.data).length > 0 && response.data[0].jobapply) {
+                    setJobApplied(true);
+                }
+                else {
+                    setJobApplied(false);
+                }
+            }
 
         }
-
-    }
+        IsjobApplied();
+    }, [data_id])
     return (<>
-        <Stack>
-            <Box className="jobItem" id={data && data._id} onClick={() => showDescription(data._id)}>
-                <Box className="jobLogo"
-                    sx={{
-                        borderRadius: "10px",
-                        position: "absolute",
-                        left: "5%",
-                        top: "14%",
-                        width: "60px",
-                        height: "60px",
-                        background: "#FFFFFF"
-                    }}>
-                    <img style={{ width: "100%", borderRadius: '10px' }} src={data && data.companyLogo ? data.companyLogo : './assets/companyLogo.png'} alt=""></img>
-                </Box>
+        <Box sx={{
+            background: "#FFFFFF",
+            border: " 1px solid #E1D4F2",
+            borderRadius: "19px",
+            cursor: "pointer"
+        }}
+            onClick={() => {
+                if (window.location.pathname === '/candidate-dashboard')
+                    OnClickfun()
+                else {
+                    navigate((userType === "employer" ? "/employer-dashboard" : "/candidate-dashboard") + "/job-description/" + data_id)
+                }
 
 
-                <Box className="jobInformation">
-
-                    <h3> {data && data.companyName ? data.companyName : "Company Name"} - {data && data.title} - {data && data.role.replaceAll("_", " ")}</h3>
-
-                    <Stack direction="row" gap={5}>
-                        <span><WorkOutlineIcon></WorkOutlineIcon>{data && data.experience} Yrs  </span>
-                        <span><CurrencyRupeeIcon></CurrencyRupeeIcon> {data && data.salary}</span>
-                        <span><PlaceIcon></PlaceIcon>{data && data.location}</span>
-                        <span><Moment format="DD/MM/YYYY">
-                            {data && data.createdat}
-                        </Moment></span>
-
-                    </Stack>
-
+            }}>
+            <Box >
+                <Stack direction="row" justifyContent="space-between" sx={{ padding: "20px", color: "#4E3A67" }}>
+                    <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "26px", "lg": "26px", "xl": "26px" }, fontWeight: "600", textTransform: "capitalize" }}>
+                        {data ? data.job_title : "Not Mentioned"}
+                    </Typography>
                     {
-                        user && user.type == "employer" && <>
-                            <span> <a href={`employer-dashboard/job/${data._id}/recommedations`} > View All Candidate</a></span>
-
-                        </>
+                        data && data.salarytype && data.salarytype.hideSalary ? "Not Disclosed" :
+                            <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "26px", "lg": "26px", "xl": "26px" }, fontWeight: "600" }}>
+                                {(data && data.salarytype) ? data.salarytype.label : "Not Mentioned"}
+                            </Typography>
                     }
 
-                    {/* <div style={{ display: 'flex', gap: '10px', position: 'absolute', right: '10px' }}>
-                        {user.type == 'employer' && <>
-                            <span><EditIcon onClick={() => deletePostedJob(data._id)}></EditIcon></span>
-                            <span><DeleteIcon onClick={() => deletePostedJob(data._id)}></DeleteIcon></span>
-                        </>}
+                </Stack>
+                <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#3D3B3F", padding: "0px 20px" }}>
+                    {data ? data.company_name : "Not Mentioned"}
+                </Typography>
 
-                    </div> */}
+                <Box sx={{ padding: "20px" }}>
+                    <Stack direction="row" gap={2} sx={{ flexWrap: "wrap" }}>
+                        <Stack direction="row" sx={{
+                            background: "#FFFFFF",
+                            border: "1px solid #E2D7F0",
+                            borderRadius: "11px",
+                            padding: { "xs": "8px", "sm": "8px", "md": "15px", "lg": "15px", "xl": "15px" },
+                            gap: "5px",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            <Box>
+                                <img src={window.location.origin + "/assets/RJ.png"} alt="RJ"></img>
+                            </Box>
+                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
+                                {data && data.city[0] ? data.city[0] : "Not Mentioned"}
+                            </Typography>
+                        </Stack>
+                        <Stack direction="row" sx={{
+                            background: "#FFFFFF",
+                            border: "1px solid #E2D7F0",
+                            borderRadius: "11px",
+                            padding: { "xs": "8px", "sm": "8px", "md": "15px", "lg": "15px", "xl": "15px" },
+                            gap: "5px",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            <Box>
+                                <img src={window.location.origin + "/assets/RJ1.png"} alt="RJ1"></img>
+                            </Box>
+                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
+                                {data && data.vacancy ? data.vacancy + " Openings" : "Not Mentioned"}
+                            </Typography>
+                        </Stack>
+                        <Stack direction="row" sx={{
+                            background: "#FFFFFF",
+                            border: "1px solid #E2D7F0",
+                            borderRadius: "11px",
+                            padding: { "xs": "8px", "sm": "8px", "md": "15px", "lg": "15px", "xl": "15px" },
+                            gap: "5px",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            <Box>
+                                <img src={window.location.origin + "/assets/RJ2.png"} alt="RJ2"></img>
+                            </Box>
+                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
+                                Min. {data && data.candidate_experience ? data.candidate_experience.min_age + " Years" : "Not Mentioned"}
+                            </Typography>
+                        </Stack>
+
+                        <Stack direction="row" sx={{
+                            background: "#FFFFFF",
+                            border: "1px solid #E2D7F0",
+                            borderRadius: "11px",
+                            padding: { "xs": "8px", "sm": "8px", "md": "15px", "lg": "15px", "xl": "15px" },
+                            gap: "5px",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            <Box>
+                                <img src={window.location.origin + "/assets/RJ3.png"} alt="RJ3"></img>
+                            </Box>
+                            <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px" }}>
+                                {data && data.prefered_degree[0] ? data.prefered_degree[0] : "Not Mentioned"}
+                            </Typography>
+                        </Stack>
+                    </Stack>
+
+                    <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px" }}>
+                        {data && data.applied_count > 0 ? data.applied_count : '0'} Applicants Applied
+                    </Typography>
+                    {data && data.applied_count > 0 && userType === "employer" &&
+                        <a className="ViewCandidateLink"
+                            href="#"
+                            onClick={(event) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+                                navigate("/employer-dashboard/applied-candidates/" + data_id)
+                            }}
+                        > View Candidates</a>
+                    }
+
+
+                    <Typography component="div" sx={{
+                        fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap"
+                    }}>
+                        {data && data.job_responsibilty}
+                    </Typography>
+
+                    {userType === "candidate" && <>
+                        <Stack direction="row" gap={2} sx={{ margin: "50px 0px", flexWrap: "wrap" }} justifyContent="space-between">
+                            <Stack direction="row" gap={1}>
+                                <Button
+                                    component={Link}
+                                    to={"/candidate-dashboard/job-description/" + data_id}
+
+                                    sx={{
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: "500",
+                                        fontSize: { "xs": "16px", "sm": "16px", "md": "20px", "lg": "20px", "xl": "20px" },
+                                        color: "#3A2D49",
+                                        background: "#FC9A7E",
+                                        borderRadius: "7px",
+                                        textTransform: "capitalize",
+                                        fontWeight: "600",
+                                        "&:hover": {
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: "500",
+                                            fontSize: { "xs": "16px", "sm": "16px", "md": "20px", "lg": "20px", "xl": "20px" },
+                                            color: "#3A2D49",
+                                            background: "#FC9A7E",
+                                            borderRadius: "7px",
+                                            textTransform: "capitalize",
+                                            fontWeight: "600"
+                                        }
+                                    }} variant="contained">{jobApplied ? "Applied" : "Apply Now"}</Button>
+
+                                <RWebShare
+                                    data={{
+                                        url: window.location.origin + "/job-description/" + data_id,
+                                    }}
+                                >
+                                    <Button variant="outlined"
+                                        sx={{
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: "500",
+                                            fontSize: { "lg": "20px", "md": "16px", "xs": "16px" },
+                                            background: "#FAF7FE",
+                                            border: "1px solid #E7D5FF",
+                                            borderRadius: "7px",
+                                            color: "#3A2D49",
+                                            textTransform: "capitalize",
+                                            fontWeight: "600",
+                                            "&:hover": {
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: "500",
+                                                fontSize: { "lg": "20px", "md": "16px", "xs": "16px" },
+                                                background: "#FAF7FE",
+                                                border: "1px solid #E7D5FF",
+                                                borderRadius: "7px",
+                                                color: "#3A2D49",
+                                                textTransform: "capitalize",
+                                                fontWeight: "600",
+                                            }
+                                        }}>Share</Button>
+                                </RWebShare>
+                            </Stack>
+
+                            <Box>
+                                <Typography component="div" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px", padding: "0px 20px", color: '#A69CB2' }}>
+                                    {data && data.candidate_experience && data.candidate_experience.min_age === 0 && "Jobs For Freshers"}
+                                </Typography>
+                                <Typography component="div" sx={{
+                                    fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "800px",
+                                    padding: { "xs": "0px", "sm": "0px", "md": "0px 20px", "lg": "0px 20px", "xl": "0px 20px" }, color: "#A69CB2", textTransform: "capitalize"
+                                }}>
+                                    {(data && data.prefered_gender === "both" ?
+                                        " Job for Male , Female" : "Job for " + data.prefered_gender)}
+                                </Typography>
+                            </Box>
+                        </Stack> </>
+                    }
                 </Box>
-            </Box >
-        </Stack>
-    </>
-    )
+            </Box>
+        </Box>
+    </>)
 }
+
 export default JobComponent;

@@ -1,175 +1,255 @@
-import { Box, TextField, Typography, Container, Stack, Button } from "@mui/material";
+import { postRequest } from "../../utils/ApiRequests";
+import { CandidateLoginURL, ReSendCandidateEmailVerificationURL } from "../../utils/ApiUrls";
+
+import { Box, TextField, Typography, Stack } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom'
-import { Navigate } from 'react-router-dom';
-import { useState } from "react";
+import { Navigate, Link } from 'react-router-dom';
 
+import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import { candidateLoginValidationSchema } from "../../Validation/CandidateValidation";
-import Error from "../../ThemeComponent/Common/Error";
-import { ThemeButtontype1 } from "../../utils/Theme";
 
+import Error from "../../ThemeComponent/Common/Error";
+import { ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
+
+import { useState, } from "react";
+import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 const CandidateLogin = () => {
+    const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
+    const [sendVerificationLink, setSendVerificationLink] = useState(false);
+    const [isEmailVerified, setIsEmailVerified] = useState(false);
     const isLoggedIn = useSelector(state => state.isLoggedIn);
-    const api_url = useSelector(state => state.api_url);
+    // const user = useSelector(state => state.user);
+    const action = useSelector(state => state.action);
+    const [registerUser, setRegisterUser] = useState({});
+
     const dispatch = useDispatch();
-    const [authenticationError, setauthenticationError] = useState("");
-    const [showPassword, setshowPassword] = useState(false);
+
     const defaultValue = {
         email_address: "",
         password: ""
     }
 
     const handleSubmit = async (values, { setFieldError }) => {
-
         let CandidateLoginForm = new FormData();
         CandidateLoginForm = {
             email: values.email_address,
             password: values.password
         }
-        let response = await fetch(api_url + "/api/users/login", {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify(CandidateLoginForm)
-        })
 
-        if (response.ok) {
-            console.log("getting the data");
-            response = await response.json();
-            // console.log(response);
+        try {
+            let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
             if (response.status == '1') {
-                dispatch({ type: 'LOGIN', payload: JSON.stringify(response.data) });
-            }
-            if (response.status == '0') {
-                setFieldError("password", "Invalid Credentials")
-            }
+                setRegisterUser(response.data);
 
+                localStorage.setItem("auth_token", response.token);
+                if (response.data.isemailverified && response.data.ismobileverified)
+                    dispatch({ type: 'LOGIN', payload: response.data });
+
+                else if (!response.data.ismobileverified) {
+                    dispatch({ type: 'LOGIN_REGISTRATION', payload: response.data });
+                }
+
+                else {
+                    setShowEmailVerifiedMessage(true);
+                    setIsEmailVerified(true);
+                    document.getElementById("log_in").disabled = "true";
+
+                }
+            }
+            if (response.status === '0' && Object.keys(response.data).length === 0)
+                window.location.href = window.location.origin + "/login-error";
+
+            if (response.status === '0') {
+                setFieldError("password", "Something Went Wrong");
+
+            }
+        } catch (err) {
+            setFieldError("password", "Something Went Wrong");
         }
     }
 
+    const resendEmailVerificationLink = async () => {
+
+        let response = await postRequest(ReSendCandidateEmailVerificationURL, {
+            email: document.getElementById("email_address").value
+        })
+        if (response.status === '1') {
+            setSendVerificationLink(true);
+            setIsEmailVerified(false);
+        }
+
+
+
+    }
+
+
     return (<>
-        {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>}
+        {isLoggedIn == 'true' && registerUser.ismobileverified && registerUser.isemailverified && action === "login" && < Navigate to="/candidate-dashboard"></Navigate>}
+        {isLoggedIn == 'true' && !registerUser.ismobileverified && action === "registration" && < Navigate to="/candidate-dashboard/mobile-verify"></Navigate>}
+        <ThemeMessage open={showEmailVerifiedMessage} setOpen={setShowEmailVerifiedMessage}
+            message="Email Address is not verified. Please Verify your email First" type="error" />
 
+        <ThemeMessage open={sendVerificationLink} setOpen={setSendVerificationLink}
+            message="Email Verification Link is send ." type="success" />
 
-        <Box className="CandidateLoginPage">
-            <Box sx={{
-                width: "60px",
-                position: "absolute",
-                top: "2%",
-                left: "2%",
-                zIndex: "34",
-                color: "#2B1E44"
+        <Box className="CandidateLoginPage"
+            sx={{
+                minHeight: "100vh",
+                background: "#2B1E44",
+                backgroundImage:
+                    "url('../assets/g50.png')",
+                backgroundRepeat: " no-repeat",
+                backgroundPosition: " left 4px bottom 0px"
+
             }}>
-                <Link to="/">
-                    <img src="./assets/companyLogo.png" width="100%" alt="companyLogo" />
-                </Link>
-            </Box>
-            <Box sx={{
-                width: "30%",
-                position: "absolute",
-                top: "40%",
-                left: "5%",
-                zIndex: "34",
-                color: "#2B1E44"
-            }}>
-                <Typography component="H1"
-                    sx={{ fontSize: "30px", fontWeight: "700" }}>
-                    Choose a job you love, and you never have to work a day in your life
-                </Typography>
-            </Box>
-            <Stack direction={{ xs: 'column', sm: 'row' }} gap={4} sx={{ height: "100vh" }} >
-                <Stack
-                    alignItems="center"
-                    justifyContent="center"
-                    sx={{
-                        width: { md: "40%", sm: "100%" },
-                        backgroundImage: `url("./assets/PGBForm2.png")`,
-                        position: "relative",
-                        opacity: "0.5"
+            <Stack className="CandidateLoginPageInnerWrapper"
+                sx=
+                {{
+                    padding: { "xs": "15px", "sm": "20px 50px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
+
+                    gap: "24px"
+                }}>
+                <HeaderSec
+                    border="2px solid rgba(255, 255, 255, 0.25)"
+                    color="#FFFFFF"
+                    background="#432C60" />
+                <Stack direction={{ "xs": "column", "sm": "row", "md": "row", "lg": "row", "xl": "row" }} gap={2} sx={{ position: "relative" }}>
+
+                    <Stack sx={{
+                        width: { "xs": "100%", "sm": "60%", "md": "60%", "lg": "60%", "xl": "60%" },
+                        alignItems: "center",
                     }}>
-                </Stack>
-                <Box sx={{ width: { md: "60%", sm: "100%" } }} >
-                    <Box
-                        sx={{
-                            borderRadius: "10px",
-                            padding: "27px 40px 20px 35px",
-                            // borderTop: "5px solid #2B1E44",
-                            background: "#FFFFFF",
-                            margin: { md: "100px", sm: "0px" },
-                            minHeight: "400px"
+                        <Box sx={{
+                            width: { "xs": "100%", "sm": "800px", "md": "800px", "lg": "800px", "xl": "800px" },
+                            marginTop: { "xs": "0px", "sm": "100px", "md": "100px", "lg": "100px", "xl": "100px" },
+                            textAlign: "center"
+
                         }}>
-                        <Typography component="h3" sx={{ fontSize: "30px", fontWeight: "600", color: "#2B1E44" }}>
+                            <Typography component="box" sx={{
+                                fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "lg": "64px", "xl": "64px" },
+                                fontFamily: "Work Sans, sans-serif",
+                                fontWeight: "700",
+                                color: "#FC9A7E",
+                                display: "block",
+                                lineHeight: "40px"
+                            }}>
+                                Choose a job you love,
+
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "lg": "64px", "xl": "64px" },
+                                    fontFamily: "Work Sans, sans-serif",
+                                    fontWeight: "700",
+                                    color: "#FFFFFF",
+                                    display: "block",
+                                    margin: "10px 0px",
+                                    lineHeight: "1.0 !important"
+                                }}>
+                                    and you never have to
+                                    work a day in your life
+
+                                </Typography>
+
+                            </Typography>
+
+
+                        </Box>
+                    </Stack>
+
+                    <Stack sx={{
+                        width: { 'lg': "449px", 'md': '100%', 'xs': '92%' },
+                        // height: "730px",
+                        background: "#FBF8FF",
+                        boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
+                        borderRadius: "19px",
+                        padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "15px" }
+
+                    }}>
+                        <Typography component="box" sx={{ fontSize: { "xs": "16px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" }, fontFamily: "Work Sans, sans-serif" }}>
                             Welcome Guest,
                         </Typography>
-                        <Typography component="h3" sx={{ fontSize: "50px", color: "#2B1E44" }}>
-                            Sign In for JobYahan
+                        <Typography component="box" sx={{ fontSize: { "xs": "26px", "sm": "40px", "md": "40px", "lg": "40px", "xl": "40px" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700", marginBottom: "30px" }}>
+                            Sign In for JobsYahan
                         </Typography>
 
+                        <Formik
+                            initialValues={defaultValue}
+                            validationSchema={candidateLoginValidationSchema}
+                            onSubmit={handleSubmit}
+                        >
+                            {({ errors, touched }) => (
+                                <Form className="candidateLogin">
 
-                        <Box sx={{ margin: "20px 0px" }}>
-                            <Formik
+                                    <ThemeFInputDiv>
+                                        <ThemeFInputDiv>
+                                            <ThemeLabel LableFor="email_address" LableText="Email Address" />
+                                            <Field
+                                                error={errors.email_address && touched.email_address}
+                                                as={TextField}
+                                                id="email_address"
+                                                placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
+                                            {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
 
-                                initialValues={defaultValue}
-                                validationSchema={candidateLoginValidationSchema}
-                                onSubmit={handleSubmit}
-                            >
-                                {({ errors, touched }) => (
-                                    <Form className="candidateLogin">
+                                        </ThemeFInputDiv>
 
-                                        <Stack direction="column" gap={2} >
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="email_address" LableText="Email Address" />
-                                                <Field
-                                                    variant="standard"
-                                                    error={errors.email_address && touched.email_address}
-                                                    as={TextField}
-                                                    id="email_address"
-                                                    placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
-                                                {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
-
-                                            </Box>
-
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="password" LableText="Password" />
-                                                <Field
-                                                    variant="standard"
-                                                    error={errors.password && touched.password}
-                                                    id="password"
-                                                    as={TextField}
-                                                    placeholder="Enter Password" type="password" name="password" fullWidth />
-                                                {errors.password && touched.password && <Error text={errors.password} />}
+                                        <ThemeFInputDiv>
+                                            <ThemeLabel LableFor="password" LableText="Password" />
+                                            <Field
+                                                error={errors.password && touched.password}
+                                                id="password"
+                                                as={TextField}
+                                                placeholder="Enter Password" type="password" name="password" fullWidth />
+                                            {errors.password && touched.password && <Error text={errors.password} />}
 
 
-                                            </Box>
-                                        </Stack>
+                                        </ThemeFInputDiv>
+                                    </ThemeFInputDiv>
+                                    <Box sx={{
+                                        fontSize: { "xs": "10px", "sm": "16px", "md": "16px", "lg": "16px", "xl": "16px" },
+                                        margin: { "xs": "10px 0px", "sm": "20px 0px", "md": "20px 0px", "lg": "20px 0px", "xl": "20px 0px" }
+                                    }}>
+                                        <Link to="/forgot-password/candidate" >
+                                            Forgot Password?
+                                        </Link>
+                                    </Box>
 
-                                        <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                            <ThemeButtontype1 variant="contained" type="submit">Sign In</ThemeButtontype1>
-                                        </Box>
-                                    </Form>
-                                )}
-                            </Formik>
-                        </Box>
 
-                        <Typography component="span" sx={{ fontSize: "15px", textAlign: "center", display: "block" }}>
-                            Don't have a Account ?
-                            <Typography component="span" sx={{ color: "#2B1E44", margin: "0px 4px", cursor: "pointer" }}>
-                                <Link style={{ textDecoration: "none", fontWeight: "500" }}
-                                    to="/candidate-register">Register</Link>
-                            </Typography>
-                        </Typography>
-                    </Box>
-                </Box>
+                                    <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
 
+                                        {isEmailVerified && (<>
+                                            <a href="#" onClick={
+                                                () => {
+                                                    resendEmailVerificationLink()
+                                                }
+                                            }
+                                                style={{ textAlign: "center" }}>
+                                                Resend Verification Link
+                                            </a>
+
+                                        </>)
+
+                                        }
+
+                                        <ThemeButtonType2 variant="contained" type="submit" id="log_in" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
+                                        <ThemeButtonType3 variant="outlined"
+                                            type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
+                                            component={Link}
+                                            to="/candidate-register"
+
+                                        >Sign up</ThemeButtonType3>
+                                    </Stack>
+                                </Form>
+                            )}
+                        </Formik>
+
+                    </Stack>
+                </Stack>
             </Stack>
 
+        </Box >
 
-        </Box>
 
     </>)
 }

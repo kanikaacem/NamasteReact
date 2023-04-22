@@ -1,26 +1,35 @@
-import { Box, Select, Stack, Typography, Button, TextField, Radio, RadioGroup, FormControlLabel, FormControl, Snackbar, Alert, MenuItem } from "@mui/material";
+import { postRequest } from "../../utils/ApiRequests";
+import { SaveCandidateProfessionalInformation } from "../../utils/ApiUrls";
+
+import { Box, Select, Stack, Typography, TextField, Radio, RadioGroup, FormControlLabel, FormControl, MenuItem, Divider } from "@mui/material";
 
 import { Formik, Field, Form } from "formik";
-
-import DatePicker from "react-datepicker";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 import { ProfessionalDetailSchema } from "../../Validation/CandidateValidation";
 import { CandidateEducation } from "../../utils/Data";
-import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from '../../ThemeComponent/Common/Error';
 
-import { ThemeButtontype1 } from "../../utils/Theme";
+import { ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
+import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
+import ThemeMessage from "../Common/ThemeMessage";
 
-import { useState } from "react";
-import { useSelector } from "react-redux";
-const ProfessionalDetail = ({ setActiveStep }) => {
-    let api_url = useSelector(state => state.api_url);
-    let userid = useSelector(state => state.candidateInfo);
+import { data1 } from "../../utils/Data";
+import FormMenu from "../Common/FormMenu";
+import { useState, useEffect } from "react";
+import { Percent } from "@mui/icons-material";
 
-    if (userid != '') {
-        userid = JSON.parse(userid);
-        userid = userid.data;
-    }
+function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jobType }) {
+
+    const [qualification, setQualification] = useState(" ");
+    const [courseType, setCourseType] = useState('full_time');
+    const [startingDate, setStartingDate] = useState(null);
+    const [endingDate, setEndingDate] = useState(null);
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [showAddButton, setShowAddButton] = useState(false);
+    const [showRemoveButton, setShowRemoveButton] = useState(false);
 
     const defaultValue = {
         institue_name: "",
@@ -31,202 +40,426 @@ const ProfessionalDetail = ({ setActiveStep }) => {
         percentage: "",
     }
 
-    const [qualification, setQualification] = useState(" ");
-    const [formSubmitted, setFormSubmitted] = useState(false);
-    const [courseType, setCourseType] = useState('full_time');
-    const [startingDate, setStartingDate] = useState();
-    const [endingDate, setEndingDate] = useState();
+    const handleSubmit = async (values) => {
+        let formData = new FormData();
+        formData = {
+            institude_name: values.institue_name,
+            qualification: values.qualification,
+            course_type: values.course_type,
+            starting_year: values.starting_year,
+            ending_year: values.ending_year,
+            percentage: values.percentage
+        }
 
-    const handleClose = (event) => {
-        setFormSubmitted(false);
-    };
+        let response = await postRequest(SaveCandidateProfessionalInformation, formData);
+        if (response.status === "1") {
+            localStorage.setItem("user", JSON.stringify(response.data));
+            setFormSubmitted(true);
+            setShowAddButton(true);
 
-    const handleSubmit = async (values, { resetForm }) => {
-        console.log(values);
+        }
+
+    }
+
+    const nextStepButton = async (values) => {
+        let InstitudeName = document.getElementById("institue_name").value;
+        let Qualification = document.getElementById("mui-component-select-profile_type").innerText;
+        let Percentage = document.getElementById("percentage").value;
 
         let formData = new FormData();
         formData = {
-            userid: userid,
-            // userid: "63ac1e7ffe81366e8caeabdd",
-            universityname: values.institue_name,
-            qualification: values.qualification,
-            coursetype: values.course_type,
-            starting_year: values.starting_year,
-            passing_year: values.ending_year,
-            percentage: values.percentage
-        }
-        console.log(formData);
-        let response = await fetch(api_url + "/api/users/createeducation", {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify(formData)
-        })
+            institude_name: InstitudeName,
+            qualification: Qualification,
+            course_type: courseType,
+            starting_year: new Date(startingDate),
+            ending_year: new Date(endingDate),
+            percentage: Percentage
 
-        if (response.ok) {
-            response = await response.json();
-            if (response.status == '1') {
-                console.log(response);
-                resetForm("");
-                setStartingDate("");
-                setEndingDate("");
-                setQualification(" ");
+        }
+        if (InstitudeName !== "" && Qualification === "Select Qualification" && Percentage !== "") {
+            let response = await postRequest(SaveCandidateProfessionalInformation, formData);
+            if (response.status === "1") {
+                localStorage.setItem("user", JSON.stringify(response.data));
                 setFormSubmitted(true);
+
             }
         }
+        window.location.href = window.location.origin + "/candidate-dashboard/normal/" + jobType + "/profile/2";
     }
 
-    return (<>
+    return <>
+        <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message=" Your Professional Details is submitted successfully." type="success" />
 
-        <Snackbar
-            open={formSubmitted}
-            autoHideDuration={6000} onClose={handleClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        >
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                Your Qualification is submitted
-            </Alert>
+        <Box id={id}>
+            <Formik
 
-        </Snackbar>
+                initialValues={defaultValue}
+                validationSchema={ProfessionalDetailSchema}
+                onSubmit={handleSubmit}
+            >
+                {({ errors, touched, values, setFieldValue }) => (
+                    <Form className="ProfessionalDetailForm">
+                        <ThemeFInputDiv>
+                            <ThemeFInputDiv>
+                                <ThemeLabel LableFor="institue_name" LableText="Institue Name" />
+                                <Field
+                                    error={errors.institue_name && touched.institue_name}
+                                    as={TextField}
+                                    id="institue_name"
+                                    placeholder="Enter Institue Name" type="text" name="institue_name" fullWidth />
+                                {errors.institue_name && touched.institue_name && <Error text={errors.institue_name} />}
 
-        <Stack direction="row" gap={2}>
-            <Box sx={{ width: "40%" }}></Box>
-            <Box sx={{
-                width: "60%",
-                margin: "50px",
-                borderRadius: "10px",
-                padding: "30px",
-                background: "#FFFFFF",
-                borderTop: "4px solid #2B1E44"
-            }}>
-                <Typography component="h3" sx={{ fontSize: "25px", color: "#2B1E44", marginBottom: "20px" }}>
-                    Professional Details
-                </Typography>
-                <Formik
+                            </ThemeFInputDiv>
 
-                    initialValues={defaultValue}
-                    validationSchema={ProfessionalDetailSchema}
-                    onSubmit={handleSubmit}
-                >
-                    {({ errors, touched, values, setFieldValue }) => (
-                        <Form >
-                            <Stack direction="column" gap={2}>
-                                <Stack direction="column" gap={1} className="profile-input-item">
-                                    <ThemeLabel LableFor="institue_name" LableText="Institue Name" />
-                                    <Field
-                                        size="small"
-                                        error={errors.institue_name && touched.institue_name}
-                                        as={TextField}
-                                        id="institue_name"
-                                        placeholder="Enter Institue Name" type="text" name="institue_name" fullWidth />
-                                    {errors.institue_name && touched.institue_name && <Error text={errors.institue_name} />}
+                            <ThemeFInputDiv>
+                                <ThemeLabel LableFor="qualification" LableText="Qualification" />
+                                <Select
 
-                                </Stack>
+                                    labelId="demo-simple-select-label"
+                                    name="profile_type"
+                                    value={qualification}
+                                    label="Age"
+                                    onChange={(event) => {
+                                        setQualification(event.target.value);
+                                        setFieldValue("qualification", event.target.value);
+                                    }}
+                                    sx={{
+                                        background: " #FFFFFF",
+                                        border: "1px solid #EAEAEA",
+                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                        borderRadius: "7px",
+                                        fontSize: "16px",
+                                        fontamily: 'Montserrat',
+                                        BorderBottom: 'none',
+                                    }}
+                                    disableUnderline
+                                >
+                                    <MenuItem value=" ">Select Qualification</MenuItem>
+                                    {CandidateEducation.map((item) =>
+                                        <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                    )}
+                                </Select>
+                                {errors.qualification && touched.qualification && <Error text={errors.qualification} />}
 
-                                <Stack direction="column" gap={1} className="profile-input-item">
-                                    <ThemeLabel LableFor="qualification" LableText="Qualification" />
-                                    <Select
-                                        variant="standard"
-                                        labelId="demo-simple-select-label"
-                                        name="profile_type"
-                                        value={qualification}
-                                        label="Age"
-                                        onChange={(event) => {
-                                            setQualification(event.target.value);
-                                            setFieldValue("qualification", event.target.value);
-                                        }}
-                                        sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                        disableUnderline
-                                    >
-                                        <MenuItem value=" ">Select Qualification</MenuItem>
-                                        {CandidateEducation.map((item) =>
-                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                        )}
-                                    </Select>
-                                    {errors.qualification && touched.qualification && <Error text={errors.qualification} />}
+                            </ThemeFInputDiv>
 
-                                </Stack>
+                            <ThemeFInputDiv>
+                                <ThemeLabel LableFor="course_type" LableText="Course Type" />
+                                <Box>
+                                    <FormControl>
+                                        <RadioGroup
+                                            aria-labelledby="demo-controlled-radio-buttons-group"
+                                            name="controlled-radio-buttons-group"
+                                            value={courseType}
+                                            onChange={(event) => {
+                                                setCourseType(event.target.value)
+                                                setFieldValue("course_type", event.target.value)
+                                            }}
+                                        >
+                                            <Stack direction="row" gap={3} sx={{ flexWrap: "wrap" }}>
 
-                                <Box className="profile-input-item">
-                                    <ThemeLabel LableFor="course_type" LableText="Course Type" />
-                                    <Box>
-                                        <FormControl>
-                                            <RadioGroup
-                                                aria-labelledby="demo-controlled-radio-buttons-group"
-                                                name="controlled-radio-buttons-group"
-                                                value={courseType}
-                                                onChange={(event) => {
-                                                    setCourseType(event.target.value)
-                                                    setFieldValue("course_type", event.target.value)
-                                                }}
-                                            >
-                                                <Stack direction="row" gap={3}>
-                                                    <FormControlLabel value="full_time" control={<Radio />} label="Full Time" />
-                                                    <FormControlLabel value="part_time" control={<Radio />} label="Part Time" />
-                                                    <FormControlLabel value="correspondance_distance_learning" control={<Radio />} label="Correspondance/ Distance Learning" />
+                                                <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                    sx={{
+                                                        height: { "xs": "36px", "sm": "36px", "md": "59px", "lg": "59px", "xl": "59px" },
+                                                        width: "160px",
+                                                        borderRadius: "7px",
+                                                        border: " 2px solid #EAEAEA"
+                                                    }} >
+                                                    <Box sx={{ marginLeft: "20px" }}>Full Time</Box>
+                                                    <FormControlLabel value="full_time" control={<Radio />} label="" />
                                                 </Stack>
 
-                                            </RadioGroup>
-                                        </FormControl>
-                                    </Box>
+                                                <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                    sx={{
+                                                        height: "59px",
+                                                        width: "160px",
+                                                        borderRadius: "7px",
+                                                        border: " 2px solid #EAEAEA"
+                                                    }} >
+                                                    <Box sx={{ marginLeft: "20px" }}>Part Time</Box>
+                                                    <FormControlLabel value="part_time" control={<Radio />} label="" />
+                                                </Stack>
 
-                                    {errors.course_type && touched.course_type && <Error text={errors.course_type} />}
+                                                <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                    sx={{
+                                                        height: "59px",
+                                                        width: "msx-content",
+                                                        borderRadius: "7px",
+                                                        border: " 2px solid #EAEAEA"
+                                                    }} >
+                                                    <Box sx={{ marginLeft: "20px" }}>Correspondance / Distance Learning</Box>
+                                                    <FormControlLabel value="correspondance_/_distance_learning" control={<Radio />} label="" />
+                                                </Stack>
+
+                                            </Stack>
+
+                                        </RadioGroup>
+                                    </FormControl>
                                 </Box>
 
-                                <Stack direction="column" gap={1} className="profile-input-item">
+                                {errors.course_type && touched.course_type && <Error text={errors.course_type} />}
+                            </ThemeFInputDiv>
+
+                            <ThemeFInputDiv>
+                                <ThemeLabel LableFor="percentage" LableText="Percentage" />
+                                <Field
+                                    error={errors.percentage && touched.percentage}
+                                    as={TextField}
+                                    id="percentage"
+                                    placeholder="Enter Percentage" type="text" name="percentage" fullWidth />
+                                {errors.percentage && touched.percentage && <Error text={errors.percentage} />}
+
+                            </ThemeFInputDiv>
+
+                            <Stack direction="row" gap={3} >
+                                <ThemeFInputDiv sx={{ width: "370px" }}>
                                     <ThemeLabel LableFor="starting_year" LableText="Starting Year" />
-                                    <DatePicker
-                                        autoComplete="off"
-                                        id="starting_year"
-                                        placeholderText={'Starting Date'}
-                                        name="starting_year"
-                                        selected={startingDate} onChange={(date) => { setStartingDate(date); setFieldValue("starting_year", date) }} />
+                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                        <DatePicker
+
+                                            id="starting_year"
+                                            value={startingDate}
+                                            onChange={(newValue) => {
+                                                setStartingDate(newValue);
+                                                setFieldValue("starting_year", new Date(newValue))
+                                            }}
+                                            inputProps={{
+                                                placeholder: "Enter Starting Year"
+                                            }}
+                                            disableFuture={true}
+                                            renderInput={(params) => <TextField
+
+                                                {...params} />}
+                                        />
+                                    </LocalizationProvider>
+
                                     {errors.starting_year && touched.starting_year && <Error text={errors.starting_year} />}
 
-                                </Stack>
+                                </ThemeFInputDiv>
 
-                                <Stack direction="column" gap={1} className="profile-input-item">
+                                <ThemeFInputDiv sx={{ width: "370px" }}>
                                     <ThemeLabel LableFor="ending_year" LableText="Ending Year" />
-                                    <DatePicker
-                                        autoComplete="off"
-                                        id="ending_year"
-                                        placeholderText={'Ending Date'}
-                                        name="ending_year"
-                                        selected={endingDate} onChange={(date) => { setEndingDate(date); setFieldValue("ending_year", date) }} />
+
+                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                        <DatePicker
+
+                                            id="ending_year"
+                                            value={endingDate}
+                                            onChange={(newValue) => {
+                                                setEndingDate(newValue);
+                                                setFieldValue("ending_year", new Date(newValue))
+                                            }}
+                                            inputProps={{
+                                                placeholder: "Enter Ending Year"
+                                            }}
+                                            disableFuture={true}
+                                            renderInput={(params) => <TextField
+
+                                                {...params} />}
+                                        />
+                                    </LocalizationProvider>
                                     {errors.ending_year && touched.ending_year && <Error text={errors.ending_year} />}
 
-                                </Stack>
-
-                                <Stack direction="column" gap={1} className="profile-input-item">
-                                    <ThemeLabel LableFor="percentage" LableText="Percentage" />
-                                    <Field
-                                        size="small"
-                                        error={errors.percentage && touched.percentage}
-                                        as={TextField}
-                                        id="percentage"
-                                        placeholder="Enter Percentage" type="text" name="percentage" fullWidth />
-                                    {errors.percentage && touched.percentage && <Error text={errors.percentage} />}
-
-                                </Stack>
-
-                                <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                    {/* <ButtonType1 ButtonText="Continue" /> */}
-                                    <ThemeButtontype1 variant="contained" type="submit">Continue</ThemeButtontype1>
-                                </Box>
+                                </ThemeFInputDiv>
                             </Stack>
+                        </ThemeFInputDiv >
 
-                        </Form>
+                        <Stack direction="row" sx={{ width: "100%", gap: "30px", flexWrap: "wrap", margin: "10px 0px" }}>
+                            {showAddButton && <ThemeButtonType3 variant="outlined" type="submit"
+                                sx={{
+                                    fontFamily: "Work Sans, sans-serif", fontWeight: "600",
+                                    width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
+                                }}
+                                onClick={(event) => {
+                                    handleAddComponent();
+                                    event.preventDefault();
+                                }}
+                            > Add +</ThemeButtonType3>}
 
-                    )}
-                </Formik>
 
-                <Stack sx={{ width: "100%" }} justifyContent="flex-end">
-                    <Button onClick={() => setActiveStep(2)}> Next Step</Button>
+                            {(showRemoveButton || id > 0) &&
+                                <ThemeButtonType2 variant="contained" type="button" sx={{
+                                    fontFamily: "Work Sans, sans-serif", fontWeight: "600",
+                                    width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
+                                }}
+                                    onClick={(event) => {
+                                        handleRemoveComponent();
+                                        event.preventDefault();
+                                    }}>Remove -</ThemeButtonType2>}
+                        </Stack>
+
+                        <Stack direction="row" sx={{ width: "100%", gap: "30px", flexWrap: "wrap" }}>
+                            <ThemeButtonType3 variant="outlined" type="submit" name="submit"
+                                sx={{
+                                    fontFamily: "Work Sans, sans-serif", fontWeight: "600",
+                                    width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
+                                }}
+                            > Save</ThemeButtonType3>
+
+                            <ThemeButtonType2 variant="contained" type="button" name="nextStep"
+                                onClick={nextStepButton}
+                                sx={{
+                                    fontFamily: "Work Sans, sans-serif",
+                                    fontWeight: "600", width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
+                                }}
+                            >Next Step</ThemeButtonType2>
+
+                        </Stack>
+
+                    </Form >
+
+                )}
+            </Formik >
+        </Box >
+    </>;
+};
+
+
+const ProfessionalDetail = ({ jobType }) => {
+
+    const [components, setComponents] = useState([]);
+
+    const handleAddComponent = () => {
+        setComponents(prevComponents => [...prevComponents, <AddProfessionalForm
+            key={prevComponents.length} id={prevComponents.length} handleAddComponent={handleAddComponent}
+            handleRemoveComponent={handleRemoveComponent}
+            jobType={jobType}
+        />]);
+    };
+
+    const handleRemoveComponent = () => {
+        setComponents(prevComponents => {
+            const newDivs = [...prevComponents];
+            newDivs.pop();
+            return newDivs;
+        });
+    };
+
+    useEffect(() => {
+        handleAddComponent();
+    }, []);
+
+
+    return (<>
+        <Box className="ProfessionalInformationPage"
+            sx={{
+                minHeight: "100vh",
+                background: "#FFFFFF",
+                backgroundRepeat: " no-repeat",
+                backgroundPosition: "left 100px bottom 0px"
+            }}>
+            <Stack className="ProfessionalInformationPageWrapper"
+                sx=
+                {{
+                    padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
+                    gap: "24px"
+                }}>
+
+                <Stack direction="row" sx={{
+                    position: "relative",
+                    gap: { "xs": "0px", "sm": "0px", "md": "24px", "lg": "24px", "xl": "24px" }
+                }}>
+                    <Stack
+                        gap={2} sx={{
+                            width: {
+                                "xs": "0%", "sm": "0%", "md": "40%", "lg": "40%", "xl": "40%"
+                            }, padding: { "xs": "0px", "sm": "0px", "md": "100px", "lg": "100px", "xl": "100px" },
+                            visibility: { "xs": "hidden", "sm": "hidden", "md": "visible", "lg": "visible", "xl": "visible" }
+                        }}>
+
+                        <Box sx={{
+                            display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
+                        }}>
+                            <Typography component="box" sx={{
+                                fontSize: "64px",
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                            }}> Get Best Jobs In
+
+                            </Typography>
+                            <Typography component="box" sx={{
+                                fontSize: "64px",
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                                width: "max-content"
+                            }}>
+                                Few CLICKS
+                            </Typography>
+                            <img src={window.location.origin + "/assets/g11.png"} alt="g52" style={{ margin: "40px 20px" }} />
+
+                        </Box>
+                    </Stack>
+
+                    <Box id="ProfessionalDiv" sx={{ width: { "xs": "100%", "sm": "100%", "md": "50%", "lg": "50%", "xl": "50%" } }}>
+
+                        <Box >
+
+                            <Box sx={{
+                                minHeight: "153px",
+                                background: "#F8F8F8",
+                                border: "1px solid #EAEAEA",
+                                boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
+                                borderRadius: "19px",
+
+                            }}>
+                                <Box sx={{
+                                    padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
+                                }}>
+                                    <Typography component="box" sx={{
+                                        fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
+                                        fontFamily: "Montserrat",
+                                        fontWeight: "600",
+                                        color: "#4E3A67",
+                                        display: "block",
+                                        marginTop: "20px"
+                                    }}>
+                                        Professional Details
+                                    </Typography>
+
+                                    <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
+
+                                        {
+                                            data1 && data1.map((item) => {
+                                                return <FormMenu data={item} />
+                                            })
+                                        }
+
+                                    </Stack>
+                                </Box>
+
+
+                                <Stack sx={{
+                                    boxSizing: "border-box",
+                                    background: "#FFFFFF",
+                                    border: "1px solid #EDEDED",
+                                    padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
+                                    paddingBottom: "100px",
+                                    borderBottomLeftRadius: "19px",
+                                    borderBottomRightRadius: "19px",
+
+                                }}
+                                    divider={<Divider orientation="horizontal" flexItem />}
+                                    gap={2}
+                                >
+
+
+                                    {components}
+                                </Stack>
+
+                            </Box>
+
+                        </Box>
+
+                    </Box>
+
                 </Stack>
-            </Box>
-        </Stack>
+            </Stack>
+        </Box>
+
 
     </>)
 }

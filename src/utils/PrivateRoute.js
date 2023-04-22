@@ -5,7 +5,6 @@ const PrivateRoute = ({ Component }) => {
     let url = window.location.href;
     var pathname = new URL(url).pathname;
     return (<>
-
         {isLoggedIn === 'true' ? <Component /> :
             <>
                 {pathname.includes("/candidate-dashboard") && <Navigate to="/candidate-login"></Navigate>}

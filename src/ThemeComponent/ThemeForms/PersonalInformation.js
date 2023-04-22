@@ -1,60 +1,61 @@
-
-import { Box, Container, Stack, Typography, TextField, Select as SelectField, MenuItem, Button, Radio, RadioGroup, FormControlLabel, FormControl } from "@mui/material";
-
+import { postRequest, getRequest } from "../../utils/ApiRequests";
+import { SaveCandidatePersonalInformation, StatesURL, getSKillOnJobType } from "../../utils/ApiUrls";
+import { Box, Stack, Typography, TextField, Select as SelectField, MenuItem, Radio, RadioGroup, FormControlLabel, FormControl } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import DatePicker from "react-datepicker";
 
-import { PersonalRegistrationSchema1, PersonalRegistrationSchema } from "../../Validation/CandidateValidation";
-import { Skills, PerferredLocation, MaritalStatus } from "../../utils/Data";
+// import DatePicker from "react-datepicker";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
-import { ThemeButtontype1 } from "../../utils/Theme";
+import { PersonalRegistrationSchema } from "../../Validation/CandidateValidation";
+import { Skills, MaritalStatus } from "../../utils/Data";
+
+import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from '../../ThemeComponent/Common/Error';
+import { useState, useEffect } from "react";
+import CurrencyFormat from 'react-currency-format';
 
-// import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
-import { useSelector } from "react-redux";
-import { useState } from "react";
 
-const PersonalInformation = ({ setActiveStep }) => {
+import { data1 } from "../../utils/Data";
+import FormMenu from "../Common/FormMenu";
+import ImageBox from "../../Pages/Common/ImageBox";
+import { useNavigate } from "react-router-dom";
+const PersonalInformation = ({ jobType }) => {
     const animatedComponents = makeAnimated();
+    const navigate = useNavigate();
 
-    let api_url = useSelector(state => state.api_url);
-
-    let userid = useSelector(state => state.candidateInfo);
-    if (userid != '') {
-        userid = JSON.parse(userid);
-        userid = userid.data;
-    }
-    // userid = userid && userid.data;
-
-    const [personalInfoForm, setPersonalInfoForm] = useState(1);
     const [selectedOptions, setSelectedOptions] = useState([]);
-    const [perferredLocation, setPerferredLocation] = useState([]);
-    const [date, setDate] = useState();
+    const [date, setDate] = useState(null);
     const [gender, setGender] = useState("");
+    const [city, setCity] = useState(" ");
+    const [state, setState] = useState(" ");
+    const [CountryState, setCountryState] = useState([]);
+    const [District, setDistrict] = useState([]);
+    const [autoData, setAutoData] = useState([]);
+    const [skills, SetSkills] = useState([]);
 
     const [martialStatus, setMaritalStatus] = useState(" ");
 
     const defaultValue = {
         full_name: "",
         date_of_birth: "",
-        permanant_address: "",
-        current_location: "",
+        state: "",
+        city: "",
+        area: "",
+        complete_address: "",
         phone_number: "",
         marital_status: "",
-        gender: ""
-    }
-
-    const defaultValue1 = {
+        gender: "",
         current_title: "",
         current_salary: "",
         excepted_salary: "",
-        current_industry: "",
         skills: "",
         perferred_location: "",
         total_work_experience: ""
@@ -62,327 +63,533 @@ const PersonalInformation = ({ setActiveStep }) => {
 
 
     const handleSubmit = async (values) => {
-        console.log(values);
+        document.getElementById("continue").disabled = "true";
         let formData = new FormData();
-
         formData = {
-            userid: userid,
+            current_title: values.current_title,
+            current_salary: values.current_salary,
+            expected_salary: values.excepted_salary,
+            skills: values.skills.split(","),
+            preffered_pincode: values.perferred_pincode,
+            preffered_location: "",
+            total_work_experience: values.total_work_experience,
             fullname: values.full_name,
-            mobile: values.phone_number,
             gender: values.gender,
+            dob: values.date_of_birth,
+            phoneNumber: "",
             marital_status: values.marital_status,
-            address: values.permanant_address,
-            currAddress: values.current_location,
+            permanent_address: "",
+            current_address: "",
+            state: values.state,
+            city: values.city
 
         }
-        let response = await fetch(api_url + "/api/users/updateuserinfo", {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify(formData)
-        })
 
-        if (response.ok) {
-            response = await response.json();
-            if (response.status == '1') {
-                console.log(response);
-                setActiveStep(1);
-
-            }
-
-
+        let response = await postRequest(SaveCandidatePersonalInformation, formData);
+        if (response.status == 1) {
+            localStorage.setItem("user", JSON.stringify(response.data));
+            window.location.href = window.location.origin + "/candidate-dashboard/normal/" + jobType + "/profile/1";
         }
     }
 
-    const handleSubmit1 = async (values) => {
-        console.log(values);
-        // values.current_industry,
-        // values.current_salary,
-        // values.current_title,
-        // values.excepted_salary,
-        // values.perferred_location,
-        // values.skills,
-        // values.total_work_experience
-        setPersonalInfoForm(2);
+
+    useEffect(() => {
+        const getState = async () => {
+            let response = await getRequest(StatesURL);
+            setCountryState(response.data);
+        }
+
+        const getSkills = async () => {
+            let SkillsData = [];
+
+            let response = await getRequest(getSKillOnJobType + "=" + jobType.replaceAll("-", "_"));
+
+            response.data.map(item => {
+                SkillsData.push({
+                    label: item,
+                    value: item
+                })
+            });
+            SetSkills(SkillsData.sort());
+
+        }
+        getState();
+        getSkills();
+    }, [])
+
+    const getDistrictByState = async (statefilter) => {
+        let response = await getRequest("https://backend.jobsyahan.com/api/map/districts?states=" + statefilter);
+        setDistrict(response.data[0].districts);
     }
 
 
 
     return (<>
-        <Stack direction="row" gap={2}>
-            <Box sx={{ width: "40%" }}></Box>
-            <Box sx={{
-                width: "60%",
-                margin: "50px auto",
-                borderRadius: "20px",
-                padding: "30px",
+        <Box className="PersonalInformationPage"
+            sx={{
                 background: "#FFFFFF",
-                borderTop: "4px solid #2B1E44"
-                // boxShadow: "0px 3px 17px 0px rgba(99, 99, 99, 1)"
+                backgroundRepeat: " no-repeat",
+                backgroundPosition: "left 100px bottom 0px"
             }}>
-                <Typography component="h3" sx={{ fontSize: "25px", color: "#2B1E44", marginBottom: "20px" }}>
-                    Personal Details
-                </Typography>
-                {personalInfoForm == 1 && <>
-                    <Formik
+            <Stack className="PersonalInformationPageWrapper"
+                sx=
+                {{
+                    padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
+                    gap: "24px"
+                }}>
 
-                        initialValues={defaultValue1}
-                        validationSchema={PersonalRegistrationSchema1}
-                        onSubmit={handleSubmit1}
-                    >
-                        {({ errors, touched, values, setFieldValue }) => (
-                            <Form className="PersonalInformationForm">
-                                <Stack direction="column" gap={2}>
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="current_title" LableText="Current Title" />
-                                        <Field
-                                            size="small"
-                                            error={errors.current_title && touched.current_title}
-                                            as={TextField}
-                                            id="current_title"
-                                            placeholder="Enter Company Title" type="text" name="current_title" fullWidth />
-                                        {errors.current_title && touched.current_title && <Error text={errors.current_title} />}
+                <Stack direction="row" sx={{
+                    position: "relative",
+                    gap: { "xs": "0px", "sm": "0px", "md": "24px", "lg": "24px", "xl": "24px" }
+                }}>
+                    <Stack
+                        gap={2} sx={{
+                            width: {
+                                "xs": "0%", "sm": "0%", "md": "50%", "lg": "50%", "xl": "50%"
+                            }, padding: { "xs": "0px", "sm": "0px", "md": "100px", "lg": "100px", "xl": "100px" },
+                            visibility: { "xs": "hidden", "sm": "hidden", "md": "visible", "lg": "visible", "xl": "visible" }
+                        }}>
+                        <Box sx={{
+                            display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" }
+                        }}>
+                            <Typography component="box" sx={{
+                                fontSize: "64px",
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                            }}>
+                                50K People Have
 
-                                    </Stack>
+                            </Typography>
+                            <Typography component="box" sx={{
+                                fontSize: "64px",
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                                width: "max-content"
+                            }}>
+                                Got Jobs Through Us;
+                            </Typography>
+                            <Typography component="box" sx={{
+                                fontSize: "64px",
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                            }}>
+                                Next is You!
+                            </Typography>
+                            <ImageBox imgeUrl="/assets/g51.png" imgeText="g51"></ImageBox>
+                        </Box>
 
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="current_salary" LableText="Current Salary" />
-                                        <Field
-                                            size="small"
-                                            error={errors.current_salary && touched.current_salary}
-                                            as={TextField}
-                                            id="current_salary"
-                                            placeholder="Enter Current Salary" type="text" name="current_salary" fullWidth />
-                                        {errors.current_salary && touched.current_salary && <Error text={errors.current_salary} />}
+                        <Box sx={{
+                            display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" }
+                        }}>
+                            <Typography component="box" sx={{
+                                fontSize: "64px",
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                                textAlign: "end"
+                            }}> Select from
 
-                                    </Stack>
+                            </Typography>
+                            <Typography component="box" sx={{
+                                fontSize: "64px",
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                                width: "max-content"
+                            }}>
+                                the Jobs in Your City
+                            </Typography>
+                            <ImageBox imgeUrl="/assets/g52.png" imgeText="g52"></ImageBox>
 
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="excepted_salary" LableText="Excepted Salary" />
-                                        <Field
-                                            size="small"
-                                            error={errors.excepted_salary && touched.excepted_salary}
-                                            as={TextField}
-                                            id="excepted_salary"
-                                            placeholder="Enter Excepted Salary" type="text" name="excepted_salary" fullWidth />
-                                        {errors.excepted_salary && touched.excepted_salary && <Error text={errors.excepted_salary} />}
+                        </Box>
 
-                                    </Stack>
+                    </Stack>
 
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="current_industry" LableText="Current Industry" />
-                                        <Field
-                                            size="small"
-                                            error={errors.current_industry && touched.current_industry}
-                                            as={TextField}
-                                            id="current_industry"
-                                            placeholder="Enter Current Industry" type="text" name="current_industry" fullWidth />
-                                        {errors.current_industry && touched.current_industry && <Error text={errors.current_industry} />}
+                    <Box sx={{ width: { "xs": "100%", "sm": "100%", "md": "50%", "lg": "50%", "xl": "50%" } }}>
+                        <Box sx={{
+                            maxWidth: "763px",
+                            minHeight: "153px",
+                            background: "#F8F8F8",
+                            border: "1px solid #EAEAEA",
+                            boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
+                            borderRadius: "19px",
+                        }}>
+                            <Box sx={{
+                                padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
+                            }}>
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#4E3A67",
+                                    display: "block",
+                                    marginTop: "20px"
+                                }}>
+                                    Personal Details
+                                </Typography>
 
-                                    </Stack>
+                                <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
 
-                                    <Box className="input-item">
-                                        <ThemeLabel LableFor="skills" LableText="Skills" />
-                                        <Field
-                                            variant="standard"
-                                            error={errors.skills && touched.skills}
-                                            component={Select}
-                                            name="skills"
-                                            options={Skills}
-                                            components={animatedComponents}
-                                            onChange={(options) => {
-                                                let optionvalue = [];
-                                                setSelectedOptions(options);
-                                                options.map((item) => {
-                                                    optionvalue.push(item.value);
-                                                })
-                                                setFieldValue("skills", optionvalue.join(","));
-                                            }}
-                                            isMulti
-                                            id_data={(errors.skills && touched.skills) ? "skills-error" : "skills"}
-                                            placeholder="Select Skills" data={Skills} fullWidth />
-
-                                        {errors.skills && touched.skills && <Error text={errors.skills} />}
-                                    </Box>
-
-                                    <Box className="input-item">
-                                        <ThemeLabel LableFor="perferred_location" LableText="Perferred Location" />
-                                        <Field
-                                            variant="standard"
-                                            error={errors.perferred_location && touched.perferred_location}
-                                            component={Select}
-                                            name="perferred_location"
-                                            options={PerferredLocation}
-                                            components={animatedComponents}
-                                            onChange={(options) => {
-                                                let optionvalue = [];
-                                                setPerferredLocation(options);
-                                                options.map((item) => {
-                                                    optionvalue.push(item.value);
-                                                })
-                                                setFieldValue("perferred_location", optionvalue.join(","));
-                                            }}
-                                            isMulti
-                                            id_data={(errors.perferred_location && touched.perferred_location) ? "perferredlocation-error" : "perferredlocation"}
-                                            placeholder="Select Perferred Location" data={PerferredLocation} fullWidth />
-
-                                        {errors.perferred_location && touched.perferred_location && <Error text={errors.perferred_location} />}
-                                    </Box>
-
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="total_work_experience" LableText="Total Work Experience" />
-                                        <Field
-                                            size="small"
-                                            error={errors.full_name && touched.full_name}
-                                            as={TextField}
-                                            id="total_work_experience"
-                                            placeholder="Enter Total Work Experience" type="text" name="total_work_experience" fullWidth />
-                                        {errors.total_work_experience && touched.total_work_experience && <Error text={errors.total_work_experience} />}
-
-                                    </Stack>
-
-                                    <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                        {/* <ButtonType1 ButtonText="Continue And Next" /> */}
-                                        <ThemeButtontype1 variant="contained" type="submit">Continue And Next</ThemeButtontype1>
-                                    </Box>
+                                    {
+                                        data1 && data1.map((item) => {
+                                            return <FormMenu data={item} />
+                                        })
+                                    }
                                 </Stack>
-                            </Form>
-                        )}
-                    </Formik></>}
-                {personalInfoForm == 2 && <>
-                    <Formik
 
-                        initialValues={defaultValue}
-                        validationSchema={PersonalRegistrationSchema}
-                        onSubmit={handleSubmit}
-                    >
-                        {({ errors, touched, values, setFieldValue }) => (
-                            <Form className="PersonalInformationForm">
-                                <Stack direction="column" gap={2}>
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="full_name" LableText="Full Name" />
-                                        <Field
-                                            size="small"
-                                            error={errors.full_name && touched.full_name}
-                                            as={TextField}
-                                            id="full_name"
-                                            placeholder="Enter Full Name" type="text" name="full_name" fullWidth />
-                                        {errors.full_name && touched.full_name && <Error text={errors.full_name} />}
-
-                                    </Stack>
-                                    <Box className="profile-input-item">
-                                        <ThemeLabel LableFor="gender" LableText="Gender" />
-                                        <Box>
-                                            <FormControl>
-                                                <RadioGroup
-                                                    aria-labelledby="demo-controlled-radio-buttons-group"
-                                                    name="controlled-radio-buttons-group"
-                                                    value={gender}
-                                                    onChange={(event) => {
-                                                        setGender(event.target.value)
-                                                        setFieldValue("gender", event.target.value)
-                                                    }}
-                                                >
-                                                    <Stack direction="row" gap={3}>
-                                                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                                        <FormControlLabel value="other" control={<Radio />} label="Other" />
-                                                    </Stack>
-
-                                                </RadioGroup>
-                                            </FormControl>
-                                        </Box>
-                                        {errors.gender && touched.gender && <Error text={errors.gender} />}
-                                    </Box>
-
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="date_of_birth" LableText="Date of Birth" />
-                                        <DatePicker
-                                            autoComplete="off"
-                                            size="small"
-                                            id="date_of_birth"
-                                            placeholderText={'Date of Birth'}
-                                            name="date_of_birth"
-                                            selected={date} onChange={(date) => { setDate(date); setFieldValue("date_of_birth", date) }} />
-                                        {errors.date_of_birth && touched.date_of_birth && <Error text={errors.date_of_birth} />}
-
-                                    </Stack>
-
-                                    <Stack direction="column" gap={1} className="profile-input-item">
-                                        <ThemeLabel LableFor="
-                                        phone_number" LableText="Phone Number" />
-                                        <Field
-                                            size="small"
-                                            error={errors.phone_number && touched.phone_number}
-                                            as={TextField}
-                                            id="phone_number"
-                                            placeholder="Enter Current Address" type="text" name="phone_number" fullWidth />
-                                        {errors.phone_number && touched.phone_number && <Error text={errors.phone_number} />}
-
-                                    </Stack>
-
-                                    <Box className="input-item">
-                                        <ThemeLabel LableFor="marital_status" LableText="Marital Status" />
-                                        <SelectField
-                                            labelId="demo-simple-select-label"
-                                            name="marital_status"
-                                            value={martialStatus}
-                                            onChange={(event) => {
-                                                setMaritalStatus(event.target.value);
-                                                setFieldValue("marital_status", event.target.value);
-                                            }}
-                                            sx={{ display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                                            disableUnderline
-                                        >
-                                            <MenuItem value=" ">Select Martial Status</MenuItem>
-                                            {MaritalStatus.map((item) =>
-                                                <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                            )}
-                                        </SelectField>
-
-                                        {errors.marital_status && touched.marital_status && <Error text={errors.marital_status} />}
-                                    </Box>
-
-                                    <Box className="profile-input-item">
-                                        <ThemeLabel LableFor="permanant_address" LableText="Permanant Address" />
-                                        <Field
-                                            size="small"
-                                            error={errors.permanant_address && touched.permanant_address}
-                                            as="textarea"
-                                            rows="4"
-                                            id="permanant_address"
-                                            placeholder="Enter Permanant Address" type="text" name="permanant_address" fullWidth />
-                                        {errors.permanant_address && touched.permanant_address && <Error text={errors.permanant_address} />}
-
-                                    </Box>
-
-                                    <Box className="profile-input-item">
-                                        <ThemeLabel LableFor="current_location" LableText="Current Address" />
-                                        <Field
-                                            size="small"
-                                            error={errors.current_location && touched.current_location}
-                                            as="textarea"
-                                            rows="4"
-                                            id="current_location"
-                                            placeholder="Enter Current Address" type="text" name="current_location" fullWidth />
-                                        {errors.current_location && touched.current_location && <Error text={errors.current_location} />}
-
-                                    </Box>
-
-                                    <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                        <ThemeButtontype1 variant="contained" type="submit">Continue And Next</ThemeButtontype1>
-                                    </Box>
-                                </Stack>
-                            </Form>
-                        )}
-                    </Formik>
-                </>}
+                            </Box>
+                            <Box sx={{
+                                boxSizing: "border-box",
+                                background: "#FFFFFF",
+                                border: "1px solid #EDEDED",
+                                borderBottomLeftRadius: "19px",
+                                borderBottomRightRadius: "19px",
+                                position: "relative",
+                                padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
+                                paddingBottom: "100px"
 
 
-            </Box>
-        </Stack>
+                            }}>
+                                <Typography component="box" sx={{
+                                    fontSize: "32px",
+                                    fontFamily: "Montserrat",
+                                    display: "block",
+                                    margin: "20px 0px"
+                                }}>
+                                    Personal Details
+                                </Typography>
+                                <Formik
+
+                                    initialValues={defaultValue}
+                                    validationSchema={PersonalRegistrationSchema}
+                                    onSubmit={handleSubmit}
+                                >
+                                    {({ errors, touched, values, setFieldValue }) => (
+                                        <Form className="PersonalInformationForm">
+                                            <ThemeFInputDiv>
+
+                                                <ThemeFInputDiv>
+                                                    <ThemeLabel LableFor="full_name" LableText="Full Name" />
+                                                    <Field
+                                                        error={errors.full_name && touched.full_name}
+                                                        as={TextField}
+                                                        id="full_name"
+                                                        placeholder="Enter Full Name" type="text" name="full_name" fullWidth />
+                                                    {errors.full_name && touched.full_name && <Error text={errors.full_name} />}
+
+                                                </ThemeFInputDiv>
+
+                                                <ThemeFInputDiv>
+                                                    <ThemeLabel LableFor="gender" LableText="Gender" />
+                                                    <ThemeFInputDiv>
+                                                        <FormControl>
+                                                            <RadioGroup
+                                                                aria-labelledby="demo-controlled-radio-buttons-group"
+                                                                name="controlled-radio-buttons-group"
+                                                                value={gender}
+                                                                onChange={(event) => {
+                                                                    setGender(event.target.value)
+                                                                    setFieldValue("gender", event.target.value)
+                                                                }}
+                                                            >
+                                                                <Stack direction="row" gap={3} sx={{ flexWrap: "wrap" }}>
+
+                                                                    <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                                        sx={{
+                                                                            height: { "xs": "36px", "sm": "36px", "md": "59px", "lg": "59px", "xl": "59px" },
+                                                                            width: "200px",
+                                                                            borderRadius: "11px",
+                                                                            border: " 2px solid #EAEAEA"
+                                                                        }} >
+                                                                        <Box sx={{ marginLeft: "20px" }}>Male</Box>
+                                                                        <FormControlLabel value="male" control={<Radio />} label="" />
+                                                                    </Stack>
+
+                                                                    <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                                        sx={{
+                                                                            height: { "xs": "36px", "sm": "36px", "md": "59px", "lg": "59px", "xl": "59px" },
+                                                                            width: "200px",
+                                                                            borderRadius: "11px",
+                                                                            border: " 2px solid #EAEAEA"
+                                                                        }} >
+                                                                        <Box sx={{ marginLeft: "20px" }}>Female</Box>
+                                                                        <FormControlLabel value="female" control={<Radio />} label="" />
+                                                                    </Stack>
+
+                                                                    <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                                        sx={{
+                                                                            height: { "xs": "36px", "sm": "36px", "md": "59px", "lg": "59px", "xl": "59px" },
+                                                                            width: "200px",
+                                                                            borderRadius: "11px",
+                                                                            border: " 2px solid #EAEAEA"
+                                                                        }} >
+                                                                        <Box sx={{ marginLeft: "20px" }}>Other</Box>
+                                                                        <FormControlLabel value="other" control={<Radio />} label="" />
+                                                                    </Stack>
+                                                                </Stack>
+
+                                                            </RadioGroup>
+                                                        </FormControl>
+                                                    </ThemeFInputDiv>
+                                                    {errors.gender && touched.gender && <Error text={errors.gender} />}
+                                                </ThemeFInputDiv>
+
+                                                <ThemeFInputDiv>
+                                                    <ThemeLabel LableFor="date_of_birth" LableText="Date of Birth" />
+                                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                        <DatePicker
+
+                                                            id="date_of_birth"
+                                                            value={date}
+                                                            onChange={(newValue) => {
+                                                                setDate(newValue);
+                                                                setFieldValue("date_of_birth", new Date(newValue))
+                                                            }}
+                                                            inputProps={{
+                                                                placeholder: "Enter Date of Birth"
+                                                            }}
+                                                            disableFuture={true}
+
+                                                            renderInput={(params) => <TextField
+
+                                                                {...params} />}
+                                                        />
+                                                    </LocalizationProvider>
+
+                                                    {errors.date_of_birth && touched.date_of_birth && <Error text={errors.date_of_birth} />}
+
+                                                </ThemeFInputDiv>
+
+                                                <ThemeFInputDiv>
+                                                    <ThemeLabel LableFor="marital_status" LableText="Marital Status" />
+                                                    <SelectField
+                                                        labelId="demo-simple-select-label"
+                                                        name="marital_status"
+                                                        value={martialStatus}
+                                                        onChange={(event) => {
+                                                            setMaritalStatus(event.target.value);
+                                                            setFieldValue("marital_status", event.target.value);
+                                                        }}
+
+                                                        sx={{
+                                                            background: " #FFFFFF",
+                                                            border: "1px solid #EAEAEA",
+                                                            boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                            borderRadius: "7px",
+                                                            fontSize: "16px",
+                                                            fontamily: 'Montserrat',
+                                                            BorderBottom: 'none'
+                                                        }}
+                                                        disableUnderline
+                                                    >
+                                                        <MenuItem value=" ">Select Martial Status</MenuItem>
+                                                        {MaritalStatus.map((item) =>
+                                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                        )}
+                                                    </SelectField>
+
+                                                    {errors.marital_status && touched.marital_status && <Error text={errors.marital_status} />}
+                                                </ThemeFInputDiv>
+
+                                                <Stack direction="row" gap={2}>
+                                                    <ThemeFInputDiv sx={{ width: "50%" }}>
+                                                        <ThemeLabel LableFor="state" LableText="State *" />
+                                                        <SelectField
+                                                            classNamePrefix="react-select"
+                                                            labelId="demo-simple-select-label"
+                                                            name="state"
+                                                            value={state}
+                                                            label="Age"
+                                                            onChange={(event) => {
+                                                                let stateValue = event.target.value;
+                                                                setState(stateValue);
+                                                                setFieldValue("state", event.target.value);
+                                                                getDistrictByState(event.target.value);
+                                                            }}
+                                                            sx={{
+                                                                background: " #FFFFFF",
+                                                                border: "1px solid #EAEAEA",
+                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                borderRadius: "7px",
+                                                                fontSize: "16px",
+                                                                fontamily: 'Montserrat',
+                                                                BorderBottom: 'none'
+                                                            }}
+                                                            disableUnderline
+                                                        >
+                                                            <MenuItem value=" ">Select State</MenuItem>
+                                                            {CountryState && CountryState.map((item) =>
+                                                                <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                            )}
+                                                        </SelectField>
+                                                        {errors.state && touched.state && <Error text={errors.state} />}
+                                                    </ThemeFInputDiv>
+
+                                                    <ThemeFInputDiv sx={{ width: "50%" }}>
+
+                                                        <ThemeLabel LableFor="city" LableText="City *" />
+                                                        <SelectField
+                                                            classNamePrefix="react-select"
+                                                            labelId="demo-simple-select-label"
+                                                            name="city"
+                                                            value={city}
+                                                            label="Age"
+                                                            onChange={(event) => {
+                                                                setCity(event.target.value);
+                                                                setFieldValue("city", event.target.value);
+                                                                setFieldValue("area", event.target.value);
+                                                            }}
+                                                            sx={{
+                                                                background: " #FFFFFF",
+                                                                border: "1px solid #EAEAEA",
+                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                borderRadius: "7px",
+                                                                fontSize: "16px",
+                                                                fontamily: 'Montserrat',
+                                                                BorderBottom: 'none'
+                                                            }}
+                                                            disableUnderline
+                                                        >
+                                                            <MenuItem value=" ">Select City</MenuItem>
+                                                            {District && District.map((item) =>
+                                                                <MenuItem value={item.name} key={item._id}>{item.name}</MenuItem>
+                                                            )}
+                                                        </SelectField>
+
+                                                        {errors.city && touched.city && <Error text={errors.city} />}
+                                                    </ThemeFInputDiv>
+                                                </Stack>
+
+
+                                                <ThemeFInputDiv >
+                                                    <ThemeLabel LableFor="perferred_pincode" LableText="Pincode" />
+                                                    <Field
+                                                        error={errors.current_salary && touched.current_salary}
+                                                        as={TextField}
+                                                        id="perferred_pincode"
+                                                        placeholder="Enter Perferred Pincode" type="text" name="perferred_pincode" fullWidth />
+                                                    {errors.perferred_pincode && touched.perferred_pincode && <Error text={errors.perferred_pincode} />}
+
+                                                </ThemeFInputDiv>
+
+                                                <ThemeFInputDiv>
+                                                    <ThemeLabel LableFor="current_title" LableText="Current Title" />
+                                                    <Field
+                                                        error={errors.current_title && touched.current_title}
+                                                        as={TextField}
+                                                        id="current_title"
+                                                        placeholder="Enter Company Title" type="text" name="current_title" fullWidth />
+                                                    {errors.current_title && touched.current_title && <Error text={errors.current_title} />}
+
+                                                </ThemeFInputDiv>
+
+                                                <Stack direction="row" gap={3}>
+                                                    <ThemeFInputDiv sx={{ width: "370px" }}>
+                                                        <ThemeLabel LableFor="current_salary" LableText="Current Salary" />
+                                                        <CurrencyFormat style={{
+                                                            fontSize: "16px",
+                                                            outline: "none",
+                                                            width: "92%",
+                                                            border: "1px solid #EAEAEA",
+                                                            borderRadius: "11px",
+                                                            padding: "15px 10px"
+                                                        }}
+                                                            placeholder="Current Salary"
+
+                                                            thousandSeparator={true} prefix={'₹'}
+                                                            onChange={(event) => {
+
+                                                                setFieldValue("current_salary", event.target.value.slice(1).replaceAll(",", ""))
+                                                            }} />
+                                                        {errors.current_salary && touched.current_salary && <Error text={errors.current_salary} />}
+
+                                                    </ThemeFInputDiv>
+
+                                                    <ThemeFInputDiv sx={{ width: "370px" }}>
+                                                        <ThemeLabel LableFor="excepted_salary" LableText="Excepted Salary" />
+
+                                                        <CurrencyFormat style={{
+                                                            fontSize: "16px",
+                                                            outline: "none",
+                                                            width: "92%",
+                                                            border: "1px solid #EAEAEA",
+                                                            borderRadius: "11px",
+                                                            padding: "15px 10px"
+                                                        }}
+                                                            placeholder="Excepted Salary"
+                                                            thousandSeparator={true} prefix={'₹'}
+                                                            onChange={(event) => {
+
+                                                                setFieldValue("excepted_salary", event.target.value.slice(1).replaceAll(",", ""))
+                                                            }}
+                                                        />
+                                                        {errors.excepted_salary && touched.excepted_salary && <Error text={errors.excepted_salary} />}
+
+                                                    </ThemeFInputDiv>
+
+                                                </Stack>
+
+                                                <ThemeFInputDiv>
+                                                    <ThemeLabel LableFor="skills" LableText="Skills *" />
+                                                    <Field
+
+                                                        variant="standard"
+                                                        error={errors.skills && touched.skills}
+                                                        component={Select}
+                                                        name="skills"
+                                                        options={skills}
+                                                        components={animatedComponents}
+                                                        onChange={(options) => {
+                                                            let optionvalue = [];
+                                                            setSelectedOptions(options);
+                                                            options.map((item) => {
+                                                                optionvalue.push(item.value);
+                                                            })
+                                                            setFieldValue("skills", optionvalue.join(","));
+                                                        }}
+                                                        isMulti
+                                                        placeholder="Select Skills " data={skills} fullWidth />
+
+
+                                                    {errors.skills && touched.skills && <Error text={errors.skills} />}
+
+                                                </ThemeFInputDiv>
+
+                                                <ThemeFInputDiv>
+                                                    <ThemeLabel LableFor="total_work_experience" LableText="Total Work Experience" />
+                                                    <Field
+                                                        error={errors.full_name && touched.full_name}
+                                                        as={TextField}
+                                                        id="total_work_experience"
+                                                        placeholder="Enter Total Work Experience" type="text" name="total_work_experience" fullWidth />
+                                                    {errors.total_work_experience && touched.total_work_experience && <Error text={errors.total_work_experience} />}
+
+                                                </ThemeFInputDiv>
+                                            </ThemeFInputDiv>
+                                            <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                                                <ThemeButtonType2 variant="contained" id="continue" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue and Next</ThemeButtonType2>
+
+                                            </Stack>
+                                        </Form>)}
+                                </Formik>
+
+                            </Box>
+                        </Box>
+
+                    </Box>
+
+                </Stack>
+            </Stack>
+        </Box>
+
     </>)
 }
 

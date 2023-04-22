@@ -1,56 +1,175 @@
-import { Box, Stack, Container } from "@mui/material";
-import CustomizeSelect from "../ThemeComponent/CustomizeSelect";
-import { cities, Experience } from "../utils/Data";
-import { useSelector } from "react-redux";
+import { HomeCities, getJobTypeURL } from '../utils/ApiUrls';
+import { getRequest } from "../utils/ApiRequests";
+import {
+    Box, Stack, Typography,
+    Autocomplete, TextField, Button
+} from "@mui/material";
+
+import ThemeLabel from "./ThemeForms/ThemeLabel";
+import { ThemeFInputDiv } from "../utils/Theme";
+
+import { useState, useEffect } from "react";
 
 const Filter = () => {
-  const categoryActive = useSelector(state => state.categoryActive);
+    const [cities, setCities] = useState([]);
+    const [jobTypeData, setJobTypeData] = useState([]);
 
-  return (<>
-    <Box className="filter">
-      <Stack direction="row"
-        flexWrap="wrap"
-        gap={1} className="filterWrapper"
-      >
-        Filter By:
+    useEffect(() => {
+        const getCities = async () => {
+            let data = await getRequest(HomeCities);
+            if (data.status === '1')
+                setCities(data.data.sort());
 
-        <span
-          style={{
-            textTransform: "capitalize",
-            background: "#ffffff",
-            borderRadius: "50px",
-            padding: "5px 20px",
-            color: "#2B1E44",
-            cursor: "pointer"
-          }}>
-          <CustomizeSelect placeholder="Any Exp. level" data={Experience} />
-        </span>
+        }
+        const getJobType = async () => {
+            let response = await getRequest(getJobTypeURL);
+            response = response.data.toString().replaceAll("_", " ").split(",");
+            setJobTypeData(response);
+        }
+        getJobType();
+        getCities();
 
-        <span
-          style={{
-            textTransform: "capitalize",
-            background: "#ffffff",
-            borderRadius: "50px",
-            padding: "5px 20px",
-            color: "#2B1E44",
-            cursor: "pointer"
-          }}>
-          <CustomizeSelect placeholder="Any Location" data={cities} />
-        </span>
+    }, []);
 
-        <span
-          style={{
-            textTransform: "capitalize",
-            background: "#ffffff",
-            borderRadius: "50px",
-            padding: "5px 20px",
-            color: "#2B1E44",
-            cursor: "pointer"
-          }}>
-          Refine
-        </span>
-      </Stack>
-    </Box>
-  </>)
+
+
+    return (<>
+        <Box sx={{
+            width: "100%",
+            background: "#FFFFFF",
+            border: "1px solid #E1D4F2",
+            borderRadius: "19px",
+            height: "fit-content"
+        }}>
+            <Box>
+                <Stack direction="row" gap={2} alignItems="center" sx={{
+                    padding: " 20px",
+                    borderBottom: "1px solid #E1D4F2 "
+                }}>
+                    <Box>
+                        <img src={window.location.origin + '/assets/JS3.png'} alt="JS3" />
+                    </Box>
+
+                    <Typography component="div"
+                        sx={{
+                            fontSize: "24px",
+                            color: "#4E3A67",
+                            fontFamily: "Work Sans, sans-serif",
+                            fontWeight: "600"
+                        }}>
+                        Filters
+                    </Typography>
+                </Stack>
+            </Box>
+            <Box >
+                <Stack direction="column" gap={2} alignItems="center" sx={{
+                    padding: " 20px",
+                }}>
+                    <ThemeFInputDiv sx={{ width: "100%" }}>
+                        <ThemeLabel LableFor="job_type" LableText="Job Type" />
+                        <Box sx={{
+                            background: " rgb(255, 255, 255)",
+                            border: " 1px solid rgb(231, 213, 255)",
+                            borderRadius: "11px",
+                            fontSize: "16px",
+                            padding: "8px"
+                        }}>
+                            <Autocomplete
+                                disablePortal
+                                id="job_type"
+                                options={jobTypeData}
+                                sx={{
+                                    "& .MuiOutlinedInput-root": {
+                                        borderRadius: "0",
+                                        padding: "2px",
+                                        border: "none"
+                                    },
+                                    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                                        border: "none"
+                                    }
+                                }}
+                                renderInput={(params) => <TextField
+                                    placeholder='Job Type'
+                                    {...params} />}
+                            />
+                        </Box>
+
+
+                    </ThemeFInputDiv>
+
+                    <ThemeFInputDiv sx={{ width: "100%" }}>
+                        <ThemeLabel LableFor="city" LableText="City" />
+                        <Box
+                            sx={{
+                                background: " rgb(255, 255, 255)",
+                                border: " 1px solid rgb(231, 213, 255)",
+                                borderRadius: "11px",
+                                fontSize: "16px",
+                                padding: "8px"
+                            }}>
+                            <Autocomplete
+                                disablePortal
+                                id="city"
+                                options={cities}
+                                sx={{
+                                    "& .MuiOutlinedInput-root": {
+                                        borderRadius: "0",
+                                        padding: "2px",
+                                        border: "none"
+                                    },
+                                    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                                        border: "none"
+                                    }
+                                }}
+                                renderInput={(params) => <TextField
+                                    placeholder='Cities'
+                                    {...params} />}
+                            />
+                        </Box>
+
+                    </ThemeFInputDiv>
+
+                    <ThemeFInputDiv>
+                        <Button
+                            sx={{
+                                maxWidth: "419px",
+                                height: "54px",
+                                background: "#4E3A67",
+                                border: "1px solid #E7D5FF",
+                                borderRadius: "7px",
+                                color: "#FFFFFF",
+                                "&:hover": {
+                                    maxWidth: "419px",
+                                    height: "54px",
+                                    background: "#4E3A67",
+                                    border: "1px solid #E7D5FF",
+                                    borderRadius: "7px",
+                                    color: "#FFFFFF",
+                                }
+                            }}> Jobs for Women</Button>
+                        <Button
+                            sx={{
+                                maxWidth: "419px",
+                                height: "54px",
+                                background: " #FFFFFF",
+                                border: "1px solid #E7D5FF",
+                                borderRadius: "7px",
+                                color: '#3A2D49',
+                                "&:hover": {
+                                    maxWidth: "419px",
+                                    height: "54px",
+                                    background: " #FFFFFF",
+                                    border: "1px solid #E7D5FF",
+                                    borderRadius: "7px",
+                                    color: '#3A2D49'
+                                }
+                            }}> Jobs for Freshers</Button>
+                    </ThemeFInputDiv>
+
+
+                </Stack>
+            </Box>
+        </Box></>)
 }
+
 export default Filter;

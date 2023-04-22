@@ -1,18 +1,15 @@
-import { Box, Typography, Stack, Input, Snackbar, Alert } from "@mui/material";
+import { Box, Typography, TextField, Snackbar, Alert } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { ForgotPasswordValidation } from "../../Validation/EmployerValidation";
 
-import { useSelector } from 'react-redux';
-
+import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
-import ButtonType1 from "../../ThemeComponent/Common/ButtonType1";
 
 import { useState, useEffect } from "react";
 
 const ChangePassword = () => {
     const user = localStorage.user && JSON.parse(localStorage.user);
-    const api_url = useSelector(state => state.api_url);
 
     const [formSubmitted, setFormSubmitted] = useState(false);
     const defaultValue = {
@@ -34,23 +31,23 @@ const ChangePassword = () => {
 
         }
 
-        let response = await fetch(api_url + "/api/employer/changepassword", {
-            method: "POST",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify(data),
-        })
+        // let response = await fetch(api_url + "/api/employer/changepassword", {
+        //     method: "POST",
+        //     headers: {
+        //         'Access-Control-Allow-Origin': '*',
+        //         'Content-Type': 'application/json; charset=UTF-8'
+        //     },
+        //     body: JSON.stringify(data),
+        // })
 
-        if (response.ok) {
-            response = await response.json();
-            console.log(response);
-            if (response.status == 1) {
-                setFormSubmitted(true);
-            }
+        // if (response.ok) {
+        //     response = await response.json();
+        //     console.log(response);
+        //     if (response.status == 1) {
+        //         setFormSubmitted(true);
+        //     }
 
-        }
+        // }
 
 
     }
@@ -75,11 +72,17 @@ const ChangePassword = () => {
 
         <Box sx={{
             background: "#FFFFFF",
-            padding: "20px",
-            borderRadius: "10px",
-            borderTop: "4px solid #2B1E44"
+            padding: { "xs": "20px", "sm": "20px", "md": "50px", "lg": "50px", "xl": "50px" },
+            borderRadius: "14px",
+            border: "1px solid #E1D4F2"
         }}>
-            <Typography component="div" sx={{ color: "#2B1E44", fontWeight: "600", fontSize: "20px", textTransform: "capitalize", margin: "10px 0px" }}>
+            <Typography component="div" sx={{
+                color: "#2B1E44",
+                textTransform: "capitalize", margin: "10px 0px",
+                fontSize: { "sx": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
+                fontFamily: "Work Sans,sans-serif",
+                fontWeight: "700"
+            }}>
                 Change Password
             </Typography>
 
@@ -91,41 +94,40 @@ const ChangePassword = () => {
             >
                 {({ errors, touched, values, setFieldValue }) => (
                     <Form className="ChangePasswordForm">
-                        <Stack direction="column" gap={2}>
-                            <Box className="input-item">
-                                <ThemeLabel LableFor="old_password" LableText=" Old Password" />
-
+                        <ThemeFInputDiv>
+                            <ThemeFInputDiv>
+                                <ThemeLabel LableFor="old_password" LableText=" Old Password *" />
                                 <Field
                                     id="old_password"
-                                    as={Input}
+                                    as={TextField}
                                     placeholder="Enter Old Password" type="password" name="old_password" fullWidth />
                                 {errors.old_password && touched.old_password && <Error text={errors.old_password} />}
-                            </Box>
+                            </ThemeFInputDiv>
 
-                            <Box className="input-item">
-                                <ThemeLabel LableFor="password" LableText=" New Password" />
-
+                            <ThemeFInputDiv>
+                                <ThemeLabel LableFor="password" LableText=" New Password *" />
                                 <Field
                                     id="password"
-                                    as={Input}
+                                    as={TextField}
                                     placeholder="Enter Password" type="password" name="password" fullWidth />
                                 {errors.password && touched.password && <Error text={errors.password} />}
-                            </Box>
-                            <Box className="input-item">
+                            </ThemeFInputDiv>
 
-                                <ThemeLabel LableFor="confirm_password" LableText="Confirm Password" />
+                            <ThemeFInputDiv>
+                                <ThemeLabel LableFor="confirm_password" LableText="Confirm Password *" />
                                 <Field
                                     id="confirm_password"
-                                    as={Input}
+                                    as={TextField}
                                     placeholder="Enter Confirm Password" type="password" name="confirm_password" fullWidth />
                                 {errors.confirm_password && touched.confirm_password && <Error text={errors.confirm_password} />}
 
-                            </Box>
-                        </Stack>
+                            </ThemeFInputDiv>
+                        </ThemeFInputDiv>
 
                         <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                            <ButtonType1 ButtonText="Update Password" />
+                            <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Change Password</ThemeButtonType2>
                         </Box>
+
                     </Form>
                 )}
             </Formik>

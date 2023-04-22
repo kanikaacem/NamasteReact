@@ -1,63 +1,72 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import 'react-loading-skeleton/dist/skeleton.css';
 import App from './App';
-//redux 
+//Redux Store
 import {createStore} from "redux";
 import {Provider} from "react-redux";
+//Generating Custom Theme 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+// Define custom breakpoints in the theme
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 992,
+      lg: 1200,
+      xl: 1920,
+    },
+  },
+});
+//Creating the Redux Store State
 const initialState = {
   isLoggedIn : localStorage.getItem("isLoggedIn") == null ? false : localStorage.getItem("isLoggedIn"),
   categoryActive : {
     "id" : 1,
     "title" : "Mobile Applications"
   },
-  api_url: 'http://13.126.115.3:3001',
+  api_url: 'https://13.126.115.3:3001',
   showProfile : false,
-  EmployeeMenuSelected : "dashboard",
-  CandidateMenuSelected : "applied_jobs",
+  
+  MenuSelected : (window.location.pathname !== null) ? window.location.pathname.split('/')?.slice(-1)?.toString()?.replaceAll("-","_") :
+  (window.location.pathname === "/employer-login") ? "employer_dashboard" : "candidate_dashboard",
   activeJob : '',
   candidateInfo: '',
   CandidateRegistration:false,
-  user:{}
+  userDetail:{},
+  action:localStorage.getItem("action") == null ? " " : localStorage.getItem("action")
 };
 const reducer = (state, action) =>{
   switch(action.type){
     case "LOGIN":
-      let {data,token} = action.payload;
-      // console.log(data);
-      // console.log(user);
-      // console.log(token);
       localStorage.setItem('isLoggedIn',true);
-      localStorage.setItem('user',JSON.stringify(data));
-      localStorage.setItem('auth_token',token);
-
-      return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:localStorage.getItem('user')};
+      localStorage.setItem('action',"login")
+      return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),action:localStorage.getItem("action")};
 
     case "LOGOUT":
-      localStorage.setItem("user","")
-      localStorage.setItem("isLoggedIn", false);
+      localStorage.clear();
       return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn")};
 
-    case "SHOW_HIDE_PROFILE":
-       return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),showProfile: ! state.showProfile}
-
-    case "CHANGE_EMPLOYEE_MENU" :
-      let selected_menu= action.payload;
-      return {...initialState,isLoggedIn: localStorage.getItem("isLoggedIn"),EmployeeMenuSelected:selected_menu }
-    
-    case "CHANGE_CANDIDATE_MENU":
-      let candidate_selected_menu = action.payload;
-      return {...initialState , isLoggedIn: localStorage.getItem("isLoggedIn"),CandidateMenuSelected:candidate_selected_menu}
-    
+    case "CHANGE_SELECTED_MENU":
+      let selected_menu = action.payload;
+      return {...initialState,isLoggedIn:localStorage.getItem("isLoggedIn"),MenuSelected:selected_menu}
+      
     case "JOB_DESCRIPTION":
       let job_id = action.payload;
       return {...initialState, isLoggedIn:localStorage.getItem("isLoggedIn"),activeJob:job_id}
 
-    case "USER_REGISTRATION":
-      let candidateInfo = action.payload;
-      return {...initialState,candidateInfo:candidateInfo,CandidateRegistration:true}
+   case "LOGIN_REGISTRATION":
+        
+        localStorage.setItem('isLoggedIn',true);
+        localStorage.setItem('user',JSON.stringify(action.payload));
+        localStorage.setItem('action',"registration");
+  
+        return {...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"),user:JSON.parse(localStorage.getItem("user")),action:"registration"};
+ 
 
-   
     default:
       return state;
   }
@@ -67,7 +76,9 @@ const store = createStore(reducer,initialState);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-      <App />
+     <ThemeProvider theme={theme}>
+          <App />
+    </ThemeProvider>
   </Provider>
  
 );
@@ -105,7 +116,7 @@ root.render(
       //               })
       // localStorage.setItem("authenticated", true);
     
-      //   fetch("http://192.168.1.9:8000/api/users/login", {
+      //   fetch("https://192.168.1.9:8000/api/users/login", {
       //       // Adding method type
       //       method: "POST",
       //       // Adding body or contents to send
@@ -244,3 +255,36 @@ root.render(
 //https://stackoverflow.com/questions/70165035/how-to-use-material-ui-checkbox-with-formik
 //https://stackoverflow.com/questions/59721035/usestate-only-update-component-when-values-in-object-change
 //https://www.npmjs.com/package/react-tag-input
+
+//https://www.npmjs.com/package/react-dropdown-input
+//https://stackoverflow.com/questions/67308610/prevent-a-multi-step-formik-form-from-resetting-the-form-control-inputs-on-re-re
+//Syncing Changes
+//https://www.geeksforgeeks.org/how-to-use-usemediaquery-component-in-reactjs/
+//https://medium.com/swlh/using-window-matchmedia-for-media-queries-in-reactjs-97ddc66fca2e
+//https://fireship.io/snippets/use-media-query-hook/
+
+//https://dev.to/arikaturika/react-how-to-use-media-queries-with-radium-32he
+//https://blog.devgenius.io/persistent-state-in-react-js-using-useeffect-hook-d6e3e7ae65f2
+//https://www.howtogeek.com/devops/how-to-persist-your-redux-store/
+//https://www.educative.io/answers/how-to-use-the-uselocation-hook-in-react
+
+//https://stackoverflow.com/questions/36904185/react-router-scroll-to-top-on-every-transition
+//https://beta.reactjs.org/reference/react/useLayoutEffect
+//https://codingbeautydev.com/blog/react-scroll-event/
+//https://javascript.plainenglish.io/implementing-skeleton-ui-in-react-js-7eeb409584de
+//https://www.npmjs.com/package/react-loading-skeleton
+//https://www.npmjs.com/package/react-share
+//https://www.npmjs.com/package/react-share-social
+
+//working reactjs share
+//https://www.npmjs.com/package/react-web-share
+//https://www.npmjs.com/package/react-multi-carousel
+//https://rkstrdee.medium.com/dynamic-form-fields-using-react-with-hooks-b7d4d037042c
+//https://reactscript.com/material-ui-based-dynamic-form-component-react-aztec/
+//https://hashnode.com/post/dynamic-form-object-rendering-with-formik-material-ui-cknk99i8x008id5s12s8ecs6o
+//https://blog.openreplay.com/dynamic-multi-step-forms-with-formik/
+
+//https://medium.com/@sakshisubedi/optimizing-event-handler-of-input-without-affecting-browser-and-application-performance-in-react-js-7fc4f39b0889
+//-1 Try this event in React , it worked for me. onMouseLeave(). Use this if onBlur() and onFocusOut does not work for you.
+//https://www.npmjs.com/package/react-notifications
+//https://authkit.arkadip.dev/installation/
