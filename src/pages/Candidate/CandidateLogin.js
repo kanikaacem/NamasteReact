@@ -16,6 +16,7 @@ import { ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/
 
 import { useState, } from "react";
 import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
+import ThemeMobileImage from "../../ThemeComponent/Common/ThemeMobileImage";
 const CandidateLogin = () => {
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
     const [sendVerificationLink, setSendVerificationLink] = useState(false);
@@ -99,8 +100,9 @@ const CandidateLogin = () => {
             sx={{
                 minHeight: "100vh",
                 background: "#2B1E44",
-                backgroundImage:
-                    "url('../assets/g50.png')",
+                backgroundImage: {
+                    "xs": "", "sm": "", "md": "", "lg": "url('../assets/g50.png')", "xl": "url('../assets/g50.png')"
+                },
                 backgroundRepeat: " no-repeat",
                 backgroundPosition: " left 4px bottom 0px"
 
@@ -116,22 +118,22 @@ const CandidateLogin = () => {
                     border="2px solid rgba(255, 255, 255, 0.25)"
                     color="#FFFFFF"
                     background="#432C60" />
-                <Stack direction={{ "xs": "column", "sm": "row", "md": "row", "lg": "row", "xl": "row" }} gap={2} sx={{ position: "relative" }}>
+                <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} gap={2} sx={{ position: "relative" }}>
 
                     <Stack sx={{
-                        width: { "xs": "100%", "sm": "60%", "md": "60%", "lg": "60%", "xl": "60%" },
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "65%", "xl": "65%" },
                         alignItems: "center",
                     }}>
                         <Box sx={{
-                            width: { "xs": "100%", "sm": "800px", "md": "800px", "lg": "800px", "xl": "800px" },
-                            marginTop: { "xs": "0px", "sm": "100px", "md": "100px", "lg": "100px", "xl": "100px" },
+                            width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "800px", "xl": "800px" },
+                            marginTop: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "100px", "xl": "100px" },
                             textAlign: "center"
 
                         }}>
                             <Typography component="box" sx={{
-                                fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "lg": "64px", "xl": "64px" },
+                                fontSize: { "xs": "1.2rem", "sm": "2.5rem", "md": "2.5rem", "lg": "4rem", "xl": "4rem" },
                                 fontFamily: "Work Sans, sans-serif",
-                                fontWeight: "700",
+                                fontWeight: { "xs": "400", "sm": "400", "md": "400", "lg": "700", "xl": "700" },
                                 color: "#FC9A7E",
                                 display: "block",
                                 lineHeight: "40px"
@@ -139,12 +141,12 @@ const CandidateLogin = () => {
                                 Choose a job you love,
 
                                 <Typography component="box" sx={{
-                                    fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "lg": "64px", "xl": "64px" },
+                                    fontSize: { "xs": "1.6rem", "sm": "4rem", "md": "4rem", "lg": "4rem", "xl": "4rem" },
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "700",
                                     color: "#FFFFFF",
                                     display: "block",
-                                    margin: "10px 0px",
+                                    margin: { "xs": "0px 0px 10px 0px", "sm": "0px 0px 10px 0px", "md": "0px 0px 10px 0px", "lg": "10px 0px", "xl": "10px 0px" },
                                     lineHeight: "1.0 !important"
                                 }}>
                                     and you never have to
@@ -153,98 +155,101 @@ const CandidateLogin = () => {
                                 </Typography>
 
                             </Typography>
-
+                            <ThemeMobileImage imageUrl="/assets/g10Mobile.png" />
 
                         </Box>
                     </Stack>
-
-                    <Stack sx={{
-                        width: { 'lg': "449px", 'md': '100%', 'xs': '92%' },
-                        // height: "730px",
-                        background: "#FBF8FF",
-                        boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
-                        borderRadius: "19px",
-                        padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "15px" }
-
+                    <Box sx={{
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "35%", "xl": "35%" },
+                        position: "relative",
+                        top: { "xs": "-15px", "sm": "-15px", "md": "-15px", "lg": "0px", "xl": "0px" }
                     }}>
-                        <Typography component="box" sx={{ fontSize: { "xs": "16px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" }, fontFamily: "Work Sans, sans-serif" }}>
-                            Welcome Guest,
-                        </Typography>
-                        <Typography component="box" sx={{ fontSize: { "xs": "26px", "sm": "40px", "md": "40px", "lg": "40px", "xl": "40px" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700", marginBottom: "30px" }}>
-                            Sign In for JobsYahan
-                        </Typography>
+                        <Stack sx={{
+                            background: "#FBF8FF",
+                            boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
+                            borderRadius: "19px",
+                            padding: { "xs": "20px", "sm": "30px", "md": "40px", "lg": "40px", "xl": "100px 120px" }
+                        }}>
+                            <Typography component="box" sx={{ fontSize: { "xs": "1rem", "sm": "1.2rem", "md": "1.2rem", "lg": "1.2rem", "xl": "1.2rem" }, fontFamily: "Work Sans, sans-serif" }}>
+                                Welcome Guest,
+                            </Typography>
+                            <Typography component="box" sx={{ fontSize: { "xs": "1.6rem", "sm": "2.5rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700", marginBottom: "30px" }}>
+                                Sign In for JobsYahan
+                            </Typography>
 
-                        <Formik
-                            initialValues={defaultValue}
-                            validationSchema={candidateLoginValidationSchema}
-                            onSubmit={handleSubmit}
-                        >
-                            {({ errors, touched }) => (
-                                <Form className="candidateLogin">
-
-                                    <ThemeFInputDiv>
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="email_address" LableText="Email Address" />
-                                            <Field
-                                                error={errors.email_address && touched.email_address}
-                                                as={TextField}
-                                                id="email_address"
-                                                placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
-                                            {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
-
-                                        </ThemeFInputDiv>
+                            <Formik
+                                initialValues={defaultValue}
+                                validationSchema={candidateLoginValidationSchema}
+                                onSubmit={handleSubmit}
+                            >
+                                {({ errors, touched }) => (
+                                    <Form className="candidateLogin">
 
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="password" LableText="Password" />
-                                            <Field
-                                                error={errors.password && touched.password}
-                                                id="password"
-                                                as={TextField}
-                                                placeholder="Enter Password" type="password" name="password" fullWidth />
-                                            {errors.password && touched.password && <Error text={errors.password} />}
+                                            <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="email_address" LableText="Email Address" />
+                                                <Field
+                                                    error={errors.email_address && touched.email_address}
+                                                    as={TextField}
+                                                    id="email_address"
+                                                    placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
+                                                {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
+
+                                            </ThemeFInputDiv>
+
+                                            <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="password" LableText="Password" />
+                                                <Field
+                                                    error={errors.password && touched.password}
+                                                    id="password"
+                                                    as={TextField}
+                                                    placeholder="Enter Password" type="password" name="password" fullWidth />
+                                                {errors.password && touched.password && <Error text={errors.password} />}
 
 
+                                            </ThemeFInputDiv>
                                         </ThemeFInputDiv>
-                                    </ThemeFInputDiv>
-                                    <Box sx={{
-                                        fontSize: { "xs": "10px", "sm": "16px", "md": "16px", "lg": "16px", "xl": "16px" },
-                                        margin: { "xs": "10px 0px", "sm": "20px 0px", "md": "20px 0px", "lg": "20px 0px", "xl": "20px 0px" }
-                                    }}>
-                                        <Link to="/forgot-password/candidate" >
-                                            Forgot Password?
-                                        </Link>
-                                    </Box>
+                                        <Box sx={{
+                                            fontSize: { "xs": "0.6rem", "sm": "1rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
+                                            margin: { "xs": "10px 0px", "sm": "20px 0px", "md": "20px 0px", "lg": "20px 0px", "xl": "20px 0px" }
+                                        }}>
+                                            <Link to="/forgot-password/candidate" >
+                                                Forgot Password?
+                                            </Link>
+                                        </Box>
 
 
-                                    <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                                        <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
 
-                                        {isEmailVerified && (<>
-                                            <a href="#" onClick={
-                                                () => {
-                                                    resendEmailVerificationLink()
+                                            {isEmailVerified && (<>
+                                                <a href="#" onClick={
+                                                    () => {
+                                                        resendEmailVerificationLink()
+                                                    }
                                                 }
+                                                    style={{ textAlign: "center" }}>
+                                                    Resend Verification Link
+                                                </a>
+
+                                            </>)
+
                                             }
-                                                style={{ textAlign: "center" }}>
-                                                Resend Verification Link
-                                            </a>
 
-                                        </>)
+                                            <ThemeButtonType2 variant="contained" type="submit" id="log_in" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
+                                            <ThemeButtonType3 variant="outlined"
+                                                type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
+                                                component={Link}
+                                                to="/candidate-register"
 
-                                        }
+                                            >Sign up</ThemeButtonType3>
+                                        </Stack>
+                                    </Form>
+                                )}
+                            </Formik>
 
-                                        <ThemeButtonType2 variant="contained" type="submit" id="log_in" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
-                                        <ThemeButtonType3 variant="outlined"
-                                            type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
-                                            component={Link}
-                                            to="/candidate-register"
+                        </Stack>
+                    </Box>
 
-                                        >Sign up</ThemeButtonType3>
-                                    </Stack>
-                                </Form>
-                            )}
-                        </Formik>
-
-                    </Stack>
                 </Stack>
             </Stack>
 

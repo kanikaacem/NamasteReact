@@ -351,7 +351,7 @@ const PostJob = () => {
                             fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" },
                             fontFamily: "Montserrat",
                             fontWeight: "600",
-                            color: "#4E3A67",
+                            color: "#000000",
                             display: "block",
                             marginTop: "20px"
                         }}>
