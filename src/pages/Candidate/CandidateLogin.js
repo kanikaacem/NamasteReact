@@ -168,7 +168,7 @@ const CandidateLogin = () => {
                             background: "#FBF8FF",
                             boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                             borderRadius: "19px",
-                            padding: { "xs": "20px", "sm": "30px", "md": "40px", "lg": "40px", "xl": "100px 120px" }
+                            padding: { "xs": "20px", "sm": "30px", "md": "40px", "lg": "40px", "xl": "50px 100px" }
                         }}>
                             <Typography component="box" sx={{ fontSize: { "xs": "1rem", "sm": "1.2rem", "md": "1.2rem", "lg": "1.2rem", "xl": "1.2rem" }, fontFamily: "Work Sans, sans-serif" }}>
                                 Welcome Guest,
