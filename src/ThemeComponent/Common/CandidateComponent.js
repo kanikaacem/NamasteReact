@@ -46,9 +46,9 @@ const CandidateComponent = ({ CandidateData, CandidateStatus, AppliedDate, jobId
                 <Box sx={{ width: { "lg": "8%", "md": "8%", "xs": "100%" } }}>
                     <Badge color="secondary" variant="dot" >
 
-                        {CandidateData && CandidateData.profile_image ?
+                        {CandidateData && CandidateData.profile_image && CandidateData.profile_image !== "demolink" ?
                             <>
-                                <Box sx={{ width: "100px", height: "100px", position: "relative" }}>
+                                <Box sx={{ width: "80px", height: "80px", position: "relative" }}>
 
 
                                     <img src={CandidateData && CandidateData.profile_image}
@@ -58,7 +58,7 @@ const CandidateComponent = ({ CandidateData, CandidateStatus, AppliedDate, jobId
                             </>
 
 
-                            : <Avatar alt={CandidateData && CandidateData.personalInfo && CandidateData.personalInfo.fullname} />}
+                            : <Avatar sx={{ fontSize: 80 }} alt={CandidateData && CandidateData.personalInfo && CandidateData.personalInfo.fullname} />}
                     </Badge>
 
                 </Box>
