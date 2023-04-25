@@ -1021,6 +1021,13 @@ nav {
     font-size: 10px !important;
   }
 
+  .PersonalInformationPage .css-1s2u09g-control,
+  .PersonalInformationPage .css-1pahdxg-control .PostJobForm1 .css-1s2u09g-control,
+  .PostJobForm1 .css-1pahdxg-control {
+    padding: 5px !important;
+    border-radius: 11px !important;
+  }
+
 }
 
 

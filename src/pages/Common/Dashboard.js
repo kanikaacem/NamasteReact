@@ -251,8 +251,8 @@ const Dashboard = () => {
 
                         {user && user.type === "candidate" && <Box sx={{
                             cursor: "pointer",
-                            width: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" },
-                            height: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" }
+                            width: { "xs": "20px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" },
+                            height: { "xs": "20px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" }
                         }} onClick={() => setOpenProfile(!openProfile)}>
                             {
 

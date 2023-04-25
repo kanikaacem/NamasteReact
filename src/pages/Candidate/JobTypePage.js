@@ -187,7 +187,6 @@ const JobTypePage = () => {
 
                             <Box sx={{
                                 boxSizing: "border-box",
-                                height: "647",
                                 background: "#FFFFFF",
                                 border: "1px solid #EDEDED",
                                 borderBottomLeftRadius: "19px",
@@ -208,8 +207,6 @@ const JobTypePage = () => {
                                         <Form className="JobTypePage1" >
 
                                             <ThemeFInputDiv >
-
-
                                                 <ThemeFInputDiv >
                                                     <ThemeLabel LableFor="job_type" LableText="Job Type *" />
                                                     <SelectField

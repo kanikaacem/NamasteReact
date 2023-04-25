@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
-const FormMenu = ({ data, formStep }) => {
+const FormMenu = ({ data, formStep, dataLength }) => {
     const { step } = useParams();
     return (<>
         <Box sx={{ display: { "xs": "none", "sm": "block", "md": "block", "lg": "block", "xl": "block" } }}>
@@ -68,7 +68,7 @@ const FormMenu = ({ data, formStep }) => {
 
                 </Stack>
 
-                {data.id < 3 && <Box sx={{
+                {data.id < (dataLength ? dataLength : 3) && <Box sx={{
                     opacity: ((step == data.id - 1) || (formStep == data.id - 1)) ? "1" : "0.5"
                 }}>
                     ------
