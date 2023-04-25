@@ -156,7 +156,7 @@ const CandidateMobileVerify = () => {
                                                 <ThemeLabel LableFor="mobile_number" LableText="Mobile Number" />
                                                 <Stack direction="row" gap={1} alignItems="center">
                                                     <Field
-                                                        sx={{ width: { "xs": "80%", "sm": "85%", "md": "87%", "xl": "88%", "xl": "88%" } }}
+                                                        sx={{ width: { "xs": "83%", "sm": "85%", "md": "85%", "xl": "88%", "xl": "88%" } }}
                                                         error={errors.mobile_number && touched.mobile_number}
                                                         id="mobile_number"
                                                         as={TextField}
