@@ -331,7 +331,6 @@ const WorkHistory = ({ jobType }) => {
                         <Box >
 
                             <Box sx={{
-                                minHeight: "153px",
                                 background: "#F8F8F8",
                                 border: "1px solid #EAEAEA",
                                 boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",

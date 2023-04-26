@@ -256,6 +256,8 @@ const PersonalInformation = ({ jobType }) => {
                             border: "1px solid #EAEAEA",
                             boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                             borderRadius: "19px",
+                            position: "relative",
+                            top: { "xs": "-30px", "sm": "-30px", "md": "-30px", "lg": "0px", "xl": "0px" }
                         }}>
                             <Box sx={{
                                 padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },

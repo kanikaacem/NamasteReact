@@ -1028,6 +1028,11 @@ nav {
     border-radius: 11px !important;
   }
 
+  .BlueCollarRegistrationFormInput {
+    padding: 10px !important;
+    font-size: 12px !important;
+  }
+
 }
 
 
