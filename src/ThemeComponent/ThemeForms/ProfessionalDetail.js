@@ -92,7 +92,6 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
 
         <Box id={id}>
             <Formik
-
                 initialValues={defaultValue}
                 validationSchema={ProfessionalDetailSchema}
                 onSubmit={handleSubmit}
@@ -406,7 +405,7 @@ const ProfessionalDetail = ({ jobType }) => {
                             </Typography>
 
 
-                            <ThemeMobileImage imageUrl="/assets/g11.png" />
+                            <ThemeMobileImage imageUrl="/assets/g11Mobile.png" />
                             <Box sx={{
                                 position: "relative",
                                 left: "-130px",
@@ -432,6 +431,8 @@ const ProfessionalDetail = ({ jobType }) => {
                                 border: "1px solid #EAEAEA",
                                 boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                                 borderRadius: "19px",
+                                position: "relative",
+                                top: { "xs": "-30px", "sm": "-30px", "md": "-30px", "lg": "0px", "xl": "0px" }
 
                             }}>
                                 <Box sx={{
@@ -452,7 +453,7 @@ const ProfessionalDetail = ({ jobType }) => {
 
                                         {
                                             data1 && data1.map((item) => {
-                                                return <FormMenu data={item} />
+                                                return <FormMenu data={item} dataLength={data1.length} />
                                             })
                                         }
 

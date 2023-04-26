@@ -59,7 +59,7 @@ const FormMenu = ({ data, formStep, dataLength }) => {
                         fontWeight: "600",
                         color: "#4E3A67",
                         display: "block",
-                        width: "50px",
+                        width: "min-content",
                         textAlign: "center"
 
                     }}>
@@ -69,7 +69,8 @@ const FormMenu = ({ data, formStep, dataLength }) => {
                 </Stack>
 
                 {data.id < (dataLength ? dataLength : 3) && <Box sx={{
-                    opacity: ((step == data.id - 1) || (formStep == data.id - 1)) ? "1" : "0.5"
+                    opacity: ((step == data.id - 1) || (formStep == data.id - 1)) ? "1" : "0.5",
+                    margin: "0px 10px"
                 }}>
                     ------
                 </Box>

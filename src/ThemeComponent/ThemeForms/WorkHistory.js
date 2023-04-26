@@ -18,7 +18,8 @@ import { data1 } from "../../utils/Data";
 import FormMenu from "../Common/FormMenu";
 
 import ThemeMessage from "../Common/ThemeMessage";
-
+import ThemeMobileImage from "../Common/ThemeMobileImage";
+import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
 function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobType }) {
     const defaultValue = {
         company_name: "",
@@ -183,7 +184,7 @@ function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobTyp
                                 {showAddButton && <ThemeButtonType3 variant="outlined" type="submit"
                                     sx={{
                                         fontFamily: "Work Sans, sans-serif", fontWeight: "600",
-                                        width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
+                                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
                                     }}
                                     onClick={(event) => {
                                         handleAddComponent();
@@ -195,7 +196,7 @@ function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobTyp
                                 {(showRemoveButton || id > 0) &&
                                     <ThemeButtonType2 variant="contained" type="button" sx={{
                                         fontFamily: "Work Sans, sans-serif", fontWeight: "600",
-                                        width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
+                                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
                                     }}
                                         onClick={(event) => {
                                             handleRemoveComponent();
@@ -205,11 +206,15 @@ function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobTyp
 
                             <Stack direction="row" sx={{ width: "100%", gap: "30px", flexWrap: "wrap" }}>
                                 <ThemeButtonType3 variant="outlined" type="submit"
-                                    sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600", width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" } }}
+                                    sx={{
+                                        fontFamily: "Work Sans, sans-serif", fontWeight: "600",
+                                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
+
+                                    }}
                                 > Save</ThemeButtonType3>
                                 <ThemeButtonType2 variant="contained" type="button" sx={{
                                     fontFamily: "Work Sans, sans-serif", fontWeight: "600",
-                                    width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
+                                    width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
                                 }}
                                     onClick={nextStepButton}>Next Step</ThemeButtonType2>
 
@@ -265,45 +270,63 @@ const WorkHistory = ({ jobType }) => {
                     gap: { "xs": "0px", "sm": "0px", "md": "24px", "lg": "24px", "xl": "24px" }
                 }}>
 
-                <Stack direction="row" sx={{
+                <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} sx={{
                     position: "relative",
                     gap: { "xs": "0px", "sm": "0px", "md": "24px", "lg": "24px", "xl": "24px" }
                 }}>
                     <Stack sx={{
                         width: {
-                            "xs": "0%", "sm": "0%", "md": "40%", "lg": "40%", "xl": "40%"
-                        }, padding: { "xs": "0px", "sm": "0px", "md": "100px", "lg": "100px", "xl": "100px" },
-                        visibility: { "xs": "hidden", "sm": "hidden", "md": "visible", "lg": "visible", "xl": "visible" }
+                            "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%"
+                        }, padding: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "100px 0px", "xl": "100px 0px" },
                     }}>
-                        <Box sx={{
-                            display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" }
-
-                        }}>
+                        <Box>
                             <Typography component="box" sx={{
                                 fontSize: "64px",
                                 fontFamily: "Montserrat",
                                 fontWeight: "600",
                                 color: "#4E3A67",
-                                display: "block",
+                                marginLeft: "60px",
+                                display: { "xs": "none", "sm": "none", "md": "none", "xl": "block", "lg": "block" }
                             }}> Get
+                                <Typography component="box" sx={{
+                                    fontSize: "64px",
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#4E3A67",
+                                    display: "block",
+                                    width: "max-content"
+                                }}>
+                                    local-level jobs
+
+                                </Typography>
                             </Typography>
+
                             <Typography component="box" sx={{
-                                fontSize: "64px",
+                                fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
                                 fontFamily: "Montserrat",
                                 fontWeight: "600",
                                 color: "#4E3A67",
-                                display: "block",
-                                width: "max-content"
-                            }}>
-                                local-level jobs
-
+                                display: { "xs": "block", "sm": "block", "md": "block", "xl": "none", "lg": "none" },
+                                margin: "10px 0px"
+                            }}> Get local-level jobs
                             </Typography>
-                            <img src={window.location.origin + "/assets/g53.png"} alt="g53" style={{ margin: "40px 20px" }} />
+
+
+                            <ThemeMobileImage imageUrl="/assets/g53.png" />
+                            <Box sx={{
+                                position: "relative",
+                                left: { 'xs': '0px', "sm": "0px", "md": "0px", "lg": "-170px", "xl": "-195px" },
+                                marginTop: "30px",
+                                zIndex: "100"
+                            }}
+                            >
+                                <ThemeWebsiteImage imageUrl="/assets/g53.png" imageWidth="600px" />
+                            </Box>
 
                         </Box>
                     </Stack>
 
-                    <Box id="WorkHistoryDiv" sx={{ width: { "xs": "100%", "sm": "100%", "md": "50%", "lg": "50%", "xl": "50%" } }}>
+                    <Box id="WorkHistoryDiv" sx={{ width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" } }}>
 
                         <Box >
 
@@ -313,6 +336,8 @@ const WorkHistory = ({ jobType }) => {
                                 border: "1px solid #EAEAEA",
                                 boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                                 borderRadius: "19px",
+                                position: "relative",
+                                top: { "xs": "-30px", "sm": "-30px", "md": "-30px", "lg": "0px", "xl": "0px" }
 
                             }}>
                                 <Box sx={{
@@ -333,7 +358,7 @@ const WorkHistory = ({ jobType }) => {
 
                                         {
                                             data1 && data1.map((item) => {
-                                                return <FormMenu data={item} />
+                                                return <FormMenu data={item} dataLength={data1.length} />
                                             })
                                         }
 
