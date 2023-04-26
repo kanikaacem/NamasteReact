@@ -94,11 +94,11 @@ const UploadResume = () => {
                                     fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
                                     fontFamily: "Montserrat",
                                     fontWeight: "600",
-                                    color: "#4E3A67",
+                                    color: "#000000",
                                     display: "block",
                                     marginTop: "20px"
                                 }}>
-                                    Work History
+                                    Upload Resume
                                 </Typography>
 
                                 <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>

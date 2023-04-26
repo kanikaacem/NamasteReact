@@ -261,7 +261,7 @@ const PersonalInformation = ({ jobType }) => {
                                 padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
                             }}>
                                 <Typography component="box" sx={{
-                                    fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
+                                    fontSize: { "xs": "1.6rem", "sm": "1.6rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" },
                                     fontFamily: "Montserrat",
                                     fontWeight: "600",
                                     color: "#000000",
@@ -419,7 +419,7 @@ const PersonalInformation = ({ jobType }) => {
                                                             border: "1px solid #EAEAEA",
                                                             boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
                                                             borderRadius: "7px",
-                                                            fontSize: "16px",
+                                                            fontSize: "1rem",
                                                             fontamily: 'Montserrat',
                                                             BorderBottom: 'none'
                                                         }}
@@ -454,7 +454,7 @@ const PersonalInformation = ({ jobType }) => {
                                                                 border: "1px solid #EAEAEA",
                                                                 boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
                                                                 borderRadius: "7px",
-                                                                fontSize: "16px",
+                                                                fontSize: "1rem",
                                                                 fontamily: 'Montserrat',
                                                                 BorderBottom: 'none'
                                                             }}
@@ -487,7 +487,7 @@ const PersonalInformation = ({ jobType }) => {
                                                                 border: "1px solid #EAEAEA",
                                                                 boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
                                                                 borderRadius: "7px",
-                                                                fontSize: "16px",
+                                                                fontSize: "1rem",
                                                                 fontamily: 'Montserrat',
                                                                 BorderBottom: 'none'
                                                             }}
@@ -530,7 +530,7 @@ const PersonalInformation = ({ jobType }) => {
                                                     <ThemeFInputDiv sx={{ width: "370px" }}>
                                                         <ThemeLabel LableFor="current_salary" LableText="Current Salary" />
                                                         <CurrencyFormat style={{
-                                                            fontSize: "16px",
+                                                            fontSize: "1rem",
                                                             outline: "none",
                                                             width: "92%",
                                                             border: "1px solid #EAEAEA",
@@ -552,7 +552,7 @@ const PersonalInformation = ({ jobType }) => {
                                                         <ThemeLabel LableFor="excepted_salary" LableText="Excepted Salary" />
 
                                                         <CurrencyFormat style={{
-                                                            fontSize: "16px",
+                                                            fontSize: "1rem",
                                                             outline: "none",
                                                             width: "92%",
                                                             border: "1px solid #EAEAEA",
@@ -562,7 +562,6 @@ const PersonalInformation = ({ jobType }) => {
                                                             placeholder="Excepted Salary"
                                                             thousandSeparator={true} prefix={'₹'}
                                                             onChange={(event) => {
-
                                                                 setFieldValue("excepted_salary", event.target.value.slice(1).replaceAll(",", ""))
                                                             }}
                                                         />

@@ -19,8 +19,8 @@ import ThemeMessage from "../Common/ThemeMessage";
 import { data1 } from "../../utils/Data";
 import FormMenu from "../Common/FormMenu";
 import { useState, useEffect } from "react";
-import { Percent } from "@mui/icons-material";
-
+import ThemeMobileImage from "../Common/ThemeMobileImage";
+import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
 function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jobType }) {
 
     const [qualification, setQualification] = useState(" ");
@@ -128,7 +128,7 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
                                         border: "1px solid #EAEAEA",
                                         boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
                                         borderRadius: "7px",
-                                        fontSize: "16px",
+                                        fontSize: "1rem",
                                         fontamily: 'Montserrat',
                                         BorderBottom: 'none',
                                     }}
@@ -160,10 +160,11 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
 
                                                 <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
                                                     sx={{
-                                                        height: { "xs": "36px", "sm": "36px", "md": "59px", "lg": "59px", "xl": "59px" },
+                                                        height: { "xs": "30px", "sm": "30px", "md": "59px", "lg": "59px", "xl": "59px" },
                                                         width: "160px",
                                                         borderRadius: "7px",
-                                                        border: " 2px solid #EAEAEA"
+                                                        border: " 2px solid #EAEAEA",
+                                                        fontSize: { "xs": "0.75rem", "sm": "0.75", "md": "0.75rem", "lg": "1rem", "xl": "1rem" }
                                                     }} >
                                                     <Box sx={{ marginLeft: "20px" }}>Full Time</Box>
                                                     <FormControlLabel value="full_time" control={<Radio />} label="" />
@@ -171,10 +172,12 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
 
                                                 <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
                                                     sx={{
-                                                        height: "59px",
+                                                        height: { "xs": "30px", "sm": "30px", "md": "59px", "lg": "59px", "xl": "59px" },
                                                         width: "160px",
                                                         borderRadius: "7px",
-                                                        border: " 2px solid #EAEAEA"
+                                                        border: " 2px solid #EAEAEA",
+                                                        fontSize: { "xs": "0.75rem", "sm": "0.75", "md": "0.75rem", "lg": "1rem", "xl": "1rem" }
+
                                                     }} >
                                                     <Box sx={{ marginLeft: "20px" }}>Part Time</Box>
                                                     <FormControlLabel value="part_time" control={<Radio />} label="" />
@@ -182,10 +185,12 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
 
                                                 <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
                                                     sx={{
-                                                        height: "59px",
+                                                        height: { "xs": "30px", "sm": "30px", "md": "59px", "lg": "59px", "xl": "59px" },
                                                         width: "msx-content",
                                                         borderRadius: "7px",
-                                                        border: " 2px solid #EAEAEA"
+                                                        border: " 2px solid #EAEAEA",
+                                                        fontSize: { "xs": "0.75rem", "sm": "0.75", "md": "0.75rem", "lg": "1rem", "xl": "1rem" }
+
                                                     }} >
                                                     <Box sx={{ marginLeft: "20px" }}>Correspondance / Distance Learning</Box>
                                                     <FormControlLabel value="correspondance_/_distance_learning" control={<Radio />} label="" />
@@ -224,7 +229,7 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
                                                 setFieldValue("starting_year", new Date(newValue))
                                             }}
                                             inputProps={{
-                                                placeholder: "Enter Starting Year"
+                                                placeholder: "Starting Time"
                                             }}
                                             disableFuture={true}
                                             renderInput={(params) => <TextField
@@ -250,7 +255,7 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
                                                 setFieldValue("ending_year", new Date(newValue))
                                             }}
                                             inputProps={{
-                                                placeholder: "Enter Ending Year"
+                                                placeholder: "Ending Year"
                                             }}
                                             disableFuture={true}
                                             renderInput={(params) => <TextField
@@ -264,11 +269,14 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
                             </Stack>
                         </ThemeFInputDiv >
 
-                        <Stack direction="row" sx={{ width: "100%", gap: "30px", flexWrap: "wrap", margin: "10px 0px" }}>
+                        <Stack direction="row" sx={{
+                            width: "100%", gap: "30px", flexWrap: "wrap", margin: "10px 0px",
+                            flexWrap: "wrap"
+                        }}>
                             {showAddButton && <ThemeButtonType3 variant="outlined" type="submit"
                                 sx={{
                                     fontFamily: "Work Sans, sans-serif", fontWeight: "600",
-                                    width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
+                                    width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
                                 }}
                                 onClick={(event) => {
                                     handleAddComponent();
@@ -280,7 +288,7 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
                             {(showRemoveButton || id > 0) &&
                                 <ThemeButtonType2 variant="contained" type="button" sx={{
                                     fontFamily: "Work Sans, sans-serif", fontWeight: "600",
-                                    width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
+                                    width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
                                 }}
                                     onClick={(event) => {
                                         handleRemoveComponent();
@@ -292,7 +300,7 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
                             <ThemeButtonType3 variant="outlined" type="submit" name="submit"
                                 sx={{
                                     fontFamily: "Work Sans, sans-serif", fontWeight: "600",
-                                    width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
+                                    width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
                                 }}
                             > Save</ThemeButtonType3>
 
@@ -300,7 +308,7 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
                                 onClick={nextStepButton}
                                 sx={{
                                     fontFamily: "Work Sans, sans-serif",
-                                    fontWeight: "600", width: { "xs": "100%", "sm": "100%", "md": "48%", "lg": "48%", "xl": "48%" }
+                                    fontWeight: "600", width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
                                 }}
                             >Next Step</ThemeButtonType2>
 
@@ -355,47 +363,67 @@ const ProfessionalDetail = ({ jobType }) => {
                     gap: "24px"
                 }}>
 
-                <Stack direction="row" sx={{
+                <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} sx={{
                     position: "relative",
                     gap: { "xs": "0px", "sm": "0px", "md": "24px", "lg": "24px", "xl": "24px" }
                 }}>
                     <Stack
                         gap={2} sx={{
                             width: {
-                                "xs": "0%", "sm": "0%", "md": "40%", "lg": "40%", "xl": "40%"
-                            }, padding: { "xs": "0px", "sm": "0px", "md": "100px", "lg": "100px", "xl": "100px" },
-                            visibility: { "xs": "hidden", "sm": "hidden", "md": "visible", "lg": "visible", "xl": "visible" }
+                                "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%"
+                            }, padding: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "100px 0px", "xl": "100px 0px" },
                         }}>
 
-                        <Box sx={{
-                            display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
-                        }}>
+                        <Box >
                             <Typography component="box" sx={{
-                                fontSize: "64px",
+                                fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
                                 fontFamily: "Montserrat",
                                 fontWeight: "600",
                                 color: "#4E3A67",
-                                display: "block",
-                            }}> Get Best Jobs In
+                                display: { "xs": "none", "sm": "none", "md": "none", "xl": "block", "lg": "block" }
+                            }}> Get Suitable
+
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#4E3A67",
+                                    display: "block",
+                                    width: "max-content"
+                                }}>
+                                    Jobs Here
+                                </Typography>
 
                             </Typography>
+
                             <Typography component="box" sx={{
-                                fontSize: "64px",
+                                fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
                                 fontFamily: "Montserrat",
                                 fontWeight: "600",
                                 color: "#4E3A67",
-                                display: "block",
-                                width: "max-content"
-                            }}>
-                                Few CLICKS
+                                display: { "xs": "block", "sm": "block", "md": "block", "xl": "none", "lg": "none" }
+                            }}> Get Suitable Jobs Here
                             </Typography>
-                            <img src={window.location.origin + "/assets/g11.png"} alt="g52" style={{ margin: "40px 20px" }} />
+
+
+                            <ThemeMobileImage imageUrl="/assets/g11.png" />
+                            <Box sx={{
+                                position: "relative",
+                                left: "-130px",
+                                marginTop: "30px",
+                                zIndex: "100"
+                            }}
+                            >
+                                <ThemeWebsiteImage imageUrl="/assets/g11.png" />
+                            </Box>
 
                         </Box>
                     </Stack>
 
-                    <Box id="ProfessionalDiv" sx={{ width: { "xs": "100%", "sm": "100%", "md": "50%", "lg": "50%", "xl": "50%" } }}>
-
+                    <Box id="ProfessionalDiv" sx={{
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" },
+                        zIndex: "200"
+                    }}>
                         <Box >
 
                             <Box sx={{
@@ -410,10 +438,10 @@ const ProfessionalDetail = ({ jobType }) => {
                                     padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
                                 }}>
                                     <Typography component="box" sx={{
-                                        fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
+                                        fontSize: { "xs": "1.6rem", "sm": "1.6rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" },
                                         fontFamily: "Montserrat",
                                         fontWeight: "600",
-                                        color: "#4E3A67",
+                                        color: "#000000",
                                         display: "block",
                                         marginTop: "20px"
                                     }}>
@@ -458,7 +486,7 @@ const ProfessionalDetail = ({ jobType }) => {
 
                 </Stack>
             </Stack>
-        </Box>
+        </Box >
 
 
     </>)
