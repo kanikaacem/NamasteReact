@@ -576,7 +576,6 @@ const PersonalInformation = ({ jobType }) => {
                                                 <ThemeFInputDiv>
                                                     <ThemeLabel LableFor="skills" LableText="Skills *" />
                                                     <Field
-
                                                         variant="standard"
                                                         error={errors.skills && touched.skills}
                                                         component={Select}
@@ -602,7 +601,7 @@ const PersonalInformation = ({ jobType }) => {
                                                 <ThemeFInputDiv>
                                                     <ThemeLabel LableFor="total_work_experience" LableText="Total Work Experience" />
                                                     <Field
-                                                        error={errors.full_name && touched.full_name}
+                                                        error={errors.total_work_experience && touched.total_work_experience}
                                                         as={TextField}
                                                         id="total_work_experience"
                                                         placeholder="Enter Total Work Experience" type="text" name="total_work_experience" fullWidth />

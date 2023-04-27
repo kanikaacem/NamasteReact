@@ -36,13 +36,16 @@ import {
 
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 
+import { data4 } from "../../utils/Data";
+import FormMenu from "../../ThemeComponent/Common/FormMenu";
+import ThemeMobileImage from "../../ThemeComponent/Common/ThemeMobileImage";
+import ThemeWebsiteImage from "../../ThemeComponent/Common/ThemeWebsiteImage";
 
 import Error from '../../ThemeComponent/Common/Error';
 import ThemeLabel from '../../ThemeComponent/ThemeForms/ThemeLabel';
 import Loader from "../Common/Loader";
 import BackButton from "../../ThemeComponent/Common/BackButton";
 import CurrencyFormat from 'react-currency-format';
-
 import { useNavigate } from "react-router-dom";
 const PostJob = () => {
     const [postJobStep, setPostJobStep] = useState(1);
@@ -180,10 +183,6 @@ const PostJob = () => {
             window.scrollTo({ top: '0', behaviour: 'smooth' })
 
         }
-
-
-
-
     }
 
     const handleSubmit2 = async (values, { setFieldError, resetForm }) => {
@@ -283,63 +282,123 @@ const PostJob = () => {
         <Box className="PostJobPage"
             direction="column"
             sx={{
-                padding: (postJobStep == 1) ? { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" } : "0px",
+                padding: (postJobStep == 1) ? { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px", "xl": "30px " } : "0px",
                 gap: "50px",
                 visibility: (postJobStep == 1) ? "visible" : "hidden",
                 display: (postJobStep == 1) ? "block" : "none",
 
             }}>
 
-            <Stack direction="row"
+            <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }}
                 sx={{
                     gap: { "lg": "50px", "md": "0px", "xs": "0px" },
                 }}>
                 <Stack alignItems="center" sx={{
-                    width: { "lg": "35%", "md": "0px", "xs": "0px" },
-                    padding: { "lg": "100px", "md": "0px", "xs": "0px" },
-                    gap: "100px",
-                    visibility: { "lg": "visible", "md": "hidden", "xs": "hidden " },
+                    width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" },
                     display: (postJobStep == 1) ? "block" : "none",
                 }} >
-                    <Stack direction="column" gap={2}>
+                    <Box sx={{
+                        marginTop: "50px",
+                        display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
+                    }}>
                         <Typography component="box" sx={{
-                            fontSize: { "xs": "26px", "sm": "26px", "md": "64px", "lg": "64px", "xl": "64px" },
+                            margin: "20px",
+                            fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
                             fontFamily: "Montserrat",
                             fontWeight: "600",
                             color: "#4E3A67",
                             display: "block",
-                            marginTop: "20px",
-                            width: "100%"
+                            lineHeight: "1.2"
                         }}>
-                            50K People Have Got Jobs Through Us; Next is You!
+                            50K People Have
+                            <Typography component="box" sx={{
+                                fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                                width: "max-content",
+                                lineHeight: "1.2"
+                            }}>
+                                Got Jobs Through Us;
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#4E3A67",
+                                    display: "block",
+                                    lineHeight: "1.2"
+                                }}>
+                                    Next is You!
+                                </Typography>
+                            </Typography>
                         </Typography>
-                        <img src={window.location.origin + "/assets/g6.png"} alt="g6" />
-                    </Stack>
-
-                    <Stack direction="column" gap={2}>
-                        <Typography component="box" sx={{
-                            fontSize: { "xs": "26px", "sm": "26px", "md": "64px", "lg": "64px", "xl": "64px" },
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                            marginTop: "20px",
-                            width: "100%",
-                            textAlign: "end"
-                        }}>
-                            Select from
-                            the Jobs in Your City
-                        </Typography>
-                        <img src={window.location.origin + "/assets/g52.png"} alt="g52" />
-                    </Stack>
-
-                </Stack>
-                <Box sx={{ width: { "lg": "50%", "md": "100%", "xs": "100%" } }}>
-
+                        <ThemeWebsiteImage imageUrl="/assets/g51.png" imageWidth="500px" ></ThemeWebsiteImage>
+                    </Box>
 
                     <Box sx={{
-                        maxWidth: "763px",
-                        minHeight: "153px",
+                        marginTop: "500px",
+                        display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
+                    }}>
+                        <Typography component="box" sx={{
+                            margin: "20px",
+                            fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                            fontFamily: "Montserrat",
+                            fontWeight: "600",
+                            color: "#4E3A67",
+                            display: "block",
+                            textAlign: "end",
+                            lineHeight: "1.2"
+
+                        }}> Select from
+                            <Typography component="box" sx={{
+                                fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                                textAlign: "end",
+                                lineHeight: "1.2"
+
+                            }}>
+                                the Jobs in Your City
+                            </Typography>
+                        </Typography>
+
+                        <Box
+                            sx={{
+                                position: "relative",
+                                left: "300px"
+                            }}>
+                            <ThemeWebsiteImage
+                                imageUrl="/assets/g52.png" imageWidth="500px" ></ThemeWebsiteImage>
+                        </Box>
+
+                    </Box>
+
+                </Stack>
+                <Box sx={{
+                    display: { "xs": "block", "sm": "block", "md": "block", "lg": "none", "xl": "none" }
+                }}>
+                    <Typography component="box" sx={{
+                        margin: "20px",
+                        fontSize: { "xs": "1.6rem", "sm": "3rem", "md": "3rem", "xl": "4rem", "lg": "4rem" },
+                        fontFamily: "Montserrat",
+                        fontWeight: "600",
+                        color: "#4E3A67",
+                        display: "block",
+                        lineHeight: "1.2",
+                        textAlign: "center"
+                    }}>
+                        50K People Have Got Jobs Through Us; Next is You!
+
+                    </Typography>
+                    <ThemeMobileImage imageUrl="/assets/g52.png" />
+                </Box>
+                <Box sx={{
+                    width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" }
+                }}>
+                    <Box sx={{
                         background: "#F8F8F8",
                         border: "1px solid #EAEAEA",
                         boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
@@ -359,66 +418,20 @@ const PostJob = () => {
                         </Typography>
 
                         <Stack direction="row" gap={2} sx={{ margin: "25px 0px" }}>
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
-                                <Box sx={{
-                                    width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                    height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>1</Box>
-                                <Typography component="box" sx={{
-                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    display: "block",
-
-                                }}>
-                                    Job Information
-                                </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                </Box>
-                            </Stack>
-
-
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                <Box sx={{
-                                    width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                    height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>2</Box>
-                                <Typography component="box" sx={{
-                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block"
-                                }}>
-                                    Employee Requirements
-                                </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                </Box>
-                            </Stack>
+                            {
+                                data4 && data4.map((item) => {
+                                    return <FormMenu data={item} dataLength={data4.length} formStep={postJobStep - 1} />
+                                })
+                            }
                         </Stack>
 
                     </Box>
                     <Box sx={{
                         boxSizing: "border-box",
-                        maxWidth: "865px",
-                        height: "647",
                         background: "#FFFFFF",
                         border: "1px solid #EDEDED",
-                        borderRadius: "19px",
+                        borderBottomLeftRadius: "19px",
+                        borderBottomRightRadius: "19px",
                         padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
                         position: "relative",
                         top: "-30px"
@@ -1063,44 +1076,49 @@ const PostJob = () => {
                 height: (postJobStep == 2) ? "fit-content" : "0px",
                 display: (postJobStep == 2) ? "block" : "none",
             }}>
-            <Stack className="PosrJobWrapper"
+            <Stack className="PostJobWrapper"
                 sx=
                 {{
                     padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
                     gap: "24px"
                 }}>
 
-                <Stack direction="row" sx={{ position: "relative", gap: { "xs": '0px', "sm": "0px", "md": "16px", "lg": "16px", "xl": "16px" } }}>
+                <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} sx={{
+                    position: "relative",
+                    gap: { "xs": '0px', "sm": "0px", "md": "16px", "lg": "16px", "xl": "16px" }
+                }}>
                     <Box sx={{
-                        width: { "lg": "35%", "md": "0px", "xs": "0px" },
-                        padding: { "lg": "100px", "md": "0px", "xs": "0px" },
-                        gap: "100px",
-                        visibility: { "lg": "visible", "md": "hidden", "xs": "hidden " }
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" },
+                        padding: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "100px 0px", "xl": "100px 0px" },
                     }}>
                         <Stack direction="column" sx={{
-
-                            width: "573px",
+                            width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "573px", "xl": "573px" },
                             zIndex: "78798",
                             gap: { "lg": "50px", "md": "0px", "xs": "0px" },
                             display: (postJobStep == 2) ? "block" : "none",
 
                         }}>
-                            <Box sx={{ display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" } }}>
+                            <Box >
                                 <Typography component="box" sx={{
-                                    fontSize: "64px",
+                                    fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
                                     fontFamily: "Montserrat",
                                     fontWeight: "600",
                                     color: "#4E3A67",
                                     display: "block",
                                     marginTop: "20px",
-                                    width: "600px"
+                                    textAlign: "center",
+                                    margin: { "xs": "15px", "sm": "15px", "md": "15px", "lg": "0px", "xl": "0px" }
                                 }}>
                                     Free job posting facility
                                 </Typography>
-                                <img style={{
+                                <Box sx={{
                                     position: "relative",
                                     left: "-150px"
-                                }} src={window.location.origin + "/assets/g12.png"} alt="g12" />
+                                }}>
+                                    <ThemeWebsiteImage imageUrl="/assets/g12.png" />
+                                </Box>
+                                <ThemeMobileImage imageUrl="/assets/g12.png" />
+
                             </Box>
 
 
@@ -1108,534 +1126,488 @@ const PostJob = () => {
 
                     </Box>
 
-                    <Box sx={{ width: { "lg": "50%", "md": "100%", "xs": "100%" } }}>
+                    <Box sx={{
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" },
 
+                    }}>
                         <Box sx={{
-                            maxWidth: "763px",
-                            // height: "153px",
                             background: "#F8F8F8",
                             border: "1px solid #EAEAEA",
                             boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
-                            borderRadius: "19px",
-                            padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" }
+                            borderRadius: "19px"
                         }}>
-                            <BackButton
-                                GoBack={
-                                    () => {
-                                        setPostJobStep(1)
+                            <Box sx={{
+                                padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" }
+                            }}>
+                                <BackButton
+                                    GoBack={
+                                        () => {
+                                            setPostJobStep(1)
+                                        }
+                                    } ></BackButton>
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#000000",
+                                    display: "block",
+                                    marginTop: "20px"
+                                }}>
+                                    Job Details
+                                </Typography>
+
+                                <Stack direction="row" gap={2} sx={{ margin: "25px 0px" }}>
+                                    {
+                                        data4 && data4.map((item) => {
+                                            return <FormMenu data={item} dataLength={data4.length} formStep={postJobStep - 1} />
+                                        })
                                     }
-                                } ></BackButton>
-                            <Typography component="box" sx={{
-                                fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
-                                fontFamily: "Montserrat",
-                                fontWeight: "600",
-                                color: "#4E3A67",
-                                display: "block",
-                                marginTop: "20px"
-                            }}>
-                                Job Details
-                            </Typography>
-
-                            <Stack direction="row" gap={2} sx={{ margin: "25px 0px" }}>
-                                <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }} >
-                                    <Box sx={{
-                                        width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                        height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                        background: "#FC9A7E",
-                                        borderRadius: "50%",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
-
-                                    }}>1</Box>
-                                    <Typography component="box" sx={{
-                                        fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                        fontFamily: "Montserrat",
-                                        fontWeight: "600",
-                                        display: "block",
-
-                                    }}>
-                                        Company Information
-                                    </Typography>
-                                    <Box>
-                                        <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                    </Box>
                                 </Stack>
+                            </Box>
 
 
-                                <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
-                                    <Box sx={{
-                                        width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                        height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                        background: "#FC9A7E",
-                                        borderRadius: "50%",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+                            <Box sx={{
+                                boxSizing: "border-box",
+                                background: "#FFFFFF",
+                                border: "1px solid #EDEDED",
+                                borderBottomLeftRadius: "19px",
+                                borderBottomRightRadius: "19px",
+                                padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
+                                position: "relative",
 
-                                    }}>2</Box>
-                                    <Typography component="box" sx={{
-                                        fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                        fontFamily: "Montserrat",
-                                        fontWeight: "600",
-                                        color: "#4E3A67",
-                                        display: "block"
-                                    }}>
-                                        Employee Requirements
-                                    </Typography>
-                                    <Box>
-                                        <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                    </Box>
-                                </Stack>
-                            </Stack>
-
-                        </Box>
-                        <Box sx={{
-                            boxSizing: "border-box",
-                            maxWidth: "865px",
-                            height: "647",
-                            background: "#FFFFFF",
-                            border: "1px solid #EDEDED",
-                            borderRadius: "19px",
-                            // top: "197px",
-                            padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
-                            position: "relative",
-                            top: "-10px"
-
-                        }}>
-
-                            <Typography component="box" sx={{
-                                fontSize: { "xs": "26px", "sm": "26px", "md": "32px", "lg": "32px", "xl": "32px" },
-                                fontFamily: "Montserrat",
-                                fontWeight: "600",
-                                color: "#4E3A67",
-                                display: "block",
-                                margin: "20px 0px"
                             }}>
-                                Employee Requirements
-                            </Typography>
-                            <Formik
 
-                                initialValues={defaultValue2}
-                                validationSchema={postJobSchema2}
-                                onSubmit={handleSubmit2}
-                            >
-                                {({ values, errors, touched, setFieldValue }) => (
-                                    <Form className="PostJobForm1" >
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "26px", "sm": "26px", "md": "32px", "lg": "32px", "xl": "32px" },
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#4E3A67",
+                                    display: "block",
+                                    margin: "20px 0px"
+                                }}>
+                                    Employee Requirements
+                                </Typography>
+                                <Formik
 
-                                        <ThemeFInputDiv >
+                                    initialValues={defaultValue2}
+                                    validationSchema={postJobSchema2}
+                                    onSubmit={handleSubmit2}
+                                >
+                                    {({ values, errors, touched, setFieldValue }) => (
+                                        <Form className="PostJobForm2" >
+                                            <ThemeFInputDiv >
+                                                <ThemeFInputDiv>
+                                                    <ThemeLabel LableFor="experienced_required" LableText="Experience Required" />
+                                                    <Stack direction="row" gap={2}>
+                                                        <Box sx={{ width: "50%" }}>
+                                                            <Box sx={{
+                                                                margin: "15px 0px"
+                                                            }}>Min Exp. (Yrs)</Box>
+                                                            <SelectField
+                                                                labelId="demo-simple-select-label"
+                                                                name="min_exp"
+                                                                value={minExp}
+                                                                label="role"
+                                                                onChange={(event) => {
+                                                                    setMinExp(event.target.value);
+                                                                    setFieldValue("min_exp", event.target.value);
+                                                                }}
+                                                                sx={{
+                                                                    background: " #FFFFFF",
+                                                                    border: "1px solid #EAEAEA",
+                                                                    boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                    borderRadius: "7px",
+                                                                    width: "101%",
+                                                                    fontSize: "16px",
+                                                                    fontamily: 'Montserrat',
+                                                                    BorderBottom: 'none !important',
 
-                                            <ThemeFInputDiv>
-                                                <ThemeLabel LableFor="experienced_required" LableText="Experience Required" />
-                                                <Stack direction="row" gap={2}>
-                                                    <Box sx={{ width: "50%" }}>
-                                                        <Box sx={{
-                                                            margin: "15px 0px"
-                                                        }}>Min Exp. (Yrs)</Box>
-                                                        <SelectField
-                                                            labelId="demo-simple-select-label"
-                                                            name="min_exp"
-                                                            value={minExp}
-                                                            label="role"
-                                                            onChange={(event) => {
-                                                                setMinExp(event.target.value);
-                                                                setFieldValue("min_exp", event.target.value);
-                                                            }}
-                                                            sx={{
-                                                                background: " #FFFFFF",
-                                                                border: "1px solid #EAEAEA",
-                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                                borderRadius: "7px",
-                                                                width: "101%",
-                                                                fontSize: "16px",
-                                                                fontamily: 'Montserrat',
-                                                                BorderBottom: 'none !important',
+                                                                }}
+                                                                disableUnderline
+                                                            >
+                                                                <MenuItem value=" ">Select Min Exp </MenuItem>
+                                                                {ExperienceLevel.map((item) =>
+                                                                    <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                                )}
+                                                            </SelectField>
+                                                        </Box>
 
-                                                            }}
-                                                            disableUnderline
-                                                        >
-                                                            <MenuItem value=" ">Select Min Exp </MenuItem>
-                                                            {ExperienceLevel.map((item) =>
-                                                                <MenuItem value={item} key={item}>{item}</MenuItem>
-                                                            )}
-                                                        </SelectField>
-                                                    </Box>
+                                                        <Box sx={{ width: "50%" }}>
+                                                            <Box sx={{
+                                                                margin: "15px 0px"
+                                                            }}> Max Exp. (Yrs)</Box>
+                                                            <SelectField
+                                                                labelId="demo-simple-select-label"
+                                                                name="max_exp"
+                                                                value={maxExp}
+                                                                label="role"
+                                                                onChange={(event) => {
+                                                                    setMaxExp(event.target.value);
+                                                                    setFieldValue("max_exp", event.target.value);
+                                                                }}
+                                                                sx={{
+                                                                    background: " #FFFFFF",
+                                                                    border: "1px solid #EAEAEA",
+                                                                    boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                    borderRadius: "7px",
+                                                                    width: "101%",
+                                                                    fontSize: "16px",
+                                                                    fontamily: 'Montserrat',
+                                                                    BorderBottom: 'none !important',
+                                                                }}
+                                                                disableUnderline
+                                                            >
+                                                                <MenuItem value=" ">Select Max Exp </MenuItem>
+                                                                {ExperienceLevel.map((item) =>
+                                                                    <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                                )}
+                                                            </SelectField>
+                                                        </Box>
+                                                    </Stack>
+                                                    {errors.max_exp && touched.max_exp && <Error text={errors.max_exp} />}
 
-                                                    <Box sx={{ width: "50%" }}>
-                                                        <Box sx={{
-                                                            margin: "15px 0px"
-                                                        }}> Max Exp. (Yrs)</Box>
-                                                        <SelectField
-                                                            labelId="demo-simple-select-label"
-                                                            name="max_exp"
-                                                            value={maxExp}
-                                                            label="role"
-                                                            onChange={(event) => {
-                                                                setMaxExp(event.target.value);
-                                                                setFieldValue("max_exp", event.target.value);
-                                                            }}
-                                                            sx={{
-                                                                background: " #FFFFFF",
-                                                                border: "1px solid #EAEAEA",
-                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                                borderRadius: "7px",
-                                                                width: "101%",
-                                                                fontSize: "16px",
-                                                                fontamily: 'Montserrat',
-                                                                BorderBottom: 'none !important',
-                                                            }}
-                                                            disableUnderline
-                                                        >
-                                                            <MenuItem value=" ">Select Max Exp </MenuItem>
-                                                            {ExperienceLevel.map((item) =>
-                                                                <MenuItem value={item} key={item}>{item}</MenuItem>
-                                                            )}
-                                                        </SelectField>
-                                                    </Box>
-                                                </Stack>
-                                                {errors.max_exp && touched.max_exp && <Error text={errors.max_exp} />}
-
-                                            </ThemeFInputDiv>
-
-                                            <ThemeFInputDiv>
-                                                <ThemeLabel LableFor="age" LableText="Age" />
-                                                <Stack direction="row" gap={2}>
-                                                    <Box sx={{ width: "50%" }}>
-                                                        <Box sx={{
-                                                            margin: "15px 0px"
-                                                        }}> Min Age. (Yrs) </Box>
-                                                        <SelectField
-                                                            labelId="demo-simple-select-label"
-                                                            name="min_age"
-                                                            value={minAge}
-                                                            label="role"
-                                                            onChange={(event) => {
-                                                                setMinAge(event.target.value);
-                                                                setFieldValue("min_age", event.target.value);
-                                                            }}
-                                                            sx={{
-                                                                background: " #FFFFFF",
-                                                                border: "1px solid #EAEAEA",
-                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                                borderRadius: "7px",
-                                                                width: "101%",
-                                                                fontSize: "16px",
-                                                                fontamily: 'Montserrat',
-                                                                BorderBottom: 'none !important',
-
-                                                            }}
-                                                            disableUnderline
-                                                        >
-                                                            <MenuItem value=" ">Select Min Age </MenuItem>
-                                                            {AgeLevel.map((item) =>
-                                                                <MenuItem value={item} key={item}>{item}</MenuItem>
-                                                            )}
-                                                        </SelectField>
-                                                    </Box>
-
-                                                    <Box sx={{ width: "50%" }}>
-                                                        <Box sx={{
-                                                            margin: "15px 0px"
-                                                        }}> Max Age. (Yrs)</Box>
-                                                        <SelectField
-                                                            labelId="demo-simple-select-label"
-                                                            name="max_age"
-                                                            value={maxAge}
-                                                            label="role"
-                                                            onChange={(event) => {
-                                                                setMaxAge(event.target.value);
-                                                                setFieldValue("max_age", event.target.value);
-                                                            }}
-                                                            sx={{
-                                                                background: " #FFFFFF",
-                                                                border: "1px solid #EAEAEA",
-                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                                borderRadius: "7px",
-                                                                width: "101%",
-                                                                fontSize: "16px",
-                                                                fontamily: 'Montserrat',
-                                                                BorderBottom: 'none !important',
-                                                            }}
-                                                            disableUnderline
-                                                        >
-                                                            <MenuItem value=" ">Select Max Exp </MenuItem>
-                                                            {AgeLevel.map((item) =>
-                                                                <MenuItem value={item} key={item}>{item}</MenuItem>
-                                                            )}
-                                                        </SelectField>
-                                                    </Box>
-                                                </Stack>
-
-                                                {errors.max_age && touched.max_age && <Error text={errors.max_age} />}
-                                            </ThemeFInputDiv>
-
-                                            <Stack direction="row" gap={2}
-                                                sx={{
-                                                    flexWrap: "wrap"
-                                                }}>
-                                                <ThemeFInputDiv sx={{ width: "30%" }}>
-                                                    <ThemeLabel LableFor="education_type" LableText="Education Type" />
-                                                    <SelectField
-                                                        labelId="demo-simple-select-label"
-                                                        name="association_type"
-                                                        value={educationType}
-                                                        label="role"
-                                                        onChange={(event) => {
-                                                            setEducationType(event.target.value);
-                                                            setFieldValue("education_type", event.target.value);
-                                                        }}
-                                                        sx={{
-                                                            background: " #FFFFFF",
-                                                            border: "1px solid #EAEAEA",
-                                                            boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                            borderRadius: "7px",
-                                                            width: "101%",
-                                                            fontSize: "16px",
-                                                            fontamily: 'Montserrat',
-                                                            BorderBottom: 'none !important',
-
-                                                            padding: "8px"
-                                                        }}
-                                                        disableUnderline
-                                                    >
-                                                        <MenuItem value=" ">Select Education Type </MenuItem>
-                                                        {EducationType.map((item) =>
-                                                            <MenuItem value={item.value} key={item.id}>{item.value}</MenuItem>
-                                                        )}
-                                                    </SelectField>
-
-                                                    {errors.education_type && touched.education_type && <Error text={errors.education_type} />}
-                                                </ThemeFInputDiv>
-
-                                                <ThemeFInputDiv sx={{ width: "30%" }}>
-                                                    <ThemeLabel LableFor="education_degree" LableText="Education Degree" />
-                                                    <SelectField
-                                                        labelId="demo-simple-select-label"
-                                                        name="education_degree"
-                                                        value={associationType}
-                                                        label="role"
-                                                        onChange={(event) => {
-                                                            setAssociationType(event.target.value);
-                                                            setFieldValue("education_degree", event.target.value);
-                                                        }}
-                                                        sx={{
-                                                            background: " #FFFFFF",
-                                                            border: "1px solid #EAEAEA",
-                                                            boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                            borderRadius: "7px",
-                                                            width: "101%",
-                                                            fontSize: "16px",
-                                                            fontamily: 'Montserrat',
-                                                            BorderBottom: 'none !important',
-                                                        }}
-                                                        disableUnderline
-                                                    >
-                                                        <MenuItem value=" ">Select Education Degree</MenuItem>
-                                                        {CandidateEducation.map((item) =>
-                                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                                        )}
-                                                    </SelectField>
-
-                                                    {errors.education_degree && touched.education_degree && <Error text={errors.education_degree} />}
                                                 </ThemeFInputDiv>
 
                                                 <ThemeFInputDiv>
-                                                    <ThemeLabel LableFor="perferred_degree" LableText="Perferred Education" />
-                                                    <SelectField
-                                                        labelId="demo-simple-select-label"
-                                                        name="perferred_degree"
-                                                        value={perferredDegree}
-                                                        label="role"
-                                                        onChange={(event) => {
-                                                            setPerferredDegree(event.target.value);
-                                                            setFieldValue("perferred_degree", event.target.value);
-                                                        }}
-                                                        sx={{
-                                                            background: " #FFFFFF",
-                                                            border: "1px solid #EAEAEA",
-                                                            boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                            borderRadius: "7px",
-                                                            width: "101%",
-                                                            fontSize: "16px",
-                                                            fontamily: 'Montserrat',
-                                                            BorderBottom: 'none !important',
+                                                    <ThemeLabel LableFor="age" LableText="Age" />
+                                                    <Stack direction="row" gap={2}>
+                                                        <Box sx={{ width: "50%" }}>
+                                                            <Box sx={{
+                                                                margin: "15px 0px"
+                                                            }}> Min Age. (Yrs) </Box>
+                                                            <SelectField
+                                                                labelId="demo-simple-select-label"
+                                                                name="min_age"
+                                                                value={minAge}
+                                                                label="role"
+                                                                onChange={(event) => {
+                                                                    setMinAge(event.target.value);
+                                                                    setFieldValue("min_age", event.target.value);
+                                                                }}
+                                                                sx={{
+                                                                    background: " #FFFFFF",
+                                                                    border: "1px solid #EAEAEA",
+                                                                    boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                    borderRadius: "7px",
+                                                                    width: "101%",
+                                                                    fontSize: "16px",
+                                                                    fontamily: 'Montserrat',
+                                                                    BorderBottom: 'none !important',
 
-                                                        }}
-                                                        disableUnderline
-                                                    >
-                                                        <MenuItem value=" ">Select Perferred Degree</MenuItem>
-                                                        {CandidateEducation.map((item) =>
-                                                            <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
-                                                        )}
-                                                    </SelectField>
+                                                                }}
+                                                                disableUnderline
+                                                            >
+                                                                <MenuItem value=" ">Select Min Age </MenuItem>
+                                                                {AgeLevel.map((item) =>
+                                                                    <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                                )}
+                                                            </SelectField>
+                                                        </Box>
 
-                                                    {errors.perferred_degree && touched.perferred_degree && <Error text={errors.perferred_degree} />}
+                                                        <Box sx={{ width: "50%" }}>
+                                                            <Box sx={{
+                                                                margin: "15px 0px"
+                                                            }}> Max Age. (Yrs)</Box>
+                                                            <SelectField
+                                                                labelId="demo-simple-select-label"
+                                                                name="max_age"
+                                                                value={maxAge}
+                                                                label="role"
+                                                                onChange={(event) => {
+                                                                    setMaxAge(event.target.value);
+                                                                    setFieldValue("max_age", event.target.value);
+                                                                }}
+                                                                sx={{
+                                                                    background: " #FFFFFF",
+                                                                    border: "1px solid #EAEAEA",
+                                                                    boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                    borderRadius: "7px",
+                                                                    width: "101%",
+                                                                    fontSize: "16px",
+                                                                    fontamily: 'Montserrat',
+                                                                    BorderBottom: 'none !important',
+                                                                }}
+                                                                disableUnderline
+                                                            >
+                                                                <MenuItem value=" ">Select Max Exp </MenuItem>
+                                                                {AgeLevel.map((item) =>
+                                                                    <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                                )}
+                                                            </SelectField>
+                                                        </Box>
+                                                    </Stack>
+
+                                                    {errors.max_age && touched.max_age && <Error text={errors.max_age} />}
                                                 </ThemeFInputDiv>
 
-                                            </Stack>
-                                            <ThemeFInputDiv>
-                                                <ThemeLabel LableFor="gender" LableText="Gender" />
-                                                <ThemeFInputDiv>
-                                                    <FormControl>
-                                                        <RadioGroup
-                                                            aria-labelledby="demo-controlled-radio-buttons-group"
-                                                            name="controlled-radio-buttons-group"
-                                                            value={gender}
-                                                            onChange={(event) => {
-                                                                setGender(event.target.value)
-                                                                setFieldValue("gender", event.target.value)
-                                                            }}
-                                                        >
-                                                            <Stack direction="row" gap={3} sx={{
-                                                                flexWrap: "wrap"
-                                                            }}>
-
-                                                                <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
-                                                                    sx={{
-                                                                        height: "59px",
-                                                                        width: "230px",
-                                                                        borderRadius: "7px",
-                                                                        border: " 2px solid #EAEAEA"
-                                                                    }} >
-                                                                    <Box sx={{ marginLeft: "20px" }}>Male</Box>
-                                                                    <FormControlLabel value="male" control={<Radio />} label="" />
-                                                                </Stack>
-
-                                                                <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
-                                                                    sx={{
-                                                                        height: "59px",
-                                                                        width: "230px",
-                                                                        borderRadius: "7px",
-                                                                        border: " 2px solid #EAEAEA"
-                                                                    }} >
-                                                                    <Box sx={{ marginLeft: "20px" }}>Female</Box>
-                                                                    <FormControlLabel value="female" control={<Radio />} label="" />
-                                                                </Stack>
-
-                                                                <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
-                                                                    sx={{
-                                                                        height: "59px",
-                                                                        width: "231px",
-                                                                        borderRadius: "7px",
-                                                                        border: " 2px solid #EAEAEA"
-                                                                    }} >
-                                                                    <Box sx={{ marginLeft: "20px" }}>Both</Box>
-                                                                    <FormControlLabel value="both" control={<Radio />} label="" />
-                                                                </Stack>
-                                                            </Stack>
-
-                                                        </RadioGroup>
-                                                    </FormControl>
-                                                </ThemeFInputDiv>
-                                                {errors.gender && touched.gender && <Error text={errors.gender} />}
-                                            </ThemeFInputDiv>
-
-                                            <ThemeFInputDiv>
-                                                <ThemeLabel LableFor="mandatory_local_language" LableText="Mandatory Local Language" />
-                                                <SelectField
-                                                    labelId="demo-simple-select-label"
-                                                    name="mandatory_local_language"
-                                                    value={localLanguage}
-                                                    label="role"
-                                                    onChange={(event) => {
-                                                        setLocalLanguage(event.target.value);
-                                                        setFieldValue("mandatory_local_language", event.target.value);
-                                                    }}
+                                                <Stack direction="row" gap={2}
                                                     sx={{
-                                                        background: " #FFFFFF",
-                                                        border: "1px solid #EAEAEA",
-                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                        borderRadius: "7px",
-                                                        width: "101%",
-                                                        fontSize: "16px",
-                                                        fontamily: 'Montserrat',
-                                                        BorderBottom: 'none !important',
+                                                        flexWrap: "wrap"
+                                                    }}>
+                                                    <ThemeFInputDiv sx={{ width: "30%" }}>
+                                                        <ThemeLabel LableFor="education_type" LableText="Education Type" />
+                                                        <SelectField
+                                                            labelId="demo-simple-select-label"
+                                                            name="association_type"
+                                                            value={educationType}
+                                                            label="role"
+                                                            onChange={(event) => {
+                                                                setEducationType(event.target.value);
+                                                                setFieldValue("education_type", event.target.value);
+                                                            }}
+                                                            sx={{
+                                                                background: " #FFFFFF",
+                                                                border: "1px solid #EAEAEA",
+                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                borderRadius: "7px",
+                                                                width: "101%",
+                                                                fontSize: "16px",
+                                                                fontamily: 'Montserrat',
+                                                                BorderBottom: 'none !important',
 
-                                                    }}
-                                                    disableUnderline
-                                                >
-                                                    <MenuItem value=" ">Select Local language</MenuItem>
+                                                                padding: "8px"
+                                                            }}
+                                                            disableUnderline
+                                                        >
+                                                            <MenuItem value=" ">Select Education Type </MenuItem>
+                                                            {EducationType.map((item) =>
+                                                                <MenuItem value={item.value} key={item.id}>{item.value}</MenuItem>
+                                                            )}
+                                                        </SelectField>
 
-                                                    {localLanguageData && localLanguageData.map((item) =>
-                                                        <MenuItem value={item} key={item}>{item}</MenuItem>
-                                                    )}
-                                                </SelectField>
+                                                        {errors.education_type && touched.education_type && <Error text={errors.education_type} />}
+                                                    </ThemeFInputDiv>
 
-                                                {errors.mandatory_local_language && touched.mandatory_local_language && <Error text={errors.mandatory_local_language} />}
+                                                    <ThemeFInputDiv sx={{ width: "30%" }}>
+                                                        <ThemeLabel LableFor="education_degree" LableText="Education Degree" />
+                                                        <SelectField
+                                                            labelId="demo-simple-select-label"
+                                                            name="education_degree"
+                                                            value={associationType}
+                                                            label="role"
+                                                            onChange={(event) => {
+                                                                setAssociationType(event.target.value);
+                                                                setFieldValue("education_degree", event.target.value);
+                                                            }}
+                                                            sx={{
+                                                                background: " #FFFFFF",
+                                                                border: "1px solid #EAEAEA",
+                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                borderRadius: "7px",
+                                                                width: "101%",
+                                                                fontSize: "16px",
+                                                                fontamily: 'Montserrat',
+                                                                BorderBottom: 'none !important',
+                                                            }}
+                                                            disableUnderline
+                                                        >
+                                                            <MenuItem value=" ">Select Education Degree</MenuItem>
+                                                            {CandidateEducation.map((item) =>
+                                                                <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                            )}
+                                                        </SelectField>
+
+                                                        {errors.education_degree && touched.education_degree && <Error text={errors.education_degree} />}
+                                                    </ThemeFInputDiv>
+
+                                                    <ThemeFInputDiv>
+                                                        <ThemeLabel LableFor="perferred_degree" LableText="Perferred Education" />
+                                                        <SelectField
+                                                            labelId="demo-simple-select-label"
+                                                            name="perferred_degree"
+                                                            value={perferredDegree}
+                                                            label="role"
+                                                            onChange={(event) => {
+                                                                setPerferredDegree(event.target.value);
+                                                                setFieldValue("perferred_degree", event.target.value);
+                                                            }}
+                                                            sx={{
+                                                                background: " #FFFFFF",
+                                                                border: "1px solid #EAEAEA",
+                                                                boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                borderRadius: "7px",
+                                                                width: "101%",
+                                                                fontSize: "16px",
+                                                                fontamily: 'Montserrat',
+                                                                BorderBottom: 'none !important',
+
+                                                            }}
+                                                            disableUnderline
+                                                        >
+                                                            <MenuItem value=" ">Select Perferred Degree</MenuItem>
+                                                            {CandidateEducation.map((item) =>
+                                                                <MenuItem value={item.value} key={item.id}>{item.Name}</MenuItem>
+                                                            )}
+                                                        </SelectField>
+
+                                                        {errors.perferred_degree && touched.perferred_degree && <Error text={errors.perferred_degree} />}
+                                                    </ThemeFInputDiv>
+
+                                                </Stack>
+                                                <ThemeFInputDiv>
+                                                    <ThemeLabel LableFor="gender" LableText="Gender" />
+                                                    <ThemeFInputDiv>
+                                                        <FormControl>
+                                                            <RadioGroup
+                                                                aria-labelledby="demo-controlled-radio-buttons-group"
+                                                                name="controlled-radio-buttons-group"
+                                                                value={gender}
+                                                                onChange={(event) => {
+                                                                    setGender(event.target.value)
+                                                                    setFieldValue("gender", event.target.value)
+                                                                }}
+                                                            >
+                                                                <Stack direction="row" gap={3} sx={{
+                                                                    flexWrap: "wrap"
+                                                                }}>
+
+                                                                    <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                                        sx={{
+                                                                            height: "59px",
+                                                                            width: "230px",
+                                                                            borderRadius: "7px",
+                                                                            border: " 2px solid #EAEAEA"
+                                                                        }} >
+                                                                        <Box sx={{ marginLeft: "20px" }}>Male</Box>
+                                                                        <FormControlLabel value="male" control={<Radio />} label="" />
+                                                                    </Stack>
+
+                                                                    <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                                        sx={{
+                                                                            height: "59px",
+                                                                            width: "230px",
+                                                                            borderRadius: "7px",
+                                                                            border: " 2px solid #EAEAEA"
+                                                                        }} >
+                                                                        <Box sx={{ marginLeft: "20px" }}>Female</Box>
+                                                                        <FormControlLabel value="female" control={<Radio />} label="" />
+                                                                    </Stack>
+
+                                                                    <Stack direction="row" gap={2} alignItems="center" justifyContent="space-between"
+                                                                        sx={{
+                                                                            height: "59px",
+                                                                            width: "231px",
+                                                                            borderRadius: "7px",
+                                                                            border: " 2px solid #EAEAEA"
+                                                                        }} >
+                                                                        <Box sx={{ marginLeft: "20px" }}>Both</Box>
+                                                                        <FormControlLabel value="both" control={<Radio />} label="" />
+                                                                    </Stack>
+                                                                </Stack>
+
+                                                            </RadioGroup>
+                                                        </FormControl>
+                                                    </ThemeFInputDiv>
+                                                    {errors.gender && touched.gender && <Error text={errors.gender} />}
+                                                </ThemeFInputDiv>
+
+                                                <ThemeFInputDiv>
+                                                    <ThemeLabel LableFor="mandatory_local_language" LableText="Mandatory Local Language" />
+                                                    <SelectField
+                                                        labelId="demo-simple-select-label"
+                                                        name="mandatory_local_language"
+                                                        value={localLanguage}
+                                                        label="role"
+                                                        onChange={(event) => {
+                                                            setLocalLanguage(event.target.value);
+                                                            setFieldValue("mandatory_local_language", event.target.value);
+                                                        }}
+                                                        sx={{
+                                                            background: " #FFFFFF",
+                                                            border: "1px solid #EAEAEA",
+                                                            boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                            borderRadius: "7px",
+                                                            width: "101%",
+                                                            fontSize: "16px",
+                                                            fontamily: 'Montserrat',
+                                                            BorderBottom: 'none !important',
+
+                                                        }}
+                                                        disableUnderline
+                                                    >
+                                                        <MenuItem value=" ">Select Local language</MenuItem>
+
+                                                        {localLanguageData && localLanguageData.map((item) =>
+                                                            <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                        )}
+                                                    </SelectField>
+
+                                                    {errors.mandatory_local_language && touched.mandatory_local_language && <Error text={errors.mandatory_local_language} />}
+                                                </ThemeFInputDiv>
+
+                                                <Stack direction="row" gap={5}>
+                                                    <ThemeFInputDiv sx={{ width: "50%" }}>
+                                                        <ThemeLabel LableFor="hindi_required" LableText="Hindi Required" />
+
+
+                                                        <Field
+
+                                                            variant="standard"
+                                                            error={errors.skills && touched.skills}
+                                                            component={Select}
+                                                            name="skills"
+                                                            options={Proficiency}
+                                                            components={animatedComponents}
+                                                            onChange={(options) => {
+                                                                let optionvalue = [];
+                                                                setSelectedOptions(options);
+                                                                options.map((item) => {
+                                                                    optionvalue.push(item.value);
+                                                                })
+                                                                setFieldValue("hindi_required", optionvalue.join(","));
+                                                            }}
+                                                            isMulti
+                                                            placeholder="Select Proficiency Level " data={Proficiency} fullWidth />
+
+                                                        {errors.hindi_required && touched.hindi_required && <Error text={errors.hindi_required} />}
+                                                    </ThemeFInputDiv>
+
+                                                    <ThemeFInputDiv sx={{ width: "50%" }}>
+                                                        <ThemeLabel LableFor="english_required" LableText="English Required" />
+                                                        <Field
+
+                                                            variant="standard"
+                                                            error={errors.skills && touched.skills}
+                                                            component={Select}
+                                                            name="skills"
+                                                            options={Proficiency}
+                                                            components={animatedComponents}
+                                                            onChange={(options) => {
+                                                                let optionvalue = [];
+                                                                setSelectedOptions(options);
+                                                                options.map((item) => {
+                                                                    optionvalue.push(item.value);
+                                                                })
+                                                                setFieldValue("english_required", optionvalue.join(","));
+                                                            }}
+                                                            isMulti
+                                                            placeholder="Select Proficiency Level " data={Proficiency} fullWidth />
+
+
+                                                        {errors.english_required && touched.english_required && <Error text={errors.english_required} />}
+                                                    </ThemeFInputDiv>
+                                                </Stack>
+
                                             </ThemeFInputDiv>
 
-                                            <Stack direction="row" gap={5}>
-                                                <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                    <ThemeLabel LableFor="hindi_required" LableText="Hindi Required" />
-
-
-                                                    <Field
-
-                                                        variant="standard"
-                                                        error={errors.skills && touched.skills}
-                                                        component={Select}
-                                                        name="skills"
-                                                        options={Proficiency}
-                                                        components={animatedComponents}
-                                                        onChange={(options) => {
-                                                            let optionvalue = [];
-                                                            setSelectedOptions(options);
-                                                            options.map((item) => {
-                                                                optionvalue.push(item.value);
-                                                            })
-                                                            setFieldValue("hindi_required", optionvalue.join(","));
-                                                        }}
-                                                        isMulti
-                                                        placeholder="Select Proficiency Level " data={Proficiency} fullWidth />
-
-                                                    {errors.hindi_required && touched.hindi_required && <Error text={errors.hindi_required} />}
-                                                </ThemeFInputDiv>
-
-                                                <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                    <ThemeLabel LableFor="english_required" LableText="English Required" />
-                                                    <Field
-
-                                                        variant="standard"
-                                                        error={errors.skills && touched.skills}
-                                                        component={Select}
-                                                        name="skills"
-                                                        options={Proficiency}
-                                                        components={animatedComponents}
-                                                        onChange={(options) => {
-                                                            let optionvalue = [];
-                                                            setSelectedOptions(options);
-                                                            options.map((item) => {
-                                                                optionvalue.push(item.value);
-                                                            })
-                                                            setFieldValue("english_required", optionvalue.join(","));
-                                                        }}
-                                                        isMulti
-                                                        placeholder="Select Proficiency Level " data={Proficiency} fullWidth />
-
-
-                                                    {errors.english_required && touched.english_required && <Error text={errors.english_required} />}
-                                                </ThemeFInputDiv>
+                                            <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                                                <ThemeButtonType2 id="save" variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Save</ThemeButtonType2>
                                             </Stack>
 
-                                        </ThemeFInputDiv>
+                                        </Form>
+                                    )}
+                                </Formik>
 
-                                        <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                            <ThemeButtonType2 id="save" variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Save</ThemeButtonType2>
-                                        </Stack>
 
-                                    </Form>
-                                )}
-                            </Formik>
-
+                            </Box>
 
                         </Box>
+
                     </Box>
 
-                </Stack>
-            </Stack>
-        </Box>
+                </Stack >
+            </Stack >
+        </Box >
 
 
 
