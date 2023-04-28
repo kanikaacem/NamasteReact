@@ -17,6 +17,8 @@ import { useState, useEffect } from "react";
 
 import { data2 } from "../../utils/Data";
 import FormMenu from "../Common/FormMenu";
+import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
+import ThemeMobileImage from "../Common/ThemeMobileImage";
 
 import { useNavigate } from "react-router-dom";
 const BlueCollarRegistrationForm = () => {
@@ -249,82 +251,133 @@ const BlueCollarRegistrationForm = () => {
         <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message="Candidate is registered Successfully." type="success" />
 
         <Box className="BlueCollarRegistrationPage" sx={{
-            background: "FAFAFA"
+            background: "#FFFFFF !important"
 
         }}>
-            <Stack direction="row" gap={2}
+            <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} gap={2}
                 sx={{
                     padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
 
                 }}>
+                <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} sx={{
+                    position: "relative",
+                    gap: { "xs": "0px", "sm": "0px", "md": "24px", "lg": "24px", "xl": "24px" }
+                }}></Stack>
+                <Stack
+                    gap={2} sx={{
+                        width: {
+                            "xs": "0%", "sm": "0%", "md": "50%", "lg": "50%", "xl": "50%"
+                        },
+                    }}>
+                    <Box sx={{
+                        display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
+                    }}>
+                        <Typography component="box" sx={{
+                            margin: "20px",
+                            fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                            fontFamily: "Montserrat",
+                            fontWeight: "600",
+                            color: "#4E3A67",
+                            display: "block",
+                            lineHeight: "1.2"
+                        }}>
+                            50K People Have
+                            <Typography component="box" sx={{
+                                fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                                width: "max-content",
+                                lineHeight: "1.2"
+                            }}>
+                                Got Jobs Through Us;
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#4E3A67",
+                                    display: "block",
+                                    lineHeight: "1.2"
+                                }}>
+                                    Next is You!
+                                </Typography>
+                            </Typography>
+                        </Typography>
+                        <ThemeWebsiteImage imageUrl="/assets/g51.png" imageWidth="500px" ></ThemeWebsiteImage>
+                    </Box>
+
+                    <Box sx={{
+                        marginTop: "50px",
+                        display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
+                    }}>
+                        <Typography component="box" sx={{
+                            margin: "20px",
+                            fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                            fontFamily: "Montserrat",
+                            fontWeight: "600",
+                            color: "#4E3A67",
+                            display: "block",
+                            textAlign: "end",
+                            lineHeight: "1.2"
+
+                        }}> Select from
+                            <Typography component="box" sx={{
+                                fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                                textAlign: "end",
+                                lineHeight: "1.2"
+
+                            }}>
+                                the Jobs in Your City
+                            </Typography>
+                        </Typography>
+
+                        <Box
+                            sx={{
+                                position: "relative",
+                                left: "300px"
+                            }}>
+                            <ThemeWebsiteImage
+                                imageUrl="/assets/g52.png" imageWidth="500px" ></ThemeWebsiteImage>
+                        </Box>
+
+                    </Box>
+
+                </Stack>
 
                 <Box sx={{
-                    width: { 'lg': "40%", 'md': '100%', 'xs': '100%' },
-                    display: { 'lg': "block", 'md': "none", 'xs': 'none' },
-                    padding: " 0 100px",
-                    marginTop: "30px"
+                    display: { "xs": "block", "sm": "block", "md": "block", "lg": "none", "xl": "none" }
                 }}>
-                    <Stack sx={{
-                        direction: "row",
-                        gap: "20px"
+                    <Typography component="box" sx={{
+                        margin: "20px",
+                        fontSize: { "xs": "1.6rem", "sm": "3rem", "md": "3rem", "xl": "4rem", "lg": "4rem" },
+                        fontFamily: "Montserrat",
+                        fontWeight: "600",
+                        color: "#4E3A67",
+                        display: "block",
+                        lineHeight: "1.2",
+                        textAlign: "center"
                     }}>
-                        <Typography component="box" sx={{
-                            fontSize: "64px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                        }}>
-                            Trust us for Getting suitable jobs!
-                        </Typography>
+                        50K People Have Got Jobs Through Us; Next is You!
 
-                        <Box sx={{ width: "500px" }}>
-                            <img
-                                width="100%"
-
-                                src={window.location.origin + "/assets/g51.png"} alt="G51" />
-                        </Box>
-                    </Stack>
-
-                    <Stack sx={{
-                        direction: "row",
-                        gap: "20px",
-                        alignItems: "flex-end"
-
-
-                    }}>
-                        <Typography component="box" sx={{
-                            fontSize: "64px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                            marginTop: "20px"
-                        }}>
-                            Select from
-                            the Jobs in Your City
-                        </Typography>
-
-                        <Box sx={{ width: "500px" }}>
-                            <img
-                                width="100%"
-
-                                src={window.location.origin + "/assets/g52.png"} alt="G52" />
-                        </Box>
-                    </Stack>
+                    </Typography>
+                    <ThemeMobileImage imageUrl="/assets/g52.png" />
                 </Box>
 
                 <Box sx={{
-                    width: { "lg": "50%", "md": "100%", "xs": "100%" }
+                    width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" }
                 }}>
                     <Box sx={{
-                        maxWidth: "763px",
                         background: "#F8F8F8",
                         border: "1px solid #EAEAEA",
                         boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                         borderRadius: "19px",
-                        margin: "0 auto",
-
+                        position: "relative",
+                        top: { "xs": "-30px", "sm": "-30px", "md": "-30px", "lg": "0px", "xl": "0px" }
                     }}>
                         <Box sx={{
                             padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
@@ -355,7 +408,6 @@ const BlueCollarRegistrationForm = () => {
 
                         <Box sx={{
                             boxSizing: "border-box",
-                            maxWidth: "865px",
                             background: "#FFFFFF",
                             border: "1px solid #EDEDED",
                             borderBottomLeftRadius: "19px",

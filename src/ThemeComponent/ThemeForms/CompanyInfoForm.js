@@ -20,6 +20,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import FormMenu from "../Common/FormMenu";
 import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
 import ThemeMobileImage from "../Common/ThemeMobileImage";
+import MobileUploadFile from "../Common/MobileUploadFile";
+
 import ReactGA from 'react-ga';
 const TRACKING_ID = 'AW-11080443279/84LrCNKT24kYEI_LyKMp'
 ReactGA.initialize(TRACKING_ID)
@@ -237,12 +239,13 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                         gap: "24px"
                     }}>
 
-                    <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} gap={2} sx={{ position: "relative" }}>
+                    <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }}
+                        gap={2} sx={{ position: "relative" }}>
                         <Box sx={{
                             width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" },
                         }}>
                             <Stack sx={{
-                                margin: { "xs": "10px", "sm": "10px", "md": "10px", "lg": "50px", "xl": "50px" },
+                                margin: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "50px", "xl": "50px" },
                                 direction: "row",
                                 gap: { "xs": "10px", "sm": "10px", "md": "10px", "lg": "64px", "xl": "64px" },
 
@@ -295,7 +298,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                             width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" },
                         }}>
                             <Box sx={{
-                                minHeight: "153px",
                                 background: "#F8F8F8",
                                 border: "1px solid #EAEAEA",
                                 boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
@@ -311,7 +313,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                     }}>
                                     <Typography component="box" sx={{
-                                        fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" },
+                                        fontSize: { "xs": "1.6rem", "sm": "1.6rem", "md": "2.5rem", "xl": "2.5rem", "lg": "2.5rem" },
                                         fontFamily: "Montserrat",
                                         fontWeight: "600",
                                         color: "#000000",
@@ -408,7 +410,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                                 boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
                                                                 borderRadius: "7px",
                                                                 width: "101%",
-                                                                fontSize: "16px",
+                                                                fontSize: "1rem",
                                                                 fontamily: 'Montserrat',
                                                                 BorderBottom: 'none'
                                                             }}
@@ -487,20 +489,19 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                             gap: "24px"
                         }}>
 
-                        <Stack direction="row" gap={2} sx={{ position: "relative" }}>
+                        <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} gap={2} sx={{ position: "relative" }}>
                             <Box sx={{
-                                width: { 'lg': "50%", 'md': '100%', 'xs': '100%' },
-                                display: { 'lg': "block", 'md': "none", 'xs': 'none' }
+                                width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" },
+
                             }}>
                                 <Stack sx={{
-
-                                    margin: "50px",
+                                    margin: { "xs": "10px", "sm": "10px", "md": "10px", "lg": "50px", "xl": "50px" },
                                     direction: "row",
-                                    gap: "100px",
+                                    gap: { "xs": "10px", "sm": "10px", "md": "10px", "lg": "64px", "xl": "64px" },
 
                                 }}>
                                     <Typography component="box" sx={{
-                                        fontSize: "64px",
+                                        fontSize: { "xs": "1.8rem", "sm": "2rem", "md": "2.5rem", "lg": "4rem", "xl": "4rem" },
                                         fontFamily: "Montserrat",
                                         fontWeight: "600",
                                         color: "#4E3A67",
@@ -510,14 +511,14 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                         Free job posting facility
 
                                     </Typography>
-                                    <img
+                                    <ThemeMobileImage imageUrl="/assets/g12Mobile.png" alt="G12" />
+                                    <Box sx={{
+                                        position: "relative",
+                                        left: "-150px"
+                                    }}>
+                                        <ThemeWebsiteImage imageUrl="/assets/g12.png" alt="G12" />
+                                    </Box>
 
-                                        width="100%"
-                                        style={{
-                                            position: "relative",
-                                            left: "-110px"
-                                        }}
-                                        src={window.location.origin + "/assets/g12.png"} alt="G12" />
                                 </Stack>
                             </Box>
 
@@ -526,7 +527,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     width: { "lg": "50%", "md": "100%", "xs": "100%" }
                                 }}>
                                 <Box sx={{
-                                    maxWidth: "763px",
                                     minHeight: "153px",
                                     background: "#F8F8F8",
                                     border: "1px solid #EAEAEA",
@@ -547,10 +547,10 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                             } ></BackButton>
 
                                         <Typography component="box" sx={{
-                                            fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" },
+                                            fontSize: { "xs": "1.6rem", "sm": "1.6rem", "md": "2.5rem", "xl": "2.5rem", "lg": "2.5rem" },
                                             fontFamily: "Montserrat",
                                             fontWeight: "600",
-                                            color: "#4E3A67",
+                                            color: "#000000",
                                             display: "block",
                                             marginTop: "20px"
                                         }}>
@@ -558,101 +558,30 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                         </Typography>
 
                                         <Stack direction="row" gap={2} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
-                                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                                <Box sx={{
-                                                    width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                    height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                    background: "#FC9A7E",
-                                                    borderRadius: "50%",
-                                                    display: "flex",
-                                                    alignItems: "center",
-                                                    justifyContent: "center",
-                                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+                                            <Stack direction="row" gap={2} sx={{
+                                                margin: "25px 0px",
+                                                flexWrap: "wrap"
+                                            }}
+                                                justifyContent={{ "xs": "center", "sm": "center", "md": "center", "lg": "flex-start", "xl": "flex-start" }}>
+                                                {
+                                                    data3 && data3.map((item) => {
+                                                        return <FormMenu data={item} formStep={1} />
+                                                    })
+                                                }
 
-                                                }}>1</Box>
-                                                <Typography component="box" sx={{
-                                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                                    fontFamily: "Montserrat",
-                                                    fontWeight: "600",
-                                                    color: "#4E3A67",
-                                                    display: "block",
-                                                }}>
-                                                    Company Information
-                                                </Typography>
-                                                <Box>
-                                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                                </Box>
                                             </Stack>
-
-
-                                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
-                                                <Box sx={{
-                                                    width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                    height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                    background: "#FC9A7E",
-                                                    borderRadius: "50%",
-                                                    display: "flex",
-                                                    alignItems: "center",
-                                                    justifyContent: "center",
-                                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
-
-                                                }}>2</Box>
-                                                <Typography component="box" sx={{
-                                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                                    fontFamily: "Montserrat",
-                                                    fontWeight: "600",
-                                                    color: "#4E3A67",
-                                                    display: "block",
-                                                }}>
-                                                    Company Social
-                                                </Typography>
-                                                <Box>
-                                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                                </Box>
-                                            </Stack>
-
-
-                                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                                <Box sx={{
-                                                    width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                    height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                    background: "#FC9A7E",
-                                                    borderRadius: "50%",
-                                                    display: "flex",
-                                                    alignItems: "center",
-                                                    justifyContent: "center",
-                                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
-
-                                                }}>3</Box>
-                                                <Typography component="box" sx={{
-                                                    fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                                    fontFamily: "Montserrat",
-                                                    fontWeight: "600",
-                                                    color: "#4E3A67",
-                                                    display: "block",
-                                                }}>
-                                                    Company Address
-                                                </Typography>
-                                                <Box>
-                                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                                </Box>
-                                            </Stack>
-
                                         </Stack>
                                     </Box>
 
                                     <Box sx={{
                                         boxSizing: "border-box",
-                                        maxWidth: "865px",
-                                        height: "508px",
+                                        height: "100%",
                                         background: "#FFFFFF",
                                         border: "1px solid #EDEDED",
                                         borderBottomLeftRadius: "19px",
                                         borderBottomRightRadius: "19px",
                                         padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
-                                        position: "relative",
-                                        top: '-10px',
-                                        margin: "0 auto"
+                                        position: "relative"
 
                                     }}>
                                         <Formik
@@ -735,59 +664,84 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                             gap: "24px"
                         }}>
 
-                        <Stack direction="row" gap={2} sx={{ position: "relative" }} >
+                        <Stack
+                            direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }}
+                            sx={{ position: "relative" }} >
                             <Stack sx={{
-                                width: { 'lg': "50%", 'md': '100%', 'xs': '100%' },
-                                display: { 'lg': "block", 'md': "none", 'xs': 'none' },
+                                width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" },
 
                             }}>
                                 <Stack sx={{
-                                    margin: "50px",
+                                    // margin: { "xs": "10px", "sm": "10px", "md": "10px", "lg": "50px", "xl": "50px" },
                                     direction: "row",
+                                    // gap: { "xs": "10px", "sm": "10px", "md": "10px", "lg": "64px", "xl": "64px" },
 
                                 }}>
+                                    <Box sx={{
+                                        position: "relative"
+                                    }}>
+                                        <Typography component="box" sx={{
+                                            fontSize: { "xs": "1.8rem", "sm": "2rem", "md": "2.5rem", "lg": "4rem", "xl": "4rem" },
+                                            fontFamily: "Montserrat",
+                                            fontWeight: "600",
+                                            color: "#4E3A67",
+                                            display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" },
+                                        }}>
+                                            Get Suitable
+                                            <Typography component="box" sx={{
+                                                fontSize: { "xs": "1.8rem", "sm": "2rem", "md": "2.5rem", "lg": "4rem", "xl": "4rem" },
+                                                fontFamily: "Montserrat",
+                                                fontWeight: "600",
+                                                color: "#4E3A67",
+                                                display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" },
+                                            }}>
+                                                Candidates
+
+                                            </Typography>
+                                        </Typography>
+                                        <Box sx={{
+                                            position: "relative",
+                                            left: "-150px"
+                                        }}>
+                                            <ThemeWebsiteImage imageUrl="/assets/g13.png" alt="G11" imageWidth="500px" />
+                                        </Box>
+                                    </Box>
                                     <Typography component="box" sx={{
-                                        fontSize: "64px",
+                                        fontSize: { "xs": "1.8rem", "sm": "2rem", "md": "2.5rem", "lg": "4rem", "xl": "4rem" },
                                         fontFamily: "Montserrat",
                                         fontWeight: "600",
                                         color: "#4E3A67",
-                                        display: "block",
-                                        marginTop: "20px"
+                                        display: { "xs": "block", "sm": "block", "md": "block", "lg": "none", "xl": "none" },
                                     }}>
-                                        Get suitable candidates
-
+                                        Get Suitable Candidates
                                     </Typography>
-                                    <img
-                                        width="600px"
-                                        style={{
-                                            position: "relative",
-                                            left: "-110px"
-                                        }}
-                                        src={window.location.origin + "/assets/g13.png"} alt="G13"></img>
+                                    <ThemeMobileImage imageUrl="/assets/g13Mobile.png" alt="G11" />
+
                                 </Stack>
 
 
                                 <Stack sx={{
                                     direction: "row",
-                                    marginTop: "130px",
+                                    marginTop: { "xs": "0px", "md": "0px", "sm": "0px", "xl": "130px", "lg": "130px" },
                                     alignItems: "flex-end"
-
-
                                 }}>
                                     <Typography component="box" sx={{
-                                        fontSize: "64px",
+                                        fontSize: "4rem",
                                         fontFamily: "Montserrat",
                                         fontWeight: "600",
                                         color: "#4E3A67",
-                                        display: "block",
+                                        display: { "xs": "none", "md": "none", "sm": "none", "lg": "block", "xl": "block" },
                                         maxWidth: "700px"
 
                                     }}>
                                         Get candidates for local-level jobs
                                     </Typography>
-                                    <img
-                                        width="600px"
-                                        src={window.location.origin + "/assets/g52.png"} alt="g52" />
+                                    <Box sx={{
+                                        position: "relative",
+                                    }}>
+                                        <ThemeWebsiteImage imageUrl="/assets/g52.png" alt="G52" imageWidth="500px" />
+                                    </Box>
+
                                 </Stack>
 
 
@@ -798,344 +752,296 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                             }}>
                                 <Box sx={{
                                     maxwidth: "763px",
-                                    minheight: "153px",
                                     background: "#F8F8F8",
                                     border: "1px solid #EAEAEA",
                                     boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                                     borderRadius: "19px",
-                                    padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
                                     margin: "0 auto",
 
                                 }}>
-                                    <BackButton
-                                        GoBack={
-                                            () => {
-                                                setCompanyInfoForm(2)
-                                            }
-                                        } ></BackButton>
+                                    <Box sx={{
+                                        padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
 
-                                    <Typography component="box" sx={{
-                                        fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "xl": "40px", "lg": "40px" },
-                                        fontFamily: "Montserrat",
-                                        fontWeight: "600",
-                                        color: "#4E3A67",
-                                        display: "block",
-                                        marginTop: "20px"
                                     }}>
-                                        Company Details
-                                    </Typography>
+                                        <BackButton
+                                            GoBack={
+                                                () => {
+                                                    setCompanyInfoForm(2)
+                                                }
+                                            } ></BackButton>
 
-                                    <Stack direction="row" gap={2} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
-                                        <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                            <Box sx={{
-                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                background: "#FC9A7E",
-                                                borderRadius: "50%",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+                                        <Typography component="box" sx={{
+                                            fontSize: { "xs": "1.6rem", "sm": "1.6rem", "md": "2.5rem", "xl": "2.5rem", "lg": "2.5rem" },
+                                            fontFamily: "Montserrat",
+                                            fontWeight: "600",
+                                            color: "#000000",
+                                            display: "block",
+                                            marginTop: "20px"
+                                        }}>
+                                            Company Details
+                                        </Typography>
 
-                                            }}>1</Box>
-                                            <Typography component="box" sx={{
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                                fontFamily: "Montserrat",
-                                                fontWeight: "600",
-                                                color: "#4E3A67",
-                                                display: "block",
-                                            }}>
-                                                Company Information
-                                            </Typography>
-                                            <Box>
-                                                <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                            </Box>
+                                        <Stack direction="row" gap={2} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
+                                            <Stack direction="row" gap={2} sx={{
+                                                margin: "25px 0px",
+                                                flexWrap: "wrap"
+                                            }}
+                                                justifyContent={{ "xs": "center", "sm": "center", "md": "center", "lg": "flex-start", "xl": "flex-start" }}>
+                                                {
+                                                    data3 && data3.map((item) => {
+                                                        return <FormMenu data={item} formStep={2} />
+                                                    })
+                                                }
+
+                                            </Stack>
                                         </Stack>
+                                    </Box>
 
 
-                                        <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                            <Box sx={{
-                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                background: "#FC9A7E",
-                                                borderRadius: "50%",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+                                    <Box sx={{
+                                        boxSizing: "border-box",
+                                        background: "#FFFFFF",
+                                        border: "1px solid #EDEDED",
+                                        borderBottomLeftRadius: "19px",
+                                        borderBottomRightRadius: "19px",
+                                        padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
+                                        position: "relative",
 
-                                            }}>2</Box>
-                                            <Typography component="box" sx={{
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                                fontFamily: "Montserrat",
-                                                fontWeight: "600",
-                                                color: "#4E3A67",
-                                                display: "block",
-                                            }}>
-                                                Company Social
-                                            </Typography>
-                                            <Box>
-                                                <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                            </Box>
-                                        </Stack>
+                                    }}>
+                                        <Formik
+
+                                            initialValues={defaultValue2}
+                                            validationSchema={companyInfoValidationSchema2}
+                                            onSubmit={handleSubmit2}
+                                        >
+                                            {({ errors, touched, values, setFieldValue }) => (
+                                                <Form className="CompanyInformationForm">
+
+                                                    <ThemeFInputDiv>
+                                                        <Stack direction="row" gap={2}>
+                                                            <ThemeFInputDiv sx={{ width: "50%" }}>
+                                                                <ThemeLabel LableFor="state" LableText="State *" />
+                                                                <Select
+                                                                    classNamePrefix="react-select"
+                                                                    labelId="demo-simple-select-label"
+                                                                    name="state"
+                                                                    value={state}
+                                                                    label="Age"
+                                                                    onChange={(event) => {
+                                                                        let stateValue = event.target.value;
+                                                                        setState(stateValue);
+                                                                        setFieldValue("state", event.target.value);
+                                                                        getDistrictByState(event.target.value);
+                                                                    }}
+                                                                    sx={{
+                                                                        background: " #FFFFFF",
+                                                                        border: "1px solid #EAEAEA",
+                                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                        borderRadius: "7px",
+                                                                        fontSize: "1rem",
+                                                                        fontamily: 'Montserrat',
+                                                                        BorderBottom: 'none'
+                                                                    }}
+                                                                    disableUnderline
+                                                                >
+                                                                    <MenuItem value=" ">Select State</MenuItem>
+                                                                    {CountryState && CountryState.map((item) =>
+                                                                        <MenuItem value={item} key={item}>{item}</MenuItem>
+                                                                    )}
+                                                                </Select>
+                                                                {errors.state && touched.state && <Error text={errors.state} />}
+                                                            </ThemeFInputDiv>
+
+                                                            <ThemeFInputDiv sx={{ width: "50%" }}>
+
+                                                                <ThemeLabel LableFor="city" LableText="City *" />
+                                                                <Select
+                                                                    classNamePrefix="react-select"
+                                                                    labelId="demo-simple-select-label"
+                                                                    name="city"
+                                                                    value={city}
+                                                                    label="Age"
+                                                                    onChange={(event) => {
+                                                                        setCity(event.target.value);
+                                                                        setFieldValue("city", event.target.value);
+                                                                    }}
+                                                                    sx={{
+                                                                        background: " #FFFFFF",
+                                                                        border: "1px solid #EAEAEA",
+                                                                        boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
+                                                                        borderRadius: "7px",
+                                                                        fontSize: "1rem",
+                                                                        fontamily: 'Montserrat',
+                                                                        BorderBottom: 'none'
+                                                                    }}
+                                                                    disableUnderline
+                                                                >
+                                                                    <MenuItem value=" ">Select City</MenuItem>
+                                                                    {District && District.map((item) =>
+                                                                        <MenuItem value={item.name} key={item._id}>{item.name}</MenuItem>
+                                                                    )}
+                                                                </Select>
+
+                                                                {errors.city && touched.city && <Error text={errors.city} />}
+                                                            </ThemeFInputDiv>
+                                                        </Stack>
+
+                                                        <ThemeFInputDiv sx={{ position: "relative" }}>
+                                                            <ThemeLabel LableFor="area" LableText="Company Area  *" />
+                                                            <Box sx={{ width: "100%", margin: "10px 0px" }}>
+
+                                                                <TextField id="outlined-basic"
+                                                                    placeholder="Enter Company Area (eg.Haridwar, Uttarakhand, India)"
+                                                                    value={companyAddress}
+                                                                    onChange={(event) => {
+                                                                        setCompanyAddress(event.target.value);
+                                                                        setFieldValue("area", event.target.value);
+                                                                        getAddress(event.target.value);
+                                                                        setMenuBar(true)
+                                                                    }}
+                                                                    variant="outlined" fullWidth />
 
 
-                                        <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
-                                            <Box sx={{
-                                                width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                height: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
-                                                background: "#FC9A7E",
-                                                borderRadius: "50%",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" }
+                                                            </Box>
 
-                                            }}>3</Box>
-                                            <Typography component="box" sx={{
-                                                fontSize: { "xs": "12px", "sm": "12px", "md": "19px", "lg": "19px", "xl": "19px" },
-                                                fontFamily: "Montserrat",
-                                                fontWeight: "600",
-                                                color: "#4E3A67",
-                                                display: "block",
-                                            }}>
-                                                Company Address
-                                            </Typography>
-                                            <Box>
-                                                <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                            </Box>
-                                        </Stack>
+                                                            {menubar && autoData && autoData != "no record please enter some word" && <>
+                                                                <ClickAwayListener onClickAway={() => setAutoData(false)}>
 
-                                    </Stack>
+                                                                    <Box className="RegisterAutoSuggestDiv"
+                                                                        sx={{
+                                                                            position: "absolute",
+                                                                            top: "110px",
+                                                                            background: "#FFFFFF",
+                                                                            width: "94%",
+                                                                            padding: "20px",
+                                                                            height: "fit-content",
+                                                                            zIndex: "34",
+                                                                            boxShadow: "0px 47px 52px #f4ecff",
+                                                                            border: "3px solid #E1D4F2",
+                                                                            borderRadius: "11px"
+                                                                        }}>
+                                                                        {autoData && autoData != "no record please enter some word" && autoData.map((item) => {
+                                                                            return (<>
+                                                                                <Box
+                                                                                    className="RegisterAutoSuggestList"
+                                                                                    sx={{
+                                                                                        padding: "20px",
+                                                                                        borderBottom: "1px solid #E1D4F2",
+                                                                                        cursor: "pointer"
+                                                                                    }}
+                                                                                    onClick={(event) => {
+                                                                                        setCompanyAddress(item.description);
+                                                                                        setFieldValue("area", item.description)
+                                                                                        setMenuBar(false)
+                                                                                    }}> {item.description}</Box></>)
+                                                                        })}
 
-                                </Box>
-                                <Box sx={{
-                                    boxSizing: "border-box",
-                                    background: "#FFFFFF",
-                                    border: "1px solid #EDEDED",
-                                    borderRadius: "19px",
-                                    padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
-                                    position: "relative",
-                                    top: '-10px',
+                                                                    </Box>
+                                                                </ClickAwayListener>
+                                                            </>
 
-                                }}>
-                                    <Formik
+                                                            }
+                                                            {errors.area && touched.area && <Error text={errors.area} />}
 
-                                        initialValues={defaultValue2}
-                                        validationSchema={companyInfoValidationSchema2}
-                                        onSubmit={handleSubmit2}
-                                    >
-                                        {({ errors, touched, values, setFieldValue }) => (
-                                            <Form className="CompanyInformationForm">
+                                                        </ThemeFInputDiv>
+                                                        <ThemeFInputDiv>
+                                                            <ThemeLabel LableFor="company_address" LableText="Company Address *" />
+                                                            <Box sx={{ width: "100%", margin: "10px 0px" }}>
+                                                                <Field
+                                                                    error={errors.company_address && touched.company_address}
+                                                                    id="company_address"
+                                                                    as={TextField}
+                                                                    placeholder="Company Address" type="text" name="company_address" fullWidth />
 
-                                                <ThemeFInputDiv>
-                                                    <Stack direction="row" gap={2}>
-                                                        <ThemeFInputDiv sx={{ width: "50%" }}>
-                                                            <ThemeLabel LableFor="state" LableText="State *" />
-                                                            <Select
-                                                                classNamePrefix="react-select"
-                                                                labelId="demo-simple-select-label"
-                                                                name="state"
-                                                                value={state}
-                                                                label="Age"
-                                                                onChange={(event) => {
-                                                                    let stateValue = event.target.value;
-                                                                    setState(stateValue);
-                                                                    setFieldValue("state", event.target.value);
-                                                                    getDistrictByState(event.target.value);
-                                                                }}
-                                                                sx={{
-                                                                    background: " #FFFFFF",
-                                                                    border: "1px solid #EAEAEA",
-                                                                    boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                                    borderRadius: "7px",
-                                                                    fontSize: "16px",
-                                                                    fontamily: 'Montserrat',
-                                                                    BorderBottom: 'none'
-                                                                }}
-                                                                disableUnderline
-                                                            >
-                                                                <MenuItem value=" ">Select State</MenuItem>
-                                                                {CountryState && CountryState.map((item) =>
-                                                                    <MenuItem value={item} key={item}>{item}</MenuItem>
-                                                                )}
-                                                            </Select>
-                                                            {errors.state && touched.state && <Error text={errors.state} />}
+                                                            </Box>
+
+                                                            {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
+
                                                         </ThemeFInputDiv>
 
-                                                        <ThemeFInputDiv sx={{ width: "50%" }}>
 
-                                                            <ThemeLabel LableFor="city" LableText="City *" />
-                                                            <Select
-                                                                classNamePrefix="react-select"
-                                                                labelId="demo-simple-select-label"
-                                                                name="city"
-                                                                value={city}
-                                                                label="Age"
-                                                                onChange={(event) => {
-                                                                    setCity(event.target.value);
-                                                                    setFieldValue("city", event.target.value);
-                                                                }}
-                                                                sx={{
-                                                                    background: " #FFFFFF",
-                                                                    border: "1px solid #EAEAEA",
-                                                                    boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
-                                                                    borderRadius: "7px",
-                                                                    fontSize: "16px",
-                                                                    fontamily: 'Montserrat',
-                                                                    BorderBottom: 'none'
-                                                                }}
-                                                                disableUnderline
-                                                            >
-                                                                <MenuItem value=" ">Select City</MenuItem>
-                                                                {District && District.map((item) =>
-                                                                    <MenuItem value={item.name} key={item._id}>{item.name}</MenuItem>
-                                                                )}
-                                                            </Select>
 
-                                                            {errors.city && touched.city && <Error text={errors.city} />}
+                                                        <ThemeFInputDiv>
+                                                            <ThemeLabel LableFor="company_pincode" LableText="Company Pincode *" />
+                                                            <Field
+                                                                error={errors.company_pincode && touched.company_pincode}
+                                                                id="company_pincode"
+                                                                as={TextField}
+                                                                placeholder="Enter Company Pincode ( eg. 23123 )" type="text" name="company_pincode" fullWidth />
+                                                            {errors.company_pincode && touched.company_pincode && <Error text={errors.company_pincode} />}
+
                                                         </ThemeFInputDiv>
+
+                                                        <Box sx={{
+                                                            width: "80px",
+                                                        }}>
+                                                            <img id="PanImage" width="100%" />
+                                                        </Box>
+
+                                                        <ThemeFInputDiv>
+                                                            <ThemeLabel LableFor="company_pan_image" LableText="Upload Company Pan No. Image" />
+
+                                                            <Field
+                                                                id="company_pan_image"
+                                                                style={{ display: "none", outline: "none" }}
+                                                                as={TextField}
+                                                                type="file" name="company_pan_image"
+                                                                onChange={uploadCompanyPan} fullWidth />
+                                                            {/* <MobileUploadFile id="PanImage" onclickFunction={() => document.getElementById("company_pan_image").click()}></MobileUploadFile> */}
+                                                            <Box sx={{
+                                                                // display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
+                                                            }} >
+                                                                <ButtonType3 imageURL="/assets/InsertPicture.png" ButtonText="Upload Image" ClickEvent={() => document.getElementById("company_pan_image").click()}></ButtonType3>
+
+                                                            </Box>
+                                                        </ThemeFInputDiv>
+
+                                                        <ThemeFInputDiv>
+                                                            <ThemeLabel LableFor="company_gst_number" LableText="Company GST Number " />
+                                                            <Field
+                                                                error={errors.company_gst_number && touched.company_gst_number}
+                                                                id="company_gst_number"
+                                                                as={TextField}
+                                                                placeholder="Enter Company GST Number" type="text" name="company_gst_number" fullWidth />
+                                                            {errors.company_gst_number && touched.company_gst_number && <Error text={errors.company_gst_number} />}
+
+                                                        </ThemeFInputDiv>
+                                                        <Box sx={{
+                                                            width: "80px",
+                                                        }}>
+                                                            <img id="GSTImage" width="100%" />
+                                                        </Box>
+
+                                                        <ThemeFInputDiv>
+                                                            <ThemeLabel LableFor="company_gst_image" LableText="Upload Company GST Image" />
+
+                                                            <Field
+                                                                id="company_gst_image"
+                                                                style={{ display: "none", outline: "none" }}
+                                                                as={TextField}
+                                                                type="file" name="company_gst_image"
+                                                                onChange={uploadCompanyGST} fullWidth />
+                                                            {/* <MobileUploadFile id="GSTImage" onclickFunction={() => document.getElementById("company_gst_image").click()}></MobileUploadFile> */}
+
+                                                            <Box sx={{
+                                                                // display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
+                                                            }} >
+                                                                <ButtonType3 imageURL="/assets/InsertPicture.png" ButtonText="Upload Image" ClickEvent={() => document.getElementById("company_gst_image").click()}></ButtonType3>
+                                                            </Box>
+                                                        </ThemeFInputDiv>
+                                                    </ ThemeFInputDiv>
+
+                                                    <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+                                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Save</ThemeButtonType2>
                                                     </Stack>
 
-                                                    <ThemeFInputDiv sx={{ position: "relative" }}>
-                                                        <ThemeLabel LableFor="area" LableText="Company Area  *" />
-                                                        <Box sx={{ width: "100%", margin: "10px 0px" }}>
+                                                </Form>)}
+                                        </Formik>
 
-                                                            <TextField id="outlined-basic"
-                                                                placeholder="Enter Company Area (eg.Haridwar, Uttarakhand, India)"
-                                                                value={companyAddress}
-                                                                onChange={(event) => {
-                                                                    setCompanyAddress(event.target.value);
-                                                                    setFieldValue("area", event.target.value);
-                                                                    getAddress(event.target.value);
-                                                                    setMenuBar(true)
-                                                                }}
-                                                                variant="outlined" fullWidth />
-
-
-                                                        </Box>
-
-                                                        {menubar && autoData && autoData != "no record please enter some word" && <>
-                                                            <ClickAwayListener onClickAway={() => setAutoData(false)}>
-
-                                                                <Box className="RegisterAutoSuggestDiv"
-                                                                    sx={{
-                                                                        position: "absolute",
-                                                                        top: "110px",
-                                                                        background: "#FFFFFF",
-                                                                        width: "94%",
-                                                                        padding: "20px",
-                                                                        height: "fit-content",
-                                                                        zIndex: "34",
-                                                                        boxShadow: "0px 47px 52px #f4ecff",
-                                                                        border: "3px solid #E1D4F2",
-                                                                        borderRadius: "11px"
-                                                                    }}>
-                                                                    {autoData && autoData != "no record please enter some word" && autoData.map((item) => {
-                                                                        return (<>
-                                                                            <Box
-                                                                                className="RegisterAutoSuggestList"
-                                                                                sx={{
-                                                                                    padding: "20px",
-                                                                                    borderBottom: "1px solid #E1D4F2",
-                                                                                    cursor: "pointer"
-                                                                                }}
-                                                                                onClick={(event) => {
-                                                                                    setCompanyAddress(item.description);
-                                                                                    setFieldValue("area", item.description)
-                                                                                    setMenuBar(false)
-                                                                                }}> {item.description}</Box></>)
-                                                                    })}
-
-                                                                </Box>
-                                                            </ClickAwayListener>
-                                                        </>
-
-                                                        }
-                                                        {errors.area && touched.area && <Error text={errors.area} />}
-
-                                                    </ThemeFInputDiv>
-                                                    <ThemeFInputDiv>
-                                                        <ThemeLabel LableFor="company_address" LableText="Company Address *" />
-                                                        <Box sx={{ width: "100%", margin: "10px 0px" }}>
-                                                            <Field
-                                                                error={errors.company_address && touched.company_address}
-                                                                id="company_address"
-                                                                as={TextField}
-                                                                placeholder="Company Address" type="text" name="company_address" fullWidth />
-
-                                                        </Box>
-
-                                                        {errors.company_address && touched.company_address && <Error text={errors.company_address} />}
-
-                                                    </ThemeFInputDiv>
-
-
-
-                                                    <ThemeFInputDiv>
-                                                        <ThemeLabel LableFor="company_pincode" LableText="Company Pincode *" />
-                                                        <Field
-                                                            error={errors.company_pincode && touched.company_pincode}
-                                                            id="company_pincode"
-                                                            as={TextField}
-                                                            placeholder="Enter Company Pincode ( eg. 23123 )" type="text" name="company_pincode" fullWidth />
-                                                        {errors.company_pincode && touched.company_pincode && <Error text={errors.company_pincode} />}
-
-                                                    </ThemeFInputDiv>
-
-                                                    <Box sx={{ width: "80px" }}>
-                                                        <img id="PanImage" width="100%" />
-                                                    </Box>
-
-                                                    <ThemeFInputDiv>
-                                                        <ThemeLabel LableFor="company_pan_image" LableText="Upload Company Pan No. Image" />
-
-                                                        <Field
-                                                            id="company_pan_image"
-                                                            style={{ display: "none", outline: "none" }}
-                                                            as={TextField}
-                                                            type="file" name="company_pan_image"
-                                                            onChange={uploadCompanyPan} fullWidth />
-
-                                                        <ButtonType3 imageURL="/assets/InsertPicture.png" ButtonText="Upload Image" ClickEvent={() => document.getElementById("company_pan_image").click()}></ButtonType3>
-                                                    </ThemeFInputDiv>
-
-                                                    <ThemeFInputDiv>
-                                                        <ThemeLabel LableFor="company_gst_number" LableText="Company GST Number " />
-                                                        <Field
-                                                            error={errors.company_gst_number && touched.company_gst_number}
-                                                            id="company_gst_number"
-                                                            as={TextField}
-                                                            placeholder="Enter Company GST Number" type="text" name="company_gst_number" fullWidth />
-                                                        {errors.company_gst_number && touched.company_gst_number && <Error text={errors.company_gst_number} />}
-
-                                                    </ThemeFInputDiv>
-                                                    <Box sx={{ width: "80px" }}>
-                                                        <img id="GSTImage" width="100%" />
-                                                    </Box>
-
-                                                    <ThemeFInputDiv>
-                                                        <ThemeLabel LableFor="company_gst_image" LableText="Upload Company GST Image" />
-
-                                                        <Field
-                                                            id="company_gst_image"
-                                                            style={{ display: "none", outline: "none" }}
-                                                            as={TextField}
-                                                            type="file" name="company_gst_image"
-                                                            onChange={uploadCompanyGST} fullWidth />
-
-                                                        <ButtonType3 imageURL="/assets/InsertPicture.png" ButtonText="Upload Image" ClickEvent={() => document.getElementById("company_gst_image").click()}></ButtonType3>
-                                                    </ThemeFInputDiv>
-                                                </ ThemeFInputDiv>
-
-                                                <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                                    <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Save</ThemeButtonType2>
-                                                </Stack>
-
-                                            </Form>)}
-                                    </Formik>
+                                    </Box>
 
                                 </Box>
+
 
                             </Box>
 

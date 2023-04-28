@@ -25,8 +25,9 @@ import CurrencyFormat from 'react-currency-format';
 
 import { data1 } from "../../utils/Data";
 import FormMenu from "../Common/FormMenu";
-import ImageBox from "../../Pages/Common/ImageBox";
 import { useNavigate } from "react-router-dom";
+import ThemeMobileImage from "../Common/ThemeMobileImage";
+import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
 const PersonalInformation = ({ jobType }) => {
     const animatedComponents = makeAnimated();
     const navigate = useNavigate();
@@ -138,7 +139,7 @@ const PersonalInformation = ({ jobType }) => {
                     gap: "24px"
                 }}>
 
-                <Stack direction="row" sx={{
+                <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} sx={{
                     position: "relative",
                     gap: { "xs": "0px", "sm": "0px", "md": "24px", "lg": "24px", "xl": "24px" }
                 }}>
@@ -146,90 +147,126 @@ const PersonalInformation = ({ jobType }) => {
                         gap={2} sx={{
                             width: {
                                 "xs": "0%", "sm": "0%", "md": "50%", "lg": "50%", "xl": "50%"
-                            }, padding: { "xs": "0px", "sm": "0px", "md": "100px", "lg": "100px", "xl": "100px" },
-                            visibility: { "xs": "hidden", "sm": "hidden", "md": "visible", "lg": "visible", "xl": "visible" }
+                            },
+                            visibility: { "xs": "hidden", "sm": "hidden", "md": "hidden", "lg": "visible", "xl": "visible" }
                         }}>
                         <Box sx={{
-                            display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" }
+                            marginTop: "50px",
+                            display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
                         }}>
                             <Typography component="box" sx={{
-                                fontSize: "64px",
+                                margin: "20px",
+                                fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
                                 fontFamily: "Montserrat",
                                 fontWeight: "600",
                                 color: "#4E3A67",
                                 display: "block",
+                                lineHeight: "1.2"
                             }}>
                                 50K People Have
-
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#4E3A67",
+                                    display: "block",
+                                    width: "max-content",
+                                    lineHeight: "1.2"
+                                }}>
+                                    Got Jobs Through Us;
+                                    <Typography component="box" sx={{
+                                        fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                                        fontFamily: "Montserrat",
+                                        fontWeight: "600",
+                                        color: "#4E3A67",
+                                        display: "block",
+                                        lineHeight: "1.2"
+                                    }}>
+                                        Next is You!
+                                    </Typography>
+                                </Typography>
                             </Typography>
-                            <Typography component="box" sx={{
-                                fontSize: "64px",
-                                fontFamily: "Montserrat",
-                                fontWeight: "600",
-                                color: "#4E3A67",
-                                display: "block",
-                                width: "max-content"
-                            }}>
-                                Got Jobs Through Us;
-                            </Typography>
-                            <Typography component="box" sx={{
-                                fontSize: "64px",
-                                fontFamily: "Montserrat",
-                                fontWeight: "600",
-                                color: "#4E3A67",
-                                display: "block",
-                            }}>
-                                Next is You!
-                            </Typography>
-                            <ImageBox imgeUrl="/assets/g51.png" imgeText="g51"></ImageBox>
+                            <ThemeWebsiteImage imageUrl="/assets/g51.png" imageWidth="500px" ></ThemeWebsiteImage>
                         </Box>
 
                         <Box sx={{
-                            display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" }
+                            marginTop: "200px",
+                            display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
                         }}>
                             <Typography component="box" sx={{
-                                fontSize: "64px",
+                                margin: "20px",
+                                fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
                                 fontFamily: "Montserrat",
                                 fontWeight: "600",
                                 color: "#4E3A67",
                                 display: "block",
-                                textAlign: "end"
-                            }}> Select from
+                                textAlign: "end",
+                                lineHeight: "1.2"
 
+                            }}> Select from
+                                <Typography component="box" sx={{
+                                    fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#4E3A67",
+                                    display: "block",
+                                    textAlign: "end",
+                                    lineHeight: "1.2"
+
+                                }}>
+                                    the Jobs in Your City
+                                </Typography>
                             </Typography>
-                            <Typography component="box" sx={{
-                                fontSize: "64px",
-                                fontFamily: "Montserrat",
-                                fontWeight: "600",
-                                color: "#4E3A67",
-                                display: "block",
-                                width: "max-content"
-                            }}>
-                                the Jobs in Your City
-                            </Typography>
-                            <ImageBox imgeUrl="/assets/g52.png" imgeText="g52"></ImageBox>
+
+                            <Box
+                                sx={{
+                                    position: "relative",
+                                    left: "300px"
+                                }}>
+                                <ThemeWebsiteImage
+                                    imageUrl="/assets/g52.png" imageWidth="500px" ></ThemeWebsiteImage>
+                            </Box>
 
                         </Box>
 
                     </Stack>
 
-                    <Box sx={{ width: { "xs": "100%", "sm": "100%", "md": "50%", "lg": "50%", "xl": "50%" } }}>
+                    <Box sx={{
+                        display: { "xs": "block", "sm": "block", "md": "block", "lg": "none", "xl": "none" }
+                    }}>
+                        <Typography component="box" sx={{
+                            margin: "20px",
+                            fontSize: { "xs": "1.6rem", "sm": "3rem", "md": "3rem", "xl": "4rem", "lg": "4rem" },
+                            fontFamily: "Montserrat",
+                            fontWeight: "600",
+                            color: "#4E3A67",
+                            display: "block",
+                            lineHeight: "1.2",
+                            textAlign: "center"
+                        }}>
+                            50K People Have Got Jobs Through Us; Next is You!
+
+                        </Typography>
+                        <ThemeMobileImage imageUrl="/assets/g52.png" />
+                    </Box>
+
+                    <Box sx={{ width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" } }}>
                         <Box sx={{
-                            maxWidth: "763px",
-                            minHeight: "153px",
                             background: "#F8F8F8",
                             border: "1px solid #EAEAEA",
                             boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
                             borderRadius: "19px",
+                            position: "relative",
+                            top: { "xs": "-30px", "sm": "-30px", "md": "-30px", "lg": "0px", "xl": "0px" }
                         }}>
                             <Box sx={{
                                 padding: { "xs": "15px", "sm": "15px", "md": "35px 50px", "lg": "35px 50px", "xl": "35px 50px" },
                             }}>
                                 <Typography component="box" sx={{
-                                    fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
+                                    fontSize: { "xs": "1.6rem", "sm": "1.6rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" },
                                     fontFamily: "Montserrat",
                                     fontWeight: "600",
-                                    color: "#4E3A67",
+                                    color: "#000000",
                                     display: "block",
                                     marginTop: "20px"
                                 }}>
@@ -240,7 +277,7 @@ const PersonalInformation = ({ jobType }) => {
 
                                     {
                                         data1 && data1.map((item) => {
-                                            return <FormMenu data={item} />
+                                            return <FormMenu data={item} dataLength={data1.length} />
                                         })
                                     }
                                 </Stack>
@@ -384,7 +421,7 @@ const PersonalInformation = ({ jobType }) => {
                                                             border: "1px solid #EAEAEA",
                                                             boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
                                                             borderRadius: "7px",
-                                                            fontSize: "16px",
+                                                            fontSize: "1rem",
                                                             fontamily: 'Montserrat',
                                                             BorderBottom: 'none'
                                                         }}
@@ -419,7 +456,7 @@ const PersonalInformation = ({ jobType }) => {
                                                                 border: "1px solid #EAEAEA",
                                                                 boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
                                                                 borderRadius: "7px",
-                                                                fontSize: "16px",
+                                                                fontSize: "1rem",
                                                                 fontamily: 'Montserrat',
                                                                 BorderBottom: 'none'
                                                             }}
@@ -452,7 +489,7 @@ const PersonalInformation = ({ jobType }) => {
                                                                 border: "1px solid #EAEAEA",
                                                                 boxShadow: "0px 10px 11px rgb(0 0 0 / 2%)",
                                                                 borderRadius: "7px",
-                                                                fontSize: "16px",
+                                                                fontSize: "1rem",
                                                                 fontamily: 'Montserrat',
                                                                 BorderBottom: 'none'
                                                             }}
@@ -495,7 +532,7 @@ const PersonalInformation = ({ jobType }) => {
                                                     <ThemeFInputDiv sx={{ width: "370px" }}>
                                                         <ThemeLabel LableFor="current_salary" LableText="Current Salary" />
                                                         <CurrencyFormat style={{
-                                                            fontSize: "16px",
+                                                            fontSize: "1rem",
                                                             outline: "none",
                                                             width: "92%",
                                                             border: "1px solid #EAEAEA",
@@ -517,7 +554,7 @@ const PersonalInformation = ({ jobType }) => {
                                                         <ThemeLabel LableFor="excepted_salary" LableText="Excepted Salary" />
 
                                                         <CurrencyFormat style={{
-                                                            fontSize: "16px",
+                                                            fontSize: "1rem",
                                                             outline: "none",
                                                             width: "92%",
                                                             border: "1px solid #EAEAEA",
@@ -527,7 +564,6 @@ const PersonalInformation = ({ jobType }) => {
                                                             placeholder="Excepted Salary"
                                                             thousandSeparator={true} prefix={'₹'}
                                                             onChange={(event) => {
-
                                                                 setFieldValue("excepted_salary", event.target.value.slice(1).replaceAll(",", ""))
                                                             }}
                                                         />
@@ -540,7 +576,6 @@ const PersonalInformation = ({ jobType }) => {
                                                 <ThemeFInputDiv>
                                                     <ThemeLabel LableFor="skills" LableText="Skills *" />
                                                     <Field
-
                                                         variant="standard"
                                                         error={errors.skills && touched.skills}
                                                         component={Select}
@@ -566,7 +601,7 @@ const PersonalInformation = ({ jobType }) => {
                                                 <ThemeFInputDiv>
                                                     <ThemeLabel LableFor="total_work_experience" LableText="Total Work Experience" />
                                                     <Field
-                                                        error={errors.full_name && touched.full_name}
+                                                        error={errors.total_work_experience && touched.total_work_experience}
                                                         as={TextField}
                                                         id="total_work_experience"
                                                         placeholder="Enter Total Work Experience" type="text" name="total_work_experience" fullWidth />

@@ -169,7 +169,7 @@ const Footer = () => {
                     fontWeight: "100",
                     fontFamily: "Montserrat"
                 }}>
-                {/* Copyright © 2010-2023 Freepik Company S.L. All rights reserved. */}
+                Copyright © 2023 JobYahan.com
             </Typography>
         </Box >
     </>)

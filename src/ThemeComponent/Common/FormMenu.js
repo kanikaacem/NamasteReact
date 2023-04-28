@@ -1,9 +1,9 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
-const FormMenu = ({ data, formStep }) => {
+const FormMenu = ({ data, formStep, dataLength }) => {
     const { step } = useParams();
     return (<>
-        <Box sx={{ display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" } }}>
+        <Box sx={{ display: { "xs": "none", "sm": "block", "md": "block", "lg": "block", "xl": "block" } }}>
             <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{
                 opacity: ((step == data.id - 1) || (formStep == data.id - 1)) ? "1" : "0.5"
             }}>
@@ -35,7 +35,7 @@ const FormMenu = ({ data, formStep }) => {
             </Stack>
         </Box >
 
-        <Box sx={{ display: { "xs": "block", "sm": "block", "md": "none", "lg": "none", "xl": "none" } }}>
+        <Box sx={{ display: { "xs": "block", "sm": "none", "md": "none", "lg": "none", "xl": "none" } }}>
             <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{
             }}>
                 <Stack direction="column" gap={1} alignItems="center" justifyContent="center" sx={{
@@ -59,7 +59,7 @@ const FormMenu = ({ data, formStep }) => {
                         fontWeight: "600",
                         color: "#4E3A67",
                         display: "block",
-                        width: "50px",
+                        width: "min-content",
                         textAlign: "center"
 
                     }}>
@@ -68,10 +68,11 @@ const FormMenu = ({ data, formStep }) => {
 
                 </Stack>
 
-                {data.id < 3 && <Box sx={{
-                    opacity: ((step == data.id - 1) || (formStep == data.id - 1)) ? "1" : "0.5"
+                {data.id < (dataLength ? dataLength : 3) && <Box sx={{
+                    opacity: ((step == data.id - 1) || (formStep == data.id - 1)) ? "1" : "0.5",
+                    margin: "0px 10px"
                 }}>
-                    ------------------
+                    ------
                 </Box>
                 }
             </Stack>

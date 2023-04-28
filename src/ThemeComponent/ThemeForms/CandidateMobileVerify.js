@@ -11,6 +11,8 @@ import Error from "../../ThemeComponent/Common/Error";
 import { useState } from "react";
 
 import ThemeMessage from "../Common/ThemeMessage";
+import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
+import ThemeMobileImage from "../Common/ThemeMobileImage";
 
 const CandidateMobileVerify = () => {
     const [sendOtp, setSendOtp] = useState(false);
@@ -47,7 +49,6 @@ const CandidateMobileVerify = () => {
 
         <Box className="CandidateMobileVerify"
             sx={{
-                // height: { "xs": "1000px", "sm": "1000px", "md": "100vh", "lg": "100vh", "xl": "100vh" },
                 background: "#FFFFFF",
                 backgroundRepeat: " no-repeat",
                 backgroundPosition: "left 100px bottom 0px"
@@ -59,37 +60,57 @@ const CandidateMobileVerify = () => {
                     gap: "24px"
                 }}>
 
-                <Stack gap={3} direction="row" justifyContent="space-between"
-                    sx={{
-                        margin: { "xs": "0px", "sm": "0px", "md": "50px", "lg": "50px", "xl": "50px" },
+                <Stack gap={3} direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }}
+                    justifyContent="space-between" sx={{
+                        margin: { "xs": "0px", "sm": "0px", "md": "0px", "xl": "70px 0px", "lg": "70px 0px" }
+                    }}
+                >
+                    <Box sx={{
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" },
+                        margin: "0 auto"
                     }}>
-                    <Box sx={{ width: "50%", margin: "0 auto", display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" } }}>
-                        <Typography component="box" sx={{
-                            fontSize: "64px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                        }}> Unlimited Job
-                        </Typography>
-                        <Typography component="box" sx={{
-                            fontSize: "64px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                            width: "max-content"
-                        }}>
-                            Options
+                        <Box sx={{ display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" } }}>
+                            <Typography component="box" sx={{
+                                fontSize: "4rem",
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                            }}> Unlimited Job
+                                <Typography component="box" sx={{
+                                    fontSize: "4rem",
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#4E3A67",
+                                    display: "block",
+                                }}> Options
+                                </Typography>
+                            </Typography>
+                        </Box>
+                        <Box sx={{ display: { "xs": "block", "sm": "block", "md": "block", "lg": "none", "xl": "none" } }}>
+                            <Typography component="box" sx={{
+                                fontSize: { "xs": "1.6rem", "sm": "3rem", "md": "3rem", "xl": "4rem", "lg": "4rem" },
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: "block",
+                                textAlign: "center",
+                                margin: "10px 0px"
+                            }}> Unlimited Job Options
+                            </Typography>
+                        </Box>
 
-                        </Typography>
-                        <img src={window.location.origin + "/assets/g54.png"} alt="g54" style={{ margin: "40px 20px" }} />
-
+                        <ThemeMobileImage imageUrl="/assets/g54.png" />
+                        <ThemeWebsiteImage imageUrl="/assets/g54.png" imageWidth="500px" />
                     </Box>
 
-                    <Box sx={{ width: { "xs": "100%", "sm": "100%", "md": "50%", "lg": "50%", "xl": "50%" } }}>
-                        <Box sx={{
+                    <Box sx={{
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" },
+                        position: "relative",
+                        top: { "xs": '-30px', "sm": "-50px", "md": "-50px", "lg": "0px", "xl": "0px" }
 
+                    }}>
+                        <Box sx={{
                             background: "#F8F8F8",
                             border: "1px solid #EAEAEA",
                             boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
@@ -130,12 +151,12 @@ const CandidateMobileVerify = () => {
                                     onSubmit={handleSubmit1}
                                 >
                                     {({ errors, touched, values, setFieldValue }) => (
-                                        <Form className="SendOTPForm">
+                                        <Form className="CandidateSendOTPForm">
                                             <ThemeFInputDiv sx={{ position: "relative" }}>
                                                 <ThemeLabel LableFor="mobile_number" LableText="Mobile Number" />
                                                 <Stack direction="row" gap={1} alignItems="center">
                                                     <Field
-                                                        style={{ width: "88%" }}
+                                                        sx={{ width: { "xs": "83%", "sm": "85%", "md": "85%", "xl": "88%", "xl": "88%" } }}
                                                         error={errors.mobile_number && touched.mobile_number}
                                                         id="mobile_number"
                                                         as={TextField}
@@ -212,7 +233,7 @@ const CandidateMobileVerify = () => {
                     </Box>
                 </Stack>
             </Stack>
-        </Box>
+        </Box >
 
 
     </>)

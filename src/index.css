@@ -369,12 +369,18 @@ nav {
 }
 
 .PersonalInformationPage .css-1s2u09g-control,
-.PersonalInformationPage .css-1pahdxg-control .PostJobForm1 .css-1s2u09g-control,
-.PostJobForm1 .css-1pahdxg-control {
+.PersonalInformationPage .css-1pahdxg-control {
   padding: 10px !important;
   border-radius: 11px !important;
 }
 
+.PostJobForm1 .css-1s2u09g-control,
+.PostJobForm1 .css-6j8wv5-Input,
+.PostJobForm2 .css-6j8wv5-Input,
+.PostJobForm2 .css-1s2u09g-control {
+  padding: 7px !important;
+  border-radius: 11px !important;
+}
 
 
 /*tags */
@@ -399,28 +405,6 @@ nav {
   padding: "10px 0px" !important;
   margin: "20px 0px" !important;
 }
-
-
-
-/* .css-1pahdxg-control:hover {
-  border: 2px solid #f2f4f8 !important;
-  outline: none !important;
-  box-shadow: none !important;
-  width: 97% !important;
-  border-radius: 10px !important;
-  font-size: 13px !important;
-
-} */
-
-/* .css-1pahdxg-control {
-  border: 2px solid #f2f4f8 !important;
-  outline: none !important;
-  box-shadow: none !important;
-  width: 97% !important;
-  border-radius: 10px !important;
-  font-size: 13px !important;
-} */
-
 
 .jobDescriptionWrapper {
   padding: 40px;
@@ -1020,8 +1004,38 @@ nav {
   .ProfileActionText {
     font-size: 10px !important;
   }
+
+  .PersonalInformationPage .css-1s2u09g-control,
+  .PersonalInformationPage .css-1pahdxg-control .PostJobForm1 .css-1s2u09g-control,
+  .PostJobForm1 .css-1pahdxg-control {
+    padding: 5px !important;
+    border-radius: 11px !important;
+  }
+
+  .BlueCollarRegistrationFormInput {
+    padding: 10px !important;
+    font-size: 12px !important;
+  }
+
+  .PostJobForm2 .css-1o5jst9-MuiStack-root,
+  .PostJobForm2 .css-x0fw4u-MuiStack-root {
+    font-size: 12px;
+  }
+
+  .PostJobForm2 .css-6j8wv5-Input,
+  .PostJobForm2 .css-1s2u09g-control {
+    padding: 0px !important;
+    border-radius: 11px !important;
+    font-size: 12px !important;
+  }
+
 }
 
+@media screen and (min-width:600px) and (max-width: 992px) {
+  .ViewCandidateLink {
+    font-size: 14px;
+  }
+}
 
 .MuiSelect-select {
   font-family: 'Montserrat', sans-serif !important;

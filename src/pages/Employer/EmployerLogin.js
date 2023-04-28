@@ -136,6 +136,7 @@ const EmployerLogin = () => {
                                     fontFamily: "Montserrat",
                                     color: "#FC9A7E",
                                     display: "block",
+                                    margin: "10px"
                                 }}>
                                     We Love Recruiting
                                 </Typography>

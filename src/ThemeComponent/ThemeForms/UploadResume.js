@@ -16,6 +16,8 @@ import { data1 } from "../../utils/Data";
 import FormMenu from "../Common/FormMenu";
 import { useNavigate } from "react-router-dom";
 
+import ThemeMobileImage from "../Common/ThemeMobileImage";
+import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
 const UploadResume = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const navigate = useNavigate();
@@ -51,37 +53,61 @@ const UploadResume = () => {
                     gap: { "xs": "0px", "sm": "0px", "md": "24px", "lg": "24px", "xl": "24px" }
                 }}>
 
-                <Stack direction="row" gap={2} justifyContent="space-between" sx={{ position: "relative" }}>
-                    <Box sx={{
-                        display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" },
-                        margin: "0 auto"
+                <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} gap={2} justifyContent="space-between" sx={{ position: "relative" }}>
+                    <Stack sx={{
+                        width: {
+                            "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%"
+                        }, padding: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "100px 0px", "xl": "100px 0px" },
                     }}>
-                        <Typography component="box" sx={{
-                            fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                        }}> Unlimited Job
-                        </Typography>
-                        <Typography component="box" sx={{
-                            fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                            width: "max-content"
-                        }}>
-                            Options
+                        <Box>
+                            <Typography component="box" sx={{
+                                fontSize: "64px",
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                marginLeft: "60px",
+                                display: { "xs": "none", "sm": "none", "md": "none", "xl": "block", "lg": "block" }
+                            }}> Unlimited Job
+                                <Typography component="box" sx={{
+                                    fontSize: "64px",
+                                    fontFamily: "Montserrat",
+                                    fontWeight: "600",
+                                    color: "#4E3A67",
+                                    display: "block",
+                                    width: "max-content"
+                                }}>
+                                    Options
 
-                        </Typography>
-                        <img src={window.location.origin + "/assets/g54.png"} alt="g54" style={{ margin: "40px 20px" }} />
+                                </Typography>
+                            </Typography>
 
-                    </Box>
+                            <Typography component="box" sx={{
+                                fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: { "xs": "block", "sm": "block", "md": "block", "xl": "none", "lg": "none" },
+                                margin: "10px 0px"
+                            }}> Unlimited Job Options
+                            </Typography>
 
-                    <Stack direction="column" sx={{ width: { "xs": "100%", "sm": "100%", "md": "50%", "lg": "50%", "xl": "50%" } }}>
+
+                            <ThemeMobileImage imageUrl="/assets/g54.png" />
+                            <Box sx={{
+                                position: "relative",
+                                left: { 'xs': '0px', "sm": "0px", "md": "0px", "lg": "-170px", "xl": "-195px" },
+                                marginTop: "30px",
+                                zIndex: "100"
+                            }}
+                            >
+                                <ThemeWebsiteImage imageUrl="/assets/g54.png" imageWidth="600px" />
+                            </Box>
+                        </Box>
+
+                    </Stack >
+
+                    <Stack direction="column" sx={{ width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" } }}>
                         <Box sx={{
-                            width: { "xs": "92%", "sm": "92%", "md": "763px", "lg": "763px", "xl": "763px" },
                             background: "#F8F8F8",
                             border: "1px solid #EAEAEA",
                             boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
@@ -94,11 +120,11 @@ const UploadResume = () => {
                                     fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
                                     fontFamily: "Montserrat",
                                     fontWeight: "600",
-                                    color: "#4E3A67",
+                                    color: "#000000",
                                     display: "block",
                                     marginTop: "20px"
                                 }}>
-                                    Work History
+                                    Upload Resume
                                 </Typography>
 
                                 <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>

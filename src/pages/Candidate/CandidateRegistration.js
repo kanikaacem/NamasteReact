@@ -14,6 +14,7 @@ import Error from '../../ThemeComponent/Common/Error';
 import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 import { useState } from "react";
 
+import ThemeMobileImage from "../../ThemeComponent/Common/ThemeMobileImage";
 const CandidateRegistration = () => {
 
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
@@ -61,10 +62,11 @@ const CandidateRegistration = () => {
 
         <Box className="CandidateLoginPage"
             sx={{
-                height: { "xs": "1000px", "sm": "1000px", "md": "100vh", "lg": "100vh", "xl": "100vh" },
+                minHeight: { "xs": "1000px", "sm": "1000px", "md": "100vh", "lg": "100vh", "xl": "100vh" },
                 background: "#2B1E44",
-                backgroundImage:
-                    "url('../assets/g50.png')",
+                backgroundImage: {
+                    "xs": "", "sm": "", "md": "", "lg": "url('../assets/g50.png')", "xl": "url('../assets/g50.png')"
+                },
                 backgroundRepeat: " no-repeat",
                 backgroundPosition: " left 4px bottom 0px"
 
@@ -82,7 +84,7 @@ const CandidateRegistration = () => {
                 <Stack direction={{ 'lg': "row", 'md': 'column', 'xs': 'column' }} sx={{ gap: "40px" }}>
 
                     <Box sx={{
-                        width: { 'lg': "60%", 'md': '100%', 'xs': '100%' },
+                        width: { "xs": "100%", "md": "100%", "sm": "100%", "xl": "65%", "lg": "65%" },
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center"
@@ -96,9 +98,9 @@ const CandidateRegistration = () => {
                             }}
                         >
                             <Typography component="box" sx={{
-                                fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "xl": "64px", "lg": "64px" },
+                                fontSize: { "xs": "1.2rem", "sm": "2.5rem", "md": "2.5rem", "lg": "4rem", "xl": "4rem" },
                                 fontFamily: "Work Sans, sans-serif",
-                                fontWeight: "700",
+                                fontWeight: { "xs": "400", "sm": "400", "md": "400", "lg": "700", "xl": "700" },
                                 color: "#FC9A7E",
                                 display: "block",
                                 lineHeight: "40px"
@@ -106,12 +108,12 @@ const CandidateRegistration = () => {
                                 Choose a job you love,
 
                                 <Typography component="box" sx={{
-                                    fontSize: { "xs": "26px", "sm": "64px", "md": "64px", "xl": "64px", "lg": "64px" },
+                                    fontSize: { "xs": "1.2rem", "sm": "2.5rem", "md": "2.5rem", "lg": "4rem", "xl": "4rem" },
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "700",
                                     color: "#FFFFFF",
                                     display: "block",
-                                    margin: "10px 0px",
+                                    margin: { "xs": "0px 0px 10px 0px", "sm": "0px 0px 10px 0px", "md": "0px 0px 10px 0px", "lg": "10px 0px", "xl": "10px 0px" },
                                     lineHeight: "1.0 !important"
                                 }}>
                                     and you never have to
@@ -120,108 +122,116 @@ const CandidateRegistration = () => {
                                 </Typography>
 
                             </Typography>
+                            <ThemeMobileImage imageUrl="/assets/g10Mobile.png" />
+
                         </Box>
-
-
                     </Box>
 
-
-                    <Stack sx={{
-                        width: { 'lg': "449px", 'md': '92%', 'xs': '92%' },
-                        height: { "xs": "fit-content", "sm": "fit-content", "md": "730px", "lg": "730px", "xl": "730px" },
-                        background: "#FBF8FF",
-                        boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
-                        borderRadius: "19px",
-                        padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "15px" }
+                    <Box sx={{
+                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "35%", "xl": "35%" },
+                        position: "relative",
+                        top: { "xs": "-45px", "sm": "-50px", "md": "-50px", "lg": "0px", "xl": "0px" }
                     }}>
-                        <Typography component="box" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontFamily: "Work Sans, sans-serif" }}>
-                            Welcome Guest,
-                        </Typography>
-                        <Typography component="box" sx={{ fontSize: { "xs": "16px", "sm": "16px", "md": "40px", "lg": "40px", "xl": "40px" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700", marginBottom: "30px" }}>
-                            Sign Up for JobsYahan
-                        </Typography>
+                        <Stack sx={{
+                            height: { "xs": "fit-content", "sm": "fit-content", "md": "730px", "lg": "730px", "xl": "730px" },
+                            background: "#FBF8FF",
+                            boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
+                            borderRadius: "19px",
+                            padding: { "xs": "20px", "sm": "30px", "md": "40px", "lg": "40px", "xl": "50px 80px" }
 
-                        <Formik
+                        }}>
+                            <Typography component="box" sx={{
+                                fontSize: { "xs": "1rem", "sm": "1.2rem", "md": "1.2rem", "lg": "1.2rem", "xl": "1.2rem" }, fontFamily: "Work Sans, sans-serif"
+                            }}>
+                                Welcome Guest,
+                            </Typography>
+                            <Typography component="box" sx={{ fontSize: { "xs": "1.6rem", "sm": "2.5rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700", marginBottom: "30px" }}>
+                                Sign Up for JobsYahan
+                            </Typography>
 
-                            initialValues={defaultValue}
-                            validationSchema={CandidateRegistrationSchema}
-                            onSubmit={handleSubmit}
-                        >
-                            {({ errors, touched }) => (
-                                <Form className="CandidateRegistration">
-                                    <ThemeFInputDiv>
+                            <Formik
+
+                                initialValues={defaultValue}
+                                validationSchema={CandidateRegistrationSchema}
+                                onSubmit={handleSubmit}
+                            >
+                                {({ errors, touched }) => (
+                                    <Form className="CandidateRegistration">
                                         <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="email_id" LableText="Email Address *" />
-                                            <Field
-                                                error={errors.email_id && touched.email_id}
-                                                as={TextField}
-                                                id="email_id"
-                                                placeholder="Enter Email ID/ Username" type="text" name="email_id" fullWidth />
-                                            {errors.email_id && touched.email_id && <Box sx={{
-                                                display: "flex",
-                                                flexDirection: "row",
-                                                alignItems: "center",
-                                                gap: "20px"
-                                            }}>
-                                                <Error text={errors.email_id} />
-                                                {showLoginButton &&
-                                                    <ThemeButtonType2
+                                            <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="email_id" LableText="Email Address *" />
+                                                <Field
+                                                    error={errors.email_id && touched.email_id}
+                                                    as={TextField}
+                                                    id="email_id"
+                                                    placeholder="Enter Email ID/ Username" type="text" name="email_id" fullWidth />
+                                                {errors.email_id && touched.email_id && <Box sx={{
+                                                    display: "flex",
+                                                    flexDirection: "row",
+                                                    alignItems: "center",
+                                                    gap: "20px"
+                                                }}>
+                                                    <Error text={errors.email_id} />
+                                                    {showLoginButton &&
+                                                        <ThemeButtonType2
 
-                                                        onClick={() => {
-                                                            window.location.href = window.location.origin + "/candidate-login";
-                                                        }
-                                                        } id="login" variant="contained" type="button" sx={{
-                                                            fontFamily: "Work Sans, sans-serif",
-                                                            fontWeight: "600",
-                                                            width: "fit-content",
-                                                            padding: "5px",
-                                                            fontSize: "16px"
-                                                        }}>Login</ThemeButtonType2>
+                                                            onClick={() => {
+                                                                window.location.href = window.location.origin + "/candidate-login";
+                                                            }
+                                                            } id="login" variant="contained" type="button" sx={{
+                                                                fontFamily: "Work Sans, sans-serif",
+                                                                fontWeight: "600",
+                                                                width: "fit-content",
+                                                                padding: "5px",
+                                                                fontSize: "1rem"
+                                                            }}>Login</ThemeButtonType2>
 
+                                                    }
+                                                </Box>
                                                 }
-                                            </Box>
-                                            }
 
 
+                                            </ThemeFInputDiv>
+
+                                            <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="password" LableText="Password *" />
+                                                <Field
+                                                    error={errors.password && touched.password}
+                                                    id="password"
+                                                    as={TextField}
+                                                    placeholder="Enter Password" type="password" name="password" fullWidth />
+                                                {errors.password && touched.password && <Error text={errors.password} />}
+
+
+                                            </ThemeFInputDiv>
+
+                                            <ThemeFInputDiv>
+                                                <ThemeLabel LableFor="confirm_password" LableText="Confirm Password *" />
+                                                <Field
+                                                    error={errors.confirm_password && touched.confirm_password}
+                                                    id="confirm_password"
+                                                    as={TextField}
+                                                    placeholder="Enter Confirm Password" type="password" name="confirm_password" fullWidth />
+                                                {errors.confirm_password && touched.confirm_password && <Error text={errors.confirm_password} />}
+
+
+                                            </ThemeFInputDiv>
                                         </ThemeFInputDiv>
 
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="password" LableText="Password *" />
-                                            <Field
-                                                error={errors.password && touched.password}
-                                                id="password"
-                                                as={TextField}
-                                                placeholder="Enter Password" type="password" name="password" fullWidth />
-                                            {errors.password && touched.password && <Error text={errors.password} />}
+                                        <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
+
+                                            <ThemeButtonType2 id="continue" variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue</ThemeButtonType2>
+                                        </Stack>
+
+                                    </Form>
+                                )
+                                }
+                            </Formik >
 
 
-                                        </ThemeFInputDiv>
+                        </Stack>
+                    </Box>
 
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="confirm_password" LableText="Confirm Password *" />
-                                            <Field
-                                                error={errors.confirm_password && touched.confirm_password}
-                                                id="confirm_password"
-                                                as={TextField}
-                                                placeholder="Enter Confirm Password" type="password" name="confirm_password" fullWidth />
-                                            {errors.confirm_password && touched.confirm_password && <Error text={errors.confirm_password} />}
-
-
-                                        </ThemeFInputDiv>
-                                    </ThemeFInputDiv>
-
-                                    <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-
-                                        <ThemeButtonType2 id="continue" variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue</ThemeButtonType2>
-                                    </Stack>
-
-                                </Form>
-                            )
-                            }
-                        </Formik >
-
-
-                    </Stack>
                 </Stack>
             </Stack>
 

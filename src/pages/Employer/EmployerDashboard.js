@@ -140,7 +140,7 @@ const EmployerDashboard = () => {
                                 <Stack gap={1} sx={{ width: { "xs": "150px", "sm": "150px", "md": "230px", "lg": "230px", "xl": "230px" } }}>
                                     <Stack direction="row" justifyContent="space-between">
                                         <Typography component="div" sx={{ fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontWeight: "700" }}>
-                                            {jobInfo && jobInfo.publishedjobscount}
+                                            {jobInfo && (jobInfo.allposted_jobscount - jobInfo.UnPublishedjobscount)}
                                         </Typography>
                                         <img src={window.location.origin + "/assets/V3.png"} alt="V3" height="35px" />
 

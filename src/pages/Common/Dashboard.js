@@ -236,7 +236,7 @@ const Dashboard = () => {
                         {user && user.employer_type === "employer" && <Box sx={{
                             cursor: "pointer",
                             width: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" },
-                            height: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" }
+                            height: { "xs": "fit-content", "sm": "fit-content", "md": "fit-content", "lg": "50px", "xl": "50px" }
                         }} onClick={() => setOpenProfile(!openProfile)}>
                             {
 
@@ -251,8 +251,8 @@ const Dashboard = () => {
 
                         {user && user.type === "candidate" && <Box sx={{
                             cursor: "pointer",
-                            width: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" },
-                            height: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" }
+                            width: { "xs": "20px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" },
+                            height: { "xs": "17px", "sm": "17px", "md": "50px", "lg": "50px", "xl": "50px" }
                         }} onClick={() => setOpenProfile(!openProfile)}>
                             {
 

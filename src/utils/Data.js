@@ -1206,3 +1206,14 @@ export const data3 = [
         text: "Company Address"
     }
 ]
+
+export const data4 = [
+    {
+        id: 1,
+        text: "Job Information"
+    },
+    {
+        id: 2,
+        text: "Employee Requirements"
+    }
+]
