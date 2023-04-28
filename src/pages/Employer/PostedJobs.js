@@ -74,9 +74,13 @@ const PostedJobs = () => {
 
                 </Stack>
                 <Box sx={{ minHeight: 500, width: '100%' }}>
-                    <Stack direction="column" gap={2}>
+                    <Stack direction="column" gap={{
+                        "xs": 1, "sm": 1, "md": 1, "lg": 2, "xl": 2
+                    }}>
                         {
-                            !isDataLoaded && <Stack direction="column" gap={2}>
+                            !isDataLoaded && <Stack direction="column" gap={{
+                                "xs": 1, "sm": 1, "md": 1, "lg": 2, "xl": 2
+                            }}>
                                 <Template1 />
                                 <Template1 />
                                 <Template1 />
@@ -105,7 +109,7 @@ const PostedJobs = () => {
 
                 </Box>
             </Stack>
-            <Box sx={{ width: "20%", display: { "lg": "block", "md": "none", "xs": "none" } }}>
+            <Box sx={{ width: "20%", display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" } }}>
                 <ChatComponent />
             </Box>
         </Stack>
