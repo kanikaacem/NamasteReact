@@ -668,7 +668,7 @@ nav {
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   border-radius: 11px;
-  font-size: 16px !important;
+  font-size: 16px ;
   font-family: 'Montserrat' !important;
   font-weight: 500 !important;
   background: #FFFFFF !important;
@@ -794,6 +794,16 @@ nav {
 
 
 @media screen and (max-width: 600px) {
+  /* .formik-field{
+    font-size:30px !important;
+    height:300px !important;
+  } */
+
+  input{
+    font-size: 12px !important;
+    border-radius: 11px !important
+  }
+
   #Search {
     font-size: 12px !important;
   }
@@ -832,7 +842,7 @@ nav {
 
   .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
     border-radius: 11px;
-    font-size: 12px !important;
+    /* font-size: 12px !important; */
     font-family: 'Montserrat' !important;
     font-weight: 500 !important;
     padding: 10px !important;

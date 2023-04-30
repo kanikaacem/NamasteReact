@@ -15,7 +15,7 @@ const SubscriptionPlan = () => {
         padding: "20px",
     })
     const SubscriptionPlanItem = styled(Stack)({
-        fontSize: "14px",
+        fontSize: "0.8rem",
         width: "60%",
         margin: " 0 auto",
         marginBottom: "10px",
@@ -25,7 +25,7 @@ const SubscriptionPlan = () => {
 
     const SubscriptionPlanMainHeading = styled(Box)({
         textAlign: "center",
-        fontSize: "20px",
+        fontSize: {"xs":"0.8rem","sm":"0.8rem","md":"1.25rem","lg":"1.25rem","xl":"1.25rem"},
         marginBottom: "10px"
     })
 
@@ -34,7 +34,7 @@ const SubscriptionPlan = () => {
         textAlign: "center",
         margin: "30px 0px",
         textTransform: "capitalize",
-        fontSize: "18px"
+        fontSize: "1.1rem"
     })
     return (<>
         <Box>
@@ -49,7 +49,9 @@ const SubscriptionPlan = () => {
                                 alignItems="center"
                                 justifyContent="space-between">
                                 <Box>
-                                    <Typography component="div" sx={{ fontSize: "30px" }}>
+                                    <Typography component="div" sx={{ fontSize: {
+                                        "xs":"1rem","sm":"1rem","md":"1rem","lg":"1.8rem","xl":"1.8rem"
+                                    } }}>
                                         Plan & Subscriptions
                                     </Typography>
                                 </Box>
@@ -58,37 +60,57 @@ const SubscriptionPlan = () => {
                                 </Box>
                             </Stack>
                         </Box>
-                        <Stack gap={3} sx={{ marginTop: "50px", minHeight: "100px", background: "#FFFFFF", padding: "20px", borderRadius: "10px" }}>
+                        <Stack gap={3} sx={{ marginTop: {"xs":"0px","sm":"0px","md":"50px","lg":"50px","xl":"50px"}, minHeight: "100px", background: "#FFFFFF", 
+                        padding: {"xs":"10px","sm":"10px","md":"20px","lg":"20px","xl":"20px"}, borderRadius: "10px" }}>
                             <Stack direction="row" justifyContent="space-between">
                                 <Box>
-                                    <Typography component="div">
+                                    <Typography component="div" sx={{
+                                        fontSize: { "xs": "0.7rem", "sm": "0.7rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
+
+                                    }}>
                                         1. Basic Plan
                                     </Typography></Box>
                                 <Box>
-                                    <Typography component="div">
+                                    <Typography component="div" sx={{
+                                        fontSize: { "xs": "0.7rem", "sm": "0.7rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
+
+                                    }}>
                                         Unlimited
                                     </Typography> </Box>
                             </Stack>
                             <Box>
                                 <Stack direction="row" justifyContent="space-between">
                                     <Box>
-                                        <Typography component="div">
+                                        <Typography component="div" sx={{
+                                            fontSize: { "xs": "0.7rem", "sm": "0.7rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
+
+                                        }}>
                                             2. Premium Plan
                                         </Typography>
                                     </Box>
                                     <Box>
-                                        <Typography component="div">
+                                        <Typography component="div"
+                                         sx={{
+                                            fontSize: { "xs": "0.7rem", "sm": "0.7rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
+
+                                         }}>
                                             0 credits left
                                         </Typography>
                                     </Box>
                                 </Stack>
                                 <Typography component="div" sx={{
-                                    marginLeft: "20px", color: "#445578", fontSize: "14px"
+                                    marginLeft: "20px", color: "#445578", fontSize: {
+                                        "xs":"0.7rem","sm":"0.8rem","md":"0.8rem","lg":"0.8rem","xl":"0.8rem"
+                                    }
                                 }}>
                                     Reach out to more candidates in less time with our premium postings
                                 </Typography>
 
-                                <Typography component="div" sx={{ marginLeft: "20px", color: "#445578", fontSize: "14px" }}>
+                                <Typography component="div" sx={{ marginLeft: "20px", color: "#445578", 
+                                fontSize:{
+                                    "xs":"0.7rem","sm":"0.8rem","md":"0.8rem","lg":"0.8rem","xl":"0.8rem"
+
+                                }}}>
                                     Buy More credits
                                 </Typography>
                             </Box>

@@ -105,14 +105,12 @@ const AppliedCandidate = () => {
             sx={{
                 minHeight: "100vh"
             }}>
-            <Stack direction="row" gap={2} className="AppliedCandidatePageWrapper" sx={{
-                padding: {
-                    padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" }
-                }
+            <Stack direction="row" gap={{"xs":0,"sm":0,"md":2,"lg":2,"xl":2}} className="AppliedCandidatePageWrapper" 
+            sx={{
+                padding:{"xs":"10px","sm":"10px","md":"10px","lg":"20px","xl":"20px"}
             }}>
                 <Box sx={{
-                    width: { "xs": "87%", "sm": "87%", "md": `calc(100vw-451px)`, "lg": `calc(100vw-451px)`, "xl": `calc(100vw-451px)` },
-                    padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" }
+                    width: { "xs": "100%", "sm": "100%", "md": `calc(100vw-451px)`, "lg": `calc(100vw-451px)`, "xl": `calc(100vw-451px)` },
 
                 }}>
                     {pageType === "ParticularJobCandidate" && <>
@@ -120,14 +118,14 @@ const AppliedCandidate = () => {
                             <Box>
                                 <Typography component="div" sx={{
                                     fontSize: {
-                                        "xs": "16px", "sm": "16px", "md": "26px", "lg": "26px", "xl": "26px"
+                                        "xs": "1rem", "sm": "1rem", "md": "1.6rem", "lg": "1.6rem", "xl": "1.6rem"
                                     }, color: "#4E3A67", fontWeight: "700"
                                 }}>
                                     {jobData && jobData.job_title ? jobData.job_title : " "}
                                 </Typography>
                                 <Typography component="div" sx={{
                                     fontSize: {
-                                        "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px"
+                                        "xs": "0.7rem", "sm": "0.7rem", "md": "1.6rem", "lg": "1.6rem", "xl": "1.6rem"
 
                                     }, color: "#4E3A67"
                                 }}>
@@ -147,7 +145,7 @@ const AppliedCandidate = () => {
 
                             <Typography component="div" sx={{
                                 fontSize: {
-                                    "xs": "16px", "sm": "16px", "md": "26px", "lg": "26px", "xl": "26px"
+                                    "xs": "1rem", "sm": "1rem", "md": "1.6rem", "lg": "1.6rem", "xl": "1.6rem"
 
                                 }, color: "#FC9A7E", fontWeight: "700"
                             }}>
@@ -196,11 +194,6 @@ const AppliedCandidate = () => {
                                     onChange={(event) => {
                                         setJobFilter(event.target.value);
                                         filterCandidate(event.target.value)
-                                        // getCandidateOnJob(event.target.value);
-                                        // navigate("/employer-dashboard/applied-candidates/" + event.target.value)
-                                        // window.history.pushState("state", "", "/" + jobFilter);
-
-
                                     }}
                                     sx={{ width: "350px", display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
                                     disableUnderline
@@ -213,24 +206,14 @@ const AppliedCandidate = () => {
 
                             </Stack>
 
-
-                            {/* <Stack direction="row" justifyContent="space-between">
-                                <Box>
-                                    <Typography component="div" sx={{ fontSize: "26px", color: "#4E3A67", fontWeight: "700" }}>
-                                         {jobFilter === " " ? "All Jobs" : jobFilter}
-                                    </Typography>
-                                </Box>
-                            </Stack> */}
-
                             <Stack direction="row" gap={2}
-
                                 sx={{
                                     margin: "20px 0px"
                                 }}>
 
                                 <Typography component="div" sx={{
                                     fontSize: {
-                                        "xs": "16px", "sm": "16px", "md": "26px", "lg": "26px", "xl": "26px"
+                                        "xs": "1rem", "sm": "1rem", "md": "1.6rem", "lg": "1.6rem", "xl": "1.6rem"
 
                                     }, color: "#FC9A7E", fontWeight: "700"
                                 }}>
@@ -247,40 +230,50 @@ const AppliedCandidate = () => {
 
                         </>
                     }
+                    
+                    <Box
+                    sx={{
+                        width: "100%"
 
-                    <Stack className="Candidates" direction="column" gap={2} >
+                    }} >
                         {!canDataLoaded && <>
                             <Template1 />
                             <Template1 />
                         </>}
                         {canDataLoaded && jobCanData && jobCanData.length <= 0 && <>
-
-                            <ErrorPage errorMessage="There is no candidate associated with this Job." />
-                        </>}
-                        {canDataLoaded && jobCanData && jobCanData.length > 0 && appliedCandidate.map((item) => {
-                            return (<>
-                                <CandidateComponent CandidateData={item.candidate}
-                                    AppliedDate={parseInt(item.candidateapplieddate)}
-                                    CandidateStatus={item.candidatestatus}
-                                    jobId={jobData._id}
-                                    jobInformation={item.jobsid}
-                                />
-                            </>)
-                        })}
-
-                        {canDataLoaded && jobCanData && jobCanData.length > 0 &&
-                            <Box >
-                                <Pagination count={jobCanData && Math.ceil(jobCanData.length / dataPerPage)} page={currentPage} onChange={(event, value) => setCurrentPage(value)} />
+                            <Box sx={{
+                                    padding: {"xs":"10px","sm":"10px","md":"20px","lg":"20px","xl":"20px"},
+                                    boxSizing: "border-box"
+                            }}>
+                                <ErrorPage errorMessage="There is no candidate associated with this Job." />
                             </Box>
-                        }
-
-                    </Stack>
+                        </>}
+                        
+                        {canDataLoaded && jobCanData && jobCanData.length > 0 && <>
+                            <Stack className="Candidates" direction="column" 
+                        gap={{"xs":1,"sm":1,"md":2,"lg":2,"xl":2}}>
+                            {appliedCandidate.map((item) => {
+                                return (<>
+                                    <CandidateComponent CandidateData={item.candidate}
+                                        AppliedDate={parseInt(item.candidateapplieddate)}
+                                        CandidateStatus={item.candidatestatus}
+                                        jobId={jobData._id}
+                                        jobInformation={item.jobsid}
+                                    />
+                                </>)
+                            })}
+                            <Box >
+                                <Pagination count={jobCanData && Math.ceil(jobCanData.length / dataPerPage)} page={currentPage} 
+                                onChange={(event, value) => setCurrentPage(value)} />
+                            </Box>
+                        
+                        </Stack>
+                        </>}
+                        </Box>
 
                 </Box>
                 <Box
-
                     sx={{
-                        padding: "20px",
                         display: { "lg": "block", "md": "none", "xs": "none" }
                     }}>
                     <ChatComponent />
@@ -300,7 +293,7 @@ const AppliedCandidate = () => {
                             alignItems: "center",
                             justifyContent: "center"
                         }}>
-                            <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
+                            <Typography component="div" sx={{ fontSize: "1rem", color: "#4E3A67", fontWeight: "600" }}>
                                 Become a JobsYahan certified Recruiter
                             </Typography>
 
@@ -308,7 +301,7 @@ const AppliedCandidate = () => {
                                 onClick={() => window.location.href = window.location.origin}>
                                 <Typography component="span"
                                     sx={{
-                                        fontSize: "50px",
+                                        fontSize: "3.1rem",
                                         fontWeight: "600",
                                         color: "#4E3A67",
                                         fontFamily: "Work Sans, sans-serif"
@@ -317,7 +310,7 @@ const AppliedCandidate = () => {
                                 </Typography>
                                 <Typography component="span"
                                     sx={{
-                                        fontSize: "50px",
+                                        fontSize: "3.1rem",
                                         color: "#4E3A67",
                                         fontFamily: "Work Sans, sans-serif"
                                     }}>
@@ -327,7 +320,7 @@ const AppliedCandidate = () => {
 
                             <Stack direction="row" alignItems="center" justifyContent="center">
                                 <Typography component="div" sx={{
-                                    fontSize: "16px", color: "#FC9A7E", fontWeight: "600"
+                                    fontSize: "1rem", color: "#FC9A7E", fontWeight: "600"
                                 }}>
                                     Read More
                                 </Typography>
@@ -347,24 +340,24 @@ const AppliedCandidate = () => {
 
                             }}>
                             <Box>
-                                <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "600" }}>
+                                <Typography component="div" sx={{ fontSize: "1.2rem", color: "#4E3A67", fontWeight: "600" }}>
                                     For Sales Enquiries
                                 </Typography>
 
-                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67" }}>
+                                <Typography component="div" sx={{ fontSize: "1rem", color: "#4E3A67" }}>
                                     Call On: 1800-103-7344
                                 </Typography>
-                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67" }}>
+                                <Typography component="div" sx={{ fontSize: "1rem", color: "#4E3A67" }}>
                                     ( Toll Free: 9:30 AM to 6:30 PM)
                                 </Typography>
                             </Box>
 
                             <Box>
-                                <Typography component="div" sx={{ fontSize: "20px", color: "#4E3A67", fontWeight: "600" }}>
+                                <Typography component="div" sx={{ fontSize: "1.2rem", color: "#4E3A67", fontWeight: "600" }}>
                                     Socials
                                 </Typography>
 
-                                <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67" }}>
+                                <Typography component="div" sx={{ fontSize: "1rem", color: "#4E3A67" }}>
                                     jobsyahan@gmail.com
                                 </Typography>
 

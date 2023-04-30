@@ -10,12 +10,14 @@ function ErrorPage({ errorMessage, subMessage }) {
             </Box>
 
             <Typography component="box" sx={{
-                margin: "10px 0px", fontSize: { "xs": "26px", "sm": "40px", "md": "40px", "lg": "40px", "xl": "40px" }, color: "#4E3A67", fontFamily: "Work Sans, sans- serif", fontWeight: "700"
+                margin: "10px 0px", 
+                fontSize: { "xs": "1rem", "sm": "1rem", "md": "1rem", "lg": "2.5rem", "xl": "2.5rem" }, color: "#4E3A67", fontFamily: "Work Sans, sans- serif", fontWeight: "700"
             }}>
                 {errorMessage}
             </Typography>
 
-            <Typography component="box" sx={{ fontSize: { "xs": "16px", "sm": "24px", "md": "24px", "lg": "24px", "xl": "24px" }, color: "#4E3A67", fontFamily: "Work Sans, sans-serif" }}>
+            <Typography component="box" sx={{ 
+                fontSize: { "xs": "1rem", "sm": "1.5rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" }, color: "#4E3A67", fontFamily: "Work Sans, sans-serif" }}>
                 {subMessage}
             </Typography>
 
