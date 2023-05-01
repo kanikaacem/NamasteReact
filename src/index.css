@@ -668,7 +668,7 @@ nav {
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   border-radius: 11px;
-  font-size: 16px ;
+  font-size: 16px;
   font-family: 'Montserrat' !important;
   font-weight: 500 !important;
   background: #FFFFFF !important;
@@ -799,8 +799,9 @@ nav {
     height:300px !important;
   } */
 
-  input{
+  input {
     font-size: 12px !important;
+    padding: 8px !important;
     border-radius: 11px !important
   }
 

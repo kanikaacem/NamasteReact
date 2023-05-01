@@ -1,4 +1,4 @@
-import { StatesURL, UplaodImageURL } from "../../utils/ApiUrls";
+import { StatesURL, UplaodImageURL, CheckEmployerEmailExist } from "../../utils/ApiUrls";
 import { postRequest, PostImageRequest, getRequest } from "../../utils/ApiRequests";
 
 import ClickAwayListener from '@mui/base/ClickAwayListener';
@@ -55,7 +55,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const [companyLanNumber, setCompanyLanNumber] = useState(localStorage.getItem("company_form_data1")
         ? JSON.parse(localStorage.getItem("company_form_data1"))['company_lan_number'] : "");
 
-    const [companyInfoForm, setCompanyInfoForm] = useState(localStorage.getItem("formpage") ? localStorage.getItem("formpage") : 1);
+    const [companyInfoForm, setCompanyInfoForm] = useState(localStorage.getItem("formpage") ? localStorage.getItem("formpage") : 2);
 
     const [companyAddress, setCompanyAddress] = useState("");
     const [autoData, setAutoData] = useState([]);
@@ -161,24 +161,32 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
     }
 
-    const handleSubmit1 = async (values) => {
+    const handleSubmit1 = async (values, { setFieldError }) => {
         setCompanyEmail(values.company_email);
         setCompanyWebsite(values.company_website);
         setCompanyLanNumber(values.company_lan_number)
-        localStorage.setItem("company_form_data1", JSON.stringify(values));
-
-        let formData = new FormData();
-        formData = {
-            company_email: values.company_email,
-            companywebsite: values.company_website ? values.company_website : " ",
-            companylannumber: values.company_lan_number
+        let response = await postRequest(CheckEmployerEmailExist, {
+            email: values.company_email
+        });
+        if (response.status === "1") {
+            setFieldError("company_email", "This email is already registered");
         }
-        let response = await postRequest("https://backend.jobsyahan.com/api/employer/postemployer2", formData);
-        if (response.status == 1) {
-            localStorage.setItem("formpage", 3);
-            setCompanyInfoForm(3);
-        }
+        else {
+            localStorage.setItem("company_form_data1", JSON.stringify(values));
 
+            let formData = new FormData();
+            formData = {
+                company_email: values.company_email,
+                companywebsite: values.company_website ? values.company_website : " ",
+                companylannumber: values.company_lan_number
+            }
+            let response = await postRequest("https://backend.jobsyahan.com/api/employer/postemployer2", formData);
+            if (response.status == 1) {
+                localStorage.setItem("formpage", 3);
+                setCompanyInfoForm(3);
+            }
+
+        }
     }
 
     const handleSubmit2 = async (values) => {

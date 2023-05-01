@@ -22,7 +22,6 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 
 const EmployerRegister = () => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
-    const dispatch = useDispatch();
 
     const [emailSignupForm, setEmailSignupForm] = useState(true);
     const [passwordGenForm, setPasswordGenForm] = useState(false);

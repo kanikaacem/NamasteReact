@@ -105,17 +105,12 @@ const AppliedCandidate = () => {
             sx={{
                 minHeight: "100vh"
             }}>
-            <Stack direction="row" gap={{"xs":0,"sm":0,"md":2,"lg":2,"xl":2}} className="AppliedCandidatePageWrapper" 
-            sx={{
-                padding:{"xs":"10px","sm":"10px","md":"10px","lg":"20px","xl":"20px"}
-            }}>
+            <Stack direction="row" gap={{ "xs": 0, "sm": 0, "md": 2, "lg": 2, "xl": 2 }} className="AppliedCandidatePageWrapper"
+                sx={{
+                    padding: { "xs": "10px", "sm": "10px", "md": "10px", "lg": "20px", "xl": "20px" }
+                }}>
                 <Box sx={{
-<<<<<<< HEAD
-                    width: { "xs": "93%", "sm": "87%", "md": `calc(100vw-451px)`, "lg": `calc(100vw-451px)`, "xl": `calc(100vw-451px)` },
-                    padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" }
-=======
                     width: { "xs": "100%", "sm": "100%", "md": `calc(100vw-451px)`, "lg": `calc(100vw-451px)`, "xl": `calc(100vw-451px)` },
->>>>>>> ea814c73bbd69dab3905d4a7127605638a3aae79
 
                 }}>
                     {pageType === "ParticularJobCandidate" && <>
@@ -235,46 +230,46 @@ const AppliedCandidate = () => {
 
                         </>
                     }
-                    
-                    <Box
-                    sx={{
-                        width: "100%"
 
-                    }} >
+                    <Box
+                        sx={{
+                            width: "100%"
+
+                        }} >
                         {!canDataLoaded && <>
                             <Template1 />
                             <Template1 />
                         </>}
                         {canDataLoaded && jobCanData && jobCanData.length <= 0 && <>
                             <Box sx={{
-                                    padding: {"xs":"10px","sm":"10px","md":"20px","lg":"20px","xl":"20px"},
-                                    boxSizing: "border-box"
+                                padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" },
+                                boxSizing: "border-box"
                             }}>
                                 <ErrorPage errorMessage="There is no candidate associated with this Job." />
                             </Box>
                         </>}
-                        
+
                         {canDataLoaded && jobCanData && jobCanData.length > 0 && <>
-                            <Stack className="Candidates" direction="column" 
-                        gap={{"xs":1,"sm":1,"md":2,"lg":2,"xl":2}}>
-                            {appliedCandidate.map((item) => {
-                                return (<>
-                                    <CandidateComponent CandidateData={item.candidate}
-                                        AppliedDate={parseInt(item.candidateapplieddate)}
-                                        CandidateStatus={item.candidatestatus}
-                                        jobId={jobData._id}
-                                        jobInformation={item.jobsid}
-                                    />
-                                </>)
-                            })}
-                            <Box >
-                                <Pagination count={jobCanData && Math.ceil(jobCanData.length / dataPerPage)} page={currentPage} 
-                                onChange={(event, value) => setCurrentPage(value)} />
-                            </Box>
-                        
-                        </Stack>
+                            <Stack className="Candidates" direction="column"
+                                gap={{ "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 }}>
+                                {appliedCandidate.map((item) => {
+                                    return (<>
+                                        <CandidateComponent CandidateData={item.candidate}
+                                            AppliedDate={parseInt(item.candidateapplieddate)}
+                                            CandidateStatus={item.candidatestatus}
+                                            jobId={jobData._id}
+                                            jobInformation={item.jobsid}
+                                        />
+                                    </>)
+                                })}
+                                <Box >
+                                    <Pagination count={jobCanData && Math.ceil(jobCanData.length / dataPerPage)} page={currentPage}
+                                        onChange={(event, value) => setCurrentPage(value)} />
+                                </Box>
+
+                            </Stack>
                         </>}
-                        </Box>
+                    </Box>
 
                 </Box>
                 <Box
