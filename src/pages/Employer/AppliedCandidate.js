@@ -111,7 +111,7 @@ const AppliedCandidate = () => {
                 }
             }}>
                 <Box sx={{
-                    width: { "xs": "87%", "sm": "87%", "md": `calc(100vw-451px)`, "lg": `calc(100vw-451px)`, "xl": `calc(100vw-451px)` },
+                    width: { "xs": "93%", "sm": "87%", "md": `calc(100vw-451px)`, "lg": `calc(100vw-451px)`, "xl": `calc(100vw-451px)` },
                     padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" }
 
                 }}>
