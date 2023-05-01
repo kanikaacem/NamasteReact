@@ -126,7 +126,7 @@ const AccountSetting = () => {
                     <Box >
                         <Typography component="div" sx={{
                             fontWeight: "600",
-                            fontSize: "25px",
+                            fontSize: "1.5rem",
                             margin: "20px 0px",
                             textTransform: "capitalize",
                             color: "#4E3A67"
@@ -146,7 +146,7 @@ const AccountSetting = () => {
                             {AccountSettingMenu && AccountSettingMenu.map((item) => {
                                 return (<Typography key={item.id} className={currentMenu == item.menu_name && "AccountMenu "} component="div"
                                     sx={{
-                                        fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
+                                        fontSize: { "xs": "0.7rem", "sm": "0.7rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
                                         color: "#4E3A67",
                                         margin: "5 0px",
                                         cursor: "pointer",
@@ -180,7 +180,7 @@ const AccountSetting = () => {
                             <Typography component="div" sx={{
                                 color: "#2B1E44",
                                 textTransform: "capitalize", margin: "10px 0px",
-                                fontSize: { "sx": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
+                                fontSize: { "sx": "1.6rem", "sm": "1.6rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" },
                                 fontFamily: "Work Sans,sans-serif",
                                 fontWeight: "700"
                             }}>
@@ -252,7 +252,7 @@ const AccountSetting = () => {
                             <Typography component="div" sx={{
                                 color: "#2B1E44",
                                 textTransform: "capitalize", margin: "10px 0px",
-                                fontSize: { "sx": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
+                                fontSize: { "sx": "1.6rem", "sm": "1.6rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" },
                                 fontFamily: "Work Sans,sans-serif",
                                 fontWeight: "700"
                             }}>
@@ -401,7 +401,7 @@ const AccountSetting = () => {
                             <Typography component="div" sx={{
                                 color: "#2B1E44",
                                 textTransform: "capitalize", margin: "10px 0px",
-                                fontSize: { "sx": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
+                                fontSize: { "sx": "1.6rem", "sm": "1.6rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" },
                                 fontFamily: "Work Sans,sans-serif",
                                 fontWeight: "700"
                             }}>

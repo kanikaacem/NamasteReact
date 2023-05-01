@@ -342,10 +342,10 @@ export const AccountSettingMenu = [
         id: 4,
         menu_name: "change_password",
     },
-    {
-        id: 5,
-        menu_name: "subscription_plan",
-    }
+    // {
+    //     id: 5,
+    //     menu_name: "subscription_plan",
+    // }
 ]
 /*--------------------------------------------------------DATA-----------------------------------------------------------*/
 /*Cities Data */

@@ -36,13 +36,13 @@ const CandidateComponent = ({ CandidateData, CandidateStatus, AppliedDate, jobId
             border: "1px solid #E2D7F0",
             borderRadius: "19px",
             padding: "20px",
-            width: { "lg": "100%", "md": "96%", "xs": "96%" },
             cursor: "pointer"
         }}
             onClick={() =>
                 navigate('/employer-dashboard/' + jobId + '/view-profile/' + CandidateData._id)
             }>
-            <Stack direction={{ "lg": "row", "md": "row", "xs": "column" }} gap={1} >
+            <Stack direction={{ "lg": "row", "md": "row", "xs": "column" }}  gap={1} 
+            sx={{flexWrap:"wrap"}}>
                 <Box sx={{ width: { "lg": "8%", "md": "8%", "xs": "100%" } }}>
                     <Badge color="secondary" variant="dot" >
 
@@ -219,7 +219,7 @@ const CandidateComponent = ({ CandidateData, CandidateStatus, AppliedDate, jobId
             </Typography>
             <Stack direction="row"
                 sx={{
-                    margin: "50px 0px",
+                    margin: {"xs":"0px","sm":"0px","md":"0px","lg":"50px 0px","xl":"50px 0px"},
                     flexWrap: "wrap",
                     rowGap: "15px",
                     justifyContent: { "lg": "space-between", "md": "center", "xs": "center" }
