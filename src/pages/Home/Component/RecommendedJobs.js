@@ -21,11 +21,6 @@ const RecommendedJobs = () => {
                 setData(response.data);
                 setDataLoaded(true);
                 setCanJobDes(response.data[0]);
-
-                // setTimeout(() => {
-                //     setCanJobDes(response.data[0])
-
-                // }, 2000);
             }
         };
 
@@ -39,9 +34,9 @@ const RecommendedJobs = () => {
             window.scrollTo(0, 0);
         }
     }
-    return (<>
-        <Stack direction="row" className="RecommendedJobs" gap={2}
-        >
+
+    const RecommendedJobsTemplate = ({ JobComponent, JobDescriptionComponent }) => {
+        return (<>
             <Stack direction="column" className="AllRecommendedJobs" gap={2}
                 sx={{
                     width: { "lg": "40%", "md": "100%", "xs": "100%" },
@@ -49,32 +44,41 @@ const RecommendedJobs = () => {
                     height: "90vh",
                     overflowY: "scroll"
                 }}>
-                {
-                    !dataLoaded && <>
-                        <Template1 />
-                        <Template1 />
-                        <Template1 />
-                        <Template1 />
-
-                    </>
-                }
-                {
-                    dataLoaded && data.length > 0 && data.map((item) => {
-                        return (
-                            <JobComponent key={item._id} data={item} data_id={item._id} userType="candidate" OnClickfun={() => {
-                                getJobDescription(item._id)
-                            }} />
-                        )
-                    })
-
-
-                }
-
+                {JobComponent}
 
             </Stack>
+
             <Box sx={{ width: "60%", display: { "lg": "block", "md": "none", "xs": "none" } }}>
-                <JobDescriptionComponent userType="Candidate" data={canJobDes} />
+                {JobDescriptionComponent}
             </Box>
+        </>)
+    }
+    return (<>
+        <Stack direction="row" className="RecommendedJobs" gap={2}
+        >
+            {
+                !dataLoaded && <>
+                    <RecommendedJobsTemplate JobComponent={<>{[1, 2, 3, 4].map((item) => {
+                        return <Template1 />
+                    })}</>}
+                        JobDescriptionComponent={<Template1 SkeletonCount="25" />} />
+                </>
+            }
+            {
+                dataLoaded && data.length > 0 && <>
+                    <RecommendedJobsTemplate JobComponent={<>{data.map((item) => {
+                        return (<JobComponent key={item._id} data={item} data_id={item._id} userType="candidate"
+                            OnClickfun={() => {
+                                getJobDescription(item._id)
+                            }} />)
+                    })}</>}
+                        JobDescriptionComponent={
+                            <JobDescriptionComponent userType="Candidate" data={canJobDes} />
+                        } />
+                </>
+
+            }
+
         </Stack>
 
 

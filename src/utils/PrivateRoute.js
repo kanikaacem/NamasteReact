@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 const PrivateRoute = ({ Component }) => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
+    const userRole = "admin";
     let url = window.location.href;
     var pathname = new URL(url).pathname;
     return (<>

@@ -51,8 +51,10 @@ const CandidateAppliedSaveLikedJobs = ({ JobAction }) => {
                     setData(response.data)
 
                 }
-                else
+                else {
+                    setIsDataLoaded(true)
                     setErroMessage(error_message);
+                }
 
             }
 
@@ -60,7 +62,6 @@ const CandidateAppliedSaveLikedJobs = ({ JobAction }) => {
         getCandidateAppliedJobs();
     }, [JobAction])
     return (<>
-
         <Stack className="CandidateAppliedSaveLikedJobsPage" direction="row" sx={{
             padding: {
                 "xs": "0px", "sm": "0px", "md": "20px", "lg": "20px", "xl": "20px"
@@ -73,19 +74,23 @@ const CandidateAppliedSaveLikedJobs = ({ JobAction }) => {
                         <Stack direction="column" gap={2}>
                             {!isDataLoaded && <>
                                 <Stack direction="column" gap={2}>
-                                    <Template1></Template1>
-                                    <Template1></Template1>
-                                    <Template1></Template1>
-                                    <Template1></Template1>
-
+                                    {
+                                        [1, 2, 3, 4].map((item) => {
+                                            return (<Template1 />)
+                                        })
+                                    }
                                 </Stack>
 
                             </>}
                             {
-                                isDataLoaded && data && data.length <= 0 &&
-
-                                <ErrorPage errorMessage={errorMessage} />
-
+                                isDataLoaded && data && data.length == 0 &&
+                                <Stack sx={{
+                                    height: "100vh",
+                                    alignItems: "center",
+                                    justifyContent: "center"
+                                }}>
+                                    <ErrorPage errorMessage={errorMessage} />
+                                </Stack>
 
                             }
 

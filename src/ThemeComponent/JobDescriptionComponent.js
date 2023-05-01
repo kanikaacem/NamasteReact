@@ -114,7 +114,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
             }
 
         }
-        data._id !== undefined && JobDetailsLikeSaveApply();
+        data && data._id !== undefined && JobDetailsLikeSaveApply();
 
     }, [data._id])
 
@@ -266,13 +266,13 @@ const JobDescriptionComponent = ({ userType, data }) => {
                         } />}
 
 
-                        <RWebShare
+                        {data && data._id && <RWebShare
                             data={{
                                 url: window.location.origin + "/job-description/" + data._id,
                             }}
                         >
                             <ShareIcon />
-                        </RWebShare>
+                        </RWebShare>}
 
                     </Stack>
                 </>}
@@ -308,7 +308,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
                     <Stack direction="row" gap={2} alignItems="center">
                         <img src={window.location.origin + "/assets/Timeline.png"} height="20px" alt="Timeline" />
                         <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, fontWeight: "600", color: "#4E3A67" }}>
-                            Hiring since {" " + new Date(data.createdAt).toLocaleDateString()}
+                            {data && "Hiring since " + new Date(data.createdAt).toLocaleDateString()}
                         </Typography>
                     </Stack>
 
