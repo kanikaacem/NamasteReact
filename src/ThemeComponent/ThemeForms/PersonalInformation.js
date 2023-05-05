@@ -28,6 +28,8 @@ import FormMenu from "../Common/FormMenu";
 import { useNavigate } from "react-router-dom";
 import ThemeMobileImage from "../Common/ThemeMobileImage";
 import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
+
+import { useTranslation } from "react-i18next";
 const PersonalInformation = ({ jobType }) => {
     const animatedComponents = makeAnimated();
     const navigate = useNavigate();
@@ -43,6 +45,8 @@ const PersonalInformation = ({ jobType }) => {
     const [skills, SetSkills] = useState([]);
 
     const [martialStatus, setMaritalStatus] = useState(" ");
+
+    const { t, i18n } = useTranslation();
 
     const defaultValue = {
         full_name: "",
@@ -161,30 +165,10 @@ const PersonalInformation = ({ jobType }) => {
                                 fontWeight: "600",
                                 color: "#4E3A67",
                                 display: "block",
-                                lineHeight: "1.2"
+                                lineHeight: "1.2",
+                                width: "600px"
                             }}>
-                                50K People Have
-                                <Typography component="box" sx={{
-                                    fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                    width: "max-content",
-                                    lineHeight: "1.2"
-                                }}>
-                                    Got Jobs Through Us;
-                                    <Typography component="box" sx={{
-                                        fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
-                                        fontFamily: "Montserrat",
-                                        fontWeight: "600",
-                                        color: "#4E3A67",
-                                        display: "block",
-                                        lineHeight: "1.2"
-                                    }}>
-                                        Next is You!
-                                    </Typography>
-                                </Typography>
+                                {t('50K_PEOPLE_HAVE_GOT_JOBS_THROUGH_US;_NEXT_IS_YOU')}
                             </Typography>
                             <ThemeWebsiteImage imageUrl="/assets/g51.png" imageWidth="500px" ></ThemeWebsiteImage>
                         </Box>
@@ -203,19 +187,7 @@ const PersonalInformation = ({ jobType }) => {
                                 textAlign: "end",
                                 lineHeight: "1.2"
 
-                            }}> Select from
-                                <Typography component="box" sx={{
-                                    fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                    textAlign: "end",
-                                    lineHeight: "1.2"
-
-                                }}>
-                                    the Jobs in Your City
-                                </Typography>
+                            }}>  {t('SELECT_FROM_THE_JOBS_IN_YOUR_CITY')}
                             </Typography>
 
                             <Box
@@ -244,7 +216,7 @@ const PersonalInformation = ({ jobType }) => {
                             lineHeight: "1.2",
                             textAlign: "center"
                         }}>
-                            50K People Have Got Jobs Through Us; Next is You!
+                            {t('50K_PEOPLE_HAVE_GOT_JOBS_THROUGH_US;_NEXT_IS_YOU')}
 
                         </Typography>
                         <ThemeMobileImage imageUrl="/assets/g52.png" />
@@ -270,7 +242,7 @@ const PersonalInformation = ({ jobType }) => {
                                     display: "block",
                                     marginTop: "20px"
                                 }}>
-                                    Personal Details
+                                    {t('PERSONAL_DETAILS')}
                                 </Typography>
 
                                 <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
@@ -610,7 +582,7 @@ const PersonalInformation = ({ jobType }) => {
                                                 </ThemeFInputDiv>
                                             </ThemeFInputDiv>
                                             <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                                <ThemeButtonType2 variant="contained" id="continue" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue and Next</ThemeButtonType2>
+                                                <ThemeButtonType2 variant="contained" id="continue" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>{t('CONTINUE_AND_NEXT')}</ThemeButtonType2>
 
                                             </Stack>
                                         </Form>)}

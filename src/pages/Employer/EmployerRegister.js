@@ -16,6 +16,9 @@ import PasswordGenForm from "../../ThemeComponent/ThemeForms/PasswordGenForm";
 import VerifyMobileForm from "../../ThemeComponent/ThemeForms/VerifyMobileForm";
 import CompanyInfoForm from "../../ThemeComponent/ThemeForms/CompanyInfoForm";
 import ThemeMobileImage from "../../ThemeComponent/Common/ThemeMobileImage";
+
+import { useTranslation } from "react-i18next";
+
 import ReactGA from 'react-ga';
 ReactGA.initialize('AW-11080443279/AeoHCJzJ2YkYEI_LyKMp');
 ReactGA.pageview(window.location.pathname + window.location.search);
@@ -28,13 +31,15 @@ const EmployerRegister = () => {
     const [verifyMobileForm, setVerifyMobileForm] = useState(false);
     const [companyInfoForm, setCompanyInfoForm] = useState(false);
 
-
     const [email, setEmail] = useState("");
     const [mobile_number, setMobileNumber] = useState("");
     const [registerUser, setRegisterUser] = useState({});
     const [isEmailVerified, setIsEmailVerified] = useState(false);
 
     const action = useSelector(state => state.action);
+
+    const { t, i18n } = useTranslation();
+
 
     useEffect(() => {
         const getUserData = async () => {
@@ -124,7 +129,7 @@ const EmployerRegister = () => {
                                         display: "block",
                                         marginTop: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "20px", "xl": "20px" }
                                     }}>
-                                        Direct Hiring App for
+                                        {t('DIRECT_HIRING_APP_FOR')}
                                     </Typography>
 
                                     <Typography component="box" sx={{
@@ -135,19 +140,7 @@ const EmployerRegister = () => {
                                         display: "block",
                                         lineHeight: "1"
                                     }}>
-                                        Founders, Business
-
-                                        <Typography component="box" sx={{
-                                            fontSize: { "xs": "1.6rem", "sm": "3rem", "md": "3rem", "xl": "4rem", "lg": "4rem" },
-                                            fontFamily: "Work Sans, sans-serif",
-                                            fontWeight: "700",
-                                            color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
-                                            display: "block",
-                                            lineHeight: "1"
-
-                                        }}>
-                                            Owners and HRs.
-                                        </Typography>
+                                        {t('FOUNDERS_BUSINESS_OWNERS_AND_HRS')}
                                     </Typography>
                                     <ThemeMobileImage imageUrl="/assets/g10Mobile.png" />
 

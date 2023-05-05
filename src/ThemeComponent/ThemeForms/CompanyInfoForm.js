@@ -22,6 +22,7 @@ import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
 import ThemeMobileImage from "../Common/ThemeMobileImage";
 import MobileUploadFile from "../Common/MobileUploadFile";
 
+import { useTranslation } from "react-i18next";
 import ReactGA from 'react-ga';
 const TRACKING_ID = 'AW-11080443279/84LrCNKT24kYEI_LyKMp'
 ReactGA.initialize(TRACKING_ID)
@@ -30,6 +31,8 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const action = useSelector(state => state.action);
     const dispatch = useDispatch();
+
+    const { t, i18n } = useTranslation();
 
     const [city, setCity] = useState(" ");
     const [state, setState] = useState(" ");
@@ -55,7 +58,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const [companyLanNumber, setCompanyLanNumber] = useState(localStorage.getItem("company_form_data1")
         ? JSON.parse(localStorage.getItem("company_form_data1"))['company_lan_number'] : "");
 
-    const [companyInfoForm, setCompanyInfoForm] = useState(localStorage.getItem("formpage") ? localStorage.getItem("formpage") : 2);
+    const [companyInfoForm, setCompanyInfoForm] = useState(localStorage.getItem("formpage") ? localStorage.getItem("formpage") : 1);
 
     const [companyAddress, setCompanyAddress] = useState("");
     const [autoData, setAutoData] = useState([]);
@@ -268,7 +271,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
 
                                 }}>
-                                    Get
+                                    {t('GET')}
                                     <Typography component="box" sx={{
                                         fontSize: { "xs": "1.8rem", "sm": "2rem", "md": "2.5rem", "lg": "4rem", "xl": "4rem" },
                                         fontFamily: "Montserrat",
@@ -277,7 +280,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                         display: "block",
                                         lineHeight: "1"
                                     }}>
-                                        Registered Here
+                                        {t('REGISTERED_HERE')}
                                     </Typography>
 
                                 </Typography>
@@ -291,7 +294,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     display: { "xs": "block", "sm": "block", "md": "block", "lg": "none", "xl": "none" }
 
                                 }}>
-                                    Get Registered Here
+                                    {t('Get Registered Here')}
                                 </Typography>
                                 <ThemeMobileImage imageUrl="/assets/g11Mobile.png" alt="G11" />
                                 <Box sx={{
@@ -328,7 +331,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                         display: "block",
                                         marginTop: "20px"
                                     }}>
-                                        Company Details
+                                        {t('COMPANY_DETAILS')}
                                     </Typography>
 
                                     <Stack direction="row" gap={2} sx={{
@@ -516,7 +519,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                         display: "block",
                                         marginTop: "20px"
                                     }}>
-                                        Free job posting facility
+                                        {t('FREE_JOBPOSTING_FACILITY')}
 
                                     </Typography>
                                     <ThemeMobileImage imageUrl="/assets/g12Mobile.png" alt="G12" />
@@ -562,7 +565,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                             display: "block",
                                             marginTop: "20px"
                                         }}>
-                                            Company Details
+                                            {t('COMPANY_DETAILS')}
                                         </Typography>
 
                                         <Stack direction="row" gap={2} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
@@ -695,7 +698,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                             color: "#4E3A67",
                                             display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" },
                                         }}>
-                                            Get Suitable
+                                            {t('GET_SUITABLE')}
                                             <Typography component="box" sx={{
                                                 fontSize: { "xs": "1.8rem", "sm": "2rem", "md": "2.5rem", "lg": "4rem", "xl": "4rem" },
                                                 fontFamily: "Montserrat",
@@ -703,8 +706,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                 color: "#4E3A67",
                                                 display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" },
                                             }}>
-                                                Candidates
-
+                                                {t('CANDIDATES')}
                                             </Typography>
                                         </Typography>
                                         <Box sx={{
@@ -721,7 +723,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                         color: "#4E3A67",
                                         display: { "xs": "block", "sm": "block", "md": "block", "lg": "none", "xl": "none" },
                                     }}>
-                                        Get Suitable Candidates
+                                        {t('GET_SUITABLE_CANDIDATES')}
                                     </Typography>
                                     <ThemeMobileImage imageUrl="/assets/g13Mobile.png" alt="G11" />
 
@@ -742,7 +744,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                         maxWidth: "700px"
 
                                     }}>
-                                        Get candidates for local-level jobs
+                                        {t('GET_CANDIDATES_FOR_LOCALLEVEL_JOBS')}
                                     </Typography>
                                     <Box sx={{
                                         position: "relative",
@@ -786,7 +788,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                             display: "block",
                                             marginTop: "20px"
                                         }}>
-                                            Company Details
+                                            {t('COMPANY_DETAILS')}
                                         </Typography>
 
                                         <Stack direction="row" gap={2} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
@@ -1040,7 +1042,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                     </ ThemeFInputDiv>
 
                                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Save</ThemeButtonType2>
+                                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>{t('SAVE')}</ThemeButtonType2>
                                                     </Stack>
 
                                                 </Form>)}

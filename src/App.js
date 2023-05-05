@@ -42,32 +42,6 @@ import AboutUs from './Pages/Common/AboutUs';
 import BlueCollarRegistrationForm from "./ThemeComponent/ThemeForms/BlueCollarRegistrationForm";
 import ThemeErrorPage from './Pages/Common/ThemeErrorPage';
 import { useEffect } from "react";
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-
-i18n
-  .use(initReactI18next)
-  .init({
-    resources: {
-      en: {
-        translation: {
-          "Hello": "Hello",
-          "Welcome to React": "Welcome to React and react-i18next"
-        }
-      },
-      fr: {
-        translation: {
-          "Hello": "Bonjour",
-          "Welcome to React": "Bienvenue à React et react-i18next"
-        }
-      }
-    },
-    lng: 'fr',
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false
-    }
-  });
 
 function App() {
 
@@ -102,7 +76,7 @@ function App() {
 
           <Route path="/job" element={<JobSearch></JobSearch>} />
 
-          <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
+          <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard} userRole="employer"></PrivateRoute>}>
             <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
             <Route path="mobile-verify" element={<VerifyMobileForm></VerifyMobileForm>} />
             <Route path="company-information" element={<CompanyInfoForm></CompanyInfoForm>} />
@@ -120,7 +94,7 @@ function App() {
           </Route>
 
 
-          <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard}></PrivateRoute>}>
+          <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard} userRole="candidate"></PrivateRoute>}>
             <Route path="" element={<CandidateDashboard></CandidateDashboard>} />
             <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
             <Route path="profile" element={<CandidateProfilePage></CandidateProfilePage>} />

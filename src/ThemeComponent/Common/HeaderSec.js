@@ -5,10 +5,13 @@ import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
+import { useTranslation } from 'react-i18next';
 const HeaderSec = ({ color, background, border, buttonText, userType }) => {
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
     const [showCandidateButton, setShowCandidateButton] = useState(false);
     const [showEmployerButton, setShowEmployerButton] = useState(false);
+
+    const { t, i18n } = useTranslation();
     useEffect(() => {
 
         if (window.location.pathname === "/") {
@@ -56,7 +59,7 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
 
                             }
                         }}>
-                        Employer Login
+                        {t('EMPLOYER_LOGIN')}
                     </Button>
                 }
 
@@ -82,7 +85,8 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                                 background: "none",
 
                             }
-                        }}>Dashboard
+                        }}>
+                        {t('DASHBOARD')}
                     </Button>
                 }
 
@@ -107,7 +111,8 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                                 background: "none",
 
                             }
-                        }}>Candidate Login
+                        }}>
+                        {t('CANDIDATE_LOGIN')}
                     </Button>
                 }
 
@@ -129,7 +134,7 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                         }
                     }}
                 >
-                    About Us
+                    {t('ABOUT_US')}
                 </Button>
 
                 <Button type="button" variant="outlined"
@@ -150,7 +155,7 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                             background: "none",
                         }
                     }}>
-                    Contact us
+                    {t('CONTACT_US')}
                 </Button>
 
 

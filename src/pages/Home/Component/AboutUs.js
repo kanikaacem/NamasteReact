@@ -1,6 +1,11 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+
+import { useTranslation } from "react-i18next";
+
 const AboutUs = () => {
+    const { t, i18n } = useTranslation();
+
     return (<>
         <Box
             sx={{
@@ -45,14 +50,14 @@ const AboutUs = () => {
                                     height: { "xs": "50px", "sm": "90px", "md": "90px", "lg": "90px", "xl": "90px" }
 
                                 }}>
-                                50K People Have Got Jobs Through Us; Next is YOU!
+                                {t('50K_PEOPLE_HAVE_GOT_JOBS_THROUGH_US;_NEXT_IS_YOU')}
                             </Typography>
                             <Typography component="div"
                                 sx={{
                                     color: "#FFFFFF",
                                     fontSize: { "xs": "12px", "sm": "16px", "md": "16px", "lg": "16px", "xl": "16px" },
                                 }}>
-                                A platform where you can get work from corporates, small and local businesses.
+                                {t('ABOUT_DESCRIPTION1')}
                             </Typography>
 
                         </Stack>
@@ -81,7 +86,7 @@ const AboutUs = () => {
                                     fontWeight: "600",
                                     height: { "xs": "50px", "sm": "90px", "md": "90px", "lg": "90px", "xl": "90px" }
                                 }}>
-                                Select from the Jobs in Your City
+                                {t('SELECT_FROM_THE_JOBS_IN_YOUR_CITY')}
                             </Typography>
                             <Typography component="div"
                                 sx={{
@@ -89,7 +94,7 @@ const AboutUs = () => {
                                     fontSize: { "xs": "12px", "sm": "16px", "md": "16px", "lg": "16px", "xl": "16px" },
 
                                 }}>
-                                Choose from the jobs available in your city. A perfect selection means a perfect life!
+                                {t('ABOUT_DESCRIPTION2')}
                             </Typography>
 
                         </Stack>
@@ -112,7 +117,7 @@ const AboutUs = () => {
                                 fontWeight: "600",
                                 margin: "0px",
                             }}>
-                            About Us!
+                            {t("ABOUT_US_HEADING")}
                         </Typography>
                         <Typography component="h2"
                             sx={{
@@ -122,7 +127,7 @@ const AboutUs = () => {
                                 fontWeight: "600",
                                 color: "#3A2D49"
                             }}>
-                            JobsYahaan - A Platform for Jobs and Self-employment
+                            {t("ABOUT_US_SUBHEADING")}
                         </Typography>
 
                         <Typography component="span"
@@ -131,9 +136,7 @@ const AboutUs = () => {
                                 lineHeight: "1.5",
                                 fontSize: { "lg": "24px", "md": "24px", "xs": "12px" }
                             }}>
-                            A disruptor in job search and a strong contributor to India’s growth define JobsYahaan.
-                            What sets us apart is that we offer work opportunities to all including those unsung heroes
-                            who give you gifts, deliver you food & groceries, make you.......
+                            {t("ABOUT_US_DESCRIPTION")}
                             <Link to="/about-us" style={{
                                 textDecoration: "none"
                             }}>
@@ -143,7 +146,7 @@ const AboutUs = () => {
                                         fontSize: { "lg": "24px", "md": "24px", "xs": "12px" },
                                         cursor: "pointer"
                                     }}>
-                                    More.
+                                    {t("MORE")}
                                 </Typography>
                             </Link>
 

@@ -10,9 +10,11 @@ import { useState } from "react";
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import Error from "../../ThemeComponent/Common/Error";
 
+import { useTranslation } from "react-i18next";
 const ContactUs = () => {
     const [message, SetMessage] = useState(" ");
 
+    const { t, i18n } = useTranslation();
     const defaultValue = {
         name: "",
         mobile_number: "",
@@ -68,7 +70,7 @@ const ContactUs = () => {
                             lineHeight: "1.2",
                             margin: "10px 0px"
                         }}>
-                            Contact Details
+                            {t('CONTACT_DETAILS')}
                         </Typography>
 
                         <Stack direction="column" gap={2} >
@@ -145,7 +147,7 @@ const ContactUs = () => {
                         padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "10px" }
                     }}>
                         <Typography component="box" sx={{ fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
-                            We’re here for you
+                            {t('WE_ARE_HERE_FOR_YOU')}
                         </Typography>
                         <Formik
 
@@ -200,7 +202,7 @@ const ContactUs = () => {
                                     </ThemeFInputDiv>
 
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Send Message</ThemeButtonType2>
+                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>{t('SEND_MESSAGE')}</ThemeButtonType2>
                                     </Stack>
                                 </Form>
                             )}

@@ -14,12 +14,14 @@ import Error from '../../ThemeComponent/Common/Error';
 import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 import { useState } from "react";
 
+import { useTranslation } from "react-i18next";
 import ThemeMobileImage from "../../ThemeComponent/Common/ThemeMobileImage";
 const CandidateRegistration = () => {
 
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
     const [showLoginButton, setShowLoginButton] = useState(false);
 
+    const { t, i18n } = useTranslation();
     const defaultValue = {
         email_id: "",
         password: "",
@@ -105,8 +107,8 @@ const CandidateRegistration = () => {
                                 display: "block",
                                 lineHeight: "40px"
                             }}>
-                                Choose a job you love,
 
+                                {t('CHOOSE_A_JOB_YOU_LOVE')}
                                 <Typography component="box" sx={{
                                     fontSize: { "xs": "1.2rem", "sm": "2.5rem", "md": "2.5rem", "lg": "4rem", "xl": "4rem" },
                                     fontFamily: "Work Sans, sans-serif",
@@ -116,9 +118,8 @@ const CandidateRegistration = () => {
                                     margin: { "xs": "0px 0px 10px 0px", "sm": "0px 0px 10px 0px", "md": "0px 0px 10px 0px", "lg": "10px 0px", "xl": "10px 0px" },
                                     lineHeight: "1.0 !important"
                                 }}>
-                                    and you never have to
-                                    work a day in your life
 
+                                    {t('AND_YOU_NEVER_HAVE_TO_WORK_A_DAY_IN_YOUR_LIFE')}
                                 </Typography>
 
                             </Typography>
@@ -143,10 +144,10 @@ const CandidateRegistration = () => {
                             <Typography component="box" sx={{
                                 fontSize: { "xs": "1rem", "sm": "1.2rem", "md": "1.2rem", "lg": "1.2rem", "xl": "1.2rem" }, fontFamily: "Work Sans, sans-serif"
                             }}>
-                                Welcome Guest,
+                                {t('WELCOME_GUEST')}
                             </Typography>
                             <Typography component="box" sx={{ fontSize: { "xs": "1.6rem", "sm": "2.5rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700", marginBottom: "30px" }}>
-                                Sign Up for JobsYahan
+                                {t('SIGN_UP_FOR_JOBSYAHAN')}
                             </Typography>
 
                             <Formik
@@ -220,7 +221,7 @@ const CandidateRegistration = () => {
 
                                         <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
 
-                                            <ThemeButtonType2 id="continue" variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue</ThemeButtonType2>
+                                            <ThemeButtonType2 id="continue" variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>{t('CONTINUE')}</ThemeButtonType2>
                                         </Stack>
 
                                     </Form>

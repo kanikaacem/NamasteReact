@@ -52,6 +52,7 @@ const CandidateAppliedSaveLikedJobs = ({ JobAction }) => {
 
                 }
                 else {
+                    setData([])
                     setIsDataLoaded(true)
                     setErroMessage(error_message);
                 }

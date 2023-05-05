@@ -19,12 +19,14 @@ import Skeleton from "react-loading-skeleton";
 
 import { useEffect } from "react";
 
-import ErrorPage from "../ErrorPage";
+import { useTranslation } from "react-i18next";
 const Dashboard = () => {
     const [openProfile, setOpenProfile] = useState(false);
     const [openMenu, setOpenMenu] = useState(false);
     const [pageAuthenticate, setPageAuthenticate] = useState(false);
     const dispatch = useDispatch();
+
+    const { t, i18n } = useTranslation();
 
     const MenuSelected = useSelector(state => state.MenuSelected);
     const [user, setUser] = useState({});
@@ -102,7 +104,7 @@ const Dashboard = () => {
                                                 sx={{
                                                     fontSize: { "lg": `20px !important`, "md": "16px !important" }, color: "#4E3A67"
                                                 }}
-                                                className={MenuSelected === item.value && "MenuSelected"} primary={item.MenuName ? item.MenuName : <Skeleton />} />
+                                                className={MenuSelected === item.value && "MenuSelected"} primary={item.MenuName ? t(item.MenuName) : <Skeleton />} />
                                         </ListItem>
                                     )
                                 })}
@@ -121,7 +123,7 @@ const Dashboard = () => {
                                             sx={{
                                                 fontSize: { "lg": `20px !important`, "md": "16px !important" }, color: "#4E3A67"
                                             }}
-                                            primary={item.MenuName ? item.MenuName : <Skeleton />} />
+                                            primary={item.MenuName ? t(item.MenuName) : <Skeleton />} />
                                     </ListItem>
 
 
@@ -173,7 +175,7 @@ const Dashboard = () => {
                                                             sx={{
                                                                 fontSize: { "lg": "20px !important", "md": "16px !important" }, color: "#4E3A67"
                                                             }}
-                                                            className={MenuSelected === item.value && "MenuSelected"} primary={item.MenuName} />
+                                                            className={MenuSelected === item.value && "MenuSelected"} primary={t(item.MenuName)} />
                                                     </ListItem>
                                                 )
                                             })}
@@ -219,7 +221,7 @@ const Dashboard = () => {
                                                                 fontSize: { "lg": "20px !important", "md": "16px !important" }, color: "#4E3A67"
                                                             }}
                                                             className={MenuSelected === item.value && "MenuSelected"}
-                                                            primary={item.MenuName} />
+                                                            primary={t(item.MenuName)} />
                                                     </ListItem>
                                                 </>)
                                             })}

@@ -13,12 +13,17 @@ import { useState } from "react";
 
 import ThemeMessage from "../Common/ThemeMessage";
 import ThemeMobileImage from "../Common/ThemeMobileImage";
+
+import { useTranslation } from "react-i18next";
+
 import ReactGA from 'react-ga';
 const TRACKING_ID = 'AW-11080443279/gVDECIfG2YkYEI_LyKMp'
 ReactGA.initialize(TRACKING_ID)
 
 const VerifyMobileForm = () => {
     const [sendOtp, setSendOtp] = useState(false);
+
+    const { t, i18n } = useTranslation();
     const defaultValue1 = {
         mobile_number: ""
     }
@@ -100,7 +105,7 @@ const VerifyMobileForm = () => {
                                 display: "block",
                                 marginTop: "20px"
                             }}>
-                                Direct Hiring App for
+                                {t('Direct Hiring App for')}
                             </Typography>
 
                             <Typography component="box" sx={{
@@ -111,19 +116,7 @@ const VerifyMobileForm = () => {
                                 display: "block",
                                 lineHeight: "1"
                             }}>
-                                Founders, Business
-
-                                <Typography component="box" sx={{
-                                    fontSize: { "xs": "1.6rem", "sm": "3rem", "md": "3rem", "xl": "4rem", "lg": "4rem" },
-                                    fontFamily: "Work Sans, sans-serif",
-                                    fontWeight: "700",
-                                    color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
-                                    display: "block",
-                                    lineHeight: "1"
-
-                                }}>
-                                    Owners and HRs.
-                                </Typography>
+                                {t('FOUNDERS_BUSINESS_OWNERS_AND_HRS')}
                             </Typography>
                             <ThemeMobileImage imageUrl="/assets/g10Mobile.png" />
 
@@ -146,7 +139,7 @@ const VerifyMobileForm = () => {
                                 fontSize: { "xs": "1.6rem", "sm": "1.6rem", "md": "2.5rem", "xl": "2.5rem", "lg": "2.5rem" }
                                 , fontFamily: "Work Sans, sans-serif", fontWeight: "700"
                             }}>
-                                Verify Mobile No.
+                                {t('VERIFY_MOBILE_NUMBER')}
                             </Typography>
 
                             <Formik
@@ -224,7 +217,9 @@ const VerifyMobileForm = () => {
                                         </ThemeFInputDiv>
 
                                         <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                            <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Verify</ThemeButtonType2>
+                                            <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>
+                                                {t('VERIFY')}
+                                            </ThemeButtonType2>
                                         </Stack>
                                     </Form>
                                 )}

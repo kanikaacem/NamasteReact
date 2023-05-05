@@ -2,7 +2,10 @@ import { Box, Stack, Typography } from "@mui/material";
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import Footer from "../../ThemeComponent/Common/Footer";
+
+import { useTranslation } from "react-i18next";
 const AboutUs = () => {
+    const { t, i18n } = useTranslation();
     return (<>
         <Stack
             className="AboutUsPage"
@@ -75,7 +78,7 @@ const AboutUs = () => {
                         display: "block",
                         lineHeight: "1.2"
                     }}>
-                        About Us!
+                        {t('ABOUT_US')} !
                     </Typography>
                     <Stack direction="row" gap={2}
                         sx={{ margin: "10px 0px" }}
@@ -90,7 +93,7 @@ const AboutUs = () => {
                                 display: "block",
                                 lineHeight: "1.2"
                             }}>
-                            JobsYahaan - A Platform for Jobs and Self-employment
+                            {t('JOBSYAHAN_A_PLATFORM_FOR_JOBS_AND_SELFEMPLOYEMENT')}
                         </Typography>
                     </Stack>
 
@@ -103,10 +106,7 @@ const AboutUs = () => {
                                 display: "block",
                                 lineHeight: "1.7"
                             }}>
-                            A disruptor in job search and a strong contributor to India’s
-                            growth define JobsYahaan. What sets us apart is that we offer
-                            work opportunities to all including those unsung heroes who give
-                            you gifts, deliver you food & groceries, make you beautiful, etc.
+                            {t('DESCRIPTION1')}
                         </Typography>
 
                         <Typography component="box"
@@ -117,12 +117,7 @@ const AboutUs = () => {
                                 display: "block",
                                 lineHeight: "1.7"
                             }}>
-                            JobsYahan will help employees and employers in fulfilling their
-                            respective needs. Employees can get the work they look for, while
-                            employers can get suitable candidates. Employers can post various
-                            frontline jobs, such as sales executives, technicians, beauticians,
-                            delivery executives, field executives, on our portal.
-
+                            {t('DESCRIPTION2')}
                         </Typography>
 
                         <Typography component="box"
@@ -133,7 +128,7 @@ const AboutUs = () => {
                                 display: "block",
                                 lineHeight: "1.7"
                             }}>
-                            Our Vision - Make Employment Simple and Accessible
+                            {t('OUR_VISION')}
                         </Typography>
                         <Typography component="box"
                             sx={{
@@ -143,11 +138,7 @@ const AboutUs = () => {
                                 display: "block",
                                 lineHeight: "1.7"
                             }}>
-
-                            Jobs are plenty in the market but somehow not as simple and accessible as
-                            employees would like. We thus step in by enabling people with suitable jobs.
-
-
+                            {t('DESCRIPTION3')}
                         </Typography>
 
                         <Typography component="box"
@@ -158,7 +149,7 @@ const AboutUs = () => {
                                 display: "block",
                                 lineHeight: "1.7"
                             }}>
-                            We Also Go Local with Jobs
+                            {t('WE_ALSO_GO_LOCAL_WITH_JOBS')}
                         </Typography>
                         <Typography component="box"
                             sx={{
@@ -168,9 +159,7 @@ const AboutUs = () => {
                                 display: "block",
                                 lineHeight: "1.7"
                             }}>
-                            We have tied up with small retailers, kirana stores, and various other small
-                            businesses looking for support staff such as accountants, goods handlers, maintenance
-                            staff, etc. Both experienced and freshers can grab this wonderful opportunity.
+                            {t('DESCRIPTION4')}
                             <Typography component="box"
                                 sx={{
                                     fontSize: { "lg": "24px", "md": "24px", "xs": "12px" },
@@ -179,7 +168,7 @@ const AboutUs = () => {
                                     display: "block",
                                     lineHeight: "1.7"
                                 }}>
-                                Our motto is not only to get you a job but also to make you happy.
+                                {t('OUR_MOTTO')}
                             </Typography>
 
                         </Typography>
@@ -195,7 +184,7 @@ const AboutUs = () => {
                         lineHeight: "1.2",
                         marginTop: { "xs": "10px", "sm": "10px", "md": "100px", "lg": "100px", "xl": "100px" }
                     }}>
-                        Our Vision
+                        {t('OUR_VISION')}
                     </Typography>
 
                     <Stack direction="row" gap={2}
@@ -211,7 +200,7 @@ const AboutUs = () => {
                                 display: "block",
                                 lineHeight: "1.7"
                             }}>
-                            Make Employment Simple and Accessible to All
+                            {t('MAKE_EMPLOYEMENT_SIMPLE_AND_ACCESSIBLE_TO_ALL')}
                         </Typography>
                     </Stack>
 
@@ -224,11 +213,7 @@ const AboutUs = () => {
                                 display: "block",
                                 lineHeight: "1.7"
                             }}>
-                            Jobs are plenty in the market but somehow not as simple and accessible
-                            as employees would like. The lack of work experience, getting uninteresting
-                            work, and the lack of flexibility, often lead to unemployment among people
-                            despite jobs available in the market. That’s where we step in by enabling
-                            the right work for all.
+                            {t('DESCRIPTION5')}
                         </Typography>
 
                         <Typography component="box"
@@ -239,10 +224,7 @@ const AboutUs = () => {
                                 display: "block",
                                 lineHeight: "1.7"
                             }}>
-                            But equally important is to know what constitutes the right work for employees.
-                            Often people choose jobs in a haste and resign a few months after joining the
-                            company. Some may do it intentionally, but most would do it because of a mismatch
-                            between their interests and job requirements. This is where we make a difference!
+                            {t('DESCRIPTION6')}
                         </Typography>
 
                         <Typography component="box"
@@ -253,9 +235,7 @@ const AboutUs = () => {
                                 display: "block",
                                 lineHeight: "1.7"
                             }}>
-                            We profile candidates based on their interests, skills and experience.
-                            So, the job recommendations prepared by us would suit you and bring out
-                            your best, helping you climb new professional heights.
+                            {t('DESCRIPTION7')}
                         </Typography>
                     </Stack>
 
@@ -280,7 +260,7 @@ const AboutUs = () => {
                                     display: "block",
                                     lineHeight: "1.7"
                                 }}>
-                                We Also Go Local with Jobs
+                                {t('WE_ALSO_GO_LOCAL_WITH_JOBS')}
                             </Typography>
                         </Stack>
                         <Typography component="box"
@@ -291,21 +271,9 @@ const AboutUs = () => {
                                 display: "block",
                                 lineHeight: "1.7"
                             }}>
-                            We have tied up with small retailers, kirana stores,
-                            and various other small businesses looking for support
-                            staff such as accountants, goods handlers, maintenance staff, etc.
-                            These people can get hired on a variable pay model and earn as much as
-                            their salaried counterparts. Both experienced and freshers can tap into
-                            this wonderful opportunity. Work doors are wide open for you with us! Our
-                            motto is not only to get you a job but also to make you happy.
-
+                            {t('DESCRIPTION8')}
                         </Typography>
-
-
                     </Box>
-
-
-
                 </Box>
 
             </Box>

@@ -18,9 +18,13 @@ import { useNavigate } from "react-router-dom";
 
 import ThemeMobileImage from "../Common/ThemeMobileImage";
 import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
+
+import { useTranslation } from "react-i18next";
 const UploadResume = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const navigate = useNavigate();
+
+    const { t, i18n } = useTranslation();
 
     const uploadFile = async (event) => {
         let file = event.target.files[0];
@@ -67,7 +71,7 @@ const UploadResume = () => {
                                 color: "#4E3A67",
                                 marginLeft: "60px",
                                 display: { "xs": "none", "sm": "none", "md": "none", "xl": "block", "lg": "block" }
-                            }}> Unlimited Job
+                            }}> {t('UNLIMITED_JOB')}
                                 <Typography component="box" sx={{
                                     fontSize: "64px",
                                     fontFamily: "Montserrat",
@@ -76,8 +80,7 @@ const UploadResume = () => {
                                     display: "block",
                                     width: "max-content"
                                 }}>
-                                    Options
-
+                                    {t('OPTIONS')}
                                 </Typography>
                             </Typography>
 
@@ -88,7 +91,7 @@ const UploadResume = () => {
                                 color: "#4E3A67",
                                 display: { "xs": "block", "sm": "block", "md": "block", "xl": "none", "lg": "none" },
                                 margin: "10px 0px"
-                            }}> Unlimited Job Options
+                            }}> {t('UNLIMITED_JOB_OPTIONS')}
                             </Typography>
 
 
@@ -124,7 +127,7 @@ const UploadResume = () => {
                                     display: "block",
                                     marginTop: "20px"
                                 }}>
-                                    Upload Resume
+                                    {t('UPLOAD_RESUME')}
                                 </Typography>
 
                                 <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
@@ -157,7 +160,7 @@ const UploadResume = () => {
 
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
                                         <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
-                                            onClick={goToDashboard}>GO TO DASHBOARD</ThemeButtonType2>
+                                            onClick={goToDashboard}>{t('GO_TO_DASHBOARD')}</ThemeButtonType2>
 
                                     </Stack>
 

@@ -17,6 +17,9 @@ import { ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/
 import { useState, } from "react";
 import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 import ThemeMobileImage from "../../ThemeComponent/Common/ThemeMobileImage";
+
+import { useTranslation } from "react-i18next";
+
 const CandidateLogin = () => {
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
     const [sendVerificationLink, setSendVerificationLink] = useState(false);
@@ -27,6 +30,9 @@ const CandidateLogin = () => {
     const [registerUser, setRegisterUser] = useState({});
 
     const dispatch = useDispatch();
+
+    const { t, i18n } = useTranslation();
+
 
     const defaultValue = {
         email_address: "",
@@ -46,6 +52,7 @@ const CandidateLogin = () => {
                 setRegisterUser(response.data);
 
                 localStorage.setItem("auth_token", response.token);
+                localStorage.setItem("userType", "candidate")
                 if (response.data.isemailverified && response.data.ismobileverified)
                     dispatch({ type: 'LOGIN', payload: response.data });
 
@@ -138,7 +145,7 @@ const CandidateLogin = () => {
                                 display: "block",
                                 lineHeight: "40px"
                             }}>
-                                Choose a job you love,
+                                {t('CHOOSE_A_JOB_YOU_LOVE')}
 
                                 <Typography component="box" sx={{
                                     fontSize: { "xs": "1.6rem", "sm": "4rem", "md": "4rem", "lg": "4rem", "xl": "4rem" },
@@ -149,14 +156,11 @@ const CandidateLogin = () => {
                                     margin: { "xs": "0px 0px 10px 0px", "sm": "0px 0px 10px 0px", "md": "0px 0px 10px 0px", "lg": "10px 0px", "xl": "10px 0px" },
                                     lineHeight: "1.0 !important"
                                 }}>
-                                    and you never have to
-                                    work a day in your life
-
+                                    {t('AND_YOU_NEVER_HAVE_TO_WORK_A_DAY_IN_YOUR_LIFE')}
                                 </Typography>
 
                             </Typography>
                             <ThemeMobileImage imageUrl="/assets/g10Mobile.png" />
-
                         </Box>
                     </Stack>
                     <Box sx={{
@@ -173,10 +177,10 @@ const CandidateLogin = () => {
                             <Typography component="box" sx={{
                                 fontSize: { "xs": "1rem", "sm": "1.2rem", "md": "1.2rem", "lg": "1.2rem", "xl": "1.2rem" }, fontFamily: "Work Sans, sans-serif"
                             }}>
-                                Welcome Guest,
+                                {t('WELCOME_GUEST')}
                             </Typography>
                             <Typography component="box" sx={{ fontSize: { "xs": "1.6rem", "sm": "2.5rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700", marginBottom: "30px" }}>
-                                Sign In for JobsYahan
+                                {t('SIGN_IN_FOR_JOBYAHAN')}
                             </Typography>
 
                             <Formik
@@ -189,7 +193,7 @@ const CandidateLogin = () => {
 
                                         <ThemeFInputDiv>
                                             <ThemeFInputDiv>
-                                                <ThemeLabel LableFor="email_address" LableText="Email Address" />
+                                                <ThemeLabel LableFor="email_address" LableText={t('EMAIL_ADDRESS')} />
                                                 <Field
                                                     error={errors.email_address && touched.email_address}
                                                     as={TextField}
@@ -200,7 +204,7 @@ const CandidateLogin = () => {
                                             </ThemeFInputDiv>
 
                                             <ThemeFInputDiv>
-                                                <ThemeLabel LableFor="password" LableText="Password" />
+                                                <ThemeLabel LableFor="password" LableText={t('PASSWORD')} />
                                                 <Field
                                                     error={errors.password && touched.password}
                                                     id="password"
@@ -216,7 +220,7 @@ const CandidateLogin = () => {
                                             margin: { "xs": "10px 0px", "sm": "20px 0px", "md": "20px 0px", "lg": "20px 0px", "xl": "20px 0px" }
                                         }}>
                                             <Link to="/forgot-password/candidate" >
-                                                Forgot Password?
+                                                {t('FORGOT_PASSWORD')}
                                             </Link>
                                         </Box>
 
@@ -230,20 +234,20 @@ const CandidateLogin = () => {
                                                     }
                                                 }
                                                     style={{ textAlign: "center" }}>
-                                                    Resend Verification Link
+                                                    {t('RESEND_VERIFICATION_LINK')}
                                                 </a>
 
                                             </>)
 
                                             }
 
-                                            <ThemeButtonType2 variant="contained" type="submit" id="log_in" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
+                                            <ThemeButtonType2 variant="contained" type="submit" id="log_in" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>{t('LOGIN')}</ThemeButtonType2>
                                             <ThemeButtonType3 variant="outlined"
                                                 type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
                                                 component={Link}
                                                 to="/candidate-register"
 
-                                            >Sign up</ThemeButtonType3>
+                                            >{t('SIGNUP')}</ThemeButtonType3>
                                         </Stack>
                                     </Form>
                                 )}

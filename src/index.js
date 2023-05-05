@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 import App from './App';
+import "./i18n";
 //Redux Store
 import {createStore} from "redux";
 import {Provider} from "react-redux";

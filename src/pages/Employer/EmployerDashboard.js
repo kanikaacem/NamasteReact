@@ -18,6 +18,7 @@ import { useLayoutEffect } from "react";
 import Template1 from "../../ThemeComponent/LoadingTemplate/Template1";
 import { useDispatch } from "react-redux";
 
+import { useTranslation } from "react-i18next";
 const EmployerDashboard = () => {
     const user = useOutletContext();
 
@@ -28,6 +29,8 @@ const EmployerDashboard = () => {
     const [jobDataLoaded, setJobDataLoaded] = useState(false);
 
     const dispatch = useDispatch();
+
+    const { t, i18n } = useTranslation();
     useLayoutEffect(() => {
         const getpostedjobs = async () => {
             try {
@@ -121,7 +124,7 @@ const EmployerDashboard = () => {
 
                                     </Stack>
                                     <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
-                                        Posted Jobs
+                                        {t('POSTED_JOBS')}
                                     </Typography>
                                 </Stack>
                                 <Stack gap={1} sx={{ width: { "xs": "150px", "sm": "150px", "md": "230px", "lg": "230px", "xl": "230px" } }}>
@@ -133,7 +136,7 @@ const EmployerDashboard = () => {
 
                                     </Stack>
                                     <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
-                                        Saved Candidate
+                                        {t('SAVED_CANDIDATES')}
                                     </Typography>
                                 </Stack>
 
@@ -146,7 +149,7 @@ const EmployerDashboard = () => {
 
                                     </Stack>
                                     <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
-                                        Active Jobs
+                                        {t('ACTIVE_JOBS')}
                                     </Typography>
                                 </Stack>
                                 <Stack gap={1} sx={{ width: { "xs": "150px", "sm": "150px", "md": "230px", "lg": "230px", "xl": "230px" } }}>
@@ -158,7 +161,7 @@ const EmployerDashboard = () => {
 
                                     </Stack>
                                     <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
-                                        Shortlisted Candidate to be reviewed
+                                        {t('SHORTLISTED_CANDIDATE_TO_BE_REVIEWED')}
                                     </Typography>
                                 </Stack>
 
@@ -172,7 +175,7 @@ const EmployerDashboard = () => {
 
                                     </Stack>
                                     <Typography component="div" sx={{ fontSize: "16px", color: "#4E3A67", fontWeight: "600" }}>
-                                        Interview schedule for Today
+                                        {t('INTERVIEW_SCHEDULE_FOR_TODAY')}
                                     </Typography>
                                 </Stack>
                             </Stack>
@@ -313,7 +316,7 @@ const EmployerDashboard = () => {
                                                 "xs": "16px", "sm": "16px", "md": "24px", "lg": "24px", "xl": "24px"
                                             }, fontWeight: "600", color: "#4E3A67"
                                         }}>
-                                            Recent Jobs
+                                            {t('RECENT_JOBS')}
                                         </Typography>
                                     </Box>
                                     {!jobDataLoaded && <>

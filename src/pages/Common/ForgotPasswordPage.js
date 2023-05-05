@@ -13,10 +13,12 @@ import Error from "../../ThemeComponent/Common/Error";
 import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ForgotPasswordPage = ({ user }) => {
 
     const [emailSend, setEmailSend] = useState(false);
+    const { t, i18n } = useTranslation();
     const defaultValue = {
         email_address: ""
     }
@@ -68,18 +70,7 @@ const ForgotPasswordPage = ({ user }) => {
                                     display: "block",
                                     lineHeight: "40px"
                                 }}>
-                                    Forgot
-
-                                    <Typography component="box" sx={{
-                                        fontSize: { "lg": "64px", "md": "50px", "xs": "26px" },
-                                        fontFamily: "Work Sans, sans-serif",
-                                        fontWeight: "700",
-                                        color: "#4E3A67",
-                                        display: "block"
-                                    }}>
-                                        Password ?
-                                    </Typography>
-                                </Typography>
+                                    {t('FORGOT_PASSWORD')}</Typography>
                             </Box>
                             <Box sx={{ maxWidth: "400px", height: "400px" }}>
                                 <img src={window.location.origin + "/assets/ForgotPassword.png"} width="100%" height="100%" alt="Forgot Password" />
@@ -94,7 +85,6 @@ const ForgotPasswordPage = ({ user }) => {
                         <Box
                             sx={{
                                 boxSizing: "border-box",
-                                minHeight: "647",
                                 background: "#FFFFFF",
                                 border: "1px solid #EDEDED",
                                 borderRadius: "19px",
@@ -107,7 +97,7 @@ const ForgotPasswordPage = ({ user }) => {
                                 display: "block",
                                 margin: "20px 0px"
                             }}>
-                                Reset Password
+                                {t('RESET_PASSWORD')}
                             </Typography>
 
                             <Typography component="box" sx={{
@@ -116,7 +106,7 @@ const ForgotPasswordPage = ({ user }) => {
                                 display: "block",
                                 margin: "20px 0px"
                             }}>
-                                Enter the email address associated with your account and we'll send you a link to reset your password.
+                                {t('RESET_PASSWORD_DESCRIPTION')}
                             </Typography>
 
                             <Formik
@@ -137,7 +127,7 @@ const ForgotPasswordPage = ({ user }) => {
                                                 {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
                                             </ThemeFInputDiv>
                                             <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                                <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue</ThemeButtonType2>
+                                                <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>{t('CONTINUE')}</ThemeButtonType2>
                                             </Stack>
                                         </ThemeFInputDiv>
                                     </Form>

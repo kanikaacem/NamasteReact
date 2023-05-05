@@ -4,7 +4,10 @@ import { FooterData, FooterData2, FooterData3 } from "../../utils/Data";
 import { FooterBox } from "../../utils/Theme";
 
 import { Link } from "react-router-dom";
+
+import { useTranslation } from "react-i18next";
 const Footer = () => {
+    const { t, i18n } = useTranslation();
     return (<>
         <Box sx={{
             background: "#2B1E44",
@@ -40,7 +43,7 @@ const Footer = () => {
                             margin: "10px 0px",
                             width: "150px"
                         }}>
-                        Chat Directly. Hire Instantly.
+                        {t('CHAT_DIRECTLY_AND_HIRE_DIRECTLY')}
                     </Typography>
                     <Typography component="span"
                         sx={{
@@ -51,8 +54,7 @@ const Footer = () => {
                             fontWeight: '100',
                             fontFamily: "Montserrat"
                         }}>
-                        Trusted by 3.8M+ verified job seekers and
-                        190K+ verified recruiters.
+                        {t('FOOTERD2')}
                     </Typography>
 
 
@@ -66,7 +68,7 @@ const Footer = () => {
                             fontWeight: "700",
                             margin: "10px 0px",
                         }}>
-                        Company
+                        {t('COMPANY')}
                     </Typography>
                     {
                         FooterData && FooterData.map((item, index) => {
@@ -78,7 +80,7 @@ const Footer = () => {
                                     }} >
                                     <FooterBox sx={{
                                         fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                                    }}> {item.name}</FooterBox>
+                                    }}> {t(item.name)}</FooterBox>
                                 </Link>
 
                             )
@@ -95,7 +97,7 @@ const Footer = () => {
                             fontWeight: "600",
                             margin: "10px 0px",
                         }}>
-                        Support
+                        {t('SUPPORT')}
                     </Typography>
                     <FooterBox
                         sx={{
@@ -113,7 +115,7 @@ const Footer = () => {
                             fontWeight: "600",
                             margin: "10px 0px",
                         }}>
-                        Legal
+                        {t('LEGAL')}
                     </Typography>
                     {
                         FooterData2 && FooterData2.map((item, index) => {
@@ -126,7 +128,7 @@ const Footer = () => {
                                     <FooterBox
                                         sx={{
                                             fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                                        }} > {item.name}</FooterBox>
+                                        }} > {t(item.name)}</FooterBox>
                                 </Link>
                             )
                         })
@@ -153,7 +155,7 @@ const Footer = () => {
                                 <FooterBox
                                     sx={{
                                         fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                                    }} > {item.name}</FooterBox>
+                                    }} > {t(item.name)}</FooterBox>
                             </Link>
                         )
                     })
@@ -169,7 +171,7 @@ const Footer = () => {
                     fontWeight: "100",
                     fontFamily: "Montserrat"
                 }}>
-                Copyright © 2023 JobYahan.com
+                {t('COPYRIGHT@2023JOBYAHAN.COM')}
             </Typography>
         </Box >
     </>)

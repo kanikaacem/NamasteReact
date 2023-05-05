@@ -17,6 +17,9 @@ import Error from "../../ThemeComponent/Common/Error";
 
 import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 import ThemeMobileImage from "../../ThemeComponent/Common/ThemeMobileImage";
+
+import { useTranslation } from "react-i18next";
+
 import { useState } from "react";
 const EmployerLogin = () => {
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
@@ -26,6 +29,9 @@ const EmployerLogin = () => {
     const action = useSelector(state => state.action);
     const [registerUser, setRegisterUser] = useState({});
     const dispatch = useDispatch();
+
+    const { t, i18n } = useTranslation();
+
 
     const defaultValue = {
         email_address: "",
@@ -50,6 +56,8 @@ const EmployerLogin = () => {
                 }
                 else if (!response.data.ismobileverified) {
                     localStorage.setItem("auth_token", response.token);
+                    localStorage.setItem("userType", "employer")
+
                     dispatch({ type: 'LOGIN_REGISTRATION', payload: response.data });
                 }
                 else if (response.data.isemailverified && response.data.ismobileverified && response.data.stage === "savememailandpass") {
@@ -58,6 +66,8 @@ const EmployerLogin = () => {
                 else {
                     localStorage.setItem("auth_token", response.token);
                     localStorage.setItem("action", "login");
+                    localStorage.setItem("userType", "employer")
+
                     dispatch({ type: 'LOGIN', payload: response.data });
                 }
 
@@ -138,7 +148,7 @@ const EmployerLogin = () => {
                                     display: "block",
                                     margin: "10px"
                                 }}>
-                                    We Love Recruiting
+                                    {t('WE_LOVE_RECRUITING')}
                                 </Typography>
                             </Box>
                             <Box sx={{ display: { "xs": "none", "sm": "block", "md": "block", "lg": "none", "xl": "none" } }}>
@@ -149,7 +159,7 @@ const EmployerLogin = () => {
                                     color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
                                     display: "block",
                                 }}>
-                                    We settle for nothing Less than the BEST
+                                    {t('WE_SETTLE_FOR_NOTHING_LESS_THAN_THE_BEST')}
                                 </Typography>
                             </Box>
 
@@ -160,20 +170,10 @@ const EmployerLogin = () => {
                                     fontWeight: "700",
                                     color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
                                     display: "block",
-                                    lineHeight: "0.3"
+                                    lineHeight: "1.2",
+                                    width: "693px"
                                 }}>
-                                    We settle for nothing
-
-
-                                    <Typography component="span" sx={{
-                                        fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "lg": "4rem", "xl": "4rem" },
-                                        fontFamily: "Work Sans, sans-serif",
-                                        fontWeight: "700",
-                                        color: { "xs": "#FFFFFF", "sm": "#FFFFFF", "md": "#FFFFFF", "lg": "#FC9A7E", "xl": "#FC9A7E" },
-                                        display: "block"
-                                    }}>
-                                        Less than the BEST
-                                    </Typography>
+                                    {t('WE_SETTLE_FOR_NOTHING_LESS_THAN_THE_BEST')}
                                 </Typography>
                             </Box>
 
@@ -187,7 +187,8 @@ const EmployerLogin = () => {
                                     display: "block",
                                     marginTop: "20px"
                                 }}>
-                                    We Love Recruiting
+                                    {t('WE_LOVE_RECRUITING')}
+
                                 </Typography>
                                 <Typography component="box" sx={{
                                     fontSize: { "xs": ".75rem", "sm": "1.5rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
@@ -197,10 +198,8 @@ const EmployerLogin = () => {
                                     display: "block",
                                     maxWidth: "695px"
                                 }}>
-                                    Employees get the work they look for through our impactful job portal
-                                    that is monitored 24x7 for quality, transparency and success. Employers,
-                                    the other hand, get the unique skills and experience of the champion employees,
-                                    hired through us, for their growth.
+                                    {t('EMPLOYEE_LOGIN_DESCRIPTION')}
+
 
                                 </Typography>
                             </Box>
@@ -227,7 +226,7 @@ const EmployerLogin = () => {
                                     "xs": "1.6rem", "sm": "2.5rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem"
                                 }, fontFamily: "Work Sans, sans-serif", fontWeight: "700"
                             }}>
-                                Log in
+                                {t('LOGIN')}
                             </Typography>
                             <Formik
 
@@ -239,7 +238,7 @@ const EmployerLogin = () => {
                                     <Form className="EmployerLoginForm">
                                         <ThemeFInputDiv >
                                             <ThemeFInputDiv>
-                                                <ThemeLabel LableFor="email_address" LableText="Email Address * " />
+                                                <ThemeLabel LableFor="email_address" LableText={t('EMAIL_ADDRESS')} />
                                                 <Field
                                                     error={errors.email_address && touched.email_address}
                                                     as={TextField}
@@ -249,7 +248,7 @@ const EmployerLogin = () => {
 
                                             </ThemeFInputDiv>
                                             <ThemeFInputDiv>
-                                                <ThemeLabel LableFor="password" LableText="Password *" />
+                                                <ThemeLabel LableFor="password" LableText={t('PASSWORD')} />
                                                 <Field
                                                     error={errors.password && touched.password}
                                                     id="password"
@@ -265,7 +264,7 @@ const EmployerLogin = () => {
                                                 margin: { "xs": "10px 0px", "sm": "20px 0px", "md": "20px 0px", "lg": "20px 0px", "xl": "20px 0px" }
                                             }}>
                                                 <Link to="/forgot-password/employer"  >
-                                                    Forgot Password?
+                                                    {t('FORGOT_PASSWORD')}
                                                 </Link>
                                             </Box>
 
@@ -282,20 +281,22 @@ const EmployerLogin = () => {
                                                     }
                                                 }
                                                     style={{ textAlign: "center" }}>
-                                                    Resend Verification Link
+                                                    {t('RESEND_VERIFICATION_LINK')}
+
                                                 </a>
 
                                             </>)
 
                                             }
 
-                                            <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
+                                            <ThemeButtonType2 variant="contained" type="submit"
+                                                sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>{t('LOGIN')}</ThemeButtonType2>
                                             <ThemeButtonType3 variant="outlined" type="button"
                                                 sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
                                                 component={Link}
                                                 to="/employer-register"
 
-                                            >Sign up</ThemeButtonType3>
+                                            >{t('SIGNUP')}</ThemeButtonType3>
 
                                         </Stack>
                                     </Form>

@@ -13,6 +13,8 @@ import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import { useState } from "react";
 
 import ThemeMessage from "../Common/ThemeMessage";
+
+import { useTranslation } from "react-i18next";
 const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenForm, setVerifyMobileForm }) => {
     const [sHPassword, setSHPassword] = useState(false);
     const [sHConfirmPassword, setSHConfirmPassword] = useState(false);
@@ -20,13 +22,15 @@ const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenF
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
     const [isEmailVerified, setIsEmailVerified] = useState(false);
 
+    const { t, i18n } = useTranslation();
+
     const defaultValue = {
         password: "",
         confirm_password: ""
     }
 
     const handleSubmit = async (values) => {
-        console.log(email);
+        // console.log(email);
 
         document.getElementById("next").disabled = "true";
         let formData = new FormData();
@@ -56,7 +60,7 @@ const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenF
 
         <BackButton GoBack={GoBack} />
         <Typography component="box" sx={{ fontSize: { "xs": "1.6rem", "sm": "2.5rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
-            Create Password
+            {t('CREATE_PASSWORD')}
         </Typography>
 
         <Formik
@@ -132,7 +136,7 @@ const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenF
                         {
                             isEmailVerified && <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
                         }
-                        <ThemeButtonType2 variant="contained" id="next" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Next</ThemeButtonType2>
+                        <ThemeButtonType2 variant="contained" id="next" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>{t('NEXT')}</ThemeButtonType2>
                     </Stack>
 
 

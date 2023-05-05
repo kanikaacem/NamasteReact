@@ -13,6 +13,7 @@ import { useState } from "react";
 import ThemeMessage from "../Common/ThemeMessage";
 import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
 import ThemeMobileImage from "../Common/ThemeMobileImage";
+import { t } from "i18next";
 
 const CandidateMobileVerify = () => {
     const [sendOtp, setSendOtp] = useState(false);
@@ -76,14 +77,14 @@ const CandidateMobileVerify = () => {
                                 fontWeight: "600",
                                 color: "#4E3A67",
                                 display: "block",
-                            }}> Unlimited Job
+                            }}> {t('UNLIMITED_JOB')}
                                 <Typography component="box" sx={{
                                     fontSize: "4rem",
                                     fontFamily: "Montserrat",
                                     fontWeight: "600",
                                     color: "#4E3A67",
                                     display: "block",
-                                }}> Options
+                                }}> {t('OPTIONS')}
                                 </Typography>
                             </Typography>
                         </Box>
@@ -96,7 +97,7 @@ const CandidateMobileVerify = () => {
                                 display: "block",
                                 textAlign: "center",
                                 margin: "10px 0px"
-                            }}> Unlimited Job Options
+                            }}> {t('UNLIMITED_JOB_OPTIONS')}
                             </Typography>
                         </Box>
 
@@ -127,7 +128,7 @@ const CandidateMobileVerify = () => {
                                     display: "block",
                                     marginTop: "20px"
                                 }}>
-                                    Verify Mobile No.
+                                    {t('VERIFY_MOBILE_NUMBER')}
                                 </Typography>
                             </Box>
 
@@ -221,7 +222,7 @@ const CandidateMobileVerify = () => {
                                             </ThemeFInputDiv>
 
                                             <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                                <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Verify</ThemeButtonType2>
+                                                <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>{t('VERIFY')}</ThemeButtonType2>
                                             </Stack>
                                         </Form>
                                     )}

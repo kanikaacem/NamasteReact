@@ -1,6 +1,4 @@
 import { Box, Stack, Typography, Container, Drawer, List, ListItem, ListItemText } from '@mui/material';
-
-
 import { categoryData, supply_chain, service_jobs, digital, marketing, sales } from "../../../utils/Data";
 import { useState } from 'react';
 
@@ -14,6 +12,8 @@ import CompanyLogo from '../../../ThemeComponent/Common/CompanyLogo';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
+import { useTranslation } from "react-i18next";
+
 const HomeSection = () => {
 
     const [activeHomeCategory, setActiveHomeCategory] = useState("supply_chain");
@@ -21,6 +21,9 @@ const HomeSection = () => {
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
     const navigate = useNavigate();
+
+    const { t, i18n } = useTranslation();
+
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -89,11 +92,7 @@ const HomeSection = () => {
                 paddingBottom: "20px",
                 position: "relative",
                 background: "#FAFAFA"
-            }}
-
-        >
-
-
+            }}>
             <Stack alignItems="center" justifyContent="center">
                 <Container>
                     <Typography variant="h1"
@@ -107,8 +106,8 @@ const HomeSection = () => {
                             zIndex: "1",
                             marginBottom: "20px"
                         }}>
-                        Find Suitable Jobs & Candidates Here!
-
+                        {t('WEBSITE_HEADING')}
+                        {/* {t('manish')} */}
                     </Typography>
 
 
@@ -120,7 +119,7 @@ const HomeSection = () => {
                         fontSize: { "lg": "23px", "md": "23px", "xs": "12px" },
                         maxWidth: "1069px"
                     }}>
-                        JobsYahan is where employers can get suitable candidates for frontline jobs
+                        {t('WEBSITE_SUB_HEADING')}
                     </Typography>
 
                 </Container>

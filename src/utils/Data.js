@@ -200,35 +200,35 @@ export const reviews = [
 export const CandidateMenu = [
     {
         id: 0,
-        MenuName: "Home",
+        MenuName: "HOME",
         value: "candidate_dashboard",
         url: "",
 
     },
     {
         id: 1,
-        MenuName: "Profile",
+        MenuName: "PROFILE",
         value: "profile",
         url: "profile",
     },
 
     {
         id: 2,
-        MenuName: "Applied Jobs",
+        MenuName: "APPLIED_JOBS",
         value: "applied_jobs",
         url: "applied-jobs",
     },
 
     {
         id: 3,
-        MenuName: "Saved Jobs",
+        MenuName: "SAVED_JOBS",
         value: "saved_jobs",
         url: "saved-jobs",
     },
 
     {
         id: 4,
-        MenuName: "Liked Jobs",
+        MenuName: "LIKED_JOBS",
         value: "liked_jobs",
         url: "liked-jobs",
     }
@@ -284,7 +284,7 @@ export const EmployerMenu = [
     {
         id: 1,
         Menu: "WorkOutlineIcon",
-        MenuName: "Dashboard",
+        MenuName: "DASHBOARD",
         value: "employer_dashboard",
         url: ""
 
@@ -293,7 +293,7 @@ export const EmployerMenu = [
     {
         id: 2,
         Menu: "WorkOutlineIcon",
-        MenuName: "Posted Jobs",
+        MenuName: "POSTED_JOBS",
         value: "posted_jobs",
         url: "posted-jobs"
 
@@ -301,7 +301,7 @@ export const EmployerMenu = [
     {
         id: 3,
         Menu: "WorkOutlineIcon",
-        MenuName: "Post a Job",
+        MenuName: "POST_A_JOB",
         value: "post_a_job",
         url: "post-a-job"
 
@@ -309,7 +309,7 @@ export const EmployerMenu = [
     {
         id: 4,
         Menu: "WorkOutlineIcon",
-        MenuName: "Applied Candidates",
+        MenuName: "APPLIED_CANDIDATES",
         value: "applied_candidates",
         url: "applied-candidates"
 
@@ -318,7 +318,7 @@ export const EmployerMenu = [
     {
         id: 5,
         Menu: "WorkOutlineIcon",
-        MenuName: "Account Setting",
+        MenuName: "ACCOUNT_SETTING",
         value: "account-setting",
         url: "account-setting"
 
@@ -1077,35 +1077,36 @@ export const sales = [
 export const FooterData = [
     {
         id: 1,
-        name: "Home",
+        name: "HOME",
         url: "/"
-    }, {
+    },
+    {
         id: 2,
-        name: "About Us",
+        name: "ABOUT_US",
         url: "/about-us"
     }, {
         id: 3,
-        name: "Careers",
+        name: "CAREERS",
         url: "/"
     },
     {
         id: 4,
-        name: "Life@jobyahan",
+        name: "LIFE@JOBSYAHAN",
         url: "/"
     },
     {
         id: 5,
-        name: "Blogs",
+        name: "BLOGS",
         url: "/"
     },
     {
         id: 6,
-        name: "What makes us special for job search?",
+        name: "WHAT_MAKES_US_SPECIAL_FOR_JOB_SEARCH",
         url: "/"
     },
     {
         id: 7,
-        name: "Why Do Employers Love Us?",
+        name: "WHY_DO_EMPLOYERS_LOVE_US",
         url: "/"
     }
 ]
@@ -1113,12 +1114,12 @@ export const FooterData = [
 export const FooterData2 = [
     {
         id: 1,
-        name: "Privacy Policy",
+        name: "PRIVACY_POLICY",
         url: "/"
     },
     {
         id: 2,
-        name: "Terms & conditions",
+        name: "TERMS_AND_CONDITIONS",
         url: "/"
     }
 ]
@@ -1126,27 +1127,37 @@ export const FooterData2 = [
 export const FooterData3 = [
     {
         id: 1,
-        name: "Terms and Conditions",
+        name: "TERMS_AND_CONDITIONS",
         url: "/"
     },
     {
         id: 2,
-        name: "Privacy Policy",
+        name: "PRIVACY_POLICY",
         url: "/"
     },
     {
         id: 3,
-        name: "Cookies Policy",
+        name: "COOKIES_POLICY",
         url: "/"
     },
     {
         id: 4,
-        name: "Copyright Notifications",
+        name: "COPYRIGHT",
         url: "/"
     },
     {
         id: 5,
-        name: "Cookies Settings",
+        name: "NOTIFICATIONS",
+        url: "/"
+    },
+    {
+        id: 6,
+        name: "COOKIES",
+        url: "/"
+    },
+    {
+        id: 7,
+        name: "SETTINGS",
         url: "/"
     }
 ]

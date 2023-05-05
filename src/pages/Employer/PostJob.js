@@ -47,6 +47,8 @@ import Loader from "../Common/Loader";
 import BackButton from "../../ThemeComponent/Common/BackButton";
 import CurrencyFormat from 'react-currency-format';
 import { useNavigate } from "react-router-dom";
+
+import { useTranslation } from "react-i18next";
 const PostJob = () => {
     const [postJobStep, setPostJobStep] = useState(1);
 
@@ -93,6 +95,8 @@ const PostJob = () => {
     const [salaryDisclosed, setSalaryDisclosed] = useState(false);
 
     const animatedComponents = makeAnimated();
+
+    const { t, i18n } = useTranslation();
     const defaultValue = {
         company_name: "",
         job_title: "",
@@ -308,30 +312,10 @@ const PostJob = () => {
                             fontWeight: "600",
                             color: "#4E3A67",
                             display: "block",
+                            width: "550px",
                             lineHeight: "1.2"
                         }}>
-                            50K People Have
-                            <Typography component="box" sx={{
-                                fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
-                                fontFamily: "Montserrat",
-                                fontWeight: "600",
-                                color: "#4E3A67",
-                                display: "block",
-                                width: "max-content",
-                                lineHeight: "1.2"
-                            }}>
-                                Got Jobs Through Us;
-                                <Typography component="box" sx={{
-                                    fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                    lineHeight: "1.2"
-                                }}>
-                                    Next is You!
-                                </Typography>
-                            </Typography>
+                            {t('50K_PEOPLE_HAVE_GOT_JOBS_THROUGH_US;_NEXT_IS_YOU')}
                         </Typography>
                         <ThemeWebsiteImage imageUrl="/assets/g51.png" imageWidth="500px" ></ThemeWebsiteImage>
                     </Box>
@@ -350,7 +334,7 @@ const PostJob = () => {
                             textAlign: "end",
                             lineHeight: "1.2"
 
-                        }}> Select from
+                        }}> {t('SELECT_FROM')}
                             <Typography component="box" sx={{
                                 fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
                                 fontFamily: "Montserrat",
@@ -361,7 +345,7 @@ const PostJob = () => {
                                 lineHeight: "1.2"
 
                             }}>
-                                the Jobs in Your City
+                                {t('THE_JOBS_IN_YOUR_CITY')}
                             </Typography>
                         </Typography>
 
@@ -390,7 +374,7 @@ const PostJob = () => {
                         lineHeight: "1.2",
                         textAlign: "center"
                     }}>
-                        50K People Have Got Jobs Through Us; Next is You!
+                        {t('50K_PEOPLE_HAVE_GOT_JOBS_THROUGH_US;_NEXT_IS_YOU')}
 
                     </Typography>
                     <ThemeMobileImage imageUrl="/assets/g52.png" />
@@ -414,7 +398,7 @@ const PostJob = () => {
                             display: "block",
                             marginTop: "20px"
                         }}>
-                            Job Details
+                            {t('JOB_DETAILS')}
                         </Typography>
 
                         <Stack direction="row" gap={2} sx={{ margin: "25px 0px" }}>
@@ -446,7 +430,7 @@ const PostJob = () => {
                             display: "block",
                             margin: "20px 0px"
                         }}>
-                            Job Information
+                            {t('JOB_INFORMATION')}
                         </Typography>
                         <Formik
 
@@ -1055,7 +1039,9 @@ const PostJob = () => {
                                     </ThemeFInputDiv>
 
                                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue and Next</ThemeButtonType2>
+                                        <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>
+                                            {t('CONTINUE_AND_NEXT')}
+                                        </ThemeButtonType2>
                                     </Stack>
 
                                 </Form>
@@ -1109,7 +1095,7 @@ const PostJob = () => {
                                     textAlign: "center",
                                     margin: { "xs": "15px", "sm": "15px", "md": "15px", "lg": "0px", "xl": "0px" }
                                 }}>
-                                    Free job posting facility
+                                    {t('FREE_JOBPOSTING_FACILITY')}
                                 </Typography>
                                 <Box sx={{
                                     position: "relative",
@@ -1153,7 +1139,7 @@ const PostJob = () => {
                                     display: "block",
                                     marginTop: "20px"
                                 }}>
-                                    Job Details
+                                    {t('JOB_DETAILS')}
                                 </Typography>
 
                                 <Stack direction="row" gap={2} sx={{ margin: "25px 0px" }}>
@@ -1591,7 +1577,7 @@ const PostJob = () => {
                                             </ThemeFInputDiv>
 
                                             <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                                <ThemeButtonType2 id="save" variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Save</ThemeButtonType2>
+                                                <ThemeButtonType2 id="save" variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>{t('SAVE')}</ThemeButtonType2>
                                             </Stack>
 
                                         </Form>

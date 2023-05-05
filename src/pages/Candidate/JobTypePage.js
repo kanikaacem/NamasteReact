@@ -18,6 +18,8 @@ import ThemeMobileImage from "../../ThemeComponent/Common/ThemeMobileImage";
 import ThemeWebsiteImage from "../../ThemeComponent/Common/ThemeWebsiteImage";
 import { CandidateEducation } from "../../utils/Data";
 import { useNavigate } from "react-router-dom";
+
+import { useTranslation } from "react-i18next";
 const JobTypePage = () => {
 
     const [jobType, setJobType] = useState(" ");
@@ -33,6 +35,8 @@ const JobTypePage = () => {
     const [qualification, setQualification] = useState(" ");
 
     const navigate = useNavigate();
+
+    const { t, i18n } = useTranslation();
 
     const defaultValue = {
         job_type: "",
@@ -130,14 +134,14 @@ const JobTypePage = () => {
                                 fontWeight: "600",
                                 color: "#4E3A67",
                                 display: "block",
-                            }}> Unlimited Job
+                            }}> {t('UNLIMITED_JOB')}
                                 <Typography component="box" sx={{
                                     fontSize: "4rem",
                                     fontFamily: "Montserrat",
                                     fontWeight: "600",
                                     color: "#4E3A67",
                                     display: "block",
-                                }}> Options
+                                }}> {t('OPTIONS')}
                                 </Typography>
                             </Typography>
                         </Box>
@@ -150,7 +154,7 @@ const JobTypePage = () => {
                                 display: "block",
                                 textAlign: "center",
                                 margin: "10px 0px"
-                            }}> Unlimited Job Options
+                            }}> {t('UNLIMITED_JOB_OPTIONS')}
                             </Typography>
                         </Box>
 
@@ -181,7 +185,7 @@ const JobTypePage = () => {
                                     display: "block",
                                     marginTop: "20px"
                                 }}>
-                                    Select Job Type
+                                    {t('SELECT_JOB_TYPE')}
                                 </Typography>
                             </Box>
 
@@ -410,7 +414,9 @@ const JobTypePage = () => {
                                             </ThemeFInputDiv>
 
                                             <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                                <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue and Next</ThemeButtonType2>
+                                                <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>
+                                                    {t('CONTINUE_AND_NEXT')}
+                                                </ThemeButtonType2>
                                             </Stack>
 
                                         </Form>

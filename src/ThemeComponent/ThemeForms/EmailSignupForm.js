@@ -14,11 +14,13 @@ import { socialLogin } from "../../utils/Data";
 
 import { LoginSocialGoogle } from 'reactjs-social-login';
 
+import { useTranslation } from "react-i18next";
+
 const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenForm, isEmailVerified }) => {
 
 
     const CLIENT_ID = "716443310647-ss6mebccjfbjinc0jfa188lnm6vo38o7.apps.googleusercontent.com";
-
+    const { t, i18n } = useTranslation();
 
     const defaultValue = {
         email_address: email ? email : ""
@@ -50,7 +52,7 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
 
     return (<>
         <Typography component="box" sx={{ fontSize: { "xs": "1.6rem", "sm": "2.5rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
-            Create Account
+            {t('CREATE_ACCOUNT')}
         </Typography>
         <Box>
             <Formik
@@ -71,7 +73,8 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                                 {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
                             </ThemeFInputDiv>
                             <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Next</ThemeButtonType2>
+                                <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>
+                                    {t('NEXT')}</ThemeButtonType2>
                                 {isEmailVerified &&
                                     <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
                                 }
@@ -82,7 +85,7 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
                                 display: "flex",
                                 textAlign: "center"
                             }}>
-                                <hr style={{ width: "150px", height: "0px", color: "#DAD9D9" }}></hr> or Sign up with <hr style={{ width: "150px", height: "0px" }}></hr>
+                                <hr style={{ width: "150px", height: "0px", color: "#DAD9D9" }}></hr> {t('OR_SIGN_UP_WITH')} <hr style={{ width: "150px", height: "0px" }}></hr>
                             </Typography>
 
                             <Stack direction="row" gap={3} justifyContent="center">

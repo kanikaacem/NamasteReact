@@ -5,11 +5,13 @@ import { RWebShare } from "react-web-share";
 
 import { Link, useNavigate } from "react-router-dom";
 
+import { useTranslation } from "react-i18next";
 const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
 
     const [jobApplied, setJobApplied] = useState(false);
     const navigate = useNavigate();
 
+    const { t, i18n } = useTranslation();
     useEffect(() => {
         const IsjobApplied = async () => {
             let response = await getRequestWithToken("https://backend.jobsyahan.com/api/job/details?jobid=" + data_id);
@@ -162,7 +164,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                     <Typography component="div" sx={{
                         fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1rem", "lg": "1.25rem", "xl": "1.25rem" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px"
                     }}>
-                        {data && data.applied_count > 0 ? data.applied_count : '0'} Applicants Applied
+                        {data && data.applied_count > 0 ? data.applied_count : '0'} {t('APPLICANTS_APPLIED')}
                     </Typography>
                     {data && data.applied_count > 0 && userType === "employer" &&
                         <a className="ViewCandidateLink"
@@ -172,7 +174,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                 event.stopPropagation();
                                 navigate("/employer-dashboard/applied-candidates/" + data_id)
                             }}
-                        > View Candidates</a>
+                        > {t('VIEW_CANDIDATES')}</a>
                     }
 
 

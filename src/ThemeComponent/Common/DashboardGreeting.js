@@ -1,16 +1,18 @@
 import { Stack, Typography, Box } from "@mui/material";
 import ButtonType2 from "./ButtonType2";
 import { useState, useEffect } from "react";
-
+import { useTranslation } from "react-i18next";
 const DashboardGreeting = ({ username, userType, userProfileCompleted }) => {
     const [dayMessage, setDayMessage] = useState("");
     const date = new Date();
     const showTime = date.getHours();
 
+    const { t, i18n } = useTranslation();
+
     useEffect(() => {
-        if (showTime <= 12) setDayMessage("Good Morning")
-        else if (showTime >= 12 && showTime < 18) setDayMessage("Good AfterNoon")
-        else setDayMessage("Good Evening")
+        if (showTime <= 12) setDayMessage(t('GOOD_MORNING'))
+        else if (showTime >= 12 && showTime < 18) setDayMessage(t('GOOD_AFTERNOON'))
+        else setDayMessage(t('GOOD_EVENING'))
     }, [showTime]);
 
     return (<>
@@ -41,7 +43,7 @@ const DashboardGreeting = ({ username, userType, userProfileCompleted }) => {
 
                 {userType === 'employer' && <>
                     <Box>
-                        <ButtonType2 ButtonText="Post a Job" ClickEvent={() => window.location.href = window.location.href + "/post-a-job"}></ButtonType2>
+                        <ButtonType2 ButtonText={t('POST_A_JOB')} ClickEvent={() => window.location.href = window.location.href + "/post-a-job"}></ButtonType2>
                     </Box></>}
 
             </Stack>

@@ -20,6 +20,8 @@ import FormMenu from "../Common/FormMenu";
 import ThemeMessage from "../Common/ThemeMessage";
 import ThemeMobileImage from "../Common/ThemeMobileImage";
 import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
+
+import { useTranslation } from "react-i18next";
 function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobType }) {
     const defaultValue = {
         company_name: "",
@@ -33,6 +35,9 @@ function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobTyp
     const [endingDate, setEndingDate] = useState(null);
     const [showAddButton, setShowAddButton] = useState(false);
     const [showRemoveButton, setShowRemoveButton] = useState(false);
+
+    const { t, i18n } = useTranslation();
+
 
     const handleSubmit = async (values, { resetForm }) => {
 
@@ -190,7 +195,7 @@ function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobTyp
                                         handleAddComponent();
                                         event.preventDefault();
                                     }}
-                                > Add +</ThemeButtonType3>}
+                                > {t('ADD')} +</ThemeButtonType3>}
 
 
                                 {(showRemoveButton || id > 0) &&
@@ -201,7 +206,7 @@ function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobTyp
                                         onClick={(event) => {
                                             handleRemoveComponent();
                                             event.preventDefault();
-                                        }}>Remove -</ThemeButtonType2>}
+                                        }}>{t('REMOVE')} -</ThemeButtonType2>}
                             </Stack>
 
                             <Stack direction="row" sx={{ width: "100%", gap: "30px", flexWrap: "wrap" }}>
@@ -211,12 +216,12 @@ function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobTyp
                                         width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
 
                                     }}
-                                > Save</ThemeButtonType3>
+                                > {t('SAVE')}</ThemeButtonType3>
                                 <ThemeButtonType2 variant="contained" type="button" sx={{
                                     fontFamily: "Work Sans, sans-serif", fontWeight: "600",
                                     width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
                                 }}
-                                    onClick={nextStepButton}>Next Step</ThemeButtonType2>
+                                    onClick={nextStepButton}>{t('NEXT_STEP')}</ThemeButtonType2>
 
                             </Stack>
                         </ThemeFInputDiv>
@@ -231,6 +236,7 @@ function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobTyp
 }
 const WorkHistory = ({ jobType }) => {
     const [components, setComponents] = useState([]);
+    const { t, i18n } = useTranslation();
 
     const handleAddComponent = () => {
         setComponents(prevComponents => [...prevComponents, <WorkHistoryForm
@@ -287,7 +293,7 @@ const WorkHistory = ({ jobType }) => {
                                 color: "#4E3A67",
                                 marginLeft: "60px",
                                 display: { "xs": "none", "sm": "none", "md": "none", "xl": "block", "lg": "block" }
-                            }}> Get
+                            }}> {t('GET')}
                                 <Typography component="box" sx={{
                                     fontSize: "64px",
                                     fontFamily: "Montserrat",
@@ -296,7 +302,7 @@ const WorkHistory = ({ jobType }) => {
                                     display: "block",
                                     width: "max-content"
                                 }}>
-                                    local-level jobs
+                                    {t('LOCALLEVEL_JOBS')}
 
                                 </Typography>
                             </Typography>
@@ -308,7 +314,7 @@ const WorkHistory = ({ jobType }) => {
                                 color: "#4E3A67",
                                 display: { "xs": "block", "sm": "block", "md": "block", "xl": "none", "lg": "none" },
                                 margin: "10px 0px"
-                            }}> Get local-level jobs
+                            }}> {t('GET_LOCALLEVEL_JOBS')}
                             </Typography>
 
 
@@ -350,7 +356,7 @@ const WorkHistory = ({ jobType }) => {
                                         display: "block",
                                         marginTop: "20px"
                                     }}>
-                                        Work History
+                                        {t('WORK_HISTORY')}
                                     </Typography>
 
                                     <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>

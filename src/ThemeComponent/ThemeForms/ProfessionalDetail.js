@@ -21,6 +21,8 @@ import FormMenu from "../Common/FormMenu";
 import { useState, useEffect } from "react";
 import ThemeMobileImage from "../Common/ThemeMobileImage";
 import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
+
+import { useTranslation } from "react-i18next";
 function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jobType }) {
 
     const [qualification, setQualification] = useState(" ");
@@ -30,6 +32,8 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [showAddButton, setShowAddButton] = useState(false);
     const [showRemoveButton, setShowRemoveButton] = useState(false);
+
+    const { t, i18n } = useTranslation();
 
     const defaultValue = {
         institue_name: "",
@@ -281,7 +285,7 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
                                     handleAddComponent();
                                     event.preventDefault();
                                 }}
-                            > Add +</ThemeButtonType3>}
+                            > {t('ADD')} +</ThemeButtonType3>}
 
 
                             {(showRemoveButton || id > 0) &&
@@ -292,7 +296,7 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
                                     onClick={(event) => {
                                         handleRemoveComponent();
                                         event.preventDefault();
-                                    }}>Remove -</ThemeButtonType2>}
+                                    }}>{t('REMOVE')} -</ThemeButtonType2>}
                         </Stack>
 
                         <Stack direction="row" sx={{ width: "100%", gap: "30px", flexWrap: "wrap" }}>
@@ -301,7 +305,7 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
                                     fontFamily: "Work Sans, sans-serif", fontWeight: "600",
                                     width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
                                 }}
-                            > Save</ThemeButtonType3>
+                            > {t('SAVE')}</ThemeButtonType3>
 
                             <ThemeButtonType2 variant="contained" type="button" name="nextStep"
                                 onClick={nextStepButton}
@@ -309,7 +313,7 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "600", width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
                                 }}
-                            >Next Step</ThemeButtonType2>
+                            >{t('NEXT_STEP')}</ThemeButtonType2>
 
                         </Stack>
 
@@ -325,6 +329,7 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
 const ProfessionalDetail = ({ jobType }) => {
 
     const [components, setComponents] = useState([]);
+    const { t, i18n } = useTranslation();
 
     const handleAddComponent = () => {
         setComponents(prevComponents => [...prevComponents, <AddProfessionalForm
@@ -379,21 +384,9 @@ const ProfessionalDetail = ({ jobType }) => {
                                 fontFamily: "Montserrat",
                                 fontWeight: "600",
                                 color: "#4E3A67",
-                                display: { "xs": "none", "sm": "none", "md": "none", "xl": "block", "lg": "block" }
-                            }}> Get Suitable
-
-                                <Typography component="box" sx={{
-                                    fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                    width: "max-content"
-                                }}>
-                                    Jobs Here
-                                </Typography>
-
-                            </Typography>
+                                display: { "xs": "none", "sm": "none", "md": "none", "xl": "block", "lg": "block" },
+                                width: "500px"
+                            }}>{t('GET_SUITABLE_JOBS_HERE')} </Typography>
 
                             <Typography component="box" sx={{
                                 fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
@@ -401,7 +394,7 @@ const ProfessionalDetail = ({ jobType }) => {
                                 fontWeight: "600",
                                 color: "#4E3A67",
                                 display: { "xs": "block", "sm": "block", "md": "block", "xl": "none", "lg": "none" }
-                            }}> Get Suitable Jobs Here
+                            }}> {t('GET_SUITABLE_JOBS_HERE')}
                             </Typography>
 
 
@@ -446,7 +439,7 @@ const ProfessionalDetail = ({ jobType }) => {
                                         display: "block",
                                         marginTop: "20px"
                                     }}>
-                                        Professional Details
+                                        {t('PROFESSIONAL_DETAILS')}
                                     </Typography>
 
                                     <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
