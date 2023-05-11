@@ -39,7 +39,7 @@ function Home() {
             display: { "xs": "none", "sm": "block", "md": "block", "lg": "block", "xl": "block" },
             padding: "20px 40px",
             background: "#FAFAFA",
-            position: "sticky",
+            // position: "sticky",
             top: 0,
             zIndex: "3387"
         }}>

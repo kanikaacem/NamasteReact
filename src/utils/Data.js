@@ -1228,3 +1228,22 @@ export const data4 = [
         text: "Employee Requirements"
     }
 ]
+
+/*Language Options by Website*/
+export const LanguageOptions = [
+    {
+        id: 1,
+        value: "en",
+        text: "English"
+    },
+    {
+        id: 2,
+        value: "hn",
+        text: "Hindi"
+    },
+    {
+        id: 3,
+        value: "ehn",
+        text: "Hinglish"
+    }
+]

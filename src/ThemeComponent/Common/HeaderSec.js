@@ -1,17 +1,29 @@
 import { Link } from 'react-router-dom';
 
-import { Stack, Button } from "@mui/material";
+import { Button, Box, Stack, MenuItem, Select } from "@mui/material";
 import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
+/*getting website language data*/
+import { LanguageOptions } from "../../utils/Data";
 import { useTranslation } from 'react-i18next';
+
 const HeaderSec = ({ color, background, border, buttonText, userType }) => {
+    const currentLanguage = useSelector(state => state.currentLanguage);
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    const dispatch = useDispatch();
     const [showCandidateButton, setShowCandidateButton] = useState(false);
     const [showEmployerButton, setShowEmployerButton] = useState(false);
+    const [selectedValue, setSelectedValue] = useState(currentLanguage);
 
     const { t, i18n } = useTranslation();
+
+    const changeLanguage = (event) => {
+        setSelectedValue(event.target.value);
+        dispatch({ type: 'CHANGE_LANGUAGE', payload: event.target.value });
+    };
+
     useEffect(() => {
 
         if (window.location.pathname === "/") {
@@ -36,33 +48,6 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                     justifyContent: "flex-end"
                 }}
             >
-
-                {
-                    showEmployerButton &&
-                    <Button type="button" variant="outlined"
-                        component={Link} to="/employer-login"
-
-                        sx={{
-                            width: "200px",
-                            borderRadius: "44px",
-                            fontSize: { "xs": "14px", "sm": "18px", "md": "18px", "lg": "18px", "xl": "18px" },
-                            border: { border },
-                            color: { color },
-                            textTransform: "capitalize",
-                            fontWeight: "600",
-                            fontFamily: "Work Sans, sans-serif !important",
-                            background: { background },
-                            "&:hover": {
-                                border: { border },
-                                color: { color },
-                                background: { background }
-
-                            }
-                        }}>
-                        {t('EMPLOYER_LOGIN')}
-                    </Button>
-                }
-
 
                 {
                     showCandidateButton && isLoggedIn && userType === "candidate" &&
@@ -157,6 +142,22 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
                     }}>
                     {t('CONTACT_US')}
                 </Button>
+
+                <Box className="ChangeLanguageOption">
+                    <Select
+                        sx={{
+                            width: "200px"
+                        }}
+                        value={selectedValue} onChange={changeLanguage} displayEmpty>
+                        <MenuItem value="" disabled>
+                            Select an Language
+                        </MenuItem>
+                        {LanguageOptions.map((item) => {
+                            return <MenuItem value={item.value} >{item.text}</MenuItem>
+
+                        })}
+                    </Select>
+                </Box>
 
 
             </Stack>
