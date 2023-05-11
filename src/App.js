@@ -4,43 +4,43 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 /*Email Verification Page*/
-import EmployerVerficationPage from './Pages/Common/EmailVerficationPage';
+import EmployerVerficationPage from './pages/Common/EmailVerficationPage';
 
 /*ForgotPasswordPage */
-import ForgotPasswordPage from './Pages/Common/ForgotPasswordPage';
-import ResetPasswordPage from "./Pages/Common/ResetPasswordPage";
+import ForgotPasswordPage from './pages/Common/ForgotPasswordPage';
+import ResetPasswordPage from "./pages/Common/ResetPasswordPage";
 /*Employer Component*/
-import EmployerRegister from './Pages/Employer/EmployerRegister';
-import EmployerLogin from "./Pages/Employer/EmployerLogin";
-import EmployerDashboard from "./Pages/Employer/EmployerDashboard";
-import PostJob from "./Pages/Employer/PostJob";
-import PostedJobs from './Pages/Employer/PostedJobs';
-import AccountSetting from './Pages/Employer/AccountSetting';
-import CandidateRecommendation from './Pages/Employer/CandidateRecommendation';
-import SavedCandidate from "./Pages/Employer/SavedCandidate";
-import AppliedCandidate from './Pages/Employer/AppliedCandidate';
-import Chat from "./Pages/Common/Chat";
-import ViewProfile from "./Pages/Employer/ViewProfile";
+import EmployerRegister from './pages/Employer/EmployerRegister';
+import EmployerLogin from "./pages/Employer/EmployerLogin";
+import EmployerDashboard from "./pages/Employer/EmployerDashboard";
+import PostJob from "./pages/Employer/PostJob";
+import PostedJobs from './pages/Employer/PostedJobs';
+import AccountSetting from './pages/Employer/AccountSetting';
+import CandidateRecommendation from './pages/Employer/CandidateRecommendation';
+import SavedCandidate from "./pages/Employer/SavedCandidate";
+import AppliedCandidate from './pages/Employer/AppliedCandidate';
+import Chat from "./pages/Common/Chat";
+import ViewProfile from "./pages/Employer/ViewProfile";
 
 /*Candidate Component*/
-import CandidateRegistration from "./Pages/Candidate/CandidateRegistration";
-import CandidateLogin from "./Pages/Candidate/CandidateLogin";
-import CandidateDashboard from "./Pages/Candidate/CandidateDashboard";
-import CandidateProfile from "./Pages/Candidate/CandidateProfile";
-import CandidateProfilePage from "./Pages/Candidate/CandidateProfilePage";
-import UpdateProfile from "./Pages/Candidate/UpdateProfile";
-import Settings from './Pages/Candidate/Settings';
-import Profile from "./Pages/Candidate/CandidateProfilePage";
-import CandidateJobPerferences from "./Pages/Candidate/CandidateJobPerferences";
-import SavedJobs from './Pages/Candidate/SavedJobs';
-import CandidateDashboard2 from "./Pages/Candidate/CandidateDashboard2";
+import CandidateRegistration from "./pages/Candidate/CandidateRegistration";
+import CandidateLogin from "./pages/Candidate/CandidateLogin";
+import CandidateDashboard from "./pages/Candidate/CandidateDashboard";
+import CandidateProfile from "./pages/Candidate/CandidateProfile";
+import CandidateProfilePage from "./pages/Candidate/CandidateProfilePage";
+import UpdateProfile from "./pages/Candidate/UpdateProfile";
+import Settings from './pages/Candidate/Settings';
+import Profile from "./pages/Candidate/CandidateProfilePage";
+import CandidateJobPerferences from "./pages/Candidate/CandidateJobPerferences";
+import SavedJobs from './pages/Candidate/SavedJobs';
+import CandidateDashboard2 from "./pages/Candidate/CandidateDashboard2";
 
 /*Website Page*/
-import Home from "./Pages/Home/Home";
-import NotFound from "./Pages/NotFound";
+import Home from "./pages/Home/Home";
+import NotFound from "./pages/NotFound";
 import PrivateRoute from "./utils/PrivateRoute";
-import Dashboard from './Pages/Common/Dashboard';
-import JobDescription from './Pages/JobDescription';
+import Dashboard from './pages/Common/Dashboard';
+import JobDescription from './pages/JobDescription';
 import JobSearch from './ThemeComponent/Common/JobSearch';
 
 function App() {
