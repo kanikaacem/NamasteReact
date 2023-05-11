@@ -1,0 +1,35 @@
+# Node Image for docker on which code will execute
+image: node:12.16
+
+# This is the stages / task to perfom in jobs
+stages:
+  - build
+  - deploy
+
+#caching for reuse
+cache:
+ key: ${CI_COMMIT_REF_SLUG}
+ paths:
+ - node_modules/
+ - build/
+
+# This command is run before the execution of stages
+before_script:
+  - npm install
+
+# Job One for making build
+build_master:
+  stage: build
+  script:
+  - npm run build
+  only: ['staging']
+
+# Job Two for deploy build to S3
+deploy_master:
+  image: python:latest
+  stage: deploy
+  before_script:
+    - pip install awscli
+  script:
+    - aws s3 sync ./build/ s3://staging.jobsyahan.com/ --acl=public-read --delete
+  only: ['staging']
