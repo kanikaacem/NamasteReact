@@ -1,6 +1,15 @@
-const Heading = ({ text, color }) => {
+import { Typography } from "@mui/material";
+const Heading = ({ headingText, color }) => {
     return (<>
-        <h1 className="title" style={{ color: color ? color : "black", textAlign: "center", margin: '0px' }}> {text}</h1>
+        <Typography variant="h1" component="h2" sx={{
+            fontSize: "1.25rem",
+            fontFamily: "'Manrope',' sans- serif'",
+            fontWeight: "700",
+            color: "#000000"
+        }}>
+            {headingText}
+        </Typography >
+
     </>)
 }
 

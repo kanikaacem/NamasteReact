@@ -3,129 +3,29 @@
 export const JobCategories = [
     {
         id: 1,
-        logo: "./assets/app-development.png",
-        title: "FullStack Developer"
+        categoryImage: "/assets/Driver.png",
+        categoryName: "Driver"
 
     },
     {
         id: 2,
-        logo: "./assets/web-development.png",
-        title: "UI/UX Developer"
+        categoryImage: "/assets/OfficeHelper.png",
+        categoryName: "Office Helper"
 
     },
     {
         id: 3,
-        logo: "./assets/web-coding.png",
-        title: "Data Scientist"
+        categoryImage: "/assets/Waiter.png",
+        categoryName: "Waiter"
 
     },
     {
         id: 4,
-        logo: "./assets/Devops.png",
-        title: "Charted Accountant"
-
-    },
-    {
-        id: 5,
-        logo: "./assets/innovation.png",
-        title: "Textile Industries"
-
-    },
-    {
-        id: 6,
-        logo: "./assets/statistics.png",
-        title: "Cleaner,Washer"
-
-    },
-    {
-        id: 7,
-        logo: "./assets/app-development.png",
-        title: "Teacher Tutor"
-
-    },
-    {
-        id: 8,
-        logo: "./assets/web-development.png",
-        title: "Business Analyst"
-
-    },
-    {
-        id: 9,
-        logo: "./assets/web-coding.png",
-        title: "Beautician"
-
-    },
-    {
-        id: 10,
-        logo: "./assets/Devops.png",
-        title: "Telecom"
-
-    },
-    {
-        id: 11,
-        logo: "./assets/innovation.png",
-        title: "Hospital Nurse Boy"
-
-    },
-    {
-        id: 12,
-        logo: "./assets/statistics.png",
-        title: "Videographer,Photographer"
-
-    }, {
-        id: 13,
-        logo: "./assets/app-development.png",
-        title: "Bartender"
-
-    },
-    {
-        id: 14,
-        logo: "./assets/web-development.png",
-        title: "Electrician"
-
-    },
-    {
-        id: 15,
-        logo: "./assets/web-coding.png",
-        title: "Ticket Clerk"
-
-    },
-    {
-        id: 16,
-        logo: "./assets/Devops.png",
-        title: "Musician Orchestra"
-
-    },
-    {
-        id: 17,
-        logo: "./assets/innovation.png",
-        title: "Machine Operator"
-
-    },
-    {
-        id: 18,
-        logo: "./assets/statistics.png",
-        title: "Delivery servcie"
-
-    },
-    {
-        id: 19,
-        logo: "./assets/statistics.png",
-        title: "Finance"
-
-    },
-    {
-        id: 20,
-        logo: "./assets/statistics.png",
-        title: "Cooking Service"
-
-    },
-    {
-        id: 21,
-        logo: "./assets/statistics.png",
-        title: "Security Service"
+        categoryImage: "/assets/HouseKeeping.png",
+        categoryName: "House Keeping"
 
     }
+
 ];
 
 /* About us content in the Main Site */
