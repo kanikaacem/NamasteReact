@@ -1,31 +1,47 @@
 import { Box, Stack, Typography } from '@mui/material';
 
 import { useState } from 'react';
-const JobLocationItem = () => {
+const JobLocationItemDesktop = () => {
     const [showItemInfo, setShowItemInfo] = useState(false);
     const ShowItemInfoContainer = () => {
         setShowItemInfo(!showItemInfo);
     }
     return (<>
         {!showItemInfo &&
-            <Stack direction="column" gap={3} alignItems="center" justifyContent="center" sx={{
-                padding: "28px",
-                width: "156px",
-                height: "143px",
+            <Stack direction="column" gap={3} alignItems="flex-start" justifyContent="center" sx={{
+                padding: "15px",
+                width: "352px",
+                minheight: "153px",
                 background: "#cacaff",
                 borderRadius: "6px",
-                boxSizing: "border-box"
+                boxSizing: "border-box",
+                backgroundImage: `url("./assets/Buildings.png")`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "bottom right"
             }}
                 onClick={ShowItemInfoContainer}>
 
+                <Stack direction="row" gap={1} alignItems="center">
+                    <Box>
+                        <img src={window.location.origin + "/assets/LocationMap.png"} alt="Location" />
+                    </Box>
+                    <Typography variant="h1" component="h2" sx={{
+                        fontSize: "1rem",
+                        fontFamily: "'Manrope',' sans- serif'",
+                        fontWeight: "700",
+                        color: "#FF671F",
+                    }}>
+                        Gurgoan
+                    </Typography >
+                </Stack>
                 <Typography variant="h1" component="h2" sx={{
-                    fontSize: "0.75rem",
+                    fontSize: "1rem",
                     fontFamily: "'Manrope',' sans- serif'",
                     fontWeight: "700",
-                    color: "#000000",
-                    textAlign: "center"
+                    color: "#ffffff",
+                    width: "200px"
                 }}>
-                    Gurgoan
+                    GURGAON Post Office is located at GURGAON, HARYANA, 122001. NA Post Office
                 </Typography >
                 <Box className="JobCategoryImage">
                     {/* <img src={window.location.origin + categoryItem.categoryImage} alt={categoryItem.categoryName} /> */}
@@ -34,8 +50,8 @@ const JobLocationItem = () => {
         {
             showItemInfo &&
             <Stack direction="column" gap={3} alignItems="center" justifyContent="center" sx={{
-                width: "156px",
-                height: "143px",
+                width: "352px",
+                minheight: "153px",
                 background: "#FCFAFA",
                 border: "1px solid #f6f1f1",
                 borderRadius: "6px",
@@ -45,7 +61,7 @@ const JobLocationItem = () => {
 
             >
                 <Typography variant="h1" component="h2" sx={{
-                    fontSize: "0.75rem",
+                    fontSize: "1.2rem",
                     fontFamily: "'Manrope',' sans- serif'",
                     fontWeight: "700",
                     color: "#000000",
@@ -57,7 +73,7 @@ const JobLocationItem = () => {
                 <Stack direction="row" gap={2}>
                     <Box>
                         <Typography variant="h1" component="h2" sx={{
-                            fontSize: "1rem",
+                            fontSize: "1.2rem",
                             fontFamily: "'Manrope',' sans- serif'",
                             fontWeight: "700",
                             color: "#FF671F",
@@ -66,7 +82,7 @@ const JobLocationItem = () => {
                             50+
                         </Typography >
                         <Typography variant="h1" component="h2" sx={{
-                            fontSize: "0.6rem",
+                            fontSize: "0.8rem",
                             fontFamily: "'Manrope',' sans- serif'",
                             color: "#000000",
                             textAlign: "center"
@@ -76,7 +92,7 @@ const JobLocationItem = () => {
                     </Box>
                     <Box>
                         <Typography variant="h1" component="h2" sx={{
-                            fontSize: "1rem",
+                            fontSize: "1.2rem",
                             fontFamily: "'Manrope',' sans- serif'",
                             fontWeight: "700",
                             color: "#FF671F",
@@ -85,7 +101,7 @@ const JobLocationItem = () => {
                             50+
                         </Typography >
                         <Typography variant="h1" component="h2" sx={{
-                            fontSize: "0.6rem",
+                            fontSize: "0.8rem",
                             fontFamily: "'Manrope',' sans- serif'",
                             color: "#000000",
                             textAlign: "center"
@@ -101,4 +117,4 @@ const JobLocationItem = () => {
 
 }
 
-export default JobLocationItem;
+export default JobLocationItemDesktop;
