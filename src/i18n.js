@@ -18,20 +18,16 @@ const resources = {
     }
 };
 
-const i18nIntialization = (storeData) => {
-    // Use the storeData as needed for language translation
-    // ...
-    i18n
-        .use(initReactI18next)
-        .init({
-            resources,
-            lng: storeData.currentLanguage, //default language
-            fallbackLng: "en",
-            keySeparator: false,
-            interpolation: {
-                escapeValue: false,
-            },
-        });
-};
+//i18N Initialization
+i18n
+    .use(initReactI18next)
+    .init({
+        resources,
+        lng: "ehn", //default language
+        keySeparator: false,
+        interpolation: {
+            escapeValue: false,
+        },
+    });
 
 export default i18nIntialization;

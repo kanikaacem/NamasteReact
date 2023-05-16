@@ -1064,3 +1064,17 @@ nav {
 .BlueCollarRegistrationFormInput::-moz-placeholder {
   color: rgb(191 191 191);
 }
+
+.WebsiteBanner .carousel-root .carousel.carousel-slider {
+  overflow: visible !important
+}
+
+.carousel .control-dots {
+  bottom: -40px !important;
+}
+
+@media screen and (max-width:1000px) {
+  .websiteFooter a {
+    font-size: 12px !important;
+  }
+}

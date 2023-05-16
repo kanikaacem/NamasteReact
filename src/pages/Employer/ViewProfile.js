@@ -1,5 +1,5 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { GetSpecificCandidateDetail, GetCandidateOnParticularJob } from "../../utils/ApiUrls";
+import { GetSpecificCandidateDetail } from "../../utils/ApiUrls";
 import { useParams } from "react-router-dom";
 import ProfileComponent from "../../ThemeComponent/Common/ProfileComponent";
 
