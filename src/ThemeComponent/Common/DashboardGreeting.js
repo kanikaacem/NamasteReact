@@ -7,13 +7,13 @@ const DashboardGreeting = ({ username, userType, userProfileCompleted }) => {
     const date = new Date();
     const showTime = date.getHours();
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (showTime <= 12) setDayMessage(t('GOOD_MORNING'))
         else if (showTime >= 12 && showTime < 18) setDayMessage(t('GOOD_AFTERNOON'))
         else setDayMessage(t('GOOD_EVENING'))
-    }, [showTime]);
+    }, [showTime, t]);
 
     return (<>
         <Box

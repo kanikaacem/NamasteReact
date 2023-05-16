@@ -3,7 +3,7 @@ import { getRequestWithToken } from "../../utils/ApiRequests";
 
 import { Box, Stack, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
@@ -31,18 +31,19 @@ const EmployerRegister = () => {
     const [email, setEmail] = useState("");
     const [mobile_number, setMobileNumber] = useState("");
     const [registerUser, setRegisterUser] = useState({});
-    const [isEmailVerified, setIsEmailVerified] = useState(false);
+    const isEmailVerified = false;
+    // const [isEmailVerified, setIsEmailVerified] = useState(false);
 
     const action = useSelector(state => state.action);
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
 
     useEffect(() => {
         const getUserData = async () => {
             let response = await getRequestWithToken(GetUserInformation);
 
-            if (response.status == '1') {
+            if (response.status === '1') {
                 setRegisterUser(response.data);
                 // if (response.data.isemailverified && !response.data.ismobileverified) {
                 //     setEmailSignupForm(false);
@@ -71,12 +72,12 @@ const EmployerRegister = () => {
             }
         }
 
-        (localStorage.getItem("auth_token") != " " && localStorage.getItem("auth_token") != null) && getUserData();
+        (localStorage.getItem("auth_token") !== " " && localStorage.getItem("auth_token") !== null) && getUserData();
 
     }, []);
     return (<>
 
-        {isLoggedIn == 'true' && registerUser.isEmailVerified && registerUser.ismobileverified && action === "login" && < Navigate to="/employer-dashboard"></Navigate>}
+        {isLoggedIn === 'true' && registerUser.isEmailVerified && registerUser.ismobileverified && action === "login" && < Navigate to="/employer-dashboard"></Navigate>}
 
         {
             !companyInfoForm ?

@@ -12,7 +12,7 @@ import { ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 
 import { WorkHistorySchema } from "../../Validation/CandidateValidation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import { data1 } from "../../utils/Data";
 import FormMenu from "../Common/FormMenu";
@@ -242,13 +242,13 @@ const WorkHistory = ({ jobType }) => {
     const [components, setComponents] = useState([]);
     const { t } = useTranslation();
 
-    const handleAddComponent = () => {
+    const handleAddComponent = useCallback(() => {
         setComponents(prevComponents => [...prevComponents, <WorkHistoryForm
             key={prevComponents.length} id={prevComponents.length} handleAddComponent={handleAddComponent}
             handleRemoveComponent={handleRemoveComponent}
             jobType={jobType}
         />]);
-    };
+    }, [jobType]);
 
     const handleRemoveComponent = () => {
         setComponents(prevComponents => {
@@ -261,7 +261,7 @@ const WorkHistory = ({ jobType }) => {
 
     useEffect(() => {
         handleAddComponent();
-    }, []);
+    }, [handleAddComponent]);
 
     return (<>
 

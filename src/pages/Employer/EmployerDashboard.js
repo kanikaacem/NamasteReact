@@ -25,12 +25,12 @@ const EmployerDashboard = () => {
     const [data, setData] = useState([]);
     const [jobInfo, setJobInfo] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
-    const [dataPerPage, setDataPerPage] = useState(2);
+    const dataPerPage = 2;
     const [jobDataLoaded, setJobDataLoaded] = useState(false);
 
     const dispatch = useDispatch();
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     useLayoutEffect(() => {
         const getpostedjobs = async () => {
             try {
@@ -65,7 +65,7 @@ const EmployerDashboard = () => {
         getJobInfo();
         MenuSelect();
 
-    }, []);
+    }, [dispatch]);
 
 
     //Pagination 

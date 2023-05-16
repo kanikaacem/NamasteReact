@@ -5,7 +5,7 @@ import Footer from "../../ThemeComponent/Common/Footer";
 
 import { useTranslation } from "react-i18next";
 const AboutUs = () => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (<>
         <Stack
             className="AboutUsPage"

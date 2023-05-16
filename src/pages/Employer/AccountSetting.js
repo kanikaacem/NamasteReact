@@ -55,7 +55,7 @@ const AccountSetting = () => {
 
     /* uploading the company Logo */
     const handleCompanyLogo = async (event) => {
-        let file = event.target.files[0];
+        // let file = event.target.files[0];
         // let file_size = file.size;
 
         var output = document.getElementById('companyLogo');
@@ -279,7 +279,7 @@ const AccountSetting = () => {
                                             <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="update_company_logo" LableText="Update Company Logo" />
                                                 <Box sx={{ width: "80px" }}>
-                                                    <img id="companyLogo" width="100%" />
+                                                    <img id="companyLogo" width="100%" alt="CompanyLogo" />
                                                 </Box>
                                                 <UploadFile element="update_company_logo" uploadEvent={handleCompanyLogo} />
 
@@ -428,7 +428,7 @@ const AccountSetting = () => {
                                             <ThemeFInputDiv>
                                                 <ThemeLabel LableFor="update_profile_image" LableText="Upload Profile Image" />
                                                 <Box sx={{ width: "80px" }}>
-                                                    <img id="profileLogo" width="100%" />
+                                                    <img id="profileLogo" width="100%" alt="profileLogo" />
                                                 </Box>
                                                 <UploadFile element="update_profile_image" uploadEvent={handleProfileLogo} />
 

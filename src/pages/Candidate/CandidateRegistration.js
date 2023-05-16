@@ -21,7 +21,7 @@ const CandidateRegistration = () => {
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
     const [showLoginButton, setShowLoginButton] = useState(false);
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const defaultValue = {
         email_id: "",
         password: "",
@@ -45,7 +45,7 @@ const CandidateRegistration = () => {
         }
         else {
             response = await postRequest(saveCandidateUserNameAndPasswordURL, CandidateLoginForm);
-            if (response.status == '1') {
+            if (response.status === '1') {
                 localStorage.setItem('auth_token', response.token);
                 localStorage.setItem('user', JSON.stringify(response.data));
                 document.getElementById("continue").disabled = "true"

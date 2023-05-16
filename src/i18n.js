@@ -26,7 +26,7 @@ const i18nIntialization = (storeData) => {
         .init({
             resources,
             lng: storeData.currentLanguage, //default language
-            fallbackLng: "en",
+            fallbackLng: "ehn",
             keySeparator: false,
             interpolation: {
                 escapeValue: false,

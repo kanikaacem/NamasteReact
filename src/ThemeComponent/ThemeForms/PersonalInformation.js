@@ -31,15 +31,12 @@ import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
 import { useTranslation } from "react-i18next";
 const PersonalInformation = ({ jobType }) => {
     const animatedComponents = makeAnimated();
-
-    const [selectedOptions, setSelectedOptions] = useState([]);
     const [date, setDate] = useState(null);
     const [gender, setGender] = useState("");
     const [city, setCity] = useState(" ");
     const [state, setState] = useState(" ");
     const [CountryState, setCountryState] = useState([]);
     const [District, setDistrict] = useState([]);
-    const [autoData, setAutoData] = useState([]);
     const [skills, SetSkills] = useState([]);
 
     const [martialStatus, setMaritalStatus] = useState(" ");
@@ -108,7 +105,7 @@ const PersonalInformation = ({ jobType }) => {
             let response = await getRequest(getSKillOnJobType + "=" + jobType.replaceAll("-", "_"));
 
             response.data.map(item => {
-                SkillsData.push({
+                return SkillsData.push({
                     label: item,
                     value: item
                 })
@@ -554,9 +551,9 @@ const PersonalInformation = ({ jobType }) => {
                                                         components={animatedComponents}
                                                         onChange={(options) => {
                                                             let optionvalue = [];
-                                                            setSelectedOptions(options);
+                                                            // setSelectedOptions(options);
                                                             options.map((item) => {
-                                                                optionvalue.push(item.value);
+                                                                return optionvalue.push(item.value);
                                                             })
                                                             setFieldValue("skills", optionvalue.join(","));
                                                         }}

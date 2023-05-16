@@ -9,7 +9,7 @@ import Error from "../../ThemeComponent/Common/Error";
 import { useState, useEffect } from "react";
 
 const ChangePassword = () => {
-    const user = localStorage.user && JSON.parse(localStorage.user);
+    // const user = localStorage.user && JSON.parse(localStorage.user);
 
     const [formSubmitted, setFormSubmitted] = useState(false);
     const defaultValue = {
@@ -23,13 +23,13 @@ const ChangePassword = () => {
     };
 
     const handleSubmit = async (values) => {
-        let data = new FormData();
-        data = {
-            userid: user._id,
-            oldpassword: values.old_password,
-            newpassword: values.password
+        // let data = new FormData();
+        // data = {
+        //     userid: user._id,
+        //     oldpassword: values.old_password,
+        //     newpassword: values.password
 
-        }
+        // }
 
         // let response = await fetch(api_url + "/api/employer/changepassword", {
         //     method: "POST",

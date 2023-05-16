@@ -12,8 +12,7 @@ const JobDescription = () => {
     const user = useOutletContext();
     const [data, setdata] = useState("");
     useEffect(() => {
-        // let JobFormData = new FormData();
-        // JobFormData = { jobid: id }
+
         const getJobDescription = async () => {
             let response = await postRequest(JobDescriptionURL + "?jobid=" + id);
             if (response.status === '1')
@@ -22,7 +21,7 @@ const JobDescription = () => {
 
 
         getJobDescription();
-    }, []);
+    }, [id]);
 
 
 

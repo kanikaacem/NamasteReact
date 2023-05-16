@@ -16,7 +16,7 @@ const PostedJobs = () => {
     const [jobFilter, setJobFilter] = useState(" ");
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [dataPerPage, setDataPerPage] = useState(10);
+    const dataPerPage = 10;
     const [isDataLoaded, setIsDataLoaded] = useState(false);
 
     //Pagination 

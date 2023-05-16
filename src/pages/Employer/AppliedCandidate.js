@@ -8,29 +8,26 @@ import {
 import CandidateComponent from "../../ThemeComponent/Common/CandidateComponent";
 import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
 import SocialMedia from "../../ThemeComponent/Common/SocialMedia";
-import { CandidateFilter } from "../../utils/Data";
 
 import Template1 from "../../ThemeComponent/LoadingTemplate/Template1";
 import ErrorPage from "../ErrorPage";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 const AppliedCandidate = () => {
     const [jobData, setJobData] = useState([]);
     const [jobCanData, setJobCanData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [dataPerPage, setDataPerPage] = useState(10);
+    const dataPerPage = 10;
     const [pageType, setPageType] = useState("");
     const [canDataLoaded, setCanDataLoaded] = useState(false);
     //All applied Candidate 
     const [jobFilter, setJobFilter] = useState(" ");
-    const [canFilter, setCanFilter] = useState(" ");
     //Pagination 
     const IndexOfLastData = currentPage * dataPerPage;
     const IndexOfFirstData = IndexOfLastData - dataPerPage;
     const appliedCandidate = jobCanData.length > 0 && jobCanData.slice(IndexOfFirstData, IndexOfLastData);
 
     const { id } = useParams();
-    const navigate = useNavigate();
 
     const filterCandidate = async (id) => {
         let response = await postRequest(GetCandidateOnParticularJob + id);

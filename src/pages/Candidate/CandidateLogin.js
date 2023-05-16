@@ -31,7 +31,7 @@ const CandidateLogin = () => {
 
     const dispatch = useDispatch();
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
 
     const defaultValue = {
@@ -48,7 +48,7 @@ const CandidateLogin = () => {
 
         try {
             let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
-            if (response.status == '1') {
+            if (response.status === '1') {
                 setRegisterUser(response.data);
 
                 localStorage.setItem("auth_token", response.token);
@@ -95,8 +95,8 @@ const CandidateLogin = () => {
 
 
     return (<>
-        {isLoggedIn == 'true' && registerUser.ismobileverified && registerUser.isemailverified && action === "login" && < Navigate to="/candidate-dashboard"></Navigate>}
-        {isLoggedIn == 'true' && !registerUser.ismobileverified && action === "registration" && < Navigate to="/candidate-dashboard/mobile-verify"></Navigate>}
+        {isLoggedIn === 'true' && registerUser.ismobileverified && registerUser.isemailverified && action === "login" && < Navigate to="/candidate-dashboard"></Navigate>}
+        {isLoggedIn === 'true' && !registerUser.ismobileverified && action === "registration" && < Navigate to="/candidate-dashboard/mobile-verify"></Navigate>}
         <ThemeMessage open={showEmailVerifiedMessage} setOpen={setShowEmailVerifiedMessage}
             message="Email Address is not verified. Please Verify your email First" type="error" />
 
@@ -227,17 +227,14 @@ const CandidateLogin = () => {
 
                                         <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
 
-                                            {isEmailVerified && (<>
-                                                <a href="#" onClick={
-                                                    () => {
-                                                        resendEmailVerificationLink()
-                                                    }
-                                                }
-                                                    style={{ textAlign: "center" }}>
-                                                    {t('RESEND_VERIFICATION_LINK')}
-                                                </a>
-
-                                            </>)
+                                            {isEmailVerified && (<button
+                                                onClick={() => {
+                                                    resendEmailVerificationLink();
+                                                }}
+                                                style={{ textAlign: "center", border: "none", background: "none", textDecoration: "underline", cursor: "pointer" }}
+                                            >
+                                                {t('RESEND_VERIFICATION_LINK')}
+                                            </button>)
 
                                             }
 

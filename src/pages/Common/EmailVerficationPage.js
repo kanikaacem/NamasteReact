@@ -1,28 +1,27 @@
 import { getRequest } from "../../utils/ApiRequests";
 
 import { Box, Container, Stack, Typography, Button } from "@mui/material";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { useState } from "react";
 import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 const EmployerVerficationPage = () => {
     const { employerEmail, candidateEmail } = useParams();
     const [emailVerified, setEmailVerified] = useState(false);
-    const navigate = useNavigate();
     const VerifyEmail = async () => {
         let api_url = "";
         let redirect_url = "";
-        if (employerEmail != undefined) {
+        if (employerEmail !== undefined) {
             api_url = `https://backend.jobsyahan.com/api/verificationthroughmail/employer?email=${employerEmail}`;
             redirect_url = window.location.origin + "/employer-login";
         }
-        if (candidateEmail != undefined) {
+        if (candidateEmail !== undefined) {
             api_url = `https://backend.jobsyahan.com/api/verificationthroughmail/candidate?email=${candidateEmail}`;
             redirect_url = window.location.origin + "/candidate-login";
         }
         let response = await getRequest(api_url);
 
-        if (response.status == '1') {
+        if (response.status === '1') {
             setEmailVerified(true);
             setTimeout(() => {
                 window.location.href = redirect_url

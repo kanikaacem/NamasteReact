@@ -14,10 +14,10 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
     const dispatch = useDispatch();
     const [showCandidateButton, setShowCandidateButton] = useState(false);
-    const [showEmployerButton, setShowEmployerButton] = useState(false);
+    // const [showEmployerButton, setShowEmployerButton] = useState(false);
     const [selectedValue, setSelectedValue] = useState(currentLanguage);
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const changeLanguage = (event) => {
         setSelectedValue(event.target.value);
@@ -28,7 +28,7 @@ const HeaderSec = ({ color, background, border, buttonText, userType }) => {
 
         if (window.location.pathname === "/") {
             setShowCandidateButton(true);
-            setShowEmployerButton(true);
+            // setShowEmployerButton(true);
         }
 
     }, []);

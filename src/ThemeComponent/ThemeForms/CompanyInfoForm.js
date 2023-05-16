@@ -14,13 +14,11 @@ import ButtonType3 from "../Common/ButtonType3";
 import BackButton from "../Common/BackButton";
 import { ThemeButtonType2, ThemeFInputDiv, NextButton } from "../../utils/Theme";
 
-import { useState, useRef, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from "react";
 
 import FormMenu from "../Common/FormMenu";
 import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
 import ThemeMobileImage from "../Common/ThemeMobileImage";
-import MobileUploadFile from "../Common/MobileUploadFile";
 
 import { useTranslation } from "react-i18next";
 import ReactGA from 'react-ga';
@@ -28,11 +26,8 @@ const TRACKING_ID = 'AW-11080443279/84LrCNKT24kYEI_LyKMp'
 ReactGA.initialize(TRACKING_ID)
 
 const CompanyInfoForm = ({ email, userId, mobile_number }) => {
-    const isLoggedIn = useSelector(state => state.isLoggedIn);
-    const action = useSelector(state => state.action);
-    const dispatch = useDispatch();
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const [city, setCity] = useState(" ");
     const [state, setState] = useState(" ");
@@ -63,7 +58,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     const [companyAddress, setCompanyAddress] = useState("");
     const [autoData, setAutoData] = useState([]);
     const [menubar, setMenuBar] = useState(false);
-    const [registerUser, setRegisterUser] = useState({});
 
     const defaultValue = {
         hr_name: hrName,
@@ -89,8 +83,8 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     }
 
     const uploadCompanyLogo = async (event) => {
-        let file = event.target.files[0];
-        let file_size = file.size;
+        // let file = event.target.files[0];
+        // let file_size = file.size;
 
         var output = document.getElementById('companyLogo');
         output.src = URL.createObjectURL(event.target.files[0]);
@@ -148,10 +142,10 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
             company_pancard: values.company_pan_number
         });
         console.log(response.status);
-        if (response.status == 0) {
+        if (response.status === "0") {
 
             let response2 = await postRequest("https://backend.jobsyahan.com/api/employer/postemployer1", formData);
-            if (response2.status == 1) {
+            if (response2.status === "1") {
                 localStorage.setItem("formpage", 2);
                 setCompanyInfoForm(2);
             }
@@ -184,7 +178,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                 companylannumber: values.company_lan_number
             }
             let response = await postRequest("https://backend.jobsyahan.com/api/employer/postemployer2", formData);
-            if (response.status == 1) {
+            if (response.status === "1") {
                 localStorage.setItem("formpage", 3);
                 setCompanyInfoForm(3);
             }
@@ -211,7 +205,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         }
 
         let response = await postRequest("https://backend.jobsyahan.com/api/employer/postemployer3", data);
-        if (response.status == 1) {
+        if (response.status === "1") {
 
             window.location.href = window.location.origin + "/employer-dashboard";
         }
@@ -237,7 +231,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
     }
     return (<>
 
-        {companyInfoForm == 1 && <>
+        {parseInt(companyInfoForm) === 1 && <>
             <Box className="EmployerRegisterPage"
                 sx={{
                     background: "#FFFFFF",
@@ -266,7 +260,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     fontFamily: "Montserrat",
                                     fontWeight: "600",
                                     color: "#4E3A67",
-                                    display: "block",
                                     marginTop: "20px",
                                     display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
 
@@ -289,7 +282,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                     fontFamily: "Montserrat",
                                     fontWeight: "600",
                                     color: "#4E3A67",
-                                    display: "block",
                                     marginTop: "20px",
                                     display: { "xs": "block", "sm": "block", "md": "block", "lg": "none", "xl": "none" }
 
@@ -438,7 +430,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                                     <ThemeFInputDiv sx={{ width: "200px" }}>
 
-                                                        <img id="companyLogo" width="100%" />
+                                                        <img id="companyLogo" width="100%" alt="companyLogo" />
                                                     </ThemeFInputDiv>
 
                                                     <ThemeFInputDiv>
@@ -486,7 +478,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         }
 
         {
-            companyInfoForm == 2 &&
+            parseInt(companyInfoForm) === 2 &&
             <>
                 <Box className="EmployerRegisterPage"
                     sx={{
@@ -661,7 +653,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
         }
 
         {
-            companyInfoForm == 3 &&
+            parseInt(companyInfoForm) === 3 &&
             <>
                 <Box className="EmployerRegisterPage"
                     sx={{
@@ -914,7 +906,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
 
                                                             </Box>
 
-                                                            {menubar && autoData && autoData != "no record please enter some word" && <>
+                                                            {menubar && autoData && autoData !== "no record please enter some word" && <>
                                                                 <ClickAwayListener onClickAway={() => setAutoData(false)}>
 
                                                                     <Box className="RegisterAutoSuggestDiv"
@@ -930,7 +922,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                                             border: "3px solid #E1D4F2",
                                                                             borderRadius: "11px"
                                                                         }}>
-                                                                        {autoData && autoData != "no record please enter some word" && autoData.map((item) => {
+                                                                        {autoData && autoData !== "no record please enter some word" && autoData.map((item) => {
                                                                             return (<>
                                                                                 <Box
                                                                                     className="RegisterAutoSuggestList"
@@ -985,7 +977,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                         <Box sx={{
                                                             width: "80px",
                                                         }}>
-                                                            <img id="PanImage" width="100%" />
+                                                            <img id="PanImage" width="100%" alt="PanImage" />
                                                         </Box>
 
                                                         <ThemeFInputDiv>
@@ -997,7 +989,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                                 as={TextField}
                                                                 type="file" name="company_pan_image"
                                                                 onChange={uploadCompanyPan} fullWidth />
-                                                            {/* <MobileUploadFile id="PanImage" onclickFunction={() => document.getElementById("company_pan_image").click()}></MobileUploadFile> */}
                                                             <Box sx={{
                                                                 // display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }
                                                             }} >
@@ -1019,7 +1010,7 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                         <Box sx={{
                                                             width: "80px",
                                                         }}>
-                                                            <img id="GSTImage" width="100%" />
+                                                            <img id="GSTImage" width="100%" alt="GSTImage" />
                                                         </Box>
 
                                                         <ThemeFInputDiv>
@@ -1031,7 +1022,6 @@ const CompanyInfoForm = ({ email, userId, mobile_number }) => {
                                                                 as={TextField}
                                                                 type="file" name="company_gst_image"
                                                                 onChange={uploadCompanyGST} fullWidth />
-                                                            {/* <MobileUploadFile id="GSTImage" onclickFunction={() => document.getElementById("company_gst_image").click()}></MobileUploadFile> */}
 
                                                             <Box sx={{
                                                                 // display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" }

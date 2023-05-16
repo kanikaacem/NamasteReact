@@ -1,6 +1,4 @@
 import { Box, Stack, Typography } from "@mui/material";
-
-import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useDispatch } from 'react-redux';
 

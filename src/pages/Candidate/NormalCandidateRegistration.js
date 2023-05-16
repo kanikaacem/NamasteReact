@@ -11,10 +11,10 @@ const NormalCandidateRegistration = () => {
     const [activeStep, setActiveStep] = useState(step);
 
     return (<>
-        {activeStep == 0 && <PersonalInformation setActiveStep={setActiveStep} jobType={jobType} />}
-        {activeStep == 1 && <ProfessionalDetail setActiveStep={setActiveStep} jobType={jobType} />}
-        {activeStep == 2 && <WorkHistory setActiveStep={setActiveStep} jobType={jobType}></WorkHistory>}
-        {activeStep == 3 && <UploadResume ></UploadResume>}
+        {parseInt(activeStep) === 0 && <PersonalInformation setActiveStep={setActiveStep} jobType={jobType} />}
+        {parseInt(activeStep) === 1 && <ProfessionalDetail setActiveStep={setActiveStep} jobType={jobType} />}
+        {parseInt(activeStep) === 2 && <WorkHistory setActiveStep={setActiveStep} jobType={jobType}></WorkHistory>}
+        {parseInt(activeStep) === 3 && <UploadResume ></UploadResume>}
 
     </>
 

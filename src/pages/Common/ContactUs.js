@@ -1,20 +1,18 @@
 
-import { Box, Typography, Stack, Button, TextField } from "@mui/material";
+import { Box, Typography, Stack, TextField } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { contactUsValidationSchema } from "../../Validation/EmployerValidation";
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 
-import { useState } from "react";
 
 import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
 import Error from "../../ThemeComponent/Common/Error";
 
 import { useTranslation } from "react-i18next";
 const ContactUs = () => {
-    const [message, SetMessage] = useState(" ");
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const defaultValue = {
         name: "",
         mobile_number: "",
@@ -190,7 +188,6 @@ const ContactUs = () => {
                                                     maxRows={5}
                                                     onChange={(event) => {
                                                         setFieldValue("message", event.target.value);
-                                                        SetMessage(event.target.value)
                                                     }}
                                                 />
                                             </Box>

@@ -55,7 +55,7 @@ const PostJob = () => {
     const [showLoader, setShowLoader] = useState(false);
 
     const [city, setCity] = useState(" ");
-    const [selectedOptions, setSelectedOptions] = useState([]);
+    // const [selectedOptions, setSelectedOptions] = useState([]);
     const [jobType, setJobType] = useState(" ");
     const [associationType, setAssociationType] = useState(" ");
     const [industryType, setIndustryType] = useState(" ");
@@ -75,7 +75,6 @@ const PostJob = () => {
     const [CountryState, setCountryState] = useState([]);
     const [District, setDistrict] = useState([]);
     const [menubar, setMenuBar] = useState(false);
-    const [extraBenefits, setExtraBenefits] = useState("");
 
     const [jobTypeData, setJobTypeData] = useState([]);
     const [industryTypeData, setIndustryData] = useState([]);
@@ -96,7 +95,7 @@ const PostJob = () => {
 
     const animatedComponents = makeAnimated();
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const defaultValue = {
         company_name: "",
         job_title: "",
@@ -176,7 +175,7 @@ const PostJob = () => {
                 vacancy: values.vacancy
             }
             let response = await postRequest(PostJob1, formData);
-            if (response.status == '1') {
+            if (response.status === '1') {
                 console.log(response);
                 localStorage.setItem("post_id", response.data._id);
                 setShowLoader(false);
@@ -224,7 +223,7 @@ const PostJob = () => {
             }
 
             let response = await postRequest(PostJob2, formData);
-            if (response.status == '1') {
+            if (response.status === '1') {
                 navigate('/employer-dashboard', { state: { jobPosted: true } });
             }
 
@@ -268,7 +267,7 @@ const PostJob = () => {
         let response = await getRequest(getSKillOnJobType + "=" + jobTypeFilter);
 
         response.data.map(item => {
-            SkillsData.push({
+            return SkillsData.push({
                 label: item,
                 value: item
             })
@@ -286,10 +285,10 @@ const PostJob = () => {
         <Box className="PostJobPage"
             direction="column"
             sx={{
-                padding: (postJobStep == 1) ? { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px", "xl": "30px " } : "0px",
+                padding: (parseInt(postJobStep) === 1) ? { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px", "xl": "30px " } : "0px",
                 gap: "50px",
-                visibility: (postJobStep == 1) ? "visible" : "hidden",
-                display: (postJobStep == 1) ? "block" : "none",
+                visibility: (parseInt(postJobStep) === 1) ? "visible" : "hidden",
+                display: (parseInt(postJobStep) === 1) ? "block" : "none",
 
             }}>
 
@@ -299,7 +298,7 @@ const PostJob = () => {
                 }}>
                 <Stack alignItems="center" sx={{
                     width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" },
-                    display: (postJobStep == 1) ? "block" : "none",
+                    display: (parseInt(postJobStep) === 1) ? "block" : "none",
                 }} >
                     <Box sx={{
                         marginTop: "50px",
@@ -512,9 +511,9 @@ const PostJob = () => {
                                                 components={animatedComponents}
                                                 onChange={(options) => {
                                                     let optionvalue = [];
-                                                    setSelectedOptions(options);
+                                                    // setSelectedOptions(options);
                                                     options.map((item) => {
-                                                        optionvalue.push(item.value);
+                                                        return optionvalue.push(item.value);
                                                     })
                                                     setFieldValue("skills", optionvalue.join(","));
                                                 }}
@@ -866,9 +865,9 @@ const PostJob = () => {
                                                 components={animatedComponents}
                                                 onChange={(options) => {
                                                     let optionvalue = [];
-                                                    setSelectedOptions(options);
+                                                    // setSelectedOptions(options);
                                                     options.map((item) => {
-                                                        optionvalue.push(item.value);
+                                                        return optionvalue.push(item.value);
                                                     })
                                                     setFieldValue("weekly_off", optionvalue.join(","));
                                                 }}
@@ -963,7 +962,7 @@ const PostJob = () => {
 
                                             </Box>
 
-                                            {menubar && autoData && autoData != "no record please enter some word" && <>
+                                            {menubar && autoData && autoData !== "no record please enter some word" && <>
                                                 <ClickAwayListener onClickAway={() => setAutoData(false)}>
 
                                                     <Box
@@ -979,7 +978,7 @@ const PostJob = () => {
                                                             border: "3px solid #E1D4F2",
                                                             borderRadius: "11px"
                                                         }}>
-                                                        {autoData && autoData != "no record please enter some word" && autoData.map((item) => {
+                                                        {autoData && autoData !== "no record please enter some word" && autoData.map((item) => {
                                                             return (<>
                                                                 <Box sx={{
                                                                     padding: "20px",
@@ -1014,9 +1013,8 @@ const PostJob = () => {
                                                 components={animatedComponents}
                                                 onChange={(options) => {
                                                     let optionvalue = [];
-                                                    setExtraBenefits(options);
                                                     options.map((item) => {
-                                                        optionvalue.push(item.value);
+                                                        return optionvalue.push(item.value);
                                                     })
                                                     setFieldValue("extra_benefits", optionvalue.join(","));
                                                 }}
@@ -1058,9 +1056,9 @@ const PostJob = () => {
         <Box className="PostJobPage"
             sx={{
                 minheight: "100vh",
-                visibility: (postJobStep == 2) ? "visible" : "hidden",
-                height: (postJobStep == 2) ? "fit-content" : "0px",
-                display: (postJobStep == 2) ? "block" : "none",
+                visibility: (parseInt(postJobStep) === 2) ? "visible" : "hidden",
+                height: (parseInt(postJobStep) === 2) ? "fit-content" : "0px",
+                display: (parseInt(postJobStep) === 2) ? "block" : "none",
             }}>
             <Stack className="PostJobWrapper"
                 sx=
@@ -1081,7 +1079,7 @@ const PostJob = () => {
                             width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "573px", "xl": "573px" },
                             zIndex: "78798",
                             gap: { "lg": "50px", "md": "0px", "xs": "0px" },
-                            display: (postJobStep == 2) ? "block" : "none",
+                            display: (parseInt(postJobStep) === 2) ? "block" : "none",
 
                         }}>
                             <Box >
@@ -1536,9 +1534,9 @@ const PostJob = () => {
                                                             components={animatedComponents}
                                                             onChange={(options) => {
                                                                 let optionvalue = [];
-                                                                setSelectedOptions(options);
+                                                                // setSelectedOptions(options);
                                                                 options.map((item) => {
-                                                                    optionvalue.push(item.value);
+                                                                    return optionvalue.push(item.value);
                                                                 })
                                                                 setFieldValue("hindi_required", optionvalue.join(","));
                                                             }}
@@ -1560,9 +1558,9 @@ const PostJob = () => {
                                                             components={animatedComponents}
                                                             onChange={(options) => {
                                                                 let optionvalue = [];
-                                                                setSelectedOptions(options);
+                                                                // setSelectedOptions(options);
                                                                 options.map((item) => {
-                                                                    optionvalue.push(item.value);
+                                                                    return optionvalue.push(item.value);
                                                                 })
                                                                 setFieldValue("english_required", optionvalue.join(","));
                                                             }}

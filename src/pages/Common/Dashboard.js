@@ -23,10 +23,9 @@ import { useTranslation } from "react-i18next";
 const Dashboard = () => {
     const [openProfile, setOpenProfile] = useState(false);
     const [openMenu, setOpenMenu] = useState(false);
-    const [pageAuthenticate, setPageAuthenticate] = useState(false);
     const dispatch = useDispatch();
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const MenuSelected = useSelector(state => state.MenuSelected);
     const [user, setUser] = useState({});
@@ -40,26 +39,11 @@ const Dashboard = () => {
             let response = await getRequestWithToken(GetUserInformation);
             if (response.status === '1') {
                 setUser(response.data);
-                checkRoleToShowPage(response.data);
 
             }
         }
-
-        const checkRoleToShowPage = async (user) => {
-            if (user.employer_type === "employer" && url === "/employer-dashboard")
-                setPageAuthenticate(true)
-
-            if (user.type === "candidate" && url === "/candidate-dashboard")
-                setPageAuthenticate(true);
-
-        }
-
-
         getLoginUserDetail();
-
-
-
-    }, []);
+    }, [url]);
 
     return (<>
         <Box

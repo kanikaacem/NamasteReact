@@ -30,7 +30,7 @@ const EmployerLogin = () => {
     const [registerUser, setRegisterUser] = useState({});
     const dispatch = useDispatch();
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
 
     const defaultValue = {
@@ -274,20 +274,16 @@ const EmployerLogin = () => {
                                                 "xs": "20px 0px", "sm": "40px 0px", "md": "40px 0px", "lg": "40px 0px", "xl": "40px 0px"
                                             }, gap: "20px"
                                         }}>
-                                            {isEmailVerified && (<>
-                                                <a href="#" onClick={
-                                                    () => {
-                                                        resendEmailVerificationLink()
-                                                    }
-                                                }
-                                                    style={{ textAlign: "center" }}>
+                                            {isEmailVerified && (
+                                                <button
+                                                    onClick={() => {
+                                                        resendEmailVerificationLink();
+                                                    }}
+                                                    style={{ textAlign: "center", border: "none", background: "none", textDecoration: "underline", cursor: "pointer" }}
+                                                >
                                                     {t('RESEND_VERIFICATION_LINK')}
-
-                                                </a>
-
-                                            </>)
-
-                                            }
+                                                </button>
+                                            )}
 
                                             <ThemeButtonType2 variant="contained" type="submit"
                                                 sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>{t('LOGIN')}</ThemeButtonType2>
