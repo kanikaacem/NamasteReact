@@ -10,7 +10,7 @@ import Template1 from "../../ThemeComponent/LoadingTemplate/Template1";
 const CandidateAppliedSaveLikedJobs = ({ JobAction }) => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [dataPerPage, setDataPerPage] = useState(10);
+    const dataPerPage = 10;
     const [isDataLoaded, setIsDataLoaded] = useState(false);
     const [errorMessage, setErroMessage] = useState("");
     //Pagination 
@@ -84,7 +84,7 @@ const CandidateAppliedSaveLikedJobs = ({ JobAction }) => {
 
                             </>}
                             {
-                                isDataLoaded && data && data.length == 0 &&
+                                isDataLoaded && data && data.length === 0 &&
                                 <Stack sx={{
                                     height: "100vh",
                                     alignItems: "center",

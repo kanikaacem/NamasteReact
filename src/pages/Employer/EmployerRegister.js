@@ -1,6 +1,3 @@
-// import { postRequest } from "../../utils/ApiRequests";
-// import { EmployerLoginURL } from "../../utils/ApiUrls";
-
 import { GetUserInformation } from "../../utils/ApiUrls";
 import { getRequestWithToken } from "../../utils/ApiRequests";
 

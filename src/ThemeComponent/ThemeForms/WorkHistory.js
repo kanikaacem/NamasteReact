@@ -36,7 +36,7 @@ function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobTyp
     const [showAddButton, setShowAddButton] = useState(false);
     const [showRemoveButton, setShowRemoveButton] = useState(false);
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
 
     const handleSubmit = async (values, { resetForm }) => {
@@ -52,7 +52,7 @@ function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobTyp
 
         let response = await postRequest(SaveCandidateWorkInformation, formData);
         console.log(response);
-        if (response.status == 1) {
+        if (response.status === "1") {
             localStorage.setItem("user", JSON.stringify(response.data));
             setFormSubmitted(true)
             setShowAddButton(true)
@@ -76,7 +76,7 @@ function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobTyp
 
         if (companyName !== "" && Designation !== "" && Department !== "") {
             let response = await postRequest(SaveCandidateWorkInformation, formData);
-            if (response.status == 1) {
+            if (response.status === "1") {
                 localStorage.setItem("user", JSON.stringify(response.data));
                 setFormSubmitted(true)
                 setShowAddButton(true)
@@ -85,6 +85,10 @@ function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobTyp
         }
         window.location.href = window.location.origin + "/candidate-dashboard/normal/" + jobType + "/profile/3";
     }
+
+    useEffect(() => {
+        setShowRemoveButton(true);
+    }, [])
 
     return (<>
         <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message=" Your Work History is submitted." type="success" />
@@ -198,7 +202,7 @@ function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobTyp
                                 > {t('ADD')} +</ThemeButtonType3>}
 
 
-                                {(showRemoveButton || id > 0) &&
+                                {(showRemoveButton && id > 0) &&
                                     <ThemeButtonType2 variant="contained" type="button" sx={{
                                         fontFamily: "Work Sans, sans-serif", fontWeight: "600",
                                         width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
@@ -236,7 +240,7 @@ function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobTyp
 }
 const WorkHistory = ({ jobType }) => {
     const [components, setComponents] = useState([]);
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const handleAddComponent = () => {
         setComponents(prevComponents => [...prevComponents, <WorkHistoryForm

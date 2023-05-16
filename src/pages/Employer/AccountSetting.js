@@ -56,7 +56,7 @@ const AccountSetting = () => {
     /* uploading the company Logo */
     const handleCompanyLogo = async (event) => {
         let file = event.target.files[0];
-        let file_size = file.size;
+        // let file_size = file.size;
 
         var output = document.getElementById('companyLogo');
         output.src = URL.createObjectURL(event.target.files[0]);
@@ -88,24 +88,24 @@ const AccountSetting = () => {
     /* updating the Hr Logo */
     const handleProfileLogo = async (event) => {
         let file = event.target.files[0];
-        let file_size = file.size;
+        // let file_size = file.size;
         var output = document.getElementById('profileLogo');
         output.src = URL.createObjectURL(event.target.files[0]);
         let formData = new FormData();
         formData.append('image', file);
         formData.append('ImageType', 'Employer_profile');
-        let response = await PostImageRequest(uploadFileURL, formData);
+        await PostImageRequest(uploadFileURL, formData);
 
         setFormSubmitted(true);
 
     }
     const handleHrInformation = async (values) => {
-        let formData = new FormData();
-        formData = {
-            full_name: values.full_name,
-            email_address: values.password,
-            mobile_number: values.mobile_number
-        }
+        // let formData = new FormData();
+        // formData = {
+        //     full_name: values.full_name,
+        //     email_address: values.password,
+        //     mobile_number: values.mobile_number
+        // }
     }
 
 
@@ -144,7 +144,7 @@ const AccountSetting = () => {
                             }}>
 
                             {AccountSettingMenu && AccountSettingMenu.map((item) => {
-                                return (<Typography key={item.id} className={currentMenu == item.menu_name && "AccountMenu "} component="div"
+                                return (<Typography key={item.id} className={currentMenu === item.menu_name && "AccountMenu "} component="div"
                                     sx={{
                                         fontSize: { "xs": "0.7rem", "sm": "0.7rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
                                         color: "#4E3A67",
@@ -166,7 +166,7 @@ const AccountSetting = () => {
 
 
             <Box sx={{ width: { "lg": "60%", "md": "100%", "xs": "100%" } }}>
-                {currentMenu == "create_sub_user" && <>
+                {currentMenu === "create_sub_user" && <>
                     <Stack
                         divider={<Divider orientation="horizontal" flexItem />}
                         gap={2}
@@ -238,7 +238,7 @@ const AccountSetting = () => {
 
 
                     </Stack></>}
-                {currentMenu == "company_information" && <>
+                {currentMenu === "company_information" && <>
                     <Stack
                         divider={<Divider orientation="horizontal" flexItem />}
                         gap={2}
@@ -386,7 +386,7 @@ const AccountSetting = () => {
 
                     </Stack>
                 </>}
-                {currentMenu == "account_setting" && (<>
+                {currentMenu === "account_setting" && (<>
                     <Stack
                         divider={<Divider orientation="horizontal" flexItem />}
                         gap={2}
@@ -472,8 +472,8 @@ const AccountSetting = () => {
                             </Formik>
                         </Box>
                     </Stack></>)}
-                {currentMenu == "change_password" && <ChangePassword />}
-                {currentMenu == "subscription_plan" && <SubscriptionPlan />}
+                {currentMenu === "change_password" && <ChangePassword />}
+                {currentMenu === "subscription_plan" && <SubscriptionPlan />}
             </Box>
 
         </Stack >

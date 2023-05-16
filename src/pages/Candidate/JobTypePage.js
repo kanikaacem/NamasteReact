@@ -36,7 +36,7 @@ const JobTypePage = () => {
 
     const navigate = useNavigate();
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const defaultValue = {
         job_type: "",
@@ -336,7 +336,7 @@ const JobTypePage = () => {
                                                     </Box>
                                                     {errors.area && touched.area && <Error text={errors.area} />}
 
-                                                    {menubar && autoData && autoData != "no record please enter some word" && <>
+                                                    {menubar && autoData && autoData !== "no record please enter some word" && <>
                                                         <ClickAwayListener onClickAway={() => setAutoData(false)}>
 
                                                             <Box
@@ -353,7 +353,7 @@ const JobTypePage = () => {
                                                                     border: "3px solid #E1D4F2",
                                                                     borderRadius: "11px"
                                                                 }}>
-                                                                {autoData && autoData != "no record please enter some word" && autoData.map((item) => {
+                                                                {autoData && autoData !== "no record please enter some word" && autoData.map((item) => {
                                                                     return (<>
                                                                         <Box
                                                                             className="RegisterAutoSuggestList" sx={{

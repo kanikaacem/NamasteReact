@@ -1,6 +1,3 @@
-import { getRequest } from "../../utils/ApiRequests";
-import { checkBlueCollarJob } from "../../utils/ApiUrls";
-
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 

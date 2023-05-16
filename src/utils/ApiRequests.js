@@ -44,7 +44,6 @@ export const PostImageRequest = async (api_url, bodyData) => {
 }
 /* Get Request */
 export const getRequest = async (api_url) => {
-    let token = localStorage.getItem("auth_token");
 
     let data = await fetch(api_url, {
         method: "GET",

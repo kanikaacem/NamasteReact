@@ -18,7 +18,7 @@ import { useTranslation } from "react-i18next";
 const ForgotPasswordPage = ({ user }) => {
 
     const [emailSend, setEmailSend] = useState(false);
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const defaultValue = {
         email_address: ""
     }
@@ -32,7 +32,7 @@ const ForgotPasswordPage = ({ user }) => {
         ;
         console.log(response);
         let status = response.status;
-        if (status == 1) {
+        if (status === "1") {
             let response2 = await postRequest(api_url, {
                 email: values.email_address
             });

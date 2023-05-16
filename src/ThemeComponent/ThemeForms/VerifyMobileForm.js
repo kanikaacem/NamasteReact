@@ -1,7 +1,6 @@
 import { postRequest } from "../../utils/ApiRequests";
 
-import { Box, TextField, Typography, Snackbar, IconButton, Stack, Button } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import { Box, TextField, Typography, Stack, Button } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 
 import { OTPValidationSchema, MobileVerifyFormValidationSchema } from "../../Validation/EmployerValidation";
@@ -23,7 +22,7 @@ ReactGA.initialize(TRACKING_ID)
 const VerifyMobileForm = () => {
     const [sendOtp, setSendOtp] = useState(false);
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const defaultValue1 = {
         mobile_number: ""
     }
@@ -38,14 +37,14 @@ const VerifyMobileForm = () => {
             value: values.mobile_number
         })
         let response = await postRequest("https://backend.jobsyahan.com/api/sendotp/+91" + values.mobile_number);
-        if (response.status == '1')
+        if (response.status === '1')
             setSendOtp(true);
     }
     const handleSubmit2 = async (values, { setFieldError }) => {
         let response = await postRequest("https://backend.jobsyahan.com/api/verifyotp", {
             otp: values.otp
         })
-        if (response.status == '1') {
+        if (response.status === '1') {
             window.location.href = window.location.origin + "/employer-dashboard/company-information";
         }
         else {

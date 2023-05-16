@@ -13,7 +13,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
 import { PersonalRegistrationSchema } from "../../Validation/CandidateValidation";
-import { Skills, MaritalStatus } from "../../utils/Data";
+import { MaritalStatus } from "../../utils/Data";
 
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 
@@ -25,14 +25,12 @@ import CurrencyFormat from 'react-currency-format';
 
 import { data1 } from "../../utils/Data";
 import FormMenu from "../Common/FormMenu";
-import { useNavigate } from "react-router-dom";
 import ThemeMobileImage from "../Common/ThemeMobileImage";
 import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
 
 import { useTranslation } from "react-i18next";
 const PersonalInformation = ({ jobType }) => {
     const animatedComponents = makeAnimated();
-    const navigate = useNavigate();
 
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [date, setDate] = useState(null);
@@ -46,7 +44,7 @@ const PersonalInformation = ({ jobType }) => {
 
     const [martialStatus, setMaritalStatus] = useState(" ");
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const defaultValue = {
         full_name: "",
@@ -91,7 +89,7 @@ const PersonalInformation = ({ jobType }) => {
         }
 
         let response = await postRequest(SaveCandidatePersonalInformation, formData);
-        if (response.status == 1) {
+        if (response.status === "1") {
             localStorage.setItem("user", JSON.stringify(response.data));
             window.location.href = window.location.origin + "/candidate-dashboard/normal/" + jobType + "/profile/1";
         }
@@ -120,7 +118,7 @@ const PersonalInformation = ({ jobType }) => {
         }
         getState();
         getSkills();
-    }, [])
+    }, [jobType])
 
     const getDistrictByState = async (statefilter) => {
         let response = await getRequest("https://backend.jobsyahan.com/api/map/districts?states=" + statefilter);

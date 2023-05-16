@@ -5,7 +5,7 @@ const FormMenu = ({ data, formStep, dataLength }) => {
     return (<>
         <Box sx={{ display: { "xs": "none", "sm": "block", "md": "block", "lg": "block", "xl": "block" } }}>
             <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{
-                opacity: ((step == data.id - 1) || (formStep == data.id - 1)) ? "1" : "0.5"
+                opacity: ((parseInt(step) === data.id - 1) || (parseInt(formStep) === data.id - 1)) ? "1" : "0.5"
             }}>
                 <Box sx={{
                     width: { "xs": "15px", "sm": "15px", "md": "27px", "lg": "27px", "xl": "27px" },
@@ -39,7 +39,7 @@ const FormMenu = ({ data, formStep, dataLength }) => {
             <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{
             }}>
                 <Stack direction="column" gap={1} alignItems="center" justifyContent="center" sx={{
-                    opacity: ((step == data.id - 1) || (formStep == data.id - 1)) ? "1" : "0.5",
+                    opacity: ((parseInt(step) === data.id - 1) || (parseInt(formStep) === data.id - 1)) ? "1" : "0.5",
                     width: "60px"
                 }}>
                     <Box sx={{
@@ -69,7 +69,7 @@ const FormMenu = ({ data, formStep, dataLength }) => {
                 </Stack>
 
                 {data.id < (dataLength ? dataLength : 3) && <Box sx={{
-                    opacity: ((step == data.id - 1) || (formStep == data.id - 1)) ? "1" : "0.5",
+                    opacity: ((parseInt(step) === data.id - 1) || (parseInt(formStep) === data.id - 1)) ? "1" : "0.5",
                     margin: "0px 10px"
                 }}>
                     ------

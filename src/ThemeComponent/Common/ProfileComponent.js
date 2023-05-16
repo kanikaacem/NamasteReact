@@ -61,11 +61,11 @@ const ProfileComponent = ({ userData, userType, userStatus, jobsId }) => {
     useEffect(() => {
         setUserImage(userData && userData.profile_image);
         setUserResume(userData && userData.resume && userData.resume.resume)
-        const getJobType = async () => {
-            let response = await getRequest(checkBlueCollarJob + "=" + userData.job_type);
-            if (response.data)
-                setBlueCollarJob(true);
-        }
+        // const getJobType = async () => {
+        //     let response = await getRequest(checkBlueCollarJob + "=" + userData.job_type);
+        //     if (response.data)
+        //         setBlueCollarJob(true);
+        // }
         // userData.jobtype !== undefined && getJobType();
         setCandidateStatus(userStatus)
     }, [userData, userStatus]);

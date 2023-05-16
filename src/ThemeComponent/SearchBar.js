@@ -105,7 +105,7 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                         } />
 
 
-                    {menubar && autoData && autoData != "no record please enter some word" && <>
+                    {menubar && autoData && autoData !== "no record please enter some word" && <>
                         <ClickAwayListener onClickAway={() => setAutoData(false)}>
 
                             <Box
@@ -236,13 +236,11 @@ const SearchBar = ({ name, city, exp, ctc }) => {
                 </Box>
                 <Button
                     sx={{
-                        background: "#2B1E44",
                         width: { "xs": "30px", "sm": "56px", "md": "56px", "lg": "56px", "xl": "56px" },
                         height: { "xs": "30px", "sm": "56px", "md": "56px", "lg": "56px", "xl": "56px" },
                         background: "#4E3A67",
                         borderRadius: "11px",
                         "&:hover": {
-                            background: "#2B1E44",
                             width: { "xs": "30px", "sm": "56px", "md": "56px", "lg": "56px", "xl": "56px" },
                             height: { "xs": "30px", "sm": "56px", "md": "56px", "lg": "56px", "xl": "56px" },
                             background: "#4E3A67",

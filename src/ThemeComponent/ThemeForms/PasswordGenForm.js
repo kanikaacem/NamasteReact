@@ -20,9 +20,8 @@ const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenF
     const [sHConfirmPassword, setSHConfirmPassword] = useState(false);
 
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
-    const [isEmailVerified, setIsEmailVerified] = useState(false);
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const defaultValue = {
         password: "",
@@ -30,7 +29,6 @@ const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenF
     }
 
     const handleSubmit = async (values) => {
-        // console.log(email);
 
         document.getElementById("next").disabled = "true";
         let formData = new FormData();
@@ -40,7 +38,7 @@ const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenF
         }
 
         let response = await postRequest(EmployerSaveEmailAndPassword, formData);
-        if (response.status == 1) {
+        if (response.status === "1") {
             localStorage.setItem('auth_token', response.data);
             setShowEmailVerifiedMessage(true);
 
@@ -133,9 +131,6 @@ const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenF
 
                     </ThemeFInputDiv>
                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                        {
-                            isEmailVerified && <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
-                        }
                         <ThemeButtonType2 variant="contained" id="next" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>{t('NEXT')}</ThemeButtonType2>
                     </Stack>
 
