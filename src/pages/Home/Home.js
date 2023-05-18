@@ -1,327 +1,92 @@
-import { Box, Button, Stack, Typography, Container } from "@mui/material";
+import { Box, Stack, Container, Button, Typography } from "@mui/material";
 
 /* Site Header */
-import JobCategoryItem from "./Component/JobCategoryItem";
-import JobLocationItem from "./Component/JobLocationItem";
-import JobLocationItemDesktop from "./Component/JobLocationItemDesktop";
-import ViewAllButton from "./Component/ViewAllButton";
-
+import JobCardComponent from "./Component/JobCardComponent";
+import ViewMoreSection from "./Component/ViewMoreSection";
+import WebsiteSocialNetwork from "./Component/WebsiteSocialNetwork";
 import Footer from "../../ThemeComponent/Common/Footer";
 
-import { JobCategories } from "../../utils/Data";
 import Heading from "./Component/Heading";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
 import { useTranslation } from "react-i18next";
 
 function Home() {
-
     const { t } = useTranslation();
-
     return (<>
-        <Box className="LandingPageMobile"
-            sx={{
-                display: { "xs": "block", "sm": "block", "md": "none", "lg": "none", "xl": "none" }
-            }}>
-            <Box className="TopSection" sx={{
-                width: "100%",
-                backgroundImage: `url("./assets/LandingPage.png")`,
-                backgroundRepeat: "no-repeat",
-                padding: "20px",
-                boxSizing: "border-box",
-                backgroundSize: "100% 580px"
-            }}>
-                <Box className="WebsiteLogo" sx={{
-                    width: "32px",
-                    height: "20px"
-                }}>
-                    <img src={window.location.origin + "/assets/JY.png"} alt="JY" width="100%" height="100%" />
-                </Box>
-                <Box sx={{ marginTop: "100px" }}>
-                    <Typography variant="h1" component="h2" sx={{
-                        fontSize: "33px",
-                        fontWeight: "600",
-                        color: "#000000",
-                        width: "300px",
-                        fontFamily: 'Montserrat',
-                        fontweight: "400",
-                        textAlign: "center",
-                        margin: "0 auto"
-                    }}>
-                        {t('WEBSITE_HEADING')}
-                    </Typography >
-
-                    <Typography variant="h1" component="h2" sx={{
-                        fontSize: "12px",
-                        fontWeight: "300",
-                        color: "#000000",
-                        width: "300px",
-                        fontFamily: 'Montserrat',
-                        fontweight: "400",
-                        textAlign: "center",
-                        margin: "0 auto"
-
-                    }}>
-                        {t('WEBSITE_SUB_HEADING')}
-                    </Typography >
-                </Box>
-
-                <Box className="WebsiteBanner" sx={{ marginTop: "68px" }}>
-                    <Carousel showArrows={false} showStatus={false} showThumbs={false}
-                        renderIndicator={(clickHandler, isSelected, index, label) => (
-                            <div
-                                key={index}
-                                style={{
-                                    display: "inline-block",
-                                    width: isSelected ? "18px" : "6px",
-                                    height: "6px",
-                                    margin: "0 4px",
-                                    borderRadius: isSelected ? "10px" : "50%",
-                                    background: isSelected ? "#FF671F" : "#D9D9D9",
-                                    cursor: "pointer",
-                                }}
-                                onClick={clickHandler}
-                            />)}>
-                        <Box>
-                            <img src="./assets/Banner.png" alt="Banner" />
-                        </Box>
-                        <Box>
-                            <img src="./assets/Banner.png" alt="Banner" />
-                        </Box>
-                        <Box>
-                            <img src="./assets/Banner.png" alt="Banner" />
-                        </Box>
-                        <Box>
-                            <img src="./assets/Banner.png" alt="Banner" />
-                        </Box>
-
-                    </Carousel>
-                </Box>
-            </Box >
-
-            <Stack direction="row" sx={{
-                justifyContent: "space-evenly",
-                margin: "40px 0px"
-            }}>
-                <Button variant="text" sx={{
-                    fontSize: "12px",
-                    textTransform: "capitalize",
-                    border: "1px solid #FF671F",
-                    borderRadius: "20px",
-                    padding: "10px",
-                    width: "160px",
-                    height: "40px",
-                    color: "#FF671F",
-                    "&:hover": {
-                        color: "#FF671F",
-                        border: "1px solid #FF671F"
-                    }
-                }}>Job Khoze </Button>
-                <Button variant="contained"
-                    sx={{
-                        fontSize: "12px",
-                        textTransform: "capitalize",
-                        background: "#FF671F",
-                        borderRadius: "20px",
-                        padding: "10px",
-                        width: "160px",
-                        height: "40px",
-                        "&:hover": {
-                            background: "#FF671F",
-                            borderRadius: "20px",
-                        }
-                    }}>Job दे</Button>
-            </Stack>
-
-            <Stack className="JobCategoriesSection" direction="column" gap={2} alignItems="center"
-                sx={{ padding: "20px" }}>
-                <Heading headingText={t('TOP_JOB_CATEGORIES')} />
-                <Stack className="JobCategories" direction="row" sx={{
-                    gap: "20px",
-                    flexWrap: "wrap",
-                    justifyContent: "center"
-                }}>
-                    {JobCategories.map((categoryItem) => {
-                        return <JobCategoryItem key={categoryItem.id} categoryItem={categoryItem} />
-                    })}
-                </Stack>
-                <ViewAllButton />
-            </Stack>
-
-            <Stack className="TopJobLocationsSection" direction="column" gap={2} alignItems="center"
-                sx={{ padding: "20px" }}>
-                <Heading headingText={t('TOP_JOB_LOCATION')} />
-                <Stack className="JobCategories" direction="row" sx={{
-                    gap: "20px",
-                    flexWrap: "wrap",
-                    justifyContent: "center"
-                }}>
-                    <JobLocationItem />
-                    <JobLocationItem />
-                    <JobLocationItem />
-                    <JobLocationItem />
-                </Stack>
-                <ViewAllButton />
-            </Stack>
-
-            <Stack className="JobsYahanAdvantageSection" direction="column" gap={2} alignItems="center"
-                sx={{
-                    position: "relative"
-                }}>
-                <Heading headingText={t('JOB_YAHAN_ADVANTAGES')} />
-                <Box sx={{
-                    background: "#FCFAFA",
-                    height: "326px",
-                    width: "100%"
-                }}>
-                    <Box sx={{ width: "100px", margin: "0 auto" }}>
-                        <img src={window.location.origin + "/assets/JobsYahanAdvantage.png"} alt="JobsYahanAdvantage" width="100%" height="100%" />
-                    </Box>
-                </Box>
-                <Box sx={{
-                    width: "112px",
-                    position: "absolute",
-                    right: "15px",
-                    top: "70px"
-                }}>
-                    <Typography variant="h1" component="h2" sx={{
-                        fontFamily: 'Manrope',
-                        fontStyle: "normal",
-                        fontWeight: "700",
-                        fontSize: "12px",
-                        margin: "10px 0px"
-
-                    }}>
-                        {t('EASY_TO_USE')}
-                    </Typography >
-                    <Typography variant="h1" component="h2" sx={{
-                        fontFamily: 'Manrope',
-                        fontStyle: "normal",
-                        fontWeight: "400",
-                        fontSize: "11px",
-                        lineHeight: "150.9%"
-                    }}>
-                        {t('JOBSYAHAN_IS_A_JOB_PORTAL_EVERY_EMPLOYER')}
-                    </Typography >
-                </Box>
-                <Box sx={{
-                    width: "112px",
-                    position: "absolute",
-                    left: "25px",
-                    top: "146px"
-                }}>
-                    <Typography variant="h1" component="h2" sx={{
-                        fontFamily: 'Manrope',
-                        fontStyle: "normal",
-                        fontWeight: "700",
-                        fontSize: "12px",
-                        margin: "10px 0px"
-                    }}>
-                        {t('LOCATION_BASED')}
-                    </Typography >
-                    <Typography variant="h1" component="h2" sx={{
-                        fontFamily: 'Manrope',
-                        fontStyle: "normal",
-                        fontWeight: "400",
-                        fontSize: "11px",
-                        lineHeight: "150.9%"
-                    }}>
-                        {t('JOBSYAHAN_IS_A_JOB_PORTAL_EVERY_EMPLOYER')}
-                    </Typography >
-                </Box>
-                <Box sx={{
-                    width: "112px",
-                    position: "absolute",
-                    top: "230px",
-                    right: "15px"
-                }}>
-                    <Typography variant="h1" component="h2" sx={{
-                        fontFamily: 'Manrope',
-                        fontStyle: "normal",
-                        fontWeight: "700",
-                        fontSize: "12px",
-                        margin: "10px 0px"
-                    }}>
-                        {t('VERFIED')}
-                    </Typography >
-                    <Typography variant="h1" component="h2" sx={{
-                        fontFamily: 'Manrope',
-                        fontStyle: "normal",
-                        fontWeight: "400",
-                        fontSize: "11px",
-                        lineHeight: "150.9%"
-                    }}>
-                        {t('JOBSYAHAN_IS_A_JOB_PORTAL_EVERY_EMPLOYER')}
-                    </Typography >
-                </Box>
-            </Stack >
-        </Box >
-
-
-        <Box className="LandingPageDesktop" sx={{
-            display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" }
-        }}>
-            <Box className="Header" sx={{
-                height: "81px",
-                width: "100%",
-                padding: "15px",
-                boxSizing: "border-box"
-            }}>
-                <Box className="WebsiteLogo" sx={{
-                    width: "60px",
-                    height: "40px",
-                    marginLeft: "100px"
-                }}>
-                    <img src={window.location.origin + "/assets/JY.png"} alt="JY" width="100%" height="100%" />
-                </Box>
-            </Box>
-
+        <Box className="LandingPage">
             <Stack className="TopSection"
                 sx={{
                     width: "100%",
-                    height: "445px",
-                    backgroundImage: `url("./assets/LandingPageDesktop.png")`,
+                    minHeight: { "xs": "580px", "sm": "580px", "md": "580px", "lg": "580px", "xl": "580px" },
+                    backgroundImage:
+                    {
+                        "xs": `url("https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/top_section_background_mobile.png")`,
+                        "sm": `url("https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/top_section_background_mobile.png")`,
+                        "md": `url("https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/top_section_background.png")`,
+                        "lg": `url("https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/top_section_background.png")`,
+                        "xl": `url("https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/top_section_background.png")`
+                    },
                     backgroundRepeat: "no-repeat",
                     boxSizing: "border-box",
-                    backgroundSize: "100% ",
+                    backgroundSize: "cover",
 
                 }}>
+                <WebsiteSocialNetwork />
+                <Box className="Header" sx={{
+                    height: "81px",
+                    width: "100%",
+                    padding: "15px",
+                    boxSizing: "border-box",
+                    background: "#FFFFFF"
+                }}>
+                    <Box className="WebsiteLogo" sx={{
+                        width: "150px",
+                        height: "50px",
+                        marginLeft: "100px"
+                    }}>
+                        <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="JY" width="100%" height="100%" />
+                    </Box>
+                </Box>
+
                 <Container sx={{ maxWidth: "1500px !important" }}>
-                    <Stack direction="row" justifyContent="space-between" >
-                        <Box sx={{ width: "50%", marginTop: "75px" }}>
-                            <Typography variant="h1" component="h2" sx={{
-                                fontSize: { "xs": "33px", "sm": "33px", "md": "45px", "lg": "45px", "xl": "45px" },
-                                fontWeight: "600",
-                                color: "#000000",
-                                width: "450px",
-                                fontFamily: 'Montserrat',
-                                fontweight: "400",
-                            }}>
-                                {t('WEBSITE_HEADING')}
-                            </Typography >
+                    <Stack sx={{ marginTop: { "xs": "0px", "sm": "0px", "md": "50px", "lg": "50px", "xl": "50px" } }}>
+                        <Typography variant="h1" component="h2" sx={{
+                            fontSize: { "xs": "33px", "sm": "33px", "md": "45px", "lg": "45px", "xl": "45px" },
+                            fontWeight: "600",
+                            color: "#000000",
+                            maxWidth: "450px",
+                            fontFamily: 'Montserrat',
+                            fontweight: "400",
+                            textAlign: { "xs": "center", "sm": "center", "md": "start", "lg": "start", "xl": "start" }
+                        }}>
+                            {t('WEBSITE_HEADING')}
+                        </Typography >
 
-                            <Typography variant="h1" component="h2" sx={{
-                                fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "xl": "20px", "lg": "20px" },
-                                fontWeight: "300",
-                                color: "#000000",
-                                fontFamily: 'Montserrat',
-                                fontweight: "400",
-                                marginTop: "30px",
-                                width: "400px",
+                        <Typography variant="h1" component="h2" sx={{
+                            fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "xl": "20px", "lg": "20px" },
+                            fontWeight: "300",
+                            color: "#000000",
+                            fontFamily: 'Montserrat',
+                            fontweight: "400",
+                            marginTop: "30px",
+                            maxWidth: "400px",
+                            lineHeight: "1.5",
+                            display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" }
+                        }}>
+                            {t('WEBSITE_SUB_HEADING')}
+                        </Typography >
 
-                            }}>
-                                {t('WEBSITE_SUB_HEADING')}
-                            </Typography >
-
+                        <Box className="WebsiteButton" sx={{ display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" } }}>
                             <Stack direction="row" gap={2} sx={{ marginTop: "50px" }} >
                                 <Button variant="text" sx={{
-                                    fontSize: "20px",
+                                    fontSize: { "xs": "14px", "sm": "14px", "md": "20px", "lg": "20px", "xl": "20px" },
                                     textTransform: "capitalize",
                                     border: "1px solid #FF671F",
                                     borderRadius: "8px",
                                     padding: "10px",
                                     width: "202px",
-                                    height: "67px",
+                                    height: {
+                                        "xs": "40px", "sm": "40px", "md": "67px", "lg": "67px", "xl": "67px"
+                                    },
                                     color: "#FF671F",
                                     "&:hover": {
                                         color: "#FF671F",
@@ -330,13 +95,15 @@ function Home() {
                                 }}>Job Khoze </Button>
                                 <Button variant="contained"
                                     sx={{
-                                        fontSize: "20px",
+                                        fontSize: { "xs": "14px", "sm": "14px", "md": "20px", "lg": "20px", "xl": "20px" },
                                         textTransform: "capitalize",
                                         background: "#FF671F",
                                         borderRadius: "8px",
                                         padding: "10px",
                                         width: "202px",
-                                        height: "67px",
+                                        height: {
+                                            "xs": "40px", "sm": "40px", "md": "67px", "lg": "67px", "xl": "67px"
+                                        },
                                         "&:hover": {
                                             background: "#FF671F",
                                             borderRadius: "8px",
@@ -344,196 +111,203 @@ function Home() {
                                     }}>Job दे</Button>
                             </Stack>
                         </Box>
-                        <Box sx={{ width: "50%" }}>
-                            <Box sx={{
-                                width: "550px",
-                                height: "450px",
-                                position: "relative",
-                                bottom: " -18px",
-                                left: "124px"
-                            }}>
-                                <img src="./assets/BannerDesktop.png" alt="Banner" width="100%" height="100%" />
-                            </Box>
-                        </Box>
+
                     </Stack>
                 </Container>
+
             </Stack >
+            <Container sx={{
+                maxWidth: "1500px !important",
+                display: { "xs": "block", "sm": "block", "md": "none", "lg": "none", "xl": "none" }
+            }}>
+                <Stack direction="row" gap={2}  >
+                    <Button variant="text" sx={{
+                        fontSize: { "xs": "14px", "sm": "14px", "md": "20px", "lg": "20px", "xl": "20px" },
+                        textTransform: "capitalize",
+                        border: "1px solid #FF671F",
+                        borderRadius: "8px",
+                        padding: "10px",
+                        width: "202px",
+                        height: {
+                            "xs": "40px", "sm": "40px", "md": "67px", "lg": "67px", "xl": "67px"
+                        },
+                        color: "#FF671F",
+                        "&:hover": {
+                            color: "#FF671F",
+                            border: "1px solid #FF671F"
+                        }
+                    }}>Job Khoze </Button>
+                    <Button variant="contained"
+                        sx={{
+                            fontSize: { "xs": "14px", "sm": "14px", "md": "20px", "lg": "20px", "xl": "20px" },
+                            textTransform: "capitalize",
+                            background: "#FF671F",
+                            borderRadius: "8px",
+                            padding: "10px",
+                            width: "202px",
+                            height: {
+                                "xs": "40px", "sm": "40px", "md": "67px", "lg": "67px", "xl": "67px"
+                            },
+                            "&:hover": {
+                                background: "#FF671F",
+                                borderRadius: "8px",
+                            }
+                        }}>Job दे</Button>
+                </Stack>
+            </Container>
+
 
             <Stack className="JobCategorySection"
                 sx={{
                     width: "100%",
                     boxSizing: "border-box",
-                    margin: "70px 0px"
+                    padding: "50px 0px"
                 }}>
                 <Container sx={{ maxWidth: "1500px !important" }}>
-                    <Stack direction="row" justifyContent="space-between" >
-                        <Box sx={{ width: "50%" }}>
-                            <Typography variant="h1" component="h2" sx={{
-                                fontSize: { "xs": "33px", "sm": "33px", "md": "45px", "lg": "45px", "xl": "45px" },
-                                fontWeight: "600",
-                                color: "#000000",
-                                width: "450px",
-                                fontFamily: 'Montserrat',
-                                fontweight: "400",
-                            }}>
-                                {t('WEBSITE_HEADING')}
-                            </Typography >
-
-                            <Typography variant="h1" component="h2" sx={{
-                                fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "xl": "20px", "lg": "20px" },
-                                fontWeight: "300",
-                                color: "#000000",
-                                fontFamily: 'Montserrat',
-                                fontweight: "400",
-                                margin: "30px 0px",
-                                width: "400px",
-
-                            }}>
-                                {t('TOP_JOB_CATEGORIES_DESCRIPTION')}
-                            </Typography >
-
-                            <ViewAllButton />
-                        </Box>
+                    <Stack direction="column" gap={3} alignItems="center" justifyContent="center">
+                        <Heading headingText={t('CLICK_ON_THE_WORK_YOU_WOULD_LIKE_TO_DO')} />
                         <Stack className="JobCategories" direction="row" sx={{
-                            width: "50%",
                             gap: "20px",
                             flexWrap: "wrap",
                             justifyContent: "center"
                         }}>
-                            {JobCategories.map((categoryItem) => {
-                                return <JobCategoryItem key={categoryItem.id} categoryItem={categoryItem} />
-                            })}
+                            <JobCardComponent cardSection="CategorySection" />
+                            <JobCardComponent cardSection="CategorySection" />
+                            <JobCardComponent cardSection="CategorySection" />
+                            <JobCardComponent cardSection="CategorySection" />
+                            <JobCardComponent cardSection="CategorySection" />
+                            <JobCardComponent cardSection="CategorySection" />
+                            <JobCardComponent cardSection="CategorySection" />
+                            <ViewMoreSection SectionText="View More Jobs" />
                         </Stack>
                     </Stack>
                 </Container>
             </Stack >
 
             <Box className="TopJobLocationSection"
-
                 sx={{
                     width: "100%",
                     boxSizing: "border-box",
-                    margin: "50px 0px",
-                    flexWrap: "wrap"
+                    padding: "50px 0px",
+                    flexWrap: "wrap",
+                    background: `url("https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/job_location.png")`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover"
                 }}>
                 <Container sx={{ maxWidth: "1500px !important" }}>
-                    <Stack direction="column" gap={2} alignItems="center" justifyContent="center">
-                        <Heading headingText={t('TOP_JOB_LOCATION')} />
+                    <Stack direction="column" gap={3} alignItems="center" justifyContent="center">
+                        <Heading headingText={t('CLICK_ON_THE_LOCATION_WHERE_YOU_WOULD_LIKE_TO_WORK')} />
                         <Stack className="JobCategories" direction="row" sx={{
                             gap: "20px",
                             flexWrap: "wrap",
                             justifyContent: "center"
                         }}>
-                            <JobLocationItemDesktop />
-                            <JobLocationItemDesktop />
-                            <JobLocationItemDesktop />
-                            <JobLocationItemDesktop />
-                            <JobLocationItemDesktop />
-                            <JobLocationItemDesktop />
+                            <JobCardComponent cardSection="LocationSection" />
+                            <JobCardComponent cardSection="LocationSection" />
+                            <JobCardComponent cardSection="LocationSection" />
+                            <JobCardComponent cardSection="LocationSection" />
+                            <JobCardComponent cardSection="LocationSection" />
+                            <JobCardComponent cardSection="LocationSection" />
+                            <JobCardComponent cardSection="LocationSection" />
+                            <ViewMoreSection SectionText="View More Cities" />
                         </Stack>
-                        <ViewAllButton />
                     </Stack>
                 </Container>
             </Box >
 
             <Stack className="JobsYahanAdvantageSection" direction="column" gap={2} alignItems="center"
                 sx={{
-                    position: "relative"
+                    position: "relative",
+                    background: `url("https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/job_advantage.png")`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "none",
+                    height: { "xs": "350px", "sm": "350px", "md": "430px", "xl": "430px", "lg": "430px" }
                 }}>
                 <Stack
                     alignItems="center"
+                    gap={{ "xs": 2, "sm": 2, "md": 4, "lg": 4, "xl": 4 }}
                     sx={{
-                        background: "#FCFAFA",
-                        height: "498px",
+                        minHeight: "350px",
                         width: "100%",
-                        padding: "40px 0px"
+                        padding: "50px 0px"
                     }}>
                     <Heading headingText={t('JOB_YAHAN_ADVANTAGES')} />
 
-                    <Box sx={{ width: "600px", marginTop: "165px" }}>
-                        <img src={window.location.origin + "/assets/JobYahanAdvantageDesktop.png"} alt="JobYahanAdvantageDesktop" width="100%" height="100%" />
-                    </Box>
-                </Stack>
-                <Box sx={{
-                    width: "200px",
-                    position: "absolute",
-                    top: "430px",
-                    left: "630px"
-                }}>
-                    <Typography variant="h1" component="h2" sx={{
-                        fontFamily: 'Manrope',
-                        fontStyle: "normal",
-                        fontWeight: "700",
-                        fontSize: "1.2rem",
-                        margin: "10px 0px"
+                    <Stack className="AdvantageSection" sx={{
+                        position: "relative",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        maxWidth: "700px",
+                        height: { "xs": "200px", "sm": "200px", "md": "250px", "lg": "250px", "xl": "250px" },
+                    }}>
+                        <Box sx={{
+                            width: { "xs": "100px", "sm": "100px", "md": "200px", "lg": "200px", "xl": "200px" },
+                            position: "absolute",
+                            top: "10px",
+                        }}>
+                            <Typography variant="h1" component="h2" sx={{
+                                fontFamily: 'Manrope',
+                                fontStyle: "normal",
+                                fontWeight: "700",
+                                fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1.2rem", "xl": "1.2rem", "lg": "1.2rem" },
+                                margin: "10px 0px"
 
-                    }}>
-                        {t('EASY_TO_USE')}
-                    </Typography >
-                    <Typography variant="h1" component="h2" sx={{
-                        fontFamily: 'Manrope',
-                        fontStyle: "normal",
-                        fontWeight: "400",
-                        fontSize: "1rem",
-                        lineHeight: "150.9%"
-                    }}>
-                        {t('JOBSYAHAN_IS_A_JOB_PORTAL_EVERY_EMPLOYER')}
-                    </Typography >
-                </Box>
-                <Box sx={{
-                    width: "200px",
-                    position: "absolute",
-                    left: "860px",
-                    top: "146px"
-                }}>
-                    <Typography variant="h1" component="h2" sx={{
-                        fontFamily: 'Manrope',
-                        fontStyle: "normal",
-                        fontWeight: "700",
-                        fontSize: "1.2rem",
-                        margin: "10px 0px"
-                    }}>
-                        {t('LOCATION_BASED')}
-                    </Typography >
-                    <Typography variant="h1" component="h2" sx={{
-                        fontFamily: 'Manrope',
-                        fontStyle: "normal",
-                        fontWeight: "400",
-                        fontSize: "1rem",
-                        lineHeight: "150.9%"
-                    }}>
-                        {t('JOBSYAHAN_IS_A_JOB_PORTAL_EVERY_EMPLOYER')}
-                    </Typography >
-                </Box>
-                <Box sx={{
-                    width: "200px",
-                    position: "absolute",
-                    top: "430px",
-                    right: "620px"
-                }}>
-                    <Typography variant="h1" component="h2" sx={{
-                        fontFamily: 'Manrope',
-                        fontStyle: "normal",
-                        fontWeight: "700",
-                        fontSize: "1.2rem",
-                        margin: "10px 0px"
-                    }}>
-                        {t('VERFIED')}
-                    </Typography >
-                    <Typography variant="h1" component="h2" sx={{
-                        fontFamily: 'Manrope',
-                        fontStyle: "normal",
-                        fontWeight: "400",
-                        fontSize: "1rem",
-                        lineHeight: "150.9%"
-                    }}>
-                        {t('JOBSYAHAN_IS_A_JOB_PORTAL_EVERY_EMPLOYER')}
-                    </Typography >
-                </Box>
+                            }}>
+                                {t('GET_A_JOB_NEAR_YOU')}
+                            </Typography >
+
+                        </Box>
+
+                        <Box sx={{
+                            width: { "xs": "100px", "sm": "100px", "md": "200px", "lg": "200px", "xl": "200px" },
+                            position: "absolute",
+                            bottom: "0",
+                            right: "0"
+                        }}>
+                            <Typography variant="h1" component="h2" sx={{
+                                fontFamily: 'Manrope',
+                                fontStyle: "normal",
+                                fontWeight: "700",
+                                fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1.2rem", "xl": "1.2rem", "lg": "1.2rem" },
+                                margin: "10px 0px"
+                            }}>
+                                {t('FINDING_JOB_MADE_EASY_AND_SIMPLE_FOR_ANYONE')}
+                            </Typography >
+
+                        </Box>
+
+                        <Box sx={{
+                            width: { "xs": "100px", "sm": "100px", "md": "200px", "lg": "200px", "xl": "200px" },
+                            position: "absolute",
+                            bottom: "0",
+                            left: "0"
+                        }}>
+                            <Typography variant="h1" component="h2" sx={{
+                                fontFamily: 'Manrope',
+                                fontStyle: "normal",
+                                fontWeight: "700",
+                                fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1.2rem", "xl": "1.2rem", "lg": "1.2rem" },
+                                margin: "10px 0px"
+                            }}>
+                                {t('VERIFIED_AND_GENUINE_JOBS_FOR_EVERY_INDIAN')}
+                            </Typography >
+
+                        </Box>
+
+                        <Box sx={{
+                            width: { "xs": "300px", "sm": "300px", "md": "500px", "lg": "500px", "xl": "500px" }
+                        }}>
+                            <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/job_advantage_picture.png"
+                                alt="JobYahanAdvantageDesktop" width="100%" height="100%" />
+                        </Box>
+                    </Stack>
+
+                </Stack>
+
             </Stack >
 
+            <Footer />
         </Box >
-        <Footer />
 
 
     </>)

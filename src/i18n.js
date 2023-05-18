@@ -17,7 +17,6 @@ const resources = {
         translation: translationEHN
     }
 };
-
 const i18nIntialization = (storeData) => {
     // Use the storeData as needed for language translation
     // ...
@@ -26,7 +25,7 @@ const i18nIntialization = (storeData) => {
         .init({
             resources,
             lng: storeData.currentLanguage, //default language
-            fallbackLng: "ehn",
+            fallbackLng: "hn",
             keySeparator: false,
             interpolation: {
                 escapeValue: false,
