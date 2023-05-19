@@ -144,5 +144,8 @@
     "VIEW_CANDIDATES": "उम्मीदवार देखें",
     "APPLICANTS_APPLIED": "आवेदकों ने आवेदन किया",
     "JOB_DETAILS": "नौकरी विवरण",
-    "JOB_INFORMATION": "नौकरी की जानकारी"
+    "JOB_INFORMATION": "नौकरी की जानकारी",
+    "POSTED_JOBS": "नौकरी पोस्ट की",
+    "CATEGORY": "वर्ग :",
+    "LOCATION": "जगह :"
 }

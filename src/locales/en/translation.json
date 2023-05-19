@@ -144,5 +144,8 @@
     "VIEW_CANDIDATES": "View Candidates",
     "APPLICANTS_APPLIED": "Applicants Applied",
     "JOB_DETAILS": "Job Details",
-    "JOB_INFORMATION": "Job Information"
+    "JOB_INFORMATION": "Job Information",
+    "POSTED_JOBS": "Posted jobs",
+    "CATEGORY": "Category :",
+    "LOCATION": "Location :"
 }

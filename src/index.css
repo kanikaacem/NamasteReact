@@ -869,8 +869,7 @@ nav {
     font-size: 12px;
   }
 
-  .MuiButton-contained,
-  .MuiButton-outlined {
+  .MuiButton-contained {
     font-size: 14px !important;
   }
 

@@ -42,6 +42,7 @@ import AboutUs from './Pages/Common/AboutUs';
 import BlueCollarRegistrationForm from "./ThemeComponent/ThemeForms/BlueCollarRegistrationForm";
 import ThemeErrorPage from './Pages/Common/ThemeErrorPage';
 import { useEffect } from "react";
+import JobListing from './Pages/JobListing/JobListing';
 
 function App() {
 
@@ -111,6 +112,7 @@ function App() {
 
           <Route path="/job-description/:id" element={<PrivateRoute Component={JobDescription}></PrivateRoute>} />
 
+          <Route path="/job-listing" element={<JobListing></JobListing>} />
           <Route path="*" element={<ErrorPage errorMessage=" Page not Found "></ErrorPage>} />
         </Routes>
       </BrowserRouter>
