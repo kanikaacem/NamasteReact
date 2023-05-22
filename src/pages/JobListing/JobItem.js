@@ -22,7 +22,7 @@ const JobItem = () => {
                     Assistant Nurse
                 </Typography>
                 <Stack className="JobTimeLine" direction="row" alignItems="center" gap={1}>
-                    <Box sx={{ width: "10px", height: "10px" }}>
+                    <Box sx={{ width: "10px" }}>
                         <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/timeline.png" alt="jobTimeline" width="100%" height="100%" />
                     </Box>
                     <Typography sx={{
