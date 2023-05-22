@@ -13,6 +13,7 @@ export const stackStyles = {
     fontSize: { xs: '0.7rem', sm: '0.7rem', md: '1rem', lg: '1rem', xl: '1rem' },
     fontFamily: 'Poppins',
     fontWeight: '500',
+    textTransform: "capitalize"
 };
 
 export const tagStyles = {
