@@ -35,7 +35,6 @@ import Home from "./Pages/Home/Home";
 import ErrorPage from "./Pages/ErrorPage";
 import PrivateRoute from "./utils/PrivateRoute";
 import Dashboard from './Pages/Common/Dashboard';
-import JobDescription from './Pages/JobDescription';
 import JobSearch from './ThemeComponent/Common/JobSearch';
 import ContactUs from "./Pages/Common/ContactUs";
 import AboutUs from './Pages/Common/AboutUs';
@@ -43,7 +42,7 @@ import BlueCollarRegistrationForm from "./ThemeComponent/ThemeForms/BlueCollarRe
 import ThemeErrorPage from './Pages/Common/ThemeErrorPage';
 import { useEffect } from "react";
 import JobListing from './Pages/JobListing/JobListing';
-
+import JobDescription from './Pages/JobDescription/JobDescription';
 function App() {
 
   useEffect(() => {
@@ -83,7 +82,7 @@ function App() {
             <Route path="company-information" element={<CompanyInfoForm></CompanyInfoForm>} />
             <Route path="post-a-job" element={<PostJob></PostJob>} />
             <Route path="posted-jobs" element={<PostedJobs></PostedJobs>} />
-            <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
+            {/* <Route path="job-description/:id" element={<JobDescription></JobDescription>} /> */}
             <Route path="job/:id/recommedations" element={<CandidateRecommendation></CandidateRecommendation>} />
             <Route path="applied-candidates" element={<AppliedCandidate />} >
               <Route path=":id" element={<AppliedCandidate />} ></Route>
@@ -97,7 +96,7 @@ function App() {
 
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard} userRole="candidate"></PrivateRoute>}>
             <Route path="" element={<CandidateDashboard></CandidateDashboard>} />
-            <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
+            {/* <Route path="job-description/:id" element={<JobDescription></JobDescription>} /> */}
             <Route path="profile" element={<CandidateProfilePage></CandidateProfilePage>} />
             <Route path="mobile-verify" element={<CandidateMobileVerify></CandidateMobileVerify>} />
             <Route path="job-type" element={<JobTypePage></JobTypePage>} />
@@ -110,9 +109,11 @@ function App() {
           </Route>
 
 
-          <Route path="/job-description/:id" element={<PrivateRoute Component={JobDescription}></PrivateRoute>} />
+          {/* <Route path="/job-description/:id" element={<PrivateRoute Component={JobDescription}></PrivateRoute>} /> */}
 
           <Route path="/job-listing" element={<JobListing></JobListing>} />
+          <Route path="/job-description/:id" element={<JobDescription></JobDescription>} />
+
           <Route path="*" element={<ErrorPage errorMessage=" Page not Found "></ErrorPage>} />
         </Routes>
       </BrowserRouter>
