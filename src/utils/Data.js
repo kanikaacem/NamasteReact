@@ -1,5 +1,15 @@
 /*--------------------------------------------Main Site-----------------------------------------------------------*/
 /* Job Categories in the Main site */
+export const social_icons = [
+    { id: 1, icon_text: "Snapchat", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon1.png", icon_url: "" },
+    { id: 2, icon_text: "Facebook", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon2.png", icon_url: "" },
+    { id: 3, icon_text: "Instagram", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon3.png", icon_url: "" },
+    { id: 4, icon_text: "SocialIcon", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon4.png", icon_url: "" },
+    { id: 5, icon_text: "VideoPlayer", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon5.png", icon_url: "" },
+    { id: 6, icon_text: "Linkedin", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon6.png", icon_url: "" },
+    { id: 7, icon_text: "Youtube", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon7.png", icon_url: "" },
+    { id: 8, icon_text: "Twitter", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon8.png", icon_url: "" }
+]
 export const JobCategories = [
     {
         id: 1,
