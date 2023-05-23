@@ -5,7 +5,9 @@ const Heading = ({ headingText, color }) => {
             fontSize: { "xs": "1.25rem", "sm": "1.25rem", "md": "2rem", "xl": "2rem", "lg": "2rem" },
             fontFamily: "'Manrope',' sans- serif'",
             fontWeight: "700",
-            color: "#000000"
+            color: "#000000",
+            textAlign: "center",
+            lineHeight: "1.5"
         }}>
             {headingText}
         </Typography >

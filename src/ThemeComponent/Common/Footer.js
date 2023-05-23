@@ -1,5 +1,6 @@
 import { Box, Typography, Stack } from "@mui/material";
 
+import { social_icons } from "../../utils/Data";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 const Footer = () => {
@@ -16,11 +17,6 @@ const Footer = () => {
         { id: 2, text: "TERMS_AND_CONDITION", url: "#" }
     ]
 
-    const WebsiteSocialConnection = [
-        { id: 1, socialIcon: "/assets/Google.png", altText: "Google" },
-        { id: 2, socialIcon: "/assets/Linkedin.png", altText: "Linkedin" },
-        { id: 3, socialIcon: "/assets/Facebook.png", altText: "Facebook" }
-    ]
     const FooterHeading = ({ footerHeading }) => {
         return (<Typography variant="h1" component="h2" sx={{
             fontFamily: 'Montserrat',
@@ -55,31 +51,14 @@ const Footer = () => {
             <Stack direction="row" gap={6} sx={{
                 flexWrap: "wrap"
             }}>
-                <Stack direction="column" gap={1.5} className="WebsiteInfo" sx={{ width: { "xs": "42%", "sm": "42%", "md": "22%", "xl": "21%", "lg": "22%" } }}>
+                <Stack direction="column" gap={1.5} className="WebsiteInfo" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
                     <Box sx={{ width: "140px", height: "30px" }}>
                         <img src={window.location.origin + "/assets/websiteLogo.png"} alt="websiteLogo" />
                     </Box>
-                    <Typography variant="h1" component="h2" sx={{
-                        fontFamily: 'Montserrat',
-                        fontStyle: "normal",
-                        fontWeight: "500",
-                        fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.1rem", "xl": "1.1rem", "lg": "1.1rem" },
-                        color: "#FFFFFF"
-                    }}>
-                        {t('BHARAT_KA_JOB_APP')}
-                    </Typography >
-                    <Typography variant="h1" component="h2" sx={{
-                        fontFamily: 'Montserrat',
-                        fontStyle: "normal",
-                        fontWeight: "300",
-                        fontSize: { "xs": "0.7rem", "sm": "0.7rem", "md": "1rem", "xl": "1rem", "lg": "1rem" },
-                        lineHeight: "15px",
-                        color: "#FFFFFF"
-                    }}>
-                        {t('JOBSYAHAN_IS_A_JOB_PORTAL_EVERY_EMPLOYER')}
-                    </Typography >
+
                 </Stack>
-                <Stack direction="column" gap={2} className="CompanyInformation" sx={{ width: { "xs": "42%", "sm": "42%", "md": "22%", "xl": "21%", "lg": "22%" } }}>
+
+                <Stack direction="column" gap={2} className="CompanyInformation" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
                     <FooterHeading footerHeading={t('COMPANY')} />
                     {FooterCompanyLinks.map((item) => {
                         return (
@@ -88,31 +67,37 @@ const Footer = () => {
                         )
                     })}
                 </Stack>
-                <Stack direction="column" gap={2} className="CompanySupports" sx={{ width: { "xs": "42%", "sm": "42%", "md": "22%", "xl": "21%", "lg": "22%" } }}>
-                    <FooterHeading footerHeading={t('SUPPORT')} />
-                    <FooterMenuLink linkText="jobsyahan@gmail.com" linkUrl="#" />
-                    <Stack direction="row" gap={1}>
-                        {
-                            WebsiteSocialConnection.map((item) => {
-                                return (<Box key={item.id} sx={{
-                                    width: { "xs": "23px", "sm": "23px", "md": "35px", "xl": "35px", "lg": "35px" },
-                                    height: { "xs": "23px", "sm": "23px", "md": "35px", "xl": "35px", "lg": "35px" }
-                                }}>
-                                    <img src={window.location.origin + item.socialIcon} alt={item.altText} width="100%" height="100%" />
-                                </Box>)
-                            })
-                        }
-                    </Stack>
 
-
-                </Stack>
-                <Stack direction="column" gap={2} className="LegalInformation" sx={{ width: { "xs": "42%", "sm": "42%", "md": "22%", "xl": "21%", "lg": "22%" } }}>
+                <Stack direction="column" gap={2} className="LegalInformation" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
                     <FooterHeading footerHeading={t('LEGAL')} />
                     {FooterLegalLinks.map((item) => {
                         return (
                             <FooterMenuLink key={item.id} linkText={item.text} linkUrl={item.url} />
                         )
                     })}
+                </Stack>
+
+                <Stack direction="column" gap={2} className="RecruiterLogin" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
+                    <FooterHeading footerHeading="Login" />
+                    <FooterMenuLink linkText="Employer Login" linkUrl="#" />
+                    <FooterMenuLink linkText="Recruiter Login" linkUrl="#" />
+                </Stack>
+
+                <Stack direction="column" gap={2} className="CompanySupports"
+                    sx={{ width: { "xs": "42%", "sm": "42%", "md": "22%", "xl": "21%", "lg": "22%" } }}>
+                    <FooterHeading footerHeading="Find Us:" />
+                    <Stack direction="row" gap={2} alignItems="center" sx={{
+                        flexWrap: "wrap"
+                    }}>
+                        {social_icons.map((item) => {
+                            return (<Box key={item.id} sx={{
+                                width: { "xs": "15px", "sm": "15px", "md": "20px", "lg": "20px", "xl": "20px" },
+                                height: { "xs": "15px", "sm": "15px", "md": "20px", "lg": "20px", "xl": "20px" }
+                            }}>
+                                <img src={item.icon_image} alt={item.icon_text} width="100%" height="100%" />
+                            </Box>)
+                        })}
+                    </Stack>
                 </Stack>
 
             </Stack >
@@ -124,9 +109,11 @@ const Footer = () => {
                     fontWeight: "400",
                     fontSize: { "xs": "0.6rem", "sm": "0.6rem", "md": "0.8rem", "xl": "0.8rem", "lg": "0.8rem" },
                     lineHeight: "12px",
-                    color: "#B4A9C2"
+                    color: "#B4A9C2",
+                    textAlign: "center",
+                    padding: "10px"
                 }}>
-                    Copyright © 2010-2023 Freepik Company S.L. All rights reserved.
+                    © 2023 JobsYahan technology private limited
                 </Typography >
             </Stack>
         </Box>
