@@ -16,13 +16,13 @@ body {
 }
 
 /* Header */
-nav {
+/* nav {
   padding: 0px 100px;
   height: 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
+} */
 
 
 
@@ -338,7 +338,6 @@ nav {
 }
 
 /* Post job */
-.JobDescriptionPage,
 .PostJobPage,
 .AppliedCandidatePage,
 .candidateProfile {
