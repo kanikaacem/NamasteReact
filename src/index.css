@@ -1068,11 +1068,15 @@ body {
 }
 
 .carousel .control-dots {
-  bottom: -23px !important;
+  bottom: -34px !important;
 }
 
 @media screen and (max-width:1000px) {
   .websiteFooter a {
     font-size: 12px !important;
   }
+}
+
+.carousel.carousel-slider {
+  overflow: visible !important;
 }

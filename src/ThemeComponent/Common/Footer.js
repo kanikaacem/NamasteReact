@@ -44,20 +44,13 @@ const Footer = () => {
 
 
     return (<>
-        <Box className="websiteFooter" sx={{
-            background: "#000000",
+        <Stack direction="column" className="websiteFooter" gap={2} sx={{
+            background: "#242422",
             padding: { "xs": "30px 20px", "sm": "30px 20px", "md": "30px 80px", "xl": "30px 80px", "lg": "30px 80px" }
         }}>
             <Stack direction="row" gap={6} sx={{
                 flexWrap: "wrap"
             }}>
-                <Stack direction="column" gap={1.5} className="WebsiteInfo" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
-                    <Box sx={{ width: "140px", height: "30px" }}>
-                        <img src={window.location.origin + "/assets/websiteLogo.png"} alt="websiteLogo" />
-                    </Box>
-
-                </Stack>
-
                 <Stack direction="column" gap={2} className="CompanyInformation" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
                     <FooterHeading footerHeading={t('COMPANY')} />
                     {FooterCompanyLinks.map((item) => {
@@ -66,6 +59,12 @@ const Footer = () => {
 
                         )
                     })}
+                </Stack>
+
+                <Stack direction="column" gap={2} className="RecruiterLogin" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
+                    <FooterHeading footerHeading="Login" />
+                    <FooterMenuLink linkText="Employee Login" linkUrl="#" />
+                    <FooterMenuLink linkText="Recruiter Login" linkUrl="#" />
                 </Stack>
 
                 <Stack direction="column" gap={2} className="LegalInformation" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
@@ -77,15 +76,15 @@ const Footer = () => {
                     })}
                 </Stack>
 
-                <Stack direction="column" gap={2} className="RecruiterLogin" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
-                    <FooterHeading footerHeading="Login" />
-                    <FooterMenuLink linkText="Employer Login" linkUrl="#" />
-                    <FooterMenuLink linkText="Recruiter Login" linkUrl="#" />
+                <Stack direction="column" gap={1.5} className="WebsiteInfo" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
+                    <Box sx={{ width: "140px", height: "30px" }}>
+                        <img src={window.location.origin + "/assets/websiteLogo.png"} alt="websiteLogo" />
+                    </Box>
                 </Stack>
 
                 <Stack direction="column" gap={2} className="CompanySupports"
-                    sx={{ width: { "xs": "42%", "sm": "42%", "md": "22%", "xl": "21%", "lg": "22%" } }}>
-                    <FooterHeading footerHeading="Find Us:" />
+                    sx={{ width: { "xs": "100%", "sm": "100%", "md": "22%", "xl": "21%", "lg": "22%" } }}>
+                    <FooterHeading footerHeading={t('FIND_US')} />
                     <Stack direction="row" gap={2} alignItems="center" sx={{
                         flexWrap: "wrap"
                     }}>
@@ -101,7 +100,7 @@ const Footer = () => {
                 </Stack>
 
             </Stack >
-            <Stack sx={{ padding: "20px 0px" }} gap={1}>
+            <Stack gap={1}>
                 <div style={{ border: "0.5px solid rgba(157, 141, 176, 0.29" }} />
                 <Typography variant="h1" component="h2" sx={{
                     fontFamily: 'Montserrat',
@@ -111,12 +110,11 @@ const Footer = () => {
                     lineHeight: "12px",
                     color: "#B4A9C2",
                     textAlign: "center",
-                    padding: "10px"
                 }}>
                     © 2023 JobsYahan technology private limited
                 </Typography >
             </Stack>
-        </Box>
+        </Stack >
     </>)
 }
 

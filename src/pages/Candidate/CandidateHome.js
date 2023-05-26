@@ -1,7 +1,6 @@
 import { Box, Stack } from "@mui/material";
 import { useOutletContext } from "react-router-dom";
 
-import RecommendedJobs from "../Home/Component/RecommendedJobs";
 import Filter from "../../ThemeComponent/Filter";
 import DashboardGreeting from "../../ThemeComponent/Common/DashboardGreeting";
 
@@ -28,7 +27,7 @@ const CandidateHome = () => {
                         minHeight: "100vh",
 
                     }}>
-                        <RecommendedJobs ></RecommendedJobs>
+                        {/* <RecommendedJobs ></RecommendedJobs> */}
                     </Box>
                 </Stack>
             </Stack>

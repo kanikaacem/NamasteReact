@@ -39,3 +39,7 @@ export const ApplyButtonStyles = {
         border: "1px solid #FF671F"
     }
 }
+
+export const LinkStyles = {
+    fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1rem", "lg": "1rem", "xl": "1rem" }
+}

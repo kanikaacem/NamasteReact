@@ -12,10 +12,13 @@ import { ThemeProvider } from '@mui/material/styles';
 //Redux inital State
 import { initialState } from "./Redux/initialState";
 import { reducer } from "./Redux/reducers";
-//initiating the website Language
+//checking the Device size 
+import CheckScreenType from './utils/CheckScreenType';
+//Intialization the i18n library
 import i18nIntialization from "./i18n";
 //making the redux store
 const store = createStore(reducer, initialState);
+//Checking the mobile Screen
 /*Intialialization the value of language*/
 i18nIntialization(store.getState());
 // Create a variable to store the previous state
@@ -32,6 +35,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
+      <CheckScreenType />
       <App />
     </ThemeProvider>
   </Provider>

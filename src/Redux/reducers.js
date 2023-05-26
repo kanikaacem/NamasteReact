@@ -15,6 +15,13 @@ export const reducer = (state, action) => {
             return {
                 ...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"), action: localStorage.getItem("action"),
                 currentLanguage: language
+            };
+
+        case "CHANGE_SCREEN_TYPE":
+            let screenType = action.payload;
+            return {
+                ...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"), action: localStorage.getItem("action"),
+                screenType: screenType
             }
 
         case "CHANGE_SELECTED_MENU":

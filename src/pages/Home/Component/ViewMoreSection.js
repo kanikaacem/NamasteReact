@@ -2,21 +2,20 @@ import { Box, Stack, Typography } from '@mui/material';
 
 const ViewMoreSection = ({ SectionText }) => {
 
-    return (<Box sx={{ cursor: "pointer" }}>
-        <Stack direction="column" gap={3} alignItems="center" justifyContent="center" sx={{
+    return (
+        <Stack className="viewMoreSection" direction="column" gap={3} alignItems="center" justifyContent="center" sx={{
             padding: { "xs": "20px", "sm": "20px", "md": "28px", "lg": "28px", "xl": "28px" },
             width: { "xs": "156px", "sm": "156px", "md": "300px", "xl": "300px", "lg": "300px" },
-            height: { "xs": "173px", "sm": "173px", "md": "300px", "xl": "300px", "lg": "300px" },
+            height: { "xs": "130px", "sm": "130px", "md": "300px", "xl": "300px", "lg": "300px" },
             borderRadius: "15px",
-            boxSizing: "border-box",
             background: " #FFFFFF",
-            border: "1px solid #FFCDB5"
-
+            cursor: "pointer",
+            boxSizing: "border-box"
         }}
         >
             <Box sx={{
-                width: { "xs": "50px", "sm": "50px", "md": "78px", "lg": "78px", "xl": "78px" },
-                height: { "xs": "50px", "sm": "50px", "md": "78px", "lg": "78px", "xl": "78px" }
+                width: { "xs": "30px", "sm": "30px", "md": "78px", "lg": "78px", "xl": "78px" },
+                height: { "xs": "30px", "sm": "30px", "md": "78px", "lg": "78px", "xl": "78px" }
             }}>
                 <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/view_more_image.png"
                     width="100%"
@@ -35,7 +34,7 @@ const ViewMoreSection = ({ SectionText }) => {
                 {SectionText}
             </Typography >
         </Stack >
-    </Box>)
+    )
 
 }
 

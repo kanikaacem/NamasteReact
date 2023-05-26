@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 /*Email Verification Page*/
 import EmployerVerficationPage from './Pages/Common/EmailVerficationPage';
 
@@ -44,7 +43,6 @@ import { useEffect } from "react";
 import JobListing from './Pages/JobListing/JobListing';
 import JobDescription from './Pages/JobDescription/JobDescription';
 function App() {
-
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
   }, []);
