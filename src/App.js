@@ -43,6 +43,8 @@ import { useEffect } from "react";
 import JobListing from './Pages/JobListing/JobListing';
 import JobDescription from './Pages/JobDescription/JobDescription';
 import OTPVerification from './Pages/Candidate/OTPVerification';
+
+import HomePageLite from "./Pages/HomeLite/HomePageLite"
 function App() {
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
@@ -57,6 +59,8 @@ function App() {
           <Route exact path="/" element={<Home></Home>} />
           <Route path="/contact-us" element={<ContactUs></ContactUs>} />
           <Route path="/about-us" element={<AboutUs></AboutUs>} />
+
+          <Route path="/hompagelite" element={<HomePageLite></HomePageLite>} />
 
           <Route path="/forgot-password/employer" element={<ForgotPasswordPage user="employer" />} />
           <Route path="/reset-password/employer/:token" element={<ResetPasswordPage user="employer" />} />
@@ -114,7 +118,7 @@ function App() {
           <Route path="/job-description/:id" element={<JobDescription></JobDescription>} />
 
           <Route path="*" element={<ErrorPage errorMessage=" Page not Found "></ErrorPage>} />
-          <Route path="/otp-verification" element={<OTPVerification/>} />
+          <Route path="/otp-verification" element={<OTPVerification />} />
         </Routes>
       </BrowserRouter>
     </>

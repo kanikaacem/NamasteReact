@@ -1,165 +1,11 @@
-import { getRequest } from "../../utils/ApiRequests";
 import { Box, Stack, Container, Button, Typography } from "@mui/material";
-
-/* Site Header */
-import LanguageTranslatorSection from "../Common/LanguageTranslaterSection";
-import JobCardComponent from "./Component/JobCardComponent";
-import ViewMoreSection from "./Component/ViewMoreSection";
-import Footer from "../../ThemeComponent/Common/Footer";
-import Heading from "./Component/Heading";
-
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
-
-import { useTranslation } from "react-i18next";
-import React, { useEffect, useState } from 'react';
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-const AdvantageSectionStyle = {
-    position: "relative",
-    alignItems: "center",
-    justifyContent: "center",
-    width: { "xs": "320px", "sm": "320px", "md": "600px", "xl": "600px", "lg": "600px" },
-    height: { "xs": "320px", "sm": "320px", "md": "285px", "xl": "285px", "lg": "285px" },
-}
-
-const AdvantageSectionBoxStyle = {
-    width: { "xs": "100px", "sm": "100px", "md": "200px", "lg": "200px", "xl": "200px" },
-    position: "absolute",
-}
-
-const JobAdvantageDescriptionStyle = {
-    fontFamily: 'Manrope',
-    fontStyle: "normal",
-    fontWeight: "700",
-    fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1.2rem", "xl": "1.2rem", "lg": "1.2rem" },
-    margin: "10px 0px"
-}
-const JobLocation = [
-    { id: 1, name: "Delhi", text: "Delhi" },
-    { id: 2, name: "Mumbai", text: "Mumbai" },
-    { id: 3, name: "Gurgoan", text: "Gurgoan" },
-    { id: 4, name: "Delhi", text: "Delhi" },
-    { id: 5, name: "Mumbai", text: "Mumbai" },
-    { id: 6, name: "Gurgoan", text: "Gurgoan" },
-    { id: 7, name: "Delhi", text: "Delhi" },
-    { id: 8, name: "Mumbai", text: "Mumbai" },
-    { id: 9, name: "Gurgoan", text: "Gurgoan" }
-
-];
-
-
-const FindJobButton = ({ style }) => {
-    const navigate = useNavigate();
-    return (<Button variant="contained"
-        onClick={() => navigate("job-listing")}
-        sx={{
-            background: "#FF671F",
-            borderRadius: "33px",
-            textTransform: "capitalize",
-            fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
-            ...style, // Apply custom styles passed via the style prop
-            "&:hover": {
-                background: "#FF671F",
-            }
-        }
-        }> Job खोजें</Button >)
-}
-
-const FindCandidateButton = ({ style }) => {
-    return (<Button
-        sx={{
-            color: "#FF671F",
-            borderRadius: "33px",
-            textTransform: "capitalize",
-            border: "1px solid",
-            fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
-            ...style, // Apply custom styles passed via the style prop
-            "&:hover": {
-                color: "#FF671F",
-                border: "1px solid",
-
-            }
-
-        }}
-        variant="outlined">Candidate खोजें </Button>)
-}
-
 
 function Home() {
 
-    const { t } = useTranslation();
-    const mobileScreen = useSelector(state => state.screenType) === "mobile";
-    const [showButton, setShowButton] = useState(false);
-    const [jobCategoryData, setJobCategoryData] = useState([]);
-
-    // const LanguageTranslatorSection = () => {
-    //     const currentLanguage = useSelector(state => state.currentLanguage);
-    //     const ChangeLanguage = (event) => {
-    //         dispatch({ type: 'CHANGE_LANGUAGE', payload: event.target.value });
-    //     }
-    //     return (
-    //         <Stack className="LanguageTranslator" direction="row" gap={1} sx={{
-    //             padding: "10px",
-    //             justifyContent: "center",
-    //             alignItems: "center"
-    //         }}>
-    //             <Typography variant="h1" component="h2" sx={{
-    //                 fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1rem", "xl": "1rem", "lg": "1rem" },
-    //                 fontFamily: "'Manrope',' sans- serif'",
-    //                 fontWeight: "400",
-    //                 color: "#000000",
-    //                 textAlign: "center",
-    //             }}>
-    //                 {t('CHOOSE_THE_LANGUAGE_YOU_LIKE')}
-    //             </Typography >
-
-    //             <select style={{
-    //                 minWidth: "60px",
-    //                 border: "none",
-    //                 outline: "none"
-    //             }}
-    //                 name="cars" id="cars"
-    //                 value={currentLanguage}
-    //                 onChange={ChangeLanguage}>
-    //                 <option value="hn">Hindi</option>
-    //                 <option value="en">English</option>
-    //                 <option value="ehn">Hinglish</option>
-    //             </select>
-    //         </Stack>
-    //     )
-    // }
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const isScrollingOverViewport = (scrollTop > window.innerHeight)
-            setShowButton(isScrollingOverViewport)
-        };
-        const fetchData = async () => {
-            try {
-                const api_url = process.env.REACT_APP_GET_JOB_CATEGORY_DETAIL; // Replace with your .env variable name
-                const data = await getRequest(api_url);
-                // Handle the fetched data
-                // console.log("Fetched data:", data);
-                setJobCategoryData(data.data);
-            } catch (error) {
-                // Handle the error
-                console.error("Fetch error:", error);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        fetchData();
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
 
     return (<>
-        <Box className="LandingPage">
-            <Box className="WebsiteLogoAndLoginSectionWrapper" sx={{
+        <Box className="HomePageLite">
+            {/* <Box className="WebsiteLogoAndLoginSectionWrapper" sx={{
                 minHeight: { "xs": "50px", "sm": "50px", "md": "100px", "lg": "100px", "xl": "100px" },
                 width: "100%",
                 padding: { "xs": "10px", "sm": "10px", "md": "20px 100px", "lg": "20px 100px", "xl": "20px 100px" },
@@ -530,7 +376,7 @@ function Home() {
                 </Stack>
             </Stack >
 
-            <Footer />
+            <Footer /> */}
         </Box >
 
 
