@@ -1,18 +1,35 @@
-import { Box, Stack, Typography, Button } from "@mui/material";
-import { jobItemStyles, stackStyles, tagStyles, ApplyButtonStyles } from "../../utils/Styles";
+import { Box, Stack, Typography } from "@mui/material";
+import { jobItemStyles, jobItemTagStyles, stackStyles, tagStyles } from "../../utils/Styles";
+import ApplyForJobButton from "../Common/ApplyForJobButton";
 import { useNavigate } from "react-router-dom";
 
 const JobItem = (props) => {
-    const { id, jobTitle, companyName, salary, location, profession, education, description } = props;
+    const { id, jobTitle, companyName, salary, location, profession, education, description, jobTag } = props;
     const navigate = useNavigate();
 
     const handleViewJobDescription = () => {
         navigate(`/job-description/7589743958${id}`);
     };
 
+
     return (
 
         <Stack direction="column" gap={1} className="JobItem" sx={jobItemStyles}>
+            {jobTag === "men" &&
+                <Box sx={jobItemTagStyles}>
+                    <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/men_tag.png" alt="MenTag" width="100%" height="100%"></img>
+                </Box>}
+            {jobTag === "women" &&
+                <Box sx={jobItemTagStyles}>
+                    <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/women_tag.png" alt="womenTag" width="100%" height="100%"></img>
+                </Box>}
+            {
+                jobTag === "other" &&
+                <Box sx={jobItemTagStyles}>
+                    <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/other_tag.png" alt="otherTag" width="100%" height="100%"></img>
+                </Box>
+            }
+
             <Stack direction="row" justifyContent="space-between">
                 <Typography sx={{ ...stackStyles, fontSize: { xs: '1.1rem', sm: '1.5rem', md: '1.5rem', lg: '1.5rem', xl: '1.5rem' }, fontWeight: '600' }}>
                     {jobTitle}
@@ -83,8 +100,7 @@ const JobItem = (props) => {
 
             <Stack direction="row" justifyContent="space-between">
                 <Stack direction="row" gap={2}>
-                    <Button variant="outlined" sx={ApplyButtonStyles}>Apply via Whatsapp</Button>
-
+                    <ApplyForJobButton jobId={id} />
                     <Stack direction="row" gap={1} alignItems="center">
                         <Box>
                             <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/Share.png" alt="Share" />

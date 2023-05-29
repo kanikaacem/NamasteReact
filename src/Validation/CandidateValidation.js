@@ -76,3 +76,7 @@ export const updateCandidateBasicInfoSchema = yup.object().shape({
     address: yup.string().required("Address is required"),
     currAddress: yup.string().required("Current Address is required")
 })
+
+export const CandidateMobileNumberValidation = yup.object().shape({
+    mobile_number: yup.string().required("Mobile number is required").matches(phoneRegExp, 'Mobile number is not valid'),
+});

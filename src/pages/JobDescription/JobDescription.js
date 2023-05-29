@@ -1,14 +1,14 @@
-import { Box, Button, Stack, Container, Typography, Link, Breadcrumbs } from "@mui/material";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { stackStyles, tagStyles, ApplyButtonStyles } from "../../utils/Styles";
-
-// import { useParams, useOutletContext } from "react-router-dom";
+import { Box,  Stack, Container, Typography, Link, Breadcrumbs } from "@mui/material";
+import { stackStyles, tagStyles } from "../../utils/Styles";
+import PageTopSection from "../Common/PageTopSection";
+import ApplyForJobButton from "../Common/ApplyForJobButton";
+import { useParams } from "react-router-dom";
 // import { useEffect, useState } from "react";
 import { LinkStyles } from "../../utils/Styles";
 import Footer from "../../ThemeComponent/Common/Footer";
 
 const JobDescription = () => {
-    // const { id } = useParams();
+    const { id } = useParams();
     // const user = useOutletContext();
     // const [data, setdata] = useState("");
     // useEffect(() => {
@@ -48,23 +48,13 @@ const JobDescription = () => {
             margin: "20px 0px"
         }}></hr>)
     }
-    const goBack = () => {
-        window.history.back();
-    }
+   
     return (
         <Box className="JobDescriptionPage" sx={{
             height: "100vh",
         }}>
-            <Stack className="JobDescriptionSection" direction="column" gap={2} sx={{
-                padding: { "xs": "20px", "sm": "20px", "md": "20px 100px", "lg": "20px 100px", "xl": "20px 100px" },
-                background: "#ffffff",
-                webkitBoxShadow: "0px 6px 5px -3px rgba(208,208,208,1)",
-                mozBoxShadow: "0px 6px 5px -3px rgba(208,208,208,1)",
-                boxShadow: "0px 6px 5px -3px rgba(208,208,208,1)",
-            }}>
-                <ArrowBackIcon sx={{ cursor: "pointer" }} onClick={goBack} />
-            </Stack>
-
+           <PageTopSection/>
+            
             <Box className="WebsiteBreadcrumb" sx={{
                 padding: {
                     "xs": "10px", "sm": "10px",
@@ -158,7 +148,7 @@ const JobDescription = () => {
                         <SectionSeperator />
 
                         <Stack direction="row" gap={2}>
-                            <Button variant="outlined" sx={ApplyButtonStyles}>Apply via Whatsapp</Button>
+                            <ApplyForJobButton jobId={id} />
 
                             <Stack direction="row" gap={1} alignItems="center">
                                 <Box>

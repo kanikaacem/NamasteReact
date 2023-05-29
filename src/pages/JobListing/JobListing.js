@@ -1,15 +1,20 @@
 import FormControl from '@mui/material/FormControl';
-import { Box, Stack, Container, Select, MenuItem, Breadcrumbs, Link } from "@mui/material";
+import { Box, Button, Stack, Container, Select, MenuItem, Breadcrumbs, Link } from "@mui/material";
 import { LinkStyles } from "../../utils/Styles";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import PageTopSection from '../Common/PageTopSection';
 import JobItem from "./JobItem";
 import Footer from "../../ThemeComponent/Common/Footer";
+
+import { useTranslation } from 'react-i18next';
 import { useState } from "react";
 import { useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+
 const JobListing = () => {
-    const [category, setCategory] = useState('');
+    // const [category, setCategory] = useState('');
+    const { t } = useTranslation();
     const [location, setLocation] = useState('');
-    const postedJobs = [
+    const jobs = [
         {
             id: 1, title: "Assistant Manager", company_name: "kutumbhcare",
             salary: "Rs 10,000 - Rs 20,999", location: "Noida", profession: "Nurse",
@@ -24,26 +29,14 @@ const JobListing = () => {
             id: 3, title: "Assistant Manager", company_name: "kutumbhcare",
             salary: "Rs 10,000 - Rs 20,999", location: "Noida", profession: "Nurse",
             education: "Graduate", description: "It is a long established fact that a reader will be distracted by the readable contentment."
-        },
-        {
-            id: 4, title: "Assistant Manager", company_name: "kutumbhcare",
-            salary: "Rs 10,000 - Rs 20,999", location: "Noida", profession: "Nurse",
-            education: "Graduate", description: "It is a long established fact that a reader will be distracted by the readable contentment."
-        },
-        {
-            id: 5, title: "Assistant Manager", company_name: "kutumbhcare",
-            salary: "Rs 10,000 - Rs 20,999", location: "Noida", profession: "Nurse",
-            education: "Graduate", description: "It is a long established fact that a reader will be distracted by the readable contentment."
-        },
-        {
-            id: 6, title: "Assistant Manager", company_name: "kutumbhcare",
-            salary: "Rs 10,000 - Rs 20,999", location: "Noida", profession: "Nurse",
-            education: "Graduate", description: "It is a long established fact that a reader will be distracted by the readable contentment."
         }
+
     ];
+    const [loadRange, setLoadRange] = useState({ page: 1, limit: 20 });
+
     const mobileScreen = useSelector(state => state.screenType) === "mobile";
 
-    // const [postedJobs, setPostedJobs] = useState([]);
+    const [postedJobs, setPostedJobs] = useState(jobs);
     const breadcrumbs = [
         <Link underline="hover" sx={LinkStyles} key="1" color="inherit" href="/" >
             Home
@@ -58,7 +51,22 @@ const JobListing = () => {
             Posted Job
         </Link>
     ];
-    const SelectFilter = ({ value, setValue, data }) => {
+    const LocationFilter = [
+        { id: 1, text: "Paas (0-50Km)" },
+        { id: 2, text: "Thodi Door (50-200Km)" },
+        { id: 3, text: "Zayada Door (more than 200Km)" }
+
+    ]
+    const SelectFilter = ({ value, setValue, placeholder, data }) => {
+        const navigate = useNavigate();
+        const handleValueChange = (event) => {
+            setValue(event.target.value);
+            const searchParams = new URLSearchParams(location.search);
+            searchParams.set("key", event.target.value);
+
+            const searchString = searchParams.toString();
+            navigate(`?${searchString}`);
+        };
         return (<FormControl sx={{ width: 150 }} size="small">
             <Select
                 sx={{
@@ -67,7 +75,7 @@ const JobListing = () => {
                     borderRadius: "12px"
                 }}
                 value={value}
-                onChange={(event) => setValue(event.target.value)}
+                onChange={handleValueChange}
                 displayEmpty
                 inputProps={{
                     MenuProps: {
@@ -79,31 +87,36 @@ const JobListing = () => {
                     }
                 }}
             >
+
                 <MenuItem value="">
-                    <em>None</em>
+                    <em>{placeholder}</em>
                 </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {data && data.map((item, index) => {
+                    return (<MenuItem key={index}
+                        sx={{
+                            fontSize: "12px"
+                        }}
+                        value={item.id}> {item.text}</MenuItem>)
+                })}
+
             </Select>
         </FormControl>)
     }
-    const goBack = () => {
-        window.history.back();
-    }
+
+    const handleLoadMore = () => {
+        // Increase the load range by the desired increment
+        setLoadRange((prevRange) => ({
+            start: prevRange.page + 1,
+            end: prevRange.limit
+        }));
+        setPostedJobs((prevJobs) => [...prevJobs, ...jobs]);
+
+    };
     return (
         <Box className="JobsListingPage" sx={{
             height: "100vh"
         }}>
-            <Stack className="JobListingTopSection" direction="column" gap={2} sx={{
-                padding: { "xs": "20px", "sm": "20px", "md": "20px 100px", "lg": "20px 100px", "xl": "20px 100px" },
-                background: "#ffffff",
-                webkitBoxShadow: "0px 6px 5px -3px rgba(208,208,208,1)",
-                mozBoxShadow: "0px 6px 5px -3px rgba(208,208,208,1)",
-                boxShadow: "0px 6px 5px -3px rgba(208,208,208,1)",
-            }}>
-                <ArrowBackIcon sx={{ cursor: "pointer" }} onClick={goBack} />
-            </Stack>
+            <PageTopSection />
 
             <Box className="WebsiteBreadcrumb" sx={{
                 padding: {
@@ -126,8 +139,8 @@ const JobListing = () => {
                     <Stack direction="row" gap={2} sx={{
                         flexWrap: "wrap"
                     }}>
-                        <SelectFilter value={category} setValue={setCategory} />
-                        <SelectFilter value={location} setValue={setLocation} />
+                        {/* <SelectFilter value={category} setValue={setCategory} placeholder="Select Location" data={LocationFilter} /> */}
+                        <SelectFilter value={location} setValue={setLocation} placeholder="Select Location" data={LocationFilter} />
                     </Stack>
 
                     <Stack direction="column" gap={2} className="JobsSection" >
@@ -140,9 +153,24 @@ const JobListing = () => {
                                 location={jobInfo.location}
                                 profession={jobInfo.profession}
                                 education={jobInfo.education}
-                                description={jobInfo.description} />
+                                description={jobInfo.description}
+                                jobTag="women" />
                         })}
                     </Stack>
+                    <Button variant="contained"
+                        onClick={handleLoadMore}
+                        sx={{
+                            width: "300px",
+                            background: "#FF671F",
+                            borderRadius: "33px",
+                            textTransform: "capitalize",
+                            fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
+                            margin: "0 auto",
+                            "&:hover": {
+                                background: "#FF671F",
+                            }
+                        }
+                        }> {t('LOAD_MORE')}</Button >
                 </Stack>
             </Container>
             <Footer />

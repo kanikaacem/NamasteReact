@@ -7,7 +7,15 @@ export const jobItemStyles = {
     boxSizing: 'border-box',
     padding: '20px',
     cursor: 'pointer',
+    position: "relative"
 };
+
+export const jobItemTagStyles = {
+    width: "100px",
+    position: "absolute",
+    top: "-13px",
+    right: "0"
+}
 
 export const stackStyles = {
     fontSize: { xs: '0.7rem', sm: '0.7rem', md: '1rem', lg: '1rem', xl: '1rem' },

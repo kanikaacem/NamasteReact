@@ -42,6 +42,7 @@ import ThemeErrorPage from './Pages/Common/ThemeErrorPage';
 import { useEffect } from "react";
 import JobListing from './Pages/JobListing/JobListing';
 import JobDescription from './Pages/JobDescription/JobDescription';
+import OTPVerification from './Pages/Candidate/OTPVerification';
 function App() {
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
@@ -113,6 +114,7 @@ function App() {
           <Route path="/job-description/:id" element={<JobDescription></JobDescription>} />
 
           <Route path="*" element={<ErrorPage errorMessage=" Page not Found "></ErrorPage>} />
+          <Route path="/otp-verification" element={<OTPVerification/>} />
         </Routes>
       </BrowserRouter>
     </>

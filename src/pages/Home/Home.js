@@ -1,3 +1,4 @@
+import { getRequest } from "../../utils/ApiRequests";
 import { Box, Stack, Container, Button, Typography } from "@mui/material";
 
 /* Site Header */
@@ -33,18 +34,6 @@ const JobAdvantageDescriptionStyle = {
     fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1.2rem", "xl": "1.2rem", "lg": "1.2rem" },
     margin: "10px 0px"
 }
-const JobCategory = [
-    { id: 1, name: "Carpenter", text: "Carpenter" },
-    { id: 2, name: "Nursing", text: "Nursing" },
-    { id: 3, name: "Delivery", text: "Delivery" },
-    { id: 4, name: "Carpenter", text: "Carpenter" },
-    { id: 5, name: "Nursing", text: "Nursing" },
-    { id: 6, name: "Delivery", text: "Delivery" },
-    { id: 7, name: "Carpenter", text: "Carpenter" },
-    { id: 8, name: "Nursing", text: "Nursing" },
-    { id: 9, name: "Delivery", text: "Delivery" }
-
-];
 const JobLocation = [
     { id: 1, name: "Delhi", text: "Delhi" },
     { id: 2, name: "Mumbai", text: "Mumbai" },
@@ -86,7 +75,9 @@ const FindCandidateButton = ({ style }) => {
             fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
             ...style, // Apply custom styles passed via the style prop
             "&:hover": {
-                color: "#FF671F"
+                color: "#FF671F",
+                border: "1px solid",
+
             }
 
         }}
@@ -95,10 +86,12 @@ const FindCandidateButton = ({ style }) => {
 
 
 function Home() {
+
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const mobileScreen = useSelector(state => state.screenType) === "mobile";
     const [showButton, setShowButton] = useState(false);
+    const [jobCategoryData, setJobCategoryData] = useState([]);
 
     const LanguageTranslatorSection = () => {
         const currentLanguage = useSelector(state => state.currentLanguage);
@@ -143,8 +136,22 @@ function Home() {
             const isScrollingOverViewport = (scrollTop > window.innerHeight)
             setShowButton(isScrollingOverViewport)
         };
+        const fetchData = async () => {
+            try {
+                const api_url = process.env.REACT_APP_GET_JOB_CATEGORY_DETAIL; // Replace with your .env variable name
+                const data = await getRequest(api_url);
+                // Handle the fetched data
+                // console.log("Fetched data:", data);
+                setJobCategoryData(data.data);
+            } catch (error) {
+                // Handle the error
+                console.error("Fetch error:", error);
+            }
+        };
 
         window.addEventListener('scroll', handleScroll);
+        fetchData();
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -356,8 +363,15 @@ function Home() {
                             flexWrap: "wrap",
                             justifyContent: "center"
                         }}>
-                            {JobCategory.slice(0, mobileScreen ? 3 : 7).map((item, index) => {
-                                return (<JobCardComponent item={item} key={index} />)
+
+                            {jobCategoryData && jobCategoryData.slice(0, mobileScreen ? 3 : 7).map((item, index) => {
+                                return (<JobCardComponent
+                                    cardSection="CategorySection"
+                                    category_name={item.category_name}
+                                    category_image={item.image_link}
+                                    category_url_link={item.search_api}
+                                    category_job_active={item.job_active_count}
+                                    key={item._id} />)
                             })}
 
                             <ViewMoreSection SectionText="View More Cities" />
@@ -405,7 +419,14 @@ function Home() {
                             justifyContent: "center"
                         }}>
                             {JobLocation.slice(0, mobileScreen ? 3 : 7).map((item, index) => {
-                                return (<JobCardComponent item={item} key={index} cardSection="LocationSection" />)
+                                return (<JobCardComponent
+                                    cardSection="LocationSection"
+                                    category_name={item.text}
+                                    category_image="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/map.png"
+                                    category_url_link={item.search_api}
+                                    category_job_active={item.job_active_count}
+                                    key={index}
+                                />)
                             })}
 
 

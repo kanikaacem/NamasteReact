@@ -1,6 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material';
 
-const JobCardComponent = ({ item, cardSection }) => {
+const JobCardComponent = (props) => {
+
+    const { cardSection, category_name, category_image, category_url_link, category_job_active } = props;
 
     const JobItemStyles = {
         padding: { "xs": "20px", "sm": "20px", "md": "28px", "lg": "28px", "xl": "28px" },
@@ -29,11 +31,15 @@ const JobCardComponent = ({ item, cardSection }) => {
 
     return (<>
         <Stack className="JobItem" direction="column" gap={2} alignItems="center" justifyContent="center" sx={JobItemStyles}
-        >
+            onClick={() => {
+                if (category_job_active > 0)
+                    window.location.href = category_url_link;
+
+            }}>
             <Box sx={imageSize}>
-                <img src={cardSection === "LocationSection" ? "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/map.png" :
-                    "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/carpenter.png"}
-                    alt="Carpenter"
+                <img src={category_image}
+                    className="categoryImage"
+                    alt="Category Icon"
                     width="100%"
                     height="100%"
                     style={{
@@ -46,12 +52,13 @@ const JobCardComponent = ({ item, cardSection }) => {
                 fontFamily: "'Manrope',' sans- serif'",
                 fontWeight: "700",
                 color: "#000000",
-                textAlign: "center"
+                textAlign: "center",
+                textTransform: "capitalize"
             }}>
-                {item.name}
+                {category_name}
             </Typography >
 
-            {!LocationSection && (
+            {!LocationSection && category_job_active > 0 && (
                 <Stack direction="row" gap={1}>
                     <Typography variant="h1" component="h2" sx={{
                         fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1.2rem", "xl": "1.2rem", "lg": "1.2rem" },
@@ -60,7 +67,7 @@ const JobCardComponent = ({ item, cardSection }) => {
                         color: "#FF671F",
                         textAlign: "center"
                     }}>
-                        1000+
+                        {category_job_active}
                     </Typography >
                     <Typography variant="h1" component="h2" sx={{
                         fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1rem", "xl": "1rem", "lg": "1rem" },
