@@ -1,10 +1,11 @@
+import { postRequest } from "../../utils/ApiRequests";
 import { Box, Button, Stack, Container, Typography, TextField } from "@mui/material";
 import PageTopSection from "../Common/PageTopSection";
 import FormLabel from "../Common/FormLabel";
 import LoaderScreen from "../Common/LoaderScreen";
 import Error from "../../ThemeComponent/Common/Error";
 
-// import { CandidateMobileNumberValidation } from "../../Validation/CandidateValidation";
+import { CandidateMobileNumberValidation } from "../../Validation/CandidateValidation";
 import { Formik, Field, Form } from "formik";
 
 import { useNavigate } from "react-router-dom";
@@ -18,11 +19,21 @@ const CandidateLogin = () => {
 
     const handleSubmit = async (values, { setFieldError }) => {
         setRequestProcessing('in_progress');
-        console.log(requestProcessing)
-        setTimeout(() => {
-            navigate('/otp-verification')
-            //  setRequestProcessing('complete');
-        }, 5000)
+        try {
+            const api_url = process.env.REACT_APP_GENERATE_OTP;
+            const response = await postRequest(api_url, {
+                "mobile": values.mobile_number,
+                "usertype": "candidate"
+
+            });
+            if (response.status === '1')
+                // Handle the fetched data
+                navigate('/otp-verification', { state: { mobile_number: values.mobile_number } });
+        } catch (error) {
+            // Handle the error
+            console.error("Fetch error:", error);
+        }
+
     }
 
 
@@ -40,7 +51,7 @@ const CandidateLogin = () => {
                 }}>
                     <Formik
                         initialValues={defaultValue}
-                        // validationSchema={CandidateMobileNumberValidation}
+                        validationSchema={CandidateMobileNumberValidation}
                         onSubmit={handleSubmit}
                     >
                         {({ errors, touched }) => (
@@ -81,7 +92,7 @@ const CandidateLogin = () => {
                                 }}>
                                     By continue you agree to JobYahan
                                     <span style={{ color: "#0D99FF" }}> Terms & Conditions</span> and
-                                    <span style={{ color: "#0D99FF" }}>Privacy & Policy </span>
+                                    <span style={{ color: "#0D99FF" }}> Privacy & Policy </span>
                                 </Typography>
 
                             </Form>

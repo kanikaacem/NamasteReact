@@ -1,3 +1,4 @@
+import { getRequest } from "../../utils/ApiRequests"
 import FormControl from '@mui/material/FormControl';
 import { Box, Button, Stack, Container, Select, MenuItem, Breadcrumbs, Link } from "@mui/material";
 import { LinkStyles } from "../../utils/Styles";
@@ -6,7 +7,7 @@ import JobItem from "./JobItem";
 import Footer from "../../ThemeComponent/Common/Footer";
 
 import { useTranslation } from 'react-i18next';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
@@ -14,29 +15,11 @@ const JobListing = () => {
     // const [category, setCategory] = useState('');
     const { t } = useTranslation();
     const [location, setLocation] = useState('');
-    const jobs = [
-        {
-            id: 1, title: "Assistant Manager", company_name: "kutumbhcare",
-            salary: "Rs 10,000 - Rs 20,999", location: "Noida", profession: "Nurse",
-            education: "Graduate", description: "It is a long established fact that a reader will be distracted by the readable contentment."
-        },
-        {
-            id: 2, title: "Assistant Manager", company_name: "kutumbhcare",
-            salary: "Rs 10,000 - Rs 20,999", location: "Noida", profession: "Nurse",
-            education: "Graduate", description: "It is a long established fact that a reader will be distracted by the readable contentment."
-        },
-        {
-            id: 3, title: "Assistant Manager", company_name: "kutumbhcare",
-            salary: "Rs 10,000 - Rs 20,999", location: "Noida", profession: "Nurse",
-            education: "Graduate", description: "It is a long established fact that a reader will be distracted by the readable contentment."
-        }
-
-    ];
-    const [loadRange, setLoadRange] = useState({ page: 1, limit: 20 });
+    const [loadJobs, setLoadJobs] = useState({ page: 2, limit: 20 });
 
     const mobileScreen = useSelector(state => state.screenType) === "mobile";
 
-    const [postedJobs, setPostedJobs] = useState(jobs);
+    const [postedJobs, setPostedJobs] = useState([]);
     const breadcrumbs = [
         <Link underline="hover" sx={LinkStyles} key="1" color="inherit" href="/" >
             Home
@@ -103,15 +86,49 @@ const JobListing = () => {
         </FormControl>)
     }
 
-    const handleLoadMore = () => {
+
+    const handleLoadMore = async () => {
         // Increase the load range by the desired increment
-        setLoadRange((prevRange) => ({
-            start: prevRange.page + 1,
-            end: prevRange.limit
+        setLoadJobs((prevRange) => ({
+            page: prevRange.page + 1,
+            limit: prevRange.limit
         }));
-        setPostedJobs((prevJobs) => [...prevJobs, ...jobs]);
+
+        try {
+            const api_url = process.env.REACT_APP_GET_JOB_ITEMS + "?page=" + loadJobs.page; // Replace with your .env variable name
+            const data = await getRequest(api_url);
+            if (Array.isArray(data.data)) {
+                setPostedJobs((prevJobs) => [...prevJobs, ...data.data]);
+
+            } else {
+                // Handle the case when data.data is not iterable
+                console.error("Data is not iterable:", data.data);
+            }
+
+        } catch (error) {
+            // Handle the error
+            console.error("Fetch error:", error);
+        }
+
 
     };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const api_url = process.env.REACT_APP_GET_JOB_ITEMS; // Replace with your .env variable name
+                const data = await getRequest(api_url);
+                // Handle the fetched data
+                setPostedJobs(data.data)
+
+            } catch (error) {
+                // Handle the error
+                console.error("Fetch error:", error);
+            }
+        };
+        fetchData();
+    }, [])
+
     return (
         <Box className="JobsListingPage" sx={{
             height: "100vh"
@@ -144,17 +161,17 @@ const JobListing = () => {
                     </Stack>
 
                     <Stack direction="column" gap={2} className="JobsSection" >
-                        {postedJobs.map((jobInfo, index) => {
+                        {postedJobs && postedJobs.map((jobInfo, index) => {
                             return <JobItem key={index}
-                                id={jobInfo.id}
-                                jobTitle={jobInfo.title}
+                                id={jobInfo._id}
+                                jobTitle={jobInfo.jobTitle}
                                 companyName={jobInfo.company_name}
-                                salary={jobInfo.salary}
-                                location={jobInfo.location}
-                                profession={jobInfo.profession}
-                                education={jobInfo.education}
-                                description={jobInfo.description}
-                                jobTag="women" />
+                                salary={jobInfo.montlySalary}
+                                location={jobInfo.jobLocation}
+                                profession={jobInfo.designation}
+                                education={jobInfo.educationalQualification}
+                                description={jobInfo.jobDescription}
+                                jobTag={jobInfo.gender} />
                         })}
                     </Stack>
                     <Button variant="contained"

@@ -8,18 +8,18 @@ const JobItem = (props) => {
     const navigate = useNavigate();
 
     const handleViewJobDescription = () => {
-        navigate(`/job-description/7589743958${id}`);
+        navigate(`/job-description/${id}`);
     };
 
 
     return (
 
         <Stack direction="column" gap={1} className="JobItem" sx={jobItemStyles}>
-            {jobTag === "men" &&
+            {jobTag === "male" &&
                 <Box sx={jobItemTagStyles}>
                     <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/men_tag.png" alt="MenTag" width="100%" height="100%"></img>
                 </Box>}
-            {jobTag === "women" &&
+            {jobTag === "female" &&
                 <Box sx={jobItemTagStyles}>
                     <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/women_tag.png" alt="womenTag" width="100%" height="100%"></img>
                 </Box>}
@@ -49,7 +49,7 @@ const JobItem = (props) => {
             </Typography>
 
             <Typography sx={stackStyles}>
-                {salary}
+                Rs. {salary}
             </Typography>
 
             <Stack direction="row" gap={2} sx={{
@@ -93,7 +93,10 @@ const JobItem = (props) => {
 
             <Typography sx={{
                 ...stackStyles,
-                color: "#615F5F"
+                color: "#615F5F",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis"
             }}>
                 {description}
             </Typography>

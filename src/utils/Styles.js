@@ -1,3 +1,10 @@
+export const WebsiteMainHeading = {
+    fontFamily: "'Manrope',' sans- serif'",
+    fontWeight: "700",
+    color: "#000000",
+    textAlign: "center",
+    lineHeight: "1.5"
+}
 export const jobItemStyles = {
     width: '100%',
     minHeight: '302px',
@@ -11,9 +18,9 @@ export const jobItemStyles = {
 };
 
 export const jobItemTagStyles = {
-    width: "100px",
+    width: "130px",
     position: "absolute",
-    top: "-13px",
+    top: "-16px",
     right: "0"
 }
 
@@ -50,4 +57,30 @@ export const ApplyButtonStyles = {
 
 export const LinkStyles = {
     fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1rem", "lg": "1rem", "xl": "1rem" }
+}
+
+export const WebsiteContainedButtonStyles = {
+    background: "#FF671F",
+    borderRadius: "33px",
+    textTransform: "capitalize",
+    fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
+    color: "#ffffff",
+    "&:hover": {
+        background: "#FF671F",
+        color: "#ffffff",
+
+    }
+}
+
+export const WebsiteOutlinedButtonStyles = {
+    color: "#FF671F",
+    borderRadius: "33px",
+    textTransform: "capitalize",
+    border: "1px solid",
+    fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
+    "&:hover": {
+        color: "#FF671F",
+        border: "1px solid",
+
+    }
 }

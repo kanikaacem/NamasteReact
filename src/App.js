@@ -44,7 +44,9 @@ import JobListing from './Pages/JobListing/JobListing';
 import JobDescription from './Pages/JobDescription/JobDescription';
 import OTPVerification from './Pages/Candidate/OTPVerification';
 
-import HomePageLite from "./Pages/HomeLite/HomePageLite"
+// import HomePageLite from "./Pages/HomePageLiteSection/HomePageLite";
+// import LiteAction from "./Pages/HomePageLiteSection/LiteAction";
+// import CandidateInformation from "./Pages/HomePageLiteSection/CandidateInformation";
 function App() {
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
@@ -60,7 +62,9 @@ function App() {
           <Route path="/contact-us" element={<ContactUs></ContactUs>} />
           <Route path="/about-us" element={<AboutUs></AboutUs>} />
 
-          <Route path="/hompagelite" element={<HomePageLite></HomePageLite>} />
+          {/* <Route path="/hompagelite" element={<HomePageLite></HomePageLite>} />
+          <Route path="/useraction" element={<LiteAction></LiteAction>} />
+          <Route path="/candidate-information" element={<CandidateInformation></CandidateInformation>} /> */}
 
           <Route path="/forgot-password/employer" element={<ForgotPasswordPage user="employer" />} />
           <Route path="/reset-password/employer/:token" element={<ResetPasswordPage user="employer" />} />

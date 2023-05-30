@@ -8,6 +8,8 @@ import ViewMoreSection from "./Component/ViewMoreSection";
 import Footer from "../../ThemeComponent/Common/Footer";
 import Heading from "./Component/Heading";
 
+import { WebsiteMainHeading } from "../../utils/Styles";
+
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
@@ -58,10 +60,11 @@ const FindJobButton = ({ style }) => {
             borderRadius: "33px",
             textTransform: "capitalize",
             fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
-            ...style, // Apply custom styles passed via the style prop
             "&:hover": {
                 background: "#FF671F",
-            }
+            },
+            ...style // Apply custom styles passed via the style prop
+
         }
         }> Job खोजें</Button >)
 }
@@ -74,12 +77,13 @@ const FindCandidateButton = ({ style }) => {
             textTransform: "capitalize",
             border: "1px solid",
             fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
-            ...style, // Apply custom styles passed via the style prop
             "&:hover": {
                 color: "#FF671F",
                 border: "1px solid",
 
-            }
+            },
+            ...style // Apply custom styles passed via the style prop
+
 
         }}
         variant="outlined">Candidate खोजें </Button>)
@@ -92,43 +96,6 @@ function Home() {
     const mobileScreen = useSelector(state => state.screenType) === "mobile";
     const [showButton, setShowButton] = useState(false);
     const [jobCategoryData, setJobCategoryData] = useState([]);
-
-    // const LanguageTranslatorSection = () => {
-    //     const currentLanguage = useSelector(state => state.currentLanguage);
-    //     const ChangeLanguage = (event) => {
-    //         dispatch({ type: 'CHANGE_LANGUAGE', payload: event.target.value });
-    //     }
-    //     return (
-    //         <Stack className="LanguageTranslator" direction="row" gap={1} sx={{
-    //             padding: "10px",
-    //             justifyContent: "center",
-    //             alignItems: "center"
-    //         }}>
-    //             <Typography variant="h1" component="h2" sx={{
-    //                 fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1rem", "xl": "1rem", "lg": "1rem" },
-    //                 fontFamily: "'Manrope',' sans- serif'",
-    //                 fontWeight: "400",
-    //                 color: "#000000",
-    //                 textAlign: "center",
-    //             }}>
-    //                 {t('CHOOSE_THE_LANGUAGE_YOU_LIKE')}
-    //             </Typography >
-
-    //             <select style={{
-    //                 minWidth: "60px",
-    //                 border: "none",
-    //                 outline: "none"
-    //             }}
-    //                 name="cars" id="cars"
-    //                 value={currentLanguage}
-    //                 onChange={ChangeLanguage}>
-    //                 <option value="hn">Hindi</option>
-    //                 <option value="en">English</option>
-    //                 <option value="ehn">Hinglish</option>
-    //             </select>
-    //         </Stack>
-    //     )
-    // }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -276,12 +243,8 @@ function Home() {
                                 width: { "xs": "100%", "sm": "100%", "md": "600px", "xl": "600px", "lg": "600px" }
                             }}>
                             <Typography variant="h1" component="h2" sx={{
-                                fontSize: { "xs": "1.25rem", "sm": "1.25rem", "md": "2rem", "xl": "2rem", "lg": "2rem" },
-                                fontFamily: "'Manrope',' sans- serif'",
-                                fontWeight: "700",
-                                color: "#000000",
-                                textAlign: "center",
-                                lineHeight: "1.5"
+                                ...WebsiteMainHeading,
+                                fontSize: { "xs": "1.25rem", "sm": "1.25rem", "md": "2rem", "xl": "2rem", "lg": "2rem" }
                             }}>
                                 {t(`INDIA'S_TRUSTED_jOB_PORTAL`)}
                             </Typography >

@@ -1,39 +1,96 @@
+import { postRequest } from "../../utils/ApiRequests";
 import { Box, Button, Stack, Container, Typography, TextField } from "@mui/material";
 import PageTopSection from "../Common/PageTopSection";
-// import FormLabel from "../Common/FormLabel";
-// import LoaderScreen from "../Common/LoaderScreen";
-// import Error from "../../ThemeComponent/Common/Error";
-
-// import { CandidateMobileNumberValidation } from "../../Validation/CandidateValidation";
+import Error from "../../ThemeComponent/Common/Error";
 import { Formik, Field, Form } from "formik";
 
-import { useNavigate } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 const OTPVerification = () => {
+    const location = useLocation();
     const navigate = useNavigate();
-    const [requestProcessing, setRequestProcessing] = useState('not_initiated');
+    const mobile_number = location?.state && location?.state?.mobile_number;
+    const [seconds, setSeconds] = useState(60);
 
     const otpVerficationFieldStyle = {
         width: "50px",
-        height: "40px !important",
-        textAlign: "center"
+        height: "40px",
+        textAlign: "center",
+        "& input": {
+            textAlign: "center",
+        },
     }
     const defaultValue = {
         otp_digit1: "",
         otp_digit2: "",
         otp_digit3: "",
-        otp_digit4: ""
+        otp_digit4: "",
+        otp_digit5: "",
+        otp_digit6: ""
     };
 
     const inputRefs = useRef([]);
 
+    const Timer = ({ seconds, setSeconds }) => {
+        useEffect(() => {
+            const timer = setInterval(() => {
+                setSeconds((prevSeconds) => {
+                    if (prevSeconds > 0) {
+                        return prevSeconds - 1;
+                    }
+                    return prevSeconds;
+                });
+            }, 1000);
+
+            return () => clearInterval(timer);
+        }, [seconds, setSeconds]);
+
+        const formattedTime = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
+
+        return (<span> {formattedTime}</span>)
+    }
+
     const handleSubmit = async (values, { setFieldError }) => {
-        setRequestProcessing('in_progress');
-        console.log(requestProcessing)
-        setTimeout(() => {
-            navigate('/otp-verification')
-            //  setRequestProcessing('complete');
-        }, 10000)
+        let otp = values.otp_digit1 + values.otp_digit2 + values.otp_digit3 + values.otp_digit4 +
+            values.otp_digit5 + values.otp_digit6;
+        otp = parseInt(otp);
+        try {
+            const api_url = process.env.REACT_APP_VERIFY_OTP;
+            const response = await postRequest(api_url, {
+                "mobile": mobile_number,
+                "otp": otp
+
+            });
+            if (response.status === "1") {
+                localStorage.setItem("token", response.token)
+                navigate("/job-listing")
+            }
+            else
+                setFieldError("otp_digit1", response.msg);
+
+        } catch (error) {
+            // Handle the error
+            console.error("Fetch error:", error);
+        }
+    }
+
+    const ResendOTP = async () => {
+
+        try {
+            const api_url = process.env.REACT_APP_GENERATE_OTP;
+            const response = await postRequest(api_url, {
+                "mobile": mobile_number,
+                "usertype": "candidate"
+
+            });
+            if (response.status === '1') {
+                // Reset the resend timer to 60 seconds
+                setSeconds(60);
+            }
+
+        } catch (error) {
+            console.error("Fetch error:", error);
+        }
     }
 
 
@@ -56,18 +113,17 @@ const OTPVerification = () => {
                         color: "#676767",
                         marginBottom: "10px"
                     }}>
-                        Enter the OTP sent to <b>811102223 </b>
+                        Enter the OTP sent to <b>{mobile_number} </b>
                     </Typography>
 
                     <Formik
                         initialValues={defaultValue}
-                        // validationSchema={}
                         onSubmit={handleSubmit}
                     >
                         {({ errors, touched, values }) => (
                             <Form className="OTPVerificationForm">
                                 <Stack direction="row" gap={1}>
-                                    {[1, 2, 3, 4].map(index => (
+                                    {[1, 2, 3, 4, 5, 6].map(index => (
                                         <Field
                                             key={index}
                                             sx={otpVerficationFieldStyle}
@@ -80,7 +136,7 @@ const OTPVerification = () => {
                                                 inputRefs.current[index] = el;
                                             }}
                                             onKeyDown={e => {
-                                                if (e.key === "Enter" && index < 4) {
+                                                if (e.key === "Enter" && index < 6) {
 
                                                     e.preventDefault(); // Prevent form submission on "Enter" key press
                                                     const nextInput = document.getElementById(`otp_digit${index + 1}`);
@@ -95,7 +151,10 @@ const OTPVerification = () => {
                                             }}
                                         />
                                     ))}
+
                                 </Stack>
+                                {errors.otp_digit1 && touched.otp_digit1 && <Error text={errors.otp_digit1} />}
+
                                 <Button variant="contained"
                                     disabled={Object.values(values).some((value) => value === "")} // Disable button if any OTP field is empty
 
@@ -122,7 +181,7 @@ const OTPVerification = () => {
                                     color: "#676767",
                                     marginBottom: "10px"
                                 }}>
-                                    OTP valid upto <b>01:00 </b>
+                                    OTP valid upto <b><Timer seconds={seconds} setSeconds={setSeconds} />  </b>
                                 </Typography>
 
                                 <Typography sx={{
@@ -132,7 +191,7 @@ const OTPVerification = () => {
                                     color: "#676767",
                                     marginBottom: "10px"
                                 }}>
-                                    OTP Not Received <span style={{ color: "#FF671F" }}><b>Resend OTP</b> </span>
+                                    OTP Not Received <span style={{ color: "#FF671F" }}><span onClick={ResendOTP}><b>Resend OTP</b></span> </span>
                                 </Typography>
 
                             </Form>

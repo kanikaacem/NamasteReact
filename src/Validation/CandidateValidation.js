@@ -78,5 +78,7 @@ export const updateCandidateBasicInfoSchema = yup.object().shape({
 })
 
 export const CandidateMobileNumberValidation = yup.object().shape({
-    mobile_number: yup.string().required("Mobile number is required").matches(phoneRegExp, 'Mobile number is not valid'),
+    mobile_number: yup.string()
+        .matches(/^\d{10}$/, 'Mobile number must be a 10-digit number')
+        .required('Mobile number is required'),
 });

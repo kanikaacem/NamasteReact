@@ -1,4 +1,5 @@
-import { Box,  Stack, Container, Typography, Link, Breadcrumbs } from "@mui/material";
+import { getRequest } from "../../utils/ApiRequests";
+import { Box, Stack, Container, Typography, Link, Breadcrumbs } from "@mui/material";
 import { stackStyles, tagStyles } from "../../utils/Styles";
 import PageTopSection from "../Common/PageTopSection";
 import ApplyForJobButton from "../Common/ApplyForJobButton";
@@ -7,21 +8,25 @@ import { useParams } from "react-router-dom";
 import { LinkStyles } from "../../utils/Styles";
 import Footer from "../../ThemeComponent/Common/Footer";
 
+import { useState, useEffect } from "react";
 const JobDescription = () => {
     const { id } = useParams();
-    // const user = useOutletContext();
-    // const [data, setdata] = useState("");
-    // useEffect(() => {
+    const [jobDescription, setJobDescription] = useState(null);
 
-    //     const getJobDescription = async () => {
-    //         let response = await postRequest(JobDescriptionURL + "?jobid=" + id);
-    //         if (response.status === '1')
-    //             setdata(response.data);
-    //     }
-
-
-    //     getJobDescription();
-    // }, [id]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const api_url = process.env.REACT_APP_GET_JOB_ITEMS + "?jobid=" + id; // Replace with your .env variable name
+                const data = await getRequest(api_url);
+                console.log(data.data)
+                setJobDescription(data.data[0])
+            } catch (error) {
+                // Handle the error
+                console.error("Fetch error:", error);
+            }
+        };
+        fetchData();
+    }, [id])
 
     const breadcrumbs = [
         <Link underline="hover" sx={LinkStyles} key="1" color="inherit" href="/" >
@@ -45,16 +50,16 @@ const JobDescription = () => {
         return (<hr style={{
             width: "100%",
             border: " 0.2px solid #EAEAEA",
-            margin: "20px 0px"
+            margin: "5px 0px"
         }}></hr>)
     }
-   
+
     return (
         <Box className="JobDescriptionPage" sx={{
             height: "100vh",
         }}>
-           <PageTopSection/>
-            
+            <PageTopSection />
+
             <Box className="WebsiteBreadcrumb" sx={{
                 padding: {
                     "xs": "10px", "sm": "10px",
@@ -66,7 +71,11 @@ const JobDescription = () => {
                 </Breadcrumbs>
             </Box>
 
-            <Container sx={{ padding: "0px", maxWidth: '1800px' }} maxWidth={false}>
+            <Container sx={{
+                padding: "0px", maxWidth: '1800px', minHeight: {
+                    "xs": "fit-content", "sm": "fit-content", "md": "623px", "lg": "623px", "xl": "623px"
+                }
+            }} maxWidth={false}>
                 <Box className="jobDescriptionSection" sx={{
                     background: { "xs": "#F2E4DB", "sm": "#F2E4DB", "md": "#ffffff", "lg": "#ffffff", "xl": "#ffffff" },
                     padding: "20px"
@@ -85,7 +94,7 @@ const JobDescription = () => {
 
                         <Stack direction="row" justifyContent="space-between">
                             <Typography sx={{ ...stackStyles, fontSize: { xs: '1.1rem', sm: '1.5rem', md: '1.5rem', lg: '1.5rem', xl: '1.5rem' }, fontWeight: '600' }}>
-                                Assistant Nurse
+                                {jobDescription?.jobTitle}
                             </Typography>
                             <Stack className="JobTimeLine" direction="row" alignItems="center" gap={1}>
                                 <Box sx={{ width: "10px" }}>
@@ -99,11 +108,11 @@ const JobDescription = () => {
                         </Stack>
 
                         <Typography sx={stackStyles}>
-                            kutumbhhrcare
+                            {jobDescription?.company_name}
                         </Typography>
 
                         <Typography sx={stackStyles}>
-                            Rs 10,000- Rs 20,999
+                            Rs. {jobDescription?.montlySalary}
                         </Typography>
 
                         <Stack direction="row" gap={2} sx={{
@@ -115,7 +124,7 @@ const JobDescription = () => {
                                     <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/location.png" alt="Location"></img>
                                 </Box>
                                 <Typography sx={stackStyles}>
-                                    Noida
+                                    {jobDescription?.jobLocation}
                                 </Typography>
 
                             </Stack>
@@ -127,7 +136,7 @@ const JobDescription = () => {
                                 </Box>
 
                                 <Typography sx={stackStyles}>
-                                    Graduate
+                                    {jobDescription?.designation}
                                 </Typography>
 
                             </Stack>
@@ -139,7 +148,7 @@ const JobDescription = () => {
                                 </Box>
 
                                 <Typography sx={stackStyles}>
-                                    education
+                                    {jobDescription?.educationalQualification}
                                 </Typography>
 
                             </Stack>
@@ -176,12 +185,7 @@ const JobDescription = () => {
                                 ...stackStyles,
                                 color: "#615F5F"
                             }}>
-                                It is a long established fact that a reader will be distracted by the
-                                readable content of a page when looking at its layout. The point of using
-                                Lorem Ipsum is that it has a more-or-less normal distribution of letters,
-                                as pposed to using 'Content here, content here', making it look like readable
-                                English. Many desktop publishing packages and web page editors now use Lorem
-                                Ipsum as their default model text humour and the like).
+                                {jobDescription?.jobDescription}
                             </Typography>
                         </Stack>
 
