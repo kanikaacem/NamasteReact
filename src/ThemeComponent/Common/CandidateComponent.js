@@ -1,134 +1,314 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
-
-import PhoneIcon from '@mui/icons-material/Phone';
-import ChatIcon from '@mui/icons-material/Chat';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
+import { ShortlistRejectCandidate } from "../../utils/ApiUrls";
+import { postRequest } from "../../utils/ApiRequests";
+import { Avatar, Box, Badge, Button, Stack, Typography } from "@mui/material";
 
 import Moment from 'react-moment';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const CandidateComponent = ({ item }) => {
-    console.log(item)
+import ThemeMessage from "./ThemeMessage";
+const CandidateComponent = ({ CandidateData, CandidateStatus, AppliedDate, jobId, jobInformation }) => {
+    const [candStatus, setCandStatus] = useState(CandidateStatus && CandidateStatus);
+    const [candidateAction, setCandidateAction] = useState(false);
+    const [candidateActionMessage, setCandidateActionMessage] = useState(false);
+
+    const navigate = useNavigate();
+    const CandidateAction = async (jobId, canId, status) => {
+        let response = await postRequest(ShortlistRejectCandidate, { jobid: jobId, candidateid: canId, status: status });
+        if (status === "shortlist")
+            setCandidateActionMessage("You have successfully shortlisted the Candidate.")
+        if (status === "rejected")
+            setCandidateActionMessage("You have successfully rejected the Candidate.")
+
+        if (response.status === '1') {
+            setCandStatus(status);
+            setCandidateAction(true);
+
+        }
+
+    }
     return (<>
-        <Stack direction="column" gap={1} sx={{ padding: "20px", background: "#FFFFFF" }}>
-            <Stack direction="row" gap={2} >
-                <Box sx={{ width: "25%" }}>
-                    <Stack direction="row" gap={2} alignItems="center" justifyContent="center">
-                        <Box sx={{ width: "200px" }}>
-                            <img src={window.location.origin + "/assets/profile.png"} alt="ProfileLogo" width="100%" sx={{ borderRadius: "50%" }} />
-                        </Box>
-                        <Stack gap={1} direction="column" sx={{ margin: "20px 0px" }}>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                Name:{item && item.userid && item.userid.fullname}
-                            </Typography>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                Email:{item && item.userid && item.userid.email}
-                            </Typography>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                Location :  {item && item.userid && item.userid.address}
-                            </Typography>
-                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                Notice Period : {item && item.userid && item.userid.notice_period}
-                            </Typography>
-                            <Typography component="div" sx={{ fontSize: "14px", textTransform: "capitalize" }}>
-                                Applied For :  {item && item.jobsrole.replaceAll("_", " ")}
-                            </Typography>
+        <ThemeMessage open={candidateAction} setOpen={setCandidateAction}
+            message={candidateActionMessage} type="success" />
 
-                        </Stack>
-                    </Stack>
-                    <Box sx={{ margin: "20px auto", textAlign: "center" }}>
-                        <Button variant="outlined" startIcon={<PhoneIcon />} > Call</Button>
-                    </Box>
+        <Box sx={{
+            background: " #FFFFFF",
+            border: "1px solid #E2D7F0",
+            borderRadius: "19px",
+            padding: "20px",
+            cursor: "pointer"
+        }}
+            onClick={() =>
+                navigate('/employer-dashboard/' + jobId + '/view-profile/' + CandidateData._id)
+            }>
+            <Stack direction={{ "lg": "row", "md": "row", "xs": "column" }}  gap={1} 
+            sx={{flexWrap:"wrap"}}>
+                <Box sx={{ width: { "lg": "8%", "md": "8%", "xs": "100%" } }}>
+                    <Badge color="secondary" variant="dot" >
+
+                        {CandidateData && CandidateData.profile_image && CandidateData.profile_image !== "demolink" ?
+                            <>
+                                <Box sx={{ width: "80px", height: "80px", position: "relative" }}>
+
+
+                                    <img src={CandidateData && CandidateData.profile_image}
+                                        alt={CandidateData && CandidateData.personalInfo && CandidateData.personalInfo.fullname}
+                                        width="100%" style={{ borderRadius: "50%", cursor: "pointer" }} />
+                                </Box>
+                            </>
+
+
+                            : <Avatar sx={{ fontSize: 80 }} alt={CandidateData && CandidateData.personalInfo && CandidateData.personalInfo.fullname} />}
+                    </Badge>
+
                 </Box>
-                <Box sx={{ width: "25%" }}>
-                    {item && item.userid.workhistory.map((work) => {
+                <Stack direction="column" gap={2} sx={{
+                    width:
+                        { "lg": "30%", "md": "30%", "xs": "100%" }
+                }}>
+                    <Typography component="div" sx={{
+                        fontSize: {
+                            "xs": "12px", "sm": "12px", "md": "24px", "lg": "24px", "xl": "24px"
+                        }, color: "#4E3A67", fontWeight: "700"
+                    }}>
+                        {CandidateData && CandidateData.personalInfo && CandidateData.personalInfo.fullname}
+                    </Typography>
+                    <Stack direction="row" gap={2}>
+                        <Typography component="div" sx={{
+                            fontSize: {
+                                "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                            }, color: "#4E3A67", fontWeight: "700"
+                        }}>
+                            Experience:
+                        </Typography>
+                        <Typography component="div" sx={{
+                            fontSize: {
+                                "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                            }, color: "#806E96"
+                        }}>
+                            {CandidateData && CandidateData.personalInfo && CandidateData.personalInfo.total_work_experience}
+                        </Typography>
+                    </Stack>
+                    <Stack direction="row" gap={2}>
+                        <Typography component="div" sx={{
+                            fontSize: {
+                                "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                            }, color: "#4E3A67", fontWeight: "700"
+                        }}>
+                            Location:
+                        </Typography>
+                        <Typography component="div" sx={{
+                            fontSize: {
+                                "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                            }, color: "#806E96"
+                        }}>
+                            {CandidateData && CandidateData.personalInfo && CandidateData.personalInfo.state}
+
+                        </Typography>
+                    </Stack>
+                    <Stack direction="row" gap={2}>
+                        <Typography component="div" sx={{
+                            fontSize: {
+                                "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                            }, color: "#4E3A67", fontWeight: "700"
+                        }}>
+                            Applied on:
+                        </Typography>
+                        <Typography component="div" sx={{
+                            fontSize: {
+                                "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                            }, color: "#806E96"
+                        }}>
+                            {new Date(
+                                AppliedDate
+                            ).toLocaleDateString()}
+                        </Typography>
+                    </Stack>
+                </Stack>
+                <Stack direction="column" sx={{
+                    width: { "lg": "25%", "md": "25%", "xs": "100%" }
+                }} gap={2}>
+                    {CandidateData && CandidateData.workHistory.map((item) => {
                         return (<>
-                            {typeof (work) != null &&
+                            <Stack direction="column" gap={1}>
+                                <Typography component="div" sx={{
+                                    fontSize: {
+                                        "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
 
-                                <Box>
-                                    <Typography component="div" sx={{ fontSize: "14px", fontWeight: "600", textTransform: "capitalize" }}>
-                                        {work && work.department}
-                                    </Typography>
-                                    <Typography component="div" sx={{ fontSize: "14px", textTransform: "capitalize" }}>
-                                        {work && work.designation}
-                                    </Typography>
-                                    {/* <Typography component="div" sx={{ fontSize: "14px" }}>
-                                        <Moment format="DD/MM/YYYY">
-                                            {item && item.startdate}
-                                        </Moment> to <Moment format="DD/MM/YYYY">
-                                            {item && item.endate}
-                                        </Moment>
-                                    </Typography> */}
-                                </Box>}
+                                    }, color: "#4E3A67", fontWeight: "700"
+                                }}>
+                                    {item.company_name}
+                                </Typography>
+                                <Typography component="div" sx={{
+                                    fontSize: {
+                                        "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
 
+                                    }, color: "#806E96"
+                                }}>
+                                    {item.designation}
+                                </Typography>
+                                <Typography component="div" sx={{
+                                    fontSize: {
+                                        "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                                    }, color: "#806E96"
+                                }}>
+                                    <Moment format="DD/MM/YYYY">{item.starting_year}</Moment>{" to "}
+                                    <Moment format="DD/MM/YYYY">{item.ending_year}</Moment>
+                                </Typography>
+                            </Stack>
                         </>)
                     })}
 
 
-                    {/* <Box>
-                        <Typography component="div" sx={{ fontSize: "14px", fontWeight: "600" }}>
-                            InnovationM
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                            Sr. software engineer
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                            Feb, 2022 to present
-                        </Typography>
-                    </Box>
+                </Stack>
 
-                    <Box>
-                        <Typography component="div" sx={{ fontSize: "14px", fontWeight: "600" }}>
-                            InnovationM
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                            Sr. software engineer
-                        </Typography>
-                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                            Feb, 2022 to present
-                        </Typography>
-                    </Box> */}
-                </Box>
-                <Box sx={{ width: "25%" }}>
+                <Stack direction="column" sx={{
+                    width: { "lg": "25%", "md": "25%", "xs": "100%" }
+                }} gap={2}>
                     {
-                        item && item.userid.education.map((education) => {
+                        CandidateData && CandidateData.educationalInfo.map((item) => {
                             return (<>
-                                {
-                                    typeof (education) != null && <>
-                                        <Box>
-                                            <Typography component="div" sx={{ fontSize: "14px", fontWeight: "600" }}>
-                                                {education && education.institute}
-                                            </Typography>
-                                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                {education && education.qualification}
-                                            </Typography>
+                                <Stack direction="column" gap={1}>
+                                    <Typography component="div" sx={{
+                                        fontSize: {
+                                            "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
 
-                                        </Box></>
-                                }
+                                        }, color: "#4E3A67", fontWeight: "700"
+                                    }}>
+                                        {item.institude_name ? item.institude_name : "Institute name"}
+                                    </Typography>
+                                    <Typography component="div" sx={{
+                                        fontSize: {
+                                            "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                                        }, color: "#806E96"
+                                    }}>
+                                        {item.qualification + " ( " + item.course_type.replace("_", " ").toUpperCase() + " )"}
+                                    </Typography>
+                                    <Typography component="div" sx={{
+                                        fontSize: {
+                                            "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                                        }, color: "#806E96"
+                                    }}>
+                                        <Moment format="YYYY">{item.starting_year}</Moment>{" to "}
+                                        <Moment format="YYYY">{item.ending_year}</Moment>
+                                    </Typography>
+                                </Stack>
                             </>)
                         })
                     }
-
-                </Box>
-                <Stack direction="column" gap={1} sx={{ width: "25%" }} alignItems="center" justifyContent="center">
-                    <Stack direction="row" gap={2}>
-                        <Button variant="outlined" startIcon={<PhoneIcon />} > Call Chat</Button>
-                        <Button variant="outlined" startIcon={<ChatIcon />} > Chat</Button>
-                    </Stack>
-                    <Box>
-                        <Button variant="outlined" startIcon={<TurnedInNotIcon />} >Saved Candidate</Button>
-                    </Box>
-                    <Box>
-                        <Button variant="outlined" startIcon={<ArrowDownwardIcon />} >Download Resume</Button>
-                    </Box>
                 </Stack>
             </Stack>
 
-            {/* <Box>
-                You applied to Kotlin developer Job - <a href={window.location.origin + "/employer-dashboard/view-profile"} > View Profile</a>
-            </Box> */}
+            <Typography component="div" sx={{
+                fontSize: {
+                    "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
 
-        </Stack>
+                }, color: "#4E3A67",
+                margin: "10px 0px"
+            }}>
+                {jobInformation !== undefined && "Applied to :  " + jobInformation.job_title}
+            </Typography>
+            <Stack direction="row"
+                sx={{
+                    margin: {"xs":"0px","sm":"0px","md":"0px","lg":"50px 0px","xl":"50px 0px"},
+                    flexWrap: "wrap",
+                    rowGap: "15px",
+                    justifyContent: { "lg": "space-between", "md": "center", "xs": "center" }
+                }}>
+                {candStatus === "pending" ? <>
+                    <Stack direction="row" gap={2} sx={{
+                        flexWrap: 'wrap'
+                    }}>
+                        <Button type="button"
+                            onClick={(event) => {
+                                CandidateAction(jobId, CandidateData._id, "shortlist");
+                                event.stopPropagation();
+                            }}
+                            sx={{
+                                background: " #FC9A7E",
+                                border: "1px solid #E2D7F0",
+                                borderRadius: "7px",
+                                color: " #4E3A67",
+                                padding: "10px",
+                                fontWeight: "700",
+                                minWidth: "225px",
+                                fontSize: {
+                                    "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                                },
+                                "&:hover": {
+                                    background: " #FC9A7E",
+                                    border: "1px solid #E2D7F0",
+                                    borderRadius: "7px",
+                                    color: " #4E3A67",
+                                    padding: "10px",
+                                    fontWeight: "700",
+                                    minWidth: "225px",
+                                    fontSize: {
+                                        "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                                    },
+                                }
+                            }}> Shortlist</Button>
+                        <Button type="button"
+                            onClick={(event) => {
+                                CandidateAction(jobId, CandidateData._id, "rejected");
+                                event.stopPropagation();
+                            }}
+
+                            sx={{
+                                background: "#FFFFFF",
+                                border: " 1px solid #E2D7F0",
+                                borderRadius: "7px",
+                                color: " #4E3A67",
+                                padding: "10px",
+                                fontWeight: "700",
+                                minWidth: "225px",
+                                fontSize: {
+                                    "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                                },
+
+                                "&:hover": {
+                                    background: "#FFFFFF",
+                                    border: " 1px solid #E2D7F0",
+                                    borderRadius: "7px",
+                                    color: " #4E3A67",
+                                    padding: "10px",
+                                    fontWeight: "700",
+                                    minWidth: "225px",
+                                    fontSize: {
+                                        "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                                    },
+                                }
+                            }}> Reject</Button>
+
+                    </Stack>
+
+                </> :
+                    <Typography component="div" sx={{
+                        fontSize: {
+                            "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px"
+
+                        }, color: "#806E96", textTransform: "capitalize"
+                    }}>
+                        {candStatus}
+                    </Typography>
+                }
+
+            </Stack>
+        </Box >
+
 
     </>)
 }

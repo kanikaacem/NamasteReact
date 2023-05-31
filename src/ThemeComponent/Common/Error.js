@@ -1,13 +1,16 @@
+import { Typography } from "@mui/material";
+
 const Error = ({ text }) => {
     return (<>
-        <span className="error"
-            style={{
+        <Typography className="error"
+            component="span"
+            sx={{
                 color: "#c72929",
-                fontSize: "14px",
+                fontSize: { "xs": "13px ", "sm": "13px", "md": "14px", "lg": "14px", "xl": "14px" },
                 fontWeight: "500",
-                // margin: "10px 0px",
-                display: "block"
-            }}> {text}</span></>)
+                display: "block",
+                textTransform: "capitalize"
+            }}> {text}</Typography></>)
 }
 
 export default Error;

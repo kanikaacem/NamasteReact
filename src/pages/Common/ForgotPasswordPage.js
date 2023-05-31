@@ -1,5 +1,5 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { CheckEmployerEmailExist, ForgotPasswordEmployerEmailURL } from "../../utils/ApiUrls";
+import { ForgotPasswordEmployerEmailURL, ForgotPasswordCandidateEmailURL } from "../../utils/ApiUrls";
 
 import { Box, Stack, Typography, TextField } from "@mui/material";
 import { Formik, Field, Form } from "formik";
@@ -12,30 +12,30 @@ import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from "../../ThemeComponent/Common/Error";
 import ThemeMessage from "../../ThemeComponent/Common/ThemeMessage";
 
-import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
-const ForgotPasswordPage = () => {
+const ForgotPasswordPage = ({ user }) => {
 
     const [emailSend, setEmailSend] = useState(false);
-
-
+    const { t } = useTranslation();
     const defaultValue = {
         email_address: ""
     }
 
     const handleSubmit = async (values, { setFieldError }) => {
-        let response = await postRequest(CheckEmployerEmailExist, {
+        let api_url = user === "employer" ? ForgotPasswordEmployerEmailURL : ForgotPasswordCandidateEmailURL;
+
+        let response = await postRequest(api_url, {
             email: values.email_address
         });
         ;
         console.log(response);
         let status = response.status;
-        if (status == 1) {
-            let response2 = await postRequest(ForgotPasswordEmployerEmailURL, {
+        if (status === "1") {
+            let response2 = await postRequest(api_url, {
                 email: values.email_address
             });
-            // console.log(response=2);
             if (response2.status === '1')
                 setEmailSend(true);
         } else {
@@ -50,64 +50,63 @@ const ForgotPasswordPage = () => {
                 <HeaderSec
                     color="black"
                     border="2px solid #8E8E8E" />
-                <Stack direction="row" gap={2} sx={{ height: "100%" }} >
-                    <Stack direction="column" alignItems="center" justifyContent="center" gap={3} sx={{ width: "50%", padding: "20px" }}>
-                        <Box>
-                            <Typography component="box" sx={{
-                                fontSize: "64px",
-                                fontFamily: "Work Sans, sans-serif",
-                                fontWeight: "700",
-                                color: "#4E3A67",
-                                display: "block",
-                                lineHeight: "40px"
-                            }}>
-                                Forgot
-
+                <Stack direction="row" gap={2}
+                    sx={{
+                        margin: { "lg": "100px 0px", "md": "100px 0px", "xs": "20px 0px" }
+                    }}
+                >
+                    <Box sx={{
+                        width: "50%",
+                        padding: "20px",
+                        display: { "lg": "block", "md": "block", "xs": "none" }
+                    }}>
+                        <Stack direction="column" gap={2} alignItems="center" justifyContent="center">
+                            <Box>
                                 <Typography component="box" sx={{
-                                    fontSize: "64px",
+                                    fontSize: { "lg": "64px", "md": "50px", "xs": "26px" },
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "700",
                                     color: "#4E3A67",
-                                    display: "block"
+                                    display: "block",
+                                    lineHeight: "40px"
                                 }}>
-                                    Password ?
-                                </Typography>
-                            </Typography>
-                        </Box>
-                        <Box sx={{ width: "500px", height: "500px" }}>
-                            <img src={window.location.origin + "/assets/ForgotPassword.jpg"} width="100%" height="100%" alt="Forgot Password" />
-                        </Box>
-                    </Stack>
-                    <Box sx={{ width: "50%", padding: "20px" }}>
+                                    {t('FORGOT_PASSWORD')}</Typography>
+                            </Box>
+                            <Box sx={{ maxWidth: "400px", height: "400px" }}>
+                                <img src={window.location.origin + "/assets/ForgotPassword.png"} width="100%" height="100%" alt="Forgot Password" />
+                            </Box>
+                        </Stack>
+
+                    </Box>
+                    <Box sx={{
+                        width: { "lg": "50%", "md": "50%", "xs": "100%" },
+                        padding: "20px"
+                    }}>
                         <Box
                             sx={{
                                 boxSizing: "border-box",
-                                width: "865px",
-                                height: "647",
                                 background: "#FFFFFF",
                                 border: "1px solid #EDEDED",
                                 borderRadius: "19px",
-                                position: "absolute",
-                                top: "197px",
                                 padding: "30px 50px",
                                 paddingBottom: "100px"
                             }}>
                             <Typography component="box" sx={{
-                                fontSize: "32px",
+                                fontSize: { "xs": "26px", "sm": "26px", "md": "32px", "lg": "32px", "xl": "32px" },
                                 fontFamily: "Montserrat",
                                 display: "block",
                                 margin: "20px 0px"
                             }}>
-                                Reset Password
+                                {t('RESET_PASSWORD')}
                             </Typography>
 
                             <Typography component="box" sx={{
-                                fontSize: "16px",
+                                fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" },
                                 fontFamily: "Montserrat",
                                 display: "block",
                                 margin: "20px 0px"
                             }}>
-                                Enter the email address associated with your account and we'll send you a link to reset your password.
+                                {t('RESET_PASSWORD_DESCRIPTION')}
                             </Typography>
 
                             <Formik
@@ -115,7 +114,7 @@ const ForgotPasswordPage = () => {
                                 validationSchema={emailFormValidationSchema}
                                 onSubmit={handleSubmit}
                             >
-                                {({ errors, touched, values, setFieldValue }) => (
+                                {({ errors, touched }) => (
                                     <Form className="EmailSignupForm">
                                         <ThemeFInputDiv>
                                             <ThemeFInputDiv>
@@ -128,7 +127,7 @@ const ForgotPasswordPage = () => {
                                                 {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
                                             </ThemeFInputDiv>
                                             <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                                <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Continue</ThemeButtonType2>
+                                                <ThemeButtonType2 variant="contained" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>{t('CONTINUE')}</ThemeButtonType2>
                                             </Stack>
                                         </ThemeFInputDiv>
                                     </Form>

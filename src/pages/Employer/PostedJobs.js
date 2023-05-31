@@ -1,152 +1,58 @@
-import { Box, Stack, Select, MenuItem, Tooltip, IconButton } from "@mui/material";
-import { DataGrid } from '@mui/x-data-grid';
-import Moment from 'react-moment';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { getAllPostedJobs } from "../../utils/ApiUrls";
+import { postRequest } from "../../utils/ApiRequests";
+
+import { Box, Stack, Select, MenuItem, Pagination } from "@mui/material";
 
 import { JobFilter } from "../../utils/Data";
-
-import ButtonType2 from "../../ThemeComponent/Common/ButtonType2";
-import ChatAssistant from "../../ThemeComponent/Common/ChatAssistant";
 import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
+import JobComponent from "../../ThemeComponent/JobComponent";
 
-import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
+import ErrorPage from "../ErrorPage";
+import Template1 from "../../ThemeComponent/LoadingTemplate/Template1";
 const PostedJobs = () => {
-    const user = localStorage.user && JSON.parse(localStorage.user);
-    const api_url = useSelector(state => state.api_url);
 
     const [jobFilter, setJobFilter] = useState(" ");
-    const [jobData, setJobData] = useState([]);
-    const columns = [
+    const [data, setData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const dataPerPage = 10;
+    const [isDataLoaded, setIsDataLoaded] = useState(false);
 
-        {
-            field: 'createdAt',
-            headerName: 'Created On',
-            width: 200,
-            renderCell: (params) => {
-                return (<>
-                    <Box>
-                        <Moment format="DD/MM/YYYY">
-                            {params.row.createdat}
-                        </Moment>
-                    </Box></>)
-            }
-
-        },
-        {
-            field: "job_title",
-            headerName: 'Job Title',
-            width: 250,
-            renderCell: (params) => {
-                return (<>
-                    <Stack>
-                        <Box> {params.row.title}</Box>
-                        <Stack>
-                            <Stack direction="row" gap={2}>
-                                <Box>
-                                    {params.row.experience} Years
-                                </Box>
-                                <Box>
-                                    {params.row.location}
-                                </Box>
-                            </Stack>
-                        </Stack>
-                    </Stack>
-                </>)
-            }
-        },
-        {
-            field: 'job_status',
-            headerName: 'Status',
-            width: 250,
-            renderCell: (params) => {
-                return (<>
-                    <Box> {params.row.approvejobs == "false" && "Under Review"}</Box>
-                </>
-                )
-            }
-        },
-        {
-            field: 'activity',
-            headerName: 'Activity',
-            width: 250,
-            renderCell: (params) => {
-                return (<>
-                    <Stack direction="column" gap={1} justifyContent="center" alignItems="center">
-                        <div> 112 Views</div>
-                        <div> 21 Applied </div>
-                    </Stack>
-                </>
-                )
-            }
-        },
-        {
-            field: 'action',
-            headerName: 'Action',
-            width: 230,
-            renderCell: (params) => {
-                return (<>
-                    <Stack direction="row">
-                        <Tooltip title="View" >
-                            <IconButton>
-                                <VisibilityIcon onClick={() => window.location.href = "job-description/" + params.row._id} />
-                            </IconButton>
-                        </Tooltip>
-
-                        <Tooltip title="Edit">
-                            <IconButton>
-                                <EditIcon />
-                            </IconButton>
-                        </Tooltip>
-
-                        <Tooltip title="Delete">
-                            <IconButton>
-                                <DeleteIcon />
-                            </IconButton>
-                        </Tooltip>
-
-                    </Stack>
-                </>)
-            }
-        }
-
-
-    ];
-
+    //Pagination 
+    const IndexOfLastData = currentPage * dataPerPage;
+    const IndexOfFirstData = IndexOfLastData - dataPerPage;
+    const jobs = data.length > 0 && data.slice(IndexOfFirstData, IndexOfLastData);
 
     useEffect(() => {
-        const getpostedjobs = async () => {
-            // if (jobFilter == " ") {
-            //     api_url = api_url + "/api/job/getpostedjobs";
-            // }
-            let data = await fetch(api_url + "/api/job/getpostedjobs", {
-                method: "POST",
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-Type': 'application/json; charset=UTF-8'
-                },
-                body: JSON.stringify({
-                    userid: user._id
 
-                }),
-            });
-            if (data.ok) {
-                data = await data.json();
-                console.log(data)
-                setJobData(data.data)
+        const getpostedjobs = async () => {
+            try {
+                let data = await postRequest(getAllPostedJobs);
+                if (data.status === '0') {
+                    setData([])
+                    setIsDataLoaded(true);
+                } else {
+                    setIsDataLoaded(true);
+                    setData(data.data);
+
+                }
+            } catch (err) {
+                setData([]);
+                setIsDataLoaded(true);
 
             }
+
         };
         getpostedjobs();
 
     }, []);
 
+
+
     return (<>
-        <Stack direction="row" sx={{ padding: "20px" }}>
-            <Stack sx={{ width: "80%" }} gap={1}>
+        <Stack direction="row" sx={{ padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" } }} className="PostedJobPage" gap={2}>
+            <Stack sx={{ width: { "lg": "80%", "md": "100%", "xs": "100%" } }} gap={1}>
                 <Stack direction="row" justifyContent="space-between">
                     <Select
                         variant="standard"
@@ -165,26 +71,45 @@ const PostedJobs = () => {
                             <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
                         )}
                     </Select>
-                    <Box>
-                        <ButtonType2 ButtonText="Post a Job" ClickEvent={() => window.location.href = window.location.origin + "/employer-dashboard/post-a-job"}></ButtonType2>
-                    </Box>
-                </Stack>
-                <Box sx={{ height: 500, width: '100%' }}>
-                    {jobData && <DataGrid
-                        getRowHeight={() => 'auto'}
-                        sx={{ background: "#FFFFFF" }}
-                        rows={jobData}
-                        columns={columns}
-                        pageSize={5}
-                        rowsPerPageOptions={[5]}
-                        getRowId={(jobData) => jobData._id}
 
-                    />}
+                </Stack>
+                <Box sx={{ minHeight: 500, width: '100%' }}>
+                    <Stack direction="column" gap={{
+                        "xs": 1, "sm": 1, "md": 1, "lg": 2, "xl": 2
+                    }}>
+                        {
+                            !isDataLoaded && <Stack direction="column" gap={{
+                                "xs": 1, "sm": 1, "md": 1, "lg": 2, "xl": 2
+                            }}>
+                                <Template1 />
+                                <Template1 />
+                                <Template1 />
+                            </Stack>}
+                        {
+                            isDataLoaded && data && data.length <= 0 &&
+
+                            <ErrorPage errorMessage="Data Not Present" />
+
+
+                        }
+
+                        {
+                            isDataLoaded && data && data.length > 0 && jobs.map((item) => {
+                                return (<>
+                                    <JobComponent key={item._id} data={item} data_id={item._id} userType="employer" />
+                                </>)
+                            })
+                        }
+                    </Stack>
+                    {data.length > 0 &&
+                        <Box >
+                            <Pagination count={data && Math.ceil(data.length / dataPerPage)} page={currentPage} onChange={(value) => setCurrentPage(value)} />
+                        </Box>
+                    }
+
                 </Box>
             </Stack>
-            <Box sx={{ width: "20%" }}>
-                <ChatAssistant />
-                <ChatComponent />
+            <Box sx={{ width: "20%", display: { "xs": "none", "sm": "none", "md": "none", "lg": "block", "xl": "block" } }}>
                 <ChatComponent />
             </Box>
         </Stack>

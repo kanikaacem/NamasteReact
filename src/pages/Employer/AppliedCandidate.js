@@ -1,121 +1,373 @@
-import { Box, Select, Stack, Typography, MenuItem } from "@mui/material";
+import { postRequest } from "../../utils/ApiRequests";
+import { JobDescriptionURL, GetCandidateOnParticularJob, getAllPostedJobs, AppliedCandidateOnPostedJob } from "../../utils/ApiUrls";
 
-import { JobFilter, CandidateFilter } from "../../utils/Data";
-
+import {
+    Box, Stack, Typography,
+    Select, Pagination, MenuItem
+} from "@mui/material";
 import CandidateComponent from "../../ThemeComponent/Common/CandidateComponent";
-import ChatAssistant from "../../ThemeComponent/Common/ChatAssistant";
 import ChatComponent from "../../ThemeComponent/Common/ChatComponent";
+import SocialMedia from "../../ThemeComponent/Common/SocialMedia";
 
-
-import { useSelector } from 'react-redux';
-
+import Template1 from "../../ThemeComponent/LoadingTemplate/Template1";
+import ErrorPage from "../ErrorPage";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 const AppliedCandidate = () => {
-    const user = localStorage.user && JSON.parse(localStorage.user);
-    const api_url = useSelector(state => state.api_url);
-
+    const [jobData, setJobData] = useState([]);
+    const [jobCanData, setJobCanData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const dataPerPage = 10;
+    const [pageType, setPageType] = useState("");
+    const [canDataLoaded, setCanDataLoaded] = useState(false);
+    //All applied Candidate 
     const [jobFilter, setJobFilter] = useState(" ");
-    const [candidateFilter, setCandidateFilter] = useState(" ");
-    const [data, setData] = useState();
+    //Pagination 
+    const IndexOfLastData = currentPage * dataPerPage;
+    const IndexOfFirstData = IndexOfLastData - dataPerPage;
+    const appliedCandidate = jobCanData.length > 0 && jobCanData.slice(IndexOfFirstData, IndexOfLastData);
+
+    const { id } = useParams();
+
+    const filterCandidate = async (id) => {
+        let response = await postRequest(GetCandidateOnParticularJob + id);
+        if (response.status === "1") {
+            setJobCanData(response.data);
+            setCanDataLoaded(true);
+        } else {
+            setJobCanData([]);
+            setCanDataLoaded(true);
+
+        }
+
+    }
     useEffect(() => {
-        const getCandidates = async () => {
-            let formData = new FormData();
-            formData = {
-                userid: user._id
-            }
-            let response = await fetch(api_url + "/api/job/getcandidatesonpostedjobs", {
-                // Adding method type
-                method: "POST",
-                // Adding body or contents to send
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-Type': 'application/json; charset=UTF-8'
-                },
-                body: JSON.stringify(formData),
-            })
-            if (response.ok) {
-                response = await response.json();
-                if (response.status == 1) {
-                    console.log(response);
-                    setData(response.data);
-                }
+        setJobCanData([]);
+        const getCandidateOnJob = async () => {
+            let response = await postRequest(GetCandidateOnParticularJob + id);
+            if (response.status === "1") {
+                setJobCanData(response.data);
+                setCanDataLoaded(true);
+            } else {
+                setCanDataLoaded(true);
 
             }
 
         }
-        getCandidates();
-    }, [])
+
+        const getJobDescription = async () => {
+            let response = await postRequest(JobDescriptionURL + "?jobid=" + id);
+            if (response.status === '1') setJobData(response.data);
+
+        }
+
+        const getpostedjobs = async () => {
+            try {
+                let data = await postRequest(getAllPostedJobs);
+                if (data.status === '0') {
+                    setJobData([])
+                } else {
+                    setJobData(data.data);
+
+                }
+            } catch (err) {
+                setJobData([]);
+
+            }
+
+        };
+        const getCandidateOnAllJob = async () => {
+            try {
+                let data = await postRequest(AppliedCandidateOnPostedJob);
+                // console.log(data);
+                if (data.status === '0') {
+                    setJobCanData([])
+                } else {
+                    setJobCanData(data.message);
+                    setCanDataLoaded(true);
+
+
+                }
+            } catch (err) {
+                setJobCanData([]);
+
+            }
+        }
+
+        id !== undefined ? (getCandidateOnJob() && getJobDescription()) : (getpostedjobs() && getCandidateOnAllJob());
+        id !== undefined ? setPageType("ParticularJobCandidate") : setPageType("AllJobCandidate")
+    }, [id])
     return (<>
-        <Stack direction="row" gap={2}>
-            <Stack direction="column" gap={2} className="JobRecommened Candidates" sx={{ padding: '20px', width: "80%" }}>
-                <Box>
-                    <Typography component="div" sx={{ fontSize: "20px", fontWeight: "600" }}>
-                        Applied Candidates
-                    </Typography>
-                </Box>
+        <Box className="AppliedCandidatePage"
+            sx={{
+                minHeight: "100vh"
+            }}>
+            <Stack direction="row" gap={{ "xs": 0, "sm": 0, "md": 2, "lg": 2, "xl": 2 }} className="AppliedCandidatePageWrapper"
+                sx={{
+                    padding: { "xs": "10px", "sm": "10px", "md": "10px", "lg": "20px", "xl": "20px" }
+                }}>
+                <Box sx={{
+                    width: { "xs": "100%", "sm": "100%", "md": `calc(100vw-451px)`, "lg": `calc(100vw-451px)`, "xl": `calc(100vw-451px)` },
 
-                <Stack direction="row" gap={2}>
-                    <Select
-                        variant="standard"
-                        labelId="demo-simple-select-label"
-                        name="role"
-                        value={candidateFilter}
-                        label="role"
-                        onChange={(event) => {
-                            setCandidateFilter(event.target.value);
-                        }}
-                        sx={{ width: "200px", display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                        disableUnderline
-                    >
-                        <MenuItem value=" ">All Candidates</MenuItem>
-                        {CandidateFilter.map((item) =>
-                            <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                        )}
-                    </Select>
+                }}>
+                    {pageType === "ParticularJobCandidate" && <>
+                        <Stack direction="row" justifyContent="space-between">
+                            <Box>
+                                <Typography component="div" sx={{
+                                    fontSize: {
+                                        "xs": "1rem", "sm": "1rem", "md": "1.6rem", "lg": "1.6rem", "xl": "1.6rem"
+                                    }, color: "#4E3A67", fontWeight: "700"
+                                }}>
+                                    {jobData && jobData.job_title ? jobData.job_title : " "}
+                                </Typography>
+                                <Typography component="div" sx={{
+                                    fontSize: {
+                                        "xs": "0.7rem", "sm": "0.7rem", "md": "1.6rem", "lg": "1.6rem", "xl": "1.6rem"
 
-                    <Select
-                        variant="standard"
-                        labelId="demo-simple-select-label"
-                        name="role"
-                        value={jobFilter}
-                        label="role"
-                        onChange={(event) => {
-                            setJobFilter(event.target.value);
-                        }}
-                        sx={{ width: "200px", display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
-                        disableUnderline
-                    >
-                        <MenuItem value=" ">All Jobs</MenuItem>
-                        {JobFilter.map((item) =>
-                            <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
-                        )}
-                    </Select>
+                                    }, color: "#4E3A67"
+                                }}>
+                                    {jobData && jobData.location_state ? jobData.location_state + "  " : " "}
+                                    {jobData && jobData.candidate_experience ?
+                                        "," + jobData.candidate_experience.min_age + " - " + jobData.candidate_experience.max_age + "Yrs" : " "}
+                                    {id && "|  Job Code:" + id}
+                                </Typography>
+                            </Box>
+                        </Stack>
 
-                </Stack>
+                        <Stack direction="row" gap={2}
 
-                <Stack direction="column" gap={2}>
+                            sx={{
+                                margin: "20px 0px"
+                            }}>
 
-                    {data ? data.map((item) => {
-                        return (<CandidateComponent item={item}></CandidateComponent>)
-                    }) :
-                        <Box sx={{ width: "100%" }}>
-                        </Box>
+                            <Typography component="div" sx={{
+                                fontSize: {
+                                    "xs": "1rem", "sm": "1rem", "md": "1.6rem", "lg": "1.6rem", "xl": "1.6rem"
+
+                                }, color: "#FC9A7E", fontWeight: "700"
+                            }}>
+                                {jobCanData.length > 0 && "Applications (" + jobCanData.length + ") "}
+                            </Typography>
+
+                        </Stack>
+
+
+                        <hr sx={{
+                            border: "1px solid #E1D4F2"
+
+                        }}></hr>
+
+                    </>}
+                    {
+                        pageType === "AllJobCandidate" && <>
+
+                            <Stack direction="row" gap={3} sx={{
+                                marginBottom: "15px"
+                            }}>
+                                {/* <Select
+                                    variant="standard"
+                                    labelId="demo-simple-select-label"
+                                    name="role"
+                                    value={canFilter}
+                                    label="role"
+                                    onChange={(event) => {
+                                        setCanFilter(event.target.value);
+                                    }}
+                                    sx={{ width: "200px", display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
+                                    disableUnderline
+                                >
+                                    <MenuItem value=" ">All Candidates</MenuItem>
+                                    {CandidateFilter.map((item) =>
+                                        <MenuItem value={item.value} key={item.id}>{item.name}</MenuItem>
+                                    )}
+                                </Select> */}
+
+                                <Select
+                                    variant="standard"
+                                    labelId="demo-simple-select-label"
+                                    name="role"
+                                    value={jobFilter}
+                                    label="role"
+                                    onChange={(event) => {
+                                        setJobFilter(event.target.value);
+                                        filterCandidate(event.target.value)
+                                    }}
+                                    sx={{ width: "350px", display: "block", boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 } }}
+                                    disableUnderline
+                                >
+                                    <MenuItem value=" ">All Jobs</MenuItem>
+                                    {jobData.length > 0 && jobData && jobData.map((item) =>
+                                        <MenuItem value={item._id} key={item._id}>{item.job_title}</MenuItem>
+                                    )}
+                                </Select>
+
+                            </Stack>
+
+                            <Stack direction="row" gap={2}
+                                sx={{
+                                    margin: "20px 0px"
+                                }}>
+
+                                <Typography component="div" sx={{
+                                    fontSize: {
+                                        "xs": "1rem", "sm": "1rem", "md": "1.6rem", "lg": "1.6rem", "xl": "1.6rem"
+
+                                    }, color: "#FC9A7E", fontWeight: "700"
+                                }}>
+                                    {jobCanData.length >= 0 && "Applications (" + jobCanData.length + ") "}
+                                </Typography>
+
+                            </Stack>
+
+
+                            <hr sx={{
+                                border: "1px solid #E1D4F2"
+
+                            }}></hr>
+
+                        </>
                     }
 
-                </Stack>
-            </Stack>
+                    <Box
+                        sx={{
+                            width: "100%"
 
-            <Box sx={{
-                // position: "fixed",
-                // right: "0px",
-                // height: "100vh",
-                // background: "#f2f5fa"
-            }}>
-                <ChatAssistant />
-                <ChatComponent />
-                <ChatComponent />
-            </Box>
-        </Stack>
+                        }} >
+                        {!canDataLoaded && <>
+                            <Template1 />
+                            <Template1 />
+                        </>}
+                        {canDataLoaded && jobCanData && jobCanData.length <= 0 && <>
+                            <Box sx={{
+                                padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" },
+                                boxSizing: "border-box"
+                            }}>
+                                <ErrorPage errorMessage="There is no candidate associated with this Job." />
+                            </Box>
+                        </>}
+
+                        {canDataLoaded && jobCanData && jobCanData.length > 0 && <>
+                            <Stack className="Candidates" direction="column"
+                                gap={{ "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 }}>
+                                {appliedCandidate.map((item) => {
+                                    return (<>
+                                        <CandidateComponent CandidateData={item.candidate}
+                                            AppliedDate={parseInt(item.candidateapplieddate)}
+                                            CandidateStatus={item.candidatestatus}
+                                            jobId={jobData._id}
+                                            jobInformation={item.jobsid}
+                                        />
+                                    </>)
+                                })}
+                                <Box >
+                                    <Pagination count={jobCanData && Math.ceil(jobCanData.length / dataPerPage)} page={currentPage}
+                                        onChange={(event, value) => setCurrentPage(value)} />
+                                </Box>
+
+                            </Stack>
+                        </>}
+                    </Box>
+
+                </Box>
+                <Box
+                    sx={{
+                        display: { "lg": "block", "md": "none", "xs": "none" }
+                    }}>
+                    <ChatComponent />
+
+                    <Stack direction="column"
+                        sx={{
+                            minHeight: "396px",
+                            background: "#FFFFFF",
+                            border: " 1px solid #E1D4F2",
+                            borderRadius: "19px",
+                            width: "100%",
+                            marginTop: "20px"
+                        }}>
+                        <Stack sx={{
+                            padding: "15px",
+                            height: "150px",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            <Typography component="div" sx={{ fontSize: "1rem", color: "#4E3A67", fontWeight: "600" }}>
+                                Become a JobsYahan certified Recruiter
+                            </Typography>
+
+                            <Box sx={{ cursor: "pointer" }}
+                                onClick={() => window.location.href = window.location.origin}>
+                                <Typography component="span"
+                                    sx={{
+                                        fontSize: "3.1rem",
+                                        fontWeight: "600",
+                                        color: "#4E3A67",
+                                        fontFamily: "Work Sans, sans-serif"
+                                    }}>
+                                    Jobs
+                                </Typography>
+                                <Typography component="span"
+                                    sx={{
+                                        fontSize: "3.1rem",
+                                        color: "#4E3A67",
+                                        fontFamily: "Work Sans, sans-serif"
+                                    }}>
+                                    Yahan
+                                </Typography>
+                            </Box>
+
+                            <Stack direction="row" alignItems="center" justifyContent="center">
+                                <Typography component="div" sx={{
+                                    fontSize: "1rem", color: "#FC9A7E", fontWeight: "600"
+                                }}>
+                                    Read More
+                                </Typography>
+                                <img height="16px" src={window.location.origin + "/assets/RightArrow.png"} alt="RightArrow" />
+                            </Stack>
+                        </Stack>
+                        <Stack
+                            direction="column"
+                            gap={2}
+                            sx={{
+                                minheight: "277px",
+                                background: "#F7F0FF",
+                                border: "1px solid #E1D4F2",
+                                borderRadius: "0px 0px 14px 14px",
+                                padding: "20px",
+                                height: "200px",
+
+                            }}>
+                            <Box>
+                                <Typography component="div" sx={{ fontSize: "1.2rem", color: "#4E3A67", fontWeight: "600" }}>
+                                    For Sales Enquiries
+                                </Typography>
+
+                                <Typography component="div" sx={{ fontSize: "1rem", color: "#4E3A67" }}>
+                                    Call On: 1800-103-7344
+                                </Typography>
+                                <Typography component="div" sx={{ fontSize: "1rem", color: "#4E3A67" }}>
+                                    ( Toll Free: 9:30 AM to 6:30 PM)
+                                </Typography>
+                            </Box>
+
+                            <Box>
+                                <Typography component="div" sx={{ fontSize: "1.2rem", color: "#4E3A67", fontWeight: "600" }}>
+                                    Socials
+                                </Typography>
+
+                                <Typography component="div" sx={{ fontSize: "1rem", color: "#4E3A67" }}>
+                                    jobsyahan@gmail.com
+                                </Typography>
+
+                                <Box sx={{ margin: "10px 0px" }}>
+                                    <SocialMedia />
+                                </Box>
+                            </Box>
+
+                        </Stack>
+                    </Stack>
+                </Box>
+            </Stack >
+        </Box >
     </>)
 }
 export default AppliedCandidate;

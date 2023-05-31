@@ -1,131 +1,41 @@
 /*--------------------------------------------Main Site-----------------------------------------------------------*/
 /* Job Categories in the Main site */
+export const social_icons = [
+    { id: 1, icon_text: "Snapchat", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon1.png", icon_url: "" },
+    { id: 2, icon_text: "Facebook", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon2.png", icon_url: "" },
+    { id: 3, icon_text: "Instagram", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon3.png", icon_url: "" },
+    { id: 4, icon_text: "SocialIcon", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon4.png", icon_url: "" },
+    { id: 5, icon_text: "VideoPlayer", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon5.png", icon_url: "" },
+    { id: 6, icon_text: "Linkedin", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon6.png", icon_url: "" },
+    { id: 7, icon_text: "Youtube", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon7.png", icon_url: "" },
+    { id: 8, icon_text: "Twitter", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon8.png", icon_url: "" }
+]
 export const JobCategories = [
     {
         id: 1,
-        logo: "./assets/app-development.png",
-        title: "FullStack Developer"
+        categoryImage: "/assets/Driver.png",
+        categoryName: "Driver"
 
     },
     {
         id: 2,
-        logo: "./assets/web-development.png",
-        title: "UI/UX Developer"
+        categoryImage: "/assets/OfficeHelper.png",
+        categoryName: "Office Helper"
 
     },
     {
         id: 3,
-        logo: "./assets/web-coding.png",
-        title: "Data Scientist"
+        categoryImage: "/assets/Waiter.png",
+        categoryName: "Waiter"
 
     },
     {
         id: 4,
-        logo: "./assets/Devops.png",
-        title: "Charted Accountant"
-
-    },
-    {
-        id: 5,
-        logo: "./assets/innovation.png",
-        title: "Textile Industries"
-
-    },
-    {
-        id: 6,
-        logo: "./assets/statistics.png",
-        title: "Cleaner,Washer"
-
-    },
-    {
-        id: 7,
-        logo: "./assets/app-development.png",
-        title: "Teacher Tutor"
-
-    },
-    {
-        id: 8,
-        logo: "./assets/web-development.png",
-        title: "Business Analyst"
-
-    },
-    {
-        id: 9,
-        logo: "./assets/web-coding.png",
-        title: "Beautician"
-
-    },
-    {
-        id: 10,
-        logo: "./assets/Devops.png",
-        title: "Telecom"
-
-    },
-    {
-        id: 11,
-        logo: "./assets/innovation.png",
-        title: "Hospital Nurse Boy"
-
-    },
-    {
-        id: 12,
-        logo: "./assets/statistics.png",
-        title: "Videographer,Photographer"
-
-    }, {
-        id: 13,
-        logo: "./assets/app-development.png",
-        title: "Bartender"
-
-    },
-    {
-        id: 14,
-        logo: "./assets/web-development.png",
-        title: "Electrician"
-
-    },
-    {
-        id: 15,
-        logo: "./assets/web-coding.png",
-        title: "Ticket Clerk"
-
-    },
-    {
-        id: 16,
-        logo: "./assets/Devops.png",
-        title: "Musician Orchestra"
-
-    },
-    {
-        id: 17,
-        logo: "./assets/innovation.png",
-        title: "Machine Operator"
-
-    },
-    {
-        id: 18,
-        logo: "./assets/statistics.png",
-        title: "Delivery servcie"
-
-    },
-    {
-        id: 19,
-        logo: "./assets/statistics.png",
-        title: "Finance"
-
-    },
-    {
-        id: 20,
-        logo: "./assets/statistics.png",
-        title: "Cooking Service"
-
-    },
-    {
-        id: 21,
-        logo: "./assets/statistics.png",
-        title: "Security Service"
+        categoryImage: "/assets/HouseKeeping.png",
+        categoryName: "House Keeping"
 
     }
+
 ];
 
 /* About us content in the Main Site */
@@ -199,83 +109,40 @@ export const reviews = [
 
 export const CandidateMenu = [
     {
+        id: 0,
+        MenuName: "HOME",
+        value: "candidate_dashboard",
+        url: "",
+
+    },
+    {
         id: 1,
-        MenuName: "Profile",
+        MenuName: "PROFILE",
         value: "profile",
-        url: "",
-        image: "profile.png"
-    },
-    // {
-    //     id: 2,
-    //     MenuName: "Refer App",
-    //     value: "refer_app",
-    //     url: "/",
-    //     image: "booking.png"
-    // },
-    {
-        id: 3,
-        MenuName: "Notification",
-        value: "notification",
-        url: "/",
-        image: "notification.png"
-    },
-    {
-        id: 4,
-        MenuName: "Recommend Jobs",
-        value: "recommend_jobs",
-        url: "",
-        image: "Job.png"
-    },
-    {
-        id: 5,
-        MenuName: "Applied Jobs",
-        value: "applied_jobs",
-        url: "",
-        image: "AllJob.png"
-    },
-    // {
-    //     id: 6,
-    //     MenuName: "Suggested Jobs",
-    //     value: "suggested_jobs",
-    //     url: "/",
-    //     image: "Job.png"
-    // },
-    {
-        id: 7,
-        MenuName: "Messages",
-        value: "messages",
-        url: "",
-        image: "chat.png"
-    },
-    {
-        id: 8,
-        MenuName: "Saved Jobs",
-        value: "saved_jobs",
-        url: "",
-        image: "SavedJob.png"
+        url: "profile",
     },
 
     {
-        id: 9,
-        MenuName: "Top company jobs",
-        value: "top_company_jobs",
-        url: "",
-        image: "SavedJob.png"
+        id: 2,
+        MenuName: "APPLIED_JOBS",
+        value: "applied_jobs",
+        url: "applied-jobs",
     },
-    // {
-    //     id: 10,
-    //     MenuName: "Search Appearance",
-    //     value: "search_apperances",
-    //     url: "/",
-    //     image: "Search.png"
-    // },
-    // {
-    //     id: 11,
-    //     MenuName: "Interested Employer",
-    //     value: "interested_employer",
-    //     url: "/",
-    //     image: "user.png"
-    // },
+
+    {
+        id: 3,
+        MenuName: "SAVED_JOBS",
+        value: "saved_jobs",
+        url: "saved-jobs",
+    },
+
+    {
+        id: 4,
+        MenuName: "LIKED_JOBS",
+        value: "liked_jobs",
+        url: "liked-jobs",
+    }
+
 ]
 
 export const CandidateLogoutMenu = [
@@ -327,8 +194,8 @@ export const EmployerMenu = [
     {
         id: 1,
         Menu: "WorkOutlineIcon",
-        MenuName: "Dashboard",
-        value: "dashboard",
+        MenuName: "DASHBOARD",
+        value: "employer_dashboard",
         url: ""
 
     },
@@ -336,7 +203,7 @@ export const EmployerMenu = [
     {
         id: 2,
         Menu: "WorkOutlineIcon",
-        MenuName: "Posted Jobs",
+        MenuName: "POSTED_JOBS",
         value: "posted_jobs",
         url: "posted-jobs"
 
@@ -344,7 +211,7 @@ export const EmployerMenu = [
     {
         id: 3,
         Menu: "WorkOutlineIcon",
-        MenuName: "Post a Job",
+        MenuName: "POST_A_JOB",
         value: "post_a_job",
         url: "post-a-job"
 
@@ -352,44 +219,21 @@ export const EmployerMenu = [
     {
         id: 4,
         Menu: "WorkOutlineIcon",
-        MenuName: "Applied Candidates",
+        MenuName: "APPLIED_CANDIDATES",
         value: "applied_candidates",
         url: "applied-candidates"
 
     },
-    {
-        id: 5,
-        Menu: "WorkOutlineIcon",
-        MenuName: "Saved Candidates",
-        value: "saved_candidates",
-        url: "saved-candidates"
-
-    },
-    // {
-    //     id: 6,
-    //     Menu: "WorkOutlineIcon",
-    //     MenuName: "Subscription Plans",
-    //     value: "subscription_plans",
-    //     url: "subscription-plan"
-
-    // },
 
     {
         id: 5,
         Menu: "WorkOutlineIcon",
-        MenuName: "Account Setting",
+        MenuName: "ACCOUNT_SETTING",
         value: "account-setting",
         url: "account-setting"
 
-    },
-    // {
-    //     id: 8,
-    //     Menu: "WorkOutlineIcon",
-    //     MenuName: "Change Password",
-    //     value: "change-password",
-    //     url: "change-password"
+    }
 
-    // }
 ]
 export const AccountSettingMenu = [
     {
@@ -408,10 +252,10 @@ export const AccountSettingMenu = [
         id: 4,
         menu_name: "change_password",
     },
-    {
-        id: 5,
-        menu_name: "subscription_plan",
-    }
+    // {
+    //     id: 5,
+    //     menu_name: "subscription_plan",
+    // }
 ]
 /*--------------------------------------------------------DATA-----------------------------------------------------------*/
 /*Cities Data */
@@ -488,6 +332,8 @@ export const CandidateEducation = [
     { id: 23, Name: "Passed CFA Level 2", value: "Passed CFA Level 2" },
     { id: 24, Name: "Passed CFA Level 3", value: "Passed CFA Level 3" },
     { id: 25, Name: "PGDDA", value: "PGDDA" },
+    { id: 26, Name: "10th", value: "10" },
+    { id: 27, Name: "12th", value: "12" }
 
 ]
 
@@ -514,31 +360,7 @@ export const CompanyType = [
         value: "big_corporate_(more_than_1K_employee)",
         name: "Big Corporate (More than 1K employee)"
     },
-    // {
-    //     id: 5,
-    //     value: "fintech_startup",
-    //     name: "FinTech startup"
-    // },
-    // {
-    //     id: 6,
-    //     value: "al_ml_startup",
-    //     name: "AL/ML Startup"
-    // },
-    // {
-    //     id: 7,
-    //     value: 'agri_tech_startup',
-    //     name: "ACOM startup"
-    // },
-    // {
-    //     id: 8,
-    //     value: "consultant",
-    //     name: "Consultant"
-    // },
-    // {
-    //     id: 9,
-    //     value: "technology",
-    //     name: "Technology service Company"
-    // }
+
 ]
 /* Role Data*/
 export const Role = [
@@ -600,8 +422,8 @@ export const PerferredLocation = [
 export const MaritalStatus = [
     {
         id: 1,
-        value: "single",
-        Name: "Single"
+        value: "unmarried",
+        Name: "Unmarried"
     },
     {
         id: 2,
@@ -641,20 +463,7 @@ export const AssociationType = [
         Name: "Freelancing"
     }
 ]
-/*
-/*Job Working Type */
-// export const JobWorkingType = [
-//     {
-//         id: 1,
-//         value: "work_from_home",
-//         Name: "Work From Home"
-//     },
-//     {
-//         id: 2,
-//         value: "Office",
-//         Name: "Office"
-//     }
-// ]
+
 /* Job Payment Type */
 export const PaymentType = [
     {
@@ -677,6 +486,7 @@ export const PaymentType = [
         value: "montly",
         Name: "Montly"
     }
+
 ]
 /* Job Filter */
 
@@ -703,18 +513,21 @@ export const JobFilter = [
     }
 ]
 /*Candidate Filter */
+
 export const CandidateFilter = [
     {
         id: 1,
-        value: "shortlisted",
-        name: "Shortlisted"
+        value: "shortlisted_candidates",
+        name: "Shortlisted Candidates",
+
     },
     {
         id: 2,
-        value: "rejected",
-        name: "Rejected"
+        value: "saved_candidates",
+        name: "Saved Candidates"
     }
 ]
+
 /* Interivew Meeting Type */
 export const MeetingType = [
     {
@@ -804,17 +617,8 @@ export const socialLogin = [
         id: 1,
         value: "Google Login",
         image_url: "../assets/image_10.png"
-    },
-    {
-        id: 2,
-        value: "Linkedin Login",
-        image_url: "../assets/image_11.png"
-    },
-    {
-        id: 3,
-        value: "facebook Login",
-        image_url: "../assets/image_12.png"
     }
+
 ]
 
 export const WorkingDays = [
@@ -851,14 +655,18 @@ export const WorkingShift = [
 export const SalaryType = [
     {
         id: 1,
-        value: "Monthly"
+        value: "Yearly"
     },
     {
         id: 2,
-        value: "Per Day"
+        value: "Monthly"
     },
     {
         id: 3,
+        value: "Per Day"
+    },
+    {
+        id: 4,
         value: "Per Hour"
     }
 ]
@@ -1002,8 +810,19 @@ export const ExtraBenefitsData = [
         value: "Insurance"
     },
     {
-        label: "A",
-        value: "B"
+        label: "Travelling Expenses",
+        value: "travelling expenses"
+    },
+    {
+        label: "Food Expenses",
+        value: "food expenses"
+    }, {
+        label: "Accomodation Expenses",
+        value: "accomodation expenses"
+    },
+    {
+        label: "Uniform Expenses",
+        value: "uniform expenses"
     }
 ]
 
@@ -1036,7 +855,305 @@ export const minExperience = [
 
 ]
 
-export const ExperienceLevel = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+export const ExperienceLevel = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 export const AgeLevel = [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60];
 
 export const JobWorkingPlaceData = ['Work from Home', 'Work from Office'];
+
+export const categoryData = [
+    {
+        id: 1,
+        name: "supply_chain",
+        Text: "Supply Chain",
+        image1: "/assets/Group.png",
+        image2: "/assets/Group2.png"
+    },
+    {
+        id: 2,
+        name: "service_jobs",
+        Text: "Service Jobs",
+        image1: "/assets/Group3.png",
+        image2: "/assets/Group4.png"
+    },
+    {
+        id: 3,
+        name: "digital",
+        Text: "Digital & Tech",
+        image1: "/assets/Group5.png",
+        image2: "/assets/Group6.png"
+    },
+    {
+        id: 4,
+        name: "marketing",
+        Text: "Marketing",
+        image1: "/assets/Group5.png",
+        image2: "/assets/Group6.png"
+    },
+    {
+        id: 5,
+        name: "sales",
+        Text: "Sales",
+        image1: "/assets/Group9.png",
+        image2: "/assets/Group10.png"
+    }
+
+]
+
+export const supply_chain = [
+    {
+        id: 1,
+        value: "/assets/supply_chain1.png",
+        url: "loaders"
+    },
+    {
+        id: 2,
+        value: "/assets/supply_chain2.png",
+        url: "drivers"
+    },
+    {
+        id: 3,
+        value: "/assets/supply_chain3.png",
+        url: "delivery-rider"
+    },
+    {
+        id: 4,
+        value: "/assets/supply_chain4.png",
+        url: "courier-partner"
+    }
+]
+
+export const service_jobs = [
+    {
+        id: 1,
+        value: "/assets/service_job1.png",
+        url: "office-boy"
+    },
+    {
+        id: 2,
+        value: "/assets/service_job2.png",
+        url: "janitors"
+    },
+    {
+        id: 3,
+        value: "/assets/service_job3.png",
+        url: "beauticians"
+    },
+    {
+        id: 4,
+        value: "/assets/service_job4.png",
+        url: "nurse"
+    }
+]
+
+export const digital = [
+    {
+        id: 1,
+        value: "/assets/digital1.png",
+        url: "android-developer"
+    },
+    {
+        id: 2,
+        value: "/assets/digital2.png",
+        url: "web-developer"
+    },
+    {
+        id: 3,
+        value: "/assets/digital3.png",
+        url: "ai-developer"
+    }
+]
+
+export const marketing = [
+    {
+        id: 1,
+        value: "/assets/marketing1.png",
+        url: "brand-marketing"
+    },
+    {
+        id: 2,
+        value: "/assets/marketing2.png",
+        url: "digital-marketing"
+    }
+]
+
+export const sales = [
+    {
+        id: 1,
+        value: "/assets/sales1.png",
+        url: "field-sales"
+    }
+]
+
+export const FooterData = [
+    {
+        id: 1,
+        name: "HOME",
+        url: "/"
+    },
+    {
+        id: 2,
+        name: "ABOUT_US",
+        url: "/about-us"
+    }, {
+        id: 3,
+        name: "CAREERS",
+        url: "/"
+    },
+    {
+        id: 4,
+        name: "LIFE@JOBSYAHAN",
+        url: "/"
+    },
+    {
+        id: 5,
+        name: "BLOGS",
+        url: "/"
+    },
+    {
+        id: 6,
+        name: "WHAT_MAKES_US_SPECIAL_FOR_JOB_SEARCH",
+        url: "/"
+    },
+    {
+        id: 7,
+        name: "WHY_DO_EMPLOYERS_LOVE_US",
+        url: "/"
+    }
+]
+
+export const FooterData2 = [
+    {
+        id: 1,
+        name: "PRIVACY_POLICY",
+        url: "/"
+    },
+    {
+        id: 2,
+        name: "TERMS_AND_CONDITIONS",
+        url: "/"
+    }
+]
+
+export const FooterData3 = [
+    {
+        id: 1,
+        name: "TERMS_AND_CONDITIONS",
+        url: "/"
+    },
+    {
+        id: 2,
+        name: "PRIVACY_POLICY",
+        url: "/"
+    },
+    {
+        id: 3,
+        name: "COOKIES_POLICY",
+        url: "/"
+    },
+    {
+        id: 4,
+        name: "COPYRIGHT",
+        url: "/"
+    },
+    {
+        id: 5,
+        name: "NOTIFICATIONS",
+        url: "/"
+    },
+    {
+        id: 6,
+        name: "COOKIES",
+        url: "/"
+    },
+    {
+        id: 7,
+        name: "SETTINGS",
+        url: "/"
+    }
+]
+
+export const ExperienceHome =
+    ['1 yrs', '2 yrs', '3 yrs', '4 yrs', '5 yrs', '6 yrs', '7 yrs', '8 yrs', '9 yrs', '10 yrs', '11 yrs', '12 yrs', '13 yrs', '14 yrs', '15 yrs', '16 yrs', '17 yrs', '18 yrs', '19 yrs', '20 yrs', '21 yrs', '22 yrs', '23 yrs', '24 yrs', '25 yrs', '26 yrs', '27 yrs', '28 yrs', '29 yrs', 'above 30 yrs'];
+
+export const CTCHome = [
+    '1 lpa', '2 lpa', '3 lpa', '4 lpa', '5 lpa', '6 lpa', '7 lpa', '8 lpa', '9 lpa', '10 lpa', '11 lpa', '12 lpa', '13 lpa', '14 lpa', '15 lpa', '16 lpa', '17 lpa', '18 lpa', '19 lpa', '20 lpa', '21 lpa', '22 lpa', '23 lpa', '24 lpa', '25 lpa', '26 lpa', '27 lpa', '28 lpa', '29 lpa', 'above 30 lpa'
+]
+
+export const data1 = [
+    {
+        id: 1,
+        text: "Personal Details"
+    },
+    {
+        id: 2,
+        text: "Professional Details"
+    },
+    {
+        id: 3,
+        text: "Work History"
+    },
+    {
+        id: 4,
+        text: "Upload Resume"
+    }
+]
+
+export const data2 = [
+    {
+        id: 1,
+        text: "Personal Details"
+    },
+    {
+        id: 2,
+        text: "Work Details"
+    },
+    {
+        id: 3,
+        text: "General Details"
+    },
+]
+
+export const data3 = [
+    {
+        id: 1,
+        text: "Company Information"
+    },
+    {
+        id: 2,
+        text: "Company Social"
+    },
+    {
+        id: 3,
+        text: "Company Address"
+    }
+]
+
+export const data4 = [
+    {
+        id: 1,
+        text: "Job Information"
+    },
+    {
+        id: 2,
+        text: "Employee Requirements"
+    }
+]
+
+/*Language Options by Website*/
+export const LanguageOptions = [
+    {
+        id: 1,
+        value: "en",
+        text: "English"
+    },
+    {
+        id: 2,
+        value: "hn",
+        text: "Hindi"
+    },
+    {
+        id: 3,
+        value: "ehn",
+        text: "Hinglish"
+    }
+]

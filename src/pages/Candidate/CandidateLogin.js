@@ -1,350 +1,122 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { CandidateLoginURL } from "../../utils/ApiUrls";
+import { Box, Button, Stack, Container, Typography, TextField } from "@mui/material";
+import PageTopSection from "../Common/PageTopSection";
+import FormLabel from "../Common/FormLabel";
+import LoaderScreen from "../Common/LoaderScreen";
+import Error from "../../ThemeComponent/Common/Error";
 
-import { Box, TextField, Typography, Container, Stack, Button } from "@mui/material";
+import { CandidateMobileNumberValidation } from "../../Validation/CandidateValidation";
 import { Formik, Field, Form } from "formik";
 
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom'
-import { Navigate } from 'react-router-dom';
-
-import HeaderSec from "../../ThemeComponent/Common/HeaderSec";
-import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
-import { candidateLoginValidationSchema } from "../../Validation/CandidateValidation";
-import { socialLogin } from "../../utils/Data";
-
-import ShowMessageToastr from "../../ThemeComponent/Common/ShowMessageToastr";
-import Error from "../../ThemeComponent/Common/Error";
-import { SocialBox, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
-
-import { useState, useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 const CandidateLogin = () => {
-    const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
-    const [isEmailVerified, setIsEmailVerified] = useState(false);
-    const isLoggedIn = useSelector(state => state.isLoggedIn);
-
-    const dispatch = useDispatch();
-    const [authenticationError, setauthenticationError] = useState("");
-    const [showPassword, setshowPassword] = useState(false);
+    const navigate = useNavigate();
+    const [requestProcessing, setRequestProcessing] = useState('not_initiated');
     const defaultValue = {
-        email_address: "",
-        password: ""
+        mobile_number: "",
     }
 
     const handleSubmit = async (values, { setFieldError }) => {
-        // document.getElementById("login").disabled = "true";
-        let CandidateLoginForm = new FormData();
-        CandidateLoginForm = {
-            email: values.email_address,
-            password: values.password
+        setRequestProcessing('in_progress');
+        try {
+            const api_url = process.env.REACT_APP_GENERATE_OTP;
+            const response = await postRequest(api_url, {
+                "mobile": values.mobile_number,
+                "usertype": "candidate"
+
+            });
+            if (response.status === '1')
+                // Handle the fetched data
+                navigate('/otp-verification', { state: { mobile_number: values.mobile_number } });
+        } catch (error) {
+            // Handle the error
+            console.error("Fetch error:", error);
         }
-        localStorage.setItem("useremail", values.email_address);
-        localStorage.setItem("password", values.password);
-        let response = await postRequest(CandidateLoginURL, CandidateLoginForm);
-        if (response.status == '1') {
-            localStorage.setItem("auth_token", response.token);
-            console.log(response.data)
-            if (response.data.isemailverified && response.data.profilecompleted >= 50)
-                dispatch({ type: 'LOGIN', payload: response });
 
-            else if (response.data.isemailverified && response.data.profilecompleted < 50)
-                window.location.href = window.location.origin + "/profile/0";
-
-            else {
-                setShowEmailVerifiedMessage(true);
-                setIsEmailVerified(true);
-                document.getElementById("log_in").disabled = "true";
-
-            }
-        }
-        if (response.status == '0')
-            setFieldError("password", response.data);
     }
-    useEffect(() => {
-        let userData = localStorage.getItem("auth_token");
-        const getUserData = async () => {
-            let response = await postRequest(CandidateLoginURL, {
-                email: localStorage.getItem("useremail"),
-                password: localStorage.getItem("password")
-            })
-            if (response.status == '1') {
-                if (response.data.isemailverified && response.data.profilecompleted < 50) {
-                    window.location.href = window.location.origin + "/profile/0";
-                }
 
-                if (!response.data.isEmailVerified && response.data.profilecompleted < 50) {
-                    if (localStorage.getItem("useremail")) {
-                        setIsEmailVerified(true)
-                    }
-                }
-            }
-        }
 
-        (userData != " " && userData != null) && getUserData();
-
-    }, []);
     return (<>
-        {isLoggedIn == 'true' && <Navigate to="/candidate-dashboard"></Navigate>}
-        <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)} message="Email Address is not verified. Please Verify your email First" messageType="success" />
+        <Box className="CandidateLoginPage" sx={{
+            height: "100vh",
+            display: requestProcessing === "not_initiated" ? "block" : "none"
+        }}>
+            <PageTopSection TopSectionName="Verify Mobile Number" />
 
-        <Box className="CandidateLoginPage"
-            sx={{
-                minHeight: "100vh",
-                background: "#2B1E44",
-                backgroundImage:
-                    "url('../assets/g50.png')",
-                backgroundRepeat: " no-repeat",
-                backgroundPosition: " left 4px bottom 0px"
+            <Container sx={{ padding: "0px", maxWidth: '1800px' }} maxWidth={false}>
+                <Box className="CandidateLoginSection" sx={{
+                    padding: "24px 20px"
 
-            }}>
-            <Stack className="CandidateLoginPageInnerWrapper"
-                sx=
-                {{
-                    padding: "20px 50px",
-                    gap: "24px"
                 }}>
-                <HeaderSec
-                    border="2px solid rgba(255, 255, 255, 0.25)"
-                    color="#FFFFFF"
-                    background="#432C60" />
-                <Stack alignItems="flex-end" sx={{ position: "relative" }}>
-
-                    <Box sx={{
-                        position: "absolute",
-                        top: "90px",
-                        left: "204px",
-                        width: "800px"
-                    }}>
-                        <Typography component="box" sx={{
-                            fontSize: "64px",
-                            fontFamily: "Work Sans, sans-serif",
-                            fontWeight: "700",
-                            color: "#FC9A7E",
-                            display: "block",
-                            lineHeight: "40px"
-                        }}>
-                            Choose a job you love,
-
-                            <Typography component="box" sx={{
-                                fontSize: "64px",
-                                fontFamily: "Work Sans, sans-serif",
-                                fontWeight: "700",
-                                color: "#FFFFFF",
-                                display: "block",
-                                margin: "10px 0px",
-                                lineHeight: "1.0 !important"
-                            }}>
-                                and you never have to
-                                work a day in your life
-
-                            </Typography>
-
-                        </Typography>
-
-
-                    </Box>
-
-                    <Stack sx={{
-                        width: "449px",
-                        height: "730px",
-                        background: "#FBF8FF",
-                        boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
-                        borderRadius: "19px",
-                        padding: "50px 100px"
-                    }}>
-                        <Typography component="box" sx={{ fontSize: "20px", fontFamily: "Work Sans, sans-serif" }}>
-                            Welcome Guest,
-                        </Typography>
-                        <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700", marginBottom: "30px" }}>
-                            Sign In for JobsYahan
-                        </Typography>
-
-                        <Formik
-                            initialValues={defaultValue}
-                            validationSchema={candidateLoginValidationSchema}
-                            onSubmit={handleSubmit}
-                        >
-                            {({ errors, touched }) => (
-                                <Form className="candidateLogin">
-
-                                    <ThemeFInputDiv>
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="email_address" LableText="Email Address" />
-                                            <Field
-                                                error={errors.email_address && touched.email_address}
-                                                as={TextField}
-                                                id="email_address"
-                                                placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
-                                            {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
-
-                                        </ThemeFInputDiv>
-
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="password" LableText="Password" />
-                                            <Field
-                                                error={errors.password && touched.password}
-                                                id="password"
-                                                as={TextField}
-                                                placeholder="Enter Password" type="password" name="password" fullWidth />
-                                            {errors.password && touched.password && <Error text={errors.password} />}
-
-
-                                        </ThemeFInputDiv>
-                                    </ThemeFInputDiv>
-
-                                    <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                        {isEmailVerified &&
-                                            <ThemeButtonType2 variant="contained" id="resend_link" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
+                    <Formik
+                        initialValues={defaultValue}
+                        validationSchema={CandidateMobileNumberValidation}
+                        onSubmit={handleSubmit}
+                    >
+                        {({ errors, touched }) => (
+                            <Form className="CandidateLoginForm">
+                                <Stack direction="column" gap={2}>
+                                    <FormLabel LableFor="email_address" LableText="WhatsApp Mobile Number" />
+                                    <Field
+                                        sx={{
+                                            "& fieldset": { border: 'none' },
+                                        }}
+                                        error={errors.mobile_number && touched.mobile_number}
+                                        as={TextField}
+                                        id="mobile_number"
+                                        type="text"
+                                        name="mobile_number"
+                                        fullWidth
+                                        InputProps={{
+                                            placeholder: "Enter Mobile Number",
+                                            style: { color: "#999999", fontWeight: 400 },
+                                        }}
+                                    />
+                                    {errors.mobile_number && touched.mobile_number && <Error text={errors.mobile_number} />}
+                                </Stack>
+                                <Button variant="contained"
+                                    type="submit"
+                                    sx={{
+                                        background: "#FF671F",
+                                        borderRadius: "33px",
+                                        textTransform: "capitalize",
+                                        margin: "30px 0px",
+                                        width: "100%",
+                                        height: "43px",
+                                        fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
+                                        "&:hover": {
+                                            background: "#FF671F",
                                         }
-                                        <ThemeButtonType2 variant="contained" type="submit" id="log_in" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Log In</ThemeButtonType2>
-                                        <ThemeButtonType3 variant="outlined"
-                                            type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
-                                            onClick={() => {
-                                                window.location.href = window.location.origin + "/candidate-register"
-                                            }}
-                                        >Sign up</ThemeButtonType3>
-                                    </Stack>
-                                </Form>
-                            )}
-                        </Formik>
+                                    }
+                                    }> Send OTP</Button >
 
+                                <Typography sx={{
+                                    marginTop: "110px",
+                                    fontFamily: "Poppins",
+                                    fontSize: { xs: '1rem', sm: '1rem', md: '1.5rem', lg: '1.5rem', xl: '1.5rem' },
+                                    fontWeight: '500',
+                                    textAlign: "center"
+                                }}>
+                                    By continue you agree to JobYahan
+                                    <span style={{ color: "#0D99FF" }}> Terms & Conditions</span> and
+                                    <span style={{ color: "#0D99FF" }}> Privacy & Policy </span>
+                                </Typography>
 
-                        <Typography component="span" sx={{ fontSize: "16px", display: "flex" }}>
-                            <hr style={{ width: "150px", height: "0px", color: "#DAD9D9" }}></hr> or login in with <hr style={{ width: "150px", height: "0px" }}></hr>
-                        </Typography>
-                        <Stack direction="row" gap={3} justifyContent="center">
-                            {
-                                socialLogin.map((item) => {
-                                    return (<>
-                                        <SocialBox key={item.id}>
-                                            <img src={item.image_url} alt={item.value} />
-                                        </SocialBox>
-                                    </>)
-                                })
-                            }
-                        </Stack>
-                    </Stack>
-                </Stack>
-            </Stack>
-
-        </Box>
-
-
-        {/* <Box className="CandidateLoginPage">
-            <Box sx={{
-                width: "60px",
-                position: "absolute",
-                top: "2%",
-                left: "2%",
-                zIndex: "34",
-                color: "#2B1E44"
-            }}>
-                <Link to="/">
-                    <img src="./assets/companyLogo.png" width="100%" alt="companyLogo" />
-                </Link>
-            </Box>
-            <Box sx={{
-                width: "30%",
-                position: "absolute",
-                top: "40%",
-                left: "5%",
-                zIndex: "34",
-                color: "#2B1E44"
-            }}>
-                <Typography component="H1"
-                    sx={{ fontSize: "30px", fontWeight: "700" }}>
-                    Choose a job you love, and you never have to work a day in your life
-                </Typography>
-            </Box>
-            <Stack direction={{ xs: 'column', sm: 'row' }} gap={4} sx={{ height: "100vh" }} >
-                <Stack
-                    alignItems="center"
-                    justifyContent="center"
-                    sx={{
-                        width: { md: "40%", sm: "100%" },
-                        backgroundImage: `url("./assets/PGBForm2.png")`,
-                        position: "relative",
-                        opacity: "0.5"
-                    }}>
-                </Stack>
-                <Box sx={{ width: { md: "60%", sm: "100%" } }} >
-                    <Box
-                        sx={{
-                            borderRadius: "10px",
-                            padding: "27px 40px 20px 35px",
-                            // borderTop: "5px solid #2B1E44",
-                            background: "#FFFFFF",
-                            margin: { md: "100px", sm: "0px" },
-                            minHeight: "400px"
-                        }}>
-                        <Typography component="h3" sx={{ fontSize: "30px", fontWeight: "600", color: "#2B1E44" }}>
-                            Welcome Guest,
-                        </Typography>
-                        <Typography component="h3" sx={{ fontSize: "50px", color: "#2B1E44" }}>
-                            Sign In for JobYahan
-                        </Typography>
-
-
-                        <Box sx={{ margin: "20px 0px" }}>
-                            <Formik
-
-                                initialValues={defaultValue}
-                                validationSchema={candidateLoginValidationSchema}
-                                onSubmit={handleSubmit}
-                            >
-                                {({ errors, touched }) => (
-                                    <Form className="candidateLogin">
-
-                                        <Stack direction="column" gap={2} >
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="email_address" LableText="Email Address" />
-                                                <Field
-                                                    variant="standard"
-                                                    error={errors.email_address && touched.email_address}
-                                                    as={TextField}
-                                                    id="email_address"
-                                                    placeholder="Enter Email ID/ Username" type="text" name="email_address" fullWidth />
-                                                {errors.email_address && touched.email_address && <Error text={errors.email_address} />}
-
-                                            </Box>
-
-                                            <Box className="input-item">
-                                                <ThemeLabel LableFor="password" LableText="Password" />
-                                                <Field
-                                                    variant="standard"
-                                                    error={errors.password && touched.password}
-                                                    id="password"
-                                                    as={TextField}
-                                                    placeholder="Enter Password" type="password" name="password" fullWidth />
-                                                {errors.password && touched.password && <Error text={errors.password} />}
-
-
-                                            </Box>
-                                        </Stack>
-
-                                        <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                            <ThemeButtontype1 variant="contained" type="submit">Sign In</ThemeButtontype1>
-                                        </Box>
-                                    </Form>
-                                )}
-                            </Formik>
-                        </Box>
-
-                        <Typography component="span" sx={{ fontSize: "15px", textAlign: "center", display: "block" }}>
-                            Don't have a Account ?
-                            <Typography component="span" sx={{ color: "#2B1E44", margin: "0px 4px", cursor: "pointer" }}>
-                                <Link style={{ textDecoration: "none", fontWeight: "500" }}
-                                    to="/candidate-register">Register</Link>
-                            </Typography>
-                        </Typography>
-                    </Box>
+                            </Form>
+                        )}
+                    </Formik>
                 </Box>
 
-            </Stack>
+            </Container >
+        </Box >
 
-
-        </Box> */}
+        <Box className="LoaderScreenPage" sx={{
+            height: "100vh",
+            display: requestProcessing === "in_progress" ? "block" : "none"
+        }}>
+            <LoaderScreen />
+        </Box >
 
     </>)
 }

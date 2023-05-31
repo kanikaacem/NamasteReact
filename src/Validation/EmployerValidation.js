@@ -15,7 +15,7 @@ export const emailFormValidationSchema = yup.object().shape({
 //STEP 2
 export const PasswordGenFormValidationSchema = yup.object().shape({
     password: yup.string().required("Password is required").matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
     ),
     confirm_password: yup.string().required("Confirm Password is required")
@@ -23,9 +23,9 @@ export const PasswordGenFormValidationSchema = yup.object().shape({
 });
 
 //STEP 3
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+const phoneRegExp = /^((\+[1-9]{1,4}[ -]*)|(\([0-9]{2,3}\)[ -]*)|([0-9]{2,4})[ -]*)*?[0-9]{3,4}?[ -]*[0-9]{3,4}?$/
 export const MobileVerifyFormValidationSchema = yup.object().shape({
-    // mobile_number: yup.string().required("Mobile number is required")
+    mobile_number: yup.string().required("Mobile number is required").matches(/^[6-9]\d{9}$/, { message: "Please enter valid number.", excludeEmptyString: false })
 })
 
 export const OTPValidationSchema = yup.object().shape({
@@ -33,7 +33,6 @@ export const OTPValidationSchema = yup.object().shape({
 })
 
 //STEP 4 
-const PincodeRegExp = /^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$/;
 export const companyInfoValidationSchema = yup.object().shape({
     hr_name: yup.string().required("Hr Name is required"),
     company_type: yup.string().required("Company Type is required"),
@@ -66,7 +65,7 @@ export const ForgotPasswordValidation = yup.object().shape({
 export const CreateSubUserValidationSchema = yup.object().shape({
     email_address: yup.string().email("Email id is not valid").required("Email ID is required"),
     password: yup.string().required("Password is required").matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        /^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*])(?=.{8,})/,
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
     ),
     mobile_number: yup.string().required("Phone number is required").matches(phoneRegExp, 'Phone number is not valid')
@@ -80,5 +79,12 @@ export const CompanyUpdateInformationSchema = yup.object().shape({
     company_website: yup.string().required("Company Website is required"),
     company_pincode: yup.string().required("Company Lan Number is required").max(6),
     company_address: yup.string().required("Company Address is required"),
-    // company_gst_number: yup.string().required("GST Number is required")
+})
+
+
+//Contact Us Form Validation
+export const contactUsValidationSchema = yup.object().shape({
+    name: yup.string().required("Name  is required"),
+    mobile_number: yup.string().required("Mobile number is required").matches(phoneRegExp, 'Mobile number is not valid'),
+    message: yup.string().required("Message  is required")
 })

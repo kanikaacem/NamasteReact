@@ -3,11 +3,13 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const BackButton = ({ GoBack }) => {
     return (<>
-        <Box onClick={GoBack}
+        <Box
+            onClick={GoBack}
             sx={{
-                cursor: "pointer"
+                cursor: "pointer",
+                fontSize: { "xs": "15px", "sm": "15px", "md": "50px", "xl": "50px", "lg": "50px" }
             }}>
-            <ArrowBackIosIcon></ArrowBackIosIcon>
+            <ArrowBackIosIcon className="RegistrationBackButton"></ArrowBackIosIcon>
         </Box>
     </>)
 }

@@ -1,206 +1,163 @@
-import { Stack, Button } from "@mui/material";
-import { NavLink, Link, Outlet } from "react-router-dom";
-import { Avatar, Box, Badge, Typography, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import { Link } from 'react-router-dom';
 
-import PersonIcon from '@mui/icons-material/Person';
-import LogoutIcon from '@mui/icons-material/Logout';
-
-import WorkIcon from '@mui/icons-material/Work';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
-
-import Moment from 'react-moment';
+import { Button, Box, Stack, MenuItem, Select } from "@mui/material";
 import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-const HeaderSec = ({ color, background, border, buttonText }) => {
-    // let user = localStorage.getItem("user");
-    const [openProfile, setOpenProfile] = useState(false);
+/*getting website language data*/
+import { LanguageOptions } from "../../utils/Data";
+import { useTranslation } from 'react-i18next';
 
+const HeaderSec = ({ color, background, border, buttonText, userType }) => {
+    const currentLanguage = useSelector(state => state.currentLanguage);
+    const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    const dispatch = useDispatch();
+    const [showCandidateButton, setShowCandidateButton] = useState(false);
+    // const [showEmployerButton, setShowEmployerButton] = useState(false);
+    const [selectedValue, setSelectedValue] = useState(currentLanguage);
+
+    const { t } = useTranslation();
+
+    const changeLanguage = (event) => {
+        setSelectedValue(event.target.value);
+        dispatch({ type: 'CHANGE_LANGUAGE', payload: event.target.value });
+    };
+
+    useEffect(() => {
+
+        if (window.location.pathname === "/") {
+            setShowCandidateButton(true);
+            // setShowEmployerButton(true);
+        }
+
+    }, []);
     return (<>
-
-        <Stack direction="row" justifyContent="space-between">
+        <Stack direction={{ "lg": "row", "md": "row", "xs": "column" }}
+            justifyContent="space-between"
+            alignItems="center"
+            sx={{
+                "gap": { "xs": "0px", "sm": "32px", "md": "32px", "lg": "32px", "xl": "32px" }
+            }}
+        >
             <CompanyLogo color={color} />
+            <Stack direction="row"
+                sx={{
+                    width: { "lg": `fit-content`, "md": `"fit-content"`, "xs": "fit-content" },
+                    flexWrap: "wrap",
+                    justifyContent: "flex-end"
+                }}
+            >
 
-            <Stack direction="row" gap={2}>
-                <Button type="button" variant="outlined"
-                    sx={{
-                        width: "200px",
-                        borderRadius: "44px",
-                        fontSize: "18px",
-                        border: { border },
-                        color: { color },
-                        textTransform: "capitalize",
-                        fontWeight: "600",
-                        fontFamily: "Work Sans, sans-serif !important",
-                        background: { background },
-                        "&:hover": {
-                            border: { border },
+                {
+                    showCandidateButton && isLoggedIn && userType === "candidate" &&
+                    < Button type="button" variant="outlined"
+                        component={Link} to="/candidate-dashboard"
+
+                        sx={{
+                            width: "200px",
+                            borderRadius: "44px",
+                            fontSize: { "xs": "14px", "sm": "18px", "md": "18px", "lg": "18px", "xl": "18px" },
                             color: { color },
-                            background: { background }
+                            textTransform: "capitalize",
+                            fontWeight: "600",
+                            fontFamily: "Work Sans, sans-serif !important",
+                            border: "none",
+                            background: "none",
+                            "&:hover": {
+                                color: { color },
+                                border: "none",
+                                background: "none",
 
-                        }
-                    }}>
-                    Contact us
-                </Button>
+                            }
+                        }}>
+                        {t('DASHBOARD')}
+                    </Button>
+                }
+
+                {
+                    showCandidateButton && !isLoggedIn &&
+                    < Button type="button" variant="outlined"
+                        component={Link} to="/candidate-login"
+                        sx={{
+                            width: "200px",
+                            fontSize: { "xs": "14px", "sm": "18px", "md": "18px", "lg": "18px", "xl": "18px" },
+
+                            color: { color },
+                            textTransform: "capitalize",
+                            fontWeight: "600",
+                            fontFamily: "Work Sans, sans-serif !important",
+                            border: "none",
+                            background: "none",
+
+                            "&:hover": {
+                                color: { color },
+                                border: "none",
+                                background: "none",
+
+                            }
+                        }}>
+                        {t('CANDIDATE_LOGIN')}
+                    </Button>
+                }
 
                 <Button type="button" variant="filled"
-                    onClick={
-                        () => {
-                            if (buttonText === 'Employer login')
-                                window.location.href = window.location.origin + "/employer-login"
-                        }
-                    }
+                    component={Link} to="/about-us"
                     sx={{
-                        padding: "0px 40px",
-                        width: "max-content",
-                        borderRadius: "44px",
-                        fontSize: "18px",
-                        border: { border },
+                        fontSize: { "xs": "14px", "sm": "18px", "md": "18px", "lg": "18px", "xl": "18px" },
                         color: { color },
                         textTransform: "capitalize",
                         fontWeight: "600",
                         fontFamily: "Work Sans, sans-serif !important",
-                        background: { background },
+                        border: "none",
+                        background: "none",
                         "&:hover": {
-                            border: { border },
                             color: { color },
-                            background: { background }
+                            border: "none",
+                            background: "none",
 
                         }
                     }}
                 >
-                    {buttonText ? buttonText : "About Us"}
+                    {t('ABOUT_US')}
                 </Button>
-                {/* {
-                    buttonText === "Employer login" && <>
-                        <Button type="button" variant="outlined"
-                            sx={{
-                                padding: "0px 40px",
-                                width: "max-content",
-                                background: "#FC9A7E",
-                                border: "none",
-                                color: "#2B1E44",
-                                textTransform: "capitalize",
-                                borderRadius: "44px",
-                                fontSize: "18px",
-                                fontWeight: "600",
-                                fontFamily: "Work Sans, sans-serif !important",
-                                "&:hover": {
-                                    background: "#FC9A7E"
-                                }
-                            }}
-                            onClick={
-                                () => {
-                                    if (buttonText === 'Employer login')
-                                        window.location.href = window.location.origin + "/candidate-login"
-                                }
-                            }
-                        >
-                            {localStorage.getItem("isLoggedIn") == 'true' ? "Dashboard" : "Candidate login"}
-                        </Button></>
-                } */}
 
-                {
-                    localStorage.getItem("removeLocalStorageData") && localStorage.getItem("removeLocalStorageData") == "true"
-                    && (<>
-                        <Stack direction="row" gap={3} justifyContent="flex-end" alignItems="center" sx={{ width: "20%" }}>
+                <Button type="button" variant="outlined"
+                    component={Link} to="/contact-us"
 
+                    sx={{
+                        borderRadius: "44px",
+                        fontSize: { "xs": "14px", "sm": "18px", "md": "18px", "lg": "18px", "xl": "18px" },
+                        color: { color },
+                        textTransform: "capitalize",
+                        fontWeight: "600",
+                        fontFamily: "Work Sans, sans-serif !important",
+                        border: "none",
+                        background: "none",
+                        "&:hover": {
+                            color: { color },
+                            border: "none",
+                            background: "none",
+                        }
+                    }}>
+                    {t('CONTACT_US')}
+                </Button>
 
-                            <Box sx={{ cursor: "pointer" }} onClick={() => setOpenProfile(!openProfile)}>
-                                <Avatar alt={localStorage.getItem("useremail") ? localStorage.getItem("useremail") : "User Email "} />
-                            </Box>
-                        </Stack>
+                <Box className="ChangeLanguageOption">
+                    <Select
+                        sx={{
+                            width: "200px"
+                        }}
+                        value={selectedValue} onChange={changeLanguage} displayEmpty>
+                        <MenuItem value="" disabled>
+                            Select an Language
+                        </MenuItem>
+                        {LanguageOptions.map((item) => {
+                            return <MenuItem value={item.value} >{item.text}</MenuItem>
 
-                        {openProfile && (<>
-                            <Box sx={{
-                                position: "absolute",
-                                top: "75px",
-                                background: "#FFFFFF",
-                                right: "10px",
-                                width: "300px",
-                                zIndex: "345235"
-                            }}>
-                                <Box sx={{ background: "#1f8f75", padding: "20px", height: "70px" }}>
-
-                                    <Typography component="div" sx={{ fontSize: "16px", color: "#FFFFFF" }}>
-                                        {localStorage.getItem("useremail") ? localStorage.getItem("useremail") : "User Email "}
-                                    </Typography>
-                                </Box>
-                                <Box sx={{
-                                    background: "#0a6e56",
-                                    color: "#FFFFFF",
-                                    padding: "5px",
-                                    fontSize: "12px"
-                                }}>
-                                    Last Login :
-                                    <Moment format="DD/MM/YYYY">
-                                        {new Date()}
-                                    </Moment>
-                                </Box>
-
-
-                                (<>
-                                    <Stack gap={2} direction="column" sx={{ background: "#FFFFFF", padding: "20px" }}>
-                                        {/* <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Basic Postings : Unlimited
-                                        </Typography>
-
-                                        <Typography component="div" sx={{ fontSize: "14px" }}>
-                                            Premium Posting : 300 credits
-                                        </Typography> */}
-
-
-
-                                        <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={
-                                            () => {
-                                                localStorage.clear();
-                                                window.location.reload();
-                                            }
-                                        }>
-                                            <LogoutIcon />
-                                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                Logout
-                                            </Typography>
-                                        </Stack>
-                                    </Stack></>)
-
-
-
-
-                            </Box>
-                        </>
-                        )}
-                    </>)
-
-                    // <Button type="button" variant="outlined"
-                    //     onClick={() => {
-                    //         localStorage.clear();
-                    //         window.location.reload();
-                    //     }}
-                    //     sx={{
-                    //         width: "200px",
-                    //         borderRadius: "44px",
-                    //         fontSize: "18px",
-                    //         border: { border },
-                    //         color: { color },
-                    //         textTransform: "capitalize",
-                    //         fontWeight: "600",
-                    //         fontFamily: "Work Sans, sans-serif !important",
-                    //         background: { background },
-                    //         "&:hover": {
-                    //             border: { border },
-                    //             color: { color },
-                    //             background: { background }
-
-                    //         }
-                    //     }}>
-                    //     Log out
-                    // </Button>
-
-
-                }
+                        })}
+                    </Select>
+                </Box>
 
 
             </Stack>

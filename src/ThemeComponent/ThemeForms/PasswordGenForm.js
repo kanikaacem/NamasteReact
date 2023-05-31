@@ -6,28 +6,30 @@ import { Formik, Field, Form } from "formik";
 import { PasswordGenFormValidationSchema } from "../../Validation/EmployerValidation";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
-import ShowMessageToastr from "../../ThemeComponent/Common/ShowMessageToastr";
 import BackButton from "../Common/BackButton";
 import Error from "../../ThemeComponent/Common/Error";
 
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import { useState } from "react";
 
-import { useDispatch } from "react-redux";
+import ThemeMessage from "../Common/ThemeMessage";
+
+import { useTranslation } from "react-i18next";
 const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenForm, setVerifyMobileForm }) => {
     const [sHPassword, setSHPassword] = useState(false);
     const [sHConfirmPassword, setSHConfirmPassword] = useState(false);
 
     const [showEmailVerifiedMessage, setShowEmailVerifiedMessage] = useState(false);
-    const [isEmailVerified, setIsEmailVerified] = useState(false);
+
+    const { t } = useTranslation();
 
     const defaultValue = {
         password: "",
         confirm_password: ""
     }
 
-    const dispatch = useDispatch();
     const handleSubmit = async (values) => {
+
         document.getElementById("next").disabled = "true";
         let formData = new FormData();
         formData = {
@@ -36,13 +38,8 @@ const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenF
         }
 
         let response = await postRequest(EmployerSaveEmailAndPassword, formData);
-        if (response.status == 1) {
-            console.log(response);
-            localStorage.setItem("useremail", email);
-            localStorage.setItem("password", values.password)
+        if (response.status === "1") {
             localStorage.setItem('auth_token', response.data);
-            localStorage.setItem("userid", response._id);
-            localStorage.setItem("removeLocalStorageData", true);
             setShowEmailVerifiedMessage(true);
 
         }
@@ -55,14 +52,13 @@ const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenF
 
 
     return (<>
-
-        <ShowMessageToastr value={showEmailVerifiedMessage} handleClose={() => setShowEmailVerifiedMessage(false)}
-            message="Email Verification Link is send . Please verify the Email before going further "
-            messageType="success" />
+        <ThemeMessage open={showEmailVerifiedMessage} setOpen={
+            setShowEmailVerifiedMessage
+        } message="Email Verification Link is send . Please verify the Email before going further " type="success" />
 
         <BackButton GoBack={GoBack} />
-        <Typography component="box" sx={{ fontSize: "40px", fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
-            Create Password
+        <Typography component="box" sx={{ fontSize: { "xs": "1.6rem", "sm": "2.5rem", "md": "2.5rem", "lg": "2.5rem", "xl": "2.5rem" }, fontFamily: "Work Sans, sans-serif", fontWeight: "700" }}>
+            {t('CREATE_PASSWORD')}
         </Typography>
 
         <Formik
@@ -135,10 +131,7 @@ const PasswordGenForm = ({ email, setUserId, setEmailSignupForm, setPasswordGenF
 
                     </ThemeFInputDiv>
                     <Stack sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                        {
-                            isEmailVerified && <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontSize: "18px" }}>Resend Verification Link</ThemeButtonType2>
-                        }
-                        <ThemeButtonType2 variant="contained" id="next" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>Next</ThemeButtonType2>
+                        <ThemeButtonType2 variant="contained" id="next" type="submit" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}>{t('NEXT')}</ThemeButtonType2>
                     </Stack>
 
 

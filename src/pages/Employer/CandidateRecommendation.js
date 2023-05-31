@@ -48,7 +48,7 @@ const CandidateRecommendation = () => {
                 </Box>
 
                 {
-                    value == 1 && (<>
+                    parseInt(value) === 1 && (<>
                         <CandidateComponent />
                         <CandidateComponent />
                         <CandidateComponent />
@@ -58,7 +58,7 @@ const CandidateRecommendation = () => {
                     </>)
                 }
                 {
-                    value == 0 && (<>
+                    parseInt(value) === 0 && (<>
                         <CandidateComponent />
                         <CandidateComponent />
 
@@ -68,10 +68,7 @@ const CandidateRecommendation = () => {
             </Stack>
 
             <Box sx={{
-                // position: "fixed",
-                // right: "0px",
-                // height: "100vh",
-                // background: "#f2f5fa"
+
             }}>
                 <ChatAssistant />
                 <ChatComponent />
