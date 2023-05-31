@@ -15,7 +15,7 @@ const JobListing = () => {
     // const [category, setCategory] = useState('');
     const { t } = useTranslation();
     const [location, setLocation] = useState('');
-    const [loadJobs, setLoadJobs] = useState({ page: 2, limit: 20 });
+    const [loadJobs, setLoadJobs] = useState({ page: 1, limit: 20 });
 
     const mobileScreen = useSelector(state => state.screenType) === "mobile";
 
@@ -35,9 +35,9 @@ const JobListing = () => {
         </Link>
     ];
     const LocationFilter = [
-        { id: 1, text: "Paas (0-50Km)" },
-        { id: 2, text: "Thodi Door (50-200Km)" },
-        { id: 3, text: "Zayada Door (more than 200Km)" }
+        { id: 'one', text: "Paas (0-50Km)" },
+        { id: 'two', text: "Thodi Door (50-200Km)" },
+        { id: 'three', text: "Zayada Door (more than 200Km)" }
 
     ]
     const SelectFilter = ({ value, setValue, placeholder, data }) => {
@@ -89,13 +89,18 @@ const JobListing = () => {
 
     const handleLoadMore = async () => {
         // Increase the load range by the desired increment
+        let api_url = process.env.REACT_APP_GET_JOB_ITEMS;
         setLoadJobs((prevRange) => ({
             page: prevRange.page + 1,
             limit: prevRange.limit
         }));
 
+        api_url = api_url + "?page=" + (loadJobs.page + 1);
+        if (location) {
+            api_url = api_url + "&keyrange=" + location;
+
+        }
         try {
-            const api_url = process.env.REACT_APP_GET_JOB_ITEMS + "?page=" + loadJobs.page; // Replace with your .env variable name
             const data = await getRequest(api_url);
             if (Array.isArray(data.data)) {
                 setPostedJobs((prevJobs) => [...prevJobs, ...data.data]);
@@ -114,9 +119,11 @@ const JobListing = () => {
     };
 
     useEffect(() => {
+        let api_url = process.env.REACT_APP_GET_JOB_ITEMS; // Replace with your .env variable name
+        location && (api_url = api_url + "?keyrange=" + location);
+
         const fetchData = async () => {
             try {
-                const api_url = process.env.REACT_APP_GET_JOB_ITEMS; // Replace with your .env variable name
                 const data = await getRequest(api_url);
                 // Handle the fetched data
                 setPostedJobs(data.data)
@@ -127,7 +134,7 @@ const JobListing = () => {
             }
         };
         fetchData();
-    }, [])
+    }, [location])
 
     return (
         <Box className="JobsListingPage" sx={{

@@ -46,7 +46,7 @@ const CandidateLogin = () => {
 
             <Container sx={{ padding: "0px", maxWidth: '1800px' }} maxWidth={false}>
                 <Box className="CandidateLoginSection" sx={{
-                    padding: "20px"
+                    padding: "24px 20px"
 
                 }}>
                     <Formik
@@ -56,7 +56,7 @@ const CandidateLogin = () => {
                     >
                         {({ errors, touched }) => (
                             <Form className="CandidateLoginForm">
-                                <Stack direction="column" gap={1}>
+                                <Stack direction="column" gap={2}>
                                     <FormLabel LableFor="email_address" LableText="WhatsApp Mobile Number" />
                                     <Field
                                         sx={{
@@ -65,7 +65,14 @@ const CandidateLogin = () => {
                                         error={errors.mobile_number && touched.mobile_number}
                                         as={TextField}
                                         id="mobile_number"
-                                        placeholder="Enter Mobile Number" type="text" name="mobile_number" fullWidth />
+                                        type="text"
+                                        name="mobile_number"
+                                        fullWidth
+                                        InputProps={{
+                                            placeholder: "Enter Mobile Number",
+                                            style: { color: "#999999", fontWeight: 400 },
+                                        }}
+                                    />
                                     {errors.mobile_number && touched.mobile_number && <Error text={errors.mobile_number} />}
                                 </Stack>
                                 <Button variant="contained"
@@ -74,8 +81,9 @@ const CandidateLogin = () => {
                                         background: "#FF671F",
                                         borderRadius: "33px",
                                         textTransform: "capitalize",
-                                        margin: "20px 0px",
+                                        margin: "30px 0px",
                                         width: "100%",
+                                        height: "43px",
                                         fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
                                         "&:hover": {
                                             background: "#FF671F",

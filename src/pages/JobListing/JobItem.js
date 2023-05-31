@@ -36,7 +36,7 @@ const JobItem = (props) => {
                 </Typography>
                 <Stack className="JobTimeLine" direction="row" alignItems="center" gap={1}>
                     <Box sx={{ width: "10px" }}>
-                        <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/timeline.png" alt="jobTimeline" width="100%" height="100%" />
+                        <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/job_item_timeline.png" alt="jobTimeline" width="100%" height="100%" />
                     </Box>
                     <Typography sx={{ ...stackStyles, color: '#615F5F', fontWeight: '500' }}>
                         1 day ago

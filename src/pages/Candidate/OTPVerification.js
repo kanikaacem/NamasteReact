@@ -111,7 +111,7 @@ const OTPVerification = () => {
                         fontWeight: "400",
                         fontSize: "1rem",
                         color: "#676767",
-                        marginBottom: "10px"
+                        marginBottom: "20px"
                     }}>
                         Enter the OTP sent to <b>{mobile_number} </b>
                     </Typography>
@@ -122,7 +122,7 @@ const OTPVerification = () => {
                     >
                         {({ errors, touched, values }) => (
                             <Form className="OTPVerificationForm">
-                                <Stack direction="row" gap={1}>
+                                <Stack direction="row" gap={1} sx={{ height: "65px" }}>
                                     {[1, 2, 3, 4, 5, 6].map(index => (
                                         <Field
                                             key={index}
@@ -155,16 +155,25 @@ const OTPVerification = () => {
                                 </Stack>
                                 {errors.otp_digit1 && touched.otp_digit1 && <Error text={errors.otp_digit1} />}
 
+                                <Typography sx={{
+                                    fontFamily: "Poppins",
+                                    fontWeight: "400",
+                                    fontSize: "1rem",
+                                    color: "#676767",
+                                    margin: "20px 0px"
+                                }}>
+                                    OTP valid upto <span><img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/timeline.png" alt="TimeLine" /></span> <b><Timer seconds={seconds} setSeconds={setSeconds} />  </b>
+                                </Typography>
+
                                 <Button variant="contained"
                                     disabled={Object.values(values).some((value) => value === "")} // Disable button if any OTP field is empty
-
                                     type="submit"
                                     sx={{
                                         background: "#FF671F",
                                         borderRadius: "33px",
                                         textTransform: "capitalize",
-                                        margin: "20px 0px",
                                         width: "100%",
+                                        height: "43px",
                                         fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
                                         color: Object.values(values).some((value) => value === "") ? "#000000 !important" : "#ffffff",
                                         fontWeight: "700",
@@ -174,24 +183,16 @@ const OTPVerification = () => {
                                     }
                                     }>Confirm</Button >
 
-                                <Typography sx={{
-                                    fontFamily: "Poppins",
-                                    fontWeight: "400",
-                                    fontSize: "1rem",
-                                    color: "#676767",
-                                    marginBottom: "10px"
-                                }}>
-                                    OTP valid upto <b><Timer seconds={seconds} setSeconds={setSeconds} />  </b>
-                                </Typography>
+
 
                                 <Typography sx={{
                                     fontFamily: "Poppins",
                                     fontWeight: "400",
                                     fontSize: "1rem",
                                     color: "#676767",
-                                    marginBottom: "10px"
+                                    marginTop: "36px"
                                 }}>
-                                    OTP Not Received <span style={{ color: "#FF671F" }}><span onClick={ResendOTP}><b>Resend OTP</b></span> </span>
+                                    OTP Not Received <span style={{ color: "#FF671F", cursor: "pointer" }} onClick={ResendOTP}><b>Resend OTP</b></span>
                                 </Typography>
 
                             </Form>
