@@ -1,5 +1,5 @@
 import { Box, Container, Badge, Stack, Typography, Button, List, ListItem, ListItemText, TextField, Select, MenuItem, Slider } from "@mui/material";
-import RecommendedJobs from "../../Pages/Home/Component/RecommendedJobs";
+import RecommendedJobs from "../../pages/Home/Component/RecommendedJobs";
 import Footer from "../../ThemeComponent/Common/Footer";
 import SearchIcon from '@mui/icons-material/Search';
 import { ThemeFInputDiv } from "../../utils/Theme";
