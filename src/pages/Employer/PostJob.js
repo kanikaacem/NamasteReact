@@ -45,7 +45,7 @@ import Error from '../../ThemeComponent/Common/Error';
 import ThemeLabel from '../../ThemeComponent/ThemeForms/ThemeLabel';
 import Loader from "../Common/Loader";
 import BackButton from "../../ThemeComponent/Common/BackButton";
-import CurrencyFormat from 'react-currency-format';
+// import CurrencyFormat from 'react-currency-format';
 import { useNavigate } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
@@ -801,7 +801,7 @@ const PostJob = () => {
                                                         <ThemeFInputDiv sx={{ width: "50%" }}>
                                                             <Box > Min. Salary</Box>
 
-                                                            <CurrencyFormat style={{
+                                                            {/* <CurrencyFormat style={{
                                                                 fontSize: "20px",
                                                                 outline: "none",
                                                                 width: "92%",
@@ -814,14 +814,14 @@ const PostJob = () => {
                                                                 onChange={(event) => {
 
                                                                     setFieldValue("min_salary", event.target.value.slice(1).replaceAll(",", ""))
-                                                                }} />
+                                                                }} /> */}
                                                         </ThemeFInputDiv>
 
 
                                                         <ThemeFInputDiv sx={{ width: "50%" }}>
                                                             <Box > Max. Salary</Box>
 
-                                                            <CurrencyFormat style={{
+                                                            {/* <CurrencyFormat style={{
                                                                 fontSize: "20px",
                                                                 outline: "none",
                                                                 width: "92%",
@@ -833,7 +833,7 @@ const PostJob = () => {
                                                                     setFieldValue("max_salary", event.target.value.slice(1).replaceAll(",", ""))
                                                                 }}
                                                                 hintText="Enter Max. Salary"
-                                                                thousandSeparator={true} prefix={'₹'} />
+                                                                thousandSeparator={true} prefix={'₹'} /> */}
                                                         </ThemeFInputDiv>
 
 
