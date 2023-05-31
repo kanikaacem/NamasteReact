@@ -1,11 +1,11 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 /*Email Verification Page*/
-import EmployerVerficationPage from './pages/Common/EmailVerficationPage';
+import EmployerVerficationPage from './Pages/Common/EmailVerficationPage';
 
 /*ForgotPasswordPage */
-import ForgotPasswordPage from './pages/Common/ForgotPasswordPage';
-import ResetPasswordPage from "./pages/Common/ResetPasswordPage";
+import ForgotPasswordPage from './Pages/Common/ForgotPasswordPage';
+import ResetPasswordPage from "./Pages/Common/ResetPasswordPage";
 /*Employer Component*/
 import EmployerRegister from './Pages/Employer/EmployerRegister';
 import EmployerLogin from "./Pages/Employer/EmployerLogin";
