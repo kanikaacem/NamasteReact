@@ -20,7 +20,7 @@ import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from '../../ThemeComponent/Common/Error';
 import { useState, useEffect } from "react";
-import CurrencyFormat from 'react-currency-format';
+// import CurrencyFormat from 'react-currency-format';
 
 
 import { data1 } from "../../utils/Data";
@@ -498,7 +498,7 @@ const PersonalInformation = ({ jobType }) => {
                                                 <Stack direction="row" gap={3}>
                                                     <ThemeFInputDiv sx={{ width: "370px" }}>
                                                         <ThemeLabel LableFor="current_salary" LableText="Current Salary" />
-                                                        <CurrencyFormat style={{
+                                                        {/* <CurrencyFormat style={{
                                                             fontSize: "1rem",
                                                             outline: "none",
                                                             width: "92%",
@@ -512,7 +512,7 @@ const PersonalInformation = ({ jobType }) => {
                                                             onChange={(event) => {
 
                                                                 setFieldValue("current_salary", event.target.value.slice(1).replaceAll(",", ""))
-                                                            }} />
+                                                            }} /> */}
                                                         {errors.current_salary && touched.current_salary && <Error text={errors.current_salary} />}
 
                                                     </ThemeFInputDiv>
@@ -520,7 +520,7 @@ const PersonalInformation = ({ jobType }) => {
                                                     <ThemeFInputDiv sx={{ width: "370px" }}>
                                                         <ThemeLabel LableFor="excepted_salary" LableText="Excepted Salary" />
 
-                                                        <CurrencyFormat style={{
+                                                        {/* <CurrencyFormat style={{
                                                             fontSize: "1rem",
                                                             outline: "none",
                                                             width: "92%",
@@ -533,7 +533,7 @@ const PersonalInformation = ({ jobType }) => {
                                                             onChange={(event) => {
                                                                 setFieldValue("excepted_salary", event.target.value.slice(1).replaceAll(",", ""))
                                                             }}
-                                                        />
+                                                        /> */}
                                                         {errors.excepted_salary && touched.excepted_salary && <Error text={errors.excepted_salary} />}
 
                                                     </ThemeFInputDiv>
