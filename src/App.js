@@ -1,45 +1,12 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 /*Email Verification Page*/
-import EmployerVerficationPage from './pages/Common/EmailVerficationPage';
+import EmployerVerficationPage from './Pages/Common/EmailVerficationPage';
 
 /*ForgotPasswordPage */
-import ForgotPasswordPage from './pages/Common/ForgotPasswordPage';
-import ResetPasswordPage from "./pages/Common/ResetPasswordPage";
+import ForgotPasswordPage from './Pages/Common/ForgotPasswordPage';
+import ResetPasswordPage from "./Pages/Common/ResetPasswordPage";
 /*Employer Component*/
-<<<<<<< HEAD
-import EmployerRegister from './pages/Employer/EmployerRegister';
-import EmployerLogin from "./pages/Employer/EmployerLogin";
-import EmployerDashboard from "./pages/Employer/EmployerDashboard";
-import PostJob from "./pages/Employer/PostJob";
-import PostedJobs from './pages/Employer/PostedJobs';
-import AccountSetting from './pages/Employer/AccountSetting';
-import CandidateRecommendation from './pages/Employer/CandidateRecommendation';
-import SavedCandidate from "./pages/Employer/SavedCandidate";
-import AppliedCandidate from './pages/Employer/AppliedCandidate';
-import Chat from "./pages/Common/Chat";
-import ViewProfile from "./pages/Employer/ViewProfile";
-
-/*Candidate Component*/
-import CandidateRegistration from "./pages/Candidate/CandidateRegistration";
-import CandidateLogin from "./pages/Candidate/CandidateLogin";
-import CandidateDashboard from "./pages/Candidate/CandidateDashboard";
-import CandidateProfile from "./pages/Candidate/CandidateProfile";
-import CandidateProfilePage from "./pages/Candidate/CandidateProfilePage";
-import UpdateProfile from "./pages/Candidate/UpdateProfile";
-import Settings from './pages/Candidate/Settings';
-import Profile from "./pages/Candidate/CandidateProfilePage";
-import CandidateJobPerferences from "./pages/Candidate/CandidateJobPerferences";
-import SavedJobs from './pages/Candidate/SavedJobs';
-import CandidateDashboard2 from "./pages/Candidate/CandidateDashboard2";
-
-/*Website Page*/
-import Home from "./pages/Home/Home";
-import NotFound from "./pages/NotFound";
-import PrivateRoute from "./utils/PrivateRoute";
-import Dashboard from './pages/Common/Dashboard';
-import JobDescription from './pages/JobDescription';
-=======
 import EmployerRegister from './Pages/Employer/EmployerRegister';
 import EmployerLogin from "./Pages/Employer/EmployerLogin";
 import EmployerDashboard from "./Pages/Employer/EmployerDashboard";
@@ -67,7 +34,6 @@ import Home from "./Pages/Home/Home";
 import ErrorPage from "./Pages/ErrorPage";
 import PrivateRoute from "./utils/PrivateRoute";
 import Dashboard from './Pages/Common/Dashboard';
->>>>>>> origin/dev-Kanika
 import JobSearch from './ThemeComponent/Common/JobSearch';
 import ContactUs from "./Pages/Common/ContactUs";
 import AboutUs from './Pages/Common/AboutUs';

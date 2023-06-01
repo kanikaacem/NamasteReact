@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-import { Box, Container, Badge, Stack, Typography, Button, List, ListItem, ListItemText, TextField, Select, MenuItem, Slider } from "@mui/material";
-import RecommendedJobs from "../../pages/Home/Component/RecommendedJobs";
-=======
 import { getRequest } from "../../utils/ApiRequests"
 import { JobSearchPageURL } from "../../utils/ApiUrls";
 
 import { Box, Stack, Pagination } from "@mui/material";
 import JobComponent from "../JobComponent";
->>>>>>> origin/dev-Kanika
 import Footer from "../../ThemeComponent/Common/Footer";
 import SearchBar from "../SearchBar";
 
