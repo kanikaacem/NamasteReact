@@ -1,5 +1,5 @@
 import { postRequest } from "../../utils/ApiRequests";
-import { ResetPasswordEmployerEmailURL } from "../../utils/ApiUrls";
+import { ResetPasswordEmployerEmailURL, ResetPasswordCandidateEmailURL } from "../../utils/ApiUrls";
 
 import { Box, Stack, Typography, TextField } from "@mui/material";
 import { Formik, Field, Form } from "formik";
@@ -26,30 +26,20 @@ const ResetPasswordPage = ({ user }) => {
     }
 
     const handleSubmit = async (values, { setFieldError }) => {
-        let api_url = user === "employer" && ResetPasswordEmployerEmailURL;
+        let api_url = user === "employer" ? ResetPasswordEmployerEmailURL : ResetPasswordCandidateEmailURL;
         let response = await postRequest(api_url + token, {
             password: values.password
         });
         if (response.status === '1') {
-            // setPasswordChanged(true);
-            window.location.href = window.location.origin + '/employer-login';
+            window.location.href =
+                window.location.pathname.includes('employer') ? window.location.origin + '/employer-login' : window.location.origin + '/candidate-login';
+
+
         }
         if (response.status === '0') {
             setFieldError("confirm_password", "Token is expired !!!.");
         }
-        // ;
-        // console.log(response);
-        // let status = response.status;
-        // if (status == 1) {
-        //     let response2 = await postRequest(ForgotPasswordEmailURL, {
-        //         email: values.email_address
-        //     });
-        //     // console.log(response=2);
-        //     if (response2.status === '1')
-        //         setEmailSend(true);
-        // } else {
-        //     setFieldError("email_address", "This email address is not registered with us.");
-        // }
+
     }
     return (<>
 
@@ -59,45 +49,55 @@ const ResetPasswordPage = ({ user }) => {
                 <HeaderSec
                     color="black"
                     border="2px solid #8E8E8E" />
-                <Stack direction="row" gap={2} sx={{ height: "100%" }} >
-                    <Stack direction="column" alignItems="center" justifyContent="center" gap={3} sx={{ width: "50%", padding: "20px" }}>
-                        <Box>
-                            <Typography component="box" sx={{
-                                fontSize: "64px",
-                                fontFamily: "Work Sans, sans-serif",
-                                fontWeight: "700",
-                                color: "#4E3A67",
-                                display: "block",
-                                lineHeight: "40px"
-                            }}>
-                                Forgot
-
+                <Stack direction="row" gap={2}
+                    sx={{
+                        margin: { "lg": "100px 0px", "md": "100px 0px", "xs": "20px 0px" }
+                    }} >
+                    <Box
+                        sx={{
+                            width: "50%",
+                            padding: "20px",
+                            display: { "lg": "block", "md": "block", "xs": "none" }
+                        }}>
+                        <Stack direction="column" alignItems="center" justifyContent="center" gap={3} >
+                            <Box>
                                 <Typography component="box" sx={{
-                                    fontSize: "64px",
+                                    fontSize: { "lg": "64px", "md": "50px", "xs": "50px" },
                                     fontFamily: "Work Sans, sans-serif",
                                     fontWeight: "700",
                                     color: "#4E3A67",
-                                    display: "block"
+                                    display: "block",
+                                    lineHeight: "40px"
                                 }}>
-                                    Password ?
+                                    Forgot
+
+                                    <Typography component="box" sx={{
+                                        fontSize: { "lg": "64px", "md": "50px", "xs": "50px" },
+                                        fontFamily: "Work Sans, sans-serif",
+                                        fontWeight: "700",
+                                        color: "#4E3A67",
+                                        display: "block"
+                                    }}>
+                                        Password ?
+                                    </Typography>
                                 </Typography>
-                            </Typography>
-                        </Box>
-                        <Box sx={{ width: "500px", height: "500px" }}>
-                            <img src={window.location.origin + "/assets/ForgotPassword.jpg"} width="100%" height="100%" alt="Forgot Password" />
-                        </Box>
-                    </Stack>
-                    <Box sx={{ width: "50%", padding: "20px" }}>
+                            </Box>
+                            <Box sx={{ width: "400px", height: "400px" }}>
+                                <img src={window.location.origin + "/assets/ForgotPassword.png"} width="100%" height="100%" alt="Forgot Password" />
+                            </Box>
+                        </Stack>
+                    </Box>
+                    <Box sx={{
+                        width: { "lg": "50%", "md": "50%", "xs": "100%" },
+                        padding: "20px"
+                    }}>
                         <Box
                             sx={{
                                 boxSizing: "border-box",
-                                width: "865px",
-                                height: "647",
+                                minHeight: "647",
                                 background: "#FFFFFF",
                                 border: "1px solid #EDEDED",
                                 borderRadius: "19px",
-                                position: "absolute",
-                                top: "197px",
                                 padding: "30px 50px",
                                 paddingBottom: "100px"
                             }}>

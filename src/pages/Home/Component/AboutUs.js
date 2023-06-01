@@ -1,13 +1,15 @@
-import { Box, Stack, Container, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
-import Heading from "../Component/Heading";
-import { aboutUS } from "../../../utils/Data";
+import { useTranslation } from "react-i18next";
 
 const AboutUs = () => {
+    const { t, i18n } = useTranslation();
+
     return (<>
         <Box
             sx={{
-                padding: "60px",
+                padding: { "xs": "100px 10px 30px", "sm": "60px", "md": "60px", "lg": "60px", "xl": "60px" },
                 minHeight: "400px",
                 background: "#FFFFFF",
                 color: "#2B1E44"
@@ -16,87 +18,91 @@ const AboutUs = () => {
 
             <Stack
                 gap={5}
-                direction="row"
+                direction={{ "lg": "row", "md": "row", "xs": "column" }}
+
             >
-                <Stack className="secDesc" direction="row" gap={5} sx={{ width: "50%" }}>
+                <Stack className="aboutUsDescription" direction="row" justifyContent="center"
+                    sx={{
+                        width: { "lg": "50%", "md": "50%", "xs": "100%" },
+                        gap: { "xs": "8px", "sm": "40px", "md": "40px", "lg": "40px", "xl": "40px" }
+                    }}>
                     <Box sx={{
-                        width: "300px",
-                        height: "330px",
+                        width: { "xs": "200px", "sm": "300px", "md": "300px", "lg": "300px", "xl": "300px" },
                         background: "#4E3A67",
                         boxShadow: " 0px 24px 32px #F1E6FF",
                         borderRadius: "15px",
                     }}>
                         <Stack direction="column" gap={1} sx={{
-                            padding: "30px"
+                            padding: { "xs": "15px", "sm": "30px", "md": "30px", "lg": "30px", "xl": "30px" }
                         }}>
-                            <Box sx={{ width: "50px" }}>
-                                <img src={window.location.origin + "/assets/Star.png"} alt="Star" />
+                            <Box sx={{
+                                width: {
+                                    "xs": "30px", "sm": "50px", "md": "50px", "lg": "50px", "xl": "50px"
+                                }
+                            }}>
+                                <img src={window.location.origin + "/assets/Star.png"} alt="Star" width="100%" />
                             </Box>
                             <Typography component="div"
                                 sx={{
                                     color: "#FC9A7E",
-                                    fontSize: "20px",
+                                    fontSize: { "xs": "12px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
                                     fontWeight: "600",
-                                    height: "90px"
+                                    height: { "xs": "50px", "sm": "90px", "md": "90px", "lg": "90px", "xl": "90px" }
+
                                 }}>
-                                50K People Have Got Jobs Through Us; Next is YOU!
+                                {t('50K_PEOPLE_HAVE_GOT_JOBS_THROUGH_US;_NEXT_IS_YOU')}
                             </Typography>
                             <Typography component="div"
                                 sx={{
                                     color: "#FFFFFF",
-                                    fontSize: "16px",
+                                    fontSize: { "xs": "12px", "sm": "16px", "md": "16px", "lg": "16px", "xl": "16px" },
                                 }}>
-                                A platform where you can get work from corporates, small and local businesses.
+                                {t('ABOUT_DESCRIPTION1')}
                             </Typography>
 
                         </Stack>
                     </Box>
                     <Box sx={{
-                        width: "300px",
-                        height: "330px",
+                        width: { "xs": "200px", "sm": "300px", "md": "300px", "lg": "300px", "xl": "300px" },
                         background: "#4E3A67",
                         boxShadow: " 0px 24px 32px #F1E6FF",
                         borderRadius: "15px",
                     }}>
                         <Stack direction="column" gap={1} sx={{
-                            padding: "30px"
+                            padding: { "xs": "15px", "sm": "30px", "md": "30px", "lg": "30px", "xl": "30px" }
+
                         }}>
-                            <Box sx={{ width: "50px" }}>
-                                <img src={window.location.origin + "/assets/Park.png"} alt="Park" />
+                            <Box sx={{
+                                width: {
+                                    "xs": "30px", "sm": "50px", "md": "50px", "lg": "50px", "xl": "50px"
+                                }
+                            }}>
+                                <img src={window.location.origin + "/assets/Park.png"} alt="Park" width="100%" />
                             </Box>
                             <Typography component="div"
                                 sx={{
                                     color: "#FC9A7E",
-                                    fontSize: "20px",
+                                    fontSize: { "xs": "12px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
                                     fontWeight: "600",
-                                    height: "90px"
+                                    height: { "xs": "50px", "sm": "90px", "md": "90px", "lg": "90px", "xl": "90px" }
                                 }}>
-                                Select from the Jobs in Your City
+                                {t('SELECT_FROM_THE_JOBS_IN_YOUR_CITY')}
                             </Typography>
                             <Typography component="div"
                                 sx={{
                                     color: "#FFFFFF",
-                                    fontSize: "16px",
+                                    fontSize: { "xs": "12px", "sm": "16px", "md": "16px", "lg": "16px", "xl": "16px" },
+
                                 }}>
-                                Choose from the jobs available in your city. A perfect selection means a perfect life!
+                                {t('ABOUT_DESCRIPTION2')}
                             </Typography>
 
                         </Stack>
                     </Box>
-
-                    {/* {aboutUS.map((item) => {
-                        return (<>
-                            <div className="secDescItem" key={item.id}
-                                style={{ background: item.background, color: item.color ? item.color : '#00000' }}>
-                                <h2 style={{ margin: '0px' }}>{item.per}</h2>
-                                <span style={{ textAlign: 'center' }}>{item.description}</span>
-                            </div>
-                        </>)
-                    })} */}
                 </Stack>
                 <Box className="description" sx={{
                     color: "#2B1E44",
-                    width: "50%",
+                    width: { "lg": "50%", "md": "50%", "xs": "100%" },
                     display: "flex",
                     flexDirection: "row",
                     alignContent: "center",
@@ -106,45 +112,49 @@ const AboutUs = () => {
                         <Typography component="span"
                             sx={{
                                 display: "block",
-                                fontSize: "50px",
+                                fontSize: { "lg": "50px", "md": "50px", "xs": "24px" },
                                 color: "#2B1E44",
                                 fontWeight: "600",
                                 margin: "0px",
                             }}>
-                            About Us!
+                            {t("ABOUT_US_HEADING")}
                         </Typography>
                         <Typography component="h2"
                             sx={{
                                 margin: '0px',
-                                fontSize: "24px",
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "12px" },
                                 margin: "10px 0px",
                                 fontWeight: "600",
                                 color: "#3A2D49"
                             }}>
-                            JobsYahaan - A Platform for Jobs and Self-employment
+                            {t("ABOUT_US_SUBHEADING")}
                         </Typography>
 
                         <Typography component="span"
                             sx={{
                                 color: "#3A2D49",
                                 lineHeight: "1.5",
-                                fontSize: "24px"
+                                fontSize: { "lg": "24px", "md": "24px", "xs": "12px" }
                             }}>
-                            A disruptor in job search and a strong contributor to India’s growth define JobsYahaan.
-                            What sets us apart is that we offer work opportunities to all including those unsung heroes
-                            who give you gifts, deliver you food & groceries, make you.......
-                            <Typography component="span"
-                                sx={{
-                                    color: "#FC9A7E",
-                                    fontSize: "24px"
-                                }}>
-                                More.
-                            </Typography>
+                            {t("ABOUT_US_DESCRIPTION")}
+                            <Link to="/about-us" style={{
+                                textDecoration: "none"
+                            }}>
+                                <Typography component="span"
+                                    sx={{
+                                        color: "#FC9A7E",
+                                        fontSize: { "lg": "24px", "md": "24px", "xs": "12px" },
+                                        cursor: "pointer"
+                                    }}>
+                                    {t("MORE")}
+                                </Typography>
+                            </Link>
+
                         </Typography>
                     </Box>
                 </Box>
 
-            </Stack>
+            </Stack >
 
         </Box >
     </>)

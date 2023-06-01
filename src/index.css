@@ -54,11 +54,7 @@ nav {
   margin-right: 10px;
 }
 
-/* Login Page */
-/* .LoginPage {
-  background: #FAFAFA;
-  height: 100%;
-} */
+
 
 .login-wrapper,
 .info-wrapper,
@@ -80,16 +76,7 @@ nav {
   justify-content: center;
 }
 
-.LoginWrapper {
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-  /* display: flex;
-  width: 100%; */
-  /* height: 100vh; */
-  /* align-items: center;
-  justify-content: center; */
-}
+
 
 .info-title {
   font-size: 25px;
@@ -219,12 +206,6 @@ nav {
   color: green;
 }
 
-/* employer sign up page */
-/* .employer-register-div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
 
 .employer-register-page-wrapper {
   padding: 2rem;
@@ -257,14 +238,6 @@ nav {
 .company-information-wrapper {
   width: 100%;
 }
-
-/* .input-item input,
-textarea {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
 
 .signup-with-google,
 .signin-with-google {
@@ -365,6 +338,13 @@ textarea {
 }
 
 /* Post job */
+.JobDescriptionPage,
+.PostJobPage,
+.AppliedCandidatePage,
+.candidateProfile {
+  background: linear-gradient(231.41deg, #FDFCFF 13.04%, #FAF7FE 57.79%);
+}
+
 .postjobForm .input-item .css-1869usk-MuiFormControl-root,
 .postjobForm .input-item .css-1869usk-MuiFormControl-root {
   padding: 7px 10px;
@@ -388,10 +368,20 @@ textarea {
   margin: 0 auto;
 }
 
-.PostJobForm1 .css-1s2u09g-control {
+.PersonalInformationPage .css-1s2u09g-control,
+.PersonalInformationPage .css-1pahdxg-control {
   padding: 10px !important;
   border-radius: 11px !important;
 }
+
+.PostJobForm1 .css-1s2u09g-control,
+.PostJobForm1 .css-6j8wv5-Input,
+.PostJobForm2 .css-6j8wv5-Input,
+.PostJobForm2 .css-1s2u09g-control {
+  padding: 7px !important;
+  border-radius: 11px !important;
+}
+
 
 /*tags */
 .tag-wrapper.ReactTags__tag {
@@ -414,55 +404,6 @@ textarea {
 .ReactTags__selected {
   padding: "10px 0px" !important;
   margin: "20px 0px" !important;
-}
-
-/* .css-1s2u09g-control {
-  border: none !important;
-  width: 97% !important;
-  background: #f2f4f8 !important;
-  border-radius: 10px !important;
-  font-size: 13px !important;
-} */
-
-.css-1pahdxg-control:hover {
-  border: 2px solid #f2f4f8 !important;
-  outline: none !important;
-  box-shadow: none !important;
-  width: 97% !important;
-  border-radius: 10px !important;
-  font-size: 13px !important;
-
-}
-
-.css-1pahdxg-control {
-  border: 2px solid #f2f4f8 !important;
-  outline: none !important;
-  box-shadow: none !important;
-  width: 97% !important;
-  border-radius: 10px !important;
-  font-size: 13px !important;
-}
-
-
-/* Show Job Description */
-/* .jobDescriptionPage {
-  width: 100%;
-  
-  position: absolute;
-  
-  right: 0px;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  z-index: 335;
-} */
-
-.jobDescriptionPage.active {
-  /* display: block;
-  height: 100vh;
-  overflow: hidden; */
-  /* visibility: visible; */
-
 }
 
 .jobDescriptionWrapper {
@@ -501,17 +442,6 @@ textarea {
   top: 50%;
 }
 
-/* Employer Dashboard */
-/* .employer-dashboard { */
-/* background: #FAFAFA; */
-/* padding: 20px;
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center; */
-/* align-items: center; */
-/* } */
-
 .employer-left-Side {
   height: fit-content;
   width: 20%;
@@ -546,38 +476,6 @@ textarea {
   font-size: 20px;
   text-align: center;
   text-transform: capitalize;
-}
-
-/* .employer-left-Side .menus .menuItem {
-  margin: 20px 0px;
-  cursor: pointer;
-}
-
-.employer-left-Side .menus .menuItem.active {
-  background: #2B1E44;
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-} */
-
-/* .LogoutButton {
-  display: block;
-  margin: 0 auto;
-} */
-
-/* .LogoutButton {
-  margin: 150px auto 0px auto !important;
-  display: block !important;
-} */
-
-
-/* Employee Dashboard */
-.menu.active {
-  /* color: #5bb8a4;
-  font-weight: 600; */
-  /* background: white;
-  border-radius: 10px;
-  width: 330px; */
 }
 
 .all-tab-information {
@@ -665,9 +563,6 @@ textarea {
   /* color: #bebbbb; */
 }
 
-/* .react-select__placeholder {
-  color: #bebbbb !important;
-} */
 
 #mui-component-select-role,
 #mui-component-select-experience,
@@ -692,20 +587,16 @@ textarea {
 /* Home Page Pagination */
 .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
   background: #2B1E44 !important;
-  color: white;
+  color: #FFFFFF !important;
 }
 
 /*Employer Dashboard account setting */
-.EmployeeMenuSelected,
+
 .AccountMenu,
-.SettingMenu {
-  /* color: #62459b; */
+.SettingMenu,
+.MenuSelected {
   color: #4E3A67;
   font-weight: 600 !important;
-}
-
-.CandidateMenuSelected {
-  border-right: 3px solid #007FFF !important;
 }
 
 #permanant_address,
@@ -714,7 +605,8 @@ textarea {
 #starting_year,
 #ending_year,
 #address,
-#currAddress {
+#currAddress,
+#current_address {
   width: 97%;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   border: 1px solid #d0d0d0;
@@ -748,84 +640,6 @@ textarea {
   background: #f1f1f1;
 }
 
-/* #mui-component-select-marital_status {
-  margin: 10px 0px;
-  width: 97%;
-  padding: 10px;
-  border: 1px solid #d0d0d0;
-
-} */
-
-/* Registration and Login Form */
-/* .EmployerLoginForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
-
-/* .EmailSignupForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
-/* 
-.PasswordGenerationForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
-
-/* .SendOTPForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-}
-
-.VerifyOTPForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
-
-/* .CompanyInformationForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
-
-/* .candidateLogin .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-}
-
-.CandidateRegistration .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
-
-/* .PostJobForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-} */
-
-.updateCompanyInformationForm .input-item input {
-  border: none;
-  margin: 10px 0px;
-  font-size: 14px;
-  outline: none;
-}
 
 .HrInformationUpdateForm .input-item input {
   border: none;
@@ -841,9 +655,9 @@ textarea {
   outline: none;
 }
 
-.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+/* .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
   padding: 10px !important;
-}
+} */
 
 /*form font-family */
 .MuiInputBase-input .MuiOutlinedInput-input .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
@@ -854,9 +668,10 @@ textarea {
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   border-radius: 11px;
-  font-size: 16px !important;
+  font-size: 16px;
   font-family: 'Montserrat' !important;
   font-weight: 500 !important;
+  background: #FFFFFF !important;
 }
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input::placeholder {
@@ -871,16 +686,9 @@ textarea {
 }
 
 .CompanyInformationForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  background: #EAEAEA;
+  background: #EAEAEA !important;
 }
 
-.ProfessionalDetailForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  background: #EAEAEA;
-}
-
-.workHistoryForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  background: #EAEAEA;
-}
 
 .PostJobForm1 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   background: #EAEAEA;
@@ -890,9 +698,6 @@ textarea {
   border-radius: 11px !important;
 }
 
-.PersonalInformationForm .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  background: #EAEAEA;
-}
 
 .CompanyInformationForm .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
   border-radius: 11px;
@@ -948,4 +753,314 @@ textarea {
 #mui-component-select-job_type,
 #mui-component-select-industry_type {
   border-bottom: none;
+}
+
+.Mui-selected {
+  font-weight: 700 !important;
+  /* width: max-content; */
+  color: #4E3A67 !important;
+  border-bottom: none !important
+}
+
+.fixedDiv {
+  position: fixed;
+  top: 10px
+}
+
+.Search::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  font-size: 16px;
+}
+
+.Search::-moz-placeholder {
+  /* Firefox 19+ */
+  font-size: 16px;
+}
+
+.Search::-ms-input-placeholder {
+  /* IE 10+ */
+  font-size: 16px;
+}
+
+.Search::-moz-placeholder {
+  /* Firefox 18- */
+  font-size: 16px;
+}
+
+.themeLabel {
+  font-size: 24px;
+}
+
+
+
+@media screen and (max-width: 600px) {
+  /* .formik-field{
+    font-size:30px !important;
+    height:300px !important;
+  } */
+
+  input {
+    font-size: 12px !important;
+    padding: 8px !important;
+    border-radius: 11px !important
+  }
+
+  #Search {
+    font-size: 12px !important;
+  }
+
+  .downloadResume {
+    font-size: 12px !important;
+  }
+
+  .uploadResume {
+    font-size: 12px !important;
+  }
+
+  .themeLabel {
+    font-size: 14px;
+  }
+
+  .Search::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    font-size: 12px;
+  }
+
+  .Search::-moz-placeholder {
+    /* Firefox 19+ */
+    font-size: 12px;
+  }
+
+  .Search::-ms-input-placeholder {
+    /* IE 10+ */
+    font-size: 12px;
+  }
+
+  .Search::-moz-placeholder {
+    /* Firefox 18- */
+    font-size: 12px;
+  }
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    border-radius: 11px;
+    /* font-size: 12px !important; */
+    font-family: 'Montserrat' !important;
+    font-weight: 500 !important;
+    padding: 10px !important;
+  }
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    font-size: 12px;
+  }
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input ::-moz-placeholder {
+    /* Firefox 19+ */
+    font-size: 12px;
+  }
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input::-moz-placeholder {
+    /* Firefox 18- */
+    font-size: 12px;
+  }
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input::-moz-placeholder {
+    /* Firefox 18- */
+    font-size: 12px;
+  }
+
+  .MuiButton-contained,
+  .MuiButton-outlined {
+    font-size: 14px !important;
+  }
+
+  .PasswordGenerationForm img {
+    top: 46px !important;
+  }
+
+  #sendOTPButton {
+    min-width: 30px;
+    height: 32px;
+    top: 40px
+  }
+
+  #sendOTPButton img {
+    width: 10px
+  }
+
+  .MuiAvatar-circular {
+    width: 25px !important;
+    height: 25px !important;
+  }
+
+  .companyItem {
+    font-size: 12px !important;
+    padding: 8px !important
+  }
+
+  .NextButtonEmployer {
+    height: 30px !important;
+    width: 30px !important;
+    padding: 0px !important;
+    min-width: 30px !important;
+  }
+
+  .RegistrationBackButton {
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  .MuiSelect-select,
+  .MuiMenuItem-gutters {
+    padding: 8px !important;
+    font-size: 12px !important;
+    min-height: 10px !important;
+  }
+
+  .RegisterAutoSuggestDiv {
+    padding: 10px !important;
+    border: 1px solid #E1D4F2 !important;
+  }
+
+  .RegisterAutoSuggestList {
+    padding: 10px !important;
+    font-size: 12px !important;
+  }
+
+  .css-r46vv0-MuiList-root {
+    font-size: 12px
+  }
+
+  .ApplyButton {
+    font-size: 12px !important;
+  }
+
+  .MuiSvgIcon-root {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .SelectBlueCollarQuestion {
+    font-size: 12px;
+  }
+
+  .ViewCandidateLink {
+    font-size: 12px;
+  }
+
+  .PostJobForm1 .css-1s2u09g-control {
+    padding: 0px !important;
+    border-radius: 11px !important;
+    font-size: 12px !important;
+  }
+
+  .css-1g8u92u-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root,
+  .css-1nmpxh9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+    padding: 0px !important;
+  }
+
+  .MuiFormGroup-root .css-dmmspl-MuiFormGroup-root {
+    font-size: 12px !important;
+  }
+
+  .css-1o5jst9-MuiStack-root,
+  .css-x0fw4u-MuiStack-root {
+    height: 30px !important;
+  }
+
+  .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root {
+    min-width: 20px !important;
+    height: 20px !important;
+    font-size: 12px !important;
+  }
+
+  .MuiPaper-elevation {
+    width: 50%;
+    padding: 10px;
+  }
+
+  .SideMenus .MuiTypography-body1 {
+    font-size: 12px !important;
+  }
+
+  .css-ol3sl3-MuiButtonBase-root-MuiButton-root {
+
+    min-width: max-content !important;
+  }
+
+  .MuiTab-root {
+    font-size: 12px !important;
+  }
+
+  .ProgressBarDiv div div {
+    height: 10px !important;
+  }
+
+  .ProgressBarDiv div div div {
+    height: 10px !important;
+  }
+
+  .ProgressBarDiv div div div span {
+    font-size: 10px !important;
+  }
+
+  .updateResume {
+    font-size: 12px !important;
+  }
+
+  .ProfileActionImage img {
+    width: 10px;
+  }
+
+  .ProfileActionText {
+    font-size: 10px !important;
+  }
+
+  .PersonalInformationPage .css-1s2u09g-control,
+  .PersonalInformationPage .css-1pahdxg-control .PostJobForm1 .css-1s2u09g-control,
+  .PostJobForm1 .css-1pahdxg-control {
+    padding: 5px !important;
+    border-radius: 11px !important;
+  }
+
+  .BlueCollarRegistrationFormInput {
+    padding: 10px !important;
+    font-size: 12px !important;
+  }
+
+  .PostJobForm2 .css-1o5jst9-MuiStack-root,
+  .PostJobForm2 .css-x0fw4u-MuiStack-root {
+    font-size: 12px;
+  }
+
+  .PostJobForm2 .css-6j8wv5-Input,
+  .PostJobForm2 .css-1s2u09g-control {
+    padding: 0px !important;
+    border-radius: 11px !important;
+    font-size: 12px !important;
+  }
+
+}
+
+@media screen and (min-width:600px) and (max-width: 992px) {
+  .ViewCandidateLink {
+    font-size: 14px;
+  }
+}
+
+.MuiSelect-select {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.MuiInputBase-root {
+  border: none !important;
+
+}
+
+.BlueCollarRegistrationFormInput::-webkit-input-placeholder {
+  color: rgb(191 191 191);
+}
+
+.BlueCollarRegistrationFormInput::-moz-placeholder {
+  color: rgb(191 191 191);
 }

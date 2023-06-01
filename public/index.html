@@ -3,11 +3,11 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" href="./companyLogo.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="./companyLogo.svg" />
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Web site created using create-react-app" />
-  <link rel="apple-touch-icon" href="./companyLogo.png" />
+  <link rel="apple-touch-icon" href="./companyLogo.svg" />
   <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -26,6 +26,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <link rel="stylesheet" media="mediatype and|not|only (expressions)" href="print.css">
+
   <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -38,15 +41,71 @@
   <!-- <meta name="google-signin-client_id"
     content="346122009616-bbip3t7tcb1kf75u6q1k8k9pkj6nn1fs.apps.googleusercontent.com" />
   <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <meta name="viewport" content="width=device-width ,initial-scale = 1.0,maximum-scale = 1.0" />
   <meta name=”description” content=”JobsYahan is a premium job posting and job search website for fast & easy hiring
     online across India. Reach out to the right talent & hire verified candidates. ”>
   <title>JobsYahan - Premium Job Posting & Job Search Facility in India</title>
 
 </head>
 
+<style>
+  /*Loader */
+  .LoaderDiv {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+  }
+
+  .spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #28163E;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+
+  @media screen and (max-width: 600px) {
+    .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #28163E;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 2s linear infinite;
+    }
+
+    .LoaderDiv {
+      height: 78vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
+  <div id="root">
+    <div class="LoaderDiv">
+      <div class="spinner"></div>
+
+    </div>
+  </div>
   <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -58,5 +117,7 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 </body>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K5MFL4JKFW"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-K5MFL4JKFW'); console.log('js', new Date()); gtag('config', 'G-K5MFL4JKFW') </script>
 
 </html>

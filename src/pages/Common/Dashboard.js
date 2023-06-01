@@ -1,37 +1,65 @@
-import { UserInformationURL } from "../../utils/ApiUrls";
-import { postRequest } from "../../utils/ApiRequests";
+import { GetUserInformation } from "../../utils/ApiUrls";
+import { getRequestWithToken } from "../../utils/ApiRequests";
 
-import { NavLink, Link, Outlet } from "react-router-dom";
-import { Avatar, Box, Stack, Badge, Typography, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import { NavLink, Outlet, useResolvedPath } from "react-router-dom";
+import { Avatar, Box, Stack, List, ListItem, ListItemText } from "@mui/material";
 
-import PersonIcon from '@mui/icons-material/Person';
-import LogoutIcon from '@mui/icons-material/Logout';
-
-import WorkIcon from '@mui/icons-material/Work';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import ReorderIcon from '@mui/icons-material/Reorder';
 
 import { EmployerMenu, CandidateMenu } from "../../utils/Data.js";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { CandidateLogoutMenu } from "../../utils/Data";
-
-import Moment from 'react-moment';
-
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import CompanyLogo from "../../ThemeComponent/Common/CompanyLogo";
 import Footer from "../../ThemeComponent/Common/Footer";
 
-// import PostJob from "./PostJob";
-const Dashboard = () => {
-    const user = localStorage.user && JSON.parse(localStorage.user);
+import DashboardAccountSetting from "../../ThemeComponent/Common/DashboardAccountSetting";
+import Skeleton from "react-loading-skeleton";
 
+import { useEffect } from "react";
+
+import { useTranslation } from "react-i18next";
+const Dashboard = () => {
     const [openProfile, setOpenProfile] = useState(false);
-    const [userInformation, setUserInformation] = useState(user);
+    const [openMenu, setOpenMenu] = useState(false);
+    const [pageAuthenticate, setPageAuthenticate] = useState(false);
     const dispatch = useDispatch();
-    const EmployeeMenuSelected = useSelector(state => state.EmployeeMenuSelected);
-    const CandidateMenuSelected = useSelector(state => state.CandidateMenuSelected);
+
+    const { t, i18n } = useTranslation();
+
+    const MenuSelected = useSelector(state => state.MenuSelected);
+    const [user, setUser] = useState({});
+
+    const url = useResolvedPath("").pathname;
+
+
+    useEffect(() => {
+
+        const getLoginUserDetail = async () => {
+            let response = await getRequestWithToken(GetUserInformation);
+            if (response.status === '1') {
+                setUser(response.data);
+                checkRoleToShowPage(response.data);
+
+            }
+        }
+
+        const checkRoleToShowPage = async (user) => {
+            if (user.employer_type === "employer" && url === "/employer-dashboard")
+                setPageAuthenticate(true)
+
+            if (user.type === "candidate" && url === "/candidate-dashboard")
+                setPageAuthenticate(true);
+
+        }
+
+
+        getLoginUserDetail();
+
+
+
+    }, []);
 
     return (<>
         <Box
@@ -41,220 +69,246 @@ const Dashboard = () => {
                 width: "100%",
             }}
         >
-            <Stack direction={userInformation && userInformation.employer_type == "employer" ? "column" : "row"}
+            <Stack direction="column"
                 sx={{
                     width: "100%",
                     height: "inherit"
                 }}>
 
-                {userInformation && userInformation.employer_type == "employer" && (<>
-                    <Stack direction="row" gap={3} sx={{ height: "50px", padding: "20px 50px", alignItems: "center" }}>
-                        <Box sx={{ width: "10%" }}>
-                            <Box sx={{ width: "50px", marginTop: "10px", height: "50px" }} >
-                                {/* <Link to="/">
-                                    <img src={window.location.origin + "/assets/companyLogo.png"} width="100%" height="100%" alt="companyLogo" />
-                                </Link> */}
-                                <CompanyLogo color="#4E3A67" />
-                            </Box>
-                        </Box>
-                        <Box direction="row" sx={{ width: "70%" }}>
-                            <List sx={{ display: "flex" }}>
 
-                                {EmployerMenu.map((item) => {
-                                    return (<>
-                                        <ListItem sx={{ width: "fit-content" }}
+                <Stack direction="row" gap={3} sx={{
+                    height: { "xs": "25px", "sm": "25px", "md": "50px", "lg": "50px", "xl": "50px" },
+                    padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" }, alignItems: "center", justifyContent: "space-between"
+                }}>
+                    <Box sx={{ maxWidth: "15%" }}>
+                        <Box sx={{ width: "fit-content", marginTop: "10px", height: "50px" }} >
+                            <CompanyLogo color="#4E3A67" />
+                        </Box>
+                    </Box>
+                    <Box direction="row" sx={{
+                        width: "75%",
+                        display: { "lg": "block", "md": "block", "xs": "none" }
+                    }}>
+                        <List sx={{ display: "flex" }}>
+
+                            {user &&
+                                user.employer_type === "employer" && user.isemailverified && user.ismobileverified && user.stage === "hrpage" && EmployerMenu.map((item) => {
+                                    return (
+                                        <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
                                             button key={item.id} to={item.url} component={NavLink}
                                             className="menu"
                                             id={item.id}
-                                            onClick={() => { dispatch({ type: "CHANGE_EMPLOYEE_MENU", payload: item.value }) }} >
+                                            onClick={() => { dispatch({ type: "CHANGE_SELECTED_MENU", payload: item.value }) }} >
                                             <ListItemText
                                                 disableTypography
                                                 sx={{
-                                                    fontSize: "20px !important", color: "#4E3A67"
+                                                    fontSize: { "lg": `20px !important`, "md": "16px !important" }, color: "#4E3A67"
                                                 }}
-                                                className={EmployeeMenuSelected === item.value && "EmployeeMenuSelected"} primary={item.MenuName} />
+                                                className={MenuSelected === item.value && "MenuSelected"} primary={item.MenuName ? t(item.MenuName) : <Skeleton />} />
                                         </ListItem>
-                                    </>)
+                                    )
                                 })}
-                            </List>
+
+
+                            {user && user.type === "candidate" && user.isemailverified && user.ismobileverified && user.profilecompleted >= 0 && CandidateMenu.map((item) => {
+                                return (
+                                    <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
+                                        button key={item.id} to={item.url} component={NavLink}
+                                        className={MenuSelected === item.value && "MenuSelected"}
+                                        id={item.id}
+                                        onClick={() => { dispatch({ type: "CHANGE_SELECTED_MENU", payload: item.value }) }} >
+
+                                        <ListItemText
+                                            disableTypography
+                                            sx={{
+                                                fontSize: { "lg": `20px !important`, "md": "16px !important" }, color: "#4E3A67"
+                                            }}
+                                            primary={item.MenuName ? t(item.MenuName) : <Skeleton />} />
+                                    </ListItem>
+
+
+                                )
+                            })}
+
+
+                        </List>
+
+                    </Box>
+                    <Stack direction="row" gap={1} justifyContent="flex-end" alignItems="center" >
+                        <Box sx={{
+                            display: { "xl": "none", "lg": "none", "md": "none", "sm": "block", "xs": "block" },
+                            position: "relative"
+                        }}>
+                            {user && user.isemailverified && user.ismobileverified && (user.stage === "hrpage" || user.profilecompleted >= 0) &&
+                                <ReorderIcon onClick={() => setOpenMenu(!openMenu)} />
+                            }
+
                         </Box>
-                        <Stack direction="row" gap={3} justifyContent="flex-end" alignItems="center" sx={{ width: "20%" }}>
-                            <Badge badgeContent={4} color="primary" sx={{ cursor: "pointer" }}
-                                onClick={() => window.location.href = window.location.origin + '/employer-dashboard/chats'}>
-                                <MailOutlineIcon></MailOutlineIcon>
-                            </Badge>
+                        {openMenu && user && user.employer_type === "employer" && (<>
+                            <ClickAwayListener onClickAway={() => setOpenMenu(!openMenu)}>
 
-                            <Box sx={{ cursor: "pointer" }} onClick={() => setOpenProfile(!openProfile)}>
-                                <Avatar alt={user.fullname} />
-                            </Box>
-                        </Stack>
-                        {openProfile && (<>
-                            <Box sx={{
-                                position: "absolute",
-                                top: "75px",
-                                background: "#FFFFFF",
-                                right: "10px",
-                                width: "300px",
-                                zIndex: "345235"
-                            }}>
-                                <Box sx={{ background: "#1f8f75", padding: "20px", height: "70px" }}>
-                                    <Typography component="div" sx={{ fontSize: "20px", color: "#FFFFFF" }}>
-                                        {user.employer_name ? user.employer_name : user.fullname}
-                                    </Typography>
-                                    <Typography component="div" sx={{ fontSize: "16px", color: "#FFFFFF" }}>
-                                        {user.employer_email}
-                                    </Typography>
-                                </Box>
                                 <Box sx={{
-                                    background: "#0a6e56",
-                                    color: "#FFFFFF",
-                                    padding: "5px",
-                                    fontSize: "12px"
+                                    position: "absolute",
+                                    top: "30px",
+                                    background: "#FFFFFF",
+                                    right: "65px",
+                                    width: "300px",
+                                    zIndex: "345235"
                                 }}>
-                                    Last Login :
-                                    {user && user.lastlogin}
-                                    {/* <Moment format="DD/MM/YYYY">
-                                        {user && user.lastlogin}
-                                    </Moment> */}
+                                    <Box direction="row" sx={{
+                                        width: "100%"
+                                    }}>
+                                        <List sx={{ display: "flex", flexDirection: "column" }}>
+
+                                            {EmployerMenu.map((item) => {
+                                                return (
+                                                    <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
+                                                        button key={item.id} to={item.url} component={NavLink}
+                                                        className="menu"
+                                                        id={item.id}
+                                                        onClick={() => {
+                                                            setOpenMenu(!openMenu)
+                                                            dispatch({ type: "CHANGE_SELECTED_MENU", payload: item.value })
+                                                        }} >
+                                                        <ListItemText
+                                                            disableTypography
+                                                            sx={{
+                                                                fontSize: { "lg": "20px !important", "md": "16px !important" }, color: "#4E3A67"
+                                                            }}
+                                                            className={MenuSelected === item.value && "MenuSelected"} primary={t(item.MenuName)} />
+                                                    </ListItem>
+                                                )
+                                            })}
+                                        </List>
+                                    </Box>
+
+
                                 </Box>
+                            </ClickAwayListener >
 
-
-                                {
-                                    user && user.employer_type == "employer" && (<>
-                                        <Stack gap={2} direction="column" sx={{ background: "#FFFFFF", padding: "20px" }}>
-                                            {/* <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                Basic Postings : Unlimited
-                                            </Typography>
-
-                                            <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                Premium Posting : {user && user.employer_plan} credits
-                                            </Typography> */}
-
-                                            <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => window.location.href = window.location.origin + '/employer-dashboard/account-setting'}>
-                                                <PersonIcon />
-                                                <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                    Account Setting
-                                                </Typography>
-                                            </Stack>
-
-                                            <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => {
-
-                                                dispatch({ type: "LOGOUT" })
-                                            }}>
-                                                <LogoutIcon />
-                                                <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                    Logout
-                                                </Typography>
-                                            </Stack>
-                                        </Stack></>)
-                                }
-
-                                {
-                                    user && user.type == "candidate" && (<>
-                                        <Box sx={{ background: "#FFFFFF", padding: "0px 20px", height: "300px", overflow: "scroll" }}>
-                                            <List sx={{ display: "flex", flexDirection: "column" }}>
-                                                {CandidateLogoutMenu.map((item) => {
-                                                    return (<>
-                                                        <ListItem sx={{ width: "100%" }}
-                                                            button key={item.id} to={item.url} component={NavLink}
-                                                            className="menu"
-                                                            id={item.id}
-                                                            onClick={() => { }} >
-                                                            <ListItemText primary={item.Name} />
-                                                        </ListItem>
-                                                    </>)
-                                                })}
-                                            </List>
-
-                                            <Stack direction="row" gap={2} sx={{ cursor: "pointer" }} onClick={() => dispatch({ type: "LOGOUT" })}>
-                                                <LogoutIcon />
-                                                <Typography component="div" sx={{ fontSize: "14px" }}>
-                                                    Logout
-                                                </Typography>
-                                            </Stack>
-                                        </Box>
-                                    </>)
-                                }
-
-                            </Box>
                         </>
                         )}
 
-                    </Stack></>)
-                }
+                        {openMenu && user && user.type === "candidate" && (<>
+                            <ClickAwayListener onClickAway={() => setOpenMenu(!openMenu)}>
 
-                {user && user.data && user.data.type == "candidate" && (<>
+                                <Box sx={{
+                                    position: "absolute",
+                                    top: "30px",
+                                    background: "#FFFFFF",
+                                    right: "65px",
+                                    width: "300px",
+                                    zIndex: "345235"
+                                }}>
+                                    <Box direction="row" sx={{
+                                        width: "100%"
+                                    }}>
+                                        <List sx={{ display: "flex", flexDirection: "column" }}>
 
-                    <Stack direction="column"  >
+                                            {CandidateMenu.map((item) => {
+                                                return (<>
+                                                    <ListItem sx={{ width: { "lg": "fit-content", "md": "max-content" } }}
+                                                        button key={item.id} to={item.url} component={NavLink}
+                                                        className="menu"
+                                                        id={item.id}
+                                                        onClick={() => {
+                                                            setOpenMenu(!openMenu)
+                                                            dispatch({ type: "CHANGE_SELECTED_MENU", payload: item.value })
+                                                        }} >
+                                                        <ListItemText
+                                                            disableTypography
+                                                            sx={{
+                                                                fontSize: { "lg": "20px !important", "md": "16px !important" }, color: "#4E3A67"
+                                                            }}
+                                                            className={MenuSelected === item.value && "MenuSelected"}
+                                                            primary={t(item.MenuName)} />
+                                                    </ListItem>
+                                                </>)
+                                            })}
+                                        </List>
+                                    </Box>
 
-                        <Box sx={{ width: "50px", margin: "10px auto" }} >
-                            <Link to="/">
-                                <img src={window.location.origin + "/assets/companyLogo.png"} width="100%" height="100%" alt="companyLogo" />
-                            </Link>
+
+                                </Box>
+                            </ClickAwayListener >
+
+                        </>
+                        )}
+
+                        {user && user.employer_type === "employer" && <Box sx={{
+                            cursor: "pointer",
+                            width: { "xs": "30px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" },
+                            height: { "xs": "fit-content", "sm": "fit-content", "md": "fit-content", "lg": "50px", "xl": "50px" }
+                        }} onClick={() => setOpenProfile(!openProfile)}>
+                            {
+
+                                user.employer_profilepic ?
+                                    <img src={user.employer_profilepic} alt={user.employer_name} width="100%" height="100%" style={{ borderRadius: "50%" }} />
+                                    :
+                                    <Avatar alt={user.employer_name} />
+
+                            }
                         </Box>
+                        }
 
-                        <Stack direction="column" gap={2}>
-                            {user && CandidateMenu.map((item) => {
-                                return (<>
-                                    <ListItem sx={{
-                                        width: "fit-content",
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        width: '100%',
-                                        padding: "0px",
-                                        alignItems: "center",
-                                        justifyContent: 'center',
-                                        margin: "8px 0px",
+                        {user && user.type === "candidate" && <Box sx={{
+                            cursor: "pointer",
+                            width: { "xs": "20px", "sm": "30px", "md": "50px", "lg": "50px", "xl": "50px" },
+                            height: { "xs": "17px", "sm": "17px", "md": "50px", "lg": "50px", "xl": "50px" }
+                        }} onClick={() => setOpenProfile(!openProfile)}>
+                            {
 
-                                    }}
-                                        button key={item.id} to={item.url} component={NavLink}
-                                        className={CandidateMenuSelected === item.value && "CandidateMenuSelected"}
-                                        id={item.id}
-                                        onClick={() => { dispatch({ type: "CHANGE_CANDIDATE_MENU", payload: item.value }) }} >
-                                        <ListItemIcon sx={{ width: "20px", minWidth: "20px" }}>
-                                            <img src={window.location.origin + `/assets/${item.image}`} width="100%" alt={item.value} />
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primaryTypographyProps={{ fontSize: '12px', textAlign: "center" }}
-                                            primary={item.MenuName} />
-                                    </ListItem>
+                                user.profile_image ?
+                                    <img src={user.profile_image} alt={user && user.personalInfo && user.personalInfo.fullname} width="100%" height="100%" style={{ borderRadius: "50%" }} /> :
+                                    <Avatar alt={user && user.personalInfo && user.personalInfo.fullname} />
 
-                                </>
-                                )
-                            })}
-                            <ListItem sx={{
-                                width: "fit-content",
-                                display: "flex",
-                                flexDirection: "column",
-                                width: '100%',
-                                padding: "0px",
-                                alignItems: "center",
-                                justifyContent: 'center',
-                                margin: "8px 0px"
+                            }
+                        </Box>
+                        }
 
-                            }}
-                                className={CandidateMenuSelected === "logout" && "CandidateMenuSelected"}
-                                onClick={() => dispatch({ type: "LOGOUT" })} >
-                                <ListItemIcon sx={{ width: "20px", minWidth: "20px" }}>
-                                    <LogoutIcon />
-                                </ListItemIcon>
-                                <ListItemText
-                                    primaryTypographyProps={{ fontSize: '12px', textAlign: "center" }}
-                                    primary="Logout" />
-                            </ListItem>
 
-                        </Stack>
+
 
                     </Stack>
-                </>)}
+                    {openProfile && (<>
 
-                <Box sx={{ background: "#f2f5fa", minHeight: `calc(100vh - 50px)`, width: '100%' }}>
-                    <Outlet context={userInformation}></Outlet>
+                        {user && user.employer_type === "employer" &&
+                            <DashboardAccountSetting
+                                userName={user && user.employer_name}
+                                userEmail={user && user.employer_email}
+                                userLastLogin={user && user.lastlogin}
+                                userType="employer" />
+                        }
+
+                        {user && user.type === "candidate" &&
+                            <DashboardAccountSetting
+                                userName={user && user.personalInfo && user.personalInfo.fullname}
+                                userEmail={user && user.personalInfo && user.personalInfo.email}
+                                userLastLogin={user && user.lastlogin}
+                                userType="candidate" />
+                        }
+
+                    </>
+                    )}
+
+                </Stack>
+
+                {/* Dashboard based on the user */}
+                <Box sx={{
+                    background: "#FAFAFA",
+                    width: '100%'
+                }}>
+                    {/* {!pageAuthenticate && <ErrorPage errorMessage="Page not Found" subMessage="Unfortunately the page you are looking for could not be found" />} */}
+                    {<Outlet context={user} >
+                    </Outlet>}
+
+
+
                 </Box>
 
             </Stack>
 
-            <Footer />
+            {user.isemailverified && user.ismobileverified && <Footer />}
 
         </Box >
 

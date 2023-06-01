@@ -8,9 +8,11 @@ import { JobCategories } from "../../../utils/Data";
 import { useState } from "react";
 
 import AllJobCategories from "./AllJobCategories";
+import { useNavigate } from 'react-router-dom';
 
 const JobCategory = () => {
 
+  const navigate = useNavigate();
   const ShowLessCategoryButton = styled(Button)({
     textTransform: "capitalize",
     color: "#FFFFFF",
@@ -26,12 +28,13 @@ const JobCategory = () => {
   const [showCategory, setshowCategory] = useState(false);
 
   return (<>
-    <Box className="hs_job_categories">
+    <Box className="hs_job_categories"
+      sx={{ display: { "xs": "none", "sm": "block", "md": "block", "lg": "block", "xl": "block" } }}>
       <Stack
         className="hs_job_categroies_wrapper"
         sx={{
           display: "flex",
-          flexDirextion: "column",
+          flexDirection: "column",
           alignItem: "center",
           padding: "50px 30px",
           backgroundColor: "#FFFFFF",
@@ -50,17 +53,15 @@ const JobCategory = () => {
             columnGap: "20px",
             rowGap: "20px",
           }}>
-          {JobCategories.map((item) => {
+          {JobCategories.map((item, index) => {
             return (
               <>
-                <div className="CategoryItem" key={item.id} id={item.id} >
-                  {/* <div className="CategoryLogo" >
-                    <img src={item.logo} alt={item.title} width="100%" />
-                  </div> */}
+                <div className="CategoryItem" key={index} id={item.id} onClick={() => navigate("job?name=" + item.title.toLowerCase())} >
+
                   <div className="CategoryTitle" >
                     <span
                       style={{
-                        fontSize: "24px",
+                        fontSize: "18px",
                         fontFamily: "Montserrat",
                         fontWeight: "600",
                         color: "#5A5A5A"

@@ -1,31 +1,28 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { SaveCandidateWorkInformation } from "../../utils/ApiUrls";
 
-import { Box, Stack, Typography, Button, Input, TextField, Radio, RadioGroup, FormControlLabel, FormControl, Snackbar, Alert } from "@mui/material";
+import { Box, Stack, Typography, TextField, Divider } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Error from '../../ThemeComponent/Common/Error';
 
-import { SocialBox, ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
-import { ThemeButtontype1 } from "../../utils/Theme";
+import { ThemeButtonType2, ThemeButtonType3, ThemeFInputDiv } from "../../utils/Theme";
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 
 import { WorkHistorySchema } from "../../Validation/CandidateValidation";
-import HeaderSec from "../Common/HeaderSec";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
-const WorkHistory = ({ setActiveStep }) => {
-    let api_url = useSelector(state => state.api_url);
-    let userid = useSelector(state => state.candidateInfo);
+import { data1 } from "../../utils/Data";
+import FormMenu from "../Common/FormMenu";
 
-    if (userid != '') {
-        userid = JSON.parse(userid);
-        userid = userid.data;
-    }
+import ThemeMessage from "../Common/ThemeMessage";
+import ThemeMobileImage from "../Common/ThemeMobileImage";
+import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
 
+import { useTranslation } from "react-i18next";
+function WorkHistoryForm({ handleAddComponent, handleRemoveComponent, id, jobType }) {
     const defaultValue = {
         company_name: "",
         designation: "",
@@ -34,15 +31,15 @@ const WorkHistory = ({ setActiveStep }) => {
         ending_year: "",
     }
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const [startingDate, setStartingDate] = useState();
-    const [endingDate, setEndingDate] = useState();
+    const [startingDate, setStartingDate] = useState(null);
+    const [endingDate, setEndingDate] = useState(null);
+    const [showAddButton, setShowAddButton] = useState(false);
+    const [showRemoveButton, setShowRemoveButton] = useState(false);
 
-    const handleClose = (event) => {
-        setFormSubmitted(false);
-    };
+    const { t, i18n } = useTranslation();
+
 
     const handleSubmit = async (values, { resetForm }) => {
-        console.log(values);
 
         let formData = new FormData();
         formData = {
@@ -57,29 +54,217 @@ const WorkHistory = ({ setActiveStep }) => {
         console.log(response);
         if (response.status == 1) {
             localStorage.setItem("user", JSON.stringify(response.data));
-            resetForm("");
-            startingDate("");
-            endingDate("");
             setFormSubmitted(true)
+            setShowAddButton(true)
+
         }
 
     }
 
+    const nextStepButton = async () => {
+        let companyName = document.getElementById("company_name").value
+        let Designation = document.getElementById("designation").value
+        let Department = document.getElementById("department").value
+        let formData = new FormData();
+        formData = {
+            company_name: companyName,
+            designation: Designation,
+            department: Department,
+            starting_year: new Date(startingDate),
+            ending_year: new Date(endingDate),
+        }
+
+        if (companyName !== "" && Designation !== "" && Department !== "") {
+            let response = await postRequest(SaveCandidateWorkInformation, formData);
+            if (response.status == 1) {
+                localStorage.setItem("user", JSON.stringify(response.data));
+                setFormSubmitted(true)
+                setShowAddButton(true)
+
+            }
+        }
+        window.location.href = window.location.origin + "/candidate-dashboard/normal/" + jobType + "/profile/3";
+    }
+
+    return (<>
+        <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message=" Your Work History is submitted." type="success" />
+
+        <Box id={id}>
+            <Formik
+                initialValues={defaultValue}
+                validationSchema={WorkHistorySchema}
+                onSubmit={handleSubmit}
+            >
+                {({ errors, touched, values, setFieldValue }) => (
+                    <Form className="workHistoryForm">
+                        <ThemeFInputDiv >
+
+                            <ThemeFInputDiv>
+                                <ThemeLabel LableFor="company_name" LableText="Company Name" />
+                                <Field
+                                    error={errors.company_name && touched.company_name}
+                                    as={TextField}
+                                    id="company_name"
+                                    placeholder="Enter Company Name" type="text" name="company_name" fullWidth />
+                                {errors.company_name && touched.company_name && <Error text={errors.company_name} />}
+
+                            </ThemeFInputDiv>
+
+                            <ThemeFInputDiv>
+                                <ThemeLabel LableFor="designation" LableText="Designation" />
+                                <Field
+                                    error={errors.designation && touched.designation}
+                                    as={TextField}
+                                    id="designation"
+                                    placeholder="Enter Designation" type="text" name="designation" fullWidth />
+                                {errors.designation && touched.designation && <Error text={errors.designation} />}
+
+                            </ThemeFInputDiv>
+
+                            <ThemeFInputDiv>
+                                <ThemeLabel LableFor="department" LableText="Department" />
+                                <Field
+                                    error={errors.department && touched.department}
+                                    as={TextField}
+                                    id="department"
+                                    placeholder="Enter department" type="text" name="department" fullWidth />
+                                {errors.department && touched.department && <Error text={errors.department} />}
+
+                            </ThemeFInputDiv>
+
+                            <Stack direction="row" gap={2}>
+                                <ThemeFInputDiv sx={{ width: "370px" }}>
+                                    <ThemeLabel LableFor="starting_year" LableText="Start Date" />
+                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+
+                                        <DatePicker
+
+                                            id="starting_year"
+                                            value={startingDate}
+                                            onChange={(newValue) => {
+                                                setStartingDate(newValue);
+                                                setFieldValue("starting_year", new Date(newValue))
+                                            }}
+                                            inputProps={{
+                                                placeholder: "Enter Starting Year"
+                                            }}
+                                            disableFuture={true}
+                                            renderInput={(params) => <TextField
+
+                                                {...params} />}
+                                        />
+                                    </LocalizationProvider>
+                                    {errors.starting_year && touched.starting_year && <Error text={errors.starting_year} />}
+
+                                </ThemeFInputDiv>
+
+                                <ThemeFInputDiv sx={{ width: "370px" }}>
+                                    <ThemeLabel LableFor="ending_year" LableText="Last Date" />
+                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+
+                                        <DatePicker
+
+                                            id="ending_year"
+                                            value={endingDate}
+                                            onChange={(newValue) => {
+                                                setEndingDate(newValue);
+                                                setFieldValue("ending_year", new Date(newValue))
+                                            }}
+                                            inputProps={{
+                                                placeholder: "Enter Starting Year"
+                                            }}
+                                            disableFuture={true}
+                                            renderInput={(params) => <TextField
+
+                                                {...params} />}
+                                        />
+                                    </LocalizationProvider>
+
+                                    {errors.ending_year && touched.ending_year && <Error text={errors.ending_year} />}
+
+                                </ThemeFInputDiv>
+                            </Stack>
+
+                            <Stack direction="row" sx={{ width: "100%", gap: "30px", flexWrap: "wrap", margin: "10px 0px" }}>
+                                {showAddButton && <ThemeButtonType3 variant="outlined" type="submit"
+                                    sx={{
+                                        fontFamily: "Work Sans, sans-serif", fontWeight: "600",
+                                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
+                                    }}
+                                    onClick={(event) => {
+                                        handleAddComponent();
+                                        event.preventDefault();
+                                    }}
+                                > {t('ADD')} +</ThemeButtonType3>}
+
+
+                                {(showRemoveButton || id > 0) &&
+                                    <ThemeButtonType2 variant="contained" type="button" sx={{
+                                        fontFamily: "Work Sans, sans-serif", fontWeight: "600",
+                                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
+                                    }}
+                                        onClick={(event) => {
+                                            handleRemoveComponent();
+                                            event.preventDefault();
+                                        }}>{t('REMOVE')} -</ThemeButtonType2>}
+                            </Stack>
+
+                            <Stack direction="row" sx={{ width: "100%", gap: "30px", flexWrap: "wrap" }}>
+                                <ThemeButtonType3 variant="outlined" type="submit"
+                                    sx={{
+                                        fontFamily: "Work Sans, sans-serif", fontWeight: "600",
+                                        width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
+
+                                    }}
+                                > {t('SAVE')}</ThemeButtonType3>
+                                <ThemeButtonType2 variant="contained" type="button" sx={{
+                                    fontFamily: "Work Sans, sans-serif", fontWeight: "600",
+                                    width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
+                                }}
+                                    onClick={nextStepButton}>{t('NEXT_STEP')}</ThemeButtonType2>
+
+                            </Stack>
+                        </ThemeFInputDiv>
+                    </Form>
+
+                )}
+            </Formik>
+        </Box>
+    </>)
+
+
+}
+const WorkHistory = ({ jobType }) => {
+    const [components, setComponents] = useState([]);
+    const { t, i18n } = useTranslation();
+
+    const handleAddComponent = () => {
+        setComponents(prevComponents => [...prevComponents, <WorkHistoryForm
+            key={prevComponents.length} id={prevComponents.length} handleAddComponent={handleAddComponent}
+            handleRemoveComponent={handleRemoveComponent}
+            jobType={jobType}
+        />]);
+    };
+
+    const handleRemoveComponent = () => {
+        setComponents(prevComponents => {
+            const newDivs = [...prevComponents];
+            newDivs.pop();
+            return newDivs;
+        });
+    };
+
+
+    useEffect(() => {
+        handleAddComponent();
+    }, []);
+
     return (<>
 
-        <Snackbar
-            open={formSubmitted}
-            autoHideDuration={6000} onClose={handleClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        >
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                Your Work History is submitted
-            </Alert>
 
-        </Snackbar>
         <Box className="WorkHistoryPage"
             sx={{
-                height: "100vh",
+                minHeight: "100vh",
                 background: "#FFFFFF",
                 backgroundRepeat: " no-repeat",
                 backgroundPosition: "left 100px bottom 0px"
@@ -87,407 +272,135 @@ const WorkHistory = ({ setActiveStep }) => {
             <Stack className="WorkHistorypageWrapper"
                 sx=
                 {{
-                    padding: "20px 50px",
-                    gap: "24px"
+                    padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
+                    gap: { "xs": "0px", "sm": "0px", "md": "24px", "lg": "24px", "xl": "24px" }
                 }}>
-                <HeaderSec
-                    color="black"
-                    border="2px solid #8E8E8E" />
-                <Stack alignItems="flex-end" sx={{ position: "relative" }}>
 
-
-                    <Box sx={{
-                        position: "absolute",
-                        top: "111px",
-                        left: "152px",
-                        width: "673px",
-                        zIndex: "78798"
-                    }}
-                    >
-                        <Typography component="box" sx={{
-                            fontSize: "64px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                        }}> Get
-                        </Typography>
-                        <Typography component="box" sx={{
-                            fontSize: "64px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                            width: "max-content"
-                        }}>
-                            local-level jobs
-
-                        </Typography>
-                        <img src={window.location.origin + "/assets/g53.png"} alt="g53" style={{ margin: "40px 20px" }} />
-
-                    </Box>
-
-                    <Box sx={{
-                        height: "31px",
-                        width: "505px",
-                        left: "148px",
-                        top: "241px",
-                        borderRadius: "0px",
-                        background: "#FFD5C9",
-                        position: "absolute"
-                    }}></Box>
-                    <Box sx={{
-                        width: "763px",
-                        height: "153px",
-                        background: "#F8F8F8",
-                        border: "1px solid #EAEAEA",
-                        boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
-                        borderRadius: "19px",
-                        padding: "35px 50px"
+                <Stack direction={{ "xs": "column", "sm": "column", "md": "column", "lg": "row", "xl": "row" }} sx={{
+                    position: "relative",
+                    gap: { "xs": "0px", "sm": "0px", "md": "24px", "lg": "24px", "xl": "24px" }
+                }}>
+                    <Stack sx={{
+                        width: {
+                            "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%"
+                        }, padding: { "xs": "0px", "sm": "0px", "md": "0px", "lg": "100px 0px", "xl": "100px 0px" },
                     }}>
-                        <Typography component="box" sx={{
-                            fontSize: "40px",
-                            fontFamily: "Montserrat",
-                            fontWeight: "600",
-                            color: "#4E3A67",
-                            display: "block",
-                            marginTop: "20px"
-                        }}>
-                            Work History
-                        </Typography>
-
-                        <Stack direction="row" gap={1} sx={{ margin: "25px 0px" }}>
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>1</Box>
+                        <Box>
+                            <Typography component="box" sx={{
+                                fontSize: "64px",
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                marginLeft: "60px",
+                                display: { "xs": "none", "sm": "none", "md": "none", "xl": "block", "lg": "block" }
+                            }}> {t('GET')}
                                 <Typography component="box" sx={{
-                                    fontSize: "16px",
+                                    fontSize: "64px",
                                     fontFamily: "Montserrat",
                                     fontWeight: "600",
                                     color: "#4E3A67",
                                     display: "block",
                                     width: "max-content"
                                 }}>
-                                    Personal Details
+                                    {t('LOCALLEVEL_JOBS')}
+
                                 </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                </Box>
-                            </Stack>
+                            </Typography>
+
+                            <Typography component="box" sx={{
+                                fontSize: { "xs": "1.6rem", "sm": "2rem", "md": "2rem", "xl": "4rem", "lg": "4rem" },
+                                fontFamily: "Montserrat",
+                                fontWeight: "600",
+                                color: "#4E3A67",
+                                display: { "xs": "block", "sm": "block", "md": "block", "xl": "none", "lg": "none" },
+                                margin: "10px 0px"
+                            }}> {t('GET_LOCALLEVEL_JOBS')}
+                            </Typography>
 
 
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
+                            <ThemeMobileImage imageUrl="/assets/g53.png" />
+                            <Box sx={{
+                                position: "relative",
+                                left: { 'xs': '0px', "sm": "0px", "md": "0px", "lg": "-170px", "xl": "-195px" },
+                                marginTop: "30px",
+                                zIndex: "100"
+                            }}
+                            >
+                                <ThemeWebsiteImage imageUrl="/assets/g53.png" imageWidth="600px" />
+                            </Box>
+
+                        </Box>
+                    </Stack>
+
+                    <Box id="WorkHistoryDiv" sx={{ width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "50%", "xl": "50%" } }}>
+
+                        <Box >
+
+                            <Box sx={{
+                                background: "#F8F8F8",
+                                border: "1px solid #EAEAEA",
+                                boxShadow: "0px 4px 40px rgba(239, 239, 239, 0.3)",
+                                borderRadius: "19px",
+                                position: "relative",
+                                top: { "xs": "-30px", "sm": "-30px", "md": "-30px", "lg": "0px", "xl": "0px" }
+
+                            }}>
                                 <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>2</Box>
-                                <Typography component="box" sx={{
-                                    fontSize: "16px",
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                    width: "max-content"
-
+                                    padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
                                 }}>
-                                    Professional Details
-                                </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
+                                    <Typography component="box" sx={{
+                                        fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" },
+                                        fontFamily: "Montserrat",
+                                        fontWeight: "600",
+                                        color: "#000000",
+                                        display: "block",
+                                        marginTop: "20px"
+                                    }}>
+                                        {t('WORK_HISTORY')}
+                                    </Typography>
+
+                                    <Stack direction="row" gap={1} sx={{ margin: "25px 0px", flexWrap: "wrap" }}>
+
+                                        {
+                                            data1 && data1.map((item) => {
+                                                return <FormMenu data={item} dataLength={data1.length} />
+                                            })
+                                        }
+
+                                    </Stack>
                                 </Box>
-                            </Stack>
 
 
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" >
-                                <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>3</Box>
-                                <Typography component="box" sx={{
-                                    fontSize: "16px",
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                    width: "max-content"
+                                <Stack sx={{
+                                    boxSizing: "border-box",
+                                    background: "#FFFFFF",
+                                    border: "1px solid #EDEDED",
+                                    padding: { "xs": "15px", "sm": "15px", "md": "30px 50px", "lg": "30px 50px", "xl": "30px 50px" },
+                                    paddingBottom: "100px",
+                                    borderBottomLeftRadius: "19px",
+                                    borderBottomRightRadius: "19px",
 
-                                }}>
-                                    Work History
-                                </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                </Box>
-                            </Stack>
+                                }}
+                                    divider={<Divider orientation="horizontal" flexItem />}
+                                    gap={2}
+                                >
 
-                            <Stack direction="row" gap={1} alignItems="center" justifyContent="center" sx={{ opacity: "0.5" }}>
-                                <Box sx={{
-                                    width: "27px",
-                                    height: "27px",
-                                    background: "#FC9A7E",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>3</Box>
-                                <Typography component="box" sx={{
-                                    fontSize: "16px",
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "600",
-                                    color: "#4E3A67",
-                                    display: "block",
-                                    width: "max-content"
 
-                                }}>
-                                    Upload Resume
-                                </Typography>
-                                <Box>
-                                    <img width="10px" height="10px" src={window.location.origin + "/assets/FormRightArrow.png"} alt="right_arrow" />
-                                </Box>
-                            </Stack>
+                                    {components}
+                                </Stack>
 
-                        </Stack>
+                            </Box>
+
+                        </Box>
 
                     </Box>
-                    <Box sx={{
-                        boxSizing: "border-box",
-                        width: "865px",
-                        height: "647",
-                        background: "#FFFFFF",
-                        border: "1px solid #EDEDED",
-                        borderRadius: "19px",
-                        position: "absolute",
-                        top: "197px",
-                        padding: "30px 50px",
-                        paddingBottom: "100px"
 
-
-                    }}>
-
-                        <Formik
-
-                            initialValues={defaultValue}
-                            validationSchema={WorkHistorySchema}
-                            onSubmit={handleSubmit}
-                        >
-                            {({ errors, touched, values, setFieldValue }) => (
-                                <Form className="workHistoryForm">
-                                    <ThemeFInputDiv >
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="company_name" LableText="Company Name" />
-                                            <Field
-                                                error={errors.company_name && touched.company_name}
-                                                as={TextField}
-                                                id="company_name"
-                                                placeholder="Enter Company Name" type="text" name="company_name" fullWidth />
-                                            {errors.company_name && touched.company_name && <Error text={errors.company_name} />}
-
-                                        </ThemeFInputDiv>
-
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="designation" LableText="Designation" />
-                                            <Field
-                                                error={errors.designation && touched.designation}
-                                                as={TextField}
-                                                id="designation"
-                                                placeholder="Enter Designation" type="text" name="designation" fullWidth />
-                                            {errors.designation && touched.designation && <Error text={errors.designation} />}
-
-                                        </ThemeFInputDiv>
-
-                                        <ThemeFInputDiv>
-                                            <ThemeLabel LableFor="department" LableText="Department" />
-                                            <Field
-                                                error={errors.department && touched.department}
-                                                as={TextField}
-                                                id="department"
-                                                placeholder="Enter department" type="text" name="department" fullWidth />
-                                            {errors.department && touched.department && <Error text={errors.department} />}
-
-                                        </ThemeFInputDiv>
-
-                                        <Stack direction="row" gap={2}>
-                                            <ThemeFInputDiv sx={{ width: "370px" }}>
-                                                <ThemeLabel LableFor="starting_year" LableText="Start Date" />
-                                                <LocalizationProvider dateAdapter={AdapterDayjs}>
-
-                                                    <DatePicker
-
-                                                        id="starting_year"
-                                                        value={startingDate}
-                                                        onChange={(newValue) => {
-                                                            setStartingDate(newValue);
-                                                            setFieldValue("starting_year", new Date(newValue))
-                                                        }}
-                                                        renderInput={(params) => <TextField
-
-                                                            {...params} />}
-                                                    />
-                                                </LocalizationProvider>
-                                                {errors.starting_year && touched.starting_year && <Error text={errors.starting_year} />}
-
-                                            </ThemeFInputDiv>
-
-                                            <ThemeFInputDiv sx={{ width: "370px" }}>
-                                                <ThemeLabel LableFor="ending_year" LableText="Last Date" />
-                                                <LocalizationProvider dateAdapter={AdapterDayjs}>
-
-                                                    <DatePicker
-
-                                                        id="ending_year"
-                                                        value={endingDate}
-                                                        onChange={(newValue) => {
-                                                            setEndingDate(newValue);
-                                                            setFieldValue("ending_year", new Date(newValue))
-                                                        }}
-                                                        renderInput={(params) => <TextField
-
-                                                            {...params} />}
-                                                    />
-                                                </LocalizationProvider>
-
-                                                {errors.ending_year && touched.ending_year && <Error text={errors.ending_year} />}
-
-                                            </ThemeFInputDiv>
-                                        </Stack>
-
-                                        <Stack direction="row" sx={{ width: "100%", margin: "40px 0px", gap: "20px" }}>
-                                            <ThemeButtonType3 variant="outlined" type="submit"
-                                                sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
-                                            > Save</ThemeButtonType3>
-                                            <ThemeButtonType2 variant="contained" type="button" sx={{ fontFamily: "Work Sans, sans-serif", fontWeight: "600" }}
-                                                onClick={() => {
-                                                    window.location.href = window.location.origin + '/profile/3';
-                                                }}>Next Step</ThemeButtonType2>
-
-                                        </Stack>
-                                    </ThemeFInputDiv>
-                                </Form>
-
-                            )}
-                        </Formik>
-
-
-
-
-                    </Box>
 
                 </Stack>
             </Stack>
         </Box>
 
-        {/* <Stack direction="row" gap={2} >
-            <Box sx={{ width: "40%" }} ></Box>
-            <Box sx={{
-                width: "60%",
-                margin: "50px",
-                borderRadius: "10px",
-                padding: "30px",
-                background: "#FFFFFF",
-                borderTop: "4px solid #2B1E44"
-            }}>
-                <Typography component="h3" sx={{ fontSize: "25px", color: "#2B1E44", marginBottom: "20px" }}>
-                    Work History
-                </Typography>
-                <Formik
 
-                    initialValues={defaultValue}
-                    validationSchema={WorkHistorySchema}
-                    onSubmit={handleSubmit}
-                >
-                    {({ errors, touched, values, setFieldValue }) => (
-                        <Form >
-                            <Stack direction="column" gap={2} >
-                                <Stack direction="column" gap={1} className="profile-input-item">
-                                    <ThemeLabel LableFor="company_name" LableText="Company Name" />
-                                    <Field
-                                        size="small"
-                                        error={errors.company_name && touched.company_name}
-                                        as={TextField}
-                                        id="company_name"
-                                        placeholder="Enter Company Name" type="text" name="company_name" fullWidth />
-                                    {errors.company_name && touched.company_name && <Error text={errors.company_name} />}
-
-                                </Stack>
-
-                                <Stack direction="column" gap={1} className="profile-input-item">
-                                    <ThemeLabel LableFor="designation" LableText="Designation" />
-                                    <Field
-                                        size="small"
-                                        error={errors.designation && touched.designation}
-                                        as={TextField}
-                                        id="designation"
-                                        placeholder="Enter Designation" type="text" name="designation" fullWidth />
-                                    {errors.designation && touched.designation && <Error text={errors.designation} />}
-
-                                </Stack>
-
-                                <Stack direction="column" gap={1} className="profile-input-item">
-                                    <ThemeLabel LableFor="department" LableText="Department" />
-                                    <Field
-                                        size="small"
-                                        error={errors.department && touched.department}
-                                        as={TextField}
-                                        id="department"
-                                        placeholder="Enter department" type="text" name="department" fullWidth />
-                                    {errors.department && touched.department && <Error text={errors.department} />}
-
-                                </Stack>
-
-                                <Box className="profile-input-item">
-                                    <ThemeLabel LableFor="starting_year" LableText="Start Date" />
-                                    <DatePicker
-                                        autoComplete="off"
-                                        id="starting_year"
-                                        placeholderText={'Start Date'}
-                                        name="starting_year"
-                                        selected={startingDate} onChange={(date) => { setStartingDate(date); setFieldValue("starting_year", date) }} />
-                                    {errors.starting_year && touched.starting_year && <Error text={errors.starting_year} />}
-
-                                </Box>
-
-                                <Box className="profile-input-item">
-                                    <ThemeLabel LableFor="ending_year" LableText="Last Date" />
-                                    <DatePicker
-                                        autoComplete="off"
-                                        id="ending_year"
-                                        placeholderText={'Last Date'}
-                                        name="ending_year"
-                                        selected={endingDate} onChange={(date) => { setEndingDate(date); setFieldValue("ending_year", date) }} />
-                                    {errors.ending_year && touched.ending_year && <Error text={errors.ending_year} />}
-
-                                </Box>
-
-                                <Box style={{ textAlign: 'center', margin: "30px 0px" }}>
-                                    <ThemeButtontype1 variant="contained" type="submit">Continue</ThemeButtontype1>
-                                </Box>
-                            </Stack>
-                        </Form>
-
-                    )}
-                </Formik>
-
-                <Stack sx={{ width: "100%" }} justifyContent="flex-end">
-                    <Button onClick={() => setActiveStep(3)}> Next Step</Button>
-                </Stack>
-            </Box>
-        </Stack> */}
 
     </>)
 }

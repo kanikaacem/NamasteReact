@@ -1,6 +1,5 @@
-import { Button, Stack, styled, Typography } from "@mui/material";
+import { Button, Stack, styled } from "@mui/material";
 import { Box } from "@mui/system";
-
 //Theme Button
 export const ThemeButtontype1 = styled(Button)({
     textTransform: "capitalize",
@@ -104,3 +103,12 @@ export const NextButton = styled(Button)({
 
 })
 
+
+export const FooterBox = styled(Box)({
+    fontSize: "20px",
+    color: "#2B!E44",
+    margin: "10px 0px",
+    color: "#FFFFFF",
+    fontWeight: '100',
+    cursor: "pointer"
+})

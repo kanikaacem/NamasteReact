@@ -25,7 +25,7 @@ export const PasswordGenFormValidationSchema = yup.object().shape({
 //STEP 3
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 export const MobileVerifyFormValidationSchema = yup.object().shape({
-    // mobile_number: yup.string().required("Mobile number is required")
+    mobile_number: yup.string().required("Mobile number is required").matches(/^[6-9]\d{9}$/, { message: "Please enter valid number.", excludeEmptyString: false })
 })
 
 export const OTPValidationSchema = yup.object().shape({
@@ -80,5 +80,12 @@ export const CompanyUpdateInformationSchema = yup.object().shape({
     company_website: yup.string().required("Company Website is required"),
     company_pincode: yup.string().required("Company Lan Number is required").max(6),
     company_address: yup.string().required("Company Address is required"),
-    // company_gst_number: yup.string().required("GST Number is required")
+})
+
+
+//Contact Us Form Validation
+export const contactUsValidationSchema = yup.object().shape({
+    name: yup.string().required("Name  is required"),
+    mobile_number: yup.string().required("Mobile number is required").matches(phoneRegExp, 'Mobile number is not valid'),
+    message: yup.string().required("Message  is required")
 })
