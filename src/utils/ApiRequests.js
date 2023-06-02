@@ -44,15 +44,21 @@ export const PostImageRequest = async (api_url, bodyData) => {
 }
 /* Get Request */
 export const getRequest = async (api_url) => {
-    let token = localStorage.getItem("auth_token");
-
-    let data = await fetch(api_url, {
-        method: "GET",
-        headers: header,
-    });
-    if (data.ok) {
-        data = await data.json();
-        return data;
+    try {
+        let response = await fetch(api_url, {
+            method: "GET",
+            headers: header,
+        });
+        if (response.ok) {
+            response = await response.json();
+            return response;
+        }
+        else {
+            throw new Error("Request Failed")
+        }
+    } catch (error) {
+        console.error("Error", error);
+        throw error;
     }
 }
 

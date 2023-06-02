@@ -1,5 +1,5 @@
-import { PostImageRequest, getRequest, postRequest } from "../../utils/ApiRequests";
-import { uploadFileURL, checkBlueCollarJob, ShortlistRejectCandidate } from "../../utils/ApiUrls";
+import { PostImageRequest, postRequest } from "../../utils/ApiRequests";
+import { uploadFileURL, ShortlistRejectCandidate } from "../../utils/ApiUrls";
 import { Box, Button, Stack, Typography, Divider, Tabs, Tab, MenuItem, Select } from "@mui/material";
 
 import { MeetingType } from "../../utils/Data";
@@ -18,7 +18,8 @@ const ProfileComponent = ({ userData, userType, userStatus, jobsId }) => {
     const [userResume, setUserResume] = useState(" ");
     const [fileUpdated, setFileUpdated] = useState(false);
     const [fileUploadError, setFileUploadError] = useState(false);
-    const [blueCollarJob, setBlueCollarJob] = useState(false);
+    // const [blueCollarJob, setBlueCollarJob] = useState(false);
+    const blueCollarJob = false;
 
     const [candidateStatus, setCandidateStatus] = useState("");
     const [candidateAction, setCandidateAction] = useState(false);
@@ -61,11 +62,11 @@ const ProfileComponent = ({ userData, userType, userStatus, jobsId }) => {
     useEffect(() => {
         setUserImage(userData && userData.profile_image);
         setUserResume(userData && userData.resume && userData.resume.resume)
-        const getJobType = async () => {
-            let response = await getRequest(checkBlueCollarJob + "=" + userData.job_type);
-            if (response.data)
-                setBlueCollarJob(true);
-        }
+        // const getJobType = async () => {
+        //     let response = await getRequest(checkBlueCollarJob + "=" + userData.job_type);
+        //     if (response.data)
+        //         setBlueCollarJob(true);
+        // }
         // userData.jobtype !== undefined && getJobType();
         setCandidateStatus(userStatus)
     }, [userData, userStatus]);
@@ -206,7 +207,7 @@ const ProfileComponent = ({ userData, userType, userStatus, jobsId }) => {
                         </Typography>
                         <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "lg": "20px", "xl": "20px" }, color: "#4E3A67" }}>
                             {userData && userData.personalInfo && userData.personalInfo.total_work_experience ?
-                                userData.personalInfo.total_work_experience + " Yrs" : "Not mentioned"}
+                                `${userData.personalInfo.total_work_experience} Yrs` : "Not mentioned"}
                         </Typography>
                     </Stack>
 
@@ -271,7 +272,6 @@ const ProfileComponent = ({ userData, userType, userStatus, jobsId }) => {
                     sx={{
                         maxWidth: "1200px",
                         margin: "20px auto",
-                        borderRadius: "11px",
                         background: "#ffffff",
                         padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" },
                         borderRadius: "20px"
@@ -303,6 +303,7 @@ const ProfileComponent = ({ userData, userType, userStatus, jobsId }) => {
                                 alignItems: "center", position: "relative"
                             }} >
                                 {userResume ?
+                                    //eslint-disable-next-line
                                     <PDFReader showAllPage={true} url={userResume
                                     } /> :
                                     <Box> Not Uploaded </Box>}
@@ -369,7 +370,7 @@ const ProfileComponent = ({ userData, userType, userStatus, jobsId }) => {
                                                         {item.institude_name ? item.institude_name : "Institute name"}
                                                     </Typography>
                                                     <Typography component="div" sx={{ fontSize: { "xs": "12px", "sm": "12px", "md": "16px", "lg": "16px", "xl": "16px" }, color: "#806E96" }}>
-                                                        {item.qualification + " ( " + item.course_type.replace("_", " ").toUpperCase() + " )" + " | "}
+                                                        {`${item.qualification} (${item.course_type.replace("_", " ").toUpperCase()}) | `}
                                                         <Moment format="YYYY">{item.starting_year}</Moment>{" to "}
                                                         <Moment format="YYYY">{item.ending_year}</Moment>
                                                     </Typography>

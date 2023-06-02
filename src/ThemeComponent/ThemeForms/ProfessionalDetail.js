@@ -18,7 +18,7 @@ import ThemeMessage from "../Common/ThemeMessage";
 
 import { data1 } from "../../utils/Data";
 import FormMenu from "../Common/FormMenu";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ThemeMobileImage from "../Common/ThemeMobileImage";
 import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
 
@@ -33,7 +33,7 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
     const [showAddButton, setShowAddButton] = useState(false);
     const [showRemoveButton, setShowRemoveButton] = useState(false);
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const defaultValue = {
         institue_name: "",
@@ -91,6 +91,7 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
         window.location.href = window.location.origin + "/candidate-dashboard/normal/" + jobType + "/profile/2";
     }
 
+    useEffect(() => setShowRemoveButton(true), []);
     return <>
         <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted} message=" Your Professional Details is submitted successfully." type="success" />
 
@@ -274,7 +275,6 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
 
                         <Stack direction="row" sx={{
                             width: "100%", gap: "30px", flexWrap: "wrap", margin: "10px 0px",
-                            flexWrap: "wrap"
                         }}>
                             {showAddButton && <ThemeButtonType3 variant="outlined" type="submit"
                                 sx={{
@@ -288,7 +288,7 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
                             > {t('ADD')} +</ThemeButtonType3>}
 
 
-                            {(showRemoveButton || id > 0) &&
+                            {(showRemoveButton && id > 0) &&
                                 <ThemeButtonType2 variant="contained" type="button" sx={{
                                     fontFamily: "Work Sans, sans-serif", fontWeight: "600",
                                     width: { "xs": "100%", "sm": "100%", "md": "100%", "lg": "100%", "xl": "48%" }
@@ -329,15 +329,15 @@ function AddProfessionalForm({ handleAddComponent, handleRemoveComponent, id, jo
 const ProfessionalDetail = ({ jobType }) => {
 
     const [components, setComponents] = useState([]);
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
-    const handleAddComponent = () => {
+    const handleAddComponent = useCallback(() => {
         setComponents(prevComponents => [...prevComponents, <AddProfessionalForm
             key={prevComponents.length} id={prevComponents.length} handleAddComponent={handleAddComponent}
             handleRemoveComponent={handleRemoveComponent}
             jobType={jobType}
         />]);
-    };
+    }, [setComponents, jobType]);
 
     const handleRemoveComponent = () => {
         setComponents(prevComponents => {
@@ -349,7 +349,7 @@ const ProfessionalDetail = ({ jobType }) => {
 
     useEffect(() => {
         handleAddComponent();
-    }, []);
+    }, [handleAddComponent]);
 
 
     return (<>

@@ -24,14 +24,14 @@ const UploadResume = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const navigate = useNavigate();
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const uploadFile = async (event) => {
         let file = event.target.files[0];
         let formData = new FormData();
         formData.append('image', file);
         formData.append('ImageType', 'CandidateResume');
-        let response = await PostImageRequest(uploadFileURL, formData);
+        await PostImageRequest(uploadFileURL, formData);
         setFormSubmitted(true);
     }
 

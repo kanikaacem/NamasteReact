@@ -7,7 +7,7 @@ const ThemeMobileImage = ({ imageUrl }) => {
             display: { "xs": "block", "sm": "block", "md": "block", "lg": "none", "xl": "none" },
             margin: "0 auto"
         }}>
-            <img src={window.location.origin + imageUrl} width="100%" height="100%"></img>
+            <img src={window.location.origin + imageUrl} alt="MobileImage" width="100%" height="100%"></img>
         </Box>
     )
 }

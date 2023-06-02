@@ -45,7 +45,7 @@ const BlueCollarRegistrationForm = () => {
                     setQuestions([])
         }
         jobType && getQuestion();
-    }, [jobType, step]);
+    }, [jobType, JobType, step]);
 
     const FormSubmit = async (question, ans) => {
 
@@ -189,13 +189,12 @@ const BlueCollarRegistrationForm = () => {
     }
 
     function MultiSelectQuestion({ QuestionItem }) {
-        const [userSelectedOption, setUserSelectedOption] = useState(null);
 
         let SelectedOption = [];
 
         QuestionItem &&
             QuestionItem.questionoption.map(item => {
-                SelectedOption.push({
+                return SelectedOption.push({
                     label: item,
                     value: item
                 })
@@ -205,10 +204,9 @@ const BlueCollarRegistrationForm = () => {
             <Select
                 onChange={(option) => {
                     let optionvalue = [];
-                    setUserSelectedOption(option);
                     console.log(option)
                     option.map((item) => {
-                        optionvalue.push(item.value);
+                        return optionvalue.push(item.value);
                     })
                     FormSubmit(QuestionItem && QuestionItem.questiontag, optionvalue.join(","))
                 }}
@@ -234,7 +232,7 @@ const BlueCollarRegistrationForm = () => {
                 return <SelectQuestion QuestionItem={QuestionItem} />
 
             case "multiSelect":
-                <MultiSelectQuestion QuestionItem={QuestionItem} />
+                return <MultiSelectQuestion QuestionItem={QuestionItem} />
 
             case "radio":
                 return <RadioQuestion QuestionItem={QuestionItem}

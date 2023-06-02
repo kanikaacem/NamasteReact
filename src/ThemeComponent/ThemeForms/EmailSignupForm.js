@@ -20,7 +20,7 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
 
 
     const CLIENT_ID = "716443310647-ss6mebccjfbjinc0jfa188lnm6vo38o7.apps.googleusercontent.com";
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const defaultValue = {
         email_address: email ? email : ""
@@ -39,7 +39,7 @@ const EmailSignupForm = ({ email, setEmail, setEmailSignupForm, setPasswordGenFo
     const handleSubmit = async (values, { setFieldError }) => {
         let response = await CheckEmail(values.email_address);
         let status = response.status;
-        if (status == 1) {
+        if (status === "1") {
             setFieldError("email_address", "This email is already registered. Kindly Login.");
         } else {
             setEmail(values.email_address);

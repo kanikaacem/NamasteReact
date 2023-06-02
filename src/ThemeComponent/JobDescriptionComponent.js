@@ -64,7 +64,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
             jobid: data._id,
             status: status
         }
-        let response = await postRequest(JobSavedUrl, formData);
+        await postRequest(JobSavedUrl, formData);
         if (status)
             setJobSavedMessage("You have saved the job successfully.")
 
@@ -84,7 +84,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
             jobid: data._id,
             status: status
         }
-        let response = await postRequest(JobLikedUrl, formData);
+        await postRequest(JobLikedUrl, formData);
         if (status)
             setJobLikedMessage("You have liked the job successfully.")
 
@@ -116,7 +116,7 @@ const JobDescriptionComponent = ({ userType, data }) => {
         }
         data && data._id !== undefined && JobDetailsLikeSaveApply();
 
-    }, [data._id])
+    }, [data, data._id])
 
     return (<>
         <ThemeMessage open={formSubmitted} setOpen={setFormSubmitted}

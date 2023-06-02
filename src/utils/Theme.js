@@ -18,7 +18,6 @@ export const ThemeButtonType2 = styled(Button)({
     textTransform: "capitalize",
     background: "#FC9A7E",
     fontWeight: "700 !important ",
-    borderRadius: "0px",
     padding: "10px 80px",
     color: "#000000",
     fontSize: "24px",
@@ -106,7 +105,6 @@ export const NextButton = styled(Button)({
 
 export const FooterBox = styled(Box)({
     fontSize: "20px",
-    color: "#2B!E44",
     margin: "10px 0px",
     color: "#FFFFFF",
     fontWeight: '100',

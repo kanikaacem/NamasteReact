@@ -41,7 +41,7 @@ const JobSearch = () => {
                 path_url = path_url + "&ctc=" + params.get("ctc");
             let response = await getRequest(path_url);
 
-            if (response.status == 1) {
+            if (response.status === "1") {
                 setDataLoaded(true);
                 if (Object.keys(response.data).length > 0)
                     setData(response.data);
@@ -56,7 +56,7 @@ const JobSearch = () => {
     }, []);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [dataPerPage, setDataPerPage] = useState(10);
+    const dataPerPage = 10;
     const IndexOfLastData = currentPage * dataPerPage;
     const IndexOfFirstData = IndexOfLastData - dataPerPage;
     const jobs = data.length > 0 && data.slice(IndexOfFirstData, IndexOfLastData);

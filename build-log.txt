@@ -1,0 +1,675 @@
+
+> jobyahan@0.1.0 build
+> CI=false && react-scripts build
+
+Creating an optimized production build...
+Compiled with warnings.
+
+Failed to parse source map from '/home/swetank/work/jobsyahan/jy-frontend/node_modules/reactjs-pdf-reader/lib/pdf_viewer.js.map\n\n/#' file: Error: ENOENT: no such file or directory, open '/home/swetank/work/jobsyahan/jy-frontend/node_modules/reactjs-pdf-reader/lib/pdf_viewer.js.map\n\n/#'
+
+[eslint] 
+src/App.js
+  Line 32:8:  'Settings' is defined but never used             no-unused-vars
+  Line 33:8:  'Profile' is defined but never used              no-unused-vars
+  Line 48:9:  'isLoggedIn' is assigned a value but never used  no-unused-vars
+
+src/ThemeComponent/Common/CandidateComponent.js
+  Line 8:8:    'Moment' is defined but never used  no-unused-vars
+  Line 46:47:  Invalid typeof comparison value     valid-typeof
+  Line 97:59:  Invalid typeof comparison value     valid-typeof
+
+src/ThemeComponent/Common/ChatAssistant.js
+  Line 1:34:  'Tabs' is defined but never used              no-unused-vars
+  Line 1:40:  'Tab' is defined but never used               no-unused-vars
+  Line 5:8:   'ChevronRightIcon' is defined but never used  no-unused-vars
+  Line 7:10:  'Link' is defined but never used              no-unused-vars
+
+src/ThemeComponent/Common/Footer.js
+  Line 64:88:   Duplicate key 'color'  no-dupe-keys
+  Line 65:88:   Duplicate key 'color'  no-dupe-keys
+  Line 66:88:   Duplicate key 'color'  no-dupe-keys
+  Line 67:88:   Duplicate key 'color'  no-dupe-keys
+  Line 68:88:   Duplicate key 'color'  no-dupe-keys
+  Line 69:88:   Duplicate key 'color'  no-dupe-keys
+  Line 70:88:   Duplicate key 'color'  no-dupe-keys
+  Line 87:88:   Duplicate key 'color'  no-dupe-keys
+  Line 102:88:  Duplicate key 'color'  no-dupe-keys
+  Line 103:88:  Duplicate key 'color'  no-dupe-keys
+  Line 112:84:  Duplicate key 'color'  no-dupe-keys
+  Line 113:84:  Duplicate key 'color'  no-dupe-keys
+  Line 114:84:  Duplicate key 'color'  no-dupe-keys
+  Line 115:84:  Duplicate key 'color'  no-dupe-keys
+  Line 116:84:  Duplicate key 'color'  no-dupe-keys
+
+src/ThemeComponent/Common/Header.js
+  Line 9:11:   'user' is assigned a value but never used         no-unused-vars
+  Line 11:11:  'showProfile' is assigned a value but never used  no-unused-vars
+  Line 12:11:  'dispatch' is assigned a value but never used     no-unused-vars
+  Line 41:38:  Expected '!==' and instead saw '!='               eqeqeq
+
+src/ThemeComponent/Common/HeaderSec.js
+  Line 2:10:     'NavLink' is defined but never used                no-unused-vars
+  Line 2:19:     'Link' is defined but never used                   no-unused-vars
+  Line 2:25:     'Outlet' is defined but never used                 no-unused-vars
+  Line 3:23:     'Badge' is defined but never used                  no-unused-vars
+  Line 3:42:     'List' is defined but never used                   no-unused-vars
+  Line 3:48:     'ListItem' is defined but never used               no-unused-vars
+  Line 3:58:     'ListItemIcon' is defined but never used           no-unused-vars
+  Line 3:72:     'ListItemText' is defined but never used           no-unused-vars
+  Line 5:8:      'PersonIcon' is defined but never used             no-unused-vars
+  Line 8:8:      'WorkIcon' is defined but never used               no-unused-vars
+  Line 9:8:      'MailOutlineIcon' is defined but never used        no-unused-vars
+  Line 10:8:     'NotificationsNoneIcon' is defined but never used  no-unused-vars
+  Line 11:8:     'WorkOutlineIcon' is defined but never used        no-unused-vars
+  Line 106:118:  Expected '===' and instead saw '=='                eqeqeq
+
+src/ThemeComponent/Common/JobSearch.js
+  Line 1:15:   'Container' is defined but never used            no-unused-vars
+  Line 1:26:   'Badge' is defined but never used                no-unused-vars
+  Line 1:40:   'Typography' is defined but never used           no-unused-vars
+  Line 1:60:   'List' is defined but never used                 no-unused-vars
+  Line 1:66:   'ListItem' is defined but never used             no-unused-vars
+  Line 1:76:   'ListItemText' is defined but never used         no-unused-vars
+  Line 1:90:   'TextField' is defined but never used            no-unused-vars
+  Line 1:101:  'Select' is defined but never used               no-unused-vars
+  Line 1:109:  'MenuItem' is defined but never used             no-unused-vars
+  Line 1:119:  'Slider' is defined but never used               no-unused-vars
+  Line 4:8:    'SearchIcon' is defined but never used           no-unused-vars
+  Line 5:10:   'ThemeFInputDiv' is defined but never used       no-unused-vars
+  Line 7:8:    'ThemeLabel' is defined but never used           no-unused-vars
+  Line 9:10:   'EmployerMenu' is defined but never used         no-unused-vars
+  Line 9:24:   'cities' is defined but never used               no-unused-vars
+  Line 11:10:  'useParams' is defined but never used            no-unused-vars
+  Line 12:20:  'useEffect' is defined but never used            no-unused-vars
+  Line 17:12:  'city' is assigned a value but never used        no-unused-vars
+  Line 17:18:  'setCity' is assigned a value but never used     no-unused-vars
+  Line 18:12:  'jobType' is assigned a value but never used     no-unused-vars
+  Line 18:20:  'setJobType' is assigned a value but never used  no-unused-vars
+  Line 19:12:  'state' is assigned a value but never used       no-unused-vars
+  Line 19:19:  'setState' is assigned a value but never used    no-unused-vars
+  Line 69:29:  Duplicate key 'background'                       no-dupe-keys
+  Line 75:33:  Duplicate key 'background'                       no-dupe-keys
+
+src/ThemeComponent/Common/ThemeMessage.js
+  Line 30:34:  Expected '===' and instead saw '=='  eqeqeq
+
+src/ThemeComponent/CustomizeSelect.js
+  Line 2:8:  'Box' is defined but never used         no-unused-vars
+  Line 3:8:  'InputLabel' is defined but never used  no-unused-vars
+
+src/ThemeComponent/Filter.js
+  Line 2:24:   'Slider' is defined but never used               no-unused-vars
+  Line 2:31:   'Button' is defined but never used               no-unused-vars
+  Line 4:8:    'SearchIcon' is defined but never used           no-unused-vars
+  Line 7:20:   'useEffect' is defined but never used            no-unused-vars
+  Line 14:12:  'jobType' is assigned a value but never used     no-unused-vars
+  Line 14:20:  'setJobType' is assigned a value but never used  no-unused-vars
+  Line 15:12:  'state' is assigned a value but never used       no-unused-vars
+  Line 15:19:  'setState' is assigned a value but never used    no-unused-vars
+
+src/ThemeComponent/JobComponent2.js
+  Line 3:8:     'WorkOutlineIcon' is defined but never used           no-unused-vars
+  Line 4:8:     'CurrencyRupeeIcon' is defined but never used         no-unused-vars
+  Line 5:8:     'PlaceIcon' is defined but never used                 no-unused-vars
+  Line 6:8:     'DeleteIcon' is defined but never used                no-unused-vars
+  Line 7:8:     'EditIcon' is defined but never used                  no-unused-vars
+  Line 9:8:     'Moment' is defined but never used                    no-unused-vars
+  Line 11:23:   'useDispatch' is defined but never used               no-unused-vars
+  Line 12:10:   'useState' is defined but never used                  no-unused-vars
+  Line 13:10:   'borderRadius' is defined but never used              no-unused-vars
+  Line 17:11:   'api_url' is assigned a value but never used          no-unused-vars
+  Line 18:11:   'deletePostedJob' is assigned a value but never used  no-unused-vars
+  Line 139:35:  Expected '===' and instead saw '=='                   eqeqeq
+
+src/ThemeComponent/SearchBar.js
+  Line 6:10:   'ThemeButtontype1' is defined but never used          no-unused-vars
+  Line 15:13:  'searchValue' is assigned a value but never used      no-unused-vars
+  Line 16:13:  'cityValue' is assigned a value but never used        no-unused-vars
+  Line 17:13:  'experienceValue' is assigned a value but never used  no-unused-vars
+  Line 18:13:  'ctcValue' is assigned a value but never used         no-unused-vars
+  Line 76:25:  Duplicate key 'background'                            no-dupe-keys
+  Line 82:29:  Duplicate key 'background'                            no-dupe-keys
+
+src/ThemeComponent/ThemeForms/CompanyInfoForm.js
+  Line 1:21:     'EmployerCompanyInformationURL' is defined but never used                                                  no-unused-vars
+  Line 6:31:     'ErrorMessage' is defined but never used                                                                   no-unused-vars
+  Line 9:10:     'cities' is defined but never used                                                                         no-unused-vars
+  Line 9:18:     'ProfileType' is defined but never used                                                                    no-unused-vars
+  Line 16:10:    'SocialBox' is defined but never used                                                                      no-unused-vars
+  Line 16:21:    'ThemeButtontype1' is defined but never used                                                               no-unused-vars
+  Line 16:57:    'ThemeButtonType3' is defined but never used                                                               no-unused-vars
+  Line 26:11:    'companyImageRef' is assigned a value but never used                                                       no-unused-vars
+  Line 27:11:    'companyGSTRef' is assigned a value but never used                                                         no-unused-vars
+  Line 28:11:    'companyPanRef' is assigned a value but never used                                                         no-unused-vars
+  Line 30:12:    'companyLogoImage' is assigned a value but never used                                                      no-unused-vars
+  Line 30:30:    'setCompanyLogoImage' is assigned a value but never used                                                   no-unused-vars
+  Line 31:12:    'companyGST' is assigned a value but never used                                                            no-unused-vars
+  Line 31:24:    'setCompanyGST' is assigned a value but never used                                                         no-unused-vars
+  Line 32:12:    'companyPan' is assigned a value but never used                                                            no-unused-vars
+  Line 32:24:    'setCompanyPan' is assigned a value but never used                                                         no-unused-vars
+  Line 34:12:    'companyLogoError' is assigned a value but never used                                                      no-unused-vars
+  Line 34:30:    'setcompanyLogoError' is assigned a value but never used                                                   no-unused-vars
+  Line 40:12:    'profileType' is assigned a value but never used                                                           no-unused-vars
+  Line 40:25:    'setProfileType' is assigned a value but never used                                                        no-unused-vars
+  Line 92:13:    'file_size' is assigned a value but never used                                                             no-unused-vars
+  Line 150:29:   Expected '===' and instead saw '=='                                                                        eqeqeq
+  Line 153:34:   Expected '===' and instead saw '=='                                                                        eqeqeq
+  Line 179:29:   Expected '===' and instead saw '=='                                                                        eqeqeq
+  Line 200:29:   Expected '===' and instead saw '=='                                                                        eqeqeq
+  Line 230:21:   Expected '===' and instead saw '=='                                                                        eqeqeq
+  Line 231:26:   Expected '===' and instead saw '=='                                                                        eqeqeq
+  Line 470:49:   img elements must have an alt prop, either with meaningful text, or an empty string for decorative images  jsx-a11y/alt-text
+  Line 511:29:   Expected '===' and instead saw '=='                                                                        eqeqeq
+  Line 739:29:   Expected '===' and instead saw '=='                                                                        eqeqeq
+  Line 1030:86:  Expected '!==' and instead saw '!='                                                                        eqeqeq
+  Line 1046:87:  Expected '!==' and instead saw '!='                                                                        eqeqeq
+  Line 1097:53:  img elements must have an alt prop, either with meaningful text, or an empty string for decorative images  jsx-a11y/alt-text
+  Line 1124:53:  img elements must have an alt prop, either with meaningful text, or an empty string for decorative images  jsx-a11y/alt-text
+
+src/ThemeComponent/ThemeForms/EmailSignupForm.js
+  Line 12:21:  'ThemeButtontype1' is defined but never used  no-unused-vars
+  Line 12:57:  'ThemeButtonType3' is defined but never used  no-unused-vars
+  Line 17:10:  'useSelector' is defined but never used       no-unused-vars
+  Line 19:10:  'useEffect' is defined but never used         no-unused-vars
+  Line 42:20:  Expected '===' and instead saw '=='           eqeqeq
+
+src/ThemeComponent/ThemeForms/PasswordGenForm.js
+  Line 22:29:  'setIsEmailVerified' is assigned a value but never used  no-unused-vars
+  Line 29:11:  'dispatch' is assigned a value but never used            no-unused-vars
+  Line 39:29:  Expected '===' and instead saw '=='                      eqeqeq
+
+src/ThemeComponent/ThemeForms/PersonalInformation.js
+  Line 6:15:    'Container' is defined but never used                             no-unused-vars
+  Line 6:89:    'Button' is defined but never used                                no-unused-vars
+  Line 12:8:    'Moment' is defined but never used                                no-unused-vars
+  Line 20:10:   'PersonalRegistrationSchema1' is defined but never used           no-unused-vars
+  Line 21:18:   'PerferredLocation' is defined but never used                     no-unused-vars
+  Line 23:10:   'SocialBox' is defined but never used                             no-unused-vars
+  Line 23:39:   'ThemeButtonType3' is defined but never used                      no-unused-vars
+  Line 24:10:   'socialLogin' is defined but never used                           no-unused-vars
+  Line 26:10:   'ThemeButtontype1' is defined but never used                      no-unused-vars
+  Line 32:10:   'useSelector' is defined but never used                           no-unused-vars
+  Line 46:12:   'personalInfoForm' is assigned a value but never used             no-unused-vars
+  Line 46:30:   'setPersonalInfoForm' is assigned a value but never used          no-unused-vars
+  Line 47:12:   'selectedOptions' is assigned a value but never used              no-unused-vars
+  Line 48:12:   'perferredLocation' is assigned a value but never used            no-unused-vars
+  Line 48:31:   'setPerferredLocation' is assigned a value but never used         no-unused-vars
+  Line 104:29:  Expected '===' and instead saw '=='                               eqeqeq
+  Line 442:72:  Array.prototype.map() expects a return value from arrow function  array-callback-return
+  Line 705:78:  Expected '!==' and instead saw '!='                               eqeqeq
+  Line 721:79:  Expected '!==' and instead saw '!='                               eqeqeq
+
+src/ThemeComponent/ThemeForms/ProfessionalDetail.js
+  Line 4:42:   'Button' is defined but never used       no-unused-vars
+  Line 18:10:  'SocialBox' is defined but never used    no-unused-vars
+  Line 23:10:  'useSelector' is defined but never used  no-unused-vars
+  Line 61:29:  Expected '===' and instead saw '=='      eqeqeq
+
+src/ThemeComponent/ThemeForms/UpdateCandidateBasicInfo.js
+  Line 1:10:  'postRequest' is defined but never used  no-unused-vars
+  Line 2:10:  'PostJobURL' is defined but never used   no-unused-vars
+  Line 8:28:  'Checkbox' is defined but never used     no-unused-vars
+  Line 9:15:  'Snackbar' is defined but never used     no-unused-vars
+  Line 9:25:  'IconButton' is defined but never used   no-unused-vars
+  Line 9:37:  'Alert' is defined but never used        no-unused-vars
+  Line 9:44:  'Typography' is defined but never used   no-unused-vars
+
+src/ThemeComponent/ThemeForms/UploadResume.js
+  Line 1:34:   'Button' is defined but never used             no-unused-vars
+  Line 1:42:   'Input' is defined but never used              no-unused-vars
+  Line 1:49:   'Radio' is defined but never used              no-unused-vars
+  Line 1:56:   'RadioGroup' is defined but never used         no-unused-vars
+  Line 1:68:   'FormControlLabel' is defined but never used   no-unused-vars
+  Line 1:86:   'FormControl' is defined but never used        no-unused-vars
+  Line 3:10:   'Formik' is defined but never used             no-unused-vars
+  Line 3:18:   'Field' is defined but never used              no-unused-vars
+  Line 3:25:   'Form' is defined but never used               no-unused-vars
+  Line 5:8:    'DatePicker' is defined but never used         no-unused-vars
+  Line 7:10:   'WorkHistorySchema' is defined but never used  no-unused-vars
+  Line 11:8:   'Error' is defined but never used              no-unused-vars
+  Line 12:8:   'ButtonType1' is defined but never used        no-unused-vars
+  Line 13:8:   'ButtonType2' is defined but never used        no-unused-vars
+  Line 16:10:  'SocialBox' is defined but never used          no-unused-vars
+  Line 16:39:  'ThemeButtonType3' is defined but never used   no-unused-vars
+  Line 16:57:  'ThemeFInputDiv' is defined but never used     no-unused-vars
+  Line 25:11:  'api_url' is assigned a value but never used   no-unused-vars
+  Line 28:16:  Expected '!==' and instead saw '!='            eqeqeq
+  Line 34:12:  'file' is assigned a value but never used      no-unused-vars
+  Line 34:18:  'setFile' is assigned a value but never used   no-unused-vars
+  Line 88:21:  Expected '===' and instead saw '=='            eqeqeq
+
+src/ThemeComponent/ThemeForms/VerifyMobileForm.js
+  Line 1:23:   'PostImageRequest' is defined but never used  no-unused-vars
+  Line 1:41:   'getRequest' is defined but never used        no-unused-vars
+  Line 3:10:   'Box' is defined but never used               no-unused-vars
+  Line 9:10:   'ThemeButtontype1' is defined but never used  no-unused-vars
+  Line 9:46:   'ThemeButtonType3' is defined but never used  no-unused-vars
+  Line 33:11:  'action2' is assigned a value but never used  no-unused-vars
+  Line 47:29:  Expected '===' and instead saw '=='           eqeqeq
+  Line 55:29:  Expected '===' and instead saw '=='           eqeqeq
+
+src/ThemeComponent/ThemeForms/WorkHistory.js
+  Line 4:34:   'Button' is defined but never used            no-unused-vars
+  Line 4:42:   'Input' is defined but never used             no-unused-vars
+  Line 4:60:   'Radio' is defined but never used             no-unused-vars
+  Line 4:67:   'RadioGroup' is defined but never used        no-unused-vars
+  Line 4:79:   'FormControlLabel' is defined but never used  no-unused-vars
+  Line 4:97:   'FormControl' is defined but never used       no-unused-vars
+  Line 11:10:  'SocialBox' is defined but never used         no-unused-vars
+  Line 12:10:  'ThemeButtontype1' is defined but never used  no-unused-vars
+  Line 21:9:   'api_url' is assigned a value but never used  no-unused-vars
+  Line 24:16:  Expected '!==' and instead saw '!='           eqeqeq
+  Line 58:29:  Expected '===' and instead saw '=='           eqeqeq
+
+src/Validation/CandidateValidation.js
+  Line 1:10:   'yearPickerClasses' is defined but never used  no-unused-vars
+  Line 20:53:  Unnecessary escape character: \$               no-useless-escape
+  Line 20:56:  Unnecessary escape character: \^               no-useless-escape
+  Line 20:59:  Unnecessary escape character: \*               no-useless-escape
+
+src/Validation/EmployerValidation.js
+  Line 18:53:  Unnecessary escape character: \$                    no-useless-escape
+  Line 18:56:  Unnecessary escape character: \^                    no-useless-escape
+  Line 18:59:  Unnecessary escape character: \*                    no-useless-escape
+  Line 36:7:   'PincodeRegExp' is assigned a value but never used  no-unused-vars
+  Line 69:53:  Unnecessary escape character: \$                    no-useless-escape
+  Line 69:56:  Unnecessary escape character: \^                    no-useless-escape
+  Line 69:59:  Unnecessary escape character: \*                    no-useless-escape
+
+src/index.js
+  Line 8:10:  'json' is defined but never used  no-unused-vars
+
+src/pages/Candidate/Account.js
+  Line 26:9:  'formData' is assigned a value but never used  no-unused-vars
+
+src/pages/Candidate/CandidateDashboard.js
+  Line 4:23:   'Avatar' is defined but never used                       no-unused-vars
+  Line 4:38:   'List' is defined but never used                         no-unused-vars
+  Line 4:44:   'ListItem' is defined but never used                     no-unused-vars
+  Line 4:54:   'ListItemText' is defined but never used                 no-unused-vars
+  Line 4:68:   'styled' is defined but never used                       no-unused-vars
+  Line 4:76:   'Pagination' is defined but never used                   no-unused-vars
+  Line 6:8:    'ChevronRightIcon' is defined but never used             no-unused-vars
+  Line 11:10:  'Link' is defined but never used                         no-unused-vars
+  Line 15:8:   'ProgressBar' is defined but never used                  no-unused-vars
+  Line 17:8:   'Filter' is defined but never used                       no-unused-vars
+  Line 19:8:   'SearchBar' is defined but never used                    no-unused-vars
+  Line 23:12:  'showJobDescription' is assigned a value but never used  no-unused-vars
+  Line 24:11:  'api_url' is assigned a value but never used             no-unused-vars
+  Line 27:11:  'user' is assigned a value but never used                no-unused-vars
+  Line 29:25:  'setCurrentPage' is assigned a value but never used      no-unused-vars
+  Line 30:25:  'setDataPerPage' is assigned a value but never used      no-unused-vars
+  Line 41:33:  Expected '===' and instead saw '=='                      eqeqeq
+  Line 62:36:  Expected '===' and instead saw '=='                      eqeqeq
+
+src/pages/Candidate/CandidateDashboard2.js
+  Line 4:15:   'Button' is defined but never used                          no-unused-vars
+  Line 4:23:   'Avatar' is defined but never used                          no-unused-vars
+  Line 4:38:   'List' is defined but never used                            no-unused-vars
+  Line 4:44:   'ListItem' is defined but never used                        no-unused-vars
+  Line 4:54:   'ListItemText' is defined but never used                    no-unused-vars
+  Line 4:68:   'styled' is defined but never used                          no-unused-vars
+  Line 4:76:   'Pagination' is defined but never used                      no-unused-vars
+  Line 4:100:  'FormGroup' is defined but never used                       no-unused-vars
+  Line 4:111:  'FormControlLabel' is defined but never used                no-unused-vars
+  Line 4:129:  'Checkbox' is defined but never used                        no-unused-vars
+  Line 6:8:    'ChevronRightIcon' is defined but never used                no-unused-vars
+  Line 7:8:    'LocationOnIcon' is defined but never used                  no-unused-vars
+  Line 11:10:  'Link' is defined but never used                            no-unused-vars
+  Line 21:12:  'showJobDescription' is assigned a value but never used     no-unused-vars
+  Line 21:32:  'setshowJobDescription' is assigned a value but never used  no-unused-vars
+  Line 22:11:  'api_url' is assigned a value but never used                no-unused-vars
+  Line 23:11:  'CandidateMenuSelected' is assigned a value but never used  no-unused-vars
+  Line 25:11:  'user' is assigned a value but never used                   no-unused-vars
+  Line 26:12:  'data' is assigned a value but never used                   no-unused-vars
+  Line 27:25:  'setCurrentPage' is assigned a value but never used         no-unused-vars
+  Line 28:25:  'setDataPerPage' is assigned a value but never used         no-unused-vars
+  Line 32:11:  'IndexOfFirstData' is assigned a value but never used       no-unused-vars
+  Line 39:33:  Expected '===' and instead saw '=='                         eqeqeq
+
+src/pages/Candidate/CandidateJobPerferences.js
+  Line 1:15:   'Container' is defined but never used                      no-unused-vars
+  Line 1:62:   'styled' is defined but never used                         no-unused-vars
+  Line 7:10:   'gridColumnsTotalWidthSelector' is defined but never used  no-unused-vars
+  Line 10:11:  'PerferencesArray' is assigned a value but never used      no-unused-vars
+  Line 81:17:  Duplicate key 'padding'                                    no-dupe-keys
+
+src/pages/Candidate/CandidateLogin.js
+  Line 4:38:   'Container' is defined but never used                        no-unused-vars
+  Line 4:56:   'Button' is defined but never used                           no-unused-vars
+  Line 8:10:   'Link' is defined but never used                             no-unused-vars
+  Line 28:12:  'authenticationError' is assigned a value but never used     no-unused-vars
+  Line 28:33:  'setauthenticationError' is assigned a value but never used  no-unused-vars
+  Line 29:12:  'showPassword' is assigned a value but never used            no-unused-vars
+  Line 29:26:  'setshowPassword' is assigned a value but never used         no-unused-vars
+  Line 45:29:  Expected '===' and instead saw '=='                          eqeqeq
+  Line 61:29:  Expected '===' and instead saw '=='                          eqeqeq
+  Line 71:33:  Expected '===' and instead saw '=='                          eqeqeq
+  Line 84:19:  Expected '!==' and instead saw '!='                          eqeqeq
+  Line 88:21:  Expected '===' and instead saw '=='                          eqeqeq
+
+src/pages/Candidate/CandidateProfile.js
+  Line 2:15:   'Container' is defined but never used               no-unused-vars
+  Line 2:26:   'Stack' is defined but never used                   no-unused-vars
+  Line 2:33:   'Typography' is defined but never used              no-unused-vars
+  Line 2:45:   'TextField' is defined but never used               no-unused-vars
+  Line 2:56:   'Button' is defined but never used                  no-unused-vars
+  Line 2:64:   'Stepper' is defined but never used                 no-unused-vars
+  Line 2:73:   'Step' is defined but never used                    no-unused-vars
+  Line 2:79:   'StepLabel' is defined but never used               no-unused-vars
+  Line 7:8:    'Header' is defined but never used                  no-unused-vars
+  Line 20:14:  'getStepContent' is defined but never used          no-unused-vars
+  Line 34:11:  'isStepSkipped' is assigned a value but never used  no-unused-vars
+  Line 38:21:  'setSkipped' is assigned a value but never used     no-unused-vars
+  Line 40:11:  'steps' is assigned a value but never used          no-unused-vars
+  Line 46:25:  Expected '===' and instead saw '=='                 eqeqeq
+  Line 47:25:  Expected '===' and instead saw '=='                 eqeqeq
+  Line 48:25:  Expected '===' and instead saw '=='                 eqeqeq
+  Line 49:25:  Expected '===' and instead saw '=='                 eqeqeq
+
+src/pages/Candidate/CandidateRegistration.js
+  Line 2:47:   'CandidateLoginURL' is defined but never used               no-unused-vars
+  Line 9:10:   'Navigate' is defined but never used                        no-unused-vars
+  Line 19:10:  'useEffect' is defined but never used                       no-unused-vars
+  Line 25:11:  'CandidateRegistration' is assigned a value but never used  no-unused-vars
+  Line 27:11:  'dispatch' is assigned a value but never used               no-unused-vars
+  Line 45:29:  Expected '===' and instead saw '=='                         eqeqeq
+  Line 51:33:  Expected '===' and instead saw '=='                         eqeqeq
+
+src/pages/Candidate/SavedJobs.js
+  Line 1:15:  'Container' is defined but never used  no-unused-vars
+  Line 1:45:  'Snackbar' is defined but never used   no-unused-vars
+  Line 1:55:  'Alert' is defined but never used      no-unused-vars
+  Line 1:62:  'styled' is defined but never used     no-unused-vars
+
+src/pages/Candidate/Settings.js
+  Line 1:34:   'Container' is defined but never used                 no-unused-vars
+  Line 1:45:   'Input' is defined but never used                     no-unused-vars
+  Line 1:52:   'TextField' is defined but never used                 no-unused-vars
+  Line 2:10:   'Link' is defined but never used                      no-unused-vars
+  Line 4:10:   'Formik' is defined but never used                    no-unused-vars
+  Line 4:18:   'Field' is defined but never used                     no-unused-vars
+  Line 4:25:   'Form' is defined but never used                      no-unused-vars
+  Line 5:10:   'ForgotPasswordValidation' is defined but never used  no-unused-vars
+  Line 7:8:    'ThemeLabel' is defined but never used                no-unused-vars
+  Line 8:8:    'Error' is defined but never used                     no-unused-vars
+  Line 9:8:    'ButtonType1' is defined but never used               no-unused-vars
+  Line 10:8:   'ButtonType2' is defined but never used               no-unused-vars
+  Line 46:60:  Expected '===' and instead saw '=='                   eqeqeq
+  Line 50:60:  Expected '===' and instead saw '=='                   eqeqeq
+  Line 54:60:  Expected '===' and instead saw '=='                   eqeqeq
+  Line 58:60:  Expected '===' and instead saw '=='                   eqeqeq
+  Line 72:30:  Expected '===' and instead saw '=='                   eqeqeq
+  Line 73:30:  Expected '===' and instead saw '=='                   eqeqeq
+  Line 74:30:  Expected '===' and instead saw '=='                   eqeqeq
+  Line 75:30:  Expected '===' and instead saw '=='                   eqeqeq
+
+src/pages/Common/ChangePassword.js
+  Line 49:33:  Expected '===' and instead saw '=='  eqeqeq
+
+src/pages/Common/Chat.js
+  Line 1:10:  'Box' is defined but never used         no-unused-vars
+  Line 1:15:  'Container' is defined but never used   no-unused-vars
+  Line 1:26:  'Stack' is defined but never used       no-unused-vars
+  Line 1:33:  'Typography' is defined but never used  no-unused-vars
+  Line 1:45:  'Button' is defined but never used      no-unused-vars
+
+src/pages/Common/Dashboard.js
+  Line 1:10:    'UserInformationURL' is defined but never used           no-unused-vars
+  Line 2:10:    'postRequest' is defined but never used                  no-unused-vars
+  Line 10:8:    'WorkIcon' is defined but never used                     no-unused-vars
+  Line 12:8:    'NotificationsNoneIcon' is defined but never used        no-unused-vars
+  Line 13:8:    'WorkOutlineIcon' is defined but never used              no-unused-vars
+  Line 16:10:   'useEffect' is defined but never used                    no-unused-vars
+  Line 21:8:    'Moment' is defined but never used                       no-unused-vars
+  Line 31:29:   'setUserInformation' is assigned a value but never used  no-unused-vars
+  Line 44:80:   Expected '===' and instead saw '=='                      eqeqeq
+  Line 50:67:   Expected '===' and instead saw '=='                      eqeqeq
+  Line 123:64:  Expected '===' and instead saw '=='                      eqeqeq
+  Line 153:55:  Expected '===' and instead saw '=='                      eqeqeq
+  Line 186:54:  Expected '===' and instead saw '=='                      eqeqeq
+  Line 203:41:  Duplicate key 'width'                                    no-dupe-keys
+  Line 229:33:  Duplicate key 'width'                                    no-dupe-keys
+
+src/pages/Common/EmailVerficationPage.js
+  Line 14:27:  Expected '!==' and instead saw '!='  eqeqeq
+  Line 18:28:  Expected '!==' and instead saw '!='  eqeqeq
+  Line 25:29:  Expected '===' and instead saw '=='  eqeqeq
+
+src/pages/Common/ForgotPasswordPage.js
+  Line 15:10:  'useParams' is defined but never used  no-unused-vars
+  Line 34:20:  Expected '===' and instead saw '=='    eqeqeq
+
+src/pages/Common/Loader.js
+  Line 4:8:  'Button' is defined but never used  no-unused-vars
+
+src/pages/Employer/AccountSetting.js
+  Line 1:34:    'Input' is defined but never used                                                                          no-unused-vars
+  Line 2:10:    'Link' is defined but never used                                                                           no-unused-vars
+  Line 17:20:   'useEffect' is defined but never used                                                                      no-unused-vars
+  Line 54:13:   'file_size' is assigned a value but never used                                                             no-unused-vars
+  Line 106:13:  'file_size' is assigned a value but never used                                                             no-unused-vars
+  Line 154:86:  Expected '===' and instead saw '=='                                                                        eqeqeq
+  Line 173:29:  img elements must have an alt prop, either with meaningful text, or an empty string for decorative images  jsx-a11y/alt-text
+  Line 188:30:  Expected '===' and instead saw '=='                                                                        eqeqeq
+  Line 257:30:  Expected '===' and instead saw '=='                                                                        eqeqeq
+  Line 295:53:  img elements must have an alt prop, either with meaningful text, or an empty string for decorative images  jsx-a11y/alt-text
+  Line 415:30:  Expected '===' and instead saw '=='                                                                        eqeqeq
+  Line 455:53:  img elements must have an alt prop, either with meaningful text, or an empty string for decorative images  jsx-a11y/alt-text
+  Line 512:30:  Expected '===' and instead saw '=='                                                                        eqeqeq
+  Line 513:30:  Expected '===' and instead saw '=='                                                                        eqeqeq
+
+src/pages/Employer/AppliedCandidate.js
+  Line 38:37:  Expected '===' and instead saw '=='                                                                                          eqeqeq
+  Line 47:8:   React Hook useEffect has missing dependencies: 'api_url' and 'user._id'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Employer/CandidateRecommendation.js
+  Line 51:27:  Expected '===' and instead saw '=='  eqeqeq
+  Line 61:27:  Expected '===' and instead saw '=='  eqeqeq
+
+src/pages/Employer/EmployerDashboard.js
+  Line 4:22:   'Container' is defined but never used                 no-unused-vars
+  Line 4:66:   'TextField' is defined but never used                 no-unused-vars
+  Line 4:77:   'AvatarGroup' is defined but never used               no-unused-vars
+  Line 4:90:   'Avatar' is defined but never used                    no-unused-vars
+  Line 4:98:   'Button' is defined but never used                    no-unused-vars
+  Line 6:8:    'MessageIcon' is defined but never used               no-unused-vars
+  Line 7:8:    'SearchIcon' is defined but never used                no-unused-vars
+  Line 8:8:    'ChevronRightIcon' is defined but never used          no-unused-vars
+  Line 10:10:  'Carousel' is defined but never used                  no-unused-vars
+  Line 14:10:  'Link' is defined but never used                      no-unused-vars
+  Line 19:8:   'RecommendedJobs' is defined but never used           no-unused-vars
+  Line 23:10:  'Bar' is defined but never used                       no-unused-vars
+  Line 29:11:  'api_url' is assigned a value but never used          no-unused-vars
+  Line 33:25:  'setDataPerPage' is assigned a value but never used   no-unused-vars
+  Line 35:11:  'DashboardValues' is assigned a value but never used  no-unused-vars
+  Line 59:11:  'state' is assigned a value but never used            no-unused-vars
+
+src/pages/Employer/EmployerLogin.js
+  Line 44:29:   Expected '===' and instead saw '=='                                                                                                                                                                                                                                                                                                                                eqeqeq
+  Line 55:109:  Expected '===' and instead saw '=='                                                                                                                                                                                                                                                                                                                                eqeqeq
+  Line 65:29:   Expected '===' and instead saw '=='                                                                                                                                                                                                                                                                                                                                eqeqeq
+  Line 75:29:   Expected '===' and instead saw '=='                                                                                                                                                                                                                                                                                                                                eqeqeq
+  Line 88:33:   Expected '===' and instead saw '=='                                                                                                                                                                                                                                                                                                                                eqeqeq
+  Line 98:113:  Expected '===' and instead saw '=='                                                                                                                                                                                                                                                                                                                                eqeqeq
+  Line 109:19:  Expected '!==' and instead saw '!='                                                                                                                                                                                                                                                                                                                                eqeqeq
+  Line 111:8:   React Hook useEffect has a missing dependency: 'dispatch'. Either include it or remove the dependency array                                                                                                                                                                                                                                                        react-hooks/exhaustive-deps
+  Line 113:21:  Expected '===' and instead saw '=='                                                                                                                                                                                                                                                                                                                                eqeqeq
+  Line 113:62:  Expected '===' and instead saw '=='                                                                                                                                                                                                                                                                                                                                eqeqeq
+  Line 239:41:  The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
+  Line 250:45:  The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
+
+src/pages/Employer/EmployerRegister.js
+  Line 4:34:   'Container' is defined but never used                                                                        no-unused-vars
+  Line 16:7:   'CLIENT_ID' is assigned a value but never used                                                               no-unused-vars
+  Line 20:11:  'api_url' is assigned a value but never used                                                                 no-unused-vars
+  Line 28:11:  'emailsignupwrapper' is assigned a value but never used                                                      no-unused-vars
+  Line 29:11:  'passwordgenerationForm' is assigned a value but never used                                                  no-unused-vars
+  Line 30:11:  'mobileoptverificationwrapper' is assigned a value but never used                                            no-unused-vars
+  Line 31:11:  'hrinformationwrapper' is assigned a value but never used                                                    no-unused-vars
+  Line 32:11:  'companyinformationwrapper' is assigned a value but never used                                               no-unused-vars
+  Line 38:12:  'showEmailVerifiedMessage' is assigned a value but never used                                                no-unused-vars
+  Line 38:38:  'setShowEmailVerifiedMessage' is assigned a value but never used                                             no-unused-vars
+  Line 49:33:  Expected '===' and instead saw '=='                                                                          eqeqeq
+  Line 78:19:  Expected '!==' and instead saw '!='                                                                          eqeqeq
+  Line 80:8:   React Hook useEffect has a missing dependency: 'dispatch'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 83:21:  Expected '===' and instead saw '=='                                                                          eqeqeq
+
+src/pages/Employer/PostJob.js
+  Line 5:28:     'Checkbox' is defined but never used                              no-unused-vars
+  Line 6:25:     'IconButton' is defined but never used                            no-unused-vars
+  Line 7:37:     'Input' is defined but never used                                 no-unused-vars
+  Line 8:5:      'ListItemText' is defined but never used                          no-unused-vars
+  Line 21:25:    'ReactTags' is defined but never used                             no-unused-vars
+  Line 23:10:    'useSelector' is defined but never used                           no-unused-vars
+  Line 27:8:     'HeaderSec' is defined but never used                             no-unused-vars
+  Line 31:5:     'Experience' is defined but never used                            no-unused-vars
+  Line 31:17:    'Skills' is defined but never used                                no-unused-vars
+  Line 31:25:    'JobType' is defined but never used                               no-unused-vars
+  Line 32:5:     'PaymentType' is defined but never used                           no-unused-vars
+  Line 41:10:    'SocialBox' is defined but never used                             no-unused-vars
+  Line 41:21:    'ThemeButtontype1' is defined but never used                      no-unused-vars
+  Line 41:57:    'ThemeButtonType3' is defined but never used                      no-unused-vars
+  Line 41:91:    'NextButton' is defined but never used                            no-unused-vars
+  Line 50:11:    'user' is assigned a value but never used                         no-unused-vars
+  Line 55:12:    'selectedOptions' is assigned a value but never used              no-unused-vars
+  Line 60:12:    'experience' is assigned a value but never used                   no-unused-vars
+  Line 60:24:    'setExperience' is assigned a value but never used                no-unused-vars
+  Line 61:12:    'jobWorkingType' is assigned a value but never used               no-unused-vars
+  Line 61:28:    'setJobWorkingType' is assigned a value but never used            no-unused-vars
+  Line 63:12:    'paymentType' is assigned a value but never used                  no-unused-vars
+  Line 63:25:    'setPaymentType' is assigned a value but never used               no-unused-vars
+  Line 71:12:    'satStartTime' is assigned a value but never used                 no-unused-vars
+  Line 71:26:    'setSatStartTime' is assigned a value but never used              no-unused-vars
+  Line 72:12:    'satEndTime' is assigned a value but never used                   no-unused-vars
+  Line 72:24:    'setSatEndTime' is assigned a value but never used                no-unused-vars
+  Line 81:12:    'companyName' is assigned a value but never used                  no-unused-vars
+  Line 81:25:    'setCompanyName' is assigned a value but never used               no-unused-vars
+  Line 82:12:    'salary' is assigned a value but never used                       no-unused-vars
+  Line 82:20:    'setSalary' is assigned a value but never used                    no-unused-vars
+  Line 83:12:    'extraBenefits' is assigned a value but never used                no-unused-vars
+  Line 84:12:    'jobDescription' is assigned a value but never used               no-unused-vars
+  Line 84:28:    'setJobDescription' is assigned a value but never used            no-unused-vars
+  Line 85:12:    'jobPlace' is assigned a value but never used                     no-unused-vars
+  Line 85:22:    'setJobPlace' is assigned a value but never used                  no-unused-vars
+  Line 86:12:    'jobTitle' is assigned a value but never used                     no-unused-vars
+  Line 86:22:    'setJobTitle' is assigned a value but never used                  no-unused-vars
+  Line 87:12:    'responsibilty' is assigned a value but never used                no-unused-vars
+  Line 87:27:    'setResponsibilty' is assigned a value but never used             no-unused-vars
+  Line 88:12:    'SKill' is assigned a value but never used                        no-unused-vars
+  Line 88:19:    'setSKill' is assigned a value but never used                     no-unused-vars
+  Line 89:12:    'weeklyOff' is assigned a value but never used                    no-unused-vars
+  Line 89:23:    'setWeeklyOff' is assigned a value but never used                 no-unused-vars
+  Line 93:12:    'extraBenefitsData' is assigned a value but never used            no-unused-vars
+  Line 93:31:    'setExtraBenefitsData' is assigned a value but never used         no-unused-vars
+  Line 103:12:   'educationDegree' is assigned a value but never used              no-unused-vars
+  Line 103:29:   'setEducationDegree' is assigned a value but never used           no-unused-vars
+  Line 105:12:   'hindiReq' is assigned a value but never used                     no-unused-vars
+  Line 105:22:   'setHindiReq' is assigned a value but never used                  no-unused-vars
+  Line 106:12:   'englishReq' is assigned a value but never used                   no-unused-vars
+  Line 106:24:   'setEnglishReq' is assigned a value but never used                no-unused-vars
+  Line 109:12:   'jobInformation' is assigned a value but never used               no-unused-vars
+  Line 109:28:   'setJobInformation' is assigned a value but never used            no-unused-vars
+  Line 187:29:   Expected '===' and instead saw '=='                               eqeqeq
+  Line 220:29:   Expected '===' and instead saw '=='                               eqeqeq
+  Line 262:32:   Array.prototype.map() expects a return value from arrow function  array-callback-return
+  Line 291:22:   Expected '===' and instead saw '=='                               eqeqeq
+  Line 525:76:   Array.prototype.map() expects a return value from arrow function  array-callback-return
+  Line 797:65:   Expected '===' and instead saw '=='                               eqeqeq
+  Line 797:92:   Expected '===' and instead saw '=='                               eqeqeq
+  Line 806:61:   Expected '===' and instead saw '=='                               eqeqeq
+  Line 849:76:   Array.prototype.map() expects a return value from arrow function  array-callback-return
+  Line 945:82:   Expected '!==' and instead saw '!='                               eqeqeq
+  Line 961:83:   Expected '!==' and instead saw '!='                               eqeqeq
+  Line 997:76:   Array.prototype.map() expects a return value from arrow function  array-callback-return
+  Line 1026:25:  Expected '===' and instead saw '=='                               eqeqeq
+  Line 1536:84:  Array.prototype.map() expects a return value from arrow function  array-callback-return
+  Line 1560:84:  Array.prototype.map() expects a return value from arrow function  array-callback-return
+
+src/pages/Employer/PostedJobs.js
+  Line 67:51:  Expected '===' and instead saw '=='                                                                                          eqeqeq
+  Line 145:8:  React Hook useEffect has missing dependencies: 'api_url' and 'user._id'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Employer/ViewProfile.js
+  Line 28:25:   Duplicate key 'width'                no-dupe-keys
+  Line 112:27:  Expected '===' and instead saw '=='  eqeqeq
+  Line 120:27:  Expected '===' and instead saw '=='  eqeqeq
+
+src/pages/Home/Component/AboutUs.js
+  Line 1:22:    'Container' is defined but never used  no-unused-vars
+  Line 3:8:     'Heading' is defined but never used    no-unused-vars
+  Line 4:10:    'aboutUS' is defined but never used    no-unused-vars
+  Line 120:33:  Duplicate key 'margin'                 no-dupe-keys
+
+src/pages/Home/Component/HomeSection.js
+  Line 13:17:  Duplicate key 'position'  no-dupe-keys
+
+src/pages/Home/Component/RecommendedJobs.js
+  Line 8:11:    'BackCircle' is assigned a value but never used       no-unused-vars
+  Line 15:11:   'api_url' is assigned a value but never used          no-unused-vars
+  Line 16:18:   'setData' is assigned a value but never used          no-unused-vars
+  Line 18:25:   'setDataPerPage' is assigned a value but never used   no-unused-vars
+  Line 33:37:   Expected '===' and instead saw '=='                   eqeqeq
+  Line 35:43:   Expected '===' and instead saw '=='                   eqeqeq
+  Line 51:11:   'RecommendedJobs' is assigned a value but never used  no-unused-vars
+  Line 158:41:  Duplicate key 'fontWeight'                            no-dupe-keys
+  Line 167:45:  Duplicate key 'fontWeight'                            no-dupe-keys
+  Line 180:41:  Duplicate key 'fontWeight'                            no-dupe-keys
+  Line 190:45:  Duplicate key 'fontWeight'                            no-dupe-keys
+  Line 312:41:  Duplicate key 'fontWeight'                            no-dupe-keys
+  Line 321:45:  Duplicate key 'fontWeight'                            no-dupe-keys
+  Line 334:41:  Duplicate key 'fontWeight'                            no-dupe-keys
+  Line 344:45:  Duplicate key 'fontWeight'                            no-dupe-keys
+
+src/pages/Home/Component/WhyJobYahan.js
+  Line 18:17:  Duplicate key 'width'  no-dupe-keys
+
+src/pages/Home/Home.js
+  Line 16:10:  'useState' is defined but never used  no-unused-vars
+  Line 21:21:  Expected '===' and instead saw '=='   eqeqeq
+  Line 21:62:  Expected '===' and instead saw '=='   eqeqeq
+
+src/pages/JobDescription.js
+  Line 16:21:   'setcompany' is assigned a value but never used                                                                                     no-unused-vars
+  Line 17:28:   'setAlreadyApplied' is assigned a value but never used                                                                              no-unused-vars
+  Line 27:23:   Expected '===' and instead saw '=='                                                                                                 eqeqeq
+  Line 28:28:   Expected '===' and instead saw '=='                                                                                                 eqeqeq
+  Line 29:28:   Expected '===' and instead saw '=='                                                                                                 eqeqeq
+  Line 46:27:   Expected '===' and instead saw '=='                                                                                                 eqeqeq
+  Line 47:27:   Expected '===' and instead saw '=='                                                                                                 eqeqeq
+  Line 48:27:   Expected '===' and instead saw '=='                                                                                                 eqeqeq
+  Line 99:8:    React Hook useEffect has missing dependencies: 'api_url', 'id', and 'user._id'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  Line 246:48:  Expected '===' and instead saw '=='                                                                                                 eqeqeq
+
+src/utils/ApiRequests.js
+  Line 56:9:  'token' is assigned a value but never used  no-unused-vars
+
+src/utils/Theme.js
+  Line 1:33:  'Typography' is defined but never used  no-unused-vars
+  Line 26:5:  Duplicate key 'borderRadius'            no-dupe-keys
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+File sizes after gzip:
+
+  934.67 kB  build/static/js/main.abec5a49.js
+  7.44 kB    build/static/css/main.d0d61dd0.css
+
+The bundle size is significantly larger than recommended.
+Consider reducing it with code splitting: https://goo.gl/9VhYWB
+You can also analyze the project dependencies: https://goo.gl/LeUzfb
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+You may serve it with a static server:
+
+  npm install -g serve
+  serve -s build
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+

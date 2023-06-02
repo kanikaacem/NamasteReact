@@ -1,179 +1,120 @@
 import { Box, Typography, Stack } from "@mui/material";
-import SocialMedia from "./SocialMedia";
-import { FooterData, FooterData2, FooterData3 } from "../../utils/Data";
-import { FooterBox } from "../../utils/Theme";
 
+import { social_icons } from "../../utils/Data";
 import { Link } from "react-router-dom";
-
 import { useTranslation } from "react-i18next";
 const Footer = () => {
-    const { t, i18n } = useTranslation();
-    return (<>
-        <Box sx={{
-            background: "#2B1E44",
-            padding: { "xs": "20px", "sm": "20px", "md": "20px", "lg": "50px 150px", "xl": "50px 150px" }
+    const { t } = useTranslation();
+
+    const FooterCompanyLinks = [
+        { id: 1, text: "HOME", url: "#" },
+        { id: 2, text: "ABOUT", url: "#" },
+        { id: 3, text: "BLOGS", url: "#" }
+    ]
+
+    const FooterLegalLinks = [
+        { id: 1, text: "PRIVACY_POLICY", url: "#" },
+        { id: 2, text: "TERMS_AND_CONDITION", url: "#" }
+    ]
+
+    const FooterHeading = ({ footerHeading }) => {
+        return (<Typography variant="h1" component="h2" sx={{
+            fontFamily: 'Montserrat',
+            fontStyle: "normal",
+            fontWeight: "700",
+            fontSize: { "xs": "1rem", "sm": "1rem", "md": "1.25rem", "xl": "1.25rem", "lg": "1.25rem" },
+            color: "#FFFFFF"
         }}>
-            <Stack direction="row" sx={{
-                flexWrap: "wrap",
-            }}>
-                <Box sx={{ width: { "xs": "44%", "sm": "50%", "md": "50%", "lg": "25%", "lg": "25%" } }}>
-                    <Typography component="span"
-                        sx={{
-                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                            color: "#FC9A7E",
-                            margin: "10px 0px",
-                            fontWeight: "600"
-                        }}>
-                        Job
-                        <Typography component="span"
-                            sx={{
-                                fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                                color: "#FC9A7E",
-                                margin: "10px 0px",
-                            }}>
-                            Yahan
-                        </Typography>
-                    </Typography>
+            {footerHeading}
+        </Typography >)
+    }
 
-                    <Typography component="span"
-                        sx={{
-                            display: "block",
-                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                            color: "#FFFFFF",
-                            margin: "10px 0px",
-                            width: "150px"
-                        }}>
-                        {t('CHAT_DIRECTLY_AND_HIRE_DIRECTLY')}
-                    </Typography>
-                    <Typography component="span"
-                        sx={{
-                            display: "block",
-                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                            color: "#FFFFFF",
-                            width: "150px",
-                            fontWeight: '100',
-                            fontFamily: "Montserrat"
-                        }}>
-                        {t('FOOTERD2')}
-                    </Typography>
+    const FooterMenuLink = ({ id, linkText, linkUrl }) => {
+        return (
+            <Link key={id} href={linkUrl} style={{
+                fontFamily: 'Montserrat',
+                fontStyle: "normal",
+                fontWeight: "300",
+                fontSize: "1rem",
+                color: "#FFFFFF",
+                textDecoration: "none"
+            }}>{t(linkText)}</Link>
+        )
+    }
 
 
-                </Box>
-                <Box sx={{ width: { "xs": "44%", "sm": "50%", "md": "50%", "lg": "25%", "lg": "25%" } }}>
-                    <Typography component="span"
-                        sx={{
-                            display: "block",
-                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                            color: "#FFFFFF",
-                            fontWeight: "700",
-                            margin: "10px 0px",
-                        }}>
-                        {t('COMPANY')}
-                    </Typography>
-                    {
-                        FooterData && FooterData.map((item, index) => {
-                            return (
-                                <Link to={item.url}
-                                    key={index}
-                                    style={{
-                                        textDecoration: "none"
-                                    }} >
-                                    <FooterBox sx={{
-                                        fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                                    }}> {t(item.name)}</FooterBox>
-                                </Link>
-
-                            )
-                        })
-                    }
-                </Box>
-
-                <Box sx={{ width: { "xs": "44%", "sm": "50%", "md": "50%", "lg": "25%", "lg": "25%" } }}>
-                    <Typography component="span"
-                        sx={{
-                            display: "block",
-                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                            color: "#FFFFFF",
-                            fontWeight: "600",
-                            margin: "10px 0px",
-                        }}>
-                        {t('SUPPORT')}
-                    </Typography>
-                    <FooterBox
-                        sx={{
-                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                        }}> jobyahan@gmail.com</FooterBox>
-                    <SocialMedia />
-
-                </Box>
-                <Box sx={{ width: { "xs": "44%", "sm": "50%", "md": "50%", "lg": "25%", "lg": "25%" } }}>
-                    <Typography component="span"
-                        sx={{
-                            display: "block",
-                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                            color: "#FFFFFF",
-                            fontWeight: "600",
-                            margin: "10px 0px",
-                        }}>
-                        {t('LEGAL')}
-                    </Typography>
-                    {
-                        FooterData2 && FooterData2.map((item, index) => {
-                            return (
-                                <Link to={item.url}
-                                    key={index}
-                                    style={{
-                                        textDecoration: "none"
-                                    }}>
-                                    <FooterBox
-                                        sx={{
-                                            fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                                        }} > {t(item.name)}</FooterBox>
-                                </Link>
-                            )
-                        })
-                    }
-
-                </Box>
-
-            </Stack>
-            <hr style={{
-                margin: "10px 0px"
-            }}></hr>
-
-            <Stack direction="row" gap={1} sx={{
+    return (<>
+        <Stack direction="column" className="websiteFooter" gap={2} sx={{
+            background: "#242422",
+            padding: { "xs": "30px 20px", "sm": "30px 20px", "md": "30px 80px", "xl": "30px 80px", "lg": "30px 80px" }
+        }}>
+            <Stack direction="row" gap={6} sx={{
                 flexWrap: "wrap"
             }}>
-                {
-                    FooterData3 && FooterData3.map((item, index) => {
+                <Stack direction="column" gap={2} className="CompanyInformation" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
+                    <FooterHeading footerHeading={t('COMPANY')} />
+                    {FooterCompanyLinks.map((item) => {
                         return (
-                            <Link to={item.url}
-                                key={index}
-                                style={{
-                                    textDecoration: "none",
-                                }}>
-                                <FooterBox
-                                    sx={{
-                                        fontSize: { "xs": "10px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
-                                    }} > {t(item.name)}</FooterBox>
-                            </Link>
-                        )
-                    })
-                }
-            </Stack>
+                            <FooterMenuLink key={item.id} linkText={item.text} linkUrl={item.url} />
 
-            <Typography component="span"
-                sx={{
-                    display: "block",
-                    fontSize: { "xs": "10px", "sm": "16px", "md": "16px", "lg": "16px", "xl": "16px" },
-                    color: "#FFFFFF",
-                    margin: "10px 0px",
-                    fontWeight: "100",
-                    fontFamily: "Montserrat"
+                        )
+                    })}
+                </Stack>
+
+                <Stack direction="column" gap={2} className="RecruiterLogin" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
+                    <FooterHeading footerHeading="Login" />
+                    <FooterMenuLink linkText="Employee Login" linkUrl="#" />
+                    <FooterMenuLink linkText="Recruiter Login" linkUrl="#" />
+                </Stack>
+
+                <Stack direction="column" gap={2} className="LegalInformation" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
+                    <FooterHeading footerHeading={t('LEGAL')} />
+                    {FooterLegalLinks.map((item) => {
+                        return (
+                            <FooterMenuLink key={item.id} linkText={item.text} linkUrl={item.url} />
+                        )
+                    })}
+                </Stack>
+
+                <Stack direction="column" gap={1.5} className="WebsiteInfo" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
+                    <Box sx={{ width: "140px", height: "30px" }}>
+                        <img src={window.location.origin + "/assets/websiteLogo.png"} alt="websiteLogo" />
+                    </Box>
+                </Stack>
+
+                <Stack direction="column" gap={2} className="CompanySupports"
+                    sx={{ width: { "xs": "100%", "sm": "100%", "md": "22%", "xl": "21%", "lg": "22%" } }}>
+                    <FooterHeading footerHeading={t('FIND_US')} />
+                    <Stack direction="row" gap={2} alignItems="center" sx={{
+                        flexWrap: "wrap"
+                    }}>
+                        {social_icons.map((item) => {
+                            return (<Box key={item.id} sx={{
+                                width: { "xs": "15px", "sm": "15px", "md": "20px", "lg": "20px", "xl": "20px" },
+                                height: { "xs": "15px", "sm": "15px", "md": "20px", "lg": "20px", "xl": "20px" }
+                            }}>
+                                <img src={item.icon_image} alt={item.icon_text} width="100%" height="100%" />
+                            </Box>)
+                        })}
+                    </Stack>
+                </Stack>
+
+            </Stack >
+            <Stack gap={1}>
+                <div style={{ border: "0.5px solid rgba(157, 141, 176, 0.29" }} />
+                <Typography variant="h1" component="h2" sx={{
+                    fontFamily: 'Montserrat',
+                    fontStyle: "normal",
+                    fontWeight: "400",
+                    fontSize: { "xs": "0.6rem", "sm": "0.6rem", "md": "0.8rem", "xl": "0.8rem", "lg": "0.8rem" },
+                    lineHeight: "12px",
+                    color: "#B4A9C2",
+                    textAlign: "center",
                 }}>
-                {t('COPYRIGHT@2023JOBYAHAN.COM')}
-            </Typography>
-        </Box >
+                    © 2023 JobsYahan technology private limited
+                </Typography >
+            </Stack>
+        </Stack >
     </>)
 }
 

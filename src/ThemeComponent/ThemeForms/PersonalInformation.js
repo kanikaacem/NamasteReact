@@ -13,40 +13,35 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
 import { PersonalRegistrationSchema } from "../../Validation/CandidateValidation";
-import { Skills, MaritalStatus } from "../../utils/Data";
+import { MaritalStatus } from "../../utils/Data";
 
 import { ThemeButtonType2, ThemeFInputDiv } from "../../utils/Theme";
 
 import ThemeLabel from "../../ThemeComponent/ThemeForms/ThemeLabel";
 import Error from '../../ThemeComponent/Common/Error';
 import { useState, useEffect } from "react";
-import CurrencyFormat from 'react-currency-format';
+// import CurrencyFormat from 'react-currency-format';
 
 
 import { data1 } from "../../utils/Data";
 import FormMenu from "../Common/FormMenu";
-import { useNavigate } from "react-router-dom";
 import ThemeMobileImage from "../Common/ThemeMobileImage";
 import ThemeWebsiteImage from "../Common/ThemeWebsiteImage";
 
 import { useTranslation } from "react-i18next";
 const PersonalInformation = ({ jobType }) => {
     const animatedComponents = makeAnimated();
-    const navigate = useNavigate();
-
-    const [selectedOptions, setSelectedOptions] = useState([]);
     const [date, setDate] = useState(null);
     const [gender, setGender] = useState("");
     const [city, setCity] = useState(" ");
     const [state, setState] = useState(" ");
     const [CountryState, setCountryState] = useState([]);
     const [District, setDistrict] = useState([]);
-    const [autoData, setAutoData] = useState([]);
     const [skills, SetSkills] = useState([]);
 
     const [martialStatus, setMaritalStatus] = useState(" ");
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const defaultValue = {
         full_name: "",
@@ -91,7 +86,7 @@ const PersonalInformation = ({ jobType }) => {
         }
 
         let response = await postRequest(SaveCandidatePersonalInformation, formData);
-        if (response.status == 1) {
+        if (response.status === "1") {
             localStorage.setItem("user", JSON.stringify(response.data));
             window.location.href = window.location.origin + "/candidate-dashboard/normal/" + jobType + "/profile/1";
         }
@@ -110,7 +105,7 @@ const PersonalInformation = ({ jobType }) => {
             let response = await getRequest(getSKillOnJobType + "=" + jobType.replaceAll("-", "_"));
 
             response.data.map(item => {
-                SkillsData.push({
+                return SkillsData.push({
                     label: item,
                     value: item
                 })
@@ -120,7 +115,7 @@ const PersonalInformation = ({ jobType }) => {
         }
         getState();
         getSkills();
-    }, [])
+    }, [jobType])
 
     const getDistrictByState = async (statefilter) => {
         let response = await getRequest("https://backend.jobsyahan.com/api/map/districts?states=" + statefilter);
@@ -503,7 +498,7 @@ const PersonalInformation = ({ jobType }) => {
                                                 <Stack direction="row" gap={3}>
                                                     <ThemeFInputDiv sx={{ width: "370px" }}>
                                                         <ThemeLabel LableFor="current_salary" LableText="Current Salary" />
-                                                        <CurrencyFormat style={{
+                                                        {/* <CurrencyFormat style={{
                                                             fontSize: "1rem",
                                                             outline: "none",
                                                             width: "92%",
@@ -517,7 +512,7 @@ const PersonalInformation = ({ jobType }) => {
                                                             onChange={(event) => {
 
                                                                 setFieldValue("current_salary", event.target.value.slice(1).replaceAll(",", ""))
-                                                            }} />
+                                                            }} /> */}
                                                         {errors.current_salary && touched.current_salary && <Error text={errors.current_salary} />}
 
                                                     </ThemeFInputDiv>
@@ -525,7 +520,7 @@ const PersonalInformation = ({ jobType }) => {
                                                     <ThemeFInputDiv sx={{ width: "370px" }}>
                                                         <ThemeLabel LableFor="excepted_salary" LableText="Excepted Salary" />
 
-                                                        <CurrencyFormat style={{
+                                                        {/* <CurrencyFormat style={{
                                                             fontSize: "1rem",
                                                             outline: "none",
                                                             width: "92%",
@@ -538,7 +533,7 @@ const PersonalInformation = ({ jobType }) => {
                                                             onChange={(event) => {
                                                                 setFieldValue("excepted_salary", event.target.value.slice(1).replaceAll(",", ""))
                                                             }}
-                                                        />
+                                                        /> */}
                                                         {errors.excepted_salary && touched.excepted_salary && <Error text={errors.excepted_salary} />}
 
                                                     </ThemeFInputDiv>
@@ -556,9 +551,9 @@ const PersonalInformation = ({ jobType }) => {
                                                         components={animatedComponents}
                                                         onChange={(options) => {
                                                             let optionvalue = [];
-                                                            setSelectedOptions(options);
+                                                            // setSelectedOptions(options);
                                                             options.map((item) => {
-                                                                optionvalue.push(item.value);
+                                                                return optionvalue.push(item.value);
                                                             })
                                                             setFieldValue("skills", optionvalue.join(","));
                                                         }}

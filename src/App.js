@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 /*Email Verification Page*/
 import EmployerVerficationPage from './Pages/Common/EmailVerficationPage';
 
@@ -35,16 +34,20 @@ import Home from "./Pages/Home/Home";
 import ErrorPage from "./Pages/ErrorPage";
 import PrivateRoute from "./utils/PrivateRoute";
 import Dashboard from './Pages/Common/Dashboard';
-import JobDescription from './Pages/JobDescription';
 import JobSearch from './ThemeComponent/Common/JobSearch';
 import ContactUs from "./Pages/Common/ContactUs";
 import AboutUs from './Pages/Common/AboutUs';
 import BlueCollarRegistrationForm from "./ThemeComponent/ThemeForms/BlueCollarRegistrationForm";
 import ThemeErrorPage from './Pages/Common/ThemeErrorPage';
 import { useEffect } from "react";
+import JobListing from './Pages/JobListing/JobListing';
+import JobDescription from './Pages/JobDescription/JobDescription';
+import OTPVerification from './Pages/Candidate/OTPVerification';
 
+import HomePageLite from "./Pages/HomePageLiteSection/HomePageLite";
+import LiteAction from "./Pages/HomePageLiteSection/LiteAction";
+import CandidateInformation from "./Pages/HomePageLiteSection/CandidateInformation";
 function App() {
-
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
   }, []);
@@ -58,6 +61,10 @@ function App() {
           <Route exact path="/" element={<Home></Home>} />
           <Route path="/contact-us" element={<ContactUs></ContactUs>} />
           <Route path="/about-us" element={<AboutUs></AboutUs>} />
+
+          <Route path="/homepagelite" element={<HomePageLite></HomePageLite>} />
+          <Route path="/useraction" element={<LiteAction></LiteAction>} />
+          <Route path="/candidate-information" element={<CandidateInformation></CandidateInformation>} />
 
           <Route path="/forgot-password/employer" element={<ForgotPasswordPage user="employer" />} />
           <Route path="/reset-password/employer/:token" element={<ResetPasswordPage user="employer" />} />
@@ -82,7 +89,7 @@ function App() {
             <Route path="company-information" element={<CompanyInfoForm></CompanyInfoForm>} />
             <Route path="post-a-job" element={<PostJob></PostJob>} />
             <Route path="posted-jobs" element={<PostedJobs></PostedJobs>} />
-            <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
+            {/* <Route path="job-description/:id" element={<JobDescription></JobDescription>} /> */}
             <Route path="job/:id/recommedations" element={<CandidateRecommendation></CandidateRecommendation>} />
             <Route path="applied-candidates" element={<AppliedCandidate />} >
               <Route path=":id" element={<AppliedCandidate />} ></Route>
@@ -96,7 +103,7 @@ function App() {
 
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard} userRole="candidate"></PrivateRoute>}>
             <Route path="" element={<CandidateDashboard></CandidateDashboard>} />
-            <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
+            {/* <Route path="job-description/:id" element={<JobDescription></JobDescription>} /> */}
             <Route path="profile" element={<CandidateProfilePage></CandidateProfilePage>} />
             <Route path="mobile-verify" element={<CandidateMobileVerify></CandidateMobileVerify>} />
             <Route path="job-type" element={<JobTypePage></JobTypePage>} />
@@ -109,9 +116,13 @@ function App() {
           </Route>
 
 
-          <Route path="/job-description/:id" element={<PrivateRoute Component={JobDescription}></PrivateRoute>} />
+          {/* <Route path="/job-description/:id" element={<PrivateRoute Component={JobDescription}></PrivateRoute>} /> */}
+
+          <Route path="/job-listing" element={<JobListing></JobListing>} />
+          <Route path="/job-description/:id" element={<JobDescription></JobDescription>} />
 
           <Route path="*" element={<ErrorPage errorMessage=" Page not Found "></ErrorPage>} />
+          <Route path="/otp-verification" element={<OTPVerification />} />
         </Routes>
       </BrowserRouter>
     </>

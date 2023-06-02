@@ -27,7 +27,7 @@ const CandidateMobileVerify = () => {
 
         let response = await postRequest("https://backend.jobsyahan.com/api/sendotp/+91" + values.mobile_number);
         console.log(response)
-        if (response.status == '1')
+        if (response.status === '1')
             setSendOtp(true);
         else
             console.log(response)
@@ -36,7 +36,7 @@ const CandidateMobileVerify = () => {
         let response = await postRequest("https://backend.jobsyahan.com/api/verifyotp", {
             otp: values.otp
         })
-        if (response.status == '1') {
+        if (response.status === '1') {
             window.location.href = window.location.origin + '/candidate-dashboard/job-type';
         }
         else {
@@ -157,7 +157,7 @@ const CandidateMobileVerify = () => {
                                                 <ThemeLabel LableFor="mobile_number" LableText="Mobile Number" />
                                                 <Stack direction="row" gap={1} alignItems="center">
                                                     <Field
-                                                        sx={{ width: { "xs": "83%", "sm": "85%", "md": "85%", "xl": "88%", "xl": "88%" } }}
+                                                        sx={{ width: { "xs": "83%", "sm": "85%", "md": "85%", "lg": "88%", "xl": "88%" } }}
                                                         error={errors.mobile_number && touched.mobile_number}
                                                         id="mobile_number"
                                                         as={TextField}

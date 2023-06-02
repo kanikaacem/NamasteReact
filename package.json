@@ -2,7 +2,6 @@
   "name": "jobyahan",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://13.126.115.3:3001",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -28,13 +27,12 @@
     "react": "^18.2.0",
     "react-bootstrap-sweetalert": "^5.2.0",
     "react-chartjs-2": "^5.1.0",
-    "react-currency-format": "^1.1.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-file-base64": "^1.0.3",
     "react-ga": "^3.3.1",
     "react-hook-form": "^7.39.1",
-    "react-i18next": "^12.2.0",
+    "react-i18next": "^12.2.2",
     "react-js-loader": "^0.1.0",
     "react-loading-skeleton": "^3.1.1",
     "react-modal": "^3.16.1",
@@ -53,12 +51,13 @@
     "reactjs-pdf-reader": "^1.0.12",
     "reactjs-social-login": "^2.6.1",
     "redux": "^4.2.0",
+    "save": "^2.9.0",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

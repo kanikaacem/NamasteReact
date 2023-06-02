@@ -11,7 +11,7 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
     const [jobApplied, setJobApplied] = useState(false);
     const navigate = useNavigate();
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     useEffect(() => {
         const IsjobApplied = async () => {
             let response = await getRequestWithToken("https://backend.jobsyahan.com/api/job/details?jobid=" + data_id);
@@ -162,13 +162,14 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                     </Stack>
 
                     <Typography component="div" sx={{
-                        fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1rem", "lg": "1.25rem", "xl": "1.25rem" }, fontWeight: "500", color: "#9589A4", margin: "10px 0px"
+                        fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1rem", "lg": "1.25rem", "xl": "1.25rem" },
+                        fontWeight: "500", color: "#9589A4", margin: "10px 0px"
                     }}>
                         {data && data.applied_count > 0 ? data.applied_count : '0'} {t('APPLICANTS_APPLIED')}
                     </Typography>
                     {data && data.applied_count > 0 && userType === "employer" &&
                         <a className="ViewCandidateLink"
-                            href="#"
+                            href={"/employer-dashboard/applied-candidates/" + data_id}
                             onClick={(event) => {
                                 event.preventDefault();
                                 event.stopPropagation();
@@ -197,7 +198,6 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
 
                                     sx={{
                                         fontFamily: 'Montserrat',
-                                        fontWeight: "500",
                                         fontSize: { "xs": "1rem", "sm": "1rem", "md": "1.25rem", "lg": "1.25rem", "xl": "1.25rem" },
                                         color: "#3A2D49",
                                         background: "#FC9A7E",
@@ -206,7 +206,6 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                         fontWeight: "600",
                                         "&:hover": {
                                             fontFamily: 'Montserrat',
-                                            fontWeight: "500",
                                             fontSize: { "xs": "1rem", "sm": "1rem", "md": "1.25rem", "lg": "1.25rem", "xl": "1.25rem" },
                                             color: "#3A2D49",
                                             background: "#FC9A7E",
@@ -224,7 +223,6 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                     <Button variant="outlined"
                                         sx={{
                                             fontFamily: 'Montserrat',
-                                            fontWeight: "500",
                                             fontSize: { "xs": "1rem", "sm": "1rem", "md": "1.25rem", "lg": "1.25rem", "xl": "1.25rem" },
                                             background: "#FAF7FE",
                                             border: "1px solid #E7D5FF",
@@ -234,7 +232,6 @@ const JobComponent = ({ data, data_id, userType, OnClickfun }) => {
                                             fontWeight: "600",
                                             "&:hover": {
                                                 fontFamily: 'Montserrat',
-                                                fontWeight: "500",
                                                 fontSize: { "xs": "1rem", "sm": "1rem", "md": "1.25rem", "lg": "1.25rem", "xl": "1.25rem" },
                                                 background: "#FAF7FE",
                                                 border: "1px solid #E7D5FF",
