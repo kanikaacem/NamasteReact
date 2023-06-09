@@ -13,19 +13,60 @@ import { useState } from "react";
 const CandidateLogin = () => {
     const navigate = useNavigate();
     const [requestProcessing, setRequestProcessing] = useState('not_initiated');
+
     const defaultValue = {
         mobile_number: "",
     }
+    const getLocation = () => {
+        return new Promise((resolve, reject) => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        resolve({ latitude, longitude });
+                    },
+                    (error) => {
+                        const apiUrl = `https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
 
+                        fetch(apiUrl, {
+                            method: 'POST',
+                        })
+                            .then((response) => response.json())
+                            .then((data) => {
+                                const { location } = data;
+                                const { lat, lng } = location;
+                                console.log(location);
+                                resolve({ latitude: lat, longitude: lng });
+                            })
+                            .catch((error) => {
+                                reject(error);
+                            });
+
+                        // console.error('Error getting location:', error);
+                        // reject(error);
+                    }
+                );
+            } else {
+                console.error('Geolocation is not supported by this browser.');
+                reject(new Error('Geolocation is not supported.'));
+            }
+        });
+    };
     const handleSubmit = async (values, { setFieldError }) => {
         setRequestProcessing('in_progress');
+        const { latitude, longitude } = await getLocation();
+
+        const candidateFormData = {
+            mobile: values.mobile_number,
+            usertype: "candidate",
+            latitude: latitude,
+            longitude: longitude,
+        };
+
+
         try {
             const api_url = process.env.REACT_APP_GENERATE_OTP;
-            const response = await postRequest(api_url, {
-                "mobile": values.mobile_number,
-                "usertype": "candidate"
-
-            });
+            const response = await postRequest(api_url, candidateFormData);
             if (response.status === '1')
                 // Handle the fetched data
                 navigate('/otp-verification', { state: { mobile_number: values.mobile_number } });
