@@ -203,7 +203,7 @@ export const EmployerMenu = [
     {
         id: 2,
         Menu: "WorkOutlineIcon",
-        MenuName: "POSTED_JOBS",
+        MenuName: "POSTED JOBS",
         value: "posted_jobs",
         url: "posted-jobs"
 
@@ -211,7 +211,7 @@ export const EmployerMenu = [
     {
         id: 3,
         Menu: "WorkOutlineIcon",
-        MenuName: "POST_A_JOB",
+        MenuName: "POST A JOB",
         value: "post_a_job",
         url: "post-a-job"
 
@@ -219,18 +219,9 @@ export const EmployerMenu = [
     {
         id: 4,
         Menu: "WorkOutlineIcon",
-        MenuName: "APPLIED_CANDIDATES",
+        MenuName: "APPLIED CANDIDATES",
         value: "applied_candidates",
         url: "applied-candidates"
-
-    },
-
-    {
-        id: 5,
-        Menu: "WorkOutlineIcon",
-        MenuName: "ACCOUNT_SETTING",
-        value: "account-setting",
-        url: "account-setting"
 
     }
 

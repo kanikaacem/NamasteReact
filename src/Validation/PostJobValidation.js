@@ -45,3 +45,24 @@ export const JobTypePageSchema = yup.object().shape({
     city: yup.string().required("City is required"),
     qualification: yup.string().required("Qualification is required")
 })
+
+export const PostJobValidation = yup.object().shape({
+    job_sector: yup.string().required('Job sector is required'),
+    job_department: yup.string().required('Job department is required'),
+    job_role: yup.string().required('Job role is required'),
+    job_description: yup.string().required('Job description is required'),
+    number_of_openings: yup.number("Number of openings must be a number").positive('Number of openings must be a positive number').required('Number of openings is required'),
+    job_address: yup.string().required('Job address is required'),
+    job_type: yup.string().required("Job Type is required"),
+    gender: yup.string().required('Gender is required'),
+    minimum_qualification: yup.string().required('Minimum qualification is required'),
+    required_experience: yup.string().required('Required experience is required'),
+    language: yup.string().required('Language is required'),
+    shift_timing: yup.string().required('Shifts are required'),
+    vehicle_required: yup.string().required('Vehicle requirement is required'),
+    min_salary: yup.number().required("Minimum salary is required"),
+    max_salary: yup.number()
+        .required("Maximum salary is required")
+        .min(yup.ref("min_salary"), "Maximum salary must be greater than minimum salary"),
+    number_of_days: yup.number().min(1, "Number of days must be at least 1").max(7, "Number of days cannot exceed 7").required("Number of days is required"),
+})

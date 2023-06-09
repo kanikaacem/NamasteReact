@@ -9,7 +9,8 @@ const Error = ({ text }) => {
                 fontSize: { "xs": "13px ", "sm": "13px", "md": "14px", "lg": "14px", "xl": "14px" },
                 fontWeight: "500",
                 display: "block",
-                textTransform: "capitalize"
+                textTransform: "capitalize",
+                margin: "10px 0px"
             }}> {text}</Typography></>)
 }
 

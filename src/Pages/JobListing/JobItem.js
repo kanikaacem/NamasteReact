@@ -1,136 +1,230 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { jobItemStyles, jobItemTagStyles, stackStyles, tagStyles } from "../../utils/Styles";
+import { getJobPostedTime, replaceUnderscore } from "../../utils/function";
 import ApplyForJobButton from "../Common/ApplyForJobButton";
 import { useNavigate } from "react-router-dom";
 
-const JobItem = (props) => {
-    const { id, jobTitle, companyName, salary, location, profession, education, description, jobTag } = props;
+const JobItem = ({ item }) => {
+    const { _id, accessibleForDisabled, jobRole, jobId, gender, jobDepartment, inhandSalaryPermonth, jobType, qualification,
+        shift, vehicleRequired, language, createdAt, requiredExperience, jobSector } = item;
     const navigate = useNavigate();
 
     const handleViewJobDescription = () => {
-        navigate(`/job-description/${id}`);
+        navigate(`/job-description/${_id}`);
     };
 
 
     return (
 
-        <Stack direction="column" gap={1} className="JobItem" sx={jobItemStyles}>
-            {jobTag === "male" &&
+        <Stack direction="column" gap={1} className="JobItem" sx={{ ...jobItemStyles, padding: "0px !important" }}>
+            {gender === "male" &&
                 <Box sx={jobItemTagStyles}>
                     <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/men_tag.png" alt="MenTag" width="100%" height="100%"></img>
                 </Box>}
-            {jobTag === "female" &&
+            {gender === "female" &&
                 <Box sx={jobItemTagStyles}>
                     <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/women_tag.png" alt="womenTag" width="100%" height="100%"></img>
                 </Box>}
             {
-                jobTag === "other" &&
+                gender === "other" &&
                 <Box sx={jobItemTagStyles}>
                     <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/other_tag.png" alt="otherTag" width="100%" height="100%"></img>
                 </Box>
             }
+            <Stack className="jobItemTopSection" sx={{ padding: "20px" }} gap={1}>
+                <Stack className="SpecialAbledSection" direction="row" gap={2} sx={{ marginBottom: "20px" }}>
+                    {accessibleForDisabled && (
+                        <>
+                            <Box>
+                                <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/job_special_added.png"
+                                    alt="special_added_job" />
+                            </Box>
+                            <Typography component="div"
+                                sx={{
+                                    fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
+                                    color: "#262626", fontWeight: "500"
+                                }}>
+                                Specially abled
+                            </Typography></>
+                    )}
 
-            <Stack direction="row" justifyContent="space-between">
-                <Typography sx={{ ...stackStyles, fontSize: { xs: '1.1rem', sm: '1.5rem', md: '1.5rem', lg: '1.5rem', xl: '1.5rem' }, fontWeight: '600' }}>
-                    {jobTitle}
-                </Typography>
-                <Stack className="JobTimeLine" direction="row" alignItems="center" gap={1}>
-                    <Box sx={{ width: "10px" }}>
-                        <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/job_item_timeline.png" alt="jobTimeline" width="100%" height="100%" />
-                    </Box>
-                    <Typography sx={{ ...stackStyles, color: '#615F5F', fontWeight: '500' }}>
-                        1 day ago
-                    </Typography>
                 </Stack>
 
-            </Stack>
-            <Typography sx={stackStyles}>
-                {companyName}
-            </Typography>
+                <Stack className="jobTitle" direction="row" justifyContent="space-between">
+                    <Typography component="div"
+                        sx={{
+                            fontSize: "1rem",
+                            color: "#262626", fontWeight: "600", textTransform: "capitalize"
+                        }}>
+                        {jobRole}
 
-            <Typography sx={stackStyles}>
-                Rs. {salary}
-            </Typography>
+                    </Typography>
+                    <Stack direction="row" gap={0.2}>
+                        <Typography component="div"
+                            sx={{
+                                fontSize: { "xs": "0.6rem", "sm": "0.6rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
+                                color: "#262626", fontWeight: "500", textTransform: "capitalize",
+                                fontStyle: "italic"
+                            }}>
+                            Job ID:
 
-            <Stack direction="row" gap={2} sx={{
-                flexWrap: "wrap"
-            }}>
-                <Stack direction="row" gap={1}
-                    sx={tagStyles}>
-                    <Box>
-                        <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/location.png" alt="Location"></img>
-                    </Box>
-                    {location && <Typography sx={stackStyles}>
-                        {location}
+                        </Typography>
+                        <Typography component="div"
+                            sx={{
+                                fontSize: { "xs": "0.6rem", "sm": "0.6rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
+                                color: "#FF671F", fontWeight: "500", textTransform: "capitalize",
+                                fontStyle: "italic"
+                            }}>
+                            {jobId}
+                        </Typography>
+                    </Stack>
+
+                </Stack>
+
+                <Stack className="roleAndApplicationSubmitted" direction="row" justifyContent="space-between">
+                    {jobSector && jobDepartment && <Typography component="div"
+                        sx={{
+                            fontSize: "1rem",
+                            color: "#262626", fontWeight: "500", textTransform: "capitalize"
+                        }}>
+                        {`${jobSector} - ${jobDepartment}`}
                     </Typography>}
 
                 </Stack>
 
-                <Stack direction="row" gap={1}
-                    sx={tagStyles}>
-                    <Box>
-                        <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/profession.png" alt="Location"></img>
-                    </Box>
-                    {profession &&
-                        <Typography sx={stackStyles}>
-                            {profession}
-                        </Typography>}
+                <Box className="jobSalary" >
+                    <Typography component="div"
+                        sx={{
+                            fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
+                            color: "#262626", fontWeight: "600", textTransform: "capitalize"
+                        }}>
+                        {`${inhandSalaryPermonth?.currency} ${inhandSalaryPermonth?.minSalary} - ${inhandSalaryPermonth?.maxSalary}`}
+
+                    </Typography>
+                </Box>
+
+                <Stack className="jobTagsAndStatus" direction="row" justifyContent="space-between" sx={{
+                    margin: "10px 0px"
+                }}>
+                    <Stack direction="row" gap={1} sx={{
+                        flexWrap: "wrap"
+                    }}>
+                        <Stack direction="row" gap={1}
+                            sx={tagStyles}>
+                            <Box>
+                                <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/job_location.png" alt="Location"></img>
+                            </Box>
+                            <Typography sx={stackStyles}>
+                                Location
+                            </Typography>
+
+                        </Stack>
+
+                        {jobType && <Stack direction="row" gap={1}
+                            sx={tagStyles}>
+                            <Box>
+                                <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/job_type.png" alt="JobType"></img>
+                            </Box>
+
+                            <Typography sx={stackStyles}>
+                                {replaceUnderscore(jobType)}
+                            </Typography>
+
+                        </Stack>
+                        }
+
+                        {qualification && <Stack direction="row" gap={1}
+                            sx={tagStyles}>
+                            <Box>
+                                <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/job_type.png" alt="JobEducation"></img>
+                            </Box>
+
+                            <Typography sx={stackStyles}>
+                                {replaceUnderscore(qualification)}
+                            </Typography>
+
+                        </Stack>
+                        }
+                        {shift && <Stack direction="row" gap={1}
+                            sx={tagStyles}>
+                            <Box>
+                                <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/job_timing.png" alt="JobTiming"></img>
+                            </Box>
+                            <Typography sx={stackStyles}>
+                                {`${replaceUnderscore(shift)} Shift`}
+                            </Typography>
+                        </Stack>
+                        }
+
+                        {requiredExperience &&
+                            <Stack direction="row" gap={1}
+                                sx={tagStyles}>
+                                <Box>
+                                    <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/job_experience.png" alt="JobTiming"></img>
+                                </Box>
+                                <Typography sx={stackStyles}>
+                                    {replaceUnderscore(requiredExperience)}
+                                </Typography>
+
+                            </Stack>}
+
+                    </Stack>
+
 
                 </Stack>
 
-                <Stack direction="row" gap={1}
-                    sx={tagStyles}>
-                    <Box>
-                        <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/education.png" alt="Location"></img>
-                    </Box>
-                    {education &&
-                        <Typography sx={stackStyles}>
-                            {education}
-                        </Typography>}
+                <Stack direction="row" justifyContent="space-between">
+                    <Stack direction="row" gap={2}>
+                        <ApplyForJobButton jobId={_id} buttonStyle="contained" />
+                        <Stack direction="row" gap={1} alignItems="center">
+                            <Box>
+                                <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/Share.png" alt="Share" />
+                            </Box>
+                            <Typography sx={{
+                                ...stackStyles,
+                                color: "#FF671F"
+                            }}>
+                                Share
+                            </Typography>
+                        </Stack>
+                    </Stack>
 
-                </Stack>
-            </Stack>
-
-            <Typography sx={{
-                ...stackStyles,
-                color: "#615F5F",
-                overflow: "hidden",
-                whiteSpace: "nowrap",
-                textOverflow: "ellipsis"
-            }}>
-                {description}
-            </Typography>
-
-            <Stack direction="row" justifyContent="space-between">
-                <Stack direction="row" gap={2}>
-                    <ApplyForJobButton jobId={id} />
-                    <Stack direction="row" gap={1} alignItems="center">
-                        <Box>
-                            <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/Share.png" alt="Share" />
-                        </Box>
+                    <Stack direction="row" gap={1} alignItems="center" onClick={handleViewJobDescription}>
                         <Typography sx={{
                             ...stackStyles,
                             color: "#FF671F"
                         }}>
-                            Share
+                            View
                         </Typography>
+                        <Box>
+                            <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/view_button.png" alt="View" />
+                        </Box>
                     </Stack>
-                </Stack>
-
-                <Stack direction="row" gap={1} alignItems="center" onClick={handleViewJobDescription}>
-                    <Typography sx={{
-                        ...stackStyles,
-                        color: "#FF671F"
-                    }}>
-                        View
-                    </Typography>
-                    <Box>
-                        <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/view_button.png" alt="View" />
-                    </Box>
                 </Stack>
             </Stack>
 
-        </Stack>
+            <Stack className="jobItemBottomSection" direction="row" sx={{ background: "#FCF9F5", padding: "10px" }} justifyContent="space-between">
+                <Typography component="div"
+                    sx={{
+                        fontSize: "0.8rem",
+                        fontWeight: "500",
+                        textTransform: "capitalize"
+                    }}>
+                    <em style={{ color: "#7C7979" }}>Additional requirement: </em>
+                    <div style={{ fontWeight: "600" }}>{` ${replaceUnderscore(vehicleRequired)}, ${replaceUnderscore(language)}`}</div>
+                </Typography>
+                <Typography component="div"
+                    sx={{
+                        fontSize: "0.8rem",
+                        color: "#262626", fontWeight: "500"
+                    }}>
+                    <em style={{ color: "#7C7979" }}>Posted on </em>
+                    <div style={{ fontWeight: "600" }}>{getJobPostedTime(createdAt)}</div>
+
+                </Typography>
+            </Stack>
+
+        </Stack >
     )
 }
 export default JobItem;
