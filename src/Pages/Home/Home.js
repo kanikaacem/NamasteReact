@@ -140,11 +140,10 @@ function Home() {
                     alignItems="center"
                     sx={{
 
-                        justifyContent: "space-around"
+                        justifyContent: "flex-start"
                     }}>
-                    <Box className="WebsiteLogo" sx={{
-                        height: "35px",
-                        width: "100px"
+                    <Box className="WebsiteLogo" sx={{                     
+                        width: "50%"
                     }}>
                         <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="JY" width="100%" height="100%" />
                     </Box>
