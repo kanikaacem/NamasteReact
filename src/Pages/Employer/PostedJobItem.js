@@ -3,7 +3,7 @@ import { DashboardSectionDivStyles, stackStyles, tagStyles } from "../../utils/S
 import { getJobPostedTime, replaceUnderscore } from "../../utils/function";
 
 const PostedJobItem = ({ item }) => {
-    const { active, accessibleForDisabled, jobRole, jobId, gender, jobDepartment, jobSector, inhandSalaryPermonth, jobType, qualification,
+    const { active, accessibleForDisabled, jobRole, jobId, jobDepartment, jobSector, inhandSalaryPermonth, jobType, qualification,
         shift, vehicleRequired, requiredExperience, language, createdAt } = item;
     const ActiveJobChip = () => {
         return (<Chip sx={{
