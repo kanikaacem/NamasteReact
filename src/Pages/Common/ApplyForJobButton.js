@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { ApplyButtonStyles } from "../../utils/Styles";
 import { useNavigate } from "react-router-dom";
 
-const ApplyForJobButton = ({ jobId }) => {
+const ApplyForJobButton = ({ jobId, buttonStyle }) => {
   const navigate = useNavigate();
   const ApplyForJob = (event) => {
     if (localStorage.getItem("token") !== null)
@@ -11,7 +11,16 @@ const ApplyForJobButton = ({ jobId }) => {
       navigate("/candidate-login");
 
   }
-  return (<Button variant="outlined"
-    onClick={ApplyForJob} sx={ApplyButtonStyles}>Apply via Whatsapp</Button>)
+  return (<Button variant={buttonStyle ? "contained" : "outlined"}
+    onClick={ApplyForJob} sx={{
+      ...ApplyButtonStyles,
+      background: buttonStyle === "contained" && "#FF671F",
+      color: buttonStyle !== "contained" && "#FF671F",
+      "&:hover": {
+        background: buttonStyle === "contained" && "#FF671F",
+        color: buttonStyle !== "contained" && "#FF671F"
+
+      }
+    }}>Apply via Whatsapp</Button>)
 }
 export default ApplyForJobButton;

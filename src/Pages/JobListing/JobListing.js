@@ -1,6 +1,6 @@
 import { getRequest } from "../../utils/ApiRequests"
 import FormControl from '@mui/material/FormControl';
-import { Box, Button, Stack, Container, Select, MenuItem, Breadcrumbs, Link } from "@mui/material";
+import { Box, Button, Stack, Container, Select, MenuItem, Breadcrumbs, Link, Autocomplete, TextField } from "@mui/material";
 import { LinkStyles } from "../../utils/Styles";
 import PageTopSection from '../Common/PageTopSection';
 import JobItem from "./JobItem";
@@ -14,12 +14,13 @@ import { useNavigate } from "react-router-dom";
 const JobListing = () => {
     // const [category, setCategory] = useState('');
     const { t } = useTranslation();
-    const [location, setLocation] = useState('');
+    const [location, setLocation] = useState('one');
     const [loadJobs, setLoadJobs] = useState({ page: 1, limit: 20 });
 
     const mobileScreen = useSelector(state => state.screenType) === "mobile";
 
     const [postedJobs, setPostedJobs] = useState([]);
+    const [jobRoleFilterData, setJobRoleFilterData] = useState([]);
     const breadcrumbs = [
         <Link underline="hover" sx={LinkStyles} key="1" color="inherit" href="/" >
             Home
@@ -40,6 +41,7 @@ const JobListing = () => {
         { id: 'three', text: "Zayada Door (more than 200Km)" }
 
     ]
+
     const SelectFilter = ({ value, setValue, placeholder, data }) => {
         const navigate = useNavigate();
         const handleValueChange = (event) => {
@@ -104,6 +106,8 @@ const JobListing = () => {
             const data = await getRequest(api_url);
             if (Array.isArray(data.data)) {
                 setPostedJobs((prevJobs) => [...prevJobs, ...data.data]);
+                console.log(data.data)
+
 
             } else {
                 // Handle the case when data.data is not iterable
@@ -118,6 +122,27 @@ const JobListing = () => {
 
     };
 
+    const FilterDataBasedOnJobRole = async (jobRole) => {
+        let api_url = process.env.REACT_APP_GET_JOB_ITEMS + "?rolefilter=" + jobRole;
+        try {
+            const data = await getRequest(api_url);
+            if (Array.isArray(data.data)) {
+                setPostedJobs(data.data);
+
+
+            } else {
+                // Handle the case when data.data is not iterable
+                console.error("Data is not iterable:", data.data);
+            }
+
+        } catch (error) {
+            // Handle the error
+            console.error("Fetch error:", error);
+        }
+
+
+
+    }
     useEffect(() => {
         let api_url = process.env.REACT_APP_GET_JOB_ITEMS; // Replace with your .env variable name
         location && (api_url = api_url + "?keyrange=" + location);
@@ -126,14 +151,28 @@ const JobListing = () => {
             try {
                 const data = await getRequest(api_url);
                 // Handle the fetched data
-                setPostedJobs(data.data)
+                setPostedJobs(data.data.reverse())
+                console.log(data.data)
 
             } catch (error) {
                 // Handle the error
                 console.error("Fetch error:", error);
             }
         };
+        const fetchJobRole = async () => {
+            try {
+                const data = await getRequest(process.env.REACT_APP_JOB_CATEGORY_FILTER);
+                // Handle the fetched data
+                setJobRoleFilterData(data.data);
+
+            } catch (error) {
+                // Handle the error
+                console.error("Fetch error:", error);
+            }
+
+        }
         fetchData();
+        fetchJobRole();
     }, [location])
 
     return (
@@ -157,29 +196,46 @@ const JobListing = () => {
                 <Stack className="JobListingContent" direction="column" gap={2}
                     sx={{
                         padding: "20px",
-                        background: mobileScreen && "#EAEAEA"
+                        background: mobileScreen && "#FEF5F1"
                     }}>
 
                     <Stack direction="row" gap={2} sx={{
                         flexWrap: "wrap"
                     }}>
-                        {/* <SelectFilter value={category} setValue={setCategory} placeholder="Select Location" data={LocationFilter} /> */}
+                        <Autocomplete
+                            size="small"
+                            disablePortal
+                            options={jobRoleFilterData}
+                            onChange={(event, value) => {
+                                if (value === null) window.location.reload()
+                                else FilterDataBasedOnJobRole(value?.key)
+                            }}
+                            getOptionLabel={(option) => option.key}
+                            sx={{ width: "300px" }}
+                            renderInput={(params) => <TextField {...params}
+
+                                InputLabelProps={{
+                                    shrink: true,
+                                    placeholder: "Select a Category", // Add the desired placeholder text
+                                    style: {
+                                        fontSize: "12px", // Set the desired fontSize for the placeholder
+                                    },
+                                }}
+                                sx={{
+                                    fontSize: "12px",
+                                    padding: "3px !important" // Set the desired fontSize for the TextField
+                                }}
+                            />
+                            }
+                        />
                         <SelectFilter value={location} setValue={setLocation} placeholder="Select Location" data={LocationFilter} />
                     </Stack>
 
                     <Stack direction="column" gap={2} className="JobsSection" >
-                        {postedJobs && postedJobs.map((jobInfo, index) => {
-                            return <JobItem key={index}
-                                id={jobInfo._id}
-                                jobTitle={jobInfo.jobTitle}
-                                companyName={jobInfo.company_name}
-                                salary={jobInfo.montlySalary}
-                                location={jobInfo.jobLocation}
-                                profession={jobInfo.designation}
-                                education={jobInfo.educationalQualification}
-                                description={jobInfo.jobDescription}
-                                jobTag={jobInfo.gender} />
+                        {postedJobs && postedJobs.map((item, index) => {
+                            return <JobItem key={index} item={item} />
                         })}
+
                     </Stack>
                     <Button variant="contained"
                         onClick={handleLoadMore}

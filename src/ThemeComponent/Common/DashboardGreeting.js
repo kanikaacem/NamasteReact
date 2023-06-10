@@ -1,25 +1,35 @@
-import { Stack, Typography, Box } from "@mui/material";
-import ButtonType2 from "./ButtonType2";
+import { Stack, Typography, Box, Button } from "@mui/material";
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
-const DashboardGreeting = ({ username, userType, userProfileCompleted }) => {
+
+import { useNavigate } from "react-router-dom";
+const DashboardGreeting = ({ userType }) => {
     const [dayMessage, setDayMessage] = useState("");
+    const [greetingSymbol, setGreetingSymbol] = useState("");
     const date = new Date();
     const showTime = date.getHours();
 
-    const { t } = useTranslation();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (showTime <= 12) setDayMessage(t('GOOD_MORNING'))
-        else if (showTime >= 12 && showTime < 18) setDayMessage(t('GOOD_AFTERNOON'))
-        else setDayMessage(t('GOOD_EVENING'))
-    }, [showTime, t]);
+        if (showTime <= 12) {
+            setDayMessage("Good Morning");
+            setGreetingSymbol("https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/greeting_logo.png")
+        }
+        else if (showTime >= 12 && showTime < 18) {
+            setDayMessage("Good Afternoon")
+            setGreetingSymbol("https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/greeting_logo.png")
+        }
+        else {
+            setDayMessage("Good Evening")
+            setGreetingSymbol("https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/greeting_logo.png")
+        }
+    }, [showTime]);
 
     return (<>
         <Box
             sx={{
                 background: "#FFFFFF",
-                border: "1px solid #E1D4F2",
+                border: "1px solid #EEEEEE",
                 borderRadius: "14px",
                 padding: { "xs": "10px", "sm": "10px", "md": "20px", "lg": "20px", "xl": "20px" }
             }}
@@ -30,32 +40,40 @@ const DashboardGreeting = ({ username, userType, userProfileCompleted }) => {
                 justifyContent="space-between"
                 gap={2} >
 
-                <Typography component="box" sx={{
-                    fontSize: { "xs": "16px", "sm": "16px", "md": "24px", "lg": "24px", "xl": "24px" },
-                    fontFamily: "Montserrat",
-                    fontWeight: "600",
-                    color: "#4E3A67"
-                }}>
-                    {dayMessage}, {username}!
-                </Typography>
+                <Stack direction="row" gap={2} alignItems="center">
 
-
+                    <Box className="GreetingSymbol" sx={{ width: "40px", height: "40px" }}>
+                        <img src={greetingSymbol} alt="Greeting Symbol" width="100%" height="100%" />
+                    </Box>
+                    <Typography component="box" sx={{
+                        fontSize: "1rem",
+                        fontWeight: "700",
+                        fontFamily: `'Manrope', sans-serif`,
+                        color: "#262626"
+                    }}>
+                        {dayMessage},
+                    </Typography>
+                </Stack>
 
                 {userType === 'employer' && <>
                     <Box>
-                        <ButtonType2 ButtonText={t('POST_A_JOB')} ClickEvent={() => window.location.href = window.location.href + "/post-a-job"}></ButtonType2>
-                    </Box></>}
+                        <Button variant="contained"
+                            onClick={() => navigate("post-a-job")}
+                            sx={{
+                                background: "#FF671F",
+                                borderRadius: "7px",
+                                textTransform: "capitalize",
+                                width: "230px",
+                                fontSize: "0.8rem",
+                                "&:hover": {
+                                    background: "#FF671F",
+                                }
+                            }
+                            }> Post a Job</Button >
+                    </Box></>
+                }
 
             </Stack>
-            {userType === "candidate" && <>
-                <Typography component="box" sx={{
-                    fontSize: { "xs": "12px", "sm": "12px", "md": "18px", "lg": "18px", "xl": "18px" },
-                    fontFamily: "Montserrat",
-                    color: "#4E3A67"
-                }}>
-                    Your Profile is  {userProfileCompleted === 0 ? "not completed" : userProfileCompleted + "% completed."}
-                </Typography>
-            </>}
         </Box>
     </>)
 }

@@ -4,10 +4,9 @@ import { stackStyles, tagStyles } from "../../utils/Styles";
 import PageTopSection from "../Common/PageTopSection";
 import ApplyForJobButton from "../Common/ApplyForJobButton";
 import { useParams } from "react-router-dom";
-// import { useEffect, useState } from "react";
 import { LinkStyles } from "../../utils/Styles";
 import Footer from "../../ThemeComponent/Common/Footer";
-
+import { replaceUnderscore } from "../../utils/function";
 import { useState, useEffect } from "react";
 const JobDescription = () => {
     const { id } = useParams();
@@ -94,7 +93,7 @@ const JobDescription = () => {
 
                         <Stack direction="row" justifyContent="space-between">
                             <Typography sx={{ ...stackStyles, fontSize: { xs: '1.1rem', sm: '1.5rem', md: '1.5rem', lg: '1.5rem', xl: '1.5rem' }, fontWeight: '600' }}>
-                                {jobDescription?.jobTitle}
+                                {jobDescription?.jobRole}
                             </Typography>
                             <Stack className="JobTimeLine" direction="row" alignItems="center" gap={1}>
                                 <Box sx={{ width: "10px" }}>
@@ -108,50 +107,38 @@ const JobDescription = () => {
                         </Stack>
 
                         <Typography sx={stackStyles}>
-                            {jobDescription?.company_name}
+                            {jobDescription?.jobDepartment}
                         </Typography>
 
                         <Typography sx={stackStyles}>
-                            Rs. {jobDescription?.montlySalary}
+                            {`${jobDescription?.inhandSalaryPermonth?.currency} ${jobDescription?.inhandSalaryPermonth?.minSalary} - ${jobDescription?.inhandSalaryPermonth?.maxSalary}`}
+
                         </Typography>
 
                         <Stack direction="row" gap={2} sx={{
                             flexWrap: "wrap"
                         }}>
-                            <Stack direction="row" gap={1}
+                            {jobDescription?.state && <Stack direction="row" gap={1}
                                 sx={tagStyles}>
                                 <Box>
                                     <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/location.png" alt="Location"></img>
                                 </Box>
                                 <Typography sx={stackStyles}>
-                                    {jobDescription?.jobLocation}
+                                    {jobDescription?.state}
                                 </Typography>
 
-                            </Stack>
-
-                            <Stack direction="row" gap={1}
-                                sx={tagStyles}>
-                                <Box>
-                                    <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/profession.png" alt="Location"></img>
-                                </Box>
-
-                                <Typography sx={stackStyles}>
-                                    {jobDescription?.designation}
-                                </Typography>
-
-                            </Stack>
-
-                            <Stack direction="row" gap={1}
+                            </Stack>}
+                            {jobDescription?.qualification && <Stack direction="row" gap={1}
                                 sx={tagStyles}>
                                 <Box>
                                     <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/education.png" alt="Location"></img>
                                 </Box>
 
                                 <Typography sx={stackStyles}>
-                                    {jobDescription?.educationalQualification}
+                                    {jobDescription && replaceUnderscore(jobDescription.qualification)}
                                 </Typography>
 
-                            </Stack>
+                            </Stack>}
                         </Stack>
 
                         <SectionSeperator />
@@ -174,22 +161,25 @@ const JobDescription = () => {
 
                         <SectionSeperator />
 
-                        <Stack direction="column" gap={1}>
-                            <Typography sx={{
-                                fontSize: { "xs": "1rem", "sm": "1rem", "md": "1.3rem", "lg": "1.3rem", "xl": "1.3rem" },
-                                fontFamily: "Poppins",
-                                fontWeight: "600",
-                                color: "#000000"
-                            }}> Job Detail</Typography>
-                            <Typography sx={{
-                                ...stackStyles,
-                                color: "#615F5F"
-                            }}>
-                                {jobDescription?.jobDescription}
-                            </Typography>
-                        </Stack>
+                        {jobDescription?.jobDescription && <>
+                            <Stack direction="column" gap={1}>
+                                <Typography sx={{
+                                    fontSize: { "xs": "1rem", "sm": "1rem", "md": "1.3rem", "lg": "1.3rem", "xl": "1.3rem" },
+                                    fontFamily: "Poppins",
+                                    fontWeight: "600",
+                                    color: "#000000"
+                                }}> Job Detail</Typography>
+                                <Typography sx={{
+                                    ...stackStyles,
+                                    color: "#615F5F"
+                                }}>
+                                    {jobDescription?.jobDescription}
+                                </Typography>
+                            </Stack>
+                            <SectionSeperator />
 
-                        <SectionSeperator />
+                        </>}
+
 
                         <Stack direction="column" gap={1}>
                             <Typography sx={{
@@ -205,7 +195,7 @@ const JobDescription = () => {
                                 ...stackStyles,
                                 color: "#615F5F"
                             }}>
-                                Kutumbh Care Pvt Ltd, B 154, B Block, Sector 63, Noida, Uttar Pradesh 201301.
+                                {jobDescription?.jobAddress}
                             </Typography>
                         </Stack>
 

@@ -21,21 +21,23 @@ export const jobItemTagStyles = {
     width: "130px",
     position: "absolute",
     top: "-16px",
-    right: "0"
+    right: "0",
+    textTransform: "capitalize"
 }
 
 export const stackStyles = {
     fontSize: { xs: '0.7rem', sm: '0.7rem', md: '1rem', lg: '1rem', xl: '1rem' },
     fontFamily: 'Poppins',
     fontWeight: '500',
-    textTransform: "capitalize"
+    textTransform: "capitalize",
+    color: "#262626"
 };
 
 export const tagStyles = {
     border: "1px solid #EAEAEA",
     background: "#ffffff",
-    padding: { "xs": "5px", "sm": "5px", "md": "10px", "lg": "10px", "xl": "10px" },
-    minWidth: "100px",
+    padding: { "xs": "10px", "sm": "10px", "md": "10px", "lg": "10px", "xl": "10px" },
+    // minWidth: "100px",
     borderRadius: "11px",
     alignItems: "center",
     justifyContent: "center"
@@ -48,10 +50,9 @@ export const ApplyButtonStyles = {
     padding: { "xs": "0px", "sm": "0px", "md": "10px", "lg": "10px", "xl": "10px" },
     minWidth: "160px",
     height: "40px",
-    color: "#FF671F",
     "&:hover": {
-        color: "#FF671F",
-        border: "1px solid #FF671F"
+        border: "1px solid #FF671F",
+
     }
 }
 
@@ -83,4 +84,13 @@ export const WebsiteOutlinedButtonStyles = {
         border: "1px solid",
 
     }
+}
+
+/*Dashboard Related Styles */
+export const DashboardSectionDivStyles = {
+    background: "#FFFFFF",
+    // border: "1px solid #E1D4F2",
+    border: "1px solid #EEEEEE",
+    borderRadius: "14px",
+    padding: { "xs": "10px", "sm": "10px", "md": "30px 20px", "lg": "30px 20px", "xl": "30px 20px" }
 }
