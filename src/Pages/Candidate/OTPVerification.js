@@ -25,8 +25,8 @@ const OTPVerification = () => {
         otp_digit2: "",
         otp_digit3: "",
         otp_digit4: "",
-        otp_digit5: "",
-        otp_digit6: ""
+        // otp_digit5: "",
+        // otp_digit6: ""
     };
 
     const inputRefs = useRef([]);
@@ -51,8 +51,7 @@ const OTPVerification = () => {
     }
 
     const handleSubmit = async (values, { setFieldError }) => {
-        let otp = values.otp_digit1 + values.otp_digit2 + values.otp_digit3 + values.otp_digit4 +
-            values.otp_digit5 + values.otp_digit6;
+        let otp = values.otp_digit1 + values.otp_digit2 + values.otp_digit3 + values.otp_digit4;
         otp = parseInt(otp);
         try {
             const api_url = process.env.REACT_APP_VERIFY_OTP;
@@ -69,7 +68,6 @@ const OTPVerification = () => {
                 setFieldError("otp_digit1", response.msg);
 
         } catch (error) {
-            // Handle the error
             console.error("Fetch error:", error);
         }
     }
@@ -123,7 +121,7 @@ const OTPVerification = () => {
                         {({ errors, touched, values }) => (
                             <Form className="OTPVerificationForm">
                                 <Stack direction="row" gap={1} sx={{ height: "65px" }}>
-                                    {[1, 2, 3, 4, 5, 6].map(index => (
+                                    {[1, 2, 3, 4].map(index => (
                                         <Field
                                             key={index}
                                             sx={otpVerficationFieldStyle}

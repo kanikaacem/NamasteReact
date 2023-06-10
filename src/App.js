@@ -7,18 +7,18 @@ import EmployerVerficationPage from './Pages/Common/EmailVerficationPage';
 import ForgotPasswordPage from './Pages/Common/ForgotPasswordPage';
 import ResetPasswordPage from "./Pages/Common/ResetPasswordPage";
 /*Employer Component*/
+import EmployerDashboard from './Pages/Employer/EmployerDashboard';
 import EmployerRegister from './Pages/Employer/EmployerRegister';
 import EmployerLogin from "./Pages/Employer/EmployerLogin";
-import EmployerDashboard from "./Pages/Employer/EmployerDashboard";
 import PostJob from "./Pages/Employer/PostJob";
 import PostedJobs from './Pages/Employer/PostedJobs';
-import AccountSetting from './Pages/Employer/AccountSetting';
-import CandidateRecommendation from './Pages/Employer/CandidateRecommendation';
-import SavedCandidate from "./Pages/Employer/SavedCandidate";
-import AppliedCandidate from './Pages/Employer/AppliedCandidate';
-import ViewProfile from './Pages/Employer/ViewProfile';
-import VerifyMobileForm from './ThemeComponent/ThemeForms/VerifyMobileForm';
-import CompanyInfoForm from './ThemeComponent/ThemeForms/CompanyInfoForm';
+// import AccountSetting from './Pages/Employer/AccountSetting';
+// import CandidateRecommendation from './Pages/Employer/CandidateRecommendation';
+// import SavedCandidate from "./Pages/Employer/SavedCandidate";
+// import AppliedCandidate from './Pages/Employer/AppliedCandidate';
+// import ViewProfile from './Pages/Employer/ViewProfile';
+// import VerifyMobileForm from './ThemeComponent/ThemeForms/VerifyMobileForm';
+// import CompanyInfoForm from './ThemeComponent/ThemeForms/CompanyInfoForm';
 
 /*Candidate Component*/
 import NormalCandidateRegistration from './Pages/Candidate/NormalCandidateRegistration';
@@ -83,13 +83,13 @@ function App() {
 
           <Route path="/job" element={<JobSearch></JobSearch>} />
 
-          <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard} userRole="employer"></PrivateRoute>}>
+          {/* <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard} userRole="employer"></PrivateRoute>}>
             <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
             <Route path="mobile-verify" element={<VerifyMobileForm></VerifyMobileForm>} />
             <Route path="company-information" element={<CompanyInfoForm></CompanyInfoForm>} />
             <Route path="post-a-job" element={<PostJob></PostJob>} />
             <Route path="posted-jobs" element={<PostedJobs></PostedJobs>} />
-            {/* <Route path="job-description/:id" element={<JobDescription></JobDescription>} /> */}
+            <Route path="job-description/:id" element={<JobDescription></JobDescription>} />
             <Route path="job/:id/recommedations" element={<CandidateRecommendation></CandidateRecommendation>} />
             <Route path="applied-candidates" element={<AppliedCandidate />} >
               <Route path=":id" element={<AppliedCandidate />} ></Route>
@@ -98,7 +98,7 @@ function App() {
             <Route path="account-setting" element={<AccountSetting></AccountSetting>} />
             <Route path=":jobid/view-profile/:id" element={<ViewProfile ></ViewProfile>} />
             <Route path="*" element={<ErrorPage errorMessage="Page not Found"></ErrorPage>} />
-          </Route>
+          </Route> */}
 
 
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard} userRole="candidate"></PrivateRoute>}>
@@ -120,6 +120,13 @@ function App() {
 
           <Route path="/job-listing" element={<JobListing></JobListing>} />
           <Route path="/job-description/:id" element={<JobDescription></JobDescription>} />
+          <Route path="/employer-dashboard" element={<Dashboard />} >
+            <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
+            <Route path="posted-jobs" element={<PostedJobs />} />
+            <Route path="post-a-job" element={<PostJob></PostJob>} />
+          </Route>
+
+
 
           <Route path="*" element={<ErrorPage errorMessage=" Page not Found "></ErrorPage>} />
           <Route path="/otp-verification" element={<OTPVerification />} />
