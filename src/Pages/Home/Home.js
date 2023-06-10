@@ -144,7 +144,7 @@ function Home() {
     
          
           };
-          
+
         window.addEventListener('scroll', handleScroll);
         fetchData();
         sendUserLocationInformation();
@@ -161,6 +161,7 @@ function Home() {
             longitude: long,
             city:city
         };
+        
         try {
             const api_url = process.env.REACT_APP_USER_LAT_LONG_URL;
             const response = await postRequest(api_url, latlongForm);
