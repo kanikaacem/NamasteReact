@@ -50,7 +50,7 @@ const JobCardComponent = (props) => {
             <Typography variant="h1" component="h2" sx={{
                 fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1.5rem", "xl": "1.5rem", "lg": "1.5rem" },
                 fontFamily: "'Manrope',' sans- serif'",
-                fontWeight: "700",
+                fontWeight: "500",
                 color: "#000000",
                 textAlign: "center",
                 textTransform: "capitalize"
@@ -63,7 +63,7 @@ const JobCardComponent = (props) => {
                     <Typography variant="h1" component="h2" sx={{
                         fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1.2rem", "xl": "1.2rem", "lg": "1.2rem" },
                         fontFamily: "'Manrope',' sans- serif'",
-                        fontWeight: "700",
+                        fontWeight: "500",
                         color: "#FF671F",
                         textAlign: "center"
                     }}>
