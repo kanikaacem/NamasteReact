@@ -1100,3 +1100,8 @@ body {
 /* .css-cmo3gm-MuiAutocomplete-root .MuiOutlinedInput-root.MuiInputBase-sizeSmall {
   padding: 3px !important;
 } */
+
+option{
+  font-size: 10px !important;
+  height:20px !important;
+}
