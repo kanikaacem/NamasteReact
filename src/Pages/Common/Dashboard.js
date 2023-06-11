@@ -7,6 +7,7 @@ import { EmployerMenu } from "../../utils/Data.js";
 // import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Footer from "../../ThemeComponent/Common/Footer";
+// import { useLocation } from 'react-router-dom';
 
 // import { useEffect } from "react";
 
@@ -17,6 +18,8 @@ const Dashboard = () => {
     // const [user, setUser] = useState({});
 
     // const url = useResolvedPath("").pathname;
+    // const location = useLocation();
+    // const currentPath = location.pathname.replaceAll("-","_");
 
     const DashboardMenus = ({ MenuItem }) => {
         return (
@@ -35,7 +38,8 @@ const Dashboard = () => {
                                     color: MenuSelected === item.value ? "#FF671F" : "#262626",
                                     textTransform: "capitalize"
                                 }}
-                                className={MenuSelected === item.value ? "MenuSelected" : " "} primary={item.MenuName} />
+                                className={(MenuSelected === item.value) ? "MenuSelected" : " "} primary={item.MenuName} />
+
                         </ListItem>
                     )
                 })}
