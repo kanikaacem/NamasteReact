@@ -15,7 +15,7 @@ import PostedJobs from './Pages/Employer/PostedJobs';
 // import AccountSetting from './Pages/Employer/AccountSetting';
 // import CandidateRecommendation from './Pages/Employer/CandidateRecommendation';
 // import SavedCandidate from "./Pages/Employer/SavedCandidate";
-// import AppliedCandidate from './Pages/Employer/AppliedCandidate';
+import AppliedCandidate from './Pages/Employer/AppliedCandidate';
 // import ViewProfile from './Pages/Employer/ViewProfile';
 // import VerifyMobileForm from './ThemeComponent/ThemeForms/VerifyMobileForm';
 // import CompanyInfoForm from './ThemeComponent/ThemeForms/CompanyInfoForm';
@@ -83,8 +83,8 @@ function App() {
 
           <Route path="/job" element={<JobSearch></JobSearch>} />
 
-          {/* <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard} userRole="employer"></PrivateRoute>}>
-            <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
+          <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard} userRole="employer"></PrivateRoute>}>
+            {/* <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
             <Route path="mobile-verify" element={<VerifyMobileForm></VerifyMobileForm>} />
             <Route path="company-information" element={<CompanyInfoForm></CompanyInfoForm>} />
             <Route path="post-a-job" element={<PostJob></PostJob>} />
@@ -97,8 +97,12 @@ function App() {
             <Route path="saved-candidates" element={<SavedCandidate></SavedCandidate>} />
             <Route path="account-setting" element={<AccountSetting></AccountSetting>} />
             <Route path=":jobid/view-profile/:id" element={<ViewProfile ></ViewProfile>} />
-            <Route path="*" element={<ErrorPage errorMessage="Page not Found"></ErrorPage>} />
-          </Route> */}
+            <Route path="*" element={<ErrorPage errorMessage="Page not Found"></ErrorPage>} /> */}
+            <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
+            <Route path="posted-jobs" element={<PostedJobs />} />
+            <Route path="post-a-job" element={<PostJob></PostJob>} />
+            <Route path="applied-candidates/:id" element={<AppliedCandidate />} />
+          </Route>
 
 
           <Route path="/candidate-dashboard" element={<PrivateRoute Component={Dashboard} userRole="candidate"></PrivateRoute>}>
@@ -120,14 +124,6 @@ function App() {
 
           <Route path="/job-listing" element={<JobListing></JobListing>} />
           <Route path="/job-description/:id" element={<JobDescription></JobDescription>} />
-          <Route path="/employer-dashboard" element={<Dashboard />} >
-            <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
-            <Route path="posted-jobs" element={<PostedJobs />} />
-            <Route path="post-a-job" element={<PostJob></PostJob>} />
-          </Route>
-
-
-
           <Route path="*" element={<ErrorPage errorMessage=" Page not Found "></ErrorPage>} />
           <Route path="/otp-verification" element={<OTPVerification />} />
         </Routes>
