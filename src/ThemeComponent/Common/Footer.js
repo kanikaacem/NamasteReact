@@ -21,7 +21,7 @@ const Footer = () => {
         return (<Typography variant="h1" component="h2" sx={{
             fontFamily: 'Montserrat',
             fontStyle: "normal",
-            fontWeight: "700",
+            fontWeight: "500",
             fontSize: { "xs": "1rem", "sm": "1rem", "md": "1.25rem", "xl": "1.25rem", "lg": "1.25rem" },
             color: "#FFFFFF"
         }}>

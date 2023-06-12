@@ -1,6 +1,11 @@
 import { postRequest } from "../../utils/ApiRequests";
+<<<<<<< HEAD
 import { GetCandidateOnParticularJob } from "../../utils/ApiUrls";
 import { DataGrid } from '@mui/x-data-grid';
+=======
+import {  GetCandidateOnParticularJob } from "../../utils/ApiUrls";
+import { DataGrid} from '@mui/x-data-grid';
+>>>>>>> 52664e1445924dfb6e529647fcf4893ad024a81b
 
 import {
     Box

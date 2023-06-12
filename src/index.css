@@ -736,7 +736,7 @@ body {
 .JobSearchMenu .css-10hburv-MuiTypography-root {
   font-size: 20px !important;
   font-family: 'Montserrat', sans-serif !important;
-  font-weight: 700;
+  font-weight: 500;
   width: max-content;
   color: #BDB5C7
 }
@@ -762,7 +762,7 @@ body {
 }
 
 .Mui-selected {
-  font-weight: 700 !important;
+  font-weight: 500 !important;
   /* width: max-content; */
   color: #4E3A67 !important;
   border-bottom: none !important

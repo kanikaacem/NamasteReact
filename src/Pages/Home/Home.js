@@ -35,7 +35,7 @@ const AdvantageSectionBoxStyle = {
 const JobAdvantageDescriptionStyle = {
     fontFamily: 'Manrope',
     fontStyle: "normal",
-    fontWeight: "700",
+    fontWeight: "500",
     fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1.2rem", "xl": "1.2rem", "lg": "1.2rem" },
     margin: "10px 0px"
 }
@@ -285,13 +285,18 @@ function Home() {
                     alignItems="center"
                     sx={{
 
-                        justifyContent: "space-around"
+                        justifyContent: "flex-start"
                     }}>
+<<<<<<< HEAD
                         
                    
                     <Box className="WebsiteLogo" sx={{
                         height: "35px",
                         width: "100px"
+=======
+                    <Box className="WebsiteLogo" sx={{                     
+                        width: "30vw"
+>>>>>>> 52664e1445924dfb6e529647fcf4893ad024a81b
                     }}>
                         <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="JY" width="100%" height="100%" />
                     </Box>
@@ -502,7 +507,7 @@ function Home() {
                     <Typography variant="h1" component="h2" sx={{
                         fontSize: { "xs": '1.1rem', "sm": '1.1rem', "md": "2rem", "xl": "2rem", "lg": "2rem" },
                         width: { "xs": "180px", "sm": "180px", "md": "300px", "lg": "300px", "xl": "300px" },
-                        fontWeight: "700"
+                        fontWeight: "500"
                     }}>
                         <span style={{ color: "#FF671F" }}> Jaanchi, Parkhi</span> jobs
                         har <span style={{ color: "#FF671F" }}> Hindustani</span> ke

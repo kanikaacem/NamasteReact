@@ -26,7 +26,7 @@ const ViewMoreSection = ({ SectionText }) => {
             <Typography variant="h1" component="h2" sx={{
                 fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1.5rem", "xl": "1.5rem", "lg": "1.5rem" },
                 fontFamily: "'Manrope',' sans- serif'",
-                fontWeight: "700",
+                fontWeight: "500",
                 color: "#000000",
                 textAlign: "center",
                 width: "150px"
