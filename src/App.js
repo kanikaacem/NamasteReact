@@ -83,7 +83,8 @@ function App() {
 
           <Route path="/job" element={<JobSearch></JobSearch>} />
 
-          <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard} userRole="employer"></PrivateRoute>}>
+          {/* <Route path="/employer-dashboard" element={<PrivateRoute Component={Dashboard} userRole="employer"></PrivateRoute>}> */}
+          <Route path="/employer-dashboard" element={<Dashboard></Dashboard>}>
             {/* <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
             <Route path="mobile-verify" element={<VerifyMobileForm></VerifyMobileForm>} />
             <Route path="company-information" element={<CompanyInfoForm></CompanyInfoForm>} />
