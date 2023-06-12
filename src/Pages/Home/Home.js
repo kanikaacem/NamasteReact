@@ -1,5 +1,5 @@
-import { getRequest } from "../../utils/ApiRequests";
-import { Box, Stack, Container, Button, Typography } from "@mui/material";
+import { getRequest ,postRequest } from "../../utils/ApiRequests";
+import { Box, Stack, Container, Button, Typography , FormControl ,Autocomplete,TextField} from "@mui/material";
 
 /* Site Header */
 import LanguageTranslatorSection from "../Common/LanguageTranslaterSection";
@@ -13,10 +13,12 @@ import { WebsiteMainHeading } from "../../utils/Styles";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
+import  {getLocation} from "../../utils/function";
 import { useTranslation } from "react-i18next";
 import React, { useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 const AdvantageSectionStyle = {
     position: "relative",
     alignItems: "center",
@@ -96,6 +98,8 @@ function Home() {
     const mobileScreen = useSelector(state => state.screenType) === "mobile";
     const [showButton, setShowButton] = useState(false);
     const [jobCategoryData, setJobCategoryData] = useState([]);
+    const [city,setCity] = useState(null);
+    // const [citiesData,setCitiesData] = useState(cities)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -116,16 +120,155 @@ function Home() {
             }
         };
 
+        const sendUserLocationInformation = async() => {
+            const { latitude, longitude } = await getLocation();
+            const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
+                fetch(apiUrl)
+                  .then((response) => response.json())
+                  .then((data) => {
+                    if (data.status === 'OK') {
+                      const result = data.results[0];
+                      const city = result.address_components.find(
+                        (component) =>
+                          component.types.includes('locality') ||
+                          component.types.includes('administrative_area_level_1')
+                      ).long_name;
+                      setCity(city)
+                      SendUserLatitudeLongitude(latitude,longitude,city)
+                    //   resolve({ latitude, longitude, city });
+                    } else {
+                      console.error('Geocoding request failed. Status:', data.status);
+                    //   reject(new Error('Geocoding request failed.'));
+                    }
+                  })
+    
+         
+          };
+          
         window.addEventListener('scroll', handleScroll);
         fetchData();
+        sendUserLocationInformation();
+          // eslint-disable-next-line react-hooks/exhaustive-deps
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
+    const SendUserLatitudeLongitude = async(lat,long,city) => {
+        const latlongForm = {
+            latitude: lat,
+            longitude: long,
+            city:city
+        };
+        try {
+            const api_url = process.env.REACT_APP_USER_LAT_LONG_URL;
+            const response = await postRequest(api_url, latlongForm);
+            if (response.status === '1')
+                console.log(response)
+        } catch (error) {
+            // Handle the error
+            console.error("Fetch error:", error);
+        }
+    }
+
+    const CustomPopper = ({ children, ...props }) => (
+        <div
+          style={{
+            zIndex: 1,
+            '& .MuiAutocomplete-paper': {
+              boxShadow: '0 2px 12px rgba(0, 0, 0, 0.1)',
+              color:'green',
+              borderRadius: '4px',
+              marginTop: '8px', // Custom spacing from the input field
+              ...props.style,
+            },
+          }}
+          {...props}
+        >
+          {children}
+        </div>
+      );
+    
+    const citiesData = [
+        { value: 'delhi', label: 'Delhi' },
+        { value: 'mumbai', label: 'Mumbai' },
+        { value: 'kolkata', label: 'Kolkata' },
+        { value: 'chennai', label: 'Chennai' },
+        { value: 'bangalore', label: 'Bangalore' },
+        { value: 'hyderabad', label: 'Hyderabad' },
+        { value: 'ahmedabad', label: 'Ahmedabad' },
+        { value: 'pune', label: 'Pune' },
+        { value: 'jaipur', label: 'Jaipur' },
+        { value: 'lucknow', label: 'Lucknow' },
+        { value: 'chandigarh', label: 'Chandigarh' },
+        { value: 'kochi', label: 'Kochi' },
+        { value: 'goa', label: 'Goa' },
+        { value: 'amritsar', label: 'Amritsar' },
+        { value: 'varanasi', label: 'Varanasi' },
+        { value: 'bhubaneswar', label: 'Bhubaneswar' },
+        { value: 'guwahati', label: 'Guwahati' },
+        // Add more cities as needed
+      ];
+
+    
+    const handleCityChange = async(event,value) => {
+        // console.log(value)
+        setCity(value.label);
+        const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${value.value}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
+
+        try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        if (data.status === 'OK') {
+            const result = data.results[0];
+            const { lat, lng } = result.geometry.location;
+            SendUserLatitudeLongitude(lat,lng,value.value)
+
+            // coordinates.push({ city, latitude: lat, longitude: lng });
+        } else {
+            console.error(`Geocoding request for ${city} failed. Status: ${data.status}`);
+        }
+        } catch (error) {
+        console.error(`Error during geocoding request for ${city}:`, error);
+        }
+    }
+      
+
     return (<>
         <Box className="LandingPage">
+            <Stack direction="row" gap={3} justifyContent="center" alignItems="center" className="AnnocumentBar" sx={{
+                    background: "#f3bb7a",
+                    color: "#ffffff",
+                    fontSize:"0.7rem",
+                    padding:"10px"
+                }}> <FormControl fullWidth>
+                    <Autocomplete
+                            size="small"
+                            disablePortal
+                            options={citiesData}
+                            onChange={handleCityChange}
+                            isOptionEqualToValue={(option, value) => option.value === value.value}
+                            getOptionLabel={(option) => option.label}
+                            renderInput={(params) => <TextField {...params}
+
+                                InputLabelProps={{
+                                    shrink: true,
+                                    placeholder: "Select a Category", // Add the desired placeholder text
+                                    style: {
+                                        fontSize: "12px", // Set the desired fontSize for the placeholder
+                                    },
+                                }}
+                                sx={{
+                                    fontSize: "12px",
+                                }}
+                                PopperComponent={CustomPopper}/>}
+                    />
+
+                    </FormControl>
+                    <Box sx={{textTransform:"captialize",width:"100px"}}>{city}</Box>
+            </Stack>
             <Box className="WebsiteLogoAndLoginSectionWrapper" sx={{
                 minHeight: { "xs": "50px", "sm": "50px", "md": "100px", "lg": "100px", "xl": "100px" },
                 width: "100%",
@@ -136,6 +279,7 @@ function Home() {
                 top: "0",
                 zIndex: "234",
             }} >
+                
                 <Stack direction="row" className="WebsiteLogoAndLoginSection"
                     alignItems="center"
                     sx={{
