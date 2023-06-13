@@ -131,6 +131,35 @@ function Home() {
     };
 
 
+    const setDynamicLocation = (location) => {
+        localStorage.setItem("coordinates", location);
+        // let { lat, lng } = JSON.parse(location);
+    };
+
+    const sendUserLocationInformation = async() => {
+        const { latitude, longitude } = await getLocation();
+        const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
+            fetch(apiUrl)
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.status === 'OK') {
+                  const result = data.results[0];
+                  const cityDetail = result.formatted_address
+
+                  console.log(cityDetail);
+                
+                  setCity(cityDetail)
+                  setDynamicLocation(JSON.stringify(result?.geometry?.location))
+                //   SendUserLatitudeLongitude(latitude,longitude,city)
+    
+                } else {
+                  console.error('Geocoding request failed. Status:', data.status);
+                //   reject(new Error('Geocoding request failed.'));
+                }
+              })
+    };
+
+
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
