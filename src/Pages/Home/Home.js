@@ -147,7 +147,7 @@ function Home() {
                   const cityDetail = result.formatted_address
 
                   console.log(cityDetail);
-                
+                    
                   setCity(cityDetail)
                   setDynamicLocation(JSON.stringify(result?.geometry?.location))
                 //   SendUserLatitudeLongitude(latitude,longitude,city)
@@ -289,7 +289,7 @@ function Home() {
                     <Input 
                         fullWidth
                         color="secondary"
-                        // defaultValue={city}
+                        defaultValue={city}
                       
                         inputComponent={({ inputRef, onFocus, onBlur, ...props }) => (
                         <Autocomplete
@@ -300,15 +300,17 @@ function Home() {
                                 componentRestrictions: { country: "in" },
                             }}
                             onPlaceSelected={(place) => {
+                                setCity(place.formatted_address);
                                 setDynamicLocation(JSON.stringify(place?.geometry?.location))
                             }}
                         />
                         )}
                     />
                     </div>
-                    <div class="font-icon-wrapper" onClick={() => sendUserLocationInformation()}>
-                        <GpsNotFixedIcon fontSize="small" color="primary" />
+                    <div class="font-icon-wrapper" >
+                        <GpsNotFixedIcon fontSize="small" color="primary" onClick={sendUserLocationInformation} />
                     </div>
+                    <p>{city}</p>
                     
                  
                     {/* <CloseIcon fontSize="small" color="disabled" /> */}
