@@ -144,13 +144,10 @@ function Home() {
               .then((data) => {
                 if (data.status === 'OK') {
                   const result = data.results[0];
-                  const cityDetail = result.formatted_address
-
-                  console.log(cityDetail);
-                    
+                  const cityDetail = result.formatted_address                    
                   setCity(cityDetail)
                   setDynamicLocation(JSON.stringify(result?.geometry?.location))
-                //   SendUserLatitudeLongitude(latitude,longitude,city)
+                  SendUserLatitudeLongitude(latitude,longitude,city)
     
                 } else {
                   console.error('Geocoding request failed. Status:', data.status);
@@ -251,7 +248,6 @@ function Home() {
 
     
     const handleCityChange = async(value) => {
-        console.log(value, " in handle city change")
         setCity(value);
 
         const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${value}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
@@ -285,7 +281,6 @@ function Home() {
                 <FormControl style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }} >
                     <LocationOnIcon fontSize="small" color="disabled" />
                     <div style={{ width: "460px" }}>
-                        {console.log(city)}
                     <Input 
                         fullWidth
                         color="secondary"
