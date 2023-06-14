@@ -47,6 +47,11 @@ import OTPVerification from './Pages/Candidate/OTPVerification';
 import HomePageLite from "./Pages/HomePageLiteSection/HomePageLite";
 import LiteAction from "./Pages/HomePageLiteSection/LiteAction";
 import CandidateInformation from "./Pages/HomePageLiteSection/CandidateInformation";
+import EmployerInformation from './Pages/HomePageLiteSection/EmployerInformation';
+
+/*Candidate Khoze*/
+import CandidateCredentialsForm from "./Pages/FindCandidates/CandidateCredentialsForm";
+import CandidateRequirementsForm from "./Pages/FindCandidates/CandidateRequirementsForm";
 function App() {
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
@@ -65,6 +70,7 @@ function App() {
           <Route path="/homepagelite" element={<HomePageLite></HomePageLite>} />
           <Route path="/useraction" element={<LiteAction></LiteAction>} />
           <Route path="/candidate-information" element={<CandidateInformation></CandidateInformation>} />
+          <Route path="/employer-information" element={<EmployerInformation />} />
 
           <Route path="/forgot-password/employer" element={<ForgotPasswordPage user="employer" />} />
           <Route path="/reset-password/employer/:token" element={<ResetPasswordPage user="employer" />} />
@@ -126,6 +132,9 @@ function App() {
           <Route path="/job-description/:id" element={<JobDescription></JobDescription>} />
           <Route path="*" element={<ErrorPage errorMessage=" Page not Found "></ErrorPage>} />
           <Route path="/otp-verification" element={<OTPVerification />} />
+          <Route path="/candidate-khoze" element={<CandidateCredentialsForm />} />
+
+          <Route path="/candidate-requirement" element={<CandidateRequirementsForm />} />
         </Routes>
       </BrowserRouter>
     </>

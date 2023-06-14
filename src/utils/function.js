@@ -54,3 +54,5 @@ export const getLocation = () => {
         }
     });
 };
+
+export const goBack = () => window.history.back();
