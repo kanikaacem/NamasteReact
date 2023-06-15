@@ -7,7 +7,7 @@ import Error from "../../ThemeComponent/Common/Error";
 
 import { CandidateMobileNumberValidation } from "../../Validation/CandidateValidation";
 import { Formik, Field, Form } from "formik";
-import {getLocation} from "../../utils/function";
+import { getLocation } from "../../utils/function";
 
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -19,7 +19,7 @@ const CandidateLogin = () => {
     const defaultValue = {
         mobile_number: "",
     }
-   
+
     const handleSubmit = async (values, { setFieldError }) => {
         setRequestProcessing('in_progress');
         const { latitude, longitude } = await getLocation();
@@ -51,7 +51,7 @@ const CandidateLogin = () => {
             height: "100vh",
             display: requestProcessing === "not_initiated" ? "block" : "none"
         }}>
-            <PageTopSection TopSectionName="Verify Mobile Number" />
+            <PageTopSection TopSectionName="Verify Mobile Number" showBackButton={true} />
 
             <Container sx={{ padding: "0px", maxWidth: '1800px' }} maxWidth={false}>
                 <Box className="CandidateLoginSection" sx={{

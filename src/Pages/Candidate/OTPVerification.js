@@ -96,7 +96,7 @@ const OTPVerification = () => {
         <Box className="CandidateLoginPage" sx={{
             height: "100vh",
         }}>
-            <PageTopSection TopSectionName="OTP Verification" />
+            <PageTopSection TopSectionName="OTP Verification" showBackButton={true} />
 
             <Container sx={{ padding: "0px", maxWidth: '1800px' }} maxWidth={false}>
 
