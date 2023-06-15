@@ -1,48 +1,64 @@
-import { Box, Stack, Button, Typography } from "@mui/material";
+import { Box, Stack, Button, Typography, useMediaQuery, Container } from "@mui/material";
 
 import { WebsiteMainHeading, WebsiteContainedButtonStyles, WebsiteOutlinedButtonStyles } from "../../utils/Styles";
 import LanguageTranslatorSection from "../Common/LanguageTranslaterSection";
 import { useTranslation } from "react-i18next";
 
 import { useNavigate } from "react-router-dom";
+import Footer from "../../ThemeComponent/Common/Footer";
 const HomePageLite = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
+
+    const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("md"));
+
     return (
         <Box className="HomePageLite" sx={{
-            height: "100vh",
         }}>
-            <LanguageTranslatorSection />
-            <Box className="TopSectionImage" sx={{
-                position: "relative",
-                width: "100%",
-                height: "400px",
-                background: "yellow"
-            }}>
-                <Typography variant="h1" component="h2" sx={{
-                    ...WebsiteMainHeading,
-                    fontSize: { "xs": "1.65rem", "sm": "1.65rem", "md": "2rem", "xl": "2rem", "lg": "2rem" },
-                    position: "absolute",
-                    bottom: "20px"
+            <Container maxWidth={isDesktop ? "md" : false} sx={{ padding: "0px", minHeight: "100vh", }}>
+                <LanguageTranslatorSection />
+                <Box className="TopSectionImage" sx={{
+                    position: "relative",
+                    width: "100%",
+                    height: "400px",
                 }}>
-                    {t(`INDIA'S_TRUSTED_jOB_PORTAL`)}
-                </Typography >
+                    <Stack alignItems="center" justifyContent="flex-end" sx={{
+                        height: "inherit"
+                    }}>
+                        <Box sx={{
+                            width: "200px",
+                            height: "200px"
+                        }}>
+                            <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/vertical_logo.png" alt="WebsiteLogo" width="100%" height="100%" />
+                        </Box>
+                        <Typography variant="h1" component="h2" sx={{
+                            ...WebsiteMainHeading,
+                            fontSize: "1.4rem",
+                            fontWeight: "600",
+                            marginTop: "10px"
 
-            </Box>
+                        }}>
+                            {t(`INDIA'S_TRUSTED_jOB_PORTAL`)}
+                        </Typography >
+                    </Stack>
 
-            <Stack direction="column" gap={2} justifyContent="center"
-                className="ButtonsSection"
-                sx={{
-                    padding: "20px"
-                }}>
-                <Button sx={WebsiteContainedButtonStyles} onClick={() => navigate("/useraction")}>jOB yAHAN sahayak</Button>
-                <Stack direction="row" justifyContent="space-between">
-                    <Button sx={{ width: "49%", ...WebsiteOutlinedButtonStyles }} onClick={() => navigate("/job-listing")}>Job खोजें</Button>
-                    <Button sx={{ width: "49%", ...WebsiteOutlinedButtonStyles }}>Candidate खोजें</Button>
+
+                </Box>
+
+                <Stack direction="column" gap={2} justifyContent="center"
+                    className="ButtonsSection"
+                    sx={{
+                        padding: "20px"
+                    }}>
+                    <Button sx={{ ...WebsiteContainedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px" }} onClick={() => navigate("/useraction")}>jOB yAHAN sahayak</Button>
+                    <Stack direction="row" justifyContent="space-between">
+                        <Button sx={{ ...WebsiteOutlinedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px", width: "49%" }} onClick={() => navigate("/job-listing")}>Job खोजें</Button>
+                        <Button sx={{ ...WebsiteOutlinedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px", width: "49%" }} onClick={() => navigate("/candidate-khoze")}>Candidate खोजें</Button>
+                    </Stack>
                 </Stack>
-            </Stack>
-
-        </Box>
+            </Container>
+            <Footer />
+        </Box >
     )
 }
 export default HomePageLite;

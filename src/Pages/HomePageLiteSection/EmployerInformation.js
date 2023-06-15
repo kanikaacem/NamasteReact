@@ -2,74 +2,74 @@ import { postRequest } from "../../utils/ApiRequests";
 import { Box, Container, Button, useMediaQuery } from "@mui/material";
 
 import { Formik, Field, Form } from "formik";
-import { CandidateInformationValidation } from "../../Validation/HomepageLiteValidation";
+import { EmployerInformationValidation } from "../../Validation/HomepageLiteValidation";
 import FormLabel from "../Common/FormLabel";
 import Error from "../../ThemeComponent/Common/Error";
 import Footer from "../../ThemeComponent/Common/Footer";
 import HomePageLiteTopSection from "./HomePageLiteTopSection";
 import HPLTopHeadingSection from "./HPLTopHeadingSection";
 import HomePageLiteMessage from "./HomePageLiteMessage";
-import { useState } from "react";
 
-const CandidateInformation = () => {
+import { useState } from "react";
+const EmployerInformation = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const defaultValue = {
         fullname: "",
         mobile: "",
         city: "",
-        workknowledge: ""
+        businessType: ""
     }
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("md"));
 
     const handleSubmit = async (values, { resetForm }) => {
-        const { fullname, mobile, city, workknowledge } = values;
-        let candidateInfoForm = new FormData();
-        candidateInfoForm = {
+        const { fullname, mobile, city, businessType } = values;
+        let employerInfoForm = new FormData();
+        employerInfoForm = {
             fullname,
             mobile,
             city,
-            workknowledge
+            businessType
         }
 
         try {
-            const api_url = process.env.REACT_APP_BASE_URL + "/api/postCandidateRequest";
-            const response = await postRequest(api_url, candidateInfoForm);
+            const api_url = process.env.REACT_APP_BASE_URL + "/api/posttempinformation";
+            const response = await postRequest(api_url, employerInfoForm);
             if (response.status === "1") {
-                setFormSubmitted(true);
+                setFormSubmitted(true)
                 resetForm();
             }
 
         } catch (error) {
             console.error("Fetch error:", error);
         }
-    }
 
+    }
     return (
-        <Box className="candidateInformationPage">
+        <Box className="employerInformationPage">
             <HomePageLiteTopSection />
             <Container maxWidth={isDesktop ? "md" : false} sx={{ padding: "0px" }}>
                 <Box sx={{ padding: "20px", background: isDesktop ? "#ffffff" : "#FEF5F1" }} >
-                    <HPLTopHeadingSection headingText="Candidate ki jankari de" />
+                    <HPLTopHeadingSection headingText="Hire karne wale ki jankari de" />
                     <Formik
                         initialValues={defaultValue}
-                        validationSchema={CandidateInformationValidation}
+                        validationSchema={EmployerInformationValidation}
                         onSubmit={handleSubmit}
                     >
                         {({ errors }) => (
-                            <Form className="CandidateInformationForm" >
+                            <Form className="EmployerInformationForm" >
                                 <Box className="FormGroup">
-                                    <FormLabel LableText="Candidate ka Enter Name" LableFor="fullname" />
+                                    <FormLabel LableText="Enter hiring company Name" LableFor="fullname" />
                                     <Field id="fullname"
-                                        type="text" placeholder="Enter Candidate Name"
+                                        type="text" placeholder="Enter Company Name"
                                         name="fullname"
                                         className="custom-text-field" />
                                     {errors.fullname && <Error text={errors.fullname} />}
 
                                 </Box>
                                 <Box className="FormGroup">
-                                    <FormLabel LableText="Candidate ka Mobile number" LableFor="mobile" />
+                                    <FormLabel LableText="Hire karne wale ka mobile number" LableFor="mobile" />
                                     <Field id="mobile"
-                                        type="text" placeholder="Enter Candidate Mobile Number"
+                                        type="text" placeholder="Enter Employer Mobile Number"
                                         name="mobile"
                                         className="custom-text-field" />
                                     {errors.mobile && <Error text={errors.mobile} />}
@@ -85,12 +85,12 @@ const CandidateInformation = () => {
 
                                 </Box>
                                 <Box className="FormGroup">
-                                    <FormLabel LableText="Kya kaam jaante hai" LableFor="workknowledge" />
-                                    <Field id="workknowledge"
-                                        type="text" placeholder="Enter Work knowledge"
-                                        name="workknowledge"
+                                    <FormLabel LableText="Business" LableFor="businessType" />
+                                    <Field id="businessType"
+                                        type="text" placeholder="Enter Business"
+                                        name="businessType"
                                         className="custom-text-field" />
-                                    {errors.workknowledge && <Error text={errors.workknowledge} />}
+                                    {errors.businessType && <Error text={errors.businessType} />}
 
                                 </Box>
 
@@ -108,5 +108,5 @@ const CandidateInformation = () => {
         </Box>
     )
 }
-export default CandidateInformation;
+export default EmployerInformation;
 
