@@ -179,7 +179,7 @@ const JobListing = () => {
         <Box className="JobsListingPage" sx={{
             height: "100vh"
         }}>
-            <PageTopSection />
+            <PageTopSection showBackButton={true} />
 
             <Box className="WebsiteBreadcrumb" sx={{
                 padding: {

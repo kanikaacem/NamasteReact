@@ -1101,7 +1101,37 @@ body {
   padding: 3px !important;
 } */
 
-option{
+option {
   font-size: 10px !important;
-  height:20px !important;
+  height: 20px !important;
+}
+
+.OrangeButton {
+  width: 100%;
+  background: #FF671F !important;
+  margin: 40px 0px !important;
+  text-transform: unset !important;
+}
+
+.OrangeButton:hover {
+  background: #FF671F !important;
+}
+
+.custom-text-field {
+  width: 100%;
+  /* margin: 10px 0px; */
+  border: 1px solid #E4E3E3;
+  padding: 15px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 0.8rem;
+  outline: none;
+}
+
+.custom-text-field::placeholder {
+  color: #676767;
+}
+
+.FormGroup {
+  margin-bottom: 10px;
 }
