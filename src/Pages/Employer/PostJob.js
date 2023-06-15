@@ -430,17 +430,10 @@ const PostJob = () => {
                                     <PostJobFormLabel LableFor="job_address" LableText="Address" mandatory={true} />
                                     <Autocomplete
                                         apiKey={process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}
-<<<<<<< HEAD
-                                        options= {{
-                                            types: [],
-                                            componentRestrictions: { country: "in" },
-                                          }}
-=======
                                         options={{
                                             types: [],
                                             componentRestrictions: { country: "in" }
                                         }}
->>>>>>> 7ca934e (employer-login, homepagelite)
                                         onPlaceSelected={(place) => {
                                             let address = place?.formatted_address || place?.name
                                             setFieldValue("job_address", address)
