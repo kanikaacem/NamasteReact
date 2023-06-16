@@ -281,7 +281,6 @@ function Home() {
 
     return (<>
         <Box className="LandingPage">
-            {/* <JobApplyWeb /> */}
             <Stack className="AnnocumentBar" sx={{
                     background: "#f3bb7a",
                     color: "#ffffff",

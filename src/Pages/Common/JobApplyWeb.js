@@ -98,16 +98,16 @@ const JobApplyForm = ({ openJobApplyModal, setOpenJobApplyModal }) => {
   ]
 
   const ageData = [
-    { id: 1, label: "18-25", value: "any" },
-    { id: 2, label: "25-35", value: "below_10th" },
-    { id: 3, label: "35-45", value: "10th_pass" },
-    { id: 4, label: "45-50", value: "12th_pass" },
-    { id: 5, label: "50+", value: "graduate" },
+    { id: 1, label: "18-25", value: "18-25" },
+    { id: 2, label: "25-35", value: "25-35" },
+    { id: 3, label: "35-45", value: "35-45" },
+    { id: 4, label: "45-50", value: "45-50" },
+    { id: 5, label: "50+", value: "50+" },
   ]
 
   return (
-    <Modal open={open}
-      onClose={handleClose}>
+    <Modal open={openJobApplyModal}
+      onClose={() => setOpenJobApplyModal(false)}>
       <div style={styles}>
         <Formik
           initialValues={defaultValue}
@@ -116,13 +116,13 @@ const JobApplyForm = ({ openJobApplyModal, setOpenJobApplyModal }) => {
         >
           {({ values, errors, touched, setFieldValue }) => (
             <Form className=" apply-job-modal" >
-              <div classname="apply-job-modal-heading" style={headingStyles}>
+              <div className="apply-job-modal-heading" style={headingStyles}>
                 <Typography variant="h6" >
                   Fill your details
                 </Typography>
 
-                <Tooltip title="Close" classname="close-icon">
-                  <CloseIcon fontSize="medium" color="disabled" />
+                <Tooltip title="Close" className="close-icon">
+                  <CloseIcon fontSize="medium" color="disabled" onClick={() => setOpenJobApplyModal(false)} />
                 </Tooltip>
               </div>
               <Grid container >
