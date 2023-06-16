@@ -360,9 +360,6 @@ function Home() {
                     <div class="font-icon-wrapper" >
                         <GpsNotFixedIcon fontSize="small" color="primary" onClick={sendUserLocationInformation} />
                     </div>
-                    <p>{city}</p>
-                    
-                 
                     {/* <CloseIcon fontSize="small" color="disabled" /> */}
                     </FormControl>
                 </Stack>

@@ -798,8 +798,16 @@ body {
 }
 
 
+.job-listing-form {
+  padding: 60px;
+}
+
+
 
 @media screen and (max-width: 600px) {
+  .job-listing-form {
+    padding: 4px;
+  }
   /* .formik-field{
     font-size:30px !important;
     height:300px !important;
