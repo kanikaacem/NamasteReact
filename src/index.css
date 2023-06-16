@@ -806,6 +806,7 @@ body {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .apply-job-modal {
   padding: 40px;
 }
@@ -815,12 +816,17 @@ body {
   align-items: center;
 }
 
+=======
+>>>>>>> 2fdf787 (error page updated, job list location issue fixed)
 .font-icon-wrapper-home{
   margin: 0px 6px;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> a16e057 (updated job list form)
+=======
+>>>>>>> 2fdf787 (error page updated, job list location issue fixed)
 
 
 @media screen and (max-width: 600px) {

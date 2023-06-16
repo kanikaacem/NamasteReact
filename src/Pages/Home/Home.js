@@ -1,5 +1,5 @@
 import { getRequest ,postRequest } from "../../utils/ApiRequests";
-import { Box, Stack, Container, Button, Typography , FormControl, Input, InputLabel, Select, MenuItem } from "@mui/material";
+import { Box, Stack, Container, Button, Typography , FormControl, Input, Tooltip } from "@mui/material";
 
 /* Site Header */
 import LanguageTranslatorSection from "../Common/LanguageTranslaterSection";
@@ -23,6 +23,7 @@ import Autocomplete from "react-google-autocomplete";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CloseIcon from '@mui/icons-material/Close';
 import GpsNotFixedIcon from '@mui/icons-material/GpsNotFixed';
+import MyLocationIcon from '@mui/icons-material/MyLocation';
 
 const AdvantageSectionStyle = {
     position: "relative",
@@ -136,9 +137,13 @@ function Home() {
         // let { lat, lng } = JSON.parse(location);
     };
 
-    const sendUserLocationInformation = async() => {
-        const { latitude, longitude } = await getLocation();
-        const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
+    const getCoords = async() => {
+        let { latitude, longitude } = await getLocation();
+        sendUserLocationInformation(latitude, longitude);
+    }
+
+    const sendUserLocationInformation = async(lat, lng) => {
+        const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
             fetch(apiUrl)
               .then((response) => response.json())
               .then((data) => {
@@ -147,7 +152,7 @@ function Home() {
                   const cityDetail = result.formatted_address                    
                   setCity(cityDetail)
                   setDynamicLocation(JSON.stringify(result?.geometry?.location))
-                  SendUserLatitudeLongitude(latitude,longitude,city)
+                  SendUserLatitudeLongitude(lat,lng,city)
     
                 } else {
                   console.error('Geocoding request failed. Status:', data.status);
@@ -176,13 +181,17 @@ function Home() {
             }
         };
 
-        
-
-
         window.addEventListener('scroll', handleScroll);
         fetchData();
-        sendUserLocationInformation();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        let coords = JSON.parse(localStorage.getItem("coordinates"));
+        if (coords){
+            console.log("Coords are available in local storage")
+            sendUserLocationInformation(coords.lat, coords.lng)
+        } else{
+            console.log("Coords are not available in local storage")
+            getCoords();
+        }  
+          // eslint-disable-next-line react-hooks/exhaustive-deps
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
@@ -302,10 +311,17 @@ function Home() {
                         )}
                     />
                     </div>
-                    <div class="font-icon-wrapper" >
-                        <GpsNotFixedIcon fontSize="small" color="primary" onClick={sendUserLocationInformation} />
+                    <div class="font-icon-wrapper-home" onClick={getCoords}  >
+                        <Tooltip title="Detech current Location">
+                            <MyLocationIcon fontSize="small" color="primary" />
+                        </Tooltip>
                     </div>
-                    {/* <CloseIcon fontSize="small" color="disabled" /> */}
+                    <div class="font-icon-wrapper-home" onClick={() => setCity(null)}  >
+                    <Tooltip title="Clear ">
+                        <CloseIcon fontSize="medium" color="disabled" />
+                    </Tooltip>
+                    </div>
+                    
                     </FormControl>
                 </Stack>
             <Box className="WebsiteLogoAndLoginSectionWrapper" sx={{
@@ -539,6 +555,7 @@ function Home() {
                         width: { "xs": "180px", "sm": "180px", "md": "300px", "lg": "300px", "xl": "300px" },
                         fontWeight: "500"
                     }}>
+                        <p>{t('FINDING_JOB_MADE_EASY_AND_SIMPLE_FOR_ANYONE')}</p>
                         <span style={{ color: "#FF671F" }}> Jaanchi, Parkhi</span> jobs
                         har <span style={{ color: "#FF671F" }}> Hindustani</span> ke
                         liye

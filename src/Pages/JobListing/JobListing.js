@@ -18,7 +18,6 @@ const JobListing = () => {
     const [loadJobs, setLoadJobs] = useState({ page: 1, limit: 20 });
     const [coordinates, setCoordinates] = useState(null);
 
-
     const mobileScreen = useSelector(state => state.screenType) === "mobile";
 
     const [postedJobs, setPostedJobs] = useState([]);
