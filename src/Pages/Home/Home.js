@@ -157,10 +157,8 @@ function Home() {
         fetchData();
         let coords = JSON.parse(localStorage.getItem("coordinates"));
         if (coords){
-            console.log("Coords are available in local storage")
             sendUserLocationInformation(coords.lat, coords.lng)
         } else{
-            console.log("Coords are not available in local storage")
             getCoords();
         }  
           // eslint-disable-next-line react-hooks/exhaustive-deps
