@@ -16,18 +16,11 @@ const JobListing = () => {
     const { t } = useTranslation();
     const [location, setLocation] = useState('one');
     const [loadJobs, setLoadJobs] = useState({ page: 1, limit: 20 });
-    const [coordinates, setCoordinates] = useState(null);
-
 
     const mobileScreen = useSelector(state => state.screenType) === "mobile";
 
     const [postedJobs, setPostedJobs] = useState([]);
     const [jobRoleFilterData, setJobRoleFilterData] = useState([]);
-
-    useEffect(() => {
-        let coords = JSON.parse(localStorage.getItem("coordinates"))
-        setCoordinates(coords);
-    },[])
 
     const breadcrumbs = [
         <Link underline="hover" sx={LinkStyles} key="1" color="inherit" href="/" >
@@ -148,8 +141,7 @@ const JobListing = () => {
 
     }
 
-    useEffect(() => {
-        
+    useEffect(() => { 
         let coords = JSON.parse(localStorage.getItem("coordinates"));
         let api_url = process.env.REACT_APP_GET_JOB_ITEMS; // Replace with your .env variable name
         location && (api_url = api_url + "?keyrange=" + location+ "&lat=" + coords.lat + "&lng=" +coords.lng);
