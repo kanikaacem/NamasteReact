@@ -13,6 +13,10 @@ import EmployerLogin from "./Pages/Employer/EmployerLogin";
 import PostJob from "./Pages/Employer/PostJob";
 import PostedJobs from './Pages/Employer/PostedJobs';
 import AppliedCandidate from './Pages/Employer/AppliedCandidate';
+import AppliedCandidateOnAJob from './Pages/Employer/AppliedCandidateOnAJob';
+// import ViewProfile from './Pages/Employer/ViewProfile';
+// import VerifyMobileForm from './ThemeComponent/ThemeForms/VerifyMobileForm';
+// import CompanyInfoForm from './ThemeComponent/ThemeForms/CompanyInfoForm';
 
 /*Candidate Component*/
 import NormalCandidateRegistration from './Pages/Candidate/NormalCandidateRegistration';
@@ -95,6 +99,7 @@ function App() {
             <Route path="posted-jobs" element={<PostedJobs />} />
             <Route path="post-a-job" element={<PostJob></PostJob>} />
             <Route path="applied-candidates/:id" element={<AppliedCandidate />} />
+            <Route path="applied-candidates-job/:id" element={<AppliedCandidateOnAJob />} />
           </Route>
 
 

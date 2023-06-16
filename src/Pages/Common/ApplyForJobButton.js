@@ -12,6 +12,7 @@ const ApplyForJobButton = ({ jobId, buttonStyle }) => {
 
   }
   return (<Button variant={buttonStyle ? "contained" : "outlined"}
+  disabled
     onClick={ApplyForJob} sx={{
       ...ApplyButtonStyles,
       background: buttonStyle === "contained" && "#FF671F",
@@ -21,6 +22,6 @@ const ApplyForJobButton = ({ jobId, buttonStyle }) => {
         color: buttonStyle !== "contained" && "#FF671F"
 
       }
-    }}>Apply via Whatsapp</Button>)
+    }}>Apply via Whatsapp <small>{'*(coming soon)'}</small></Button>)
 }
 export default ApplyForJobButton;

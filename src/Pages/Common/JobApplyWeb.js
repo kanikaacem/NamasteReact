@@ -4,6 +4,7 @@ import { JobApplyValidationSchema } from "../../Validation/PostJobValidation"
 import Error from '../../ThemeComponent/Common/Error';
 import CloseIcon from '@mui/icons-material/Close';
 import { useTranslation } from "react-i18next";
+import { postRequest } from "../../utils/ApiRequests";
 import { Modal, TextField, Button, Grid, FormControlLabel, Typography, Radio, RadioGroup, Stack, FormGroup, Tooltip } from '@mui/material';
 const styles = {
   position: 'absolute',
@@ -23,11 +24,8 @@ const headingStyles = {
   alignItems: "center"
 }
 
-const JobApplyForm = () => {
+const JobApplyForm = ({ openJobApplyModal, setOpenJobApplyModal }) => {
   const { t } = useTranslation();
-  const [open, setOpen] = React.useState(true);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   let defaultValue = {
     name: '',
@@ -68,8 +66,26 @@ const JobApplyForm = () => {
     },
   }
 
-  const submitForm = (values) => {
-    console.log(values)
+  const submitForm = async(values) => {
+    const { name, age, gender, qualification } = values;
+
+    let ApplyJobForm = new FormData();
+    ApplyJobForm = {
+      fullname: name,
+      age: age,
+      gender: gender, 
+      education: qualification
+    }
+    try {
+      const api_url = process.env.REACT_APP_APPLY_JOB;
+      const response = await postRequest(api_url, ApplyJobForm);
+      if (response.status === '1') {
+        alert("Your job applied successfully")
+        setOpenJobApplyModal(false);
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
   }
 
   const qualificationData = [
@@ -82,16 +98,16 @@ const JobApplyForm = () => {
   ]
 
   const ageData = [
-    { id: 1, label: "18-25", value: "any" },
-    { id: 2, label: "25-35", value: "below_10th" },
-    { id: 3, label: "35-45", value: "10th_pass" },
-    { id: 4, label: "45-50", value: "12th_pass" },
-    { id: 5, label: "50+", value: "graduate" },
+    { id: 1, label: "18-25", value: "18-25" },
+    { id: 2, label: "25-35", value: "25-35" },
+    { id: 3, label: "35-45", value: "35-45" },
+    { id: 4, label: "45-50", value: "45-50" },
+    { id: 5, label: "50+", value: "50+" },
   ]
 
   return (
-    <Modal open={open}
-      onClose={handleClose}>
+    <Modal open={openJobApplyModal}
+      onClose={() => setOpenJobApplyModal(false)}>
       <div style={styles}>
         <Formik
           initialValues={defaultValue}
@@ -100,13 +116,13 @@ const JobApplyForm = () => {
         >
           {({ values, errors, touched, setFieldValue }) => (
             <Form className=" apply-job-modal" >
-              <div classname="apply-job-modal-heading" style={headingStyles}>
+              <div className="apply-job-modal-heading" style={headingStyles}>
                 <Typography variant="h6" >
                   Fill your details
                 </Typography>
 
-                <Tooltip title="Close" classname="close-icon">
-                  <CloseIcon fontSize="medium" color="disabled" />
+                <Tooltip title="Close" className="close-icon">
+                  <CloseIcon fontSize="medium" color="disabled" onClick={() => setOpenJobApplyModal(false)} />
                 </Tooltip>
               </div>
               <Grid container >
@@ -219,12 +235,13 @@ const JobApplyForm = () => {
               <Grid container
                 rowSpacing={1}
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                sx={{ marginTop: "2px" }}
                 direction="row"
                 justifyContent="flex-end"
                 alignItems="right">
                 <Grid item md={3} xs={6}>
                   <Button variant="contained"
-                    onClick={() => console.log("CLOSE MODAL")}
+                    onClick={() => setOpenJobApplyModal(false)}
                     type="button"
                     sx={{
                       width: "100%",
@@ -232,7 +249,7 @@ const JobApplyForm = () => {
                       borderRadius: "5px",
                       color: "#000000",
                       textTransform: "capitalize",
-                      margin: "8px auto",
+                      margin: "12px auto",
                       fontSize: "1rem",
                       padding: "8px !important",
                       "&:hover": {
@@ -250,7 +267,7 @@ const JobApplyForm = () => {
                       background: "#FF671F",
                       borderRadius: "5px",
                       textTransform: "capitalize",
-                      margin: "8px auto",
+                      margin: "12px auto",
                       fontSize: "1rem",
                       padding: "8px !important",
                       "&:hover": {
