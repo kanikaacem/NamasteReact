@@ -805,11 +805,6 @@ body {
   padding: 60px;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 98a7552 (added web job apply modal)
 .apply-job-modal {
   padding: 40px;
 }
@@ -819,38 +814,26 @@ body {
   align-items: center;
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> 2fdf787 (error page updated, job list location issue fixed)
-=======
->>>>>>> 98a7552 (added web job apply modal)
+.apply-job-modal {
+  padding: 40px;
+}
+.apply-job-modal-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}  
+
 .font-icon-wrapper-home{
   margin: 0px 6px;
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> a16e057 (updated job list form)
-=======
->>>>>>> 2fdf787 (error page updated, job list location issue fixed)
+
 
 
 @media screen and (max-width: 600px) {
   .job-listing-form {
     padding: 4px;
   }
-<<<<<<< HEAD
-<<<<<<< HEAD
-  .apply-job-modal {
-    padding: 10px;
-  }
-=======
->>>>>>> a16e057 (updated job list form)
-=======
-  .apply-job-modal {
-    padding: 10px;
-  }
->>>>>>> 98a7552 (added web job apply modal)
   /* .formik-field{
     font-size:30px !important;
     height:300px !important;
