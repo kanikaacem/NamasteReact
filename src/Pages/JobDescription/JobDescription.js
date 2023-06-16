@@ -150,17 +150,7 @@ const JobDescription = () => {
                             <ApplyForJobButton jobId={id} />
                             <ShareJob jobId={id} jobRole={jobDescription?.jobRole}
                                 jobDescription={jobDescription?.jobDescriptions} />
-                            <Stack direction="row" gap={1} alignItems="center">
-                                <Box>
-                                    <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/Share.png" alt="Share" />
-                                </Box>
-                                <Typography sx={{
-                                    ...stackStyles,
-                                    color: "#FF671F"
-                                }}>
-                                    Share
-                                </Typography>
-                            </Stack>
+                           
                         </Stack>
 
                         <SectionSeperator />
