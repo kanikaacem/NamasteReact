@@ -2,6 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import { jobItemStyles, jobItemTagStyles, stackStyles, tagStyles } from "../../utils/Styles";
 import { getJobPostedTime, replaceUnderscore } from "../../utils/function";
 import ApplyForJobButton from "../Common/ApplyForJobButton";
+import ShareJob from "../Common/ShareJob";
 import ApplyForJobWebButton from "../Common/ApplyForJobWebButton";
 import { useNavigate } from "react-router-dom";
 
