@@ -1,5 +1,5 @@
-import { getRequest ,postRequest } from "../../utils/ApiRequests";
-import { Box, Stack, Container, Button, Typography , FormControl, Input, Tooltip } from "@mui/material";
+import { getRequest, postRequest } from "../../utils/ApiRequests";
+import { Box, Stack, Container, Button, Typography, FormControl, Input, Tooltip } from "@mui/material";
 
 /* Site Header */
 import LanguageTranslatorSection from "../Common/LanguageTranslaterSection";
@@ -7,7 +7,6 @@ import JobCardComponent from "./Component/JobCardComponent";
 import ViewMoreSection from "./Component/ViewMoreSection";
 import Footer from "../../ThemeComponent/Common/Footer";
 import Heading from "./Component/Heading";
-import JobApplyWeb from "../Common/JobApplyWeb";
 
 import { WebsiteMainHeading } from "../../utils/Styles";
 
@@ -22,7 +21,6 @@ import { useNavigate } from "react-router-dom";
 import Autocomplete from "react-google-autocomplete";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CloseIcon from '@mui/icons-material/Close';
-import GpsNotFixedIcon from '@mui/icons-material/GpsNotFixed';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 
 const AdvantageSectionStyle = {
@@ -108,33 +106,33 @@ function Home() {
         // let { lat, lng } = JSON.parse(location);
     };
 
-
-    const getCoords = async() => {
+    const getCoords = async () => {
         let { latitude, longitude } = await getLocation();
         sendUserLocationInformation(latitude, longitude);
     }
 
-    const sendUserLocationInformation = async(lat, lng) => {
+    const sendUserLocationInformation = async (lat, lng) => {
         const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
-            fetch(apiUrl)
-              .then((response) => response.json())
-              .then((data) => {
+        fetch(apiUrl)
+            .then((response) => response.json())
+            .then((data) => {
                 if (data.status === 'OK') {
-                  const result = data.results[0];
-                  const cityDetail = result.formatted_address                    
-                  setCity(cityDetail)
-                  setDynamicLocation(JSON.stringify(result?.geometry?.location))
-                  SendUserLatitudeLongitude(lat,lng,city)
-    
+                    const result = data.results[0];
+                    const cityDetail = result.formatted_address
+                    setCity(cityDetail)
+                    setDynamicLocation(JSON.stringify(result?.geometry?.location))
+                    SendUserLatitudeLongitude(lat, lng, city)
+
                 } else {
-                  console.error('Geocoding request failed. Status:', data.status);
-                //   reject(new Error('Geocoding request failed.'));
+                    console.error('Geocoding request failed. Status:', data.status);
+                    //   reject(new Error('Geocoding request failed.'));
                 }
-              })
+            })
     };
 
 
     useEffect(() => {
+
         const handleScroll = () => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const isScrollingOverViewport = (scrollTop > window.innerHeight)
@@ -156,12 +154,12 @@ function Home() {
         window.addEventListener('scroll', handleScroll);
         fetchData();
         let coords = JSON.parse(localStorage.getItem("coordinates"));
-        if (coords){
+        if (coords) {
             sendUserLocationInformation(coords.lat, coords.lng)
-        } else{
+        } else {
             getCoords();
-        }  
-          // eslint-disable-next-line react-hooks/exhaustive-deps
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
@@ -186,100 +184,37 @@ function Home() {
         }
     }
 
-    const CustomPopper = ({ children, ...props }) => (
-        <div
-            style={{
-                zIndex: 1,
-                '& .MuiAutocomplete-paper': {
-                    boxShadow: '0 2px 12px rgba(0, 0, 0, 0.1)',
-                    color: 'green',
-                    borderRadius: '4px',
-                    marginTop: '8px', // Custom spacing from the input field
-                    ...props.style,
-                },
-            }}
-            {...props}
-        >
-            {children}
-        </div>
-    );
-
-    const citiesData = [
-        { value: 'delhi', label: 'Delhi' },
-        { value: 'mumbai', label: 'Mumbai' },
-        { value: 'kolkata', label: 'Kolkata' },
-        { value: 'chennai', label: 'Chennai' },
-        { value: 'bangalore', label: 'Bangalore' },
-        { value: 'hyderabad', label: 'Hyderabad' },
-        { value: 'ahmedabad', label: 'Ahmedabad' },
-        { value: 'pune', label: 'Pune' },
-        { value: 'jaipur', label: 'Jaipur' },
-        { value: 'lucknow', label: 'Lucknow' },
-        { value: 'chandigarh', label: 'Chandigarh' },
-        { value: 'kochi', label: 'Kochi' },
-        { value: 'goa', label: 'Goa' },
-        { value: 'amritsar', label: 'Amritsar' },
-        { value: 'varanasi', label: 'Varanasi' },
-        { value: 'bhubaneswar', label: 'Bhubaneswar' },
-        { value: 'guwahati', label: 'Guwahati' },
-        // Add more cities as needed
-    ];
-
-    
-    const handleCityChange = async(value) => {
-        setCity(value);
-
-        const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${value}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
-
-        try {
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-
-            if (data.status === 'OK') {
-                const result = data.results[0];
-                const { lat, lng } = result.geometry.location;
-                SendUserLatitudeLongitude(lat, lng, value.value)
-
-        } else {
-            console.error(`Geocoding request for ${city} failed. Status: ${data.status}`);
-        }
-        } catch (error) {
-            console.error(`Error during geocoding request for ${city}:`, error);
-        }
-    }
-
-
     return (<>
         <Box className="LandingPage">
             <Stack className="AnnocumentBar" sx={{
-                    background: "#f3bb7a",
-                    color: "#ffffff",
-                    fontSize:"0.4rem",
-                    padding: "4px 14px",
-                }}> 
+                background: "#f3bb7a",
+                color: "#ffffff",
+                fontSize: "0.4rem",
+                padding: "4px 14px",
+            }}>
                 <FormControl style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }} >
                     <LocationOnIcon fontSize="small" color="disabled" />
                     <div style={{ width: "460px" }}>
-                    <Input 
-                        fullWidth
-                        color="secondary"
-                        defaultValue={city}
-                      
-                        inputComponent={({ inputRef, onFocus, onBlur, ...props }) => (
-                        <Autocomplete
-                            {...props}
-                            apiKey={process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}
-                            options= {{
-                                types: [],
-                                componentRestrictions: { country: "in" },
-                            }}
-                            onPlaceSelected={(place) => {
-                                setCity(place.formatted_address);
-                                setDynamicLocation(JSON.stringify(place?.geometry?.location))
-                            }}
+                        <Input
+                            fullWidth
+                            color="secondary"
+                            defaultValue={city}
+
+                            inputComponent={({ inputRef, onFocus, onBlur, ...props }) => (
+                                <Autocomplete
+                                    {...props}
+                                    apiKey={process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}
+                                    options={{
+                                        types: [],
+                                        componentRestrictions: { country: "in" },
+                                    }}
+                                    onPlaceSelected={(place) => {
+                                        setCity(place.formatted_address);
+                                        setDynamicLocation(JSON.stringify(place?.geometry?.location))
+                                    }}
+                                />
+                            )}
                         />
-                        )}
-                    />
                     </div>
                     <div class="font-icon-wrapper-home" onClick={getCoords}  >
                         <Tooltip title="Detech current Location">
@@ -287,13 +222,13 @@ function Home() {
                         </Tooltip>
                     </div>
                     <div class="font-icon-wrapper-home" onClick={() => setCity(null)}  >
-                    <Tooltip title="Clear ">
-                        <CloseIcon fontSize="medium" color="disabled" />
-                    </Tooltip>
+                        <Tooltip title="Clear ">
+                            <CloseIcon fontSize="medium" color="disabled" />
+                        </Tooltip>
                     </div>
-                    
-                    </FormControl>
-                </Stack>
+
+                </FormControl>
+            </Stack>
             <Box className="WebsiteLogoAndLoginSectionWrapper" sx={{
                 minHeight: { "xs": "50px", "sm": "50px", "md": "100px", "lg": "100px", "xl": "100px" },
                 width: "100%",
