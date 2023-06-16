@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { getRequest, postRequest } from "../../utils/ApiRequests";
 import { Box, Stack, Container, Button, Typography, FormControl, Autocomplete, TextField } from "@mui/material";
+=======
+import { getRequest ,postRequest } from "../../utils/ApiRequests";
+import { Box, Stack, Container, Button, Typography , FormControl, Input, InputLabel, Select, MenuItem } from "@mui/material";
+>>>>>>> 681488e (header updated on landing page)
 
 /* Site Header */
 import LanguageTranslatorSection from "../Common/LanguageTranslaterSection";
@@ -18,6 +23,10 @@ import { useTranslation } from "react-i18next";
 import React, { useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Autocomplete from "react-google-autocomplete";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import CloseIcon from '@mui/icons-material/Close';
+import GpsNotFixedIcon from '@mui/icons-material/GpsNotFixed';
 
 const AdvantageSectionStyle = {
     position: "relative",
@@ -49,9 +58,7 @@ const JobLocation = [
     { id: 7, name: "Delhi", text: "Delhi" },
     { id: 8, name: "Mumbai", text: "Mumbai" },
     { id: 9, name: "Gurgoan", text: "Gurgoan" }
-
 ];
-
 
 const FindJobButton = ({ style }) => {
     const navigate = useNavigate();
@@ -66,7 +73,6 @@ const FindJobButton = ({ style }) => {
                 background: "#FF671F",
             },
             ...style // Apply custom styles passed via the style prop
-
         }
         }> Job खोजें</Button >)
 }
@@ -87,8 +93,6 @@ const FindCandidateButton = ({ style }) => {
 
             },
             ...style // Apply custom styles passed via the style prop
-
-
         }}
         variant="outlined">Candidate खोजें </Button>)
 }
@@ -101,6 +105,35 @@ function Home() {
     const [showButton, setShowButton] = useState(false);
     const [jobCategoryData, setJobCategoryData] = useState([]);
     const [city, setCity] = useState(null);
+
+    const setDynamicLocation = (location) => {
+        localStorage.setItem("coordinates", location);
+        // let { lat, lng } = JSON.parse(location);
+    };
+
+    const sendUserLocationInformation = async() => {
+        const { latitude, longitude } = await getLocation();
+        const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
+            fetch(apiUrl)
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.status === 'OK') {
+                  const result = data.results[0];
+                  const cityDetail = result.formatted_address
+
+                  console.log(cityDetail);
+                
+                  setCity(cityDetail)
+                  setDynamicLocation(JSON.stringify(result?.geometry?.location))
+                //   SendUserLatitudeLongitude(latitude,longitude,city)
+    
+                } else {
+                  console.error('Geocoding request failed. Status:', data.status);
+                //   reject(new Error('Geocoding request failed.'));
+                }
+              })
+    };
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -121,6 +154,7 @@ function Home() {
             }
         };
 
+<<<<<<< HEAD
         const sendUserLocationInformation = async () => {
             const { latitude, longitude } = await getLocation();
             const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
@@ -145,6 +179,10 @@ function Home() {
 
 
         };
+=======
+        
+
+>>>>>>> 681488e (header updated on landing page)
 
         window.addEventListener('scroll', handleScroll);
         fetchData();
@@ -213,11 +251,20 @@ function Home() {
         // Add more cities as needed
     ];
 
+<<<<<<< HEAD
 
     const handleCityChange = async (event, value) => {
         // console.log(value)
         setCity(value.label);
         const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${value.value}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
+=======
+    
+    const handleCityChange = async(value) => {
+        console.log(value, " in handle city change")
+        setCity(value);
+
+        const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${value}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
+>>>>>>> 681488e (header updated on landing page)
 
         try {
             const response = await fetch(apiUrl);
@@ -228,10 +275,16 @@ function Home() {
                 const { lat, lng } = result.geometry.location;
                 SendUserLatitudeLongitude(lat, lng, value.value)
 
+<<<<<<< HEAD
                 // coordinates.push({ city, latitude: lat, longitude: lng });
             } else {
                 console.error(`Geocoding request for ${city} failed. Status: ${data.status}`);
             }
+=======
+        } else {
+            console.error(`Geocoding request for ${city} failed. Status: ${data.status}`);
+        }
+>>>>>>> 681488e (header updated on landing page)
         } catch (error) {
             console.error(`Error during geocoding request for ${city}:`, error);
         }
@@ -240,6 +293,7 @@ function Home() {
 
     return (<>
         <Box className="LandingPage">
+<<<<<<< HEAD
             <Stack direction="row" gap={3} justifyContent="center" alignItems="center" className="AnnocumentBar" sx={{
                 background: "#f3bb7a",
                 color: "#ffffff",
@@ -271,6 +325,46 @@ function Home() {
                 </FormControl>
                 <Box sx={{ textTransform: "captialize", width: "100px" }}>{city}</Box>
             </Stack>
+=======
+            <Stack className="AnnocumentBar" sx={{
+                    background: "#f3bb7a",
+                    color: "#ffffff",
+                    fontSize:"0.4rem",
+                    padding: "4px 14px",
+                }}> 
+                <FormControl style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }} >
+                    <LocationOnIcon fontSize="small" color="disabled" />
+                    <div style={{ width: "460px" }}>
+                        {console.log(city)}
+                    <Input 
+                        fullWidth
+                        color="secondary"
+                        // defaultValue={city}
+                      
+                        inputComponent={({ inputRef, onFocus, onBlur, ...props }) => (
+                        <Autocomplete
+                            {...props}
+                            apiKey={process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}
+                            options= {{
+                                types: [],
+                                componentRestrictions: { country: "in" },
+                            }}
+                            onPlaceSelected={(place) => {
+                                setDynamicLocation(JSON.stringify(place?.geometry?.location))
+                            }}
+                        />
+                        )}
+                    />
+                    </div>
+                    <div class="font-icon-wrapper" onClick={() => sendUserLocationInformation()}>
+                        <GpsNotFixedIcon fontSize="small" color="primary" />
+                    </div>
+                    
+                 
+                    {/* <CloseIcon fontSize="small" color="disabled" /> */}
+                    </FormControl>
+                </Stack>
+>>>>>>> 681488e (header updated on landing page)
             <Box className="WebsiteLogoAndLoginSectionWrapper" sx={{
                 minHeight: { "xs": "50px", "sm": "50px", "md": "100px", "lg": "100px", "xl": "100px" },
                 width: "100%",
