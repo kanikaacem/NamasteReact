@@ -33,16 +33,22 @@ const Footer = () => {
         </Typography >)
     }
 
+
     const FooterMenuLink = ({ id, linkText, linkUrl }) => {
         return (
-            <Link key={id} to={linkUrl} style={{
-                fontFamily: 'Montserrat',
-                fontStyle: "normal",
-                fontWeight: "300",
-                fontSize: "1rem",
-                color: "#FFFFFF",
-                textDecoration: "none"
-            }}>{t(linkText)}</Link>
+            <Link key={id} to="#"
+                onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = window.location.origin + '/' + linkUrl;
+                }}
+                style={{
+                    fontFamily: 'Montserrat',
+                    fontStyle: "normal",
+                    fontWeight: "300",
+                    fontSize: "1rem",
+                    color: "#FFFFFF",
+                    textDecoration: "none"
+                }}>{t(linkText)}</Link>
         )
     }
 
@@ -68,7 +74,7 @@ const Footer = () => {
                 <Stack direction="column" gap={2} className="RecruiterLogin" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
                     <FooterHeading footerHeading="Login" />
                     <FooterMenuLink linkText="Employee Login" linkUrl="#" />
-                    <FooterMenuLink linkText="Recruiter Login" linkUrl="#" />
+                    <FooterMenuLink linkText="Recruiter Login" linkUrl={`${currentLanguage}/employer-login`} />
                 </Stack>
 
                 <Stack direction="column" gap={2} className="LegalInformation" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>

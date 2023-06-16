@@ -67,6 +67,7 @@ function App() {
           <Route path=":currentLanguage/about-us" element={<AboutUs></AboutUs>} />
           <Route path=":currentLanguage/privacy" element={<PrivacyPolicy></PrivacyPolicy>} />
           <Route path=":currentLanguage/terms" element={<TermAndCondition />} />
+          <Route path=":currentLanguage/employer-login" element={<EmployerLogin></EmployerLogin>} />
 
           <Route path="/homepagelite" element={<HomePageLite></HomePageLite>} />
           <Route path="/useraction" element={<LiteAction></LiteAction>} />
@@ -83,7 +84,6 @@ function App() {
           <Route path="/verificationthroughmail/employer/:employerEmail" element={<EmployerVerficationPage />} />
 
           <Route path="/employer-register" element={<EmployerRegister></EmployerRegister>} />
-          <Route path="/employer-login" element={<EmployerLogin></EmployerLogin>} />
 
           <Route path="/candidate-login" element={<CandidateLogin></CandidateLogin>}></Route>
           <Route path="/candidate-register" element={<CandidateRegistration />} />
