@@ -45,7 +45,7 @@ const DashboardGreeting = ({ userType }) => {
                     <Box className="GreetingSymbol" sx={{ width: "40px", height: "40px" }}>
                         <img src={greetingSymbol} alt="Greeting Symbol" width="100%" height="100%" />
                     </Box>
-                    <Typography component="box" sx={{
+                    <Typography sx={{
                         fontSize: "1rem",
                         fontWeight: "700",
                         fontFamily: `'Manrope', sans-serif`,

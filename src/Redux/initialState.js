@@ -14,6 +14,6 @@ export const initialState = {
     CandidateRegistration: false,
     userDetail: {},
     action: localStorage.getItem("action") == null ? " " : localStorage.getItem("action"),
-    currentLanguage: "ehn",
+    currentLanguage: "en",
     screenType: "tabAndDesktop"
 };

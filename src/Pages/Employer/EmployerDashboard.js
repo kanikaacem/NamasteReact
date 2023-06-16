@@ -20,13 +20,13 @@ const EmployerDashboard = () => {
         return (
             <Stack direction="row" justifyContent="space-between" sx={{ width: { "xs": "150px", "sm": "150px", "md": "230px", "lg": "230px", "xl": "230px" } }}>
                 <Stack direction="column" justifyContent="space-between">
-                    <Typography component="div" sx={{
+                    <Typography sx={{
                         fontSize: "1.8rem",
                         color: "#262626", fontWeight: "600"
                     }}>
                         {value}
                     </Typography>
-                    <Typography component="div" sx={{ fontSize: "16px", color: "#262626", fontWeight: "500" }}>
+                    <Typography sx={{ fontSize: "16px", color: "#262626", fontWeight: "500" }}>
                         {heading}
                     </Typography>
 
@@ -45,7 +45,7 @@ const EmployerDashboard = () => {
     }
 
     const NotificationTopSectionBoxes = ({ text, color, style }) => {
-        return (<Typography component="div"
+        return (<Typography
             sx={{
                 fontSize: { "xs": "1rem", "sm": "1rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
                 color: color, fontWeight: "600", ...style
@@ -173,7 +173,7 @@ const EmployerDashboard = () => {
                         cursor: "pointer",
                         padding: "20px"
                     }}>
-                        <Typography component="div"
+                        <Typography
                             sx={{
                                 fontSize: { "xs": "1.25rem", "sm": "1.25rem", "md": "1.25rem", "lg": "1.25rem", "xl": "1.25rem" },
                                 color: "#262626", fontWeight: "600",
@@ -182,7 +182,7 @@ const EmployerDashboard = () => {
                             Recent Jobs
                         </Typography>
                         <Stack direction="row" gap={2} onClick={() => navigate("posted-jobs")}>
-                            <Typography component="div" sx={{
+                            <Typography sx={{
                                 fontSize: { "xs": "1rem", "sm": "1rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
                                 textTransform: "capitalize",
                                 color: "#FF671F"
@@ -215,7 +215,7 @@ const EmployerDashboard = () => {
                         <UserNotification />
                         <UserNotification />
                         <UserNotification /> */}
-                        <Typography component="div"
+                        <Typography
                             sx={{
                                 fontSize: { "xs": "1.25rem", "sm": "1.25rem", "md": "1.25rem", "lg": "1.25rem", "xl": "1.25rem" },
                                 color: "##333333", fontWeight: "600"
@@ -231,14 +231,14 @@ const EmployerDashboard = () => {
                             width="100%"
                             height="100%" />
                     </Box>
-                    <Typography component="div"
+                    <Typography
                         sx={{
                             fontSize: { "xs": "1.25rem", "sm": "1.25rem", "md": "1.25rem", "lg": "1.25rem", "xl": "1.25rem" },
                             color: "##333333", fontWeight: "700"
                         }}>
                         Get 100% matching profiles*
                     </Typography>
-                    <Typography component="div"
+                    <Typography
                         sx={{
                             fontSize: { "xs": "0.87rem", "sm": "0.87rem", "md": "0.87rem", "lg": "0.87rem", "xl": "0.87rem" },
                             color: "#333333", fontWeight: "400",

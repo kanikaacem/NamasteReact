@@ -3,18 +3,22 @@ import { Box, Typography, Stack } from "@mui/material";
 import { social_icons } from "../../utils/Data";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+
+import { useSelector } from "react-redux";
 const Footer = () => {
     const { t } = useTranslation();
+    const currentLanguage = useSelector(state => state.currentLanguage);
 
     const FooterCompanyLinks = [
         { id: 1, text: "HOME", url: "#" },
-        { id: 2, text: "ABOUT", url: "#" },
-        { id: 3, text: "BLOGS", url: "#" }
+        { id: 2, text: "ABOUT", url: `${currentLanguage}/about-us` },
+        { id: 3, text: "BLOGS", url: "#" },
+        { id: 4, text: "CONTACT_US", url: `${currentLanguage}/contact-us` }
     ]
 
     const FooterLegalLinks = [
-        { id: 1, text: "PRIVACY_POLICY", url: "#" },
-        { id: 2, text: "TERMS_AND_CONDITION", url: "#" }
+        { id: 1, text: "PRIVACY_POLICY", url: `${currentLanguage}/privacy` },
+        { id: 2, text: "TERMS_AND_CONDITION", url: `${currentLanguage}/terms` }
     ]
 
     const FooterHeading = ({ footerHeading }) => {
@@ -29,16 +33,22 @@ const Footer = () => {
         </Typography >)
     }
 
+
     const FooterMenuLink = ({ id, linkText, linkUrl }) => {
         return (
-            <Link key={id} href={linkUrl} style={{
-                fontFamily: 'Montserrat',
-                fontStyle: "normal",
-                fontWeight: "300",
-                fontSize: "1rem",
-                color: "#FFFFFF",
-                textDecoration: "none"
-            }}>{t(linkText)}</Link>
+            <Link key={id} to="#"
+                onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = window.location.origin + '/' + linkUrl;
+                }}
+                style={{
+                    fontFamily: 'Montserrat',
+                    fontStyle: "normal",
+                    fontWeight: "300",
+                    fontSize: "1rem",
+                    color: "#FFFFFF",
+                    textDecoration: "none"
+                }}>{t(linkText)}</Link>
         )
     }
 
@@ -64,7 +74,7 @@ const Footer = () => {
                 <Stack direction="column" gap={2} className="RecruiterLogin" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
                     <FooterHeading footerHeading="Login" />
                     <FooterMenuLink linkText="Employee Login" linkUrl="#" />
-                    <FooterMenuLink linkText="Recruiter Login" linkUrl="#" />
+                    <FooterMenuLink linkText="Recruiter Login" linkUrl={`${currentLanguage}/employer-login`} />
                 </Stack>
 
                 <Stack direction="column" gap={2} className="LegalInformation" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>

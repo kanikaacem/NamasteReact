@@ -8,6 +8,9 @@ import { LinkStyles } from "../../utils/Styles";
 import Footer from "../../ThemeComponent/Common/Footer";
 import { replaceUnderscore } from "../../utils/function";
 import { useState, useEffect } from "react";
+import moment from 'moment';
+import ShareJob from "../Common/ShareJob";
+
 const JobDescription = () => {
     const { id } = useParams();
     const [jobDescription, setJobDescription] = useState(null);
@@ -100,7 +103,7 @@ const JobDescription = () => {
                                     <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/timeline.png" alt="jobTimeline" width="100%" height="100%" />
                                 </Box>
                                 <Typography sx={{ ...stackStyles, color: '#615F5F', fontWeight: '500' }}>
-                                    1 day ago
+                                    {jobDescription && moment(jobDescription.createdAt).fromNow()}
                                 </Typography>
                             </Stack>
 
@@ -145,7 +148,8 @@ const JobDescription = () => {
 
                         <Stack direction="row" gap={2}>
                             <ApplyForJobButton jobId={id} />
-
+                            <ShareJob jobId={id} jobRole={jobDescription?.jobRole}
+                                jobDescription={jobDescription?.jobDescriptions} />
                             <Stack direction="row" gap={1} alignItems="center">
                                 <Box>
                                     <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/Share.png" alt="Share" />

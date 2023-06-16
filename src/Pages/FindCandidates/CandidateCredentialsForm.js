@@ -7,7 +7,7 @@ import { Formik, Field, Form } from "formik";
 import { useNavigate } from "react-router-dom";
 // import { Helmet } from "react-helmet";
 // import { RWebShare } from "react-web-share";
-
+import { useSelector } from "react-redux";
 const CandidateCredentialsForm = () => {
     const navigate = useNavigate();
     const defaultValue = {
@@ -18,6 +18,7 @@ const CandidateCredentialsForm = () => {
     };
 
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("md"));
+    const currentLanguage = useSelector(state => state.currentLanguage);
     return (
         <Box className="CandidateCredentialsForm">
             {/* <RWebShare
@@ -101,13 +102,14 @@ const CandidateCredentialsForm = () => {
                             )}
                         </Formik>
                         <Typography
-                            onClick={() => navigate("/employer-login")}
+                            onClick={() => navigate(`/${currentLanguage}/employer-login`)}
                             sx={{
                                 fontSize: { xs: "1rem", sm: "1rem", md: "1rem", lg: "1rem", xl: "1rem" },
                                 textAlign: "center",
                                 color: "#FF671F",
                                 fontWeight: "600",
-                                textDecoration: "underline"
+                                textDecoration: "underline",
+                                cursor: "pointer"
                             }}
                         >
                             Employer Login

@@ -106,9 +106,7 @@ const JobListing = () => {
             const data = await getRequest(api_url);
             if (Array.isArray(data.data)) {
                 setPostedJobs((prevJobs) => [...prevJobs, ...data.data]);
-                console.log(data.data)
-
-
+                // console.log(data.data)
             } else {
                 // Handle the case when data.data is not iterable
                 console.error("Data is not iterable:", data.data);
@@ -152,7 +150,7 @@ const JobListing = () => {
                 const data = await getRequest(api_url);
                 // Handle the fetched data
                 setPostedJobs(data.data.reverse())
-                console.log(data.data)
+                // console.log(data.data)
 
             } catch (error) {
                 // Handle the error

@@ -31,12 +31,12 @@ const LanguageTranslatorSection = () => {
                 border: "none",
                 outline: "none"
             }}
-                name="cars" id="cars"
+                name="languageTranslator" id="languageTranslator"
                 value={currentLanguage}
                 onChange={ChangeLanguage}>
-                <option value="hn">Hindi</option>
+                <option value="hi">Hindi</option>
                 <option value="en">English</option>
-                <option value="ehn">Hinglish</option>
+                <option value="hn">Hinglish</option>
             </select>
         </Stack>
     )

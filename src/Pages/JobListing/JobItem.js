@@ -2,11 +2,12 @@ import { Box, Stack, Typography } from "@mui/material";
 import { jobItemStyles, jobItemTagStyles, stackStyles, tagStyles } from "../../utils/Styles";
 import { getJobPostedTime, replaceUnderscore } from "../../utils/function";
 import ApplyForJobButton from "../Common/ApplyForJobButton";
+import ShareJob from "../Common/ShareJob";
 import { useNavigate } from "react-router-dom";
 
 const JobItem = ({ item }) => {
     const { _id, accessibleForDisabled, jobRole, jobId, gender, jobDepartment, inhandSalaryPermonth, jobType, qualification,
-        shift, vehicleRequired, language, createdAt, requiredExperience, jobSector } = item;
+        shift, vehicleRequired, language, createdAt, requiredExperience, jobSector, jobDescriptions, state } = item;
     const navigate = useNavigate();
 
     const handleViewJobDescription = () => {
@@ -15,7 +16,6 @@ const JobItem = ({ item }) => {
 
 
     return (
-
         <Stack direction="column" gap={1} className="JobItem" sx={{ ...jobItemStyles, padding: "0px !important" }}>
             {gender === "male" &&
                 <Box sx={jobItemTagStyles}>
@@ -109,16 +109,15 @@ const JobItem = ({ item }) => {
                     <Stack direction="row" gap={1} sx={{
                         flexWrap: "wrap"
                     }}>
-                        <Stack direction="row" gap={1}
+                        {state && <Stack direction="row" gap={1}
                             sx={tagStyles}>
                             <Box>
                                 <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/job_location.png" alt="Location"></img>
                             </Box>
                             <Typography sx={stackStyles}>
-                                Location
+                                {state}
                             </Typography>
-
-                        </Stack>
+                        </Stack>}
 
                         {jobType && <Stack direction="row" gap={1}
                             sx={tagStyles}>
@@ -176,17 +175,7 @@ const JobItem = ({ item }) => {
                 <Stack direction="row" justifyContent="space-between">
                     <Stack direction="row" gap={2}>
                         <ApplyForJobButton jobId={_id} buttonStyle="contained" />
-                        <Stack direction="row" gap={1} alignItems="center">
-                            <Box>
-                                <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/Share.png" alt="Share" />
-                            </Box>
-                            <Typography sx={{
-                                ...stackStyles,
-                                color: "#FF671F"
-                            }}>
-                                Share
-                            </Typography>
-                        </Stack>
+                        <ShareJob jobId={_id} jobDescription={jobDescriptions} jobRole={jobRole} />
                     </Stack>
 
                     <Stack direction="row" gap={1} alignItems="center" onClick={handleViewJobDescription}>
