@@ -149,7 +149,8 @@ const JobDescription = () => {
                         <Stack direction="row" gap={2}>
                             <ApplyForJobButton jobId={id} />
                             <ShareJob jobId={id} jobRole={jobDescription?.jobRole}
-                                jobDescription={jobDescription?.jobDescriptions} />
+                                jobDescription={jobDescription?.jobDescriptions} 
+                                />
                            
                         </Stack>
 

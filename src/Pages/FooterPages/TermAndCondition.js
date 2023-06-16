@@ -1,10 +1,8 @@
 import { Box, Stack, Typography } from "@mui/material";
 import Footer from "../../ThemeComponent/Common/Footer";
-// import { useTranslation } from "react-i18next";
 import FooterHeading from "./FooterHeading";
 import FooterDescription from "./FooterDescription";
 const TermAndCondition = () => {
-    // const { t } = useTranslation();
 
     return (<>
         <Stack
