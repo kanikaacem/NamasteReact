@@ -323,7 +323,7 @@ const PostedJobItem = ({ item }) => {
                                 background: "#FF671F",
                             }
                         }
-                        }>Know Eligibility Score</Button >
+                        }>View Applied Candidates</Button >
                     <Button variant="contained"
                         type="button"
                         sx={{

@@ -16,11 +16,19 @@ const JobListing = () => {
     const { t } = useTranslation();
     const [location, setLocation] = useState('one');
     const [loadJobs, setLoadJobs] = useState({ page: 1, limit: 20 });
+    const [coordinates, setCoordinates] = useState(null);
+
 
     const mobileScreen = useSelector(state => state.screenType) === "mobile";
 
     const [postedJobs, setPostedJobs] = useState([]);
     const [jobRoleFilterData, setJobRoleFilterData] = useState([]);
+
+    useEffect(() => {
+        let coords = JSON.parse(localStorage.getItem("coordinates"))
+        setCoordinates(coords);
+    },[])
+
     const breadcrumbs = [
         <Link underline="hover" sx={LinkStyles} key="1" color="inherit" href="/" >
             Home
@@ -39,7 +47,6 @@ const JobListing = () => {
         { id: 'one', text: "Paas (0-50Km)" },
         { id: 'two', text: "Thodi Door (50-200Km)" },
         { id: 'three', text: "Zayada Door (more than 200Km)" }
-
     ]
 
     const SelectFilter = ({ value, setValue, placeholder, data }) => {
@@ -99,14 +106,13 @@ const JobListing = () => {
 
         api_url = api_url + "?page=" + (loadJobs.page + 1);
         if (location) {
-            api_url = api_url + "&keyrange=" + location;
+            api_url = api_url + "&keyrange=" + location ;
 
         }
         try {
             const data = await getRequest(api_url);
             if (Array.isArray(data.data)) {
                 setPostedJobs((prevJobs) => [...prevJobs, ...data.data]);
-                // console.log(data.data)
             } else {
                 // Handle the case when data.data is not iterable
                 console.error("Data is not iterable:", data.data);
@@ -141,9 +147,12 @@ const JobListing = () => {
 
 
     }
+
     useEffect(() => {
+        
+        let coords = JSON.parse(localStorage.getItem("coordinates"));
         let api_url = process.env.REACT_APP_GET_JOB_ITEMS; // Replace with your .env variable name
-        location && (api_url = api_url + "?keyrange=" + location);
+        location && (api_url = api_url + "?keyrange=" + location+ "&lat=" + coords.lat + "&lng=" +coords.lng);
 
         const fetchData = async () => {
             try {

@@ -156,5 +156,8 @@
     "CHOOSE_THE_LANGUAGE_YOU_LIKE": "अपनी पसंद की भाषा चुनें",
     "CHOOSE_THE_jOB_OF_YOUR_CHOICE_THAT_TOO_NEAR_YOU_SEARCH_1000_JOBS": "अपनी पसंद की नौकरी चुनें वह भी आपके नजदीक। 10,000+ नौकरियां खोजें।",
     "LOAD_MORE": "और लोड करें",
-    "ABOUT": "About"
+    "YOUR_NAME": "आपका नाम?",
+    "YOUR_AGE": "आपकी उम्र?",
+    "YOUR_GENDER": "आपका जेंडर?",
+    "YOUR_QUALIFICATION": "आप कितना पढ़े हैं?"
 }

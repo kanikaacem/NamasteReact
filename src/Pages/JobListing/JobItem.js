@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import { jobItemStyles, jobItemTagStyles, stackStyles, tagStyles } from "../../utils/Styles";
 import { getJobPostedTime, replaceUnderscore } from "../../utils/function";
 import ApplyForJobButton from "../Common/ApplyForJobButton";
-import ShareJob from "../Common/ShareJob";
+import ApplyForJobWebButton from "../Common/ApplyForJobWebButton";
 import { useNavigate } from "react-router-dom";
 
 const JobItem = ({ item }) => {
@@ -92,7 +92,7 @@ const JobItem = ({ item }) => {
 
                 </Stack>
 
-                <Box className="jobSalary" >
+                {inhandSalaryPermonth && <Box className="jobSalary" >
                     <Typography component="div"
                         sx={{
                             fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
@@ -101,7 +101,7 @@ const JobItem = ({ item }) => {
                         {`${inhandSalaryPermonth?.currency} ${inhandSalaryPermonth?.minSalary} - ${inhandSalaryPermonth?.maxSalary}`}
 
                     </Typography>
-                </Box>
+                </Box>}
 
                 <Stack className="jobTagsAndStatus" direction="row" justifyContent="space-between" sx={{
                     margin: "10px 0px"
@@ -174,6 +174,7 @@ const JobItem = ({ item }) => {
 
                 <Stack direction="row" justifyContent="space-between">
                     <Stack direction="row" gap={2}>
+                        <ApplyForJobWebButton jobId={_id} buttonStyle="contained" />
                         <ApplyForJobButton jobId={_id} buttonStyle="contained" />
                         <ShareJob jobId={_id} jobDescription={jobDescriptions} jobRole={jobRole} />
                     </Stack>
