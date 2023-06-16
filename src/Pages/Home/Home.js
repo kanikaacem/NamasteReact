@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import { getRequest, postRequest } from "../../utils/ApiRequests";
-import { Box, Stack, Container, Button, Typography, FormControl, Autocomplete, TextField } from "@mui/material";
-=======
 import { getRequest ,postRequest } from "../../utils/ApiRequests";
 import { Box, Stack, Container, Button, Typography , FormControl, Input, InputLabel, Select, MenuItem } from "@mui/material";
->>>>>>> 681488e (header updated on landing page)
 
 /* Site Header */
 import LanguageTranslatorSection from "../Common/LanguageTranslaterSection";
@@ -119,10 +114,13 @@ function Home() {
               .then((data) => {
                 if (data.status === 'OK') {
                   const result = data.results[0];
-                  const cityDetail = result.formatted_address                    
+                  const cityDetail = result.formatted_address
+
+                  console.log(cityDetail);
+                
                   setCity(cityDetail)
                   setDynamicLocation(JSON.stringify(result?.geometry?.location))
-                  SendUserLatitudeLongitude(latitude,longitude,city)
+                //   SendUserLatitudeLongitude(latitude,longitude,city)
     
                 } else {
                   console.error('Geocoding request failed. Status:', data.status);
@@ -151,35 +149,8 @@ function Home() {
             }
         };
 
-<<<<<<< HEAD
-        const sendUserLocationInformation = async () => {
-            const { latitude, longitude } = await getLocation();
-            const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
-            fetch(apiUrl)
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.status === 'OK') {
-                        const result = data.results[0];
-                        const city = result.address_components.find(
-                            (component) =>
-                                component.types.includes('locality') ||
-                                component.types.includes('administrative_area_level_1')
-                        ).long_name;
-                        setCity(city)
-                        SendUserLatitudeLongitude(latitude, longitude, city)
-                        //   resolve({ latitude, longitude, city });
-                    } else {
-                        console.error('Geocoding request failed. Status:', data.status);
-                        //   reject(new Error('Geocoding request failed.'));
-                    }
-                })
-
-
-        };
-=======
         
 
->>>>>>> 681488e (header updated on landing page)
 
         window.addEventListener('scroll', handleScroll);
         fetchData();
@@ -248,19 +219,12 @@ function Home() {
         // Add more cities as needed
     ];
 
-<<<<<<< HEAD
-
-    const handleCityChange = async (event, value) => {
-        // console.log(value)
-        setCity(value.label);
-        const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${value.value}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
-=======
     
     const handleCityChange = async(value) => {
+        console.log(value, " in handle city change")
         setCity(value);
 
         const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${value}&key=${process.env.REACT_APP_YOUR_GOOGLE_MAPS_API_KEY}`;
->>>>>>> 681488e (header updated on landing page)
 
         try {
             const response = await fetch(apiUrl);
@@ -271,16 +235,9 @@ function Home() {
                 const { lat, lng } = result.geometry.location;
                 SendUserLatitudeLongitude(lat, lng, value.value)
 
-<<<<<<< HEAD
-                // coordinates.push({ city, latitude: lat, longitude: lng });
-            } else {
-                console.error(`Geocoding request for ${city} failed. Status: ${data.status}`);
-            }
-=======
         } else {
             console.error(`Geocoding request for ${city} failed. Status: ${data.status}`);
         }
->>>>>>> 681488e (header updated on landing page)
         } catch (error) {
             console.error(`Error during geocoding request for ${city}:`, error);
         }
@@ -289,39 +246,6 @@ function Home() {
 
     return (<>
         <Box className="LandingPage">
-<<<<<<< HEAD
-            <Stack direction="row" gap={3} justifyContent="center" alignItems="center" className="AnnocumentBar" sx={{
-                background: "#f3bb7a",
-                color: "#ffffff",
-                fontSize: "0.7rem",
-                padding: "10px"
-            }}> <FormControl fullWidth>
-                    <Autocomplete
-                        size="small"
-                        disablePortal
-                        options={citiesData}
-                        onChange={handleCityChange}
-                        isOptionEqualToValue={(option, value) => option.value === value.value}
-                        getOptionLabel={(option) => option.label}
-                        renderInput={(params) => <TextField {...params}
-
-                            InputLabelProps={{
-                                shrink: true,
-                                placeholder: "Select a Category", // Add the desired placeholder text
-                                style: {
-                                    fontSize: "12px", // Set the desired fontSize for the placeholder
-                                },
-                            }}
-                            sx={{
-                                fontSize: "12px",
-                            }}
-                            PopperComponent={CustomPopper} />}
-                    />
-
-                </FormControl>
-                <Box sx={{ textTransform: "captialize", width: "100px" }}>{city}</Box>
-            </Stack>
-=======
             <Stack className="AnnocumentBar" sx={{
                     background: "#f3bb7a",
                     color: "#ffffff",
@@ -331,10 +255,11 @@ function Home() {
                 <FormControl style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }} >
                     <LocationOnIcon fontSize="small" color="disabled" />
                     <div style={{ width: "460px" }}>
+                        {console.log(city)}
                     <Input 
                         fullWidth
                         color="secondary"
-                        defaultValue={city}
+                        // defaultValue={city}
                       
                         inputComponent={({ inputRef, onFocus, onBlur, ...props }) => (
                         <Autocomplete
@@ -345,20 +270,20 @@ function Home() {
                                 componentRestrictions: { country: "in" },
                             }}
                             onPlaceSelected={(place) => {
-                                setCity(place.formatted_address);
                                 setDynamicLocation(JSON.stringify(place?.geometry?.location))
                             }}
                         />
                         )}
                     />
                     </div>
-                    <div class="font-icon-wrapper" >
-                        <GpsNotFixedIcon fontSize="small" color="primary" onClick={sendUserLocationInformation} />
+                    <div class="font-icon-wrapper" onClick={() => sendUserLocationInformation()}>
+                        <GpsNotFixedIcon fontSize="small" color="primary" />
                     </div>
+                    
+                 
                     {/* <CloseIcon fontSize="small" color="disabled" /> */}
                     </FormControl>
                 </Stack>
->>>>>>> 681488e (header updated on landing page)
             <Box className="WebsiteLogoAndLoginSectionWrapper" sx={{
                 minHeight: { "xs": "50px", "sm": "50px", "md": "100px", "lg": "100px", "xl": "100px" },
                 width: "100%",

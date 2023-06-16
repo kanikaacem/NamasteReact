@@ -198,7 +198,10 @@ body {
   width: 100% !important;
 }
 
-
+.error-page-header {
+  height: 60px;
+  background-color: #f3bb7a;
+}
 
 /*form Informatin */
 .form-information {
@@ -800,6 +803,10 @@ body {
 
 .job-listing-form {
   padding: 60px;
+}
+
+.font-icon-wrapper-home{
+  margin: 0px 6px;
 }
 
 
