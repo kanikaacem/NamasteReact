@@ -65,4 +65,11 @@ export const PostJobValidation = yup.object().shape({
         .required("Maximum salary is required")
         .min(yup.ref("min_salary"), "Maximum salary must be greater than minimum salary"),
     number_of_days: yup.number().min(1, "Number of days must be at least 1").max(7, "Number of days cannot exceed 7").required("Number of days is required"),
-})
+});
+
+export  const JobApplyValidationSchema = yup.object({
+    name: yup.string().required('Name is required'),
+    age: yup.string().required('Age is required'),
+    gender: yup.string().required('Gender is required'),
+    qualification: yup.string().required('Qualification is required'),
+  });

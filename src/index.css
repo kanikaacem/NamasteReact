@@ -805,6 +805,15 @@ body {
   padding: 60px;
 }
 
+.apply-job-modal {
+  padding: 40px;
+}
+.apply-job-modal-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .font-icon-wrapper-home{
   margin: 0px 6px;
 }
@@ -814,6 +823,9 @@ body {
 @media screen and (max-width: 600px) {
   .job-listing-form {
     padding: 4px;
+  }
+  .apply-job-modal {
+    padding: 10px;
   }
   /* .formik-field{
     font-size:30px !important;

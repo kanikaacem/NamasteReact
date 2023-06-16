@@ -7,6 +7,7 @@ import JobCardComponent from "./Component/JobCardComponent";
 import ViewMoreSection from "./Component/ViewMoreSection";
 import Footer from "../../ThemeComponent/Common/Footer";
 import Heading from "./Component/Heading";
+import JobApplyWeb from "../Common/JobApplyWeb";
 
 import { WebsiteMainHeading } from "../../utils/Styles";
 
@@ -246,6 +247,7 @@ function Home() {
 
     return (<>
         <Box className="LandingPage">
+            {/* <JobApplyWeb /> */}
             <Stack className="AnnocumentBar" sx={{
                     background: "#f3bb7a",
                     color: "#ffffff",
