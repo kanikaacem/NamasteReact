@@ -805,6 +805,7 @@ body {
   padding: 60px;
 }
 
+<<<<<<< HEAD
 .apply-job-modal {
   padding: 40px;
 }
@@ -818,15 +819,20 @@ body {
   margin: 0px 6px;
 }
 
+=======
+>>>>>>> a16e057 (updated job list form)
 
 
 @media screen and (max-width: 600px) {
   .job-listing-form {
     padding: 4px;
   }
+<<<<<<< HEAD
   .apply-job-modal {
     padding: 10px;
   }
+=======
+>>>>>>> a16e057 (updated job list form)
   /* .formik-field{
     font-size:30px !important;
     height:300px !important;
