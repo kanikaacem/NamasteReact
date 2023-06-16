@@ -4,7 +4,7 @@ import { getJobPostedTime, replaceUnderscore } from "../../utils/function";
 
 const PostedJobItem = ({ item }) => {
     const { active, accessibleForDisabled, jobRole, jobId, jobDepartment, jobSector, inhandSalaryPermonth, jobType, qualification,
-        shift, vehicleRequired, requiredExperience, language, createdAt } = item;
+        shift, vehicleRequired, requiredExperience, language, state, createdAt } = item;
     const ActiveJobChip = () => {
         return (<Chip sx={{
             border: "1px solid #1AE547",
@@ -241,16 +241,16 @@ const PostedJobItem = ({ item }) => {
                     <Stack direction="row" gap={2} sx={{
                         flexWrap: "wrap"
                     }}>
-                        <Stack direction="row" gap={1}
+                        {state && <Stack direction="row" gap={1}
                             sx={tagStyles}>
                             <Box>
                                 <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/job_location.png" alt="Location"></img>
                             </Box>
                             <Typography sx={stackStyles}>
-                                Location
+                                {state}
                             </Typography>
 
-                        </Stack>
+                        </Stack>}
 
                         {jobType && <Stack direction="row" gap={1}
                             sx={tagStyles}>

@@ -1,12 +1,16 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { Box, Typography, Button, Container, useMediaQuery } from "@mui/material";
+import { employerLoginValidationSchema } from "../../Validation/EmployerValidation";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Error from "../../ThemeComponent/Common/Error";
 import FormLabel from "../Common/FormLabel";
 import { Formik, Field, Form } from "formik";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { Navigate } from "react-router";
 const EmployerLogin = () => {
     const dispatch = useDispatch();
+    const isLoggedIn = useSelector(state => state.isLoggedIn);
+
     const defaultValue = {
         user_email: "",
         password: ""
@@ -21,7 +25,7 @@ const EmployerLogin = () => {
             let api_url = "https://backend.jobsyahan.com/api/employer/loginemployer";
             let response = await postRequest(api_url, EmployerLoginForm);
             if (response.status === '1') {
-                dispatch({ type: 'LOGIN_REGISTRATION', payload: response.data });
+                dispatch({ type: 'LOGIN', payload: response.token });
             }
         } catch (err) {
             console.log(err)
@@ -30,9 +34,9 @@ const EmployerLogin = () => {
     };
 
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("md"));
-    return (
+    return (<>
+        {isLoggedIn && <Navigate to="/employer-dashboard" />}
         <Box className="EmployerLoginForm">
-
             <Box sx={{ minHeight: "100vh" }}>
                 <Container maxWidth={isDesktop ? "md" : false} sx={{ padding: "0px" }}>
                     <Box
@@ -66,8 +70,8 @@ const EmployerLogin = () => {
                     </Box>
                     <Box className="EmployerLoginFormSection" sx={{ padding: "30px 20px" }}>
                         <Formik
-
                             initialValues={defaultValue}
+                            validationSchema={employerLoginValidationSchema}
                             onSubmit={handleSubmit}
                         >
                             {({ errors, touched }) => (
@@ -102,7 +106,7 @@ const EmployerLogin = () => {
                 </Container>
             </Box>
         </Box>
-    );
+    </>);
 };
 
 export default EmployerLogin;

@@ -2,8 +2,10 @@ import { initialState } from "./initialState";
 export const reducer = (state, action) => {
     switch (action.type) {
         case "LOGIN":
+            let token = action.payload;
             localStorage.setItem('isLoggedIn', true);
-            localStorage.setItem('action', "login")
+            localStorage.setItem('action', "login");
+            localStorage.setItem('auth_token', token);
             return { ...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"), action: localStorage.getItem("action") };
 
         case "LOGOUT":

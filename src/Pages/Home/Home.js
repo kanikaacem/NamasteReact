@@ -101,7 +101,6 @@ function Home() {
     const [showButton, setShowButton] = useState(false);
     const [jobCategoryData, setJobCategoryData] = useState([]);
     const [city, setCity] = useState(null);
-    // const [citiesData,setCitiesData] = useState(cities)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -330,7 +329,7 @@ function Home() {
                 <Stack className="MobileTopSection"
                     sx={{
                         width: "100%",
-                        height: { "xs": `calc(100vh - 50px)`, "sm": `calc(100vh - 50px)`, "md": "fit-content", "xl": "fit-content", "lg": "fit-content" },
+                        minHeight: { "xs": `calc(100vh - 50px)`, "sm": `calc(100vh - 50px)`, "md": "fit-content", "xl": "fit-content", "lg": "fit-content" },
                         boxSizing: "border-box"
                     }}>
                     <LanguageTranslatorSection />

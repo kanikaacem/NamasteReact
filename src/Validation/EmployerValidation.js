@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 //Employer Login Validation
 export const employerLoginValidationSchema = yup.object().shape({
-    email_address: yup.string().required("Email Address is required").email("Please enter a valid email Address"),
+    user_email: yup.string().required("Email Address is required").email("Please enter a valid email Address"),
     password: yup.string().required("Password is required")
 });
 
