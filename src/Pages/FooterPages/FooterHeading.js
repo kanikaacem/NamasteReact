@@ -6,7 +6,7 @@ const FooterHeading = ({ imgUrl, headingText }) => {
         <Stack direction="row" gap={2}
             sx={{ margin: "10px 0px" }}
             alignItems="center">
-            <img src={window.location.origin + "/assets/About5.png"} alt="About5" height="20px" />
+            {imgUrl && <img src={window.location.origin + "/assets/About5.png"} alt="About5" height="20px" />}
             <Typography
                 sx={{
                     fontSize: { "lg": "18px", "md": "18px", "xs": "18px" },
@@ -15,7 +15,7 @@ const FooterHeading = ({ imgUrl, headingText }) => {
                     display: "block",
                     lineHeight: "1.7"
                 }}>
-                {t('MAKE_EMPLOYEMENT_SIMPLE_AND_ACCESSIBLE_TO_ALL')}
+                {t(headingText)}
             </Typography>
         </Stack>)
 }

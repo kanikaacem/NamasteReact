@@ -96,7 +96,7 @@ const FindCandidateButton = ({ style }) => {
 function Home() {
 
     const { t } = useTranslation();
-    const mobileScreen = useSelector(state => state.screenType) === "mobile";
+    let mobileScreen = useSelector(state => state.screenType) === "mobile";
     const [showButton, setShowButton] = useState(false);
     const [jobCategoryData, setJobCategoryData] = useState([]);
     const [city, setCity] = useState(null);

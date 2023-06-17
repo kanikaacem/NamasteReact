@@ -1,10 +1,8 @@
 import { Box, Stack, Typography } from "@mui/material";
 import Footer from "../../ThemeComponent/Common/Footer";
-import { useTranslation } from "react-i18next";
 import FooterHeading from "./FooterHeading";
 import FooterDescription from "./FooterDescription";
 const TermAndCondition = () => {
-    const { t } = useTranslation();
 
     return (<>
         <Stack
@@ -28,15 +26,30 @@ const TermAndCondition = () => {
                 </Box>
             </Box>
 
-            <Box className="AboutUsContent"
+            <Box className="TermsAndConditionContent"
                 sx={{
                     padding: { "xs": "20px", "sm": "20px", "md": "60px 40px", "lg": "60px 40px", "xl": "60px 40px" },
                     boxSizing: "border-box"
                 }}>
-                <Box className="AboutUsContentTopSection" sx={{ position: "relative" }}>
-                    <Box>
-                        <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/about_us.png" alt="banner"
-                            width="100%" height="100%" />
+                <Box className="TermsAndConditionTopSection" sx={{ position: "relative" }}>
+                    <Box sx={{
+                        backgroundImage: `url("https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/website_banner_image.png")`,/* The image used */
+                        height: "500px",/* You must set a specified height */
+                        backgroundRepeat: "no-repeat", /* Do not repeat the image */
+                        backgroundSize: "cover",
+                        opacity: "rgba(0, 0, 0, 0.5)"
+
+                    }}>
+                        <Box
+                            sx={{
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                width: "100%",
+                                height: "100%",
+                                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                            }}
+                        />
                     </Box>
                     <Stack className="PageHeading" gap={2} sx={{
                         position: "absolute",
@@ -51,7 +64,7 @@ const TermAndCondition = () => {
                             lineHeight: "1.2",
 
                         }}>
-                            {t('ABOUT')}
+                            Terms and
                         </Typography>
                         <Typography sx={{
                             fontSize: { "xs": "1.5rem", "sm": "1.5rem", "md": "1.5rem", "lg": "3rem", "xl": "3rem" },
@@ -60,7 +73,7 @@ const TermAndCondition = () => {
                             display: "block",
                             lineHeight: "1.2"
                         }}>
-                            Job Yahan
+                            Conditions
                         </Typography>
                     </Stack>
 
