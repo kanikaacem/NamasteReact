@@ -7,7 +7,7 @@ import ApplyForJobWebButton from "../Common/ApplyForJobWebButton";
 
 const JobItem = ({ item }) => {
     const { _id, accessibleForDisabled, jobRole, jobId, gender, jobDepartment, inhandSalaryPermonth, jobType, qualification,
-        shift, vehicleRequired, language, createdAt, requiredExperience, jobSector, jobDescriptions, state } = item;
+        shift, vehicleRequired, language, createdAt, requiredExperience, jobSector, jobDescriptions, state, slug_url } = item;
 
 
     return (
@@ -174,7 +174,7 @@ const JobItem = ({ item }) => {
                         <ShareJob jobId={_id} jobDescription={jobDescriptions} jobRole={jobRole} />
                     </Stack>
 
-                    <a className="view-job-button" href={`/job-description/${_id}`} /*onClick={handleViewJobDescription}*/>
+                    <a className="view-job-button" href={`${slug_url}`} /*onClick={handleViewJobDescription}*/>
                         <p className="view-job-button-text"> View </p>
                         <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/view_button.png" alt="View" height="12"/>
                     </a>
