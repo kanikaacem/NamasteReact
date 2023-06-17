@@ -25,7 +25,7 @@ const CandidateLogin = () => {
         const { latitude, longitude } = await getLocation();
 
         const candidateFormData = {
-            mobile: values.mobile_number,
+            inputdata: values.mobile_number,
             usertype: "candidate",
             latitude: latitude,
             longitude: longitude,

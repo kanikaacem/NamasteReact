@@ -43,7 +43,7 @@ const CandidateCredentialsForm = () => {
 
             </Helmet> */}
             <Box sx={{ minHeight: "100vh" }}>
-                <Container maxWidth={isDesktop ? "md" : false} sx={{ padding: "0px" }}>
+                <Container maxWidth={isDesktop ? "sm" : false} sx={{ padding: "0px" }}>
                     <Box
                         className="CandidateCredentialsTopSection"
                         sx={{
