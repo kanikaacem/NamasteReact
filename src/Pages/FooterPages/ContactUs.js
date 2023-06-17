@@ -4,7 +4,8 @@ import { Formik, Field, Form } from "formik";
 import { contactUsValidationSchema } from "../../Validation/EmployerValidation";
 import FormLabel from "../Common/FormLabel";
 import Error from "../../ThemeComponent/Common/Error";
-import FooterHeader from "./FooterHeader";
+import Header from "../Common/Header";
+import Footer from "../../ThemeComponent/Common/Footer";
 import { useTranslation } from "react-i18next";
 const ContactUs = () => {
 
@@ -24,7 +25,7 @@ const ContactUs = () => {
                 minHeight: "100vh"
 
             }}>
-            <FooterHeader />
+            <Header />
             <Box className="ContactUsContent"
                 sx={{
                     padding: { "xs": "20px", "sm": "20px", "md": "60px 40px", "lg": "60px 40px", "xl": "60px 40px" },
@@ -145,11 +146,7 @@ const ContactUs = () => {
                     </Stack>
                 </Stack>
             </Box>
-
-
-
-
-
+            <Footer/>
         </Box >
     </>)
 }
