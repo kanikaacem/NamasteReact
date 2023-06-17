@@ -1,48 +1,41 @@
-import { Typography, Stack, Backdrop, useMediaQuery } from "@mui/material";
+import { Typography, Modal, Box, Button } from "@mui/material";
 
 const HomePageLiteMessage = ({ value, setValue, message }) => {
-    const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("md"));
-
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: "auto",
+        minWidth: '200px',
+        bgcolor: 'background.paper',
+        borderRadius: '16px',
+        boxShadow: 24,
+        textAlign: 'center',
+        p: 4,
+    };
     return (
-        <Backdrop
-            sx={{ alignItems: isDesktop ? "center" : "flex-end" }}
+        <Modal
             open={value}
-            onClick={() => setValue(!value)}
+            onClose={() => setValue(!value)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
         >
-            <Stack sx={{
-                height: "50vh",
-                boxSizing: "border-box",
-                padding: "50px",
-                background: "#ffffff",
-                borderTopLeftRadius: "36px",
-                borderTopRightRadius: "36px",
-                borderBottomLeftRadius: isDesktop && "36px",
-                borderBottomRightRadius: isDesktop && "36px"
-            }}
-                alignItems="center" justifyContent="center">
-                <Typography variant="h1" component="h2" sx={{
-                    fontSize: "1.6rem",
-                    fontWeight: "700",
-                }}>
+            <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h4" component="h2">
                     Thank you
-                </Typography >
-                {message && <Typography variant="h1" component="span" sx={{
-                    fontSize: "1.25rem",
-                    textAlign: "center",
-                    marginTop: "10px"
-                }}>
+                </Typography>
+                {message && <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                     {message}
-                </Typography >}
-
-                <Typography variant="h1" component="span" sx={{
-                    fontSize: "1.25rem",
-                    textAlign: "center",
-                    marginTop: "10px"
-                }}>
+                </Typography>}
+                <Typography id="modal-modal-title" variant="h6" component="h2">
                     Hum aapse jald hi sampark karenge.
-                </Typography >
-            </Stack>
-        </Backdrop >
+                </Typography>
+                <Button sx={{ marginTop: "12px", backgroundColor: "#FF671F" }} variant="contained" onClose={() => setValue(!value)}>
+                    Okay
+                </Button>
+            </Box>
+        </Modal>
     )
 }
 export default HomePageLiteMessage;
