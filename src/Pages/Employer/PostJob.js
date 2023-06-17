@@ -176,11 +176,15 @@ const PostJob = () => {
       required_experience,
       min_salary,
       max_salary,
+      lat,
+      lng,
       job_benefits,
       language,
       number_of_days,
       shift_timing,
       vehicle_required } = values;
+
+      console.log(values);
 
     let PostJobForm = new FormData();
     PostJobForm = {
@@ -202,6 +206,8 @@ const PostJob = () => {
         currency: "INR"
 
       },
+      lat,
+      lng,
       jobBenefits: job_benefits,
       language: language,
       shift: shift_timing,
@@ -429,7 +435,12 @@ const PostJob = () => {
                       }}
                       onPlaceSelected={(place) => {
                         let address = place?.formatted_address || place?.name
+                        let lat = place.geometry.location.lat().toString();
+                        let lng = place.geometry.location.lng().toString();
+                        
                         setFieldValue("job_address", address)
+                        setFieldValue("lat", lat)
+                        setFieldValue("lng", lng)
                       }}
                       className="autocomplete-input" // Set the class name
                       placeholder="Enter Address"
@@ -488,7 +499,7 @@ const PostJob = () => {
                         }}>
                         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                           {MininumQualificationData.map((item, index) =>
-                            <Grid item xs={2} sm={4} md={4} >
+                            <Grid key={index} item xs={2} sm={4} md={4} >
                               <FormControlLabel
                                 sx={StyledFormControlLabel}
                                 value={item.value}
@@ -514,7 +525,7 @@ const PostJob = () => {
                         }}>
                         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                           {RequiredExperienceData.map((item, index) =>
-                            <Grid item xs={6}>
+                            <Grid key={index} item xs={6}>
                               <FormControlLabel
                                 key={index}
                                 sx={StyledFormControlLabel}
@@ -565,7 +576,7 @@ const PostJob = () => {
                         }}>
                         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                           {JobBenefitsData.map((item, index) =>
-                            <Grid item xs={6}>
+                            <Grid key={index}  item xs={6}>
                               <FormControlLabel
                                 key={index}
                                 sx={StyledFormControlLabel}
@@ -592,7 +603,7 @@ const PostJob = () => {
                         }}>
                         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                           {LanguageData.map((item, index) =>
-                            <Grid item xs={6}>
+                            <Grid key={index} item xs={6}>
                               <FormControlLabel
                                 key={index}
                                 sx={StyledFormControlLabel}
@@ -636,7 +647,7 @@ const PostJob = () => {
                         }}>
                         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                           {ShiftData.map((item, index) =>
-                            <Grid item xs={6}>
+                            <Grid key={index} item xs={6}>
                               <FormControlLabel
                                 key={index}
                                 sx={StyledFormControlLabel}
@@ -663,7 +674,7 @@ const PostJob = () => {
                         }}>
                         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                           {VehicleRequiredData.map((item, index) =>
-                            <Grid item xs={6}>
+                            <Grid key={index} item xs={6}>
                               <FormControlLabel
                                 key={index}
                                 sx={StyledFormControlLabel}

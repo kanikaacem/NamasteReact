@@ -808,6 +808,7 @@ body {
 .apply-job-modal {
   padding: 40px;
 }
+
 .apply-job-modal-heading {
   display: flex;
   justify-content: space-between;
@@ -817,23 +818,137 @@ body {
 .apply-job-modal {
   padding: 40px;
 }
+
 .apply-job-modal-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}  
+}
 
-.font-icon-wrapper-home{
+.font-icon-wrapper-home {
   margin: 0px 6px;
 }
 
+.view-job-button {
+  display: flex !important;
+  flex-direction: 'row';
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: #FF671F;
+  cursor: pointer;
+}
 
+.view-job-button-text {
+  margin-right: 4px;
+}
+
+.carousel-container {
+  position: relative;
+}
+
+.carousel-content {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  padding: 0px 140px !important;
+  width: 75%;
+}
+
+.carousel-heading {
+  font-size: 60px;
+  font-weight: 800;
+  margin: 24px 0px;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.carousel-text {
+  font-size: 30px;
+  font-weight: 400;
+  font-family: 'Manrope', sans-serif !important;
+  width: 80%;
+}
+
+.carousel-button {
+  display: inline-block;
+  padding: 20px 32px;
+  width: 278px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 158px;
+}
+
+.carousel-primary-button {
+  background-color: #FF671F;
+  color: #FFFFFF;
+  text-decoration: none;
+  margin-right: 8px;
+}
+
+.carousel-secondary-button {
+  background-color: #FFFFFF;
+  color: #FF671F;
+  border: 1px solid #FF671F;
+}
+
+
+@media screen and (min-width: 1200px) and (max-width: 1439px) {
+  /* Styles for tablets in landscape orientation */
+  .carousel-heading {
+    font-size: 50px;
+    font-weight: 700;
+  }
+  .carousel-text {
+    font-size: 24px;
+    font-weight: 400;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  /* Styles for tablets in landscape orientation */
+  .carousel-heading {
+    font-size: 42px;
+    font-weight: 700;
+  }
+  .carousel-text {
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  /* Styles for tablets in portrait orientation */
+  .carousel-heading {
+    font-size: 36px;
+    font-weight: 700;
+  }
+  .carousel-text {
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+
+@media screen and (max-width: 767px) {
+  /* Styles for tablets in portrait orientation */
+  .carousel-heading {
+    font-size: 36px;
+    font-weight: 700;
+  }
+  .carousel-text {
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
 
 
 @media screen and (max-width: 600px) {
   .job-listing-form {
     padding: 4px;
   }
+
   /* .formik-field{
     font-size:30px !important;
     height:300px !important;

@@ -94,7 +94,6 @@ const FindCandidateButton = ({ style }) => {
 
 
 function Home() {
-
     const { t } = useTranslation();
     let mobileScreen = useSelector(state => state.screenType) === "mobile";
     const [showButton, setShowButton] = useState(false);
@@ -184,6 +183,21 @@ function Home() {
         }
     }
 
+    const imageUrl_1 = 'https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/banner_image_one.png';
+
+    const imageUrl_2 = 'https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/banner_image_one.png';
+
+    const imageUrl_3 = 'https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/banner_image_one.png';
+
+
+    const CarousalContent = () => <div class="carousel-content">
+        <h2 class="carousel-heading">{t('WEBSITE_HEADING')}</h2>
+        <h2 class="carousel-text">{t('WEBSITE_SUB_HEADING')}</h2>
+        <div style={{ display: 'flex', justifyContent: 'flex-start', width: "70%", marginTop: '36px' }}>
+            <a href="/job-listing" class="carousel-button carousel-primary-button">Job खोजें</a>
+            <a href="/candidate-khoze" class="carousel-button carousel-secondary-button">Candidate खोजें</a>
+        </div>
+    </div>
     return (<>
         <Box className="LandingPage">
             <Stack className="AnnocumentBar" sx={{
@@ -232,6 +246,7 @@ function Home() {
             <Box className="WebsiteLogoAndLoginSectionWrapper" sx={{
                 minHeight: { "xs": "50px", "sm": "50px", "md": "100px", "lg": "100px", "xl": "100px" },
                 width: "100%",
+                height: '100px',
                 padding: { "xs": "10px", "sm": "10px", "md": "20px 100px", "lg": "20px 100px", "xl": "20px 100px" },
                 boxSizing: "border-box",
                 background: "#FFFFFF",
@@ -249,7 +264,7 @@ function Home() {
                     <Box className="WebsiteLogo" sx={{
                         width: "30vw"
                     }}>
-                        <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="JY" width="100%" height="100%" />
+                        <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="JY" width="185" height="52" />
                     </Box>
                     {!mobileScreen && <Stack className="LanguageSelectorSection" sx={{
                         alignItems: "center",
@@ -371,9 +386,89 @@ function Home() {
                 </Stack >
             }
             {!mobileScreen &&
-                <Box className="TopSection">
-                    <Container sx={{ maxWidth: "1500px !important" }}>
-                        <Stack sx={{ marginTop: { "xs": "0px", "sm": "0px", "md": "50px", "lg": "50px", "xl": "50px" } }}>
+                <Box id="box-corousel" className="TopSection" sx={{ padding: "0px" }}>
+                    <Container id="container-corousel" sx={{ maxWidth: "100% !important", padding: "0px !important" }}>
+
+                        <Carousel id="corousel" showArrows={false} showStatus={false} showThumbs={false}
+                            autoPlay={true}
+                        // renderIndicator={(clickHandler, isSelected, index, label) => (
+                        //     <div
+                        //         key={index}
+                        //         style={{
+                        //             display: "inline-block",
+                        //             width: isSelected ? "15px" : "8px",
+                        //             height: isSelected ? "8px" : "8px",
+                        //             // margin: "0 4px",
+                        //             borderRadius: isSelected ? "35%" : "50%",
+                        //             background: isSelected ? "#FF671F" : "#FFFFFF",
+                        //             cursor: "pointer",
+                        //         }}
+                        //         onClick={clickHandler}
+                        //     />
+                        // )}
+                        >
+                            {/* <div className="container">
+                                <div
+                                    className="background"
+                                    style={{ backgroundImage: `url(${imageUrl})` }}
+                                >
+                                    <span className="text-overlay">Your Text Here</span>
+                                </div>
+                            </div> */}
+                            <div
+                                class="carousel-container"
+                                style={{
+                                    backgroundImage: `url(${imageUrl_1})`,
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundPosition: 'center',
+                                    width: '100%',
+                                    height: '480px', // Set your desired height,
+                                    textAlign: 'left',
+                                }}
+                            >
+                                <CarousalContent/>
+                            </div>
+                            <div
+                                class="carousel-container"
+                                style={{
+                                    backgroundImage: `url(${imageUrl_2})`,
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundPosition: 'center',
+                                    width: '100%',
+                                    height: '480px', // Set your desired height,
+                                    textAlign: 'left',
+                                }}
+                            >
+                                <CarousalContent/>
+                            </div>
+                            <div
+                                class="carousel-container"
+                                style={{
+                                    backgroundImage: `url(${imageUrl_3})`,
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundPosition: 'center',
+                                    width: '100%',
+                                    height: '480px', // Set your desired height,
+                                    textAlign: 'left',
+                                }}
+                            >
+                                <CarousalContent/>
+                            </div>
+
+                            {/* <div>
+                                <img alt="carousel" src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/website_banner_1.png" />
+                            </div> */}
+                            {/* <div>
+                                <img alt="carousel" src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/website_banner_2.png" />
+                            </div>
+                            <div>
+                                <img alt="carousel" src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/website_banner_3.jpg" />
+                            </div> */}
+                        </Carousel>
+                        {/* <Stack sx={{ marginTop: { "xs": "0px", "sm": "0px", "md": "50px", "lg": "50px", "xl": "50px" } }}>
                             <Typography variant="h1" component="h2" sx={{
                                 fontSize: { "xs": "33px", "sm": "33px", "md": "45px", "lg": "45px", "xl": "45px" },
                                 fontWeight: "600",
@@ -409,7 +504,7 @@ function Home() {
                                 <FindCandidateButton style={{ width: "100%" }} />
                             </Stack>
 
-                        </Stack>
+                        </Stack> */}
                     </Container>
                 </Box>
             }

@@ -13,7 +13,6 @@ export const jobItemStyles = {
     borderRadius: '6px',
     boxSizing: 'border-box',
     padding: '20px',
-    cursor: 'pointer',
     position: "relative"
 };
 
