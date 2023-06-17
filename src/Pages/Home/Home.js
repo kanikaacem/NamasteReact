@@ -518,7 +518,7 @@ function Home() {
                 }}>
                 <Container sx={{ maxWidth: "1500px !important" }}>
                     <Stack direction="column" gap={3} alignItems="center" justifyContent="center">
-                        <Heading headingText={t('CLICK_ON_THE_LOCATION_WHERE_YOU_WOULD_LIKE_TO_WORK')} />
+                        <Heading headingText={t('CLICK_ON_THE_WORK_YOU_WOULD_LIKE_TO_DO')} />
                         <Stack className="JobCategories" direction="row" sx={{
                             gap: "20px",
                             flexWrap: "wrap",
@@ -551,14 +551,14 @@ function Home() {
                 <Container className="SecBannerSection" sx={{ maxWidth: "1300px !important" }}>
 
                     <Typography variant="h1" component="h2" sx={{
-                        fontSize: { "xs": '1.1rem', "sm": '1.1rem', "md": "2rem", "xl": "2rem", "lg": "2rem" },
-                        width: { "xs": "180px", "sm": "180px", "md": "300px", "lg": "300px", "xl": "300px" },
+                        fontSize: { "xs": '2.5rem', "sm": '2.5rem', "md": "2.5rem", "xl": "2.5rem", "lg": "2.5rem" },
+                        width: { "xs": "40%", "sm": "40%", "md": "40%", "lg": "40%", "xl": "40%" },
                         fontWeight: "500"
                     }}>
-                        <p>{t('FINDING_JOB_MADE_EASY_AND_SIMPLE_FOR_ANYONE')}</p>
-                        <span style={{ color: "#FF671F" }}> Jaanchi, Parkhi</span> jobs
+                        <p>{t('ADVANTAGES_1')}</p>
+                        {/* <span style={{ color: "#FF671F" }}> Jaanchi, Parkhi</span> jobs
                         har <span style={{ color: "#FF671F" }}> Hindustani</span> ke
-                        liye
+                        liye */}
                     </Typography >
 
                 </Container>
@@ -628,7 +628,7 @@ function Home() {
                             right: "0px"
                         }}>
                             <Typography variant="h1" component="h2" sx={JobAdvantageDescriptionStyle}>
-                                {t('FINDING_JOB_MADE_EASY_AND_SIMPLE_FOR_ANYONE')}
+                                {t('ADVANTAGES_1')}
                             </Typography >
 
                         </Box>
@@ -639,7 +639,7 @@ function Home() {
                             right: "0"
                         }}>
                             <Typography variant="h1" component="h2" sx={JobAdvantageDescriptionStyle}>
-                                {t('VERIFIED_AND_GENUINE_JOBS_FOR_EVERY_INDIAN')}
+                                {t('ADVANTAGES_2')}
                             </Typography >
 
                         </Box>
@@ -650,7 +650,7 @@ function Home() {
                             left: "0"
                         }}>
                             <Typography variant="h1" component="h2" sx={JobAdvantageDescriptionStyle}>
-                                {t('GET_A_JOB_NEAR_YOU')}
+                                {t('ADVANTAGES_3')}
                             </Typography >
 
                         </Box></>}
@@ -662,7 +662,7 @@ function Home() {
                             left: "0px"
                         }}>
                             <Typography variant="h1" component="h2" sx={JobAdvantageDescriptionStyle}>
-                                {t('FINDING_JOB_MADE_EASY_AND_SIMPLE_FOR_ANYONE')}
+                                {t('ADVANTAGES_1')}
                             </Typography >
 
                         </Box>
@@ -673,7 +673,7 @@ function Home() {
                             right: "0px"
                         }}>
                             <Typography variant="h1" component="h2" sx={JobAdvantageDescriptionStyle}>
-                                {t('VERIFIED_AND_GENUINE_JOBS_FOR_EVERY_INDIAN')}
+                                {t('ADVANTAGES_2')}
                             </Typography >
 
                         </Box>
@@ -684,7 +684,7 @@ function Home() {
                             left: "39%"
                         }}>
                             <Typography variant="h1" component="h2" sx={JobAdvantageDescriptionStyle}>
-                                {t('GET_A_JOB_NEAR_YOU')}
+                                {t('ADVANTAGES_3')}
                             </Typography >
 
                         </Box>

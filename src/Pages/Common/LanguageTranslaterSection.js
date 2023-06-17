@@ -34,7 +34,7 @@ const LanguageTranslatorSection = () => {
                 name="languageTranslator" id="languageTranslator"
                 value={currentLanguage}
                 onChange={ChangeLanguage}>
-                <option value="hi">Hindi</option>
+                <option value="hi">हिन्दी</option>
                 <option value="en">English</option>
                 <option value="hn">Hinglish</option>
             </select>
