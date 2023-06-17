@@ -52,13 +52,12 @@ const OTPVerification = () => {
 
     const handleSubmit = async (values, { setFieldError }) => {
         let otp = values.otp_digit1 + values.otp_digit2 + values.otp_digit3 + values.otp_digit4;
-        otp = parseInt(otp);
         try {
             const api_url = process.env.REACT_APP_VERIFY_OTP;
             const response = await postRequest(api_url, {
                 "mobile": mobile_number,
+                "usertype": "candidate",
                 "otp": otp
-
             });
             if (response.status === "1") {
                 localStorage.setItem("token", response.token)

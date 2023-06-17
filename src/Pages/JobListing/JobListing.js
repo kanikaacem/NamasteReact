@@ -52,7 +52,7 @@ const JobListing = () => {
             const searchString = searchParams.toString();
             navigate(`?${searchString}`);
         };
-        return (<FormControl sx={{ width: 150 }} size="small">
+        return (<FormControl sx={{ width: 250, height: 28 }} size="small">
             <Select
                 sx={{
                     fontSize: "12px",
@@ -209,10 +209,11 @@ const JobListing = () => {
                                 if (value === null) window.location.reload()
                                 else FilterDataBasedOnJobRole(value?.key)
                             }}
+                            
                             getOptionLabel={(option) => option.key}
-                            sx={{ width: "300px" }}
+                            sx={{ width: "300px", margin: '0px' }}
                             renderInput={(params) => <TextField {...params}
-
+                            placeholder= "Select a Category"
                                 InputLabelProps={{
                                     shrink: true,
                                     placeholder: "Select a Category", // Add the desired placeholder text
@@ -231,7 +232,7 @@ const JobListing = () => {
                     </Stack>
 
                     <Stack direction="column" gap={2} className="JobsSection" >
-                        {postedJobs && postedJobs.map((item, index) => {
+                        {postedJobs && postedJobs.filter(job => job.jobId).map((item, index) => {
                             return <JobItem key={index} item={item} />
                         })}
 

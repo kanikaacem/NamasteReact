@@ -2,6 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import Footer from "../../ThemeComponent/Common/Footer";
 import FooterHeading from "./FooterHeading";
 import FooterDescription from "./FooterDescription";
+import FooterHeader from "./FooterHeader";
 import { useTranslation } from "react-i18next";
 const AboutUs = () => {
     const { t } = useTranslation();
@@ -14,29 +15,31 @@ const AboutUs = () => {
                 background: "#FCFCFC"
             }}
         >
-            <Box className="AboutUsPageHeader" sx={{
-                width: '100%',
-                padding: "20px",
-                boxSizing: "border-box",
-                position: "sticky",
-                top: "0",
-                zIndex: 789,
-                background: "#FCFCFC",
-            }}>
-                <Box className="WebsiteLogo" sx={{ width: "150px" }}>
-                    <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/horizontal_logo.png" alt="WebsiteLogo" width="100%" height="100%" />
-                </Box>
-            </Box>
-
+            <FooterHeader />
             <Box className="AboutUsContent"
                 sx={{
                     padding: { "xs": "20px", "sm": "20px", "md": "60px 40px", "lg": "60px 40px", "xl": "60px 40px" },
                     boxSizing: "border-box"
                 }}>
                 <Box className="AboutUsContentTopSection" sx={{ position: "relative" }}>
-                    <Box>
-                        <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/about_us.png" alt="banner"
-                            width="100%" height="100%" />
+                    <Box sx={{
+                        backgroundImage: `url("https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/website_banner_image.png")`,/* The image used */
+                        height: "500px",/* You must set a specified height */
+                        backgroundRepeat: "no-repeat", /* Do not repeat the image */
+                        backgroundSize: "cover",
+                        opacity: "rgba(0, 0, 0, 0.5)"
+
+                    }}>
+                        <Box
+                            sx={{
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                width: "100%",
+                                height: "100%",
+                                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                            }}
+                        />
                     </Box>
                     <Stack className="PageHeading" gap={2} sx={{
                         position: "absolute",
@@ -67,39 +70,36 @@ const AboutUs = () => {
                 </Box>
                 <Box className="AboutUsPageContentDescriptions" sx={{ padding: "20px 0px" }}>
                     <Stack direction="column" gap={1}>
-                        <FooterHeading />
-                        <FooterDescription />
+                        <FooterHeading headingText="FOOTER_HEADING_1" />
+                        <Stack direction="column" gap={3}>
+                            <FooterDescription Description="FOOTER_DESCRIPTION_1" />
+                            <FooterDescription Description="FOOTER_DESCRIPTION_2" />
+                            <FooterDescription Description="FOOTER_DESCRIPTION_3" />
+                        </Stack>
+
                     </Stack>
                     <Stack direction="column" gap={1} sx={{ marginTop: "40px" }}>
-                        <Typography
-                            sx={{
-                                fontSize: { "lg": "20px", "md": "20px", "xs": "20px" },
-                                fontWeight: "600",
-                                color: "#2B1E44",
-                                display: "block",
-                                lineHeight: "1.7"
-                            }}>
-                            Our Vision
-                        </Typography>
-                        <FooterHeading />
-                        <Stack direction="column" gap={3}>
-                            <FooterDescription />
-                            <FooterDescription />
-                            <FooterDescription />
-                        </Stack>
+                        <FooterHeading headingText="VISION" />
+                        <FooterDescription Description="VISION_DESCRIPTION_1" />
+                        <FooterDescription Description="VISION_DESCRIPTION_2" />
+                    </Stack>
+                    <Stack direction="column" gap={1} sx={{ marginTop: "40px" }}>
+                        <FooterHeading headingText="MISSION" />
+                        <FooterDescription Description="MISSION_DESCRIPTION" />
                     </Stack>
 
-                    <Box sx={{
-                        background: "#F7F0FF",
-                        border: "1px solid #E9DFF7",
-                        borderRadius: "7px",
-                        padding: "20px",
-                        margin: "50px 0px"
-                    }}>
-
-                        <FooterHeading />
-                        <FooterDescription />
-                    </Box>
+                    <Stack direction="column" gap={1} sx={{ marginTop: "40px" }}>
+                        <FooterHeading headingText="CORE_VALUES" />
+                        <FooterDescription Description="CORE_VALUES_DESCRIPTION_1" />
+                        <FooterHeading headingText="CORE_VALUES_HEADING_1" />
+                        <FooterDescription Description="CORE_VALUES_HEADING_1_DESCRIPTION" />
+                        <FooterHeading headingText="CORE_VALUES_HEADING_2" />
+                        <FooterDescription Description="CORE_VALUES_HEADING_2_DESCRIPTION" />
+                        <FooterHeading headingText="CORE_VALUES_HEADING_3" />
+                        <FooterDescription Description="CORE_VALUES_HEADING_3_DESCRIPTION" />
+                        <FooterHeading headingText="CORE_VALUES_HEADING_4" />
+                        <FooterDescription Description="CORE_VALUES_HEADING_4_DESCRIPTION" />
+                    </Stack>
                 </Box>
 
             </Box>

@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-const FooterDescription = ({ description }) => {
+const FooterDescription = ({ Description }) => {
     const { t } = useTranslation();
 
     return (
@@ -12,7 +12,7 @@ const FooterDescription = ({ description }) => {
                 display: "block",
                 lineHeight: "1.7"
             }}>
-            {t('DESCRIPTION1')}
+            {t(Description)}
         </Typography>
     )
 }

@@ -4,16 +4,10 @@ import { getJobPostedTime, replaceUnderscore } from "../../utils/function";
 import ApplyForJobButton from "../Common/ApplyForJobButton";
 import ShareJob from "../Common/ShareJob";
 import ApplyForJobWebButton from "../Common/ApplyForJobWebButton";
-import { useNavigate } from "react-router-dom";
 
 const JobItem = ({ item }) => {
     const { _id, accessibleForDisabled, jobRole, jobId, gender, jobDepartment, inhandSalaryPermonth, jobType, qualification,
         shift, vehicleRequired, language, createdAt, requiredExperience, jobSector, jobDescriptions, state } = item;
-    const navigate = useNavigate();
-
-    const handleViewJobDescription = () => {
-        navigate(`/job-description/${_id}`);
-    };
 
 
     return (
@@ -180,17 +174,10 @@ const JobItem = ({ item }) => {
                         <ShareJob jobId={_id} jobDescription={jobDescriptions} jobRole={jobRole} />
                     </Stack>
 
-                    <Stack direction="row" gap={1} alignItems="center" onClick={handleViewJobDescription}>
-                        <Typography sx={{
-                            ...stackStyles,
-                            color: "#FF671F"
-                        }}>
-                            View
-                        </Typography>
-                        <Box>
-                            <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/view_button.png" alt="View" />
-                        </Box>
-                    </Stack>
+                    <a className="view-job-button" href={`/job-description/${_id}`} /*onClick={handleViewJobDescription}*/>
+                        <p className="view-job-button-text"> View </p>
+                        <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/view_button.png" alt="View" height="12"/>
+                    </a>
                 </Stack>
             </Stack>
 
@@ -202,9 +189,9 @@ const JobItem = ({ item }) => {
                         textTransform: "capitalize"
                     }}>
                     <em style={{ color: "#7C7979" }}>Additional requirement: </em>
-                    <div style={{ fontWeight: "600" }}>{` ${replaceUnderscore(vehicleRequired)}, ${replaceUnderscore(language)}`}</div>
+                    <div style={{ fontWeight: "600" }}>{` ${vehicleRequired ? `${replaceUnderscore(vehicleRequired)},` : '' } ${replaceUnderscore(language)}`}</div>
                 </Typography>
-                <Typography component="div"
+                {createdAt && <Typography component="div"
                     sx={{
                         fontSize: "0.8rem",
                         color: "#262626", fontWeight: "500"
@@ -212,7 +199,7 @@ const JobItem = ({ item }) => {
                     <em style={{ color: "#7C7979" }}>Posted on </em>
                     <div style={{ fontWeight: "600" }}>{getJobPostedTime(createdAt)}</div>
 
-                </Typography>
+                </Typography>}
             </Stack>
 
         </Stack >

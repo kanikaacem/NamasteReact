@@ -1,7 +1,7 @@
 import { Box, Typography, Stack } from "@mui/material";
 
 import { social_icons } from "../../utils/Data";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { useSelector } from "react-redux";
@@ -35,11 +35,13 @@ const Footer = () => {
 
 
     const FooterMenuLink = ({ id, linkText, linkUrl }) => {
+        const navigate = useNavigate();
         return (
             <Link key={id} to="#"
                 onClick={(e) => {
                     e.preventDefault();
-                    window.location.href = window.location.origin + '/' + linkUrl;
+                    navigate(`/${linkUrl}`);
+                    // window.location.href = window.location.origin + '/' + linkUrl;
                 }}
                 style={{
                     fontFamily: 'Montserrat',
