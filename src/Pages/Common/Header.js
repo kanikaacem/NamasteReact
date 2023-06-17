@@ -55,7 +55,6 @@ const FooterHeader = () => {
             top: "0",
             zIndex: "234",
         }} >
-            {console.log(mobileScreen)}
             <Stack direction="row" className="WebsiteLogoAndLoginSection"
                 alignItems="center"
                 sx={{
@@ -63,7 +62,7 @@ const FooterHeader = () => {
                     justifyContent: "flex-start"
                 }}>
                 <Box className="WebsiteLogo" sx={{
-                    width: "30vw"
+                    width: {"xs":"100px","sm":"100px","md":"100px","lg":"185px","xl":"185px"}
                 }}>
                     <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="JY" width="100%" height="100%" />
                 </Box>

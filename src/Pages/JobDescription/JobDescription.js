@@ -1,7 +1,7 @@
 import { getRequest } from "../../utils/ApiRequests";
 import { Box, Stack, Container, Typography, Link, Breadcrumbs } from "@mui/material";
 import { stackStyles, tagStyles } from "../../utils/Styles";
-import PageTopSection from "../Common/PageTopSection";
+// import PageTopSection from "../Common/PageTopSection";
 import ApplyForJobButton from "../Common/ApplyForJobButton";
 import { useLocation } from "react-router-dom";
 import { LinkStyles } from "../../utils/Styles";
@@ -10,7 +10,7 @@ import { replaceUnderscore } from "../../utils/function";
 import { useState, useEffect } from "react";
 import moment from 'moment';
 import ShareJob from "../Common/ShareJob";
-
+import Header from "../Common/Header";
 const JobDescription = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -59,9 +59,9 @@ const JobDescription = () => {
 
     return (
         <Box className="JobDescriptionPage" sx={{
-            height: "100vh",
-        }}>
-            <PageTopSection showBackButton={true} />
+            minHeight: "100vh",
+        }}> <Header/>
+            {/* <PageTopSection showBackButton={true} /> */}
 
             <Box className="WebsiteBreadcrumb" sx={{
                 padding: {

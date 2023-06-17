@@ -13,7 +13,8 @@ const FooterHeading = ({ imgUrl, headingText }) => {
                     fontWeight: "600",
                     color: "#2B1E44",
                     display: "block",
-                    lineHeight: "1.7"
+                    lineHeight: "1.7",
+                    width:"max-content"
                 }}>
                 {t(headingText)}
             </Typography>

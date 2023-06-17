@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import Footer from "../../ThemeComponent/Common/Footer";
-import FooterHeader from "./FooterHeader";
+import Header from "../Common/Header";
 import FooterHeading from "./FooterHeading";
 import FooterDescription from "./FooterDescription";
 const PrivacyPolicy = () => {
@@ -11,46 +11,24 @@ const PrivacyPolicy = () => {
             background: "#FCFCFC"
         }}
     >
-        <FooterHeader />
+        <Header />
 
         <Box className="PrivacyPolicyContent"
             sx={{
                 padding: { "xs": "20px", "sm": "20px", "md": "60px 40px", "lg": "60px 40px", "xl": "60px 40px" },
                 boxSizing: "border-box"
             }}>
-            <Box className="AboutUsContentTopSection" sx={{ position: "relative" }}>
-                <Box>
-                    <img src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/about_us.png" alt="banner"
-                        width="100%" height="100%" />
-                </Box>
-                <Stack className="PageHeading" gap={2} sx={{
-                    position: "absolute",
-                    top: "35%",
-                    left: "40%",
-                    display: "inline - flex"
-                }}>
-                    <Typography sx={{
-                        fontSize: { "xs": "1.5rem", "sm": "1.5rem", "md": "1.5rem", "lg": "3rem", "xl": "3rem" },
-                        fontWeight: "700",
-                        color: "#ffffff",
-                        lineHeight: "1.2",
+            <Box className="PrivacyPolicyTopSection">
+            <Typography sx={{
+                            fontSize: { "xs": "1.5rem", "sm": "1.5rem", "md": "1.5rem", "lg": "3rem", "xl": "3rem" },
+                            fontWeight: "700",
+                            lineHeight: "1.2",
 
-                    }}>
-                        Privacy
-                    </Typography>
-                    <Typography sx={{
-                        fontSize: { "xs": "1.5rem", "sm": "1.5rem", "md": "1.5rem", "lg": "3rem", "xl": "3rem" },
-                        fontWeight: "700",
-                        color: "#FF671F",
-                        display: "block",
-                        lineHeight: "1.2"
-                    }}>
-                        Policy
-                    </Typography>
-                </Stack>
-
+                        }}>
+                            Privacy Policy
+                        </Typography>
             </Box>
-            <Box className="AboutUsPageContentDescriptions" sx={{ padding: "20px 0px" }}>
+            <Box className="PrivacyPolicyPageContentDescriptions" sx={{ padding: "20px 0px" }}>
                 <Box>
                     <FooterHeading headingText="Personal Identification Information" />
                     <Stack direction="column" gap={3}>
@@ -143,37 +121,59 @@ const PrivacyPolicy = () => {
 
                 <Box>
                     <FooterHeading headingText="How Do We Use Collected Information?" />
-                    <Stack direction="row" >
+                    <Stack direction="row" alignItems="center" gap={1}>
                         <FooterHeading headingText="How Do We Use Collected Information?" />
                         <FooterDescription Description="We may use your data to comprehend how you use services and resources provided on our website." />
                     </Stack>
-                    {/* <Stack direction="row" >
+                    <Stack direction="row" alignItems="center" gap={1}>
                         <FooterHeading headingText="To Enhance Our Website: " />
                         <FooterDescription Description="Your data assists us in effectively answering your queries and needs." />
                     </Stack>
-                    <Stack direction="row" >
+                    <Stack direction="row" alignItems="center" gap={1}>
                         <FooterHeading headingText="To Improve Customer Service: " />
                         <FooterDescription Description="We may use your data to comprehend how you use services and resources provided on our website." />
                     </Stack>
-                    <Stack direction="row" >
+                    <Stack direction="row" alignItems="baseline" gap={1}>
                         <FooterHeading headingText="To Process Transactions:" />
                         <FooterDescription Description="When a user places an order and the information they 
                         provide about themselves help us provide them with services. 
                         We never disclose  information with outside parties, except in the conditions 
                         that it is necessary to provide them for services." />
                     </Stack>
-                    <Stack direction="row" >
+                    <Stack direction="row" alignItems="baseline" gap={1}>
                         <FooterHeading headingText="To Manage Content -" />
                         <FooterDescription Description="Promotions, surveys, or other features of the website: We may send information to users if they 
                         allow us to do so about the topics that we think may be interesting to them. "/> </Stack>
-                    <Stack direction="row" >
+                    <Stack direction="row" alignItems="baseline" gap={1}>
                         <FooterHeading headingText="To Send Periodic Emails:" />
                         <FooterDescription Description="When a user registers with JobsYahan, we will send 
                         them order-related updates and information on their mentioned email ID. It could also 
                         be used to answer their questions and other requests. If users choose to stay in our 
                         mailing list, they will get messages 
                         that may include company news, updates, offers, related items or service information, etc. " />
-                    </Stack> */}
+                    </Stack>
+                </Box>
+
+                <Box>
+                    <FooterHeading headingText="We Say ‘NO’ to Impersonation or False Information" />
+                    <FooterDescription Description="On the platform, you must use your real name, and in order to 
+                    use our services, you must enter your correct phone number. Your JobsYahan account will be used 
+                    to determine if you get a job or not. You won't use our Services by pretending to be someone else 
+                    or to be a representative of someone else. " />
+                </Box>
+
+                <Box>
+                    <FooterHeading headingText="Changes to This Privacy Policy" />
+                    <FooterDescription Description="This Privacy Policy is subject to update, change, or modification at any time by JobsYahan." />
+                </Box>
+
+                <Box>
+                    <FooterHeading headingText="Disclaimer" />
+                    <FooterDescription Description="JobsYahan is not liable for any incident, fraud,
+                     cheat, or crime that may happen against any user. Before engaging in any transactions 
+                     or interaction among users, we suggest you examine and confirm the information
+                      provided by other users. Additionally, avoid disclosing any private information
+                       to groups in order to prevent its misuse." />
                 </Box>
 
 

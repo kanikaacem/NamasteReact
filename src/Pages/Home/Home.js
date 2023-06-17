@@ -262,7 +262,7 @@ function Home() {
                         justifyContent: "flex-start"
                     }}>
                     <Box className="WebsiteLogo" sx={{
-                        width: "30vw"
+                        width: {"xs":"100px","sm":"100px","md":"100px","lg":"185px","xl":"185px"}
                     }}>
                         <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="JY" width="185" height="52" />
                     </Box>
