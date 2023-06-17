@@ -3,7 +3,7 @@ import { Box, Stack, Container, Typography, Link, Breadcrumbs } from "@mui/mater
 import { stackStyles, tagStyles } from "../../utils/Styles";
 import PageTopSection from "../Common/PageTopSection";
 import ApplyForJobButton from "../Common/ApplyForJobButton";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { LinkStyles } from "../../utils/Styles";
 import Footer from "../../ThemeComponent/Common/Footer";
 import { replaceUnderscore } from "../../utils/function";
@@ -12,7 +12,9 @@ import moment from 'moment';
 import ShareJob from "../Common/ShareJob";
 
 const JobDescription = () => {
-    const { id } = useParams();
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const id = searchParams.get('id');
     const [jobDescription, setJobDescription] = useState(null);
 
     useEffect(() => {
@@ -20,7 +22,6 @@ const JobDescription = () => {
             try {
                 const api_url = process.env.REACT_APP_GET_JOB_ITEMS + "?jobid=" + id; // Replace with your .env variable name
                 const data = await getRequest(api_url);
-                console.log(data.data)
                 setJobDescription(data.data[0])
             } catch (error) {
                 // Handle the error
