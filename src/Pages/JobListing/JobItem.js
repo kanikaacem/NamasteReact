@@ -4,16 +4,10 @@ import { getJobPostedTime, replaceUnderscore } from "../../utils/function";
 import ApplyForJobButton from "../Common/ApplyForJobButton";
 import ShareJob from "../Common/ShareJob";
 import ApplyForJobWebButton from "../Common/ApplyForJobWebButton";
-import { useNavigate } from "react-router-dom";
 
 const JobItem = ({ item }) => {
     const { _id, accessibleForDisabled, jobRole, jobId, gender, jobDepartment, inhandSalaryPermonth, jobType, qualification,
         shift, vehicleRequired, language, createdAt, requiredExperience, jobSector, jobDescriptions, state } = item;
-    const navigate = useNavigate();
-
-    const handleViewJobDescription = () => {
-        navigate(`/job-description/${_id}`);
-    };
 
 
     return (

@@ -94,7 +94,6 @@ const FindCandidateButton = ({ style }) => {
 
 
 function Home() {
-    const navigate = useNavigate();
     const { t } = useTranslation();
     const mobileScreen = useSelector(state => state.screenType) === "mobile";
     const [showButton, setShowButton] = useState(false);
