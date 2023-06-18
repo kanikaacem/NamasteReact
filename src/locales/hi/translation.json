@@ -180,5 +180,20 @@
     "CORE_VALUES_HEADING_4_DESCRIPTION": "In the context of digital technology, leading technology refers to the latest and most advanced technologies that are used in the development of software, hardware, and other digital products and services. JobsYahan will leverage cutting-edge technology on our platform, utilising intelligent algorithms and real-time data analysis to simplify and optimise the hiring process. By continuously innovating and staying ahead of technological advancements, we will deliver a seamless and user-centric experience, setting new industry standards in workforce job search.",
     "ADVANTAGES_1": "वास्तविक जॉब्स",
     "ADVANTAGES_2": "आपके आसपास",
-    "ADVANTAGES_3": "सबसे सरल"
+    "ADVANTAGES_3": "सबसे सरल",
+    "CJ_HEADING": "JobsYahan - यहाँ कैंडिडेट मिलने है सबसे सरल",
+    "CJ_HEADING_1": "अपनी रिक्वायरमेंट की जानकारी दें, हम जल्द ही आपसे संपर्क करेंगे!",
+    "CJ_USERNAME": "अपना फोन नंबर या ईमेल शेयर करें",
+    "CJ_BTN_NEXT": "आगे बढ़ें",
+    "CJ_LINK_EMP_LOGIN": "एम्प्लायर लॉगिन",
+    "CJ_FORM_TITLE": "अपनी रिक्वायरमेंट की जानकारी दें।",
+    "CJ_FIELDS_1":  "आपके बिजनेस का नाम?",
+    "CJ_FIELDS_2":  "आपका बिजनेस क्या करता है?",
+    "CJ_FIELDS_3":  "जॉब क्या है?",
+    "CJ_FIELDS_4":  "जॉब कौन से शहर में है?",
+    "CJ_FIELDS_5":  "कितने कैंडिडेट चाहिए?",
+    "SUBMIT": "सब्मिट",
+    "EMPR_LOGIN_BANNER": "यहाँ कैंडिडेट मिलना है सबसे सरल!",
+    "EMPR_USERNAME": "यूज़रनेम डालें",
+    "EMPR_PASSWORD": "पासवर्ड डालें"
 }

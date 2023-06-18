@@ -7,7 +7,9 @@ import FormLabel from "../Common/FormLabel";
 import { Formik, Field, Form } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router";
+import { useTranslation } from "react-i18next";
 const EmployerLogin = () => {
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const isLoggedIn = useSelector(state => state.isLoggedIn);
 
@@ -59,7 +61,7 @@ const EmployerLogin = () => {
                                 fontWeight: "600"
                             }}
                         >
-                            JobsYahan par hain, bharat bhar ke best candidates
+                            {t('EMPR_LOGIN_BANNER')}
                         </Typography>
                         <Box sx={{ position: "absolute", bottom: "-5px" }}>
                             <img
@@ -77,18 +79,18 @@ const EmployerLogin = () => {
                             {({ errors, touched }) => (
                                 <Form className="EmployerLoginForm" >
                                     <Box className="FormGroup">
-                                        <FormLabel LableText="Enter Your User Name" LableFor="user_email" />
+                                        <FormLabel LableText={t('EMPR_USERNAME')} LableFor="user_email" />
                                         <Field id="user_email"
-                                            type="text" placeholder="Enter User Name"
+                                            type="text" placeholder={t('EMPR_USERNAME')}
                                             name="user_email"
                                             className="custom-text-field" />
                                         {errors.user_email && touched.user_email && <Error text={errors.user_email} />}
 
                                     </Box>
                                     <Box className="FormGroup">
-                                        <FormLabel LableText="Enter Password" LableFor="password" />
+                                        <FormLabel LableText={t('EMPR_PASSWORD')} LableFor="password" />
                                         <Field id="password"
-                                            type="password" placeholder="Enter Password"
+                                            type="password" placeholder={t('EMPR_PASSWORD')}
                                             name="password"
                                             className="custom-text-field" />
                                         {errors.password && touched.password && <Error text={errors.password} />}
@@ -97,7 +99,7 @@ const EmployerLogin = () => {
 
                                     <Button variant="contained" type="submit" className="OrangeButton" sx={{
                                         margin: "20px 0px !important"
-                                    }} >Submit</Button>
+                                    }} >{t('SUBMIT')}</Button>
                                 </Form>
                             )}
                         </Formik>
