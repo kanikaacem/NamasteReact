@@ -1,14 +1,37 @@
 /*--------------------------------------------Main Site-----------------------------------------------------------*/
 /* Job Categories in the Main site */
 export const social_icons = [
-    { id: 1, icon_text: "Snapchat", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon1.png", icon_url: "" },
-    { id: 2, icon_text: "Facebook", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon2.png", icon_url: "" },
-    { id: 3, icon_text: "Instagram", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon3.png", icon_url: "" },
-    { id: 4, icon_text: "SocialIcon", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon4.png", icon_url: "" },
-    { id: 5, icon_text: "VideoPlayer", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon5.png", icon_url: "" },
-    { id: 6, icon_text: "Linkedin", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon6.png", icon_url: "" },
-    { id: 7, icon_text: "Youtube", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon7.png", icon_url: "" },
-    { id: 8, icon_text: "Twitter", icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/social_icon8.png", icon_url: "" }
+    { id: 1, icon_text: "Snapchat", 
+    icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/snapchat.png", 
+    icon_url: "https://www.snapchat.com/add/jobsyahan?share_id=DU_67f5UO3I&amp;locale=en-IN" },
+    { id: 2, icon_text: "Facebook", 
+    icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/facebook.png", 
+    icon_url: "https://www.facebook.com/jobsyahanofficial" },
+    { id: 3, icon_text: "Instagram",
+     icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/instagram.png",
+      icon_url: "https://www.instagram.com/jobsyahanofficial/?igshid=MzNlNGNkZWQ4Mg%3D%3D" },
+    { id: 4, icon_text: "Moj", 
+    icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/moj.png",
+     icon_url: "https://mojapp.in/@jobsyahan?referrer=TfjHdBa-12qcUbX" },
+    { id: 5, icon_text: "Josh", 
+    icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/josh.png",
+     icon_url: "https://share.myjosh.in/profile/af63f338-0c9f-43b1-80c9-f8b3e8727e54" },
+    { id: 6, icon_text: "ShareChat",
+     icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/sharechat.png", 
+     icon_url: "https://sharechat.com/profile/jobsyahan?d=n" },
+    { id: 7, icon_text: "Youtube", 
+    icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/utube.png", 
+    icon_url: "https://www.youtube.com/@jobsyahanofficial" },
+    { id: 8, icon_text: "Ropso", 
+    icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/roposo.png",
+     icon_url: "https://www.roposo.com/profile/ca36924c-18e7-4973-95d9-9a239c1a328a?s_ext=true" },
+     { id: 8, icon_text: "Chingari", 
+    icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/chingari.png",
+     icon_url: "https://chingari.io/jobsy9607696015914" },
+     { id: 8, icon_text: "Linkedin", 
+    icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/linkedin.png",
+     icon_url: "https://www.linkedin.com/company/jobsyahan" }
+    
 ]
 export const JobCategories = [
     {
