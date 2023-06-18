@@ -133,9 +133,9 @@ function Home() {
     useEffect(() => {
 
         const handleScroll = () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const isScrollingOverViewport = (scrollTop > window.innerHeight)
-            setShowButton(isScrollingOverViewport)
+            const heroSectionHeight = document.querySelector('.hero-section').getBoundingClientRect().height;;
+            if (window.scrollY > heroSectionHeight) setShowButton(true) ;
+            else setShowButton(false);
         };
         const fetchData = async () => {
             try {
@@ -389,7 +389,7 @@ function Home() {
                 </Stack >
             }
             {!mobileScreen &&
-                <Box id="box-corousel" className="TopSection" sx={{ padding: "0px" }}>
+                <Box id="box-corousel" className="TopSection hero-section" sx={{ padding: "0px" }}>
                     <Container id="container-corousel" sx={{ maxWidth: "100% !important", padding: "0px !important" }}>
 
                         <Carousel id="corousel" showArrows={false} showStatus={false} showThumbs={false}
