@@ -558,7 +558,7 @@ function Home() {
                         width: { "xs": "40%", "sm": "40%", "md": "40%", "lg": "40%", "xl": "40%" },
                         fontWeight: "500"
                     }}>
-                        <p>{t('ADVANTAGES_1')}</p>
+                        <p>{t('FINDING_JOB_MADE_EASY_AND_SIMPLE_FOR_ANYONE')}</p>
                         {/* <span style={{ color: "#FF671F" }}> Jaanchi, Parkhi</span> jobs
                         har <span style={{ color: "#FF671F" }}> Hindustani</span> ke
                         liye */}
