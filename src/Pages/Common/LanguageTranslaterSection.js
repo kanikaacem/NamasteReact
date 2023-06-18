@@ -1,4 +1,4 @@
-
+import { useEffect } from 'react';
 import { Stack, Typography } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -6,9 +6,20 @@ import { useTranslation } from "react-i18next";
 const LanguageTranslatorSection = () => {
     const dispatch = useDispatch();
     const { t } = useTranslation();
+
+    useEffect(() => {
+        if(localStorage.getItem('locale')) {
+            let locale = localStorage.getItem('locale');
+            dispatch({ type: 'CHANGE_LANGUAGE', payload: locale });
+        } else {
+            localStorage.setItem("locale", 'en');
+        }
+    },[])
+    
     const currentLanguage = useSelector(state => state.currentLanguage);
     const ChangeLanguage = (event) => {
         dispatch({ type: 'CHANGE_LANGUAGE', payload: event.target.value });
+        localStorage.setItem("locale", event.target.value);
     }
     return (
         <Stack className="LanguageTranslator" direction="row" gap={1} sx={{
