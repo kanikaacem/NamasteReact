@@ -367,7 +367,7 @@ function Home() {
                                 ...WebsiteMainHeading,
                                 fontSize: { "xs": "1.25rem", "sm": "1.25rem", "md": "2rem", "xl": "2rem", "lg": "2rem" }
                             }}>
-                                {t(`INDIA'S_TRUSTED_jOB_PORTAL`)}
+                                {t(`WEBSITE_HEADING`)}
                             </Typography >
 
                             <Typography variant="h1" component="h2" sx={{
@@ -378,7 +378,7 @@ function Home() {
                                 textAlign: "center",
                                 lineHeight: "1.5"
                             }}>
-                                {t('CHOOSE_THE_jOB_OF_YOUR_CHOICE_THAT_TOO_NEAR_YOU_SEARCH_1000_JOBS')}
+                                {t('WEBSITE_SUB_HEADING')}
                             </Typography >
 
                             <FindJobButton />
