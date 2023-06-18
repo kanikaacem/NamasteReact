@@ -6,7 +6,7 @@ import PageTopSection from '../Common/PageTopSection';
 import JobItem from "./JobItem";
 import Footer from "../../ThemeComponent/Common/Footer";
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
@@ -232,7 +232,7 @@ const JobListing = () => {
 
                     <Stack direction="column" gap={2} className="JobsSection" >
                         {postedJobs && postedJobs.filter(job => job.jobId).map((item, index) => {
-                            return <JobItem key={index} item={item} />
+                            return <React.Fragment key={index+ item.jobId}><JobItem key={index} item={item} /></React.Fragment>
                         })}
 
                     </Stack>

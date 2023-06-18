@@ -6,11 +6,13 @@ import { Formik, Field, Form } from "formik";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
+import JobApplyWeb from '../Common/JobApplyWeb';
 const OTPVerification = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const mobile_number = location?.state && location?.state?.mobile_number;
     const [seconds, setSeconds] = useState(60);
+    const [openJobApplyModal, setOpenJobApplyModal] = useState(false);
 
     const otpVerficationFieldStyle = {
         width: "50px",
@@ -60,8 +62,12 @@ const OTPVerification = () => {
                 "otp": otp
             });
             if (response.status === "1") {
-                localStorage.setItem("token", response.token)
-                // navigate("/job-listing")
+                localStorage.setItem("auth_token", response.token)
+                if(response.stage === 'DETAILSNEED'){
+                    setOpenJobApplyModal(true)
+                } else if (response.stage === 'BACKTOPREVIOUSPAGE') {
+                    navigate("/job-listing")
+                }
             }
             else
                 setFieldError("otp_digit1", response.msg);
@@ -199,7 +205,7 @@ const OTPVerification = () => {
 
             </Container >
         </Box >
-
+        <JobApplyWeb openJobApplyModal={openJobApplyModal} setOpenJobApplyModal={setOpenJobApplyModal} />
     </>)
 }
 

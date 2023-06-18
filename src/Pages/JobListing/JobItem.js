@@ -11,7 +11,7 @@ const JobItem = ({ item }) => {
 
 
     return (
-            <Card sx={{ ...jobItemStyles, padding: "0px !important" }}>
+            <Card key={jobId} sx={{ ...jobItemStyles, padding: "0px !important" }}>
                 <CardContent sx={{ padding: "0px !important"}} >
                     {gender === "male" &&
                         <Box sx={jobItemTagStyles}>
@@ -164,7 +164,7 @@ const JobItem = ({ item }) => {
                                     </Stack>}
                             </Stack>
                         </Stack>
-                        <Grid container spacing={2} xs={12}>
+                        <Grid item container spacing={2} xs={12}>
                             <Grid item xs={12} sm={6} md={4} lg={4}>
                                 <ApplyForJobWebButton jobId={_id} buttonStyle="contained" />
                             </Grid>
@@ -200,9 +200,6 @@ const JobItem = ({ item }) => {
 
                         </Typography>}
                     </Stack>
-
-
-
                 </CardContent>
             </Card>
     )

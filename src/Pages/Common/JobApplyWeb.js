@@ -5,6 +5,7 @@ import Error from '../../ThemeComponent/Common/Error';
 import CloseIcon from '@mui/icons-material/Close';
 import { useTranslation } from "react-i18next";
 import { postRequest } from "../../utils/ApiRequests";
+import { useNavigate } from "react-router-dom";
 import { Modal, TextField, Button, Grid, FormControlLabel, Typography, Radio, RadioGroup, Stack, FormGroup, Tooltip } from '@mui/material';
 const styles = {
   position: 'absolute',
@@ -26,6 +27,7 @@ const headingStyles = {
 
 const JobApplyForm = ({ openJobApplyModal, setOpenJobApplyModal }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   let defaultValue = {
     name: '',
@@ -80,7 +82,7 @@ const JobApplyForm = ({ openJobApplyModal, setOpenJobApplyModal }) => {
       const api_url = process.env.REACT_APP_APPLY_JOB;
       const response = await postRequest(api_url, ApplyJobForm);
       if (response.status === '1') {
-        alert("Your job applied successfully")
+        navigate("/job-listing");
         setOpenJobApplyModal(false);
       }
     } catch (error) {

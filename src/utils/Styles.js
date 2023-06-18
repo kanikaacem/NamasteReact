@@ -13,8 +13,7 @@ export const jobItemStyles = {
     borderRadius: '6px',
     boxSizing: 'border-box',
     padding: '0px',
-    position: "relative",
-    overflow: "scroll"
+    position: "relative"
 };
 
 export const jobItemTagStyles = {
