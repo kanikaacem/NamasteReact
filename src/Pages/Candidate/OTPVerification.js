@@ -61,7 +61,7 @@ const OTPVerification = () => {
             });
             if (response.status === "1") {
                 localStorage.setItem("token", response.token)
-                navigate("/job-listing")
+                // navigate("/job-listing")
             }
             else
                 setFieldError("otp_digit1", response.msg);
