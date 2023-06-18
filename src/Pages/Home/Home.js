@@ -63,7 +63,7 @@ const FindJobButton = ({ style }) => {
             background: "#FF671F",
             borderRadius: "33px",
             textTransform: "capitalize",
-            fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
+            fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
             "&:hover": {
                 background: "#FF671F",
             },
@@ -81,7 +81,7 @@ const FindCandidateButton = ({ style }) => {
             borderRadius: "33px",
             textTransform: "capitalize",
             border: "1px solid",
-            fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
+            fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
             "&:hover": {
                 color: "#FF671F",
                 border: "1px solid",
@@ -246,7 +246,7 @@ function Home() {
             <Box className="WebsiteLogoAndLoginSectionWrapper" sx={{
                 minHeight: { "xs": "50px", "sm": "50px", "md": "100px", "lg": "100px", "xl": "100px" },
                 width: "100%",
-                height: '100px',
+                // height: '100px',
                 padding: { "xs": "10px", "sm": "10px", "md": "20px 100px", "lg": "20px 100px", "xl": "20px 100px" },
                 boxSizing: "border-box",
                 background: "#FFFFFF",
@@ -264,7 +264,8 @@ function Home() {
                     <Box className="WebsiteLogo" sx={{
                         width: {"xs":"100px","sm":"100px","md":"100px","lg":"185px","xl":"185px"}
                     }}>
-                        <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="JY" width="185" height="52" />
+                        <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="JY"
+                         width="100%" height="100%" />
                     </Box>
                     {!mobileScreen && <Stack className="LanguageSelectorSection" sx={{
                         alignItems: "center",
@@ -282,7 +283,9 @@ function Home() {
                     <Stack
                         sx={{
                             width: { "xs": "fit-content", "sm": "fit-content", "md": "1150px", "lg": "1150px", "xl": "1150px" },
-                            alignItems: !mobileScreen && "flex-end"
+                            alignItems: !mobileScreen && "flex-end",
+                            justifyContent: mobileScreen && "space-between"
+
                         }}
                     >
                         {showButton &&
