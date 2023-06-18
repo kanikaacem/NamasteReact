@@ -22,6 +22,7 @@ import Autocomplete from "react-google-autocomplete";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CloseIcon from '@mui/icons-material/Close';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
+import { stringify } from "json5";
 
 const AdvantageSectionStyle = {
     position: "relative",
@@ -96,8 +97,10 @@ const FindCandidateButton = ({ style }) => {
 function Home() {
     const { t } = useTranslation();
     let mobileScreen = useSelector(state => state.screenType) === "mobile";
+    let lang = useSelector(state => state.currentLanguage);
     const [showButton, setShowButton] = useState(false);
     const [jobCategoryData, setJobCategoryData] = useState([]);
+    const [jobLocationData, setJobLocationData] = useState([]);
     const [city, setCity] = useState(null);
 
     const setDynamicLocation = (location) => {
@@ -134,24 +137,32 @@ function Home() {
 
         const handleScroll = () => {
             const heroSectionHeight = document.querySelector('.hero-section').getBoundingClientRect().height;;
-            if (window.scrollY > heroSectionHeight) setShowButton(true) ;
+            if (window.scrollY > heroSectionHeight) setShowButton(true);
             else setShowButton(false);
         };
         const fetchData = async () => {
             try {
                 const api_url = process.env.REACT_APP_GET_JOB_CATEGORY_DETAIL; // Replace with your .env variable name
                 const data = await getRequest(api_url);
-                // Handle the fetched data
-                // console.log("Fetched data:", data);
                 setJobCategoryData(data.data);
             } catch (error) {
-                // Handle the error
+                console.error("Fetch error:", error);
+            }
+        };
+
+        const fetchLocationData = async () => {
+            try {
+                const api_url = process.env.REACT_APP_GET_JOB_LOCATIONS_DETAIL; // Replace with your .env variable name
+                const data = await getRequest(api_url);
+                setJobLocationData(data.data);
+            } catch (error) {
                 console.error("Fetch error:", error);
             }
         };
 
         window.addEventListener('scroll', handleScroll);
         fetchData();
+        fetchLocationData();
         let coords = JSON.parse(localStorage.getItem("coordinates"));
         if (coords) {
             sendUserLocationInformation(coords.lat, coords.lng)
@@ -183,12 +194,11 @@ function Home() {
         }
     }
 
-    const imageUrl_1 = 'https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/banner_image_one.png';
-
-    const imageUrl_2 = 'https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/banner_image_one.png';
-
-    const imageUrl_3 = 'https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/banner_image_one.png';
-
+    const web_carousal_images = [
+        'https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/banner_image_one.png',
+        'https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/banner_image_one.png',
+        'https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/banner_image_one.png',
+    ]
 
     const CarousalContent = () => <div class="carousel-content">
         <h2 class="carousel-heading">{t('WEBSITE_HEADING')}</h2>
@@ -262,10 +272,10 @@ function Home() {
                         justifyContent: "flex-start"
                     }}>
                     <Box className="WebsiteLogo" sx={{
-                        width: {"xs":"100px","sm":"100px","md":"100px","lg":"185px","xl":"185px"}
+                        width: { "xs": "100px", "sm": "100px", "md": "100px", "lg": "185px", "xl": "185px" }
                     }}>
                         <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="JY"
-                         width="100%" height="100%" />
+                            width="100%" height="100%" />
                     </Box>
                     {!mobileScreen && <Stack className="LanguageSelectorSection" sx={{
                         alignItems: "center",
@@ -394,120 +404,25 @@ function Home() {
 
                         <Carousel id="corousel" showArrows={false} showStatus={false} showThumbs={false}
                             autoPlay={true}
-                        // renderIndicator={(clickHandler, isSelected, index, label) => (
-                        //     <div
-                        //         key={index}
-                        //         style={{
-                        //             display: "inline-block",
-                        //             width: isSelected ? "15px" : "8px",
-                        //             height: isSelected ? "8px" : "8px",
-                        //             // margin: "0 4px",
-                        //             borderRadius: isSelected ? "35%" : "50%",
-                        //             background: isSelected ? "#FF671F" : "#FFFFFF",
-                        //             cursor: "pointer",
-                        //         }}
-                        //         onClick={clickHandler}
-                        //     />
-                        // )}
                         >
-                            {/* <div className="container">
+                            {web_carousal_images.map((img, index) => (
                                 <div
-                                    className="background"
-                                    style={{ backgroundImage: `url(${imageUrl})` }}
+                                    key={index}
+                                    class="carousel-container"
+                                    style={{
+                                        backgroundImage: `url(${img})`,
+                                        backgroundSize: 'cover',
+                                        backgroundRepeat: 'no-repeat',
+                                        backgroundPosition: 'center',
+                                        width: '100%',
+                                        height: '480px',
+                                        textAlign: 'left',
+                                    }}
                                 >
-                                    <span className="text-overlay">Your Text Here</span>
+                                    <CarousalContent />
                                 </div>
-                            </div> */}
-                            <div
-                                class="carousel-container"
-                                style={{
-                                    backgroundImage: `url(${imageUrl_1})`,
-                                    backgroundSize: 'cover',
-                                    backgroundRepeat: 'no-repeat',
-                                    backgroundPosition: 'center',
-                                    width: '100%',
-                                    height: '480px', // Set your desired height,
-                                    textAlign: 'left',
-                                }}
-                            >
-                                <CarousalContent/>
-                            </div>
-                            <div
-                                class="carousel-container"
-                                style={{
-                                    backgroundImage: `url(${imageUrl_2})`,
-                                    backgroundSize: 'cover',
-                                    backgroundRepeat: 'no-repeat',
-                                    backgroundPosition: 'center',
-                                    width: '100%',
-                                    height: '480px', // Set your desired height,
-                                    textAlign: 'left',
-                                }}
-                            >
-                                <CarousalContent/>
-                            </div>
-                            <div
-                                class="carousel-container"
-                                style={{
-                                    backgroundImage: `url(${imageUrl_3})`,
-                                    backgroundSize: 'cover',
-                                    backgroundRepeat: 'no-repeat',
-                                    backgroundPosition: 'center',
-                                    width: '100%',
-                                    height: '480px', // Set your desired height,
-                                    textAlign: 'left',
-                                }}
-                            >
-                                <CarousalContent/>
-                            </div>
-
-                            {/* <div>
-                                <img alt="carousel" src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/website_banner_1.png" />
-                            </div> */}
-                            {/* <div>
-                                <img alt="carousel" src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/website_banner_2.png" />
-                            </div>
-                            <div>
-                                <img alt="carousel" src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/website_banner_3.jpg" />
-                            </div> */}
+                            ))}
                         </Carousel>
-                        {/* <Stack sx={{ marginTop: { "xs": "0px", "sm": "0px", "md": "50px", "lg": "50px", "xl": "50px" } }}>
-                            <Typography variant="h1" component="h2" sx={{
-                                fontSize: { "xs": "33px", "sm": "33px", "md": "45px", "lg": "45px", "xl": "45px" },
-                                fontWeight: "600",
-                                color: "#000000",
-                                maxWidth: "450px",
-                                fontFamily: 'Montserrat',
-                                fontweight: "400",
-                                textAlign: { "xs": "center", "sm": "center", "md": "start", "lg": "start", "xl": "start" }
-                            }}>
-                                {t('WEBSITE_HEADING')}
-                            </Typography >
-
-                            <Typography variant="h1" component="h2" sx={{
-                                fontSize: { "xs": "12px", "sm": "12px", "md": "20px", "xl": "20px", "lg": "20px" },
-                                fontWeight: "300",
-                                color: "#000000",
-                                fontFamily: 'Montserrat',
-                                fontweight: "400",
-                                marginTop: "30px",
-                                maxWidth: "400px",
-                                lineHeight: "1.5",
-                                display: { "xs": "none", "sm": "none", "md": "block", "lg": "block", "xl": "block" }
-                            }}>
-                                {t('WEBSITE_SUB_HEADING')}
-                            </Typography >
-
-                            <Stack direction="row" gap={2} className="WebsiteButton" sx={{
-                                marginTop: "50px",
-                                width: { "xs": "100%", "sm": "100%", "md": "600px", "xl": "600px", "lg": "600px" }
-
-                            }}>
-                                <FindJobButton style={{ width: "100%" }} />
-                                <FindCandidateButton style={{ width: "100%" }} />
-                            </Stack>
-
-                        </Stack> */}
                     </Container>
                 </Box>
             }
@@ -528,17 +443,17 @@ function Home() {
                             justifyContent: "center"
                         }}>
 
-                            {jobCategoryData && jobCategoryData.slice(0, mobileScreen ? 3 : 7).map((item, index) => {
+                            {jobCategoryData && jobCategoryData.slice(0, mobileScreen ? 3 : 9).map((item, index) => {
                                 return (<JobCardComponent
                                     cardSection="CategorySection"
-                                    category_name={item.category_name}
-                                    category_image={item.image_link}
+                                    category_name={item[`category${lang}`]}
+                                    category_image={item.categoryimage_url}
                                     category_url_link={item.search_api}
                                     category_job_active={item.job_active_count}
                                     key={item._id} />)
                             })}
 
-                            <ViewMoreSection SectionText="View More Cities" />
+                            <ViewMoreSection SectionText="View More" />
                         </Stack>
                     </Stack>
                 </Container>
@@ -551,7 +466,7 @@ function Home() {
                 boxSizing: "border-box",
                 alignItems: "center"
             }}>
-                <Container className="SecBannerSection" sx={{ maxWidth: "1300px !important" }}>
+                <Container className="SecBannerSection" sx={{ maxWidth: "1300px !important" , display: 'flex', justifyContent:'space-evenly'}}>
 
                     <Typography variant="h1" component="h2" sx={{
                         fontSize: { "xs": '2.5rem', "sm": '2.5rem', "md": "2.5rem", "xl": "2.5rem", "lg": "2.5rem" },
@@ -559,11 +474,16 @@ function Home() {
                         fontWeight: "500"
                     }}>
                         <p>{t('ADVANTAGES_1')}</p>
-                        {/* <span style={{ color: "#FF671F" }}> Jaanchi, Parkhi</span> jobs
-                        har <span style={{ color: "#FF671F" }}> Hindustani</span> ke
-                        liye */}
                     </Typography >
-
+                    <img
+                        src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/middle_banner_image_1.png"
+                        alt="middle_banner"
+                        style={{
+                            maxWidth: 'auto',
+                            padding: '20px',
+                            height: mobileScreen ? '150px' : '250px',
+                        }}
+                        />
                 </Container>
             </Stack>
 
@@ -583,24 +503,21 @@ function Home() {
                             flexWrap: "wrap",
                             justifyContent: "center"
                         }}>
-                            {JobLocation.slice(0, mobileScreen ? 3 : 7).map((item, index) => {
+                            {jobLocationData.slice(0, mobileScreen ? 3 : 7).map((item, index) => {
                                 return (<JobCardComponent
                                     cardSection="LocationSection"
-                                    category_name={item.text}
+                                    category_name={item[`location${lang}`]}
                                     category_image="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/map.png"
                                     category_url_link={item.search_api}
                                     category_job_active={item.job_active_count}
                                     key={index}
                                 />)
                             })}
-
-
-                            <ViewMoreSection SectionText="View More Cities" />
+                           <ViewMoreSection SectionText="View More" />
                         </Stack>
                     </Stack>
                 </Container>
             </Box >
-
             <Stack className="JobsYahanAdvantageSection" direction="column" gap={2} alignItems="center"
                 sx={{
                     position: "relative",
@@ -611,8 +528,6 @@ function Home() {
                 <Box className="SectionHeading">
                     <Heading headingText={t('JOB_YAHAN_ADVANTAGES')} />
                 </Box>
-
-
                 <Stack className="AdvantageSection" sx={AdvantageSectionStyle}>
                     <Box sx={{
                         width: mobileScreen ? "100px" : "600px",
