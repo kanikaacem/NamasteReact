@@ -55,7 +55,7 @@ const OTPVerification = () => {
         try {
             const api_url = process.env.REACT_APP_VERIFY_OTP;
             const response = await postRequest(api_url, {
-                "inputdata": mobile_number,
+                "mobile": mobile_number,
                 "usertype": "candidate",
                 "otp": otp
             });
@@ -76,7 +76,7 @@ const OTPVerification = () => {
         try {
             const api_url = process.env.REACT_APP_GENERATE_OTP;
             const response = await postRequest(api_url, {
-                "inputdata": mobile_number,
+                "mobile": mobile_number,
                 "usertype": "candidate"
 
             });
