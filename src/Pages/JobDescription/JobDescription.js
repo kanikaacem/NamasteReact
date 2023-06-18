@@ -15,11 +15,12 @@ const JobDescription = () => {
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get('id');
     const [jobDescription, setJobDescription] = useState(null);
+    const language = localStorage.getItem("locale")
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const api_url = process.env.REACT_APP_GET_JOB_ITEMS + "?jobid=" + id; // Replace with your .env variable name
+                const api_url = process.env.REACT_APP_GET_JOB_ITEMS + "?language="+ language + "&jobid=" + id; // Replace with your .env variable name
                 const data = await getRequest(api_url);
                 setJobDescription(data.data[0])
             } catch (error) {
@@ -156,7 +157,7 @@ const JobDescription = () => {
 
                         <SectionSeperator />
 
-                        {jobDescription?.jobDescription && <>
+                        {jobDescription?.jobDescriptions && <>
                             <Stack direction="column" gap={1}>
                                 <Typography sx={{
                                     fontSize: { "xs": "1rem", "sm": "1rem", "md": "1.3rem", "lg": "1.3rem", "xl": "1.3rem" },
@@ -168,7 +169,7 @@ const JobDescription = () => {
                                     ...stackStyles,
                                     color: "#615F5F"
                                 }}>
-                                    {jobDescription?.jobDescription}
+                                    {jobDescription?.jobDescriptions}
                                 </Typography>
                             </Stack>
                             <SectionSeperator />
