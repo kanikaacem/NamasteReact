@@ -2,10 +2,9 @@ import { getRequest } from "../../utils/ApiRequests"
 import FormControl from '@mui/material/FormControl';
 import { Box, Button, Stack, Container, Select, MenuItem, Breadcrumbs, Link, Autocomplete, TextField } from "@mui/material";
 import { LinkStyles } from "../../utils/Styles";
-// import PageTopSection from '../Common/PageTopSection';
+import PageTopSection from '../Common/PageTopSection';
 import JobItem from "./JobItem";
 import Footer from "../../ThemeComponent/Common/Footer";
-import Header from "../Common/Header";
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
@@ -179,8 +178,7 @@ const JobListing = () => {
             minHeight: "100vh"
         }}>
             
-            {/* <PageTopSection showBackButton={true} /> */}
-            <Header/>
+            <PageTopSection showBackButton={true} />
             <Box className="WebsiteBreadcrumb" sx={{
                 padding: {
                     "xs": "10px", "sm": "10px",

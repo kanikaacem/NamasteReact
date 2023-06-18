@@ -1,4 +1,4 @@
-import { Box, Stack, Button } from "@mui/material";
+import { Box, Stack, Button, mobileStepperClasses } from "@mui/material";
 import LanguageTranslatorSection from "../Common/LanguageTranslaterSection";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
@@ -13,7 +13,7 @@ const FooterHeader = () => {
                 background: "#FF671F",
                 borderRadius: "33px",
                 textTransform: "capitalize",
-                fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
+                fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
                 "&:hover": {
                     background: "#FF671F",
                 },
@@ -32,7 +32,7 @@ const FooterHeader = () => {
                 borderRadius: "33px",
                 textTransform: "capitalize",
                 border: "1px solid",
-                fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1.5rem", "lg": "1.5rem", "xl": "1.5rem" },
+                fontSize: { "xs": "0.8rem", "sm": "0.8rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
                 "&:hover": {
                     color: "#FF671F",
                     border: "1px solid",
@@ -46,7 +46,7 @@ const FooterHeader = () => {
     }
     return (
         <Box className="FooterHeader" sx={{
-            minHeight: { "xs": "50px", "sm": "50px", "md": "100px", "lg": "100px", "xl": "100px" },
+            // minHeight: { "xs": "50px", "sm": "50px", "md": "100px", "lg": "100px", "xl": "100px" },
             width: "100%",
             padding: { "xs": "10px", "sm": "10px", "md": "20px 100px", "lg": "20px 100px", "xl": "20px 100px" },
             boxSizing: "border-box",
@@ -82,7 +82,8 @@ const FooterHeader = () => {
                 <Stack
                     sx={{
                         width: { "xs": "fit-content", "sm": "fit-content", "md": "1150px", "lg": "1150px", "xl": "1150px" },
-                        alignItems: !mobileScreen && "flex-end"
+                        alignItems: !mobileScreen && "flex-end",
+                        justifyContent: mobileScreen && "space-between"
                     }}
                 >
                     <Stack direction="row" gap={1} sx={{
