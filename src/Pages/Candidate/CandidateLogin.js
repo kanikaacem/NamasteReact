@@ -27,8 +27,8 @@ const CandidateLogin = () => {
         const candidateFormData = {
             inputdata: values.mobile_number,
             usertype: "candidate",
-            latitude: latitude,
-            longitude: longitude,
+            latitude: latitude.toString(),
+            longitude: longitude.toString(),
         };
 
 

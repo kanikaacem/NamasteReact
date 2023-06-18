@@ -12,7 +12,7 @@ export const jobItemStyles = {
     boxShadow: '0px 2px 14px rgba(191, 191, 191, 0.25)',
     borderRadius: '6px',
     boxSizing: 'border-box',
-    padding: '20px',
+    padding: '0px',
     position: "relative"
 };
 

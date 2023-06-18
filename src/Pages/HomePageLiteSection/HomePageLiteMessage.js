@@ -31,7 +31,7 @@ const HomePageLiteMessage = ({ value, setValue, message }) => {
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                     Hum aapse jald hi sampark karenge.
                 </Typography>
-                <Button sx={{ marginTop: "12px", backgroundColor: "#FF671F" }} variant="contained" onClose={() => setValue(!value)}>
+                <Button sx={{ marginTop: "12px", backgroundColor: "#FF671F" }} variant="contained" onClick={() => setValue(!value)}>
                     Okay
                 </Button>
             </Box>
