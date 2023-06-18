@@ -183,6 +183,21 @@
     "CORE_VALUES_HEADING_4_DESCRIPTION": "In the context of digital technology, leading technology refers to the latest and most advanced technologies that are used in the development of software, hardware, and other digital products and services. JobsYahan will leverage cutting-edge technology on our platform, utilising intelligent algorithms and real-time data analysis to simplify and optimise the hiring process. By continuously innovating and staying ahead of technological advancements, we will deliver a seamless and user-centric experience, setting new industry standards in workforce job search.",
     "ADVANTAGES_1": "Genuine jobs",
     "ADVANTAGES_2": "Near you",
-    "ADVANTAGES_3": "Easy to use"
+    "ADVANTAGES_3": "Easy to use",
+    "CJ_HEADING": "JobsYahan - Simplifying Employement for Bharat Workforce",
+    "CJ_HEADING_1": "Share your requirements & we'll contact you soon!",
+    "CJ_USERNAME": "Share your phone number or email",
+    "CJ_BTN_NEXT": "Next",
+    "CJ_LINK_EMP_LOGIN": "Employer Login",
+    "CJ_FORM_TITLE": "Please share your Job requirement",
+    "CJ_FIELDS_1":  "Your business name?",
+    "CJ_FIELDS_2":  "What does your business do?",
+    "CJ_FIELDS_3":  "What are the job details?",
+    "CJ_FIELDS_4":  "In which city is the job located?",
+    "CJ_FIELDS_5":  "How many candidates are required?",
+    "SUBMIT": "Submit",
+    "EMPR_LOGIN_BANNER": "Simplifying Employment for Bharat Workforce!",
+    "EMPR_USERNAME": "Enter your username",
+    "EMPR_PASSWORD": "Enter password"
 
 }

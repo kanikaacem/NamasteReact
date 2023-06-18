@@ -8,7 +8,9 @@ import { useNavigate } from "react-router-dom";
 // import { Helmet } from "react-helmet";
 // import { RWebShare } from "react-web-share";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 const CandidateCredentialsForm = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const defaultValue = {
         user_credentials: ""
@@ -64,8 +66,21 @@ const CandidateCredentialsForm = () => {
                                 fontWeight: "600"
                             }}
                         >
-                            Hum aapki requirement ke liye aapse sampark karenge!
+                         {t('CJ_HEADING')}
                         </Typography>
+                        <Typography
+                            variant="h1"
+                            component="h2"
+                            sx={{
+                                fontSize: "1rem",
+                                marginTop: "10px",
+                                textAlign: "center",
+                                fontWeight: "500"
+                            }}
+                        >
+                         {t('CJ_HEADING_1')}
+                        </Typography>
+
                         <Box sx={{ position: "absolute", bottom: "-5px" }}>
                             <img
                                 src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/candidate_khoze_banner.png"
@@ -82,7 +97,7 @@ const CandidateCredentialsForm = () => {
                                 <Form className="CandidateCredentialsform">
                                     <Box >
                                         <FormLabel
-                                            LableText="Apna phone number ya email Share karein"
+                                            LableText={t('CJ_USERNAME')}
                                             LableFor="user_credentials"
                                             sx={{ marginBottom: "10px" }}
                                         />
@@ -96,7 +111,7 @@ const CandidateCredentialsForm = () => {
                                         {/* {errors.user_credentials && touched.user_credentials && <Error text={errors.user_credentials} />} */}
                                     </Box>
                                     <Button variant="contained" type="submit" className="OrangeButton">
-                                        Next
+                                        {t('CJ_BTN_NEXT')}
                                     </Button>
                                 </Form>
                             )}
@@ -112,7 +127,7 @@ const CandidateCredentialsForm = () => {
                                 cursor: "pointer"
                             }}
                         >
-                            Employer Login
+                            {t('CJ_LINK_EMP_LOGIN')}
                         </Typography>
                         <Typography
                             sx={{
@@ -122,8 +137,8 @@ const CandidateCredentialsForm = () => {
                                 textAlign: "center"
                             }}
                         >
-                            By continuing, you agree to JobYahan <span style={{ color: "#0D99FF" }}>Terms & Conditions</span> and{" "}
-                            <span style={{ color: "#0D99FF" }}>Privacy & Policy</span>
+                            By continuing, you agree to the <span style={{ color: "#0D99FF" }}>Terms & Conditions</span> and{" "}
+                            <span style={{ color: "#0D99FF" }}>Privacy & Policy</span> of JobsYahan.
                         </Typography>
 
                     </Box>

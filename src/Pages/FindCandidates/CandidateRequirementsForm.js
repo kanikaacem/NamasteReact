@@ -7,7 +7,9 @@ import FormLabel from "../Common/FormLabel";
 import { Formik, Field, Form } from "formik";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const CandidateRequirementsForm = () => {
+    const { t } = useTranslation();
     const location = useLocation();
     const inputfield = location?.state && location?.state?.inputfield;
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -43,12 +45,13 @@ const CandidateRequirementsForm = () => {
     }
 
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("md"));
+    
 
     return (
         <Box className="CandidateRequirementsForm" sx={{ minHeight: "100vh" }} >
             <Container maxWidth={isDesktop ? "md" : false} sx={{ padding: "0px" }}>
                 <Box >
-                    <PageTopSection TopSectionName="Apni requirement ki jaankari de" />
+                    <PageTopSection TopSectionName={t('CJ_FORM_TITLE')} />
                     <Box className="CandidateCredentialsForm" sx={{ padding: "20px", background: isDesktop ? "#ffffff" : "#FEF5F1" }} >
                         <Formik
 
@@ -58,7 +61,7 @@ const CandidateRequirementsForm = () => {
                             {({ errors, touched, values, setFieldValue }) => (
                                 <Form className="CandidateRequirementForm" >
                                     <Box className="FormGroup">
-                                        <FormLabel LableText="Aapke Business ka naam?" LableFor="businessname" />
+                                        <FormLabel LableText={t('CJ_FIELDS_1')} LableFor="businessname" />
                                         <Field id="businessname"
                                             type="text" placeholder="Enter Business Name"
                                             name="businessname"
@@ -67,7 +70,7 @@ const CandidateRequirementsForm = () => {
 
                                     </Box>
                                     <Box className="FormGroup">
-                                        <FormLabel LableText="Aapka Business kya karta hai?" LableFor="businessType" />
+                                        <FormLabel LableText={t('CJ_FIELDS_2')} LableFor="businessType" />
                                         <Field id="businessType"
                                             type="text" placeholder="Enter Business Details"
                                             name="businessType"
@@ -76,7 +79,7 @@ const CandidateRequirementsForm = () => {
 
                                     </Box>
                                     <Box className="FormGroup">
-                                        <FormLabel LableText="Job kya hai?" LableFor="jobDetails" />
+                                        <FormLabel LableText={t('CJ_FIELDS_3')} LableFor="jobDetails" />
                                         <Field id="jobDetails"
                                             type="text" placeholder="Enter Job Details"
                                             name="jobDetails"
@@ -85,7 +88,7 @@ const CandidateRequirementsForm = () => {
 
                                     </Box>
                                     <Box className="FormGroup">
-                                        <FormLabel LableText="Job kaun se sheher mein hai?" LableFor="jobLocation" />
+                                        <FormLabel LableText={t('CJ_FIELDS_4')} LableFor="jobLocation" />
                                         <Field id="jobLocation"
                                             type="text" placeholder="Enter Job Location"
                                             name="jobLocation"
@@ -94,7 +97,7 @@ const CandidateRequirementsForm = () => {
 
                                     </Box>
                                     <Box className="FormGroup">
-                                        <FormLabel LableText="Kitne Candidates Chahiye?" LableFor="candidateVacancy" />
+                                        <FormLabel LableText={t('CJ_FIELDS_5')} LableFor="candidateVacancy" />
                                         <Field id="candidateVacancy"
                                             type="text" placeholder="Enter Candidate Count"
                                             name="candidateVacancy"
@@ -104,7 +107,7 @@ const CandidateRequirementsForm = () => {
                                     </Box>
                                     <Button variant="contained" type="submit" className="OrangeButton" sx={{
                                         margin: "20px 0px !important"
-                                    }} >Submit</Button>
+                                    }} >{t('SUBMIT')}</Button>
                                 </Form>
                             )}
                         </Formik>

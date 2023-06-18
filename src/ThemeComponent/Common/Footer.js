@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 const Footer = () => {
+    const currentYear = new Date().getFullYear();
     const currentLanguage = useSelector(state => state.currentLanguage);
 
     const FooterCompanyLinks = [
@@ -124,7 +125,7 @@ const Footer = () => {
                     color: "#B4A9C2",
                     textAlign: "center",
                 }}>
-                    © 2023 JobsYahan technology private limited
+                    © {currentYear} JobsYahan Technologies India Pvt. Ltd.
                 </Typography >
             </Stack>
         </Stack >
