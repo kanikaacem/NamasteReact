@@ -7,12 +7,12 @@ const JobCardComponent = (props) => {
     const JobItemStyles = {
         padding: { "xs": "20px", "sm": "20px", "md": "28px", "lg": "28px", "xl": "28px" },
         width: { "xs": "156px", "sm": "156px", "md": "300px", "xl": "300px", "lg": "300px" },
-        minHeight: { "xs": "112px", "sm": "112px", "md": "300px", "xl": "300px", "lg": "300px" },
-        borderRadius: "15px",
+        minHeight:  { "xs": "112px", "sm": "112px", "md": "300px", "xl": "300px", "lg": "300px" },
         boxSizing: "border-box",
         background: " #FFFFFF",
-        boxShadow: "0px 2px 14px rgba(191, 191, 191, 0.25)",
-        cursor: "pointer"
+        cursor: "pointer",
+        border: '1px solid rgba(217, 217, 217, 0.36)',
+        borderRadius: '16px',
     }
 
     const LocationSection = cardSection === "LocationSection";
@@ -29,6 +29,7 @@ const JobCardComponent = (props) => {
 
     }
 
+    let handleImageError = "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/category-icons/fallback-image.png";
     return (<>
         <Stack className="JobItem" direction="column" gap={2} alignItems="center" justifyContent="center" sx={JobItemStyles}
             onClick={() => {
@@ -42,6 +43,7 @@ const JobCardComponent = (props) => {
                     alt="Category Icon"
                     width="100%"
                     height="100%"
+                    onError={handleImageError}
                     style={{
                         borderRadius: LocationSection && "50%"
                     }} />
