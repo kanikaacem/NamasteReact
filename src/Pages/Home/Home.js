@@ -1,5 +1,5 @@
 import { getRequest, postRequest } from "../../utils/ApiRequests";
-import { Box, Stack, Container, Button, Typography, FormControl, Input, Tooltip } from "@mui/material";
+import { Box, Stack, Container, Button, Typography, FormControl, Input, Tooltip, Grid } from "@mui/material";
 
 /* Site Header */
 import LanguageTranslatorSection from "../Common/LanguageTranslaterSection";
@@ -448,37 +448,35 @@ function Home() {
                 </Container>
             </Box >
 
-            <Stack sx={{
+            <Grid container justifyContent="center" sx={{
                 minHeight: "255px",
                 background: "#ffffff",
-                padding: "20px",
                 boxSizing: "border-box",
                 alignItems: "center"
             }}>
-                <Container className="SecBannerSection" sx={{ maxWidth: "1300px !important", display: 'flex', justifyContent: 'space-evenly' }}>
-
+                <Grid item xs={12} sm={6} container justifyContent="center">
                     <Typography variant="h1" component="h2" sx={{
-                        fontSize: { "xs": '2.5rem', "sm": '2.5rem', "md": "2.5rem", "xl": "2.5rem", "lg": "2.5rem" },
-                        width: { "xs": "40%", "sm": "40%", "md": "40%", "lg": "40%", "xl": "40%" },
-                        fontWeight: "500"
+                        fontSize: "2.5rem",
+                        textAlign: 'center',
+                        fontWeight: "500",
+                        maxWidth: '300px'
                     }}>
                         <p>{t('FINDING_JOB_MADE_EASY_AND_SIMPLE_FOR_ANYONE')}</p>
-                        {/* <span style={{ color: "#FF671F" }}> Jaanchi, Parkhi</span> jobs
-                        har <span style={{ color: "#FF671F" }}> Hindustani</span> ke
-                        liye */}
                     </Typography >
+                </Grid>
+                <Grid item xs={12} sm={6} container justifyContent="center">
                     <img
                         src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/middle_banner_image_1.png"
                         alt="middle_banner"
                         style={{
                             maxWidth: 'auto',
                             padding: '20px',
-                            height: mobileScreen ? '150px' : '250px',
+                            borderRadius: '40px',
+                            height: mobileScreen ? '180px' : '280px',
                         }}
                     />
-                </Container>
-            </Stack>
-
+                </Grid>
+            </Grid>
             <Box className="JobLocationSection"
                 sx={{
                     width: "100%",
