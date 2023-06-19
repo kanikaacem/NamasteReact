@@ -12,7 +12,7 @@ const LanguageTranslatorSection = () => {
             let locale = localStorage.getItem('locale');
             dispatch({ type: 'CHANGE_LANGUAGE', payload: locale });
         } else {
-            localStorage.setItem("locale", 'en');
+            localStorage.setItem("locale", 'hn');
         }
     },[])
     
