@@ -8,14 +8,14 @@ const LanguageTranslatorSection = () => {
     const { t } = useTranslation();
 
     useEffect(() => {
-        if(localStorage.getItem('locale')) {
+        if (localStorage.getItem('locale')) {
             let locale = localStorage.getItem('locale');
             dispatch({ type: 'CHANGE_LANGUAGE', payload: locale });
         } else {
             localStorage.setItem("locale", 'hn');
         }
-    },[])
-    
+    }, [])
+
     const currentLanguage = useSelector(state => state.currentLanguage);
     const ChangeLanguage = (event) => {
         dispatch({ type: 'CHANGE_LANGUAGE', payload: event.target.value });

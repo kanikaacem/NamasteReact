@@ -1,4 +1,4 @@
-
+import { postRequest } from "../../utils/ApiRequests";
 import { Box, Typography, Stack, Button } from "@mui/material";
 import { Formik, Field, Form } from "formik";
 import { contactUsValidationSchema } from "../../Validation/EmployerValidation";
@@ -6,7 +6,9 @@ import FormLabel from "../Common/FormLabel";
 import Error from "../../ThemeComponent/Common/Error";
 import Header from "../Common/Header";
 import Footer from "../../ThemeComponent/Common/Footer";
+import HomePageLiteMessage from "../HomePageLiteSection/HomePageLiteMessage";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 const ContactUs = () => {
 
     const { t } = useTranslation();
@@ -15,8 +17,28 @@ const ContactUs = () => {
         mobile_number: "",
         message: ""
     }
-    const handleSubmit = (values, { setFieldError }) => {
-        console.log(values);
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const handleSubmit = async (values, { resetForm }) => {
+        // console.log(values);
+        const { name, mobile_number, message } = values;
+        let SendMessageForm = new FormData();
+        SendMessageForm = {
+            name: name,
+            mobile: mobile_number,
+            message: message
+        }
+
+        try {
+            const api_url = process.env.REACT_APP_BASE_URL + "/api/postcontactusinformation";
+            const response = await postRequest(api_url, SendMessageForm);
+            if (response.status === "1") {
+                setFormSubmitted(true);
+                resetForm();
+            }
+
+        } catch (error) {
+            console.error("Fetch error:", error);
+        }
     }
     return (<>
         <Box
@@ -88,7 +110,6 @@ const ContactUs = () => {
                         <Stack gap={2} sx={{
                             width: { "xs": "87%", "sm": "87%", "md": "60%", "lg": "60%", "xl": "60%" },
                             background: "#FBF8FF",
-                            // boxShadow: "0px 4px 40px rgba(252, 154, 126, 0.3)",
                             borderRadius: "19px",
                             padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "10px" }
                         }}>
@@ -105,30 +126,33 @@ const ContactUs = () => {
                                     <Form className="ContactUsForm">
 
                                         <Box className="FormGroup">
-                                            <FormLabel LableText="Name" LableFor="name" />
+                                            <FormLabel LableText={t('NAME')} LableFor="name" />
                                             <Field id="jobLocation"
                                                 type="text" placeholder="Enter your name"
                                                 name="name"
-                                                className="custom-text-field" />
+                                                className="custom-text-field"
+                                                autoComplete="off" />
                                             {errors.name && touched.name && <Error text={errors.name} />}
 
                                         </Box>
                                         <Box className="FormGroup">
-                                            <FormLabel LableText="Mobile Number" LableFor="mobile_number" />
+                                            <FormLabel LableText={t('MOBILE_NUMBER')} LableFor="mobile_number" />
                                             <Field id="jobLocation"
                                                 type="text" placeholder="Enter your Mobile Number"
                                                 name="mobile_number"
-                                                className="custom-text-field" />
+                                                className="custom-text-field"
+                                                autoComplete="off" />
                                             {errors.mobile_number && touched.mobile_number && <Error text={errors.mobile_number} />}
 
                                         </Box>
 
                                         <Box className="FormGroup">
-                                            <FormLabel LableText="Message" LableFor="message" />
+                                            <FormLabel LableText={t('MESSAGE')} LableFor="message" />
                                             <Field id="message"
                                                 as="textarea" placeholder="Enter your message"
                                                 name="message"
                                                 className="custom-text-field"
+                                                autoComplete="off"
                                                 rows={4} />
                                             {errors.message && touched.message && <Error text={errors.message} />}
 
@@ -136,7 +160,7 @@ const ContactUs = () => {
 
                                         <Button variant="contained" type="submit" className="OrangeButton" sx={{
                                             margin: "20px 0px !important"
-                                        }} >Send Message</Button>
+                                        }} >{t('SEND_MESSAGE')}</Button>
 
                                     </Form>
                                 )}
@@ -146,7 +170,9 @@ const ContactUs = () => {
                     </Stack>
                 </Stack>
             </Box>
-            <Footer/>
+            <HomePageLiteMessage value={formSubmitted} setValue={setFormSubmitted} message="Your message is successfully submitted." />
+
+            <Footer />
         </Box >
     </>)
 }

@@ -5,12 +5,13 @@ import { useNavigate } from "react-router-dom";
 import JobApplyWeb from "../Common/JobApplyWeb";
 import { postRequest } from "../../utils/ApiRequests";
 import HomePageLiteMessage from "../HomePageLiteSection/HomePageLiteMessage";
-
+import { useTranslation } from 'react-i18next';
 const ApplyForJobWebButton = ({ jobId, buttonStyle }) => {
     const [openJobApplyModal, setOpenJobApplyModal] = React.useState(false);
-    const [formSubmitted, setFormSubmitted]= React.useState(false);
-    const [ message, setMessage] =  React.useState(false);
+    const [formSubmitted, setFormSubmitted] = React.useState(false);
+    const [message, setMessage] = React.useState(false);
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const ApplyForJob = async (event) => {
         if (localStorage.getItem("auth_token") === null)
             navigate("/candidate-login");
@@ -24,35 +25,35 @@ const ApplyForJobWebButton = ({ jobId, buttonStyle }) => {
             try {
                 const api_url = process.env.REACT_APP_CANDIDATE_APPLY_JOB
                 const response = await postRequest(api_url, applyViaWebForm);
-                if (response.status === '1'){
+                if (response.status === '1') {
                     setMessage("Your job is successfully submitted.")
                     setFormSubmitted(true)
-                }else if(response.status === '2') {
+                } else if (response.status === '2') {
                     setMessage("You have already applied this job.")
                     setFormSubmitted(true)
                 }
             } catch (error) {
                 // Handle the error
-                
+
             }
         }
     }
 
-return (
-    <>
-        {openJobApplyModal && <JobApplyWeb openJobApplyModal={openJobApplyModal} setOpenJobApplyModal={setOpenJobApplyModal} />}
-        <Button variant={buttonStyle ? "contained" : "outlined"}
-            onClick={ApplyForJob} sx={{
-                ...ApplyButtonStyles,
-                background: buttonStyle === "contained" && "#FF671F",
-                color: buttonStyle !== "contained" && "#FF671F",
-                "&:hover": {
+    return (
+        <>
+            {openJobApplyModal && <JobApplyWeb openJobApplyModal={openJobApplyModal} setOpenJobApplyModal={setOpenJobApplyModal} />}
+            <Button variant={buttonStyle ? "contained" : "outlined"}
+                onClick={ApplyForJob} sx={{
+                    ...ApplyButtonStyles,
                     background: buttonStyle === "contained" && "#FF671F",
-                    color: buttonStyle !== "contained" && "#FF671F"
+                    color: buttonStyle !== "contained" && "#FF671F",
+                    "&:hover": {
+                        background: buttonStyle === "contained" && "#FF671F",
+                        color: buttonStyle !== "contained" && "#FF671F"
 
-                }
-            }}>Apply via Web</Button>
-        <HomePageLiteMessage value={formSubmitted} setValue={setFormSubmitted} message={message} />
-    </>)
+                    }
+                }}>{t('APPLY_VIA_WEB')}</Button>
+            <HomePageLiteMessage value={formSubmitted} setValue={setFormSubmitted} message={message} />
+        </>)
 }
 export default ApplyForJobWebButton;

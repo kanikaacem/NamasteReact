@@ -9,7 +9,7 @@ import Footer from "../../ThemeComponent/Common/Footer";
 import Heading from "./Component/Heading";
 
 import { WebsiteMainHeading } from "../../utils/Styles";
-
+import WebsiteLogo from "../Common/WebsiteLogo";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
@@ -46,6 +46,7 @@ const JobAdvantageDescriptionStyle = {
 
 const FindJobButton = ({ style }) => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     return (<Button variant="contained"
         onClick={() => navigate("job-listing")}
         sx={{
@@ -58,10 +59,12 @@ const FindJobButton = ({ style }) => {
             },
             ...style // Apply custom styles passed via the style prop
         }
-        }> Job खोजें</Button >)
+        }> {t('FIND_JOB')}</Button >)
 }
 
 const FindCandidateButton = ({ style }) => {
+    const { t } = useTranslation();
+
     const navigate = useNavigate();
     return (<Button
         onClick={() => navigate("candidate-khoze")}
@@ -78,7 +81,7 @@ const FindCandidateButton = ({ style }) => {
             },
             ...style // Apply custom styles passed via the style prop
         }}
-        variant="outlined">Candidate खोजें </Button>)
+        variant="outlined">{t('FIND_CANDIDATE')}</Button>)
 }
 
 
@@ -193,8 +196,8 @@ function Home() {
         <h2 className="carousel-heading">{t('WEBSITE_HEADING')}</h2>
         <h2 className="carousel-text">{t('WEBSITE_SUB_HEADING')}</h2>
         <div style={{ display: 'flex', justifyContent: 'flex-start', width: "70%", marginTop: '36px' }}>
-            <a href="/job-listing" className="carousel-button carousel-primary-button">Job खोजें</a>
-            <a href="/candidate-khoze" className="carousel-button carousel-secondary-button">Candidate खोजें</a>
+            <a href="/job-listing" className="carousel-button carousel-primary-button">{t('FIND_JOB')}</a>
+            <a href="/candidate-khoze" className="carousel-button carousel-secondary-button">{t('FIND_CANDIDATE')}</a>
         </div>
     </div>
     return (<>
@@ -259,12 +262,8 @@ function Home() {
                     sx={{
                         justifyContent: mobileScreen ? "space-between" : "flex-start"
                     }}>
-                    <Box className="WebsiteLogo" sx={{
-                        width: { "xs": "100px", "sm": "100px", "md": "100px", "lg": "185px", "xl": "185px" }
-                    }}>
-                        <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="JY"
-                            width="100%" height="100%" />
-                    </Box>
+                    <WebsiteLogo />
+
                     {!mobileScreen && <Stack className="LanguageSelectorSection" sx={{
                         alignItems: "center",
                         justifyContent: "center"
@@ -291,9 +290,9 @@ function Home() {
                                 height: "inherit"
                             }}>
                                 <FindJobButton style={!mobileScreen && { width: "200px", height: "45px" }} />
-                                <FindCandidateButton style={!mobileScreen && { width: "300px", height: "45px" }} />
-                            </Stack>}
-
+                                <FindCandidateButton style={!mobileScreen && { width: "200px", height: "45px" }} />
+                            </Stack>
+                        }
                     </Stack>
 
                 </Stack>

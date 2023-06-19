@@ -101,14 +101,14 @@ const Footer = () => {
                     }}>
                         {social_icons.map((item) => {
                             return (
-                                <Link key={item.id} to="#" style={{ textDecoration: 'none' }}>
+                                <a key={item.id} href={item.icon_url} style={{ textDecoration: 'none' }}>
                                     <Box sx={{
                                         width: { "xs": "15px", "sm": "15px", "md": "30px", "lg": "30px", "xl": "30px" },
                                         height: { "xs": "15px", "sm": "15px", "md": "30px", "lg": "30px", "xl": "30px" }
                                     }}>
                                         <img src={item.icon_image} alt={item.icon_text} width="100%" height="100%" />
                                     </Box>
-                                </Link>)
+                                </a>)
                         })}
                     </Stack>
                 </Stack>

@@ -10,6 +10,7 @@ import { replaceUnderscore } from "../../utils/function";
 import { useState, useEffect } from "react";
 import moment from 'moment';
 import ShareJob from "../Common/ShareJob";
+import { useTranslation } from "react-i18next";
 const JobDescription = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -17,10 +18,11 @@ const JobDescription = () => {
     const [jobDescription, setJobDescription] = useState(null);
     const language = localStorage.getItem("locale")
 
+    const { t } = useTranslation();
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const api_url = process.env.REACT_APP_GET_JOB_ITEMS + "?language="+ language + "&jobid=" + id; // Replace with your .env variable name
+                const api_url = process.env.REACT_APP_GET_JOB_ITEMS + "?language=" + language + "&jobid=" + id; // Replace with your .env variable name
                 const data = await getRequest(api_url);
                 setJobDescription(data.data[0])
             } catch (error) {
@@ -33,10 +35,10 @@ const JobDescription = () => {
 
     const breadcrumbs = [
         <Link underline="hover" sx={LinkStyles} key="1" color="inherit" href="/" >
-            Home
+            {t('HOME')}
         </Link>,
         <Link underline="hover" sx={LinkStyles} key="2" color="inherit" href="/job-listing" >
-            Posted Job
+            {t('POSTED_JOBS')}
         </Link>,
         <Link
             sx={LinkStyles}
@@ -45,7 +47,7 @@ const JobDescription = () => {
             color="#FF671F"
             fontWeight="600"
         >
-            Job Detail
+            {t('JOB_DETAIL')}
         </Link>
     ];
 
@@ -60,7 +62,7 @@ const JobDescription = () => {
     return (
         <Box className="JobDescriptionPage" sx={{
             minHeight: "100vh",
-        }}> 
+        }}>
             <PageTopSection showBackButton={true} />
 
             <Box className="WebsiteBreadcrumb" sx={{
@@ -150,9 +152,9 @@ const JobDescription = () => {
                         <Stack direction="row" gap={2}>
                             <ApplyForJobButton jobId={id} />
                             <ShareJob jobId={id} jobRole={jobDescription?.jobRole}
-                                jobDescription={jobDescription?.jobDescriptions} 
-                                />
-                           
+                                jobDescription={jobDescription?.jobDescriptions}
+                            />
+
                         </Stack>
 
                         <SectionSeperator />

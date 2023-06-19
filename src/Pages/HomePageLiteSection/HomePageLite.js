@@ -50,7 +50,7 @@ const HomePageLite = () => {
                     sx={{
                         padding: "20px"
                     }}>
-                    <Button sx={{ ...WebsiteContainedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px" }} onClick={() => navigate("/useraction")}>jOB yAHAN sahayak</Button>
+                    <Button sx={{ ...WebsiteContainedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px" }} onClick={() => navigate("/useraction")}>{t('JOBYAHAN_HELPER')}</Button>
                     <Stack direction="row" justifyContent="space-between">
                         <Button sx={{ ...WebsiteOutlinedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px", width: "49%" }} onClick={() => navigate("/job-listing")}>Job खोजें</Button>
                         <Button sx={{ ...WebsiteOutlinedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px", width: "49%" }} onClick={() => navigate("/candidate-khoze")}>Candidate खोजें</Button>

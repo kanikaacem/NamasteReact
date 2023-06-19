@@ -13,17 +13,17 @@ import { useNavigate } from "react-router-dom";
 const JobListing = () => {
     // const [category, setCategory] = useState('');
     const { t } = useTranslation();
+
     const [location, setLocation] = useState('one');
     const [loadJobs, setLoadJobs] = useState({ page: 1, limit: 20 });
 
     const mobileScreen = useSelector(state => state.screenType) === "mobile";
-
     const [postedJobs, setPostedJobs] = useState([]);
     const [jobRoleFilterData, setJobRoleFilterData] = useState([]);
 
     const breadcrumbs = [
         <Link underline="hover" sx={LinkStyles} key="1" color="inherit" href="/" >
-            Home
+            {t('HOME')}
         </Link>,
         <Link
             sx={LinkStyles}
@@ -32,7 +32,7 @@ const JobListing = () => {
             color="#FF671F"
             fontWeight="600"
         >
-            Posted Job
+            {t('POSTED_JOBS')}
         </Link>
     ];
     const LocationFilter = [
@@ -98,7 +98,7 @@ const JobListing = () => {
 
         api_url = api_url + "?page=" + (loadJobs.page + 1);
         if (location) {
-            api_url = api_url + "&keyrange=" + location ;
+            api_url = api_url + "&keyrange=" + location;
 
         }
         try {
@@ -140,10 +140,10 @@ const JobListing = () => {
 
     }
 
-    useEffect(() => { 
+    useEffect(() => {
         let coords = JSON.parse(localStorage.getItem("coordinates"));
         let api_url = process.env.REACT_APP_GET_JOB_ITEMS; // Replace with your .env variable name
-        location && (api_url = api_url + "?keyrange=" + location+ "&lat=" + coords.lat + "&lng=" +coords.lng);
+        location && (api_url = api_url + "?keyrange=" + location + "&lat=" + coords.lat + "&lng=" + coords.lng);
 
         const fetchData = async () => {
             try {
@@ -177,7 +177,7 @@ const JobListing = () => {
         <Box className="JobsListingPage" sx={{
             minHeight: "100vh"
         }}>
-            
+
             <PageTopSection showBackButton={true} />
             <Box className="WebsiteBreadcrumb" sx={{
                 padding: {
@@ -208,14 +208,13 @@ const JobListing = () => {
                                 if (value === null) window.location.reload()
                                 else FilterDataBasedOnJobRole(value?.key)
                             }}
-                            
+
                             getOptionLabel={(option) => option.key}
                             sx={{ width: "300px", margin: '0px' }}
                             renderInput={(params) => <TextField {...params}
-                            placeholder= "Select a Category"
+                                placeholder={t("ENTER_CATEGORY")}
                                 InputLabelProps={{
                                     shrink: true,
-                                    placeholder: "Select a Category", // Add the desired placeholder text
                                     style: {
                                         fontSize: "12px", // Set the desired fontSize for the placeholder
                                     },
@@ -227,12 +226,12 @@ const JobListing = () => {
                             />
                             }
                         />
-                        <SelectFilter value={location} setValue={setLocation} placeholder="Select Location" data={LocationFilter} />
+                        <SelectFilter value={location} setValue={setLocation} placeholder={t("ENTER_LOCATION")} data={LocationFilter} />
                     </Stack>
 
                     <Stack direction="column" gap={2} className="JobsSection" >
                         {postedJobs && postedJobs.filter(job => job.jobId).map((item, index) => {
-                            return <React.Fragment key={index+ item.jobId}><JobItem key={index} item={item} /></React.Fragment>
+                            return <React.Fragment key={index + item.jobId}><JobItem key={index} item={item} /></React.Fragment>
                         })}
 
                     </Stack>

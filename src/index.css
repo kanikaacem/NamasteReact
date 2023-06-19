@@ -885,21 +885,26 @@ body {
   color: #FFFFFF;
   text-decoration: none;
   margin-right: 8px;
+  font-size: 1.6rem;
 }
 
 .carousel-secondary-button {
   background-color: #FFFFFF;
   color: #FF671F;
   border: 1px solid #FF671F;
+  font-size: 1.6rem;
+
 }
 
 
 @media screen and (min-width: 1200px) and (max-width: 1439px) {
+
   /* Styles for tablets in landscape orientation */
   .carousel-heading {
     font-size: 2.5rem;
     font-weight: 600;
   }
+
   .carousel-text {
     font-size: 24px;
     font-weight: 400;
@@ -907,11 +912,13 @@ body {
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
+
   /* Styles for tablets in landscape orientation */
   .carousel-heading {
     font-size: 2.5rem;
     font-weight: 600;
   }
+
   .carousel-text {
     font-size: 18px;
     font-weight: 500;
@@ -919,11 +926,13 @@ body {
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
+
   /* Styles for tablets in portrait orientation */
   .carousel-heading {
     font-size: 2.5rem;
     font-weight: 600;
   }
+
   .carousel-text {
     font-size: 16px;
     font-weight: 500;
@@ -932,11 +941,13 @@ body {
 
 
 @media screen and (max-width: 767px) {
+
   /* Styles for tablets in portrait orientation */
   .carousel-heading {
     font-size: 2.5rem;
     font-weight: 600;
   }
+
   .carousel-text {
     font-size: 16px;
     font-weight: 500;
