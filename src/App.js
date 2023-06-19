@@ -54,10 +54,16 @@ import ContactUs from "./Pages/FooterPages/ContactUs";
 import AboutUs from './Pages/FooterPages/AboutUs';
 import PrivacyPolicy from './Pages/FooterPages/PrivacyPolicy';
 import TermAndCondition from './Pages/FooterPages/TermAndCondition';
+import { getLocation } from "./utils/function";
 
 function App() {
   useEffect(() => {
+    const getCoords = async () => {
+      let { latitude, longitude } = await getLocation();
+      localStorage.setItem('coordinates', JSON.stringify({ "lat": latitude, "lng": longitude}))
+    }
     window.history.scrollRestoration = 'manual'
+    getCoords();
   }, []);
 
   return (
