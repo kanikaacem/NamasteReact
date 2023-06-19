@@ -44,9 +44,7 @@ const JobCardComponent = (props) => {
                     width="100%"
                     height="100%"
                     onError={handleImageError}
-                    style={{
-                        borderRadius: LocationSection && "50%"
-                    }} />
+                   />
             </Box>
 
             <Typography variant="h1" component="h2" sx={{
