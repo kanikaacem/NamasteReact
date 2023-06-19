@@ -1,10 +1,12 @@
-import { Box, Stack, Button, mobileStepperClasses } from "@mui/material";
+import { Box, Stack, Button } from "@mui/material";
 import LanguageTranslatorSection from "../Common/LanguageTranslaterSection";
+import WebsiteLogo from "./WebsiteLogo";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 const FooterHeader = () => {
     let mobileScreen = useSelector(state => state.screenType) === "mobile";
-
+    const { t } = useTranslation();
     const FindJobButton = ({ style }) => {
         const navigate = useNavigate();
         return (<Button variant="contained"
@@ -20,7 +22,7 @@ const FooterHeader = () => {
                 ...style // Apply custom styles passed via the style prop
 
             }
-            }> Job खोजें</Button >)
+            }> {t('FIND_JOB')}</Button >)
     }
 
     const FindCandidateButton = ({ style }) => {
@@ -42,7 +44,7 @@ const FooterHeader = () => {
 
 
             }}
-            variant="outlined">Candidate खोजें </Button>)
+            variant="outlined">{t('FIND_CANDIDATE')} </Button>)
     }
     return (
         <Box className="FooterHeader" sx={{
@@ -61,11 +63,7 @@ const FooterHeader = () => {
 
                     justifyContent: "flex-start"
                 }}>
-                <Box className="WebsiteLogo" sx={{
-                    width: {"xs":"100px","sm":"100px","md":"100px","lg":"185px","xl":"185px"}
-                }}>
-                    <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="JY" width="100%" height="100%" />
-                </Box>
+                <WebsiteLogo />
                 {!mobileScreen && <Stack className="LanguageSelectorSection" sx={{
                     alignItems: "center",
                     justifyContent: "center"
@@ -90,7 +88,7 @@ const FooterHeader = () => {
                         height: "inherit"
                     }}>
                         <FindJobButton style={!mobileScreen && { width: "200px", height: "45px" }} />
-                        <FindCandidateButton style={!mobileScreen && { width: "300px", height: "45px" }} />
+                        <FindCandidateButton style={!mobileScreen && { width: "200px", height: "45px" }} />
                     </Stack>
 
                 </Stack>

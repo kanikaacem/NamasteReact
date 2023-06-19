@@ -12,9 +12,12 @@ import { getLocation } from "../../utils/function";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+import { useTranslation } from "react-i18next";
 const CandidateLogin = () => {
     const navigate = useNavigate();
     const [requestProcessing, setRequestProcessing] = useState('not_initiated');
+
+    const { t } = useTranslation();
 
     const defaultValue = {
         mobile_number: "",
@@ -51,7 +54,7 @@ const CandidateLogin = () => {
             height: "100vh",
             display: requestProcessing === "not_initiated" ? "block" : "none"
         }}>
-            <PageTopSection TopSectionName="Verify Mobile Number" showBackButton={true} />
+            <PageTopSection TopSectionName={t('VERIFY_MOBILE_NUMBER')} showBackButton={true} />
 
             <Container sx={{ padding: "0px", maxWidth: '1800px' }} maxWidth={false}>
                 <Box className="CandidateLoginSection" sx={{
@@ -66,7 +69,7 @@ const CandidateLogin = () => {
                         {({ errors, touched }) => (
                             <Form className="CandidateLoginForm">
                                 <Stack direction="column" gap={2}>
-                                    <FormLabel LableFor="email_address" LableText="WhatsApp Mobile Number" />
+                                    <FormLabel LableFor="email_address" LableText={t('WHATSAPP_MOBILE_NUMBER')} />
                                     <Field
                                         sx={{
                                             "& fieldset": { border: 'none' },
@@ -98,7 +101,7 @@ const CandidateLogin = () => {
                                             background: "#FF671F",
                                         }
                                     }
-                                    }> Send OTP</Button >
+                                    }> {t('SEND_OTP')}</Button >
 
                                 <Typography sx={{
                                     marginTop: "110px",

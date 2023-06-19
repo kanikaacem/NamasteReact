@@ -7,13 +7,17 @@ import { Formik, Field, Form } from "formik";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import JobApplyWeb from '../Common/JobApplyWeb';
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 const OTPVerification = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const mobile_number = location?.state && location?.state?.mobile_number;
+    const currentLanguage = useSelector(state => state.currentLanguage);
     const [seconds, setSeconds] = useState(60);
     const [openJobApplyModal, setOpenJobApplyModal] = useState(false);
 
+    const { t } = useTranslation();
     const otpVerficationFieldStyle = {
         width: "50px",
         height: "40px",
@@ -63,7 +67,7 @@ const OTPVerification = () => {
             });
             if (response.status === "1") {
                 localStorage.setItem("auth_token", response.token)
-                if(response.stage === 'DETAILSNEED'){
+                if (response.stage === 'DETAILSNEED') {
                     setOpenJobApplyModal(true)
                 } else if (response.stage === 'BACKTOPREVIOUSPAGE') {
                     navigate("/job-listing")
@@ -101,7 +105,7 @@ const OTPVerification = () => {
         <Box className="CandidateLoginPage" sx={{
             height: "100vh",
         }}>
-            <PageTopSection TopSectionName="OTP Verification" showBackButton={true} />
+            <PageTopSection TopSectionName={t('OTP_VERIFICATION')} showBackButton={true} />
 
             <Container sx={{ padding: "0px", maxWidth: '1800px' }} maxWidth={false}>
 
@@ -116,7 +120,10 @@ const OTPVerification = () => {
                         color: "#676767",
                         marginBottom: "20px"
                     }}>
-                        Enter the OTP sent to <b>{mobile_number} </b>
+                        {currentLanguage === "hi" ?
+                            <> <b>{mobile_number}</b> {t('ENTER_OTP_SEND_TO')} </> :
+                            <>{t('ENTER_OTP_SEND_TO')} <b>{mobile_number} </b></>
+                        }
                     </Typography>
 
                     <Formik
@@ -195,7 +202,7 @@ const OTPVerification = () => {
                                     color: "#676767",
                                     marginTop: "36px"
                                 }}>
-                                    OTP Not Received <span style={{ color: "#FF671F", cursor: "pointer" }} onClick={ResendOTP}><b>Resend OTP</b></span>
+                                    {t('OTP_NOT_RECEIVED')} <span style={{ color: "#FF671F", cursor: "pointer" }} onClick={ResendOTP}><b>{t('RESEND_OTP')}</b></span>
                                 </Typography>
 
                             </Form>
