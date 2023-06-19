@@ -498,7 +498,7 @@ function Home() {
                                 return (<JobCardComponent
                                     cardSection="LocationSection"
                                     category_name={item[`location${lang}`]}
-                                    category_image="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/map.png"
+                                    category_image={item.locationurl}
                                     category_url_link={item.search_api}
                                     category_job_active={item.job_active_count}
                                     key={index}
