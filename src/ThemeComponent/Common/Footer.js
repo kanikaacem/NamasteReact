@@ -101,7 +101,7 @@ const Footer = () => {
                     }}>
                         {social_icons.map((item) => {
                             return (
-                                <a key={item.id} href={item.icon_url} style={{ textDecoration: 'none' }}>
+                                <a target="_blank" key={item.id} href={item.icon_url} style={{ textDecoration: 'none' }}>
                                     <Box sx={{
                                         width: { "xs": "15px", "sm": "15px", "md": "30px", "lg": "30px", "xl": "30px" },
                                         height: { "xs": "15px", "sm": "15px", "md": "30px", "lg": "30px", "xl": "30px" }
