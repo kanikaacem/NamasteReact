@@ -178,6 +178,9 @@ const PostJob = () => {
       max_salary,
       lat,
       lng,
+      pincode,
+      state,
+      city,
       job_benefits,
       language,
       number_of_days,
@@ -208,6 +211,9 @@ const PostJob = () => {
       },
       lat,
       lng,
+      pincode,
+      state,
+      city,
       jobBenefits: job_benefits,
       language: language,
       shift: shift_timing,
@@ -243,6 +249,17 @@ const PostJob = () => {
   };
 
   // const saveAsDraft = (values) => console.log(values);
+
+  function getAddressFields(addressArray, value) {
+    console.log(addressArray, value)
+    for (let i = 0; i < addressArray.length; i++) {
+      const component = addressArray[i];
+      if (component.types.includes(value)) {
+        return component.long_name;
+      }
+    }
+    return "";
+  }
 
 
   return (
@@ -437,10 +454,18 @@ const PostJob = () => {
                         let address = place?.formatted_address || place?.name
                         let lat = place.geometry.location.lat().toString();
                         let lng = place.geometry.location.lng().toString();
-                        
+                        let postal_code = getAddressFields(place.address_components, "postal_code");
+                        let state = getAddressFields(place.address_components, "administrative_area_level_1");
+                        let city = getAddressFields(place.address_components, "locality");
+                        console.log(state, "STATE")
+                        console.log(city, "CITY")
                         setFieldValue("job_address", address)
                         setFieldValue("lat", lat)
                         setFieldValue("lng", lng)
+                        setFieldValue("pincode", postal_code)
+                        setFieldValue("state",state)
+                        setFieldValue("city", city)
+
                       }}
                       className="autocomplete-input" // Set the class name
                       placeholder="Enter Address"
