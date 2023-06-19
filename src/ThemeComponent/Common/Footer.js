@@ -16,8 +16,8 @@ const Footer = () => {
     ]
 
     const FooterLegalLinks = [
-        { id: 1, text: "Privacy Policy", url: `${currentLanguage}/privacy` },
-        { id: 2, text: "Terms and Condition", url: `${currentLanguage}/terms` }
+        { id: 1, text: "Privacy Policy", url: `${currentLanguage}/privacy-policy` },
+        { id: 2, text: "Terms and Condition", url: `${currentLanguage}/terms-and-conditions` }
     ]
 
     const FooterHeading = ({ footerHeading }) => {
@@ -61,7 +61,7 @@ const Footer = () => {
         }}>
             <Stack direction="row" gap={6} sx={{
                 flexWrap: "wrap",
-                justifyContent:"space-between"
+                justifyContent: "space-between"
             }}>
                 <Stack direction="column" gap={2} className="CompanyInformation" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
                     <FooterHeading footerHeading="Company" />
@@ -74,7 +74,7 @@ const Footer = () => {
                 </Stack>
 
                 <Stack direction="column" gap={2} className="LegalInformation" sx={{ width: { "xs": "42%", "sm": "42%", "md": "15%", "xl": "15%", "lg": "15%" } }}>
-                    <FooterHeading footerHeading="Legal"/>
+                    <FooterHeading footerHeading="Legal" />
                     {FooterLegalLinks.map((item) => {
                         return (
                             <FooterMenuLink key={item.id} linkText={item.text} linkUrl={item.url} />
@@ -101,14 +101,14 @@ const Footer = () => {
                     }}>
                         {social_icons.map((item) => {
                             return (
-                            <Link key={item.id} to="#" style={{ textDecoration: 'none' }}>
-                                <Box  sx={{
-                                    width: { "xs": "15px", "sm": "15px", "md": "30px", "lg": "30px", "xl": "30px" },
+                                <Link key={item.id} to="#" style={{ textDecoration: 'none' }}>
+                                    <Box sx={{
+                                        width: { "xs": "15px", "sm": "15px", "md": "30px", "lg": "30px", "xl": "30px" },
                                         height: { "xs": "15px", "sm": "15px", "md": "30px", "lg": "30px", "xl": "30px" }
                                     }}>
                                         <img src={item.icon_image} alt={item.icon_text} width="100%" height="100%" />
                                     </Box>
-                            </Link>)
+                                </Link>)
                         })}
                     </Stack>
                 </Stack>

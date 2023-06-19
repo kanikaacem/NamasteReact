@@ -22,7 +22,6 @@ import Autocomplete from "react-google-autocomplete";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CloseIcon from '@mui/icons-material/Close';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
-import { stringify } from "json5";
 
 const AdvantageSectionStyle = {
     position: "relative",
@@ -44,17 +43,6 @@ const JobAdvantageDescriptionStyle = {
     fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1.2rem", "xl": "1.2rem", "lg": "1.2rem" },
     margin: "10px 0px"
 }
-const JobLocation = [
-    { id: 1, name: "Delhi", text: "Delhi" },
-    { id: 2, name: "Mumbai", text: "Mumbai" },
-    { id: 3, name: "Gurgoan", text: "Gurgoan" },
-    { id: 4, name: "Delhi", text: "Delhi" },
-    { id: 5, name: "Mumbai", text: "Mumbai" },
-    { id: 6, name: "Gurgoan", text: "Gurgoan" },
-    { id: 7, name: "Delhi", text: "Delhi" },
-    { id: 8, name: "Mumbai", text: "Mumbai" },
-    { id: 9, name: "Gurgoan", text: "Gurgoan" }
-];
 
 const FindJobButton = ({ style }) => {
     const navigate = useNavigate();
@@ -134,10 +122,11 @@ function Home() {
 
 
     useEffect(() => {
-
         const handleScroll = () => {
-            const heroSectionHeight = document.querySelector('.hero-section').getBoundingClientRect().height;;
-            if (window.scrollY > heroSectionHeight) setShowButton(true);
+            const HeadingElement = document.querySelector('.JobLocationSection').getBoundingClientRect();
+            const HeadingPosition = HeadingElement.top + window.scrollY;
+
+            if (window.scrollY > HeadingPosition) setShowButton(true);
             else setShowButton(false);
         };
         const fetchData = async () => {
@@ -200,12 +189,12 @@ function Home() {
         'https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/banner_image_one.png',
     ]
 
-    const CarousalContent = () => <div class="carousel-content">
-        <h2 class="carousel-heading">{t('WEBSITE_HEADING')}</h2>
-        <h2 class="carousel-text">{t('WEBSITE_SUB_HEADING')}</h2>
+    const CarousalContent = () => <div className="carousel-content">
+        <h2 className="carousel-heading">{t('WEBSITE_HEADING')}</h2>
+        <h2 className="carousel-text">{t('WEBSITE_SUB_HEADING')}</h2>
         <div style={{ display: 'flex', justifyContent: 'flex-start', width: "70%", marginTop: '36px' }}>
-            <a href="/job-listing" class="carousel-button carousel-primary-button">Job खोजें</a>
-            <a href="/candidate-khoze" class="carousel-button carousel-secondary-button">Candidate खोजें</a>
+            <a href="/job-listing" className="carousel-button carousel-primary-button">Job खोजें</a>
+            <a href="/candidate-khoze" className="carousel-button carousel-secondary-button">Candidate खोजें</a>
         </div>
     </div>
     return (<>
@@ -268,8 +257,7 @@ function Home() {
                 <Stack direction="row" className="WebsiteLogoAndLoginSection"
                     alignItems="center"
                     sx={{
-
-                        justifyContent: "flex-start"
+                        justifyContent: mobileScreen ? "space-between" : "flex-start"
                     }}>
                     <Box className="WebsiteLogo" sx={{
                         width: { "xs": "100px", "sm": "100px", "md": "100px", "lg": "185px", "xl": "185px" }
@@ -315,7 +303,8 @@ function Home() {
                 <Stack className="MobileTopSection"
                     sx={{
                         width: "100%",
-                        minHeight: { "xs": `calc(100vh - 50px)`, "sm": `calc(100vh - 50px)`, "md": "fit-content", "xl": "fit-content", "lg": "fit-content" },
+                        minHeight: "fit-content",
+                        // minHeight: { "xs": `calc(100vh - 50px)`, "sm": `calc(100vh - 50px)`, "md": "fit-content", "xl": "fit-content", "lg": "fit-content" },
                         boxSizing: "border-box"
                     }}>
                     <LanguageTranslatorSection />
@@ -361,7 +350,7 @@ function Home() {
 
 
                     <Stack className="ButtonSectionWrapper" sx={{
-                        minHeight: `calc((100vh - 50px)/2)`,
+                        // minHeight: `calc((100vh - 50px)/2)`,
                         backgroundImage: "linear-gradient(#f3bb7a, #ffffff)",
                         padding: "40px",
                         boxSizing: "border-box",
@@ -466,7 +455,7 @@ function Home() {
                 boxSizing: "border-box",
                 alignItems: "center"
             }}>
-                <Container className="SecBannerSection" sx={{ maxWidth: "1300px !important" , display: 'flex', justifyContent:'space-evenly'}}>
+                <Container className="SecBannerSection" sx={{ maxWidth: "1300px !important", display: 'flex', justifyContent: 'space-evenly' }}>
 
                     <Typography variant="h1" component="h2" sx={{
                         fontSize: { "xs": '2.5rem', "sm": '2.5rem', "md": "2.5rem", "xl": "2.5rem", "lg": "2.5rem" },
@@ -486,7 +475,7 @@ function Home() {
                             padding: '20px',
                             height: mobileScreen ? '150px' : '250px',
                         }}
-                        />
+                    />
                 </Container>
             </Stack>
 
@@ -516,7 +505,7 @@ function Home() {
                                     key={index}
                                 />)
                             })}
-                           <ViewMoreSection SectionText="View More" />
+                            <ViewMoreSection SectionText="View More" />
                         </Stack>
                     </Stack>
                 </Container>

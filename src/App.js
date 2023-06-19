@@ -69,8 +69,8 @@ function App() {
           <Route exact path="/" element={<Home></Home>} />
           <Route path=":currentLanguage/contact-us" element={<ContactUs></ContactUs>} />
           <Route path=":currentLanguage/about-us" element={<AboutUs></AboutUs>} />
-          <Route path=":currentLanguage/privacy" element={<PrivacyPolicy></PrivacyPolicy>} />
-          <Route path=":currentLanguage/terms" element={<TermAndCondition />} />
+          <Route path=":currentLanguage/privacy-policy" element={<PrivacyPolicy></PrivacyPolicy>} />
+          <Route path=":currentLanguage/terms-and-conditions" element={<TermAndCondition />} />
           <Route path=":currentLanguage/employer-login" element={<EmployerLogin></EmployerLogin>} />
 
           <Route path="/homepagelite" element={<HomePageLite></HomePageLite>} />
