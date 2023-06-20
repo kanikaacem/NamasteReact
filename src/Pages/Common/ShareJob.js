@@ -7,7 +7,7 @@ const ShareJob = ({ jobId, jobRole, jobDescription }) => {
     return (
         <RWebShare
             data={{
-                text: `Hey! I found this job on JobsYahan-Bharat Ka Job App.Check it out and apply now <a href="${window.location.origin}/job-description/${jobId}">${jobDescription}</a>`,
+                text: "Kya aap Job khoj rahe hain? JobsYahan hai Bharat ka Job App, Yahan Job Milna hai Sabse Saral. Apply karein!",
                 url: `${window.location.origin}/job-description/${jobId}`,
                 title: jobRole,
             }}
