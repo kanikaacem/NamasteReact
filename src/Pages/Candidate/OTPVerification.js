@@ -2,7 +2,7 @@ import { postRequest } from "../../utils/ApiRequests";
 import { Box, Button, Stack, Container, Typography, TextField } from "@mui/material";
 import PageTopSection from "../Common/PageTopSection";
 import { Formik, Field, Form } from "formik";
-
+import Error from "../../ThemeComponent/Common/Error";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import JobApplyWeb from '../Common/JobApplyWeb';
