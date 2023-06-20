@@ -10,7 +10,7 @@ import HomePageLiteTopSection from "./HomePageLiteTopSection";
 import HPLTopHeadingSection from "./HPLTopHeadingSection";
 import HomePageLiteMessage from "./HomePageLiteMessage";
 import { useState } from "react";
-
+import { useTranslation } from "react-i18next";
 const CandidateInformation = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const defaultValue = {
@@ -20,6 +20,7 @@ const CandidateInformation = () => {
         workknowledge: ""
     }
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("md"));
+    const { t } = useTranslation();
 
     const handleSubmit = async (values, { resetForm }) => {
         const { fullname, mobile, city, workknowledge } = values;
@@ -49,7 +50,7 @@ const CandidateInformation = () => {
             <HomePageLiteTopSection />
             <Container maxWidth={isDesktop ? "md" : false} sx={{ padding: "0px" }}>
                 <Box sx={{ padding: "20px", background: isDesktop ? "#ffffff" : "#FEF5F1" }} >
-                    <HPLTopHeadingSection headingText="Candidate ki jankari de" />
+                    <HPLTopHeadingSection headingText={t('FIND_HIRE')} />
                     <Formik
                         initialValues={defaultValue}
                         validationSchema={CandidateInformationValidation}
@@ -58,7 +59,7 @@ const CandidateInformation = () => {
                         {({ errors }) => (
                             <Form className="CandidateInformationForm" >
                                 <Box className="FormGroup">
-                                    <FormLabel LableText="Candidate ka Enter Name" LableFor="fullname" />
+                                    <FormLabel LableText={t('CANDIDATE_NAME')} LableFor="fullname" />
                                     <Field id="fullname"
                                         type="text" placeholder="Enter Candidate Name"
                                         name="fullname"
@@ -67,7 +68,7 @@ const CandidateInformation = () => {
 
                                 </Box>
                                 <Box className="FormGroup">
-                                    <FormLabel LableText="Candidate ka Mobile number" LableFor="mobile" />
+                                    <FormLabel LableText={t('CANDIDATE_MOBILE_NUMBER')} LableFor="mobile" />
                                     <Field id="mobile"
                                         type="text" placeholder="Enter Candidate Mobile Number"
                                         name="mobile"
@@ -76,7 +77,7 @@ const CandidateInformation = () => {
 
                                 </Box>
                                 <Box className="FormGroup">
-                                    <FormLabel LableText="Shehar" LableFor="city" />
+                                    <FormLabel LableText={t('CANDIDATE_CITY')} LableFor="city" />
                                     <Field id="city"
                                         type="text" placeholder="Enter City"
                                         name="city"
@@ -85,7 +86,7 @@ const CandidateInformation = () => {
 
                                 </Box>
                                 <Box className="FormGroup">
-                                    <FormLabel LableText="Kya kaam jaante hai" LableFor="workknowledge" />
+                                    <FormLabel LableText={t('WHATA_DO_U_KNOW')} LableFor="workknowledge" />
                                     <Field id="workknowledge"
                                         type="text" placeholder="Enter Work knowledge"
                                         name="workknowledge"
@@ -96,7 +97,7 @@ const CandidateInformation = () => {
 
                                 <Button variant="contained" type="submit" className="OrangeButton" sx={{
                                     margin: "20px 0px !important"
-                                }} >Submit</Button>
+                                }} >{t('SUBMIT')}</Button>
                             </Form>
                         )}
                     </Formik>

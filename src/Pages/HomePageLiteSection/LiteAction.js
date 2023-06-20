@@ -24,7 +24,7 @@ const LiteAction = () => {
                         <Button sx={{ ...WebsiteContainedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px" }}
                             onClick={() => goToURL("candidate-information")}>{t('CANDIDATE_INFORMATION')}</Button>
                         <Button sx={{ ...WebsiteOutlinedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px" }}
-                            onClick={() => goToURL("employer-information")}>Hire karne waale ki jaankari de</Button>
+                            onClick={() => goToURL("employer-information")}>{t('FIND_HIRE')}</Button>
                     </Stack>
                 </Box>
             </Container>
