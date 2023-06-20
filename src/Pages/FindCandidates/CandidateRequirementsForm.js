@@ -7,7 +7,6 @@ import FormLabel from "../Common/FormLabel";
 import { Formik, Field, Form } from "formik";
 import Error from '../../ThemeComponent/Common/Error';
 import { useState } from "react";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { candidateRequireValidationSchema } from '../../Validation/EmployerValidation';
