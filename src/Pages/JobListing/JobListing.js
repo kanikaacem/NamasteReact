@@ -128,14 +128,16 @@ const JobListing = () => {
 
     useEffect(() => {
         let coords = JSON.parse(localStorage.getItem("coordinates"));
-        let api_url = process.env.REACT_APP_GET_JOB_ITEMS; // Replace with your .env variable name
-        location && (api_url = api_url + "?keyrange=" + location + "&lat=" + coords.lat + "&lng=" + coords.lng);
+        let api_url = process.env.REACT_APP_GET_JOB_ITEMS;
+        coords !== null && (api_url = api_url + "?keyrange=" + location + "&lat=" + coords.lat + "&lng=" + coords.lng); // Replace with your .env variable name
+
 
         const fetchData = async () => {
             try {
                 const data = await getRequest(api_url);
-                setActiveJobs(data.acitvejob)
-                setPostedJobs(data.data.reverse());
+                setActiveJobs(data.acitvejob);
+                setPostedJobs(data.data);
+                // setPostedJobs(data.data.reverse());
 
             } catch (error) {
                 // Handle the error

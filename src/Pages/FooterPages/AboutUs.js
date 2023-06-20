@@ -18,10 +18,10 @@ const AboutUs = () => {
             }}
         >
             <Helmet>
-                <title>JobsYahan - Bharat Ka Job App - Yahan Job Milna Hain Sabse Saral</title>
+                <title>About - JobsYahan - Bharat Ka Job App</title>
                 <meta name="description" content="JobsYahan is an easy-to-use job portal in India facilitating job posts by recruiters and subsequent applications by candidates in their preferred language." />
                 <meta property="og:type" content="Website" />
-                <meta property="og:title" content="JobsYahan - Bharat Ka Job App - Yahan Job Milna Hain Sabse Saral" />
+                <meta property="og:title" content="About - JobsYahan - Bharat Ka Job App" />
                 <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
                 <meta property="og:url" content={`${window.location.origin}/${currentLanguage}/about-us`} />
             </Helmet>
