@@ -9,9 +9,11 @@ import Footer from "../../ThemeComponent/Common/Footer";
 import HomePageLiteMessage from "../HomePageLiteSection/HomePageLiteMessage";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
+import { useSelector } from "react-redux";
 const ContactUs = () => {
-
     const { t } = useTranslation();
+    const currentLanguage = useSelector(state => state.currentLanguage);
     const defaultValue = {
         name: "",
         mobile_number: "",
@@ -47,6 +49,14 @@ const ContactUs = () => {
                 minHeight: "100vh"
 
             }}>
+            <Helmet>
+                <title>Contact JobsYahan via Email, a Phone Call</title>
+                <meta name="description" content="Contact JobsYahan via email, a phone call, or visit our office for more information on jobs." />
+                <meta property="og:type" content="Website" />
+                <meta property="og:title" content="Contact JobsYahan via Email, a Phone Call" />
+                <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
+                <meta property="og:url" content={`${window.location.origin}/${currentLanguage}/contact-us`} />
+            </Helmet>
             <Header />
             <Box className="ContactUsContent"
                 sx={{

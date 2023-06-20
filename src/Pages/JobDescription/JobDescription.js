@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import moment from 'moment';
 import ShareJob from "../Common/ShareJob";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 const JobDescription = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -63,6 +64,14 @@ const JobDescription = () => {
         <Box className="JobDescriptionPage" sx={{
             minHeight: "100vh",
         }}>
+            <Helmet>
+                <title>{jobDescription?.ogTitle}</title>
+                <meta name="description" content={jobDescription?.ogmetaDescription} />
+                <meta property="og:type" content="Website" />
+                <meta property="og:title" content={jobDescription?.ogTitle} />
+                <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
+                <meta property="og:url" content={`${window.location.origin}/job-description/${jobDescription?.jobRole}?id=${jobDescription?._id}`} />
+            </Helmet>
             <PageTopSection showBackButton={true} />
 
             <Box className="WebsiteBreadcrumb" sx={{

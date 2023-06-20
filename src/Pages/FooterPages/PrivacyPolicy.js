@@ -3,7 +3,10 @@ import Footer from "../../ThemeComponent/Common/Footer";
 import Header from "../Common/Header";
 import FooterHeading from "./FooterHeading";
 import FooterDescription from "./FooterDescription";
+import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 const PrivacyPolicy = () => {
+    const currentLanguage = useSelector(state => state.currentLanguage);
     return (<Stack
         className="AboutUsPage"
         direction="column"
@@ -11,6 +14,14 @@ const PrivacyPolicy = () => {
             background: "#FCFCFC"
         }}
     >
+        <Helmet>
+            <title>Check JobsYahan’s Privacy Policy Norms</title>
+            <meta name="description" content="JobsYahan’s privacy policy norms for both recruiters and candidates are explicitly mentioned. Read on to know more." />
+            <meta property="og:type" content="Website" />
+            <meta property="og:title" content="Check JobsYahan’s Privacy Policy Norms" />
+            <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
+            <meta property="og:url" content={`${window.location.origin}/${currentLanguage}/privacy-policy`} />
+        </Helmet>
         <Header />
 
         <Box className="PrivacyPolicyContent"
@@ -19,14 +30,14 @@ const PrivacyPolicy = () => {
                 boxSizing: "border-box"
             }}>
             <Box className="PrivacyPolicyTopSection">
-            <Typography sx={{
-                            fontSize: { "xs": "1.5rem", "sm": "1.5rem", "md": "1.5rem", "lg": "3rem", "xl": "3rem" },
-                            fontWeight: "700",
-                            lineHeight: "1.2",
+                <Typography sx={{
+                    fontSize: { "xs": "1.5rem", "sm": "1.5rem", "md": "1.5rem", "lg": "3rem", "xl": "3rem" },
+                    fontWeight: "700",
+                    lineHeight: "1.2",
 
-                        }}>
-                            Privacy Policy
-                        </Typography>
+                }}>
+                    Privacy Policy
+                </Typography>
             </Box>
             <Box className="PrivacyPolicyPageContentDescriptions" sx={{ padding: "20px 0px" }}>
                 <Box>
@@ -121,30 +132,30 @@ const PrivacyPolicy = () => {
 
                 <Box>
                     <FooterHeading headingText="How Do We Use Collected Information?" />
-                    <Stack direction="row" alignItems="center" gap={1} sx={{flexWrap:"wrap"}}>
+                    <Stack direction="row" alignItems="center" gap={1} sx={{ flexWrap: "wrap" }}>
                         <FooterHeading headingText="How Do We Use Collected Information?" />
                         <FooterDescription Description="We may use your data to comprehend how you use services and resources provided on our website." />
                     </Stack>
-                    <Stack direction="row" alignItems="center" gap={1} sx={{flexWrap:"wrap"}}>
+                    <Stack direction="row" alignItems="center" gap={1} sx={{ flexWrap: "wrap" }}>
                         <FooterHeading headingText="To Enhance Our Website: " />
                         <FooterDescription Description="Your data assists us in effectively answering your queries and needs." />
                     </Stack>
-                    <Stack direction="row" alignItems="center" gap={1} sx={{flexWrap:"wrap"}}>
+                    <Stack direction="row" alignItems="center" gap={1} sx={{ flexWrap: "wrap" }}>
                         <FooterHeading headingText="To Improve Customer Service: " />
                         <FooterDescription Description="We may use your data to comprehend how you use services and resources provided on our website." />
                     </Stack>
-                    <Stack direction="row" alignItems="baseline" gap={1} sx={{flexWrap:"wrap"}}>
+                    <Stack direction="row" alignItems="baseline" gap={1} sx={{ flexWrap: "wrap" }}>
                         <FooterHeading headingText="To Process Transactions:" />
                         <FooterDescription Description="When a user places an order and the information they 
                         provide about themselves help us provide them with services. 
                         We never disclose  information with outside parties, except in the conditions 
                         that it is necessary to provide them for services." />
                     </Stack>
-                    <Stack direction="row" alignItems="baseline" gap={1} sx={{flexWrap:"wrap"}}>
+                    <Stack direction="row" alignItems="baseline" gap={1} sx={{ flexWrap: "wrap" }}>
                         <FooterHeading headingText="To Manage Content -" />
                         <FooterDescription Description="Promotions, surveys, or other features of the website: We may send information to users if they 
                         allow us to do so about the topics that we think may be interesting to them. "/> </Stack>
-                    <Stack direction="row" alignItems="baseline" gap={1} sx={{flexWrap:"wrap"}}>
+                    <Stack direction="row" alignItems="baseline" gap={1} sx={{ flexWrap: "wrap" }}>
                         <FooterHeading headingText="To Send Periodic Emails:" />
                         <FooterDescription Description="When a user registers with JobsYahan, we will send 
                         them order-related updates and information on their mentioned email ID. It could also 
