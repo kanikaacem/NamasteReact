@@ -848,12 +848,7 @@ body {
 }
 
 .carousel-content {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  padding: 0px 140px !important;
-  width: 75%;
+  padding-left: 70px !important;
 }
 
 .carousel-heading {
@@ -861,19 +856,19 @@ body {
   font-weight: 600;
   margin: 24px 0px;
   font-family: 'Montserrat', sans-serif !important;
+  width: '100%';
 }
 
 .carousel-text {
   font-size: 30px;
   font-weight: 400;
   font-family: 'Manrope', sans-serif !important;
-  width: 80%;
 }
 
 .carousel-button {
   display: inline-block;
   padding: 20px 32px;
-  width: 278px;
+  width: 16.5rem;
   text-align: center;
   text-decoration: none;
   font-size: 16px;

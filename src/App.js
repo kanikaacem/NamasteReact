@@ -60,10 +60,12 @@ function App() {
   useEffect(() => {
     const getCoords = async () => {
       let { latitude, longitude } = await getLocation();
-      localStorage.setItem('coordinates', JSON.stringify({ "lat": latitude, "lng": longitude}))
+      localStorage.setItem('coordinates', JSON.stringify({ "lat": latitude, "lng": longitude }))
     }
     window.history.scrollRestoration = 'manual'
-    getCoords();
+    if (!localStorage.getItem('coordinates')) {
+      getCoords();
+    }
   }, []);
 
   return (
