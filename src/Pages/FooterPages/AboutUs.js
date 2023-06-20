@@ -4,9 +4,11 @@ import FooterHeading from "./FooterHeading";
 import FooterDescription from "./FooterDescription";
 import Header from "../Common/Header";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
+import { useSelector } from "react-redux";
 const AboutUs = () => {
     const { t } = useTranslation();
-
+    const currentLanguage = useSelector(state => state.currentLanguage);
     return (<>
         <Stack
             className="AboutUsPage"
@@ -15,22 +17,30 @@ const AboutUs = () => {
                 background: "#FCFCFC"
             }}
         >
+            <Helmet>
+                <title>JobsYahan - Bharat Ka Job App - Yahan Job Milna Hain Sabse Saral</title>
+                <meta name="description" content="JobsYahan is an easy-to-use job portal in India facilitating job posts by recruiters and subsequent applications by candidates in their preferred language." />
+                <meta property="og:type" content="Website" />
+                <meta property="og:title" content="JobsYahan - Bharat Ka Job App - Yahan Job Milna Hain Sabse Saral" />
+                <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
+                <meta property="og:url" content={`${window.location.origin}/${currentLanguage}/about-us`} />
+            </Helmet>
             <Header />
             <Box className="AboutUsContent"
                 sx={{
                     padding: { "xs": "20px", "sm": "20px", "md": "60px 40px", "lg": "60px 40px", "xl": "60px 40px" },
                     boxSizing: "border-box"
                 }}>
-               
-                <Stack direction="row" gap={1} className="AboutusPagetopSection">
-                <Typography sx={{
-                            fontSize: { "xs": "1.5rem", "sm": "1.5rem", "md": "1.5rem", "lg": "3rem", "xl": "3rem" },
-                            fontWeight: "700",
-                            lineHeight: "1.2",
 
-                        }}>
-                            {t('ABOUT_US')}
-                        </Typography>
+                <Stack direction="row" gap={1} className="AboutusPagetopSection">
+                    <Typography sx={{
+                        fontSize: { "xs": "1.5rem", "sm": "1.5rem", "md": "1.5rem", "lg": "3rem", "xl": "3rem" },
+                        fontWeight: "700",
+                        lineHeight: "1.2",
+
+                    }}>
+                        {t('ABOUT_US')}
+                    </Typography>
                 </Stack>
                 <Box className="AboutUsPageContentDescriptions" sx={{ padding: "20px 0px" }}>
                     <Stack direction="column" gap={1}>

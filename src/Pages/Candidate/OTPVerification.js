@@ -7,7 +7,6 @@ import { Formik, Field, Form } from "formik";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import JobApplyWeb from '../Common/JobApplyWeb';
-import { OTPValidation } from "../../Validation/CandidateValidation";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 const OTPVerification = () => {
@@ -129,15 +128,15 @@ const OTPVerification = () => {
 
                     <Formik
                         initialValues={defaultValue}
-                        validationSchema={OTPValidation}
                         onSubmit={handleSubmit}
                     >
-                        {({ errors, touched, values }) => (
+                        {({ errors, touched, values, setFieldError }) => (
                             <Form className="OTPVerificationForm">
                                 <Stack direction="row" gap={1} sx={{ height: "65px" }}>
                                     {[1, 2, 3, 4].map(index => (
                                         <Field
                                             key={index}
+                                            error={!!errors[`otp_digit${index}`]}// Access the error for each field dynamically
                                             sx={otpVerficationFieldStyle}
                                             as={TextField}
                                             id={`otp_digit${index}`}
@@ -148,12 +147,18 @@ const OTPVerification = () => {
                                                 inputRefs.current[index] = el;
                                             }}
                                             onKeyDown={e => {
-                                                if (e.key === "Enter" && index < 6) {
+                                                if (e.key === "Enter" && index < 5) {
 
                                                     e.preventDefault(); // Prevent form submission on "Enter" key press
                                                     const nextInput = document.getElementById(`otp_digit${index + 1}`);
-                                                    nextInput.focus();
+                                                    if (/^\d$/.test(inputRefs.current[index].value)) {
+                                                        nextInput.focus();
+                                                        // setFieldError(`otp_digit${index}`, "It should be a single digit value.")
+
+                                                    }
+
                                                 }
+
                                             }}
                                             inputProps={{
                                                 sx: {
@@ -165,7 +170,7 @@ const OTPVerification = () => {
                                     ))}
 
                                 </Stack>
-                                {errors.otp_digit1 && touched.otp_digit1 && <Error text={errors.otp_digit1} />}
+                                {/* {<Error text="EHKJLK" />} */}
 
                                 <Typography sx={{
                                     fontFamily: "Poppins",

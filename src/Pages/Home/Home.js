@@ -22,6 +22,7 @@ import Autocomplete from "react-google-autocomplete";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CloseIcon from '@mui/icons-material/Close';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
+import { Helmet } from "react-helmet";
 
 const AdvantageSectionStyle = {
     position: "relative",
@@ -191,6 +192,14 @@ function Home() {
                 fontSize: "0.4rem",
                 padding: "4px 14px",
             }}>
+                <Helmet>
+                    <title>Free Online Job Search Portal in India - Post Jobs, Find Candidates</title>
+                    <meta name="description" content="JobsYahan - Bharat Ka Job App - is an easy-to-use intuitive web and mobile-based application that simplifies the employment process for BHARAT workforce and recruiters with its vernacular and location-based approach." />
+                    <meta property="og:type" content="Website" />
+                    <meta property="og:title" content="Free Online Job Search Portal in India - Post Jobs, Find Candidates" />
+                    <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
+                    <meta property="og:url" content={window.location.origin} />
+                </Helmet>
                 <FormControl style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }} >
                     <LocationOnIcon fontSize="small" color="disabled" />
                     <div style={{ width: "460px" }}>

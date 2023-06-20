@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-
+import { Helmet } from "react-helmet";
 const JobListing = () => {
     // const [category, setCategory] = useState('');
     const { t } = useTranslation();
@@ -177,7 +177,14 @@ const JobListing = () => {
         <Box className="JobsListingPage" sx={{
             minHeight: "100vh"
         }}>
-
+            <Helmet>
+                <title>Check Jobs Based on Locations, Department, Roles</title>
+                <meta name="description" content="Check and choose from the jobs available across India based on sectors, departments, roles, categories, etc. Apply Now!" />
+                <meta property="og:type" content="Website" />
+                <meta property="og:title" content="Check Jobs Based on Locations, Department, Roles" />
+                <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
+                <meta property="og:url" content={`${window.location.origin}/job-listing`} />
+            </Helmet>
             <PageTopSection showBackButton={true} />
             <Box className="WebsiteBreadcrumb" sx={{
                 padding: {

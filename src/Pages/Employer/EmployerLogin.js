@@ -8,11 +8,12 @@ import { Formik, Field, Form } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 const EmployerLogin = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const isLoggedIn = useSelector(state => state.isLoggedIn);
-
+    const currentLanguage = useSelector(state => state.currentLanguage);
     const defaultValue = {
         user_email: "",
         password: ""
@@ -39,6 +40,14 @@ const EmployerLogin = () => {
     return (<>
         {isLoggedIn && <Navigate to="/employer-dashboard" />}
         <Box className="EmployerLoginForm">
+            <Helmet>
+                <title>Post Jobs & View Candidate Applications</title>
+                <meta name="description" content="Employers can sign up and post jobs on JobsYahan. If you’re already signed up with us, log in to check your posted jobs, post more jobs and view candidate applications." />
+                <meta property="og:type" content="Website" />
+                <meta property="og:title" content="Post Jobs & View Candidate Applications" />
+                <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
+                <meta property="og:url" content={`${window.location.origin}/${currentLanguage}/employer-login`} />
+            </Helmet>
             <Box sx={{ minHeight: "100vh" }}>
                 <Container maxWidth={isDesktop ? "md" : false} sx={{ padding: "0px" }}>
                     <Box

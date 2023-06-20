@@ -5,8 +5,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import FormLabel from "../Common/FormLabel";
 import { Formik, Field, Form } from "formik";
 import { useNavigate } from "react-router-dom";
-// import { Helmet } from "react-helmet";
-// import { RWebShare } from "react-web-share";
+import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 const CandidateCredentialsForm = () => {
@@ -23,27 +22,14 @@ const CandidateCredentialsForm = () => {
     const currentLanguage = useSelector(state => state.currentLanguage);
     return (
         <Box className="CandidateCredentialsForm">
-            {/* <RWebShare
-                data={{
-                    text: "Like humans, flamingos make friends for life",
-                    url: "https://on.natgeo.com/2zHaNup",
-                    title: "Flamingos",
-                }}
-                onClick={() => console.log("shared successfully!")}
-            >
-                <button>Share 🔗</button>
-            </RWebShare> */}
-            {/* <Helmet>
-                <title>Website - Articles - How to SEO</title>
-                <meta name="description" content="Want to learn SEO with React? Look no further!" />
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="How to SEO" />
-                <meta property="og:image" content="https://www.example.com/how-to-seo.jpg" />
-                <meta property="article:author" content="Jessy" />
-                <meta property="article:tag" content="react,seo" />
-                <meta property="article:published_time" content="2020-12-31" />
-
-            </Helmet> */}
+            <Helmet>
+                <title>Post Jobs & View Candidate Applications</title>
+                <meta name="description" content="Employers can sign up and post jobs on JobsYahan. If you’re already signed up with us, log in to check your posted jobs, post more jobs and view candidate applications." />
+                <meta property="og:type" content="Website" />
+                <meta property="og:title" content="Post Jobs & View Candidate Applications" />
+                <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
+                <meta property="og:url" content={`${window.location.origin}/candidate-khoze`} />
+            </Helmet>
             <Box sx={{ minHeight: "100vh" }}>
                 <Container maxWidth={isDesktop ? "sm" : false} sx={{ padding: "0px" }}>
                     <Box
@@ -66,7 +52,7 @@ const CandidateCredentialsForm = () => {
                                 fontWeight: "600"
                             }}
                         >
-                         {t('CJ_HEADING')}
+                            {t('CJ_HEADING')}
                         </Typography>
                         <Typography
                             variant="h1"
@@ -78,7 +64,7 @@ const CandidateCredentialsForm = () => {
                                 fontWeight: "500"
                             }}
                         >
-                         {t('CJ_HEADING_1')}
+                            {t('CJ_HEADING_1')}
                         </Typography>
 
                         <Box sx={{ position: "absolute", bottom: "-5px" }}>
