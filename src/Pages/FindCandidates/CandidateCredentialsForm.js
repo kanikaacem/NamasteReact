@@ -22,11 +22,11 @@ const CandidateCredentialsForm = () => {
     const validateEmailOrPhoneNumber = (value) => {
         const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
         const phoneRegex = /^\d{10}$/;
-        if (!value)  return 'This field is required';      
+        if (!value) return 'This field is required';
         if (!emailRegex.test(value) && !phoneRegex.test(value))
-          return 'Please enter a valid email or phone number';
+            return 'Please enter a valid email or phone number';
         else return null;
-      };
+    };
 
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("md"));
     const currentLanguage = useSelector(state => state.currentLanguage);
