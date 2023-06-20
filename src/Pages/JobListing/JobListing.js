@@ -208,6 +208,7 @@ const JobListing = () => {
                         flexWrap: "wrap"
                     }}>
                         <Autocomplete
+                            className="JobListingAutoComplete"
                             size="small"
                             disablePortal
                             options={jobRoleFilterData}
@@ -223,12 +224,11 @@ const JobListing = () => {
                                 InputLabelProps={{
                                     shrink: true,
                                     style: {
-                                        fontSize: "12px", // Set the desired fontSize for the placeholder
+                                        fontSize: "0.8rem !important", // Set the desired fontSize for the placeholder
                                     },
                                 }}
                                 sx={{
-                                    fontSize: "12px",
-                                    padding: "3px !important" // Set the desired fontSize for the TextField
+                                    fontSize: "0.8rem !important",
                                 }}
                             />
                             }

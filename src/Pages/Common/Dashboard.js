@@ -77,7 +77,12 @@ const Dashboard = () => {
                 <Stack className="DashboardTopSection" direction="row" sx={{
                     height: { "xs": "25px", "sm": "25px", "md": "50px", "lg": "50px", "xl": "50px" },
                     padding: { "xs": "15px", "sm": "15px", "md": "20px 50px", "lg": "20px 50px", "xl": "20px 50px" },
-                    alignItems: "center"
+                    alignItems: "center",
+                    position: "sticky",
+                    top: "0",
+                    zIndex: "9999",
+                    background: "white"
+
                 }}>
                     <Box className="LogoSection" sx={{ minWidth: "15%" }}>
                         <Box sx={{ width: "fit-content", marginTop: "10px", height: "50px" }} >
@@ -97,11 +102,11 @@ const Dashboard = () => {
                         {/* <Box className="Notification" sx={{ width: "25px", height: "25px" }}>
                             <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="Notification Symbol" width="100%" height="100%" />
                         </Box> */}
-                   
+
                         <Box className="Account" sx={{ width: "auto" }}>
-                            
+
                             <img src={window.location.origin + "/assets/ProfileImage.png"} alt="Account Symbol" width="100%" height="100%" />
-            
+
                         </Box>
                     </Stack>
                 </Stack>
@@ -118,7 +123,7 @@ const Dashboard = () => {
 
             <Footer />
 
-        </Box>)
+        </Box >)
 }
 
 export default Dashboard;

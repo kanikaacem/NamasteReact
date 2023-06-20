@@ -22,12 +22,14 @@ const EmployerLogin = () => {
         let EmployerLoginForm = new FormData();
         EmployerLoginForm = {
             email: values.user_email,
-            password: values.password
+            password: values.password,
+            usertype: "employer"
         }
         try {
-            let api_url = "https://backend.jobsyahan.com/api/employer/loginemployer";
+            let api_url = "https://backend.jobsyahan.com/api/loginforemployer";
             let response = await postRequest(api_url, EmployerLoginForm);
             if (response.status === '1') {
+                localStorage.setItem("userType", "employer");
                 dispatch({ type: 'LOGIN', payload: response.token });
             }
         } catch (err) {

@@ -1290,3 +1290,8 @@ option {
 .FormGroup {
   margin-bottom: 10px;
 }
+
+
+.MuiAutocomplete-inputRoot {
+  font-size: 0.8rem !important;
+}
