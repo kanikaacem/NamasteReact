@@ -227,5 +227,11 @@
     "FIND_JOB": "Find Jobs",
     "BACK": "BACK",
     "THANK_YOU": "Thank You! ",
-    "THANK_YOU_MESSAGE": " We'll contact you soon."
+    "THANK_YOU_MESSAGE": " We'll contact you soon.",
+    "HOMEPAGE_ADVANTAGE_HEADING_1": "Genuine Jobs",
+    "HOMEPAGE_ADVANTAGE_HEADING_2": "Near You",
+    "HOMEPAGE_ADVANTAGE_HEADING_3": "Easy to Use",
+    "HOMEPAGE_ADVANTAGE_DESCRIPTION_1": "100% genuine and verified jobs, handpicked with care.",
+    "HOMEPAGE_ADVANTAGE_DESCRIPTION_2": "Jobs near you, so that you're not away from home.",
+    "HOMEPAGE_ADVANTAGE_DESCRIPTION_3": "Simplifying the process as well as the interface"
 }

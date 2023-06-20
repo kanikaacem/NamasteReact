@@ -159,19 +159,19 @@ function Home() {
 
     const advantages_content = [
         {
-            heading: "Genuine Content",
-            description: "Apply for best jobs, for you, near you. Browse 10,000+ jobs now!",
-            img: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/middle_banner_image_1.png"
+            heading: t('HOMEPAGE_ADVANTAGE_HEADING_1'),
+            description: t('HOMEPAGE_ADVANTAGE_DESCRIPTION_1'),
+            img: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/genuine_jobs.png"
         },
         {
-            heading: "Aapke Aaspaas",
-            description: "Apply for best jobs, for you, near you. Browse 10,000+ jobs now!",
-            img: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/middle_banner_image_1.png"
+            heading: t('HOMEPAGE_ADVANTAGE_HEADING_2'),
+            description:  t('HOMEPAGE_ADVANTAGE_DESCRIPTION_2'),
+            img: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/aapke_aaspaas.png"
         },
         {
-            heading: "Sabse saral",
-            description: "Apply for best jobs, for you, near you. Browse 10,000+ jobs now!",
-            img: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/middle_banner_image_1.png"
+            heading: t('HOMEPAGE_ADVANTAGE_HEADING_3'),
+            description: t('HOMEPAGE_ADVANTAGE_DESCRIPTION_3'),
+            img: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/sabse_saral.png"
         }
     ]
 
@@ -494,7 +494,7 @@ function Home() {
                             <Grid item xs={12} sm={4} >
                                 <Card sx={{ maxWidth: 345, width: '100%', padding: '0px', borderRadius: '9px' }}>
                                     <CardMedia
-                                        sx={{ height: 140 }}
+                                        sx={{ height: 180 }}
                                         image={advantage.img}
                                         title="green iguana"
                                     />
