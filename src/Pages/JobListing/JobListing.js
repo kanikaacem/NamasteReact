@@ -1,7 +1,6 @@
 import { getRequest } from "../../utils/ApiRequests"
 import FormControl from '@mui/material/FormControl';
-import { Box, Button, Stack, Container, Select, MenuItem, Breadcrumbs, Link, Autocomplete, TextField } from "@mui/material";
-import { LinkStyles } from "../../utils/Styles";
+import { Box, Button, Stack, Container, Select, MenuItem, Autocomplete, TextField, Typography } from "@mui/material";
 import PageTopSection from '../Common/PageTopSection';
 import JobItem from "./JobItem";
 import Footer from "../../ThemeComponent/Common/Footer";
@@ -14,35 +13,22 @@ const JobListing = () => {
     // const [category, setCategory] = useState('');
     const { t } = useTranslation();
 
-    const [location, setLocation] = useState('one');
+    const [location, setLocation] = useState('');
     const [loadJobs, setLoadJobs] = useState({ page: 1, limit: 20 });
 
     const mobileScreen = useSelector(state => state.screenType) === "mobile";
     const [postedJobs, setPostedJobs] = useState([]);
     const [jobRoleFilterData, setJobRoleFilterData] = useState([]);
+    const [activeJobs, setActiveJobs] = useState(0);
 
-    const breadcrumbs = [
-        <Link underline="hover" sx={LinkStyles} key="1" color="inherit" href="/" >
-            {t('HOME')}
-        </Link>,
-        <Link
-            sx={LinkStyles}
-            underline="hover"
-            key="2"
-            color="#FF671F"
-            fontWeight="600"
-        >
-            {t('POSTED_JOBS')}
-        </Link>
-    ];
-    const LocationFilter = [
-        { id: 'one', text: "Paas (0-50Km)" },
-        { id: 'two', text: "Thodi Door (50-200Km)" },
-        { id: 'three', text: "Zayada Door (more than 200Km)" }
-    ]
-
-    const SelectFilter = ({ value, setValue, placeholder, data }) => {
+    const SelectFilter = ({ value, setValue, placeholder }) => {
         const navigate = useNavigate();
+        const LocationFilter = [
+            { id: '', text: placeholder },
+            { id: 'one', text: "Paas (0-50Km)" },
+            { id: 'two', text: "Thodi Door (50-200Km)" },
+            { id: 'three', text: "Zayada Door (more than 200Km)" }
+        ]
         const handleValueChange = (event) => {
             setValue(event.target.value);
             const searchParams = new URLSearchParams(location.search);
@@ -72,10 +58,10 @@ const JobListing = () => {
                 }}
             >
 
-                <MenuItem value="">
+                {/* <MenuItem value="">
                     <em>{placeholder}</em>
-                </MenuItem>
-                {data && data.map((item, index) => {
+                </MenuItem> */}
+                {LocationFilter && LocationFilter.map((item, index) => {
                     return (<MenuItem key={index}
                         sx={{
                             fontSize: "12px"
@@ -148,9 +134,8 @@ const JobListing = () => {
         const fetchData = async () => {
             try {
                 const data = await getRequest(api_url);
-                // Handle the fetched data
-                setPostedJobs(data.data.reverse())
-                // console.log(data.data)
+                setActiveJobs(data.acitvejob)
+                setPostedJobs(data.data.reverse());
 
             } catch (error) {
                 // Handle the error
@@ -171,7 +156,7 @@ const JobListing = () => {
         }
         fetchData();
         fetchJobRole();
-    }, [location])
+    }, [location]);
 
     return (
         <Box className="JobsListingPage" sx={{
@@ -186,24 +171,15 @@ const JobListing = () => {
                 <meta property="og:url" content={`${window.location.origin}/job-listing`} />
             </Helmet>
             <PageTopSection showBackButton={true} />
-            <Box className="WebsiteBreadcrumb" sx={{
-                padding: {
-                    "xs": "10px", "sm": "10px",
-                    "md": "10px 100px", "lg": "10px 100px", "xl": "10px 100px"
-                }
-            }}>
-                <Breadcrumbs separator="›" aria-label="breadcrumb">
-                    {breadcrumbs}
-                </Breadcrumbs>
-            </Box>
-
             <Container sx={{ padding: "0px", maxWidth: '1800px' }} maxWidth={false}>
                 <Stack className="JobListingContent" direction="column" gap={2}
                     sx={{
                         padding: "20px",
                         background: mobileScreen && "#FEF5F1"
                     }}>
-
+                    <Typography variant="h6" gutterBottom>
+                        {`${activeJobs} active jobs`}
+                    </Typography>
                     <Stack direction="row" gap={2} sx={{
                         flexWrap: "wrap"
                     }}>
@@ -220,7 +196,7 @@ const JobListing = () => {
                             getOptionLabel={(option) => option.key}
                             sx={{ width: "300px", margin: '0px' }}
                             renderInput={(params) => <TextField {...params}
-                                placeholder={t("ENTER_CATEGORY")}
+                                placeholder={t("SELCET_CATEGORY")}
                                 InputLabelProps={{
                                     shrink: true,
                                     style: {
@@ -233,7 +209,7 @@ const JobListing = () => {
                             />
                             }
                         />
-                        <SelectFilter value={location} setValue={setLocation} placeholder={t("ENTER_LOCATION")} data={LocationFilter} />
+                        <SelectFilter value={location} setValue={setLocation} placeholder={t("SELECT_LOCATION")} />
                     </Stack>
 
                     <Stack direction="column" gap={2} className="JobsSection" >
@@ -242,7 +218,7 @@ const JobListing = () => {
                         })}
 
                     </Stack>
-                    <Button variant="contained"
+                    {postedJobs && postedJobs.length > 10 && <Button variant="contained"
                         onClick={handleLoadMore}
                         sx={{
                             width: "300px",
@@ -255,7 +231,7 @@ const JobListing = () => {
                                 background: "#FF671F",
                             }
                         }
-                        }> {t('LOAD_MORE')}</Button >
+                        }> {t('LOAD_MORE')}</Button >}
                 </Stack>
             </Container>
             <Footer />

@@ -199,8 +199,8 @@
     "EMPR_LOGIN_BANNER": "Simplifying Employment for Bharat Workforce!",
     "EMPR_USERNAME": "Enter your username",
     "EMPR_PASSWORD": "Enter password",
-    "ENTER_CATEGORY": "Enter Category",
-    "ENTER_LOCATION": "Enter Location",
+    "SELCET_CATEGORY": "Select Category",
+    "SELECT_LOCATION": "Select Location",
     "APPLY_NOW": "Apply Now",
     "APPLY_VIA_WHATSAPP": "Apply via WhatsApp",
     "APPLY_VIA_WEB": "Apply via Web",
@@ -224,5 +224,14 @@
     "MOBILE_NUMBER": "Mobile Number",
     "MESSAGE": "Message",
     "FIND_CANDIDATE": "Find Candidates",
-    "FIND_JOB": "Find Jobs"
+    "FIND_JOB": "Find Jobs",
+    "BACK": "BACK",
+    "THANK_YOU": "Thank You! ",
+    "THANK_YOU_MESSAGE": " We'll contact you soon.",
+    "HOMEPAGE_ADVANTAGE_HEADING_1": "Genuine Jobs",
+    "HOMEPAGE_ADVANTAGE_HEADING_2": "Near You",
+    "HOMEPAGE_ADVANTAGE_HEADING_3": "Easy to Use",
+    "HOMEPAGE_ADVANTAGE_DESCRIPTION_1": "100% genuine and verified jobs, handpicked with care.",
+    "HOMEPAGE_ADVANTAGE_DESCRIPTION_2": "Jobs near you, so that you're not away from home.",
+    "HOMEPAGE_ADVANTAGE_DESCRIPTION_3": "Simplifying the process as well as the interface"
 }

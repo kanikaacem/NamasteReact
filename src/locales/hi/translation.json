@@ -181,7 +181,7 @@
     "ADVANTAGES_1": "वास्तविक जॉब्स",
     "ADVANTAGES_2": "आपके आसपास",
     "ADVANTAGES_3": "सबसे सरल",
-    "CJ_HEADING": "JobsYahan - यहाँ कैंडिडेट मिलने है सबसे सरल",
+    "CJ_HEADING": "JobsYahan - यहाँ कैंडिडेट मिलना है सबसे सरल",
     "CJ_HEADING_1": "अपनी रिक्वायरमेंट की जानकारी दें, हम जल्द ही आपसे संपर्क करेंगे!",
     "CJ_USERNAME": "अपना फोन नंबर या ईमेल शेयर करें",
     "CJ_BTN_NEXT": "आगे बढ़ें",
@@ -196,8 +196,8 @@
     "EMPR_LOGIN_BANNER": "यहाँ कैंडिडेट मिलना है सबसे सरल!",
     "EMPR_USERNAME": "यूज़रनेम डालें",
     "EMPR_PASSWORD": "पासवर्ड डालें",
-    "ENTER_CATEGORY": "कैटगोरी डालें",
-    "ENTER_LOCATION": "लोकेशन डालें",
+    "SELCET_CATEGORY": "कैटगोरी डालें",
+    "SELECT_LOCATION": "लोकेशन डालें",
     "APPLY_NOW": "आवेदन करें",
     "APPLY_VIA_WHATSAPP": "व्हाट्सऐप से आवेदन करें",
     "APPLY_VIA_WEB": "वेब से आवेदन करें",
@@ -221,5 +221,15 @@
     "MOBILE_NUMBER": "मोबाइल नंबर",
     "MESSAGE": "संदेश",
     "FIND_JOB": "जॉब खोजें",
-    "FIND_CANDIDATE": "कैंडिडेट खोजें"
+    "FIND_CANDIDATE": "कैंडिडेट खोजें",
+    "BACK": "बैक",
+    "THANK_YOU": "धन्यवाद!",
+    "THANK_YOU_MESSAGE": "हम आपसे जल्द ही संपर्क करेंगे।",
+    "HOMEPAGE_ADVANTAGE_HEADING_1": "वास्तविक जॉब्स",
+    "HOMEPAGE_ADVANTAGE_HEADING_2": "आपके आसपास",
+    "HOMEPAGE_ADVANTAGE_HEADING_3": "सबसे सरल",
+    "HOMEPAGE_ADVANTAGE_DESCRIPTION_1": "ध्यान से चुनी गईं, 100% वास्तविक एवं सत्यापित जॉब्स।",
+    "HOMEPAGE_ADVANTAGE_DESCRIPTION_2": "आपके आस-पास की जॉब्स, जिससे आपको घर से दूर ना जाना पड़े।",
+    "HOMEPAGE_ADVANTAGE_DESCRIPTION_3": "प्रक्रिया के साथ-साथ इंटरफ़ेस भी सबसे सरल।"
+
 }
