@@ -1,5 +1,5 @@
 import { getRequest, postRequest } from "../../utils/ApiRequests";
-import { Box, Stack, Container, Button, Typography, FormControl, Input, Tooltip, Grid } from "@mui/material";
+import { Box, Stack, Container, Button, Typography, FormControl, Input, Tooltip, Grid, Card, CardContent, CardMedia } from "@mui/material";
 
 /* Site Header */
 import LanguageTranslatorSection from "../Common/LanguageTranslaterSection";
@@ -27,21 +27,7 @@ const AdvantageSectionStyle = {
     position: "relative",
     alignItems: "center",
     justifyContent: "center",
-    width: { "xs": "320px", "sm": "320px", "md": "600px", "xl": "600px", "lg": "600px" },
-    height: { "xs": "320px", "sm": "320px", "md": "285px", "xl": "285px", "lg": "285px" },
-}
-
-const AdvantageSectionBoxStyle = {
-    width: { "xs": "100px", "sm": "100px", "md": "200px", "lg": "200px", "xl": "200px" },
-    position: "absolute",
-}
-
-const JobAdvantageDescriptionStyle = {
-    fontFamily: 'Manrope',
-    fontStyle: "normal",
-    fontWeight: "500",
-    fontSize: { "xs": "0.75rem", "sm": "0.75rem", "md": "1.2rem", "xl": "1.2rem", "lg": "1.2rem" },
-    margin: "10px 0px"
+    textAlign: "center"
 }
 
 const FindJobButton = ({ style }) => {
@@ -64,7 +50,6 @@ const FindJobButton = ({ style }) => {
 
 const FindCandidateButton = ({ style }) => {
     const { t } = useTranslation();
-
     const navigate = useNavigate();
     return (<Button
         onClick={() => navigate("candidate-khoze")}
@@ -96,7 +81,6 @@ function Home() {
 
     const setDynamicLocation = (location) => {
         localStorage.setItem("coordinates", location);
-        // let { lat, lng } = JSON.parse(location);
     };
 
     const getCoords = async () => {
@@ -114,7 +98,7 @@ function Home() {
                     const cityDetail = result.formatted_address
                     setCity(cityDetail)
                     setDynamicLocation(JSON.stringify(result?.geometry?.location))
-                    SendUserLatitudeLongitude(lat, lng, city)
+                    // SendUserLatitudeLongitude(lat, lng, city)
 
                 } else {
                     console.error('Geocoding request failed. Status:', data.status);
@@ -162,44 +146,43 @@ function Home() {
             getCoords();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
-    const SendUserLatitudeLongitude = async (lat, long, city) => {
-        const latlongForm = {
-            latitude: lat,
-            longitude: long,
-            city: city
-        };
-
-        try {
-            const api_url = process.env.REACT_APP_USER_LAT_LONG_URL;
-            const response = await postRequest(api_url, latlongForm);
-            if (response.status === '1')
-                console.log(response)
-        } catch (error) {
-            // Handle the error
-            console.error("Fetch error:", error);
-        }
-    }
-
     const web_carousal_images = [
-        'https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/banner_image_one.png',
-        'https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/banner_image_one.png',
-        'https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/banner_image_one.png',
+        "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/image_one.png",
+        "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/image_two.png",
+        "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/image_three.png",
     ]
 
-    const CarousalContent = () => <div className="carousel-content">
+    const advantages_content = [
+        {
+            heading: "Genuine Content",
+            description: "Apply for best jobs, for you, near you. Browse 10,000+ jobs now!",
+            img: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/middle_banner_image_1.png"
+        },
+        {
+            heading: "Aapke Aaspaas",
+            description: "Apply for best jobs, for you, near you. Browse 10,000+ jobs now!",
+            img: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/middle_banner_image_1.png"
+        },
+        {
+            heading: "Sabse saral",
+            description: "Apply for best jobs, for you, near you. Browse 10,000+ jobs now!",
+            img: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/middle_banner_image_1.png"
+        }
+    ]
+
+    const CarousalContent = () => (<div className="carousel-content">
         <h2 className="carousel-heading">{t('WEBSITE_HEADING')}</h2>
         <h2 className="carousel-text">{t('WEBSITE_SUB_HEADING')}</h2>
-        <div style={{ display: 'flex', justifyContent: 'flex-start', width: "70%", marginTop: '36px' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '36px' }}>
             <a href="/job-listing" className="carousel-button carousel-primary-button">{t('FIND_JOB')}</a>
             <a href="/candidate-khoze" className="carousel-button carousel-secondary-button">{t('FIND_CANDIDATE')}</a>
         </div>
-    </div>
+    </div>)
     return (<>
         <Box className="LandingPage">
             <Stack className="AnnocumentBar" sx={{
@@ -242,13 +225,11 @@ function Home() {
                             <CloseIcon fontSize="medium" color="disabled" />
                         </Tooltip>
                     </div>
-
                 </FormControl>
             </Stack>
             <Box className="WebsiteLogoAndLoginSectionWrapper" sx={{
                 minHeight: { "xs": "50px", "sm": "50px", "md": "100px", "lg": "100px", "xl": "100px" },
                 width: "100%",
-                // height: '100px',
                 padding: { "xs": "10px", "sm": "10px", "md": "20px 100px", "lg": "20px 100px", "xl": "20px 100px" },
                 boxSizing: "border-box",
                 background: "#FFFFFF",
@@ -256,14 +237,12 @@ function Home() {
                 top: "0",
                 zIndex: "234",
             }} >
-
                 <Stack direction="row" className="WebsiteLogoAndLoginSection"
                     alignItems="center"
                     sx={{
                         justifyContent: mobileScreen ? "space-between" : "flex-start"
                     }}>
                     <WebsiteLogo />
-
                     {!mobileScreen && <Stack className="LanguageSelectorSection" sx={{
                         alignItems: "center",
                         justifyContent: "center"
@@ -294,20 +273,16 @@ function Home() {
                             </Stack>
                         }
                     </Stack>
-
                 </Stack>
             </Box>
-
             {mobileScreen &&
                 <Stack className="MobileTopSection"
                     sx={{
                         width: "100%",
                         minHeight: "fit-content",
-                        // minHeight: { "xs": `calc(100vh - 50px)`, "sm": `calc(100vh - 50px)`, "md": "fit-content", "xl": "fit-content", "lg": "fit-content" },
                         boxSizing: "border-box"
                     }}>
                     <LanguageTranslatorSection />
-
                     <Stack className="BannerSectionWrapper" sx={{
                         padding: "0px 20px",
                         boxSizing: "border-box",
@@ -346,10 +321,7 @@ function Home() {
                             </Carousel>
                         </Box>
                     </Stack>
-
-
                     <Stack className="ButtonSectionWrapper" sx={{
-                        // minHeight: `calc((100vh - 50px)/2)`,
                         backgroundImage: "linear-gradient(#f3bb7a, #ffffff)",
                         padding: "40px",
                         boxSizing: "border-box",
@@ -363,13 +335,13 @@ function Home() {
                             }}>
                             <Typography variant="h1" component="h2" sx={{
                                 ...WebsiteMainHeading,
-                                fontSize: { "xs": "1.25rem", "sm": "1.25rem", "md": "2rem", "xl": "2rem", "lg": "2rem" }
+                                fontSize: '2rem'
                             }}>
                                 {t(`WEBSITE_HEADING`)}
                             </Typography >
 
                             <Typography variant="h1" component="h2" sx={{
-                                fontSize: { "xs": "0.7rem", "sm": "0.7rem", "md": "1rem", "xl": "1rem", "lg": "1rem" },
+                                fontSize: "1rem",
                                 fontFamily: "'Manrope',' sans- serif'",
                                 fontWeight: "400",
                                 color: "#000000",
@@ -383,34 +355,26 @@ function Home() {
                             <FindCandidateButton />
                         </Stack>
                     </Stack>
-
                 </Stack >
             }
             {!mobileScreen &&
-                <Box id="box-corousel" className="TopSection hero-section" sx={{ padding: "0px" }}>
-                    <Container id="container-corousel" sx={{ maxWidth: "100% !important", padding: "0px !important" }}>
-
-                        <Carousel id="corousel" showArrows={false} showStatus={false} showThumbs={false}
-                            autoPlay={true}
-                        >
-                            {web_carousal_images.map((img, index) => (
-                                <div
-                                    key={index}
-                                    class="carousel-container"
-                                    style={{
-                                        backgroundImage: `url(${img})`,
-                                        backgroundSize: 'cover',
-                                        backgroundRepeat: 'no-repeat',
-                                        backgroundPosition: 'center',
-                                        width: '100%',
-                                        height: '480px',
-                                        textAlign: 'left',
-                                    }}
+                <Box id="box-corousel" className="TopSection hero-section" sx={{ padding: "0px", background: "linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.465234) 42.19%, rgba(255, 103, 31, 0.075) 100%)" }}>
+                    <Container id="container-corousel" sx={{ maxWidth: "1440px !important", padding: "0px !important" }}>
+                        <Grid container xs={12} spacing={2} sx={{ height: '480px' }}>
+                            <Grid item xs={6}>
+                                <CarousalContent />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Carousel showArrows={false} showStatus={false} showThumbs={false}
+                                    autoPlay={true}
+                                    infiniteLoop={true}
                                 >
-                                    <CarousalContent />
-                                </div>
-                            ))}
-                        </Carousel>
+                                    {web_carousal_images.map((img, index) => (<>
+                                        <img key={index} alt="carousel" src={img} style={{ maxWidth: '420px', height: 'auto' }} />
+                                    </>))}
+                                </Carousel>
+                            </Grid>
+                        </Grid>
                     </Container>
                 </Box>
             }
@@ -446,36 +410,44 @@ function Home() {
                     </Stack>
                 </Container>
             </Box >
-
-            <Grid container justifyContent="center" sx={{
-                minHeight: "255px",
-                background: "#ffffff",
-                boxSizing: "border-box",
-                alignItems: "center"
-            }}>
-                <Grid item xs={12} sm={6} container justifyContent="center">
-                    <Typography variant="h1" component="h2" sx={{
-                        fontSize: "2.5rem",
-                        textAlign: 'center',
-                        fontWeight: "500",
-                        maxWidth: '300px'
-                    }}>
-                        <p>{t('FINDING_JOB_MADE_EASY_AND_SIMPLE_FOR_ANYONE')}</p>
-                    </Typography >
+            <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                minHeight="40vh"
+                sx={{
+                    maxWidth: "1440px !important",
+                    padding: "0px !important",
+                    background: "#ffffff",
+                    boxSizing: "border-box",
+                    alignItems: "center"
+                }}
+            >
+                <Grid container justifyContent="center" alignItems="center">
+                    <Grid item xs={12} sm={6} container justifyContent="center">
+                        <Typography variant="h3" component="h3" sx={{
+                            fontSize: "2rem",
+                            textAlign: 'center',
+                            fontWeight: "500",
+                            maxWidth: '350px'
+                        }}>
+                            <p>{t('FINDING_JOB_MADE_EASY_AND_SIMPLE_FOR_ANYONE')}</p>
+                        </Typography >
+                    </Grid>
+                    <Grid item xs={12} sm={6} container justifyContent="center">
+                        <img
+                            src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/middle_banner_image_1.png"
+                            alt="middle_banner"
+                            style={{
+                                maxWidth: 'auto',
+                                padding: mobileScreen ? '12px' : '20px',
+                                borderRadius: '40px',
+                                height: mobileScreen ? '200px' : '280px',
+                            }}
+                        />
+                    </Grid>
                 </Grid>
-                <Grid item xs={12} sm={6} container justifyContent="center">
-                    <img
-                        src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/middle_banner_image_1.png"
-                        alt="middle_banner"
-                        style={{
-                            maxWidth: 'auto',
-                            padding: '20px',
-                            borderRadius: '40px',
-                            height: mobileScreen ? '180px' : '280px',
-                        }}
-                    />
-                </Grid>
-            </Grid>
+            </Box>
             <Box className="JobLocationSection"
                 sx={{
                     width: "100%",
@@ -512,97 +484,35 @@ function Home() {
                     position: "relative",
                     backgroundImage: "linear-gradient(#ffffff 10% , #f3bb7a )",
                     padding: "20px"
-
                 }}>
-                <Box className="SectionHeading">
+                <Box className="SectionHeading" sx={{ marginBottom: '18px' }}>
                     <Heading headingText={t('JOB_YAHAN_ADVANTAGES')} />
                 </Box>
                 <Stack className="AdvantageSection" sx={AdvantageSectionStyle}>
-                    <Box sx={{
-                        width: mobileScreen ? "100px" : "600px",
-                        height: mobileScreen ? "320px" : "fit-content"
-                    }} >
-                        <img src={mobileScreen ?
-                            "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/job_advantage_picture.png"
-                            : "./assets/JobYahanAdvantageDesktop.png"}
-                            alt="JobYahanAdvantageDesktop" width="100%" height="100%" />
-                    </Box>
-
-                    {mobileScreen && <>
-                        <Box sx={{
-                            ...AdvantageSectionBoxStyle,
-                            top: "50px",
-                            right: "0px"
-                        }}>
-                            <Typography variant="h1" component="h2" sx={JobAdvantageDescriptionStyle}>
-                                {t('ADVANTAGES_1')}
-                            </Typography >
-
-                        </Box>
-
-                        <Box sx={{
-                            ...AdvantageSectionBoxStyle,
-                            bottom: "47px",
-                            right: "0"
-                        }}>
-                            <Typography variant="h1" component="h2" sx={JobAdvantageDescriptionStyle}>
-                                {t('ADVANTAGES_2')}
-                            </Typography >
-
-                        </Box>
-
-                        <Box sx={{
-                            ...AdvantageSectionBoxStyle,
-                            bottom: "125px",
-                            left: "0"
-                        }}>
-                            <Typography variant="h1" component="h2" sx={JobAdvantageDescriptionStyle}>
-                                {t('ADVANTAGES_3')}
-                            </Typography >
-
-                        </Box></>}
-
-                    {!mobileScreen && <>
-                        <Box sx={{
-                            ...AdvantageSectionBoxStyle,
-                            bottom: "0px",
-                            left: "0px"
-                        }}>
-                            <Typography variant="h1" component="h2" sx={JobAdvantageDescriptionStyle}>
-                                {t('ADVANTAGES_1')}
-                            </Typography >
-
-                        </Box>
-
-                        <Box sx={{
-                            ...AdvantageSectionBoxStyle,
-                            bottom: "0px",
-                            right: "0px"
-                        }}>
-                            <Typography variant="h1" component="h2" sx={JobAdvantageDescriptionStyle}>
-                                {t('ADVANTAGES_2')}
-                            </Typography >
-
-                        </Box>
-
-                        <Box sx={{
-                            ...AdvantageSectionBoxStyle,
-                            top: "0px",
-                            left: "39%"
-                        }}>
-                            <Typography variant="h1" component="h2" sx={JobAdvantageDescriptionStyle}>
-                                {t('ADVANTAGES_3')}
-                            </Typography >
-
-                        </Box>
-                    </>}
+                    <Grid container spacing={6}>
+                        {advantages_content.map((advantage, index) => (
+                            <Grid item xs={12} sm={4} >
+                                <Card sx={{ maxWidth: 345, width: '100%', padding: '0px', borderRadius: '9px' }}>
+                                    <CardMedia
+                                        sx={{ height: 140 }}
+                                        image={advantage.img}
+                                        title="green iguana"
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            {advantage.heading}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {advantage.description}
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        ))} </Grid>
                 </Stack>
             </Stack >
-
             <Footer />
         </Box >
-
-
     </>)
 }
 export default Home;
