@@ -11,10 +11,7 @@ import { useState, useEffect } from "react";
 import moment from 'moment';
 import ShareJob from "../Common/ShareJob";
 import { useTranslation } from "react-i18next";
-<<<<<<< HEAD
 import { Helmet } from "react-helmet";
-=======
->>>>>>> 52aa376c13cd35644ff4d033cae5ba12dfe54cf4
 import ApplyForJobWebButton from "../Common/ApplyForJobWebButton";
 const JobDescription = () => {
     const location = useLocation();
