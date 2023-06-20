@@ -94,11 +94,14 @@ const Dashboard = () => {
 
                     <Stack className="NotificationAndProfileSection" direction="row" sx={{ minWidth: "5%" }} gap={1} justifyContent="flex-start"
                         alignItems="center" >
-                        <Box className="Notification" sx={{ width: "25px", height: "25px" }}>
+                        {/* <Box className="Notification" sx={{ width: "25px", height: "25px" }}>
                             <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="Notification Symbol" width="100%" height="100%" />
-                        </Box>
-                        <Box className="Account" sx={{ width: "25px", height: "25px" }}>
-                            <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="Account Symbol" width="100%" height="100%" />
+                        </Box> */}
+                   
+                        <Box className="Account" sx={{ width: "auto" }}>
+                            
+                            <img src={window.location.origin + "/assets/ProfileImage.png"} alt="Account Symbol" width="100%" height="100%" />
+            
                         </Box>
                     </Stack>
                 </Stack>
