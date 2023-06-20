@@ -170,8 +170,8 @@ const JobListing = () => {
                         padding: "20px",
                         background: mobileScreen && "#FEF5F1"
                     }}>
-                    <Typography variant="h5" gutterBottom>
-                        {`${activeJobs} Active Jobs`}
+                    <Typography variant="h6" gutterBottom>
+                        {`${activeJobs} active jobs`}
                     </Typography>
                     <Stack direction="row" gap={2} sx={{
                         flexWrap: "wrap"

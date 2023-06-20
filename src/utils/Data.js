@@ -33,7 +33,7 @@ export const social_icons = [
     },
     {
         id: 7, icon_text: "Youtube",
-        icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/utube.png",
+        icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/youtube.png",
         icon_url: "https://www.youtube.com/@jobsyahanofficial"
     },
     {
@@ -50,6 +50,11 @@ export const social_icons = [
         id: 8, icon_text: "Linkedin",
         icon_image: "https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/linkedin.png",
         icon_url: "https://www.linkedin.com/company/jobsyahan"
+    },
+    {
+        id: 9, icon_text: "Twitter",
+        icon_image:"https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/twitter.png",
+        icon_url: "https://twitter.com/jobsyahan"
     }
 
 ]
