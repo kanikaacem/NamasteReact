@@ -11,6 +11,7 @@ import HPLTopHeadingSection from "./HPLTopHeadingSection";
 import HomePageLiteMessage from "./HomePageLiteMessage";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 const EmployerInformation = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const defaultValue = {
@@ -20,6 +21,7 @@ const EmployerInformation = () => {
         businessType: ""
     }
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("md"));
+    const { t } = useTranslation();
 
     const handleSubmit = async (values, { resetForm }) => {
         const { fullname, mobile, city, businessType } = values;
@@ -49,7 +51,7 @@ const EmployerInformation = () => {
             <HomePageLiteTopSection />
             <Container maxWidth={isDesktop ? "md" : false} sx={{ padding: "0px" }}>
                 <Box sx={{ padding: "20px", background: isDesktop ? "#ffffff" : "#FEF5F1" }} >
-                    <HPLTopHeadingSection headingText="Hire karne wale ki jankari de" />
+                    <HPLTopHeadingSection headingText={t('CANDIDATE_INFORMATION')} />
                     <Formik
                         initialValues={defaultValue}
                         validationSchema={EmployerInformationValidation}
@@ -58,7 +60,7 @@ const EmployerInformation = () => {
                         {({ errors }) => (
                             <Form className="EmployerInformationForm" >
                                 <Box className="FormGroup">
-                                    <FormLabel LableText="Enter hiring company Name" LableFor="fullname" />
+                                    <FormLabel LableText={t('NAME_OF_CANDIDATE_SEEKER')} LableFor="fullname" />
                                     <Field id="fullname"
                                         type="text" placeholder="Enter Company Name"
                                         name="fullname"
@@ -67,7 +69,7 @@ const EmployerInformation = () => {
 
                                 </Box>
                                 <Box className="FormGroup">
-                                    <FormLabel LableText="Hire karne wale ka mobile number" LableFor="mobile" />
+                                    <FormLabel LableText={t('CANDIDATE_MOBILE_NUMBER')} LableFor="mobile" />
                                     <Field id="mobile"
                                         type="text" placeholder="Enter Employer Mobile Number"
                                         name="mobile"
@@ -76,7 +78,7 @@ const EmployerInformation = () => {
 
                                 </Box>
                                 <Box className="FormGroup">
-                                    <FormLabel LableText="Shehar" LableFor="city" />
+                                    <FormLabel LableText={t('CANDIDATE_CITY')} LableFor="city" />
                                     <Field id="city"
                                         type="text" placeholder="Enter City"
                                         name="city"
@@ -85,7 +87,7 @@ const EmployerInformation = () => {
 
                                 </Box>
                                 <Box className="FormGroup">
-                                    <FormLabel LableText="Business" LableFor="businessType" />
+                                    <FormLabel LableText={t('WHATA_DO_U_KNOW')} LableFor="businessType" />
                                     <Field id="businessType"
                                         type="text" placeholder="Enter Business"
                                         name="businessType"
@@ -96,7 +98,7 @@ const EmployerInformation = () => {
 
                                 <Button variant="contained" type="submit" className="OrangeButton" sx={{
                                     margin: "20px 0px !important"
-                                }} >Submit</Button>
+                                }} >{t('SUBMIT')}</Button>
                             </Form>
                         )}
                     </Formik>

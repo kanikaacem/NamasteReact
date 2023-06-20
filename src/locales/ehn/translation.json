@@ -153,7 +153,7 @@
     "JOBS_FOR": "jobs har",
     "EVERY_INDIAN": "Hindustani",
     "FOR": "ke liye",
-    "INDIA'S_TRUSTED_jOB_PORTAL": "Bharat ka bhrosemand job platform",
+    "INDIA'S_TRUSTED_jOB_PORTAL": "Bharat ke Workers ke liye Job Search, Sabse Saral!",
     "CHOOSE_THE_LANGUAGE_YOU_LIKE": "Apni pasand ki bhaasha chunein",
     "CHOOSE_THE_jOB_OF_YOUR_CHOICE_THAT_TOO_NEAR_YOU_SEARCH_1000_JOBS": "Chuniye apke pasand ki job woh bhi apke aas pass. Search karein 10,000+ jobs.",
     "LOAD_MORE": "Aur Dekhe",
@@ -217,8 +217,8 @@
     "OTP_NOT_RECEIVED": "OTP not recieved",
     "RESEND_OTP": "Resend OTP",
     "JOBYAHAN_HELPER": "Help Someone in Need",
-    "GIVE_INFORMATION": "Jankari dein",
-    "CANDIDATE_INFORMATION": "Candidate ki jankari dein",
+    "GIVE_INFORMATION": "jaruratmand ki jaankari share kerein",
+    "CANDIDATE_INFORMATION": "Job khoj rahen hain",
     "JOB_INFORMATION": "Job ki jankari dein",
     "NAME": "Naam",
     "MOBILE_NUMBER": "Mobile Number",
@@ -233,5 +233,10 @@
     "HOMEPAGE_ADVANTAGE_HEADING_3": "Sabse Saral",
     "HOMEPAGE_ADVANTAGE_DESCRIPTION_1": "Dhyan se chuni gayin, 100% genuine aur verified jobs.",
     "HOMEPAGE_ADVANTAGE_DESCRIPTION_2": "Aapke aaspaas ki jobs, jisse aapko ghar se door na jana pade.",
-    "HOMEPAGE_ADVANTAGE_DESCRIPTION_3": "Process ke saath-saath interface bhi sabse saral."
+    "HOMEPAGE_ADVANTAGE_DESCRIPTION_3": "Process ke saath-saath interface bhi sabse saral.",
+    "FIND_HIRE": "Candidate khoj rahen hain",
+    "CANDIDATE_NAME": "Job khojne wale ka naam",
+    "CANDIDATE_MOBILE_NUMBER": "Unka Mobile Number",
+    "CANDIDATE_CITY": "Unke shehar ka naam",
+    "WHATA_DO_U_KNOW": "Kaisi Job chahate hain (jaise carpenter, sales executive etc.)"
 }
