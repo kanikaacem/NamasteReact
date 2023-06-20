@@ -18,8 +18,9 @@ const LanguageTranslatorSection = () => {
 
     const currentLanguage = useSelector(state => state.currentLanguage);
     const ChangeLanguage = (event) => {
-        dispatch({ type: 'CHANGE_LANGUAGE', payload: event.target.value });
         localStorage.setItem("locale", event.target.value);
+        dispatch({ type: 'CHANGE_LANGUAGE', payload: event.target.value });
+        
     }
     return (
         <Stack className="LanguageTranslator" direction="row" gap={1} sx={{
