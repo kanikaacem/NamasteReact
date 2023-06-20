@@ -5,9 +5,14 @@ import PageTopSection from "../Common/PageTopSection";
 import HomePageLiteMessage from "../HomePageLiteSection/HomePageLiteMessage";
 import FormLabel from "../Common/FormLabel";
 import { Formik, Field, Form } from "formik";
+import Error from '../../ThemeComponent/Common/Error';
 import { useState } from "react";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { candidateRequireValidationSchema } from '../../Validation/EmployerValidation';
+
+
 const CandidateRequirementsForm = () => {
     const { t } = useTranslation();
     const location = useLocation();
@@ -54,7 +59,7 @@ const CandidateRequirementsForm = () => {
                     <PageTopSection TopSectionName={t('CJ_FORM_TITLE')} />
                     <Box className="CandidateCredentialsForm" sx={{ padding: "20px", background: isDesktop ? "#ffffff" : "#FEF5F1" }} >
                         <Formik
-
+                            validationSchema={candidateRequireValidationSchema}
                             initialValues={defaultValue}
                             onSubmit={handleSubmit}
                         >
@@ -66,7 +71,7 @@ const CandidateRequirementsForm = () => {
                                             type="text" placeholder="Enter Business Name"
                                             name="businessname"
                                             className="custom-text-field" />
-                                        {/* {errors.businessname && touched.businessname && <Error text={errors.businessname} />} */}
+                                        {errors.businessname && touched.businessname && <Error text={errors.businessname} />}
 
                                     </Box>
                                     <Box className="FormGroup">
@@ -75,7 +80,7 @@ const CandidateRequirementsForm = () => {
                                             type="text" placeholder="Enter Business Details"
                                             name="businessType"
                                             className="custom-text-field" />
-                                        {/* {errors.businessType && touched.businessType && <Error text={errors.businessType} />} */}
+                                        {errors.businessType && touched.businessType && <Error text={errors.businessType} />}
 
                                     </Box>
                                     <Box className="FormGroup">
@@ -84,7 +89,7 @@ const CandidateRequirementsForm = () => {
                                             type="text" placeholder="Enter Job Details"
                                             name="jobDetails"
                                             className="custom-text-field" />
-                                        {/* {errors.jobDetails && touched.jobDetails && <Error text={errors.jobDetails} />} */}
+                                        {errors.jobDetails && touched.jobDetails && <Error text={errors.jobDetails} />}
 
                                     </Box>
                                     <Box className="FormGroup">
@@ -93,7 +98,7 @@ const CandidateRequirementsForm = () => {
                                             type="text" placeholder="Enter Job Location"
                                             name="jobLocation"
                                             className="custom-text-field" />
-                                        {/* {errors.jobLocation && touched.jobLocation && <Error text={errors.jobLocation} />} */}
+                                        {errors.jobLocation && touched.jobLocation && <Error text={errors.jobLocation} />}
 
                                     </Box>
                                     <Box className="FormGroup">
@@ -102,12 +107,16 @@ const CandidateRequirementsForm = () => {
                                             type="text" placeholder="Enter Candidate Count"
                                             name="candidateVacancy"
                                             className="custom-text-field" />
-                                        {/* {errors.candidateVacancy && touched.candidateVacancy && <Error text={errors.candidateVacancy} />} */}
+                                        {errors.candidateVacancy && touched.candidateVacancy && <Error text={errors.candidateVacancy} />}
 
                                     </Box>
                                     <Button variant="contained" type="submit" className="OrangeButton" sx={{
                                         margin: "20px 0px !important"
                                     }} >{t('SUBMIT')}</Button>
+                                    <a href="/candidate-khoze" className="back-button-link">
+                                      <p>{`  Back`}</p>
+                                    </a>
+
                                 </Form>
                             )}
                         </Formik>

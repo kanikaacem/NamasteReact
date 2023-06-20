@@ -1,7 +1,6 @@
 import { getRequest } from "../../utils/ApiRequests"
 import FormControl from '@mui/material/FormControl';
-import { Box, Button, Stack, Container, Select, MenuItem, Breadcrumbs, Link, Autocomplete, TextField, Typography } from "@mui/material";
-import { LinkStyles } from "../../utils/Styles";
+import { Box, Button, Stack, Container, Select, MenuItem, Autocomplete, TextField, Typography } from "@mui/material";
 import PageTopSection from '../Common/PageTopSection';
 import JobItem from "./JobItem";
 import Footer from "../../ThemeComponent/Common/Footer";
@@ -21,21 +20,6 @@ const JobListing = () => {
     const [postedJobs, setPostedJobs] = useState([]);
     const [jobRoleFilterData, setJobRoleFilterData] = useState([]);
     const [activeJobs, setActiveJobs] = useState(0);
-
-    const breadcrumbs = [
-        <Link underline="hover" sx={LinkStyles} key="1" color="inherit" href="/" >
-            {t('HOME')}
-        </Link>,
-        <Link
-            sx={LinkStyles}
-            underline="hover"
-            key="2"
-            color="#FF671F"
-            fontWeight="600"
-        >
-            {t('POSTED_JOBS')}
-        </Link>
-    ];
 
     const SelectFilter = ({ value, setValue, placeholder }) => {
         const navigate = useNavigate();

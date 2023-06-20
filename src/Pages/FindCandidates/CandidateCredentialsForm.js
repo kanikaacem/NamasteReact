@@ -3,7 +3,7 @@ import Footer from "../../ThemeComponent/Common/Footer";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 // import Error from "../../ThemeComponent/Common/Error";
 import FormLabel from "../Common/FormLabel";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
@@ -18,6 +18,15 @@ const CandidateCredentialsForm = () => {
     const handleSubmit = async (values) => {
         navigate("/candidate-requirement", { state: { inputfield: values.user_credentials } });
     };
+
+    const validateEmailOrPhoneNumber = (value) => {
+        const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+        const phoneRegex = /^\d{10}$/;
+        if (!value)  return 'This field is required';      
+        if (!emailRegex.test(value) && !phoneRegex.test(value))
+          return 'Please enter a valid email or phone number';
+        else return null;
+      };
 
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("md"));
     const currentLanguage = useSelector(state => state.currentLanguage);
@@ -37,12 +46,11 @@ const CandidateCredentialsForm = () => {
                         className="CandidateCredentialsTopSection"
                         sx={{
                             height: "430px",
-                            padding: "20px",
+                            padding: "20px 0px",
                             backgroundImage: "linear-gradient(#ffffff 30%,#f3bb7a )",
                             position: "relative"
                         }}
                     >
-                        <ArrowBackIcon sx={{ cursor: "pointer" }} onClick={() => { window.history.back(); }} />
                         <Typography
                             variant="h1"
                             component="h2"
@@ -94,7 +102,9 @@ const CandidateCredentialsForm = () => {
                                             placeholder="Enter Mobile Number or email"
                                             name="user_credentials"
                                             className="custom-text-field"
+                                            validate={validateEmailOrPhoneNumber}
                                         />
+                                        <ErrorMessage name="user_credentials" component="div" className="error-message" />
                                         {/* {errors.user_credentials && touched.user_credentials && <Error text={errors.user_credentials} />} */}
                                     </Box>
                                     <Button variant="contained" type="submit" className="OrangeButton">
