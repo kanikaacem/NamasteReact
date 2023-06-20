@@ -1,6 +1,6 @@
 import { getRequest } from "../../utils/ApiRequests"
 import FormControl from '@mui/material/FormControl';
-import { Box, Button, Stack, Container, Select, MenuItem, Breadcrumbs, Link, Autocomplete, TextField } from "@mui/material";
+import { Box, Button, Stack, Container, Select, MenuItem, Breadcrumbs, Link, Autocomplete, TextField, Typography } from "@mui/material";
 import { LinkStyles } from "../../utils/Styles";
 import PageTopSection from '../Common/PageTopSection';
 import JobItem from "./JobItem";
@@ -20,6 +20,7 @@ const JobListing = () => {
     const mobileScreen = useSelector(state => state.screenType) === "mobile";
     const [postedJobs, setPostedJobs] = useState([]);
     const [jobRoleFilterData, setJobRoleFilterData] = useState([]);
+    const [activeJobs, setActiveJobs] = useState(0);
 
     const breadcrumbs = [
         <Link underline="hover" sx={LinkStyles} key="1" color="inherit" href="/" >
@@ -149,9 +150,8 @@ const JobListing = () => {
         const fetchData = async () => {
             try {
                 const data = await getRequest(api_url);
-                // Handle the fetched data
-                setPostedJobs(data.data.reverse())
-                // console.log(data.data)
+                setActiveJobs(data.acitvejob)
+                setPostedJobs(data.data.reverse());
 
             } catch (error) {
                 // Handle the error
@@ -180,24 +180,15 @@ const JobListing = () => {
         }}>
 
             <PageTopSection showBackButton={true} />
-            <Box className="WebsiteBreadcrumb" sx={{
-                padding: {
-                    "xs": "10px", "sm": "10px",
-                    "md": "10px 100px", "lg": "10px 100px", "xl": "10px 100px"
-                }
-            }}>
-                <Breadcrumbs separator="›" aria-label="breadcrumb">
-                    {breadcrumbs}
-                </Breadcrumbs>
-            </Box>
-
             <Container sx={{ padding: "0px", maxWidth: '1800px' }} maxWidth={false}>
                 <Stack className="JobListingContent" direction="column" gap={2}
                     sx={{
                         padding: "20px",
                         background: mobileScreen && "#FEF5F1"
                     }}>
-
+                    <Typography variant="h5" gutterBottom>
+                        {`${activeJobs} Active Jobs`}
+                    </Typography>
                     <Stack direction="row" gap={2} sx={{
                         flexWrap: "wrap"
                     }}>
@@ -236,7 +227,7 @@ const JobListing = () => {
                         })}
 
                     </Stack>
-                    <Button variant="contained"
+                    {postedJobs && postedJobs.length > 10 && <Button variant="contained"
                         onClick={handleLoadMore}
                         sx={{
                             width: "300px",
@@ -249,7 +240,7 @@ const JobListing = () => {
                                 background: "#FF671F",
                             }
                         }
-                        }> {t('LOAD_MORE')}</Button >
+                        }> {t('LOAD_MORE')}</Button >}
                 </Stack>
             </Container>
             <Footer />

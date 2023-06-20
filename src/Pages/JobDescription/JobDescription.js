@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import moment from 'moment';
 import ShareJob from "../Common/ShareJob";
 import { useTranslation } from "react-i18next";
+import ApplyForJobWebButton from "../Common/ApplyForJobWebButton";
 const JobDescription = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -148,6 +149,9 @@ const JobDescription = () => {
                         </Stack>
 
                         <SectionSeperator />
+                        <Stack direction="row" gap={2}>
+                            <ApplyForJobWebButton jobId={id} buttonStyle="contained" />
+                        </Stack>
 
                         <Stack direction="row" gap={2}>
                             <ApplyForJobButton jobId={id} />
