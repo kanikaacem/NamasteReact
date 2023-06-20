@@ -3,7 +3,7 @@ export const HomeCities = "https://backend.jobsyahan.com/api/map/cities";
 
 /*-----------------------Employer ----------------------------*/
 /* Api for employer Login */
-export const EmployerLoginURL = "https://backend.jobsyahan.com/api/employer/loginemployer";
+export const EmployerLoginURL = "https://backend.jobsyahan.com/api/loginforemployer";
 // export const EmployerLoginURL = "https://192.168.1.4:3001/api/employer/loginEmployer";
 /*Employer Registration */
 /*Checking if the Email Present or not */

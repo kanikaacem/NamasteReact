@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+
 const CandidateCredentialsForm = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -123,8 +124,8 @@ const CandidateCredentialsForm = () => {
                                 textAlign: "center"
                             }}
                         >
-                            By continuing, you agree to the <span style={{ color: "#0D99FF" }}>Terms & Conditions</span> and{" "}
-                            <span style={{ color: "#0D99FF" }}>Privacy & Policy</span> of JobsYahan.
+                            By continuing, you agree to the <a href={`${window.location.origin}/${currentLanguage}/terms-and-conditions`} style={{ color: "#0D99FF", textDecoration: "none" }}>Terms & Conditions</a> and
+                            <a href={`${window.location.origin}/${currentLanguage}/privacy-policy`} style={{ color: "#0D99FF", textDecoration: "none" }}>Privacy & Policy</a> of JobsYahan.
                         </Typography>
 
                     </Box>

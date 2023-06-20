@@ -25,6 +25,15 @@ const HomePageLite = () => {
                 <meta property="og:url" content={`${window.location.origin}/homepagelite`} />
             </Helmet>
             <Container maxWidth={isDesktop ? "md" : false} sx={{ padding: "0px", minHeight: "100vh", }}>
+                <Box sx={{ padding: "10px" }}>
+                    <Typography variant="h1" component="h2" sx={{
+                        fontSize: "1rem",
+                        textAlign: "end",
+                        fontWeight: "600"
+                    }}>
+                        BETA
+                    </Typography >
+                </Box>
                 <LanguageTranslatorSection />
                 <Box className="TopSectionImage" sx={{
                     position: "relative",
@@ -61,11 +70,11 @@ const HomePageLite = () => {
                     }}>
                     <Button sx={{ ...WebsiteContainedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px" }} onClick={() => navigate("/useraction")}>{t('JOBYAHAN_HELPER')}</Button>
                     <Stack direction="row" justifyContent="space-between">
-                        <Button sx={{ ...WebsiteOutlinedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px", width: "49%" }} onClick={() => navigate("/job-listing")}>Job खोजें</Button>
-                        <Button sx={{ ...WebsiteOutlinedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px", width: "49%" }} onClick={() => navigate("/candidate-khoze")}>Candidate खोजें</Button>
+                        <Button sx={{ ...WebsiteOutlinedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px", width: "49%" }} onClick={() => navigate("/job-listing")}>{t('FIND_JOB')}</Button>
+                        <Button sx={{ ...WebsiteOutlinedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px", width: "49%" }} onClick={() => navigate("/candidate-khoze")}>{t('FIND_CANDIDATE')}</Button>
                     </Stack>
                 </Stack>
-            </Container>
+            </Container >
             <Footer />
         </Box >
     )
