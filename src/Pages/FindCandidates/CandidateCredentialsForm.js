@@ -147,7 +147,7 @@ const CandidateCredentialsForm = () => {
                                 textAlign: "center"
                             }}
                         >
-                            By continuing, you agree to the <span style={{ color: "#0D99FF" }}>Terms & Conditions</span> and{" "}
+                            By continuing, you agree to the <a style={{ color: "#0D99FF" }}>Terms & Conditions</a> and{" "}
                             <span style={{ color: "#0D99FF" }}>Privacy & Policy</span> of JobsYahan.
                         </Typography>
 

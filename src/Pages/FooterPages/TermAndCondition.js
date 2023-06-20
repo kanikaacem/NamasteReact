@@ -28,7 +28,7 @@ const TermAndCondition = () => {
                                     lineHeight: "1.2",
 
                                 }}>
-                                    Terms and Condition
+                                    Terms and Conditions
                      </Typography>
                 </Box>
                 <Box className="AboutUsPageContentDescriptions" sx={{ padding: "20px 0px" }}>

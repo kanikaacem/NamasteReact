@@ -20,11 +20,12 @@ const resources = {
 const i18nIntialization = (storeData) => {
     // Use the storeData as needed for language translation
     // ...
+    let language = localStorage.getItem('locale')
     i18n
         .use(initReactI18next)
         .init({
             resources,
-            lng: storeData.currentLanguage, //default language
+            lng: language,//storeData.currentLanguage, //default language
             fallbackLng: "hn",
             keySeparator: false,
             interpolation: {
