@@ -322,10 +322,10 @@ function Home() {
                                     <img alt="carousel" src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/employee-img.png" />
                                 </div>
                                 <div>
-                                    <img alt="carousel" src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/employee-img.png" />
+                                    <img alt="carousel" src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/image_two.png" />
                                 </div>
                                 <div>
-                                    <img alt="carousel" src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/employee-img.png" />
+                                    <img alt="carousel" src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/image_three.png" />
                                 </div>
                             </Carousel>
                         </Box>

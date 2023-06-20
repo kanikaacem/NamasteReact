@@ -60,8 +60,7 @@ const FooterHeader = () => {
             <Stack direction="row" className="WebsiteLogoAndLoginSection"
                 alignItems="center"
                 sx={{
-
-                    justifyContent: "flex-start"
+                    justifyContent: mobileScreen ? "space-between" : "flex-start"
                 }}>
                 <WebsiteLogo />
                 {!mobileScreen && <Stack className="LanguageSelectorSection" sx={{
