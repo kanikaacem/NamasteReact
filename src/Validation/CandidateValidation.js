@@ -82,3 +82,26 @@ export const CandidateMobileNumberValidation = yup.object().shape({
         .matches(/^\d{10}$/, 'Mobile number must be a 10-digit number')
         .required('Mobile number is required'),
 });
+
+export const OTPValidation = yup.object().shape({
+    otp_digit1: yup.string()
+        .test("one-digit", "Only one digit is allowed", (value) => {
+            // Check if the value has exactly one digit
+            return /^\d$/.test(value);
+        }),
+    otp_digit2: yup.string()
+        .test("one-digit", "Only one digit is allowed", (value) => {
+            // Check if the value has exactly one digit
+            return /^\d$/.test(value);
+        }),
+    otp_digit3: yup.string()
+        .test("one-digit", "Only one digit is allowed", (value) => {
+            // Check if the value has exactly one digit
+            return /^\d$/.test(value);
+        }),
+    otp_digit4: yup.string()
+        .test("one-digit", "Only one digit is allowed", (value) => {
+            // Check if the value has exactly one digit
+            return /^\d$/.test(value);
+        })
+});

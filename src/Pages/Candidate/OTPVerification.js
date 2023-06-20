@@ -7,6 +7,7 @@ import { Formik, Field, Form } from "formik";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import JobApplyWeb from '../Common/JobApplyWeb';
+import { OTPValidation } from "../../Validation/CandidateValidation";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 const OTPVerification = () => {
@@ -128,6 +129,7 @@ const OTPVerification = () => {
 
                     <Formik
                         initialValues={defaultValue}
+                        validationSchema={OTPValidation}
                         onSubmit={handleSubmit}
                     >
                         {({ errors, touched, values }) => (
