@@ -134,13 +134,8 @@ const CandidateCredentialsForm = () => {
                                 textAlign: "center"
                             }}
                         >
-<<<<<<< HEAD
                             By continuing, you agree to the <a href={`${window.location.origin}/${currentLanguage}/terms-and-conditions`} style={{ color: "#0D99FF", textDecoration: "none" }}>Terms & Conditions</a> and
                             <a href={`${window.location.origin}/${currentLanguage}/privacy-policy`} style={{ color: "#0D99FF", textDecoration: "none" }}>Privacy & Policy</a> of JobsYahan.
-=======
-                            By continuing, you agree to the <a style={{ color: "#0D99FF" }}>Terms & Conditions</a> and{" "}
-                            <span style={{ color: "#0D99FF" }}>Privacy & Policy</span> of JobsYahan.
->>>>>>> 52aa376c13cd35644ff4d033cae5ba12dfe54cf4
                         </Typography>
 
                     </Box>
