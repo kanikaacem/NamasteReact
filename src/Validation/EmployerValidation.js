@@ -88,3 +88,12 @@ export const contactUsValidationSchema = yup.object().shape({
     mobile_number: yup.string().required("Mobile number is required").matches(phoneRegExp, 'Mobile number is not valid'),
     message: yup.string().required("Message  is required")
 })
+
+// Candidate-khoze validation
+export const candidateRequireValidationSchema = yup.object().shape({
+    businessname: yup.string().required("Business name is required"),
+    businessType: yup.string().required("Business Type is required"),
+    jobDetails: yup.string().required("Job details is required"),
+    jobLocation: yup.string().required("Job Location is required"),
+    candidateVacancy: yup.number("Candidate vacancy should be in numbers.").required("Candidate vacancy is required")
+})

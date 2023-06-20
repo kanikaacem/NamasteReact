@@ -178,6 +178,12 @@ body {
   font-weight: 600;
 }
 
+.back-button-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .Settings div {
   display: flex;
   align-items: center;
@@ -201,6 +207,10 @@ body {
 .error-page-header {
   height: 60px;
   background-color: #f3bb7a;
+}
+
+.error-message {
+  color: red;
 }
 
 /*form Informatin */
