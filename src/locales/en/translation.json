@@ -225,5 +225,7 @@
     "MESSAGE": "Message",
     "FIND_CANDIDATE": "Find Candidates",
     "FIND_JOB": "Find Jobs",
-    "BACK": "BACK"
+    "BACK": "BACK",
+    "THANK_YOU": "Thank You! ",
+    "THANK_YOU_MESSAGE": " We'll contact you soon."
 }
