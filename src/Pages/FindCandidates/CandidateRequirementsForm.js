@@ -114,7 +114,7 @@ const CandidateRequirementsForm = () => {
                                         margin: "20px 0px !important"
                                     }} >{t('SUBMIT')}</Button>
                                     <a href="/candidate-khoze" className="back-button-link">
-                                      <p>{`  Back`}</p>
+                                      <p>{t('BACK')}</p>
                                     </a>
 
                                 </Form>
