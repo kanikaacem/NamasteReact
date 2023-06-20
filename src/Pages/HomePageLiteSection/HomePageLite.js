@@ -17,10 +17,10 @@ const HomePageLite = () => {
         <Box className="HomePageLite" sx={{
         }}>
             <Helmet>
-                <title>JobsYahan - Bharat ka Jobs App | Find Jobs & Workers</title>
+                <title>JobsYahan - Bharat ka Job App | Find Jobs & Workers</title>
                 <meta name="description" content="JobsYahan - Bharat ka Jobs App | Find Jobs & Workers" />
                 <meta property="og:type" content="Website" />
-                <meta property="og:title" content="JobsYahan - Bharat ka Jobs App | Find Jobs & Workers" />
+                <meta property="og:title" content="JobsYahan - Bharat ka Job App | Find Jobs & Workers" />
                 <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
                 <meta property="og:url" content={`${window.location.origin}/homepagelite`} />
             </Helmet>

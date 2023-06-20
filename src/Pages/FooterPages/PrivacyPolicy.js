@@ -15,10 +15,10 @@ const PrivacyPolicy = () => {
         }}
     >
         <Helmet>
-            <title>Check JobsYahan’s Privacy Policy Norms</title>
+            <title>Check JobsYahan’s Privacy Policy</title>
             <meta name="description" content="JobsYahan’s privacy policy norms for both recruiters and candidates are explicitly mentioned. Read on to know more." />
             <meta property="og:type" content="Website" />
-            <meta property="og:title" content="Check JobsYahan’s Privacy Policy Norms" />
+            <meta property="og:title" content="Check JobsYahan’s Privacy Policy" />
             <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
             <meta property="og:url" content={`${window.location.origin}/${currentLanguage}/privacy-policy`} />
         </Helmet>
