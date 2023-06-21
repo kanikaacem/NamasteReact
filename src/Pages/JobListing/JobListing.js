@@ -203,11 +203,11 @@ const JobListing = () => {
                                     // shrink: true,
                                     width: mobileScreen ? "100%" : 300,
                                     style: {
-                                        fontSize: "0.8rem !important", // Set the desired fontSize for the placeholder
+                                        fontSize: "0.8rem !important",// Set the desired fontSize for the placeholder
                                     },
                                 }}
                                 sx={{
-                                    fontSize: "0.8rem !important",
+                                    fontSize: "0.8rem !important"
                                 }}
                             />
                             }

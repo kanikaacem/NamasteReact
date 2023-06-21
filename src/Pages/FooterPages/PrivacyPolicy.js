@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import Footer from "../../ThemeComponent/Common/Footer";
 import Header from "../Common/Header";
@@ -5,7 +6,11 @@ import FooterHeading from "./FooterHeading";
 import FooterDescription from "./FooterDescription";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
+
 const PrivacyPolicy = () => {
+    useEffect(()=> {
+        window.scrollTo(0, 0)
+    },[])
     const currentLanguage = useSelector(state => state.currentLanguage);
     return (<Stack
         className="AboutUsPage"
