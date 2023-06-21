@@ -1,4 +1,4 @@
-import { getRequest, postRequest } from "../../utils/ApiRequests";
+import { getRequest } from "../../utils/ApiRequests";
 import { Box, Stack, Container, Button, Typography, FormControl, Input, Tooltip, Grid, Card, CardContent, CardMedia } from "@mui/material";
 
 /* Site Header */

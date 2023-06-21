@@ -165,13 +165,13 @@ const JobItem = ({ item }) => {
                         </Stack>
                     </Stack>
                     <Grid item container spacing={2} xs={12}>
-                        <Grid item xs={12} sm={6} md={4} lg={4}>
+                        <Grid item xs={12} sm={6} md={4} lg={3}>
                             <ApplyForJobWebButton jobId={_id} buttonStyle="contained" />
                         </Grid>
-                        <Grid item xs={12} sm={6} md={4} lg={4}>
+                        <Grid item xs={12} sm={6} md={4} lg={3}>
                             <ApplyForJobButton jobId={_id} buttonStyle="contained" />
                         </Grid>
-                        <Grid item xs={12} sm={12} md={12} lg={4} sx={{ display: "flex", justifyContent: "space-between" }}>
+                        <Grid item xs={12} sm={12} md={12} lg={6} sx={{ display: "flex", justifyContent: "space-between" }}>
                             <ShareJob jobId={_id} jobDescription={jobDescriptions} jobRole={jobRole} />
                             <a className="view-job-button" href={`${slug_url}`}>
                                 <p className="view-job-button-text"> {t('VIEW')} </p>
