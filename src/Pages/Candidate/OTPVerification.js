@@ -164,12 +164,18 @@ const OTPVerification = () => {
                                                     background: touched[`otp_digit${index}`] ? "#F6EBE5 !important" : "#F5F6F9 !important",
                                                     // Add more styles here as needed
                                                 },
+                                                maxLength: 1, // Limit input to a single character
+                                                inputMode: "numeric",
+                                                pattern: "[0-9]",
+                                                onInput: (e) => {
+                                                    e.target.value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+                                                },
                                             }}
                                         />
                                     ))}
 
                                 </Stack>
-                                {/* {<Error text="EHKJLK" />} */}
+                                {errors.otp_digit1 && touched.otp_digit1 && <Error text={errors.otp_digit1} />}
 
                                 <Typography sx={{
                                     fontFamily: "Poppins",

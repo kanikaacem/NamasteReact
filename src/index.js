@@ -12,6 +12,7 @@ import { ThemeProvider } from '@mui/material/styles';
 //Redux inital State
 import { initialState } from "./Redux/initialState";
 import { reducer } from "./Redux/reducers";
+import { HelmetProvider } from 'react-helmet-async';
 //checking the Device size 
 import CheckScreenType from './utils/CheckScreenType';
 //Intialization the i18n library
@@ -33,11 +34,14 @@ store.subscribe(() => {
 });
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <CheckScreenType />
-      <App />
-    </ThemeProvider>
-  </Provider>
+  <HelmetProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <CheckScreenType />
+        <App />
+      </ThemeProvider>
+    </Provider>
+  </HelmetProvider>
+
 
 );
