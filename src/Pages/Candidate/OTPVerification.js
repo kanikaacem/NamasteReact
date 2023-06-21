@@ -1,7 +1,6 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { Box, Button, Stack, Container, Typography, TextField } from "@mui/material";
 import PageTopSection from "../Common/PageTopSection";
-import Error from "../../ThemeComponent/Common/Error";
 import { Formik, Field, Form } from "formik";
 
 import { useLocation, useNavigate } from "react-router-dom";

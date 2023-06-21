@@ -1,13 +1,10 @@
 import { getRequestWithToken } from "../../utils/ApiRequests";
-import { GetCandidateOnParticularJob } from "../../utils/ApiUrls";
 import { DataGrid } from '@mui/x-data-grid';
 
 import {
     Box
 } from "@mui/material";
-
-import { useParams } from "react-router-dom";
-import { getJobPostedTime, replaceUnderscore } from "../../utils/function";
+import { replaceUnderscore } from "../../utils/function";
 import { useState, useEffect } from "react";
 const AppliedCandidate = () => {
     const [jobCanData, setJobCanData] = useState([]);
@@ -34,7 +31,7 @@ const AppliedCandidate = () => {
         { field: 'job_role', headerName: 'Job Role', width: 220 },        
         { field: 'name', headerName: 'Name', width: 180 },
         { field: 'mobile_number', headerName: 'Mobile Number', width: 180 },
-        { field: 'gender', headerName: 'Gender', width: 100, renderCell: (params) => <Box>{capitalize(params.value)}</Box> },
+        { field: 'gender', headerName: 'Gender', width: 10, renderCell: (params) => <Box>{capitalize(params.value)}</Box> },
         {
             field: 'education', headerName: 'Education', width: 180,
             renderCell: (params) => <Box>{replaceUnderscore(params.value)}</Box>

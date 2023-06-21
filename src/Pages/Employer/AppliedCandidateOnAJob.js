@@ -1,5 +1,4 @@
 import { getRequestWithToken } from "../../utils/ApiRequests";
-import { GetCandidateOnParticularJob } from "../../utils/ApiUrls";
 import { DataGrid } from '@mui/x-data-grid';
 
 import {
@@ -7,7 +6,7 @@ import {
 } from "@mui/material";
 
 import { useParams } from "react-router-dom";
-import { getJobPostedTime, replaceUnderscore } from "../../utils/function";
+import { replaceUnderscore } from "../../utils/function";
 import { useState, useEffect } from "react";
 const AppliedCandidateOnAJob = () => {
     const [jobCanData, setJobCanData] = useState([]);
