@@ -751,9 +751,9 @@ body {
   background: #EAEAEA;
 }
 
-.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+/* .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
   border-radius: 11px !important;
-}
+} */
 
 
 .CompanyInformationForm .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
@@ -1348,4 +1348,10 @@ option {
 
 .MuiAutocomplete-inputRoot {
   font-size: 0.8rem !important;
+}
+
+@media screen and (max-width:500px) {
+.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon, .css-bpeome-MuiSvgIcon-root-MuiSelect-icon{
+  top: 8px !important;
+}
 }
