@@ -269,7 +269,7 @@ export const EmployerMenu = [
         Menu: "WorkOutlineIcon",
         MenuName: "APPLIED CANDIDATES",
         value: "applied_candidates",
-        url: ""
+        url: "applied-candidates"
 
     }
 

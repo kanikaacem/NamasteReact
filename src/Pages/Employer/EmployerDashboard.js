@@ -97,6 +97,7 @@ const EmployerDashboard = () => {
                 const data = await getRequestWithToken(api_url);
                 if (data.status === '1')
                     setData(data.data)
+                    console.log(data.data)
 
             } catch (error) {
                 // Handle the error
