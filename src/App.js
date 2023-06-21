@@ -106,7 +106,7 @@ function App() {
             <Route path="" element={<EmployerDashboard></EmployerDashboard>} />
             <Route path="posted-jobs" element={<PostedJobs />} />
             <Route path="post-a-job" element={<PostJob></PostJob>} />
-            <Route path="applied-candidates/:id" element={<AppliedCandidate />} />
+            <Route path="applied-candidates" element={<AppliedCandidate />} />
             <Route path="applied-candidates-job/:id" element={<AppliedCandidateOnAJob />} />
           </Route>
 

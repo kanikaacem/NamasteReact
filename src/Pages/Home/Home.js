@@ -501,7 +501,7 @@ function Home() {
                     <Grid container spacing={6}>
                         {advantages_content.map((advantage, index) => (
                             <Grid item xs={12} sm={4} >
-                                <Card sx={{ maxWidth: 345, width: '100%', padding: '0px', borderRadius: '9px' }}>
+                                <Card sx={{ maxWidth: 345, width: '100%', padding: '0px', borderRadius: '9px', minHeight: 300 }}>
                                     <CardMedia
                                         sx={{ height: 180 }}
                                         image={advantage.img}

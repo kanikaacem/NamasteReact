@@ -76,7 +76,19 @@ body {
   justify-content: center;
 }
 
+.view-applied-job-button {
+  width: "350px";
+  background-color: "#FF671F";
+  border-radius: "5px";
+  text-transform: "capitalize";
+  font-size: "0.8rem";
+  padding: "10px !important",
+}
 
+.view-applied-job-button:hover {
+  background-color: #FF671F;
+  /* color: white; */
+}
 
 .info-title {
   font-size: 25px;
