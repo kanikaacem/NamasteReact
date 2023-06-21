@@ -206,7 +206,7 @@ const JobListing = () => {
                                     },
                                 }}
                                 sx={{
-                                    fontSize: "0.8rem !important"
+                                    fontSize: "0.8rem !important",
                                 }}
                             />
                             }
