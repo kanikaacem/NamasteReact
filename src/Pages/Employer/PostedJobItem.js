@@ -4,7 +4,7 @@ import { getJobPostedTime, replaceUnderscore } from "../../utils/function";
 
 const PostedJobItem = ({ item }) => {
     const { active, accessibleForDisabled, jobRole, jobId, jobDepartment, jobSector, inhandSalaryPermonth, jobType, qualification,
-        shift, vehicleRequired, requiredExperience, language, state, createdAt } = item;
+        shift, vehicleRequired, requiredExperience, language, state, createdAt, _id, slug_url } = item;
     const ActiveJobChip = () => {
         return (<Chip sx={{
             border: "1px solid #1AE547",
@@ -310,38 +310,40 @@ const PostedJobItem = ({ item }) => {
                 </Stack>
 
                 <Stack direction="row" justifyContent="flex-start" gap={2} sx={{ margin: "10px 0px" }}>
-                    <Button variant="contained"
-                        type="submit"
-                        sx={{
-                            width: "350px",
-                            background: "#FF671F",
-                            borderRadius: "5px",
-                            textTransform: "capitalize",
-                            fontSize: "0.8rem",
-                            padding: "10px !important",
-                            "&:hover": {
+                    <a href={`/employer-dashboard/applied-candidates-job/${_id}`}>
+                        <Button variant="contained"
+                            type="submit"
+                            sx={{
+                                width: "350px",
                                 background: "#FF671F",
+                                borderRadius: "5px",
+                                textTransform: "capitalize",
+                                fontSize: "0.8rem",
+                                padding: "10px !important",
+                                "&:hover": {
+                                    background: "#FF671F",
+                                }
                             }
-                        }
-                        }>View Applied Candidates</Button >
-                    <Button variant="contained"
-                        type="button"
-                        sx={{
-                            width: "350px",
-                            background: "#FCF9F5",
-                            borderRadius: "5px",
-                            color: "#000000",
-                            textTransform: "capitalize",
-                            fontSize: "0.8rem",
-                            padding: "10px !important",
-                            "&:hover": {
+                            }>View Applied Candidates</Button ></a>
+                    <a href={`${slug_url}`}>
+                        <Button variant="contained"
+                            type="button"
+                            sx={{
+                                width: "350px",
                                 background: "#FCF9F5",
+                                borderRadius: "5px",
                                 color: "#000000",
+                                textTransform: "capitalize",
+                                fontSize: "0.8rem",
+                                padding: "10px !important",
+                                "&:hover": {
+                                    background: "#FCF9F5",
+                                    color: "#000000",
 
+                                }
                             }
-                        }
-                        }>View Job Details
-                    </Button >
+                            }>View Job Details
+                        </Button ></a>
 
                 </Stack>
 
