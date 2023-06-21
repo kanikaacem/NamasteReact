@@ -45,6 +45,7 @@ const ApplyForJobWebButton = ({ jobId, buttonStyle }) => {
             <Button variant={buttonStyle ? "contained" : "outlined"}
                 onClick={ApplyForJob} sx={{
                     ...ApplyButtonStyles,
+                    width: "270px",
                     background: buttonStyle === "contained" && "#FF671F",
                     color: buttonStyle !== "contained" && "#FF671F",
                     "&:hover": {

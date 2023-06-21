@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 
-import { goBack } from "../../utils/function";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+// import { goBack } from "../../utils/function";
+// import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const HPLTopHeadingSection = ({ headingText }) => {
     return (
@@ -10,7 +10,7 @@ const HPLTopHeadingSection = ({ headingText }) => {
             alignItems: "center"
         }}>
 
-            <ArrowBackIcon sx={{ cursor: "pointer" }} onClick={goBack} />
+            {/* <ArrowBackIcon sx={{ cursor: "pointer" }} onClick={goBack} /> */}
             <Typography sx={{
                 fontWeight: "600",
                 fontSize: "1rem"

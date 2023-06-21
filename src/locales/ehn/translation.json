@@ -238,5 +238,6 @@
     "CANDIDATE_NAME": "Job khojne wale ka naam",
     "CANDIDATE_MOBILE_NUMBER": "Unka Mobile Number",
     "CANDIDATE_CITY": "Unke shehar ka naam",
-    "WHATA_DO_U_KNOW": "Kaisi Job chahate hain (jaise carpenter, sales executive etc.)"
+    "WHATA_DO_U_KNOW": "Kaisi Job chahate hain (jaise carpenter, sales executive etc.)",
+    "NAME_OF_CANDIDATE_SEEKER": "Candidate khojne wale ka naam"
 }
