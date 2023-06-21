@@ -22,7 +22,7 @@ import Autocomplete from "react-google-autocomplete";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CloseIcon from '@mui/icons-material/Close';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet";
 
 const AdvantageSectionStyle = {
     position: "relative",
