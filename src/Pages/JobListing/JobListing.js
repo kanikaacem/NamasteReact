@@ -37,12 +37,11 @@ const JobListing = () => {
             const searchString = searchParams.toString();
             navigate(`?${searchString}`);
         };
-        return (<FormControl sx={{ width: mobileScreen ? '100%' : 250, height: 28 }} size="small">
+        return (<FormControl sx={{ width: mobileScreen ? '100%' : 250, height: 28}} size="small">
             <Select
                 sx={{
                     fontSize: "12px",
                     background: "#ffffff",
-                    borderRadius: "12px",
                 }}
                 value={value}
                 onChange={handleValueChange}
@@ -51,7 +50,8 @@ const JobListing = () => {
                     MenuProps: {
                         MenuListProps: {
                             sx: {
-                                fontSize: '12px'
+                                fontSize: '12px',
+                                top: "0px !important"
                             }
                         }
                     }
@@ -196,7 +196,6 @@ const JobListing = () => {
                                 width: mobileScreen ? "100%" : "300px", // Set width to 100%
                                 margin: '0px',
                                 background: "#FFFFFF",
-                                borderRadius: "12px" // Set border-radius to desired value
                             }}
                             renderInput={(params) => <TextField {...params}
                                 placeholder={t("SELCET_CATEGORY")}
@@ -207,7 +206,7 @@ const JobListing = () => {
                                     },
                                 }}
                                 sx={{
-                                    fontSize: "0.8rem !important"
+                                    fontSize: "0.8rem !important",
                                 }}
                             />
                             }
