@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Box, Typography, Button, Container, useMediaQuery } from "@mui/material";
 import Footer from "../../ThemeComponent/Common/Footer";
 // import Error from "../../ThemeComponent/Common/Error";
@@ -9,6 +10,9 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 const CandidateCredentialsForm = () => {
+    useEffect(()=> {
+        window.scrollTo(0, 0)
+    },[])
     const { t } = useTranslation();
     const navigate = useNavigate();
     const defaultValue = {

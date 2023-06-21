@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import Footer from "../../ThemeComponent/Common/Footer";
 import FooterHeading from "./FooterHeading";
@@ -7,6 +8,9 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 const AboutUs = () => {
+    useEffect(()=> {
+        window.scrollTo(0, 0)
+    },[])
     const { t } = useTranslation();
     const currentLanguage = useSelector(state => state.currentLanguage);
     return (<>

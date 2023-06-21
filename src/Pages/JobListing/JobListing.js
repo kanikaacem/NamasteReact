@@ -203,11 +203,11 @@ const JobListing = () => {
                                 InputLabelProps={{
                                     shrink: true,
                                     style: {
-                                        fontSize: "0.8rem !important", // Set the desired fontSize for the placeholder
+                                        fontSize: "0.8rem !important",// Set the desired fontSize for the placeholder
                                     },
                                 }}
                                 sx={{
-                                    fontSize: "0.8rem !important",
+                                    fontSize: "0.8rem !important"
                                 }}
                             />
                             }
