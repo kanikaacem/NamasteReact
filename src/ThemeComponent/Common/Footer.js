@@ -17,7 +17,7 @@ const Footer = () => {
 
     const FooterLegalLinks = [
         { id: 1, text: "Privacy Policy", url: `${currentLanguage}/privacy-policy` },
-        { id: 2, text: "Terms and Condition", url: `${currentLanguage}/terms-and-conditions` }
+        { id: 2, text: "Terms and Conditions", url: `${currentLanguage}/terms-and-conditions` }
     ]
 
     const FooterHeading = ({ footerHeading }) => {

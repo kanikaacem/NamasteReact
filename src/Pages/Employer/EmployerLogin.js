@@ -61,7 +61,7 @@ const EmployerLogin = () => {
                             position: "relative"
                         }}
                     >
-                        <ArrowBackIcon sx={{ cursor: "pointer" }} onClick={() => { window.history.back(); }} />
+                        {/* <ArrowBackIcon sx={{ cursor: "pointer" }} onClick={() => { window.history.back(); }} /> */}
                         <Typography
                             variant="h1"
                             component="h2"
@@ -111,8 +111,13 @@ const EmployerLogin = () => {
                                     <Button variant="contained" type="submit" className="OrangeButton" sx={{
                                         margin: "20px 0px !important"
                                     }} >{t('SUBMIT')}</Button>
+                                    <a href="/candidate-khoze" className="back-button-link">
+                                        <p>{t('BACK')}</p>
+                                    </a>
                                 </Form>
+
                             )}
+
                         </Formik>
                     </Box>
 

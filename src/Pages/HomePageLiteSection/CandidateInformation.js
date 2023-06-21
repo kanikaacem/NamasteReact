@@ -98,6 +98,9 @@ const CandidateInformation = () => {
                                 <Button variant="contained" type="submit" className="OrangeButton" sx={{
                                     margin: "20px 0px !important"
                                 }} >{t('SUBMIT')}</Button>
+                                <a href="/useraction" className="back-button-link">
+                                    <p>{t('BACK')}</p>
+                                </a>
                             </Form>
                         )}
                     </Formik>

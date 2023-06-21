@@ -27,6 +27,9 @@ const LiteAction = () => {
                             onClick={() => goToURL("employer-information")}>{t('FIND_HIRE')}</Button>
                     </Stack>
                 </Box>
+                <a href="/homepagelite" className="back-button-link">
+                    <p>{t('BACK')}</p>
+                </a>
             </Container>
             <Footer />
         </Box>

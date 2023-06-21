@@ -46,7 +46,7 @@ export const ApplyButtonStyles = {
     fontSize: { "xs": "0.7rem", "sm": "0.7rem", "md": "1rem", "lg": "1rem", "xl": "1rem" },
     textTransform: "capitalize",
     border: "1px solid #FF671F",
-    padding: { "xs": "0px", "sm": "0px", "md": "10px", "lg": "10px", "xl": "10px" },
+    padding: '10px',
     minWidth: "160px",
     height: "40px",
     "&:hover": {

@@ -41,7 +41,7 @@ const CandidateCredentialsForm = () => {
                 <meta property="og:url" content={`${window.location.origin}/candidate-khoze`} />
             </Helmet>
             <Box sx={{ minHeight: "100vh" }}>
-                <Container maxWidth={isDesktop ? "sm" : false} sx={{ padding: "0px" }}>
+                <Container maxWidth={isDesktop ? "sm" : false} sx={{ padding: "10px" }}>
                     <Box
                         className="CandidateCredentialsTopSection"
                         sx={{
@@ -135,7 +135,7 @@ const CandidateCredentialsForm = () => {
                             }}
                         >
                             By continuing, you agree to the <a href={`${window.location.origin}/${currentLanguage}/terms-and-conditions`} style={{ color: "#0D99FF", textDecoration: "none" }}>Terms & Conditions</a> and
-                            <a href={`${window.location.origin}/${currentLanguage}/privacy-policy`} style={{ color: "#0D99FF", textDecoration: "none" }}>Privacy & Policy</a> of JobsYahan.
+                            <a href={`${window.location.origin}/${currentLanguage}/privacy-policy`} style={{ color: "#0D99FF", textDecoration: "none" }}> Privacy & Policy</a> of JobsYahan.
                         </Typography>
 
                     </Box>

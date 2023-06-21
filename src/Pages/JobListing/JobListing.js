@@ -37,12 +37,12 @@ const JobListing = () => {
             const searchString = searchParams.toString();
             navigate(`?${searchString}`);
         };
-        return (<FormControl sx={{ width: 250, height: 28 }} size="small">
+        return (<FormControl sx={{ width: mobileScreen ? '100%' : 250, height: 28 }} size="small">
             <Select
                 sx={{
                     fontSize: "12px",
                     background: "#ffffff",
-                    borderRadius: "12px"
+                    borderRadius: "12px",
                 }}
                 value={value}
                 onChange={handleValueChange}
@@ -57,10 +57,6 @@ const JobListing = () => {
                     }
                 }}
             >
-
-                {/* <MenuItem value="">
-                    <em>{placeholder}</em>
-                </MenuItem> */}
                 {LocationFilter && LocationFilter.map((item, index) => {
                     return (<MenuItem key={index}
                         sx={{
@@ -188,7 +184,7 @@ const JobListing = () => {
                         <Autocomplete
                             className="JobListingAutoComplete"
                             size="small"
-                            disablePortal
+                            // disablePortal
                             options={jobRoleFilterData}
                             onChange={(event, value) => {
                                 if (value === null) window.location.reload()
@@ -196,7 +192,12 @@ const JobListing = () => {
                             }}
 
                             getOptionLabel={(option) => option.key}
-                            sx={{ width: "300px", margin: '0px' }}
+                            sx={{
+                                width: mobileScreen ? "100%" : "300px", // Set width to 100%
+                                margin: '0px',
+                                background: "#FFFFFF",
+                                borderRadius: "12px" // Set border-radius to desired value
+                            }}
                             renderInput={(params) => <TextField {...params}
                                 placeholder={t("SELCET_CATEGORY")}
                                 InputLabelProps={{
@@ -210,6 +211,7 @@ const JobListing = () => {
                                 }}
                             />
                             }
+
                         />
                         <SelectFilter value={location} setValue={setLocation} placeholder={t("SELECT_LOCATION")} />
                     </Stack>
