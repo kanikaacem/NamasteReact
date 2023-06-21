@@ -1,25 +1,19 @@
-// import { GetUserInformation } from "../../utils/ApiUrls";
-// import { getRequestWithToken } from "../../utils/ApiRequests";
-
 import { NavLink, Outlet } from "react-router-dom";
 import { Box, Stack, List, ListItem, ListItemText } from "@mui/material";
 import { EmployerMenu } from "../../utils/Data.js";
-// import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Footer from "../../ThemeComponent/Common/Footer";
-// import { useLocation } from 'react-router-dom';
-
-// import { useEffect } from "react";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
     const MenuSelected = useSelector(state => state.MenuSelected);
-    const user = "";
-    // const [user, setUser] = useState({});
+    let lang = localStorage.getItem('locale');
 
-    // const url = useResolvedPath("").pathname;
-    // const location = useLocation();
-    // const currentPath = location.pathname.replaceAll("-","_");
+    const handleLogout = () => {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('auth_token');
+    }
+    const user = "";
 
     const DashboardMenus = ({ MenuItem }) => {
         return (
@@ -46,19 +40,6 @@ const Dashboard = () => {
             </List>
         )
     }
-
-
-    // useEffect(() => {
-
-    //     const getLoginUserDetail = async () => {
-    //         let response = await getRequestWithToken(GetUserInformation);
-    //         if (response.status === '1') {
-    //             setUser(response.data);
-
-    //         }
-    //     }
-    //     getLoginUserDetail();
-    // }, [url]);
 
     return (
         <Box
@@ -103,11 +84,42 @@ const Dashboard = () => {
                             <img src={window.location.origin + "/assets/DesktopLogo.png"} alt="Notification Symbol" width="100%" height="100%" />
                         </Box> */}
 
-                        <Box className="Account" sx={{ width: "auto" }}>
+                        {/* <Box className="Account" sx={{ width: "auto" }} >
 
                             <img src={window.location.origin + "/assets/ProfileImage.png"} alt="Account Symbol" width="100%" height="100%" />
 
-                        </Box>
+                        </Box> */}
+
+
+                        <div class="profile-dropdown">
+                            <img src={window.location.origin + "/assets/ProfileImage.png"} alt="Account Symbol" width="100%" height="100%" />
+                            <div class="profile-dropdown-content">
+                                <a className="profile-dropdown-option" href={`${lang}/employer-login`} onClick={handleLogout}>Logout</a>
+                            </div>
+                        </div>
+
+                        {/* <select>
+                            <option value="option1">
+                                <img src={window.location.origin + "/assets/ProfileImage.png"} alt="Account Symbol" width="100%" height="100%" />
+                            </option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                        </select> */}
+
+
+
+
+                        {/* <Menu
+                            sx={{ zIndex: 1500 }} 
+                            anchorEl={anchorEl}
+                            open={anchorEl}
+                            onClose={handleClose}
+                            placement="bottom-end" // Adjust the placement as needed
+                            disablePortal={false} 
+                        >
+                            <MenuItem onClick={handleClose}>Logout</MenuItem>
+                            <MenuItem onClick={handleClose}>Profile</MenuItem>
+                        </Menu> */}
                     </Stack>
                 </Stack>
 
