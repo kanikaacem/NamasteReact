@@ -9,6 +9,7 @@ import { Navigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 import Header from "../Common/Header";
+import Footer from "../../ThemeComponent/Common/Footer";
 const EmployerLogin = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
@@ -131,6 +132,7 @@ const EmployerLogin = () => {
 
                 </Container>
             </Box>
+            <Footer />
         </Box>
     </>);
 };

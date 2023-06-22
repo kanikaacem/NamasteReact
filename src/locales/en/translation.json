@@ -101,7 +101,7 @@
     "DESCRIPTION7": "We profile candidates based on their interests, skills and experience.So, the job recommendations prepared by us would suit you and bring out your best, helping you climb new professional heights.",
     "WE_ALSO_GO_LOCAL_WITH_JOBS": "We Also Go Local with Jobs",
     "DESCRIPTION8": "We have tied up with small retailers, kirana stores,and various other small businesses looking for support staff such as accountants, goods handlers, maintenance staff, etc.These people can get hired on a variable pay model and earn as much as their salaried counterparts. Both experienced and freshers can tap into this wonderful opportunity. Work doors are wide open for you with us! Our motto is not only to get you a job but also to make you happy.",
-    "CONTACT_DETAILS": "Contact Details",
+    "CONTACT_DETAILS": "Contact Details:",
     "WE_ARE_HERE_FOR_YOU": "We’re here for you",
     "SEND_MESSAGE": "Send Message",
     "CHAT_DIRECTLY_AND_HIRE_DIRECTLY": "Chat Directly. Hire Instantly.",
@@ -239,5 +239,8 @@
     "CANDIDATE_MOBILE_NUMBER": "Their mobile number",
     "CANDIDATE_CITY": "Name of their city",
     "WHATA_DO_U_KNOW": "Area of Job interest (e.g. carpenter, sales executive etc.)",
-    "NAME_OF_CANDIDATE_SEEKER": "Name of Candidate Seeker"
+    "NAME_OF_CANDIDATE_SEEKER": "Name of Candidate Seeker",
+    "JOB_APPLICATION_MSG_1": "Job already applied.",
+    "JOB_APPLICATION_MSG_2": "Application submitted successfully.",
+    "MESSAGE_SUBMITTED": "Message submitted successfully"
 }

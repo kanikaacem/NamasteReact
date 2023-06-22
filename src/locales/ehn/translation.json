@@ -101,9 +101,9 @@
     "DESCRIPTION7": "Hamm ummiidavaaron ko unakii ruchi, kowshal owr anubhav ke aadhaar par prophaail karate hain. isalie, hamaare dvaaraa taiyaar kii gaii nowkarii kii siphaarishen aapake lie upayukt hongii owr aapako naii peshevar uunchaaiyon par chadhane men madad karengii.",
     "WE_ALSO_GO_LOCAL_WITH_JOBS": "Ham jaab ke saath local bhii jaate hain",
     "DESCRIPTION8": "Hamane chhoṭe khudaraa vikretaaon, kiraanaa sṭoron ke saath karaar kiyaa hai,owr vibhinn any chhoṭe vyavasaay samarthan kii talaash men hain karmachaarii jaise lekhaakaar, maal sanchaalak, rakharakhaav karmachaarii, aadi. ye log veriebal pe maaḍal par haayar kar sakate hain owr jitanaa kamaa sakate hain unake vetanabhogii samakaksha. anubhavii owr phreshar donon isamen shaamil ho sakate hain yah adbhut avasara. hamaare saath aapake lie kaam ke daravaaje khule hain! hamaaraa aadarsh vaaky keval aapako nowkarii dilaane ke lie nahiin balki aapako khush karane ke lie bhii hai.",
-    "CONTACT_DETAILS": "Sampark karane kaa vivaraṇa",
+    "CONTACT_DETAILS": "Contact kerne ki liye detail:",
     "WE_ARE_HERE_FOR_YOU": "Ham yahan aapke liye hai",
-    "SEND_MESSAGE": "Message bheje",
+    "SEND_MESSAGE": "Message Bhejen",
     "CHAT_DIRECTLY_AND_HIRE_DIRECTLY": "Sidhe chat karen. turant hire kare.",
     "FOOTERD2": "3.8m+ satyaapit nowkarii chaahane vaalon owr 190k+ satyaapit niyoktaaon dvaaraa bharosaa kiyaa gayaa.",
     "COMPANY": "Company",
@@ -239,5 +239,8 @@
     "CANDIDATE_MOBILE_NUMBER": "Unka Mobile Number",
     "CANDIDATE_CITY": "Unke shehar ka naam",
     "WHATA_DO_U_KNOW": "Kaisi Job chahate hain (jaise carpenter, sales executive etc.)",
-    "NAME_OF_CANDIDATE_SEEKER": "Candidate khojne wale ka naam"
+    "NAME_OF_CANDIDATE_SEEKER": "Candidate khojne wale ka naam",
+    "JOB_APPLICATION_MSG_1": "Iss Job ke liye aap pehle apply ker chuke hain",
+    "JOB_APPLICATION_MSG_2": "Application successfully submit ho gaya hai",
+    "MESSAGE_SUBMITTED": "Message successfully submit ho gaya hai"
 }

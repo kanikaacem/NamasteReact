@@ -123,7 +123,7 @@ const ContactUs = () => {
                             borderRadius: "19px",
                             padding: { "lg": "50px 100px", "md": "50px 100px", "xs": "10px" }
                         }}>
-                            <Typography component="box" sx={{ fontSize: { "xs": "26px", "sm": "26px", "md": "40px", "lg": "40px", "xl": "40px" }, fontWeight: "700" }}>
+                            <Typography component="box" sx={{ fontSize: '1.6rem', fontWeight: "600" }}>
                                 {t('WE_ARE_HERE_FOR_YOU')}
                             </Typography>
                             <Formik
@@ -180,7 +180,7 @@ const ContactUs = () => {
                     </Stack>
                 </Stack>
             </Box>
-            <HomePageLiteMessage value={formSubmitted} setValue={setFormSubmitted} message="Your message is successfully submitted." />
+            <HomePageLiteMessage value={formSubmitted} setValue={setFormSubmitted} message={t('MESSAGE_SUBMITTED')} />
 
             <Footer />
         </Box >
