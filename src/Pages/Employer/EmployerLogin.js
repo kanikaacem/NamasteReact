@@ -76,9 +76,15 @@ const EmployerLogin = () => {
                         >
                             {t('EMPR_LOGIN_BANNER')}
                         </Typography>
-                        <Box sx={{ position: "absolute", bottom: "-5px" }}>
+                        <Box sx={{
+                            margin: "50px auto", width: {
+                                "xs": "100%", "sm": "100%",
+                                "md": "450px", "xl": "450px", "lg": "450px"
+                            }
+                        }}>
                             <img
-                                src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/candidate_khoze_banner.png"
+                                src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/employer_landing.png"
+                                width="100%"
                                 alt="find-candidates"
                             />
                         </Box>

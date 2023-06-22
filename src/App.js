@@ -62,10 +62,14 @@ function App() {
       let { latitude, longitude } = await getLocation();
       localStorage.setItem('coordinates', JSON.stringify({ "lat": latitude, "lng": longitude }))
     }
-    window.history.scrollRestoration = 'manual'
+    const scrollToTop = () => {
+      window.history.scrollRestoration = 'manual';
+    }
+
     if (!localStorage.getItem('coordinates')) {
       getCoords();
     }
+    scrollToTop();
   }, []);
 
   return (
