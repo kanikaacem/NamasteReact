@@ -9,10 +9,14 @@ import { Navigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Header from "../Common/Header";
 =======
 import Footer from "../../ThemeComponent/Common/Footer";
 >>>>>>> e07da03 (Akash: Ui fixes)
+=======
+import Footer from "../../ThemeComponent/Common/Footer";
+>>>>>>> e07da0325eeba8fdf7dd8843fa6aa6fc7d6e24bb
 const EmployerLogin = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
