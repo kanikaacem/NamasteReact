@@ -128,7 +128,7 @@ function App() {
           <Route path="/job-description/:id" element={<JobDescription></JobDescription>} />
           <Route path="*" element={<ErrorPage errorMessage=" Page not Found "></ErrorPage>} />
           <Route path="/otp-verification" element={<OTPVerification />} />
-          <Route path="/candidate-khoze" element={<CandidateCredentialsForm />} />
+          <Route path="/find-candidates" element={<CandidateCredentialsForm />} />
 
           <Route path="/candidate-requirement" element={<CandidateRequirementsForm />} />
         </Routes>

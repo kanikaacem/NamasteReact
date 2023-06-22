@@ -6,7 +6,6 @@ import JobItem from "./JobItem";
 import Footer from "../../ThemeComponent/Common/Footer";
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from "react";
-import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 const JobListing = () => {
@@ -16,7 +15,7 @@ const JobListing = () => {
     const [location, setLocation] = useState('');
     const [loadJobs, setLoadJobs] = useState({ page: 1, limit: 20 });
 
-    const mobileScreen = useSelector(state => state.screenType) === "mobile";
+    const mobileScreen = localStorage.getItem("device_type") === "mobile";
     const [postedJobs, setPostedJobs] = useState([]);
     const [jobRoleFilterData, setJobRoleFilterData] = useState([]);
     const [activeJobs, setActiveJobs] = useState(0);
@@ -168,7 +167,7 @@ const JobListing = () => {
                 <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
                 <meta property="og:url" content={`${window.location.origin}/job-listing`} />
             </Helmet>
-            <PageTopSection showBackButton={true} />
+            <PageTopSection showBackButton={true} backURL={window.location.origin} />
             <Container sx={{ padding: "0px", maxWidth: '1800px' }} maxWidth={false}>
                 <Stack className="JobListingContent" direction="column" gap={2}
                     sx={{

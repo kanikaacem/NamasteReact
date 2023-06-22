@@ -2,10 +2,10 @@ import { Box, Stack, Button } from "@mui/material";
 import LanguageTranslatorSection from "../Common/LanguageTranslaterSection";
 import WebsiteLogo from "./WebsiteLogo";
 import { useNavigate } from "react-router";
-import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-const FooterHeader = () => {
-    let mobileScreen = useSelector(state => state.screenType) === "mobile";
+const FooterHeader = ({ showButton }) => {
+    const mobileScreen = localStorage.getItem("device_type") === "mobile";
+
     const { t } = useTranslation();
     const FindJobButton = ({ style }) => {
         const navigate = useNavigate();
@@ -28,7 +28,7 @@ const FooterHeader = () => {
     const FindCandidateButton = ({ style }) => {
         const navigate = useNavigate();
         return (<Button
-            onClick={() => navigate("/candidate-khoze")}
+            onClick={() => navigate("/find-candidates")}
             sx={{
                 color: "#FF671F",
                 borderRadius: "33px",
@@ -48,7 +48,6 @@ const FooterHeader = () => {
     }
     return (
         <Box className="FooterHeader" sx={{
-            // minHeight: { "xs": "50px", "sm": "50px", "md": "100px", "lg": "100px", "xl": "100px" },
             width: "100%",
             padding: { "xs": "10px", "sm": "10px", "md": "20px 100px", "lg": "20px 100px", "xl": "20px 100px" },
             boxSizing: "border-box",
@@ -60,7 +59,8 @@ const FooterHeader = () => {
             <Stack direction="row" className="WebsiteLogoAndLoginSection"
                 alignItems="center"
                 sx={{
-                    justifyContent: mobileScreen ? "space-between" : "flex-start"
+                    justifyContent: mobileScreen ? "space-between" : "flex-start",
+                    flexWrap: mobileScreen && "wrap"
                 }}>
                 <WebsiteLogo />
                 {!mobileScreen && <Stack className="LanguageSelectorSection" sx={{
@@ -76,21 +76,23 @@ const FooterHeader = () => {
                         <LanguageTranslatorSection />
                     </Box>
                 </Stack>}
-                <Stack
+                {showButton && <Stack
                     sx={{
-                        width: { "xs": "fit-content", "sm": "fit-content", "md": "1150px", "lg": "1150px", "xl": "1150px" },
+                        width: { "xs": "100%", "sm": "100%", "md": "1150px", "lg": "1150px", "xl": "1150px" },
                         alignItems: !mobileScreen && "flex-end",
-                        justifyContent: mobileScreen && "space-between"
                     }}
                 >
                     <Stack direction="row" gap={1} sx={{
-                        height: "inherit"
+                        height: "inherit",
+                        margin: mobileScreen && "10px 0px ",
+                        justifyContent: mobileScreen && "space-between"
                     }}>
-                        <FindJobButton style={!mobileScreen && { width: "200px", height: "45px" }} />
-                        <FindCandidateButton style={!mobileScreen && { width: "200px", height: "45px" }} />
+                        <FindJobButton style={!mobileScreen ? { width: "200px", height: "45px" } : { width: "170px" }} />
+                        <FindCandidateButton style={!mobileScreen ? { width: "200px", height: "45px" } : { width: "170px" }} />
                     </Stack>
 
-                </Stack>
+                </Stack>}
+
 
             </Stack>
         </Box>

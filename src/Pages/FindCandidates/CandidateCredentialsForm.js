@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-
+import Header from "../Common/Header";
 const CandidateCredentialsForm = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -41,6 +41,7 @@ const CandidateCredentialsForm = () => {
             </Helmet>
             <Box sx={{ minHeight: "100vh" }}>
                 <Container maxWidth={isDesktop ? "sm" : false} sx={{ padding: "10px" }}>
+                    <Header showButton={false} />
                     <Box
                         className="CandidateCredentialsTopSection"
                         sx={{

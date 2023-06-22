@@ -13,9 +13,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import { useTranslation } from "react-i18next";
+import Footer from "../../ThemeComponent/Common/Footer";
 const CandidateLogin = () => {
     const navigate = useNavigate();
     const [requestProcessing, setRequestProcessing] = useState('not_initiated');
+    const currentLanguage = localStorage.getItem("locale");
 
     const { t } = useTranslation();
 
@@ -54,9 +56,10 @@ const CandidateLogin = () => {
             height: "100vh",
             display: requestProcessing === "not_initiated" ? "block" : "none"
         }}>
-            <PageTopSection TopSectionName={t('VERIFY_MOBILE_NUMBER')} showBackButton={true} />
+            <PageTopSection TopSectionName={t('VERIFY_MOBILE_NUMBER')} showBackButton={true} backURL={`${window.location.origin}/job-listing`} />
 
             <Container sx={{ padding: "0px", maxWidth: '1800px' }} maxWidth={false}>
+
                 <Box className="CandidateLoginSection" sx={{
                     padding: "24px 20px"
 
@@ -103,16 +106,16 @@ const CandidateLogin = () => {
                                     }
                                     }> {t('SEND_OTP')}</Button >
 
-                                <Typography sx={{
-                                    marginTop: "110px",
-                                    fontFamily: "Poppins",
-                                    fontSize: { xs: '1rem', sm: '1rem', md: '1.5rem', lg: '1.5rem', xl: '1.5rem' },
-                                    fontWeight: '500',
-                                    textAlign: "center"
-                                }}>
-                                    By continue you agree to JobYahan
-                                    <span style={{ color: "#0D99FF" }}> Terms & Conditions</span> and
-                                    <span style={{ color: "#0D99FF" }}> Privacy & Policy </span>
+                                <Typography
+                                    sx={{
+                                        marginTop: "40px",
+                                        fontSize: { xs: "1rem", sm: "1rem", md: "1rem", lg: "1rem", xl: "1rem" },
+                                        fontWeight: "500",
+                                        textAlign: "center"
+                                    }}
+                                >
+                                    By continuing, you agree to the <a href={`${window.location.origin}/${currentLanguage}/terms-and-conditions`} style={{ color: "#0D99FF", textDecoration: "none" }}>Terms & Conditions</a> and
+                                    <a href={`${window.location.origin}/${currentLanguage}/privacy-policy`} style={{ color: "#0D99FF", textDecoration: "none" }}> Privacy & Policy</a> of JobsYahan.
                                 </Typography>
 
                             </Form>
@@ -121,6 +124,7 @@ const CandidateLogin = () => {
                 </Box>
 
             </Container >
+            <Footer />
         </Box >
 
         <Box className="LoaderScreenPage" sx={{

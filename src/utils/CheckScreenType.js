@@ -7,6 +7,7 @@ const CheckScreenType = () => {
     const handleResize = () => {
       const isMobile = window.innerWidth <= 600; // Adjust this value based on your desired breakpoint
       setUserScreenType(isMobile ? 'mobile' : 'tabAndDesktop');
+      localStorage.setItem("device_type", userScreenType);
       dispatch({ type: 'CHANGE_SCREEN_TYPE', payload: userScreenType });
 
     };

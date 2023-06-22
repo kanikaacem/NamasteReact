@@ -71,7 +71,7 @@ const HomePageLite = () => {
                     <Button sx={{ ...WebsiteContainedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px" }} onClick={() => navigate("/useraction")}>{t('JOBYAHAN_HELPER')}</Button>
                     <Stack direction="row" justifyContent="space-between">
                         <Button sx={{ ...WebsiteOutlinedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px", width: "49%" }} onClick={() => navigate("/job-listing")}>{t('FIND_JOB')}</Button>
-                        <Button sx={{ ...WebsiteOutlinedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px", width: "49%" }} onClick={() => navigate("/candidate-khoze")}>{t('FIND_CANDIDATE')}</Button>
+                        <Button sx={{ ...WebsiteOutlinedButtonStyles, fontSize: "1rem", borderRadius: "5px", padding: "10px", width: "49%" }} onClick={() => navigate("/find-candidates")}>{t('FIND_CANDIDATE')}</Button>
                     </Stack>
                 </Stack>
             </Container >

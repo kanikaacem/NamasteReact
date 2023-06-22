@@ -53,7 +53,7 @@ const FindCandidateButton = ({ style }) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     return (<Button
-        onClick={() => navigate("candidate-khoze")}
+        onClick={() => navigate("find-candidates")}
         sx={{
             color: "#FF671F",
             borderRadius: "33px",
@@ -73,7 +73,7 @@ const FindCandidateButton = ({ style }) => {
 
 function Home() {
     const { t } = useTranslation();
-    let mobileScreen = useSelector(state => state.screenType) === "mobile";
+    const mobileScreen = localStorage.getItem("device_type") === "mobile";
     let lang = useSelector(state => state.currentLanguage);
     const [showButton, setShowButton] = useState(false);
     const [jobCategoryData, setJobCategoryData] = useState([]);
@@ -181,7 +181,7 @@ function Home() {
         <h2 className="carousel-text">{t('WEBSITE_SUB_HEADING')}</h2>
         <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '36px' }}>
             <a href="/job-listing" className="carousel-button carousel-primary-button">{t('FIND_JOB')}</a>
-            <a href="/candidate-khoze" className="carousel-button carousel-secondary-button">{t('FIND_CANDIDATE')}</a>
+            <a href="/find-candidates" className="carousel-button carousel-secondary-button">{t('FIND_CANDIDATE')}</a>
         </div>
     </div>)
     return (<>
@@ -249,7 +249,8 @@ function Home() {
                 <Stack direction="row" className="WebsiteLogoAndLoginSection"
                     alignItems="center"
                     sx={{
-                        justifyContent: mobileScreen ? "space-between" : "flex-start"
+                        justifyContent: mobileScreen ? "space-between" : "flex-start",
+                        flexWrap: mobileScreen && "wrap"
                     }}>
                     <WebsiteLogo />
                     {!mobileScreen && <Stack className="LanguageSelectorSection" sx={{
@@ -267,18 +268,20 @@ function Home() {
                     </Stack>}
                     <Stack
                         sx={{
-                            width: { "xs": "fit-content", "sm": "fit-content", "md": "1150px", "lg": "1150px", "xl": "1150px" },
+                            width: { "xs": "100%", "sm": "100%", "md": "1150px", "lg": "1150px", "xl": "1150px" },
                             alignItems: !mobileScreen && "flex-end",
-                            justifyContent: mobileScreen && "space-between"
 
                         }}
                     >
                         {showButton &&
                             <Stack direction="row" gap={1} sx={{
-                                height: "inherit"
+                                height: "inherit",
+                                margin: mobileScreen && "10px 0px ",
+                                justifyContent: mobileScreen && "space-between"
+
                             }}>
-                                <FindJobButton style={!mobileScreen && { width: "200px", height: "45px" }} />
-                                <FindCandidateButton style={!mobileScreen && { width: "200px", height: "45px" }} />
+                                <FindJobButton style={!mobileScreen ? { width: "200px", height: "45px" } : { width: "170px" }} />
+                                <FindCandidateButton style={!mobileScreen ? { width: "200px", height: "45px" } : { width: "170px" }} />
                             </Stack>
                         }
                     </Stack>

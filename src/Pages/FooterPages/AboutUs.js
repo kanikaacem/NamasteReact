@@ -25,7 +25,7 @@ const AboutUs = () => {
                 <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
                 <meta property="og:url" content={`${window.location.origin}/${currentLanguage}/about-us`} />
             </Helmet>
-            <Header />
+            <Header showButton={true} />
             <Box className="AboutUsContent"
                 sx={{
                     padding: { "xs": "20px", "sm": "20px", "md": "60px 40px", "lg": "60px 40px", "xl": "60px 40px" },

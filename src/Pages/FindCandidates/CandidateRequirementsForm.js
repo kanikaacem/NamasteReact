@@ -49,7 +49,7 @@ const CandidateRequirementsForm = () => {
     }
 
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("md"));
-    
+
 
     return (
         <Box className="CandidateRequirementsForm" sx={{ minHeight: "100vh" }} >
@@ -112,8 +112,8 @@ const CandidateRequirementsForm = () => {
                                     <Button variant="contained" type="submit" className="OrangeButton" sx={{
                                         margin: "20px 0px !important"
                                     }} >{t('SUBMIT')}</Button>
-                                    <a href="/candidate-khoze" className="back-button-link">
-                                      <p>{t('BACK')}</p>
+                                    <a href="/find-candidates" className="back-button-link">
+                                        <p>{t('BACK')}</p>
                                     </a>
 
                                 </Form>

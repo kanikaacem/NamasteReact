@@ -22,7 +22,7 @@ const TermAndCondition = () => {
                 <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
                 <meta property="og:url" content={`${window.location.origin}/${currentLanguage}/terms-and-conditions`} />
             </Helmet>
-            <Header />
+            <Header showButton={true} />
 
             <Box className="TermsAndConditionContent"
                 sx={{
