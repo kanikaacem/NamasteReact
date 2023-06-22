@@ -8,10 +8,13 @@ import Header from "../Common/Header";
 import Footer from "../../ThemeComponent/Common/Footer";
 import HomePageLiteMessage from "../HomePageLiteSection/HomePageLiteMessage";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 const ContactUs = () => {
+    useEffect(()=> {
+        window.scrollTo(0, 0)
+    },[])
     const { t } = useTranslation();
     const currentLanguage = useSelector(state => state.currentLanguage);
     const defaultValue = {

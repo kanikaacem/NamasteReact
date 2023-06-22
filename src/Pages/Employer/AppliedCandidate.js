@@ -17,7 +17,7 @@ const AppliedCandidate = () => {
                 setJobCanData(response.data);
             }
         }
-       getCandidateOnJob();
+        getCandidateOnJob();
     }, [])
 
     function capitalize(str) {
@@ -28,7 +28,7 @@ const AppliedCandidate = () => {
     const columns = [
         { field: 'id', headerName: 'Candidate Id', width: 120 },
         { field: 'job_department', headerName: 'Job Department', width: 220 },
-        { field: 'job_role', headerName: 'Job Role', width: 220 },        
+        { field: 'job_role', headerName: 'Job Role', width: 220 },
         { field: 'name', headerName: 'Name', width: 180 },
         { field: 'mobile_number', headerName: 'Mobile Number', width: 180 },
         { field: 'gender', headerName: 'Gender', width: 10, renderCell: (params) => <Box>{capitalize(params.value)}</Box> },
@@ -45,25 +45,29 @@ const AppliedCandidate = () => {
             id: index,
             job_department: item.jobid.jobDepartment ?? '-',
             job_role: item.jobid.jobRole ?? '-',
-            name: item.candidateid.fullname ?? '-',
-            mobile_number: item.candidateid.mobile ?? '-',
-            gender: item.candidateid.gender ?? '-',
-            education: item.candidateid.education ?? '-',
-            age_group: item.candidateid.ageGroup ?? '-',
-            applied_on: item.time.CandidateAppliedAt ?? '-'
+            name: item.candidateid?.fullname ?? '-',
+            mobile_number: item.candidateid?.mobile ?? '-',
+            gender: item.candidateid?.gender ?? '-',
+            education: item.candidateid?.education ?? '-',
+            age_group: item.candidateid?.ageGroup ?? '-',
+            applied_on: item.time?.CandidateAppliedAt ?? '-'
         }
     })
 
     return (<>
         <Box className="AppliedCandidatePage"
             sx={{
-                minHeight: "100vh",
+                maxHeight: "100vh",
                 padding: "20px",
                 boxSizing: "border-box"
             }}>
             <Box className="AppliedCandidatePageInnerWrapper">
-                <Box style={{ height: 300, width: '100%' }}>
-                    <DataGrid rows={rows} columns={columns} />
+                <Box style={{ height: '60vh', width: '100%' }}>
+                    <DataGrid
+                        rows={rows}
+                        columns={columns}
+                        pageSize={10}
+                    />
                 </Box>
             </Box>
         </Box >

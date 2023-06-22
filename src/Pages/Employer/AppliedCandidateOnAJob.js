@@ -46,25 +46,29 @@ const AppliedCandidateOnAJob = () => {
     const rows = jobCanData.map((item, index) => {
         return {
             id: index,
-            name: item.candidateid.fullname ?? '-',
-            mobile_number: item.candidateid.mobile ?? '-',
-            gender: item.candidateid.gender ?? '-',
-            education: item.candidateid.education ?? '-',
-            ageGroup: item.candidateid.ageGroup ?? '-',
-            applied_on: item.time.CandidateAppliedAt ?? '-'
+            name: item.candidateid?.fullname ?? '-',
+            mobile_number: item.candidateid?.mobile ?? '-',
+            gender: item.candidateid?.gender ?? '-',
+            education: item.candidateid?.education ?? '-',
+            ageGroup: item.candidateid?.ageGroup ?? '-',
+            applied_on: item.time?.CandidateAppliedAt ?? '-'
         }
     })
 
     return (<>
         <Box className="AppliedCandidatePage"
             sx={{
-                minHeight: "100vh",
+                maxHeight: "100vh",
                 padding: "20px",
                 boxSizing: "border-box"
             }}>
             <Box className="AppliedCandidatePageInnerWrapper">
-                <Box style={{ height: 300, width: '100%' }}>
-                    <DataGrid rows={rows} columns={columns} />
+                <Box style={{ height: "60vh", width: '100%' }}>
+                    <DataGrid
+                        rows={rows}
+                        columns={columns}
+                        pageSize={10} 
+                    />
                 </Box>
             </Box>
         </Box >
