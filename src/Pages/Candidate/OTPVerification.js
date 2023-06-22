@@ -61,7 +61,7 @@ const OTPVerification = () => {
         try {
             const api_url = process.env.REACT_APP_VERIFY_OTP;
             const response = await postRequest(api_url, {
-                "mobile": mobile_number,
+                "inputdata": mobile_number,
                 "usertype": "candidate",
                 "otp": otp
             });
