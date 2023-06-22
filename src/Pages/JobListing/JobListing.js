@@ -192,7 +192,7 @@ const JobListing = () => {
 
                             getOptionLabel={(option) => option.key}
                             sx={{
-                                width: mobileScreen ? "100%" : "300px", // Set width to 100%
+                                width: mobileScreen ? "100%" : 300, // Set width to 100%
                                 margin: '0px',
                                 background: "#FFFFFF",
                                 borderRadius: "12px" // Set border-radius to desired value
@@ -200,7 +200,8 @@ const JobListing = () => {
                             renderInput={(params) => <TextField {...params}
                                 placeholder={t("SELCET_CATEGORY")}
                                 InputLabelProps={{
-                                    shrink: true,
+                                    // shrink: true,
+                                    width: mobileScreen ? "100%" : 300,
                                     style: {
                                         fontSize: "0.8rem !important", // Set the desired fontSize for the placeholder
                                     },

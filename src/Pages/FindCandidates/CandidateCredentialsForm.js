@@ -40,8 +40,9 @@ const CandidateCredentialsForm = () => {
                 <meta property="og:url" content={`${window.location.origin}/candidate-khoze`} />
             </Helmet>
             <Box sx={{ minHeight: "100vh" }}>
+                <Header showButton={false} />
+
                 <Container maxWidth={isDesktop ? "sm" : false} sx={{ padding: "10px" }}>
-                    <Header showButton={false} />
                     <Box
                         className="CandidateCredentialsTopSection"
                         sx={{
