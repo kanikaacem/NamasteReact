@@ -42,11 +42,11 @@ const CandidateCredentialsForm = () => {
             <Box sx={{ minHeight: "100vh" }}>
                 <Header showButton={false} />
 
-                <Container maxWidth={isDesktop ? "sm" : false} sx={{ padding: "10px" }}>
+                <Container maxWidth={isDesktop ? "sm" : false} sx={{ padding: "0px" }}>
                     <Box
                         className="CandidateCredentialsTopSection"
                         sx={{
-                            height: "430px",
+                            height: "500px",
                             padding: "20px 0px",
                             backgroundImage: "linear-gradient(#ffffff 30%,#f3bb7a )",
                             position: "relative"
@@ -59,7 +59,8 @@ const CandidateCredentialsForm = () => {
                                 fontSize: "1.3rem",
                                 marginTop: "50px",
                                 textAlign: "center",
-                                fontWeight: "600"
+                                fontWeight: "600",
+                                padding: "10px"
                             }}
                         >
                             {t('CJ_HEADING')}
@@ -71,16 +72,23 @@ const CandidateCredentialsForm = () => {
                                 fontSize: "1rem",
                                 marginTop: "10px",
                                 textAlign: "center",
-                                fontWeight: "500"
+                                fontWeight: "500",
+                                padding: "10px"
                             }}
                         >
                             {t('CJ_HEADING_1')}
                         </Typography>
 
-                        <Box sx={{ position: "absolute", bottom: "-5px" }}>
+                        <Box sx={{
+                            margin: "50px auto", width: {
+                                "xs": "100%", "sm": "100%",
+                                "md": "450px", "xl": "450px", "lg": "450px"
+                            }
+                        }}>
                             <img
-                                src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/candidate_khoze_banner.png"
-                                alt="CandidateKhoze"
+                                src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/employer_landing.png"
+                                width="100%"
+                                alt="find-candidates"
                             />
                         </Box>
                     </Box>
