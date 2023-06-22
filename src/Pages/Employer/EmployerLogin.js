@@ -8,7 +8,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
+<<<<<<< HEAD
 import Header from "../Common/Header";
+=======
+import Footer from "../../ThemeComponent/Common/Footer";
+>>>>>>> e07da03 (Akash: Ui fixes)
 const EmployerLogin = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
@@ -125,6 +129,7 @@ const EmployerLogin = () => {
 
                 </Container>
             </Box>
+            <Footer />
         </Box>
     </>);
 };
