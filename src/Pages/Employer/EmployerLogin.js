@@ -79,7 +79,7 @@ const EmployerLogin = () => {
                         <Box sx={{ position: "absolute", bottom: "-5px" }}>
                             <img
                                 src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/candidate_khoze_banner.png"
-                                alt="CandidateKhoze"
+                                alt="find-candidates"
                             />
                         </Box>
                     </Box>
@@ -113,7 +113,7 @@ const EmployerLogin = () => {
                                     <Button variant="contained" type="submit" className="OrangeButton" sx={{
                                         margin: "20px 0px !important"
                                     }} >{t('SUBMIT')}</Button>
-                                    <a href="/candidate-khoze" className="back-button-link">
+                                    <a href="/find-candidates" className="back-button-link">
                                         <p>{t('BACK')}</p>
                                     </a>
                                 </Form>

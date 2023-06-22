@@ -28,7 +28,7 @@ const FooterHeader = ({ showButton }) => {
     const FindCandidateButton = ({ style }) => {
         const navigate = useNavigate();
         return (<Button
-            onClick={() => navigate("/candidate-khoze")}
+            onClick={() => navigate("/find-candidates")}
             sx={{
                 color: "#FF671F",
                 borderRadius: "33px",

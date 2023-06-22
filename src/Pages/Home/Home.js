@@ -53,7 +53,7 @@ const FindCandidateButton = ({ style }) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     return (<Button
-        onClick={() => navigate("candidate-khoze")}
+        onClick={() => navigate("find-candidates")}
         sx={{
             color: "#FF671F",
             borderRadius: "33px",
@@ -181,7 +181,7 @@ function Home() {
         <h2 className="carousel-text">{t('WEBSITE_SUB_HEADING')}</h2>
         <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '36px' }}>
             <a href="/job-listing" className="carousel-button carousel-primary-button">{t('FIND_JOB')}</a>
-            <a href="/candidate-khoze" className="carousel-button carousel-secondary-button">{t('FIND_CANDIDATE')}</a>
+            <a href="/find-candidates" className="carousel-button carousel-secondary-button">{t('FIND_CANDIDATE')}</a>
         </div>
     </div>)
     return (<>
