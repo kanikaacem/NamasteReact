@@ -58,8 +58,8 @@ const EmployerLogin = () => {
                     <Box
                         className="EmployerLoginFormTopSection"
                         sx={{
-                            height: "430px",
-                            padding: "20px",
+                            // height: "430px",
+                            padding: "20px 20px 0px",
                             backgroundImage: "linear-gradient(#ffffff 30%,#f3bb7a )",
                             position: "relative"
                         }}
@@ -78,13 +78,14 @@ const EmployerLogin = () => {
                             {t('EMPR_LOGIN_BANNER')}
                         </Typography>
                         <Box sx={{
-                            margin: "50px auto", width: {
+                            width: {
                                 "xs": "100%", "sm": "100%",
                                 "md": "450px", "xl": "450px", "lg": "450px"
-                            }
+                            },
+                            margin: "50px auto 0px"
                         }}>
                             <img
-                                src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/employer_landing.png"
+                                src="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/employer_login.png"
                                 width="100%"
                                 alt="find-candidates"
                             />
