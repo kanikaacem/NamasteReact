@@ -8,6 +8,7 @@ import { useState, useEffect, useRef } from "react";
 import JobApplyWeb from '../Common/JobApplyWeb';
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import Footer from "../../ThemeComponent/Common/Footer";
 const OTPVerification = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -104,7 +105,7 @@ const OTPVerification = () => {
         <Box className="CandidateLoginPage" sx={{
             height: "100vh",
         }}>
-            <PageTopSection TopSectionName={t('OTP_VERIFICATION')} showBackButton={true} />
+            <PageTopSection TopSectionName={t('OTP_VERIFICATION')} showBackButton={true} backURL={`${window.location.origin}/candidate-login`} />
 
             <Container sx={{ padding: "0px", maxWidth: '1800px' }} maxWidth={false}>
 
@@ -223,6 +224,8 @@ const OTPVerification = () => {
                 </Box>
 
             </Container >
+            <Footer />
+
         </Box >
         <JobApplyWeb openJobApplyModal={openJobApplyModal} setOpenJobApplyModal={setOpenJobApplyModal} />
     </>)

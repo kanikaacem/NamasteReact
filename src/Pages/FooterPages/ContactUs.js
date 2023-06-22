@@ -57,7 +57,7 @@ const ContactUs = () => {
                 <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
                 <meta property="og:url" content={`${window.location.origin}/${currentLanguage}/contact-us`} />
             </Helmet>
-            <Header />
+            <Header showButton={true} />
             <Box className="ContactUsContent"
                 sx={{
                     padding: { "xs": "20px", "sm": "20px", "md": "60px 40px", "lg": "60px 40px", "xl": "60px 40px" },

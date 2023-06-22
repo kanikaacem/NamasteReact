@@ -1,14 +1,16 @@
 import { Box, Typography, Stack, Grid } from "@mui/material";
 import { social_icons } from "../../utils/Data";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
-    const currentLanguage = useSelector(state => state.currentLanguage);
+    // const currentLanguage = useSelector(state => state.currentLanguage);
+    const currentLanguage = localStorage.getItem("locale");
 
     const FooterCompanyLinks = [
         { id: 1, text: "Home", url: "#" },
+        
         { id: 2, text: "About Us", url: `${currentLanguage}/about-us` },
         { id: 4, text: "Contact Us", url: `${currentLanguage}/contact-us` }
     ]

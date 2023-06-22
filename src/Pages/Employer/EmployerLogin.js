@@ -1,7 +1,6 @@
 import { postRequest } from "../../utils/ApiRequests";
 import { Box, Typography, Button, Container, useMediaQuery } from "@mui/material";
 import { employerLoginValidationSchema } from "../../Validation/EmployerValidation";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Error from "../../ThemeComponent/Common/Error";
 import FormLabel from "../Common/FormLabel";
 import { Formik, Field, Form } from "formik";
@@ -9,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
+import Header from "../Common/Header";
 const EmployerLogin = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
@@ -51,6 +51,8 @@ const EmployerLogin = () => {
                 <meta property="og:url" content={`${window.location.origin}/${currentLanguage}/employer-login`} />
             </Helmet>
             <Box sx={{ minHeight: "100vh" }}>
+                <Header showButton={false} />
+
                 <Container maxWidth={isDesktop ? "md" : false} sx={{ padding: "0px" }}>
                     <Box
                         className="EmployerLoginFormTopSection"

@@ -2,7 +2,6 @@ import { Button } from "@mui/material";
 import { ApplyButtonStyles } from "../../utils/Styles";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
 const ApplyForJobButton = ({ jobId, buttonStyle }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -13,7 +12,6 @@ const ApplyForJobButton = ({ jobId, buttonStyle }) => {
       navigate("/candidate-login");
 
   }
-  const mobileScreen = useSelector(state => state.screenType) === "mobile";
 
   return (
     <Button variant={buttonStyle ? "contained" : "outlined"}

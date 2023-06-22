@@ -1,9 +1,8 @@
 import { Box, Badge } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 const WebsiteLogo = () => {
     const navigate = useNavigate();
-    let mobileScreen = useSelector(state => state.screenType) === "mobile";
+    const mobileScreen = localStorage.getItem("device_type") === "mobile";
 
     return (
         <Box className="WebsiteLogoSection" sx={{ marginRight: !mobileScreen && "50px", position: "relative" }}>

@@ -73,7 +73,7 @@ const FindCandidateButton = ({ style }) => {
 
 function Home() {
     const { t } = useTranslation();
-    let mobileScreen = useSelector(state => state.screenType) === "mobile";
+    const mobileScreen = localStorage.getItem("device_type") === "mobile";
     let lang = useSelector(state => state.currentLanguage);
     const [showButton, setShowButton] = useState(false);
     const [jobCategoryData, setJobCategoryData] = useState([]);
@@ -249,7 +249,8 @@ function Home() {
                 <Stack direction="row" className="WebsiteLogoAndLoginSection"
                     alignItems="center"
                     sx={{
-                        justifyContent: mobileScreen ? "space-between" : "flex-start"
+                        justifyContent: mobileScreen ? "space-between" : "flex-start",
+                        flexWrap: mobileScreen && "wrap"
                     }}>
                     <WebsiteLogo />
                     {!mobileScreen && <Stack className="LanguageSelectorSection" sx={{
@@ -267,18 +268,20 @@ function Home() {
                     </Stack>}
                     <Stack
                         sx={{
-                            width: { "xs": "fit-content", "sm": "fit-content", "md": "1150px", "lg": "1150px", "xl": "1150px" },
+                            width: { "xs": "100%", "sm": "100%", "md": "1150px", "lg": "1150px", "xl": "1150px" },
                             alignItems: !mobileScreen && "flex-end",
-                            justifyContent: mobileScreen && "space-between"
 
                         }}
                     >
                         {showButton &&
                             <Stack direction="row" gap={1} sx={{
-                                height: "inherit"
+                                height: "inherit",
+                                margin: mobileScreen && "10px 0px ",
+                                justifyContent: mobileScreen && "space-between"
+
                             }}>
-                                <FindJobButton style={!mobileScreen && { width: "200px", height: "45px" }} />
-                                <FindCandidateButton style={!mobileScreen && { width: "200px", height: "45px" }} />
+                                <FindJobButton style={!mobileScreen ? { width: "200px", height: "45px" } : { width: "170px" }} />
+                                <FindCandidateButton style={!mobileScreen ? { width: "200px", height: "45px" } : { width: "170px" }} />
                             </Stack>
                         }
                     </Stack>

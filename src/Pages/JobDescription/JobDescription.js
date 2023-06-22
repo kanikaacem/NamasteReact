@@ -73,7 +73,7 @@ const JobDescription = () => {
                 <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
                 <meta property="og:url" content={`${window.location.origin}/job-description/${jobDescription?.jobRole}?id=${jobDescription?._id}`} />
             </Helmet>
-            <PageTopSection showBackButton={true} />
+            <PageTopSection showBackButton={true} backURL={`${window.location.origin}/job-listing`} />
 
             <Box className="WebsiteBreadcrumb" sx={{
                 padding: {

@@ -2,11 +2,7 @@ import { Stack, Typography } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const PageTopSection = (props) => {
-    const { showBackButton, TopSectionName } = props;
-
-    const goBack = () => {
-        window.history.back();
-    }
+    const { showBackButton, TopSectionName, backURL } = props;
     return (
         <Stack className="PageTopSection" direction="row" gap={2} sx={{
             padding: { "xs": "20px", "sm": "20px", "md": "20px", "lg": "20px", "xl": "20px" },
@@ -18,7 +14,11 @@ const PageTopSection = (props) => {
             alignItems: "center"
         }}>
 
-            {showBackButton !== undefined && showBackButton === true && <ArrowBackIcon sx={{ cursor: "pointer" }} onClick={goBack} />}
+            {showBackButton !== undefined && showBackButton === true &&
+                <a href={backURL} >
+                    <ArrowBackIcon sx={{ cursor: "pointer" }} />
+                </a>
+            }
             {TopSectionName && <Typography sx={{
                 fontWeight: "600",
                 fontSize: "1rem"

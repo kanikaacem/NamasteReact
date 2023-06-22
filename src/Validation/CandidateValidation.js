@@ -66,7 +66,7 @@ export const WorkHistorySchema = yup.object().shape({
 })
 
 //Updating the Candidate Basic Info
-const phoneRegExp = /^((\+[1-9]{1,4}[ -])|(\([0-9]{2,3}\)[ -])|([0-9]{2,4})[ -])?[0-9]{3,4}?[ -]*[0-9]{3,4}?$/
+const phoneRegExp = /^((\+\d{1,4}[ -])|(\(\d{2,3}\)[ -])|(\d{2,4})[ -])?\d{3,4}[ -]*\d{3,4}$/;
 export const updateCandidateBasicInfoSchema = yup.object().shape({
     fullname: yup.string().required("Full Name is required"),
     mobile: yup.string().required("Mobile number is required").matches(phoneRegExp, 'Mobile number is not valid'),
@@ -79,6 +79,6 @@ export const updateCandidateBasicInfoSchema = yup.object().shape({
 
 export const CandidateMobileNumberValidation = yup.object().shape({
     mobile_number: yup.string()
-        .matches(/^\d{10}$/, 'Mobile number must be a 10-digit number')
+        .matches(/^[0-9]{10}$/, 'Mobile number must be a 10-digit number')
         .required('Mobile number is required'),
 });
