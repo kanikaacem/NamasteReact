@@ -26,10 +26,10 @@ const ApplyForJobWebButton = ({ jobId, buttonStyle }) => {
                 const api_url = process.env.REACT_APP_CANDIDATE_APPLY_JOB
                 const response = await postRequest(api_url, applyViaWebForm);
                 if (response.status === '1') {
-                    setMessage("Your job is successfully submitted.")
+                    setMessage(t("JOB_APPLICATION_MSG_2"))
                     setFormSubmitted(true)
                 } else if (response.status === '2') {
-                    setMessage("You have already applied this job.")
+                    setMessage(t("JOB_APPLICATION_MSG_1"))
                     setFormSubmitted(true)
                 }
             } catch (error) {

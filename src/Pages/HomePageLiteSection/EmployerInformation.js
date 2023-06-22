@@ -108,7 +108,7 @@ const EmployerInformation = () => {
                 </Box>
             </Container>
             <Footer />
-            <HomePageLiteMessage value={formSubmitted} setValue={setFormSubmitted} message="Your form is successfully submitted." />
+            <HomePageLiteMessage value={formSubmitted} setValue={setFormSubmitted} message={t('JOB_APPLICATION_MSG_2')} />
 
         </Box>
     )
