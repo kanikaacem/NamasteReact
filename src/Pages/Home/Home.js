@@ -1,5 +1,5 @@
 import { getRequest } from "../../utils/ApiRequests";
-import { Box, Stack, Container, Button, Typography, FormControl, Input, Tooltip, Grid, Card, CardContent, CardMedia } from "@mui/material";
+import { Box, Stack, Container, Button, Typography, Grid, Card, CardContent, CardMedia } from "@mui/material";
 
 /* Site Header */
 import LanguageTranslatorSection from "../Common/LanguageTranslaterSection";
@@ -18,10 +18,10 @@ import { useTranslation } from "react-i18next";
 import React, { useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Autocomplete from "react-google-autocomplete";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import CloseIcon from '@mui/icons-material/Close';
-import MyLocationIcon from '@mui/icons-material/MyLocation';
+// import Autocomplete from "react-google-autocomplete";
+// import LocationOnIcon from '@mui/icons-material/LocationOn';
+// import CloseIcon from '@mui/icons-material/Close';
+// import MyLocationIcon from '@mui/icons-material/MyLocation';
 import { Helmet } from "react-helmet";
 
 const AdvantageSectionStyle = {
@@ -78,7 +78,7 @@ function Home() {
     const [showButton, setShowButton] = useState(false);
     const [jobCategoryData, setJobCategoryData] = useState([]);
     const [jobLocationData, setJobLocationData] = useState([]);
-    const [city, setCity] = useState(null);
+    // const [city, setCity] = useState(null);
 
     const setDynamicLocation = (location) => {
         localStorage.setItem("coordinates", location);
@@ -97,7 +97,7 @@ function Home() {
                 if (data.status === 'OK') {
                     const result = data.results[0];
                     const cityDetail = result.formatted_address
-                    setCity(cityDetail)
+                    // setCity(cityDetail)
                     setDynamicLocation(JSON.stringify(result?.geometry?.location))
                     // SendUserLatitudeLongitude(lat, lng, city)
 
@@ -140,12 +140,12 @@ function Home() {
         window.addEventListener('scroll', handleScroll);
         fetchData();
         fetchLocationData();
-        let coords = JSON.parse(localStorage.getItem("coordinates"));
-        if (coords) {
-            sendUserLocationInformation(coords.lat, coords.lng)
-        } else {
+        // let coords = JSON.parse(localStorage.getItem("coordinates"));
+        // if (coords) {
+        //     sendUserLocationInformation(coords.lat, coords.lng)
+        // } else {
             getCoords();
-        }
+        // }
         // eslint-disable-next-line react-hooks/exhaustive-deps
         return () => {
             window.removeEventListener('scroll', handleScroll);
@@ -186,20 +186,20 @@ function Home() {
     </div>)
     return (<>
         <Box className="LandingPage">
-            <Stack className="AnnocumentBar" sx={{
+            <Helmet>
+                <title>JobsYahan - Bharat Ka Job App - Yahan Job aur Candidate Milna Hai Sabse Saral</title>
+                <meta name="description" content="JobsYahan - Bharat Ka Job App - is an easy-to-use intuitive web and mobile-based application that simplifies the employment process for BHARAT workforce and recruiters with its vernacular and location-based approach." />
+                <meta property="og:type" content="Website" />
+                <meta property="og:title" content="JobsYahan - Bharat Ka Job App - Yahan Job aur Candidate Milna Hai Sabse Saral" />
+                <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
+                <meta property="og:url" content={window.location.origin} />
+            </Helmet>
+            {/* <Stack className="AnnocumentBar" sx={{
                 background: "#f3bb7a",
                 color: "#ffffff",
                 fontSize: "0.4rem",
                 padding: "4px 14px",
             }}>
-                <Helmet>
-                    <title>JobsYahan - Bharat Ka Job App - Yahan Job aur Candidate Milna Hai Sabse Saral</title>
-                    <meta name="description" content="JobsYahan - Bharat Ka Job App - is an easy-to-use intuitive web and mobile-based application that simplifies the employment process for BHARAT workforce and recruiters with its vernacular and location-based approach." />
-                    <meta property="og:type" content="Website" />
-                    <meta property="og:title" content="JobsYahan - Bharat Ka Job App - Yahan Job aur Candidate Milna Hai Sabse Saral" />
-                    <meta property="og:image" content="https://jobyahanp.s3.ap-south-1.amazonaws.com/images/logo/logo_og.png" />
-                    <meta property="og:url" content={window.location.origin} />
-                </Helmet>
                 <FormControl style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }} >
                     <LocationOnIcon fontSize="small" color="disabled" />
                     <div style={{ width: "460px" }}>
@@ -235,7 +235,7 @@ function Home() {
                         </Tooltip>
                     </div>
                 </FormControl>
-            </Stack>
+            </Stack> */}
             <Box className="WebsiteLogoAndLoginSectionWrapper" sx={{
                 minHeight: { "xs": "50px", "sm": "50px", "md": "100px", "lg": "100px", "xl": "100px" },
                 width: "100%",
