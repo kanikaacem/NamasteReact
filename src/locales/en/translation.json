@@ -242,5 +242,6 @@
     "NAME_OF_CANDIDATE_SEEKER": "Name of Candidate Seeker",
     "JOB_APPLICATION_MSG_1": "Job already applied.",
     "JOB_APPLICATION_MSG_2": "Application submitted successfully.",
-    "MESSAGE_SUBMITTED": "Message submitted successfully"
+    "MESSAGE_SUBMITTED": "Message submitted successfully",
+    "VIEW_MORE": "View More"
 }

@@ -502,9 +502,9 @@ const PostJob = () => {
                         <Grid item xs={2} sm={4} md={4} >
                           <FormControlLabel
                             sx={StyledFormControlLabel}
-                            value="any"
+                            value="other"
                             control={<Radio sx={CheckBoxStyles} />}
-                            label="Any"
+                            label="Other"
                             labelPlacement="start" />
                         </Grid>
                       </Grid>

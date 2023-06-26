@@ -239,5 +239,6 @@
     "NAME_OF_CANDIDATE_SEEKER": "कैंडिडेट खोजने वाले का नाम",
     "JOB_APPLICATION_MSG_1": "आवेदन पहले किया जा चुका है।",
     "JOB_APPLICATION_MSG_2": "आवेदन सफलतापूर्वक जमा हो गया है।",
-    "MESSAGE_SUBMITTED": "संदेश सफलतापूर्वक प्राप्त हो गया है।"
+    "MESSAGE_SUBMITTED": "संदेश सफलतापूर्वक प्राप्त हो गया है।",
+    "VIEW_MORE": "और देखें"
 }

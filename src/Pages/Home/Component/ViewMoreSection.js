@@ -1,5 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 const ViewMoreSection = ({ SectionText }) => {
+    const { t } = useTranslation();
     return (
         <a href={window.location.origin + "/job-listing"} style={{
             textDecoration: "none"
@@ -32,7 +34,7 @@ const ViewMoreSection = ({ SectionText }) => {
                     width: "150px",
 
                 }}>
-                    {SectionText}
+                    {t('VIEW_MORE')}
                 </Typography >
             </Stack >
         </a>
