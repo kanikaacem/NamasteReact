@@ -217,7 +217,7 @@ const JobListing = () => {
 
                     <Stack direction="column" gap={2} className="JobsSection" >
                         {postedJobs && postedJobs.filter(job => job.jobId).map((item, index) => {
-                            return <React.Fragment key={index + item.jobId}><JobItem key={index} item={item} /></React.Fragment>
+                            return <JobItem key={index} item={item} />
                         })}
 
                     </Stack>

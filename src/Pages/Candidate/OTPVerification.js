@@ -146,20 +146,6 @@ const OTPVerification = () => {
                                             inputRef={el => {
                                                 inputRefs.current[index] = el;
                                             }}
-                                            onKeyDown={e => {
-                                                if (e.key === "Enter" && index < 5) {
-
-                                                    e.preventDefault(); // Prevent form submission on "Enter" key press
-                                                    const nextInput = document.getElementById(`otp_digit${index + 1}`);
-                                                    if (/^\d$/.test(inputRefs.current[index].value)) {
-                                                        nextInput.focus();
-                                                        // setFieldError(`otp_digit${index}`, "It should be a single digit value.")
-
-                                                    }
-
-                                                }
-
-                                            }}
                                             inputProps={{
                                                 sx: {
                                                     background: touched[`otp_digit${index}`] ? "#F6EBE5 !important" : "#F5F6F9 !important",
@@ -170,6 +156,7 @@ const OTPVerification = () => {
                                                 pattern: "[0-9]",
                                                 onInput: (e) => {
                                                     e.target.value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+                                                    if (e.target.value) inputRefs.current[index + 1].focus();
                                                 },
                                             }}
                                         />
