@@ -56,6 +56,28 @@ const OTPVerification = () => {
         return (<span> {formattedTime}</span>)
     }
 
+    const submitProfileDetailsForm = async(values) => {
+        const { name, age, gender, qualification } = values;
+    
+        let ApplyJobForm = new FormData();
+        ApplyJobForm = {
+          fullname: name,
+          age: age,
+          gender: gender, 
+          education: qualification
+        }
+        try {
+          const api_url = process.env.REACT_APP_APPLY_JOB;
+          const response = await postRequest(api_url, ApplyJobForm);
+          if (response.status === '1') {
+            setOpenJobApplyModal(false);
+            navigate("/job-listing", { state: {jobstatus: response.jobstatus }});
+          }
+        } catch (error) {
+          console.error("Fetch error:", error);
+        }
+      }
+
     const handleSubmit = async (values, { setFieldError }) => {
         let otp = values.otp_digit1 + values.otp_digit2 + values.otp_digit3 + values.otp_digit4;
         try {
@@ -70,7 +92,7 @@ const OTPVerification = () => {
                 if (response.stage === 'DETAILSNEED') {
                     setOpenJobApplyModal(true)
                 } else if (response.stage === 'BACKTOPREVIOUSPAGE') {
-                    navigate("/job-listing")
+                    navigate("/job-listing", {state: {jobstatus: response.jobstatus }})
                 }
             }
             else
@@ -214,7 +236,7 @@ const OTPVerification = () => {
             <Footer />
 
         </Box >
-        <JobApplyWeb openJobApplyModal={openJobApplyModal} setOpenJobApplyModal={setOpenJobApplyModal} />
+        <JobApplyWeb openJobApplyModal={openJobApplyModal} setOpenJobApplyModal={setOpenJobApplyModal} submitProfileDetailsForm={submitProfileDetailsForm} />
     </>)
 }
 

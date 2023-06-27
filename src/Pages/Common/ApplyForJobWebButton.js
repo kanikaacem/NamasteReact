@@ -14,7 +14,7 @@ const ApplyForJobWebButton = ({ jobId, buttonStyle }) => {
     const { t } = useTranslation();
     const ApplyForJob = async (event) => {
         if (localStorage.getItem("auth_token") === null)
-            navigate("/candidate-login");
+            navigate("/candidate-login", { state: { jobid:  jobId }});
         //   window.location.href = "https://api.whatsapp.com/send?phone=+14155238886&text=Join%20habit-familiar&jobid=" + jobId
         else {
             // setOpenJobApplyModal(true)
