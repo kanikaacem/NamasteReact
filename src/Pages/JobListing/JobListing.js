@@ -6,11 +6,29 @@ import JobItem from "./JobItem";
 import Footer from "../../ThemeComponent/Common/Footer";
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import HomePageLiteMessage from "../HomePageLiteSection/HomePageLiteMessage";
 const JobListing = () => {
-    // const [category, setCategory] = useState('');
     const { t } = useTranslation();
+
+
+    const locationprops = useLocation();
+    const jobstatus = locationprops?.state && locationprops?.state?.jobstatus;
+
+    const [message, setMessage] = React.useState(false);
+    const [formSubmitted, setFormSubmitted] = React.useState(false);
+
+    useEffect(() => {
+        if (jobstatus === "1") {
+            setMessage(t('JOB_APPLICATION_MSG_2'))
+            setFormSubmitted(true);
+        } else if(jobstatus === "2") {
+            setMessage(t('JOB_APPLICATION_MSG_1'))
+            setFormSubmitted(true);
+        }
+        window.history.replaceState({}, document.jobstatus)
+    }, [])
 
     const [location, setLocation] = useState('');
     const [loadJobs, setLoadJobs] = useState({ page: 1, limit: 20 });
@@ -36,7 +54,7 @@ const JobListing = () => {
             const searchString = searchParams.toString();
             navigate(`?${searchString}`);
         };
-        return (<FormControl sx={{ width: mobileScreen ? '100%' : 250, height: 28}} size="small">
+        return (<FormControl sx={{ width: mobileScreen ? '100%' : 250, height: 28 }} size="small">
             <Select
                 sx={{
                     fontSize: "12px",
@@ -217,7 +235,7 @@ const JobListing = () => {
 
                     <Stack direction="column" gap={2} className="JobsSection" >
                         {postedJobs && postedJobs.filter(job => job.jobId).map((item, index) => {
-                            return <React.Fragment key={index + item.jobId}><JobItem key={index} item={item} /></React.Fragment>
+                            return <JobItem key={index} item={item} />
                         })}
 
                     </Stack>
@@ -238,6 +256,7 @@ const JobListing = () => {
                 </Stack>
             </Container>
             <Footer />
+            <HomePageLiteMessage value={formSubmitted} setValue={setFormSubmitted} message={message} />
         </Box >)
 }
 export default JobListing;
