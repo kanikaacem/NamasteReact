@@ -306,6 +306,8 @@ function Home() {
                         }}>
                             <Carousel showArrows={false} showStatus={false} showThumbs={false}
                                 autoPlay={true}
+                                preventMovementUntilSwipeScrollTolerance={true}
+                                swipeScrollTolerance={50}
                                 renderIndicator={(clickHandler, isSelected, index, label) => (
                                     <div
                                         key={index}
@@ -369,7 +371,8 @@ function Home() {
                     </Stack>
                 </Stack >
             }
-            {!mobileScreen &&
+            {
+                !mobileScreen &&
                 <Box id="box-corousel" className="TopSection hero-section" sx={{ padding: "0px", background: "linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.465234) 42.19%, rgba(255, 103, 31, 0.075) 100%)" }}>
                     <Container id="container-corousel" sx={{ maxWidth: "1440px !important", padding: "0px !important" }}>
                         <Grid container xs={12} spacing={2} sx={{ height: '480px' }}>
