@@ -25,7 +25,7 @@ const headingStyles = {
   alignItems: "center"
 }
 
-const JobApplyForm = ({ openJobApplyModal, setOpenJobApplyModal }) => {
+const JobApplyForm = ({ openJobApplyModal, setOpenJobApplyModal, submitProfileDetailsForm }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -68,27 +68,6 @@ const JobApplyForm = ({ openJobApplyModal, setOpenJobApplyModal }) => {
     },
   }
 
-  const submitForm = async(values) => {
-    const { name, age, gender, qualification } = values;
-
-    let ApplyJobForm = new FormData();
-    ApplyJobForm = {
-      fullname: name,
-      age: age,
-      gender: gender, 
-      education: qualification
-    }
-    try {
-      const api_url = process.env.REACT_APP_APPLY_JOB;
-      const response = await postRequest(api_url, ApplyJobForm);
-      if (response.status === '1') {
-        navigate("/job-listing");
-        setOpenJobApplyModal(false);
-      }
-    } catch (error) {
-      console.error("Fetch error:", error);
-    }
-  }
 
   const qualificationData = [
     { id: 1, label: "None", value: "none" },
@@ -114,7 +93,7 @@ const JobApplyForm = ({ openJobApplyModal, setOpenJobApplyModal }) => {
         <Formik
           initialValues={defaultValue}
           validationSchema={JobApplyValidationSchema}
-          onSubmit={submitForm}
+          onSubmit={submitProfileDetailsForm}
         >
           {({ values, errors, touched, setFieldValue }) => (
             <Form className=" apply-job-modal" >

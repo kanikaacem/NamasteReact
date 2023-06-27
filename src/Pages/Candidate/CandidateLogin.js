@@ -9,13 +9,15 @@ import { CandidateMobileNumberValidation } from "../../Validation/CandidateValid
 import { Formik, Field, Form } from "formik";
 import { getLocation } from "../../utils/function";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 import { useTranslation } from "react-i18next";
 import Footer from "../../ThemeComponent/Common/Footer";
 const CandidateLogin = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const jobId = location?.state && location?.state?.jobid;
     const [requestProcessing, setRequestProcessing] = useState('not_initiated');
     const currentLanguage = localStorage.getItem("locale");
 
@@ -34,6 +36,7 @@ const CandidateLogin = () => {
             usertype: "candidate",
             latitude: latitude.toString(),
             longitude: longitude.toString(),
+            jobid: jobId,
         };
 
 
