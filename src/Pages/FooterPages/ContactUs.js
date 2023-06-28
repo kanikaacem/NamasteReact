@@ -12,9 +12,9 @@ import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 const ContactUs = () => {
-    useEffect(()=> {
+    useEffect(() => {
         window.scrollTo(0, 0)
-    },[])
+    }, [])
     const { t } = useTranslation();
     const currentLanguage = useSelector(state => state.currentLanguage);
     const defaultValue = {
@@ -93,13 +93,10 @@ const ContactUs = () => {
 
                                 <Stack direction="row" gap={1} alignItems="center" >
                                     <img src={window.location.origin + "/assets/Contact2.png"} alt="Contact2" />
-                                    <Typography component="box" sx={{
-                                        fontSize: "20px",
-                                        display: "block",
-                                        lineHeight: "1.2"
-                                    }}>
+                                    <a className="contactUsEmail" href="mailto: contact@jobsyahan.com">
                                         contact@jobsyahan.com
-                                    </Typography>
+                                    </a>
+
                                 </Stack>
                                 <Stack direction="row" gap={1} alignItems="center" >
                                     <img src={window.location.origin + "/assets/Contact3.png"} alt="Contact3" />
@@ -182,7 +179,7 @@ const ContactUs = () => {
                         </Stack>
                     </Stack>
                 </Stack>
-            </Box>
+            </Box >
             <HomePageLiteMessage value={formSubmitted} setValue={setFormSubmitted} message={t('MESSAGE_SUBMITTED')} />
 
             <Footer />

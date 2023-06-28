@@ -1351,7 +1351,17 @@ option {
 }
 
 @media screen and (max-width:500px) {
-.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon, .css-bpeome-MuiSvgIcon-root-MuiSelect-icon{
-  top: 8px !important;
+
+  .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon,
+  .css-bpeome-MuiSvgIcon-root-MuiSelect-icon {
+    top: 8px !important;
+  }
 }
+
+.contactUsEmail {
+  font-size: 20px;
+  display: block;
+  line-height: 1.2;
+  text-decoration: none;
+  color: #000000;
 }
