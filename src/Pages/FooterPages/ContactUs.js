@@ -98,7 +98,7 @@ const ContactUs = () => {
                                         display: "block",
                                         lineHeight: "1.2"
                                     }}>
-                                        contactus@jobsyahan.com
+                                        contact@jobsyahan.com
                                     </Typography>
                                 </Stack>
                                 <Stack direction="row" gap={1} alignItems="center" >
