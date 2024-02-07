@@ -1,1 +1,112 @@
 React Problem : -dreaded zombie child problem, React concurrency, and context loss between mixed renderers
+
+REDUX :
+//Redux inital State and Reducer Function
+import { initialState } from "./Redux/initialState";
+import { reducer } from "./Redux/reducers";
+//making the redux store
+const store = createStore(reducer, initialState);
+//Providing the store to all the components 
+<Provider store={store}>
+      <App />
+</Provider>
+
+/* INTIAL STATE */
+//Creating the Redux Store State
+export const initialState = {
+    isLoggedIn: localStorage.getItem("isLoggedIn") == null ? false : localStorage.getItem("isLoggedIn"),
+    categoryActive: {
+        "id": 1,
+        "title": "Mobile Applications"
+    },
+    showProfile: false,
+
+    MenuSelected: (window.location.pathname !== null) ? window.location.pathname.split('/')?.slice(-1)?.toString()?.replaceAll("-", "_") :
+        (window.location.pathname === "/employer-login") ? "employer_dashboard" : "candidate_dashboard",
+    activeJob: '',
+    candidateInfo: '',
+    CandidateRegistration: false,
+    userDetail: {},
+    action: localStorage.getItem("action") == null ? " " : localStorage.getItem("action"),
+    currentLanguage: "hn",
+    screenType: "tabAndDesktop"
+};
+
+*/REDUCER*/
+import { initialState } from "./initialState";
+export const reducer = (state, action) => {
+    switch (action.type) {
+        case "LOGIN":
+            let token = action.payload;
+            localStorage.setItem('isLoggedIn', true);
+            localStorage.setItem('action', "login");
+            localStorage.setItem('auth_token', token);
+            return { ...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"), action: localStorage.getItem("action") };
+
+        case "LOGOUT":
+            localStorage.clear();
+            return { ...initialState, isLoggedIn: localStorage.getItem("isLoggedIn") };
+
+        case "CHANGE_LANGUAGE":
+            let language = action.payload;
+            return {
+                ...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"), action: localStorage.getItem("action"),
+                currentLanguage: language,
+                screenType: state.screenType
+            };
+
+        case "CHANGE_SCREEN_TYPE":
+            let screenType = action.payload;
+            return {
+                ...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"), action: localStorage.getItem("action"),
+                screenType: screenType,
+                currentLanguage: state.currentLanguage
+            }
+
+        case "CHANGE_SELECTED_MENU":
+            let selected_menu = action.payload;
+            return { ...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"), MenuSelected: selected_menu }
+
+        case "JOB_DESCRIPTION":
+            let job_id = action.payload;
+            return { ...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"), activeJob: job_id }
+
+        case "LOGIN_REGISTRATION":
+
+            localStorage.setItem('isLoggedIn', true);
+            localStorage.setItem('user', JSON.stringify(action.payload));
+            localStorage.setItem('action', "registration");
+
+            return { ...initialState, isLoggedIn: localStorage.getItem("isLoggedIn"), user: JSON.parse(localStorage.getItem("user")), action: "registration" };
+
+        default:
+            return state;
+    }
+}
+
+*/CANDIDATE DASHBOARD */
+import { Stack } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import CandidateHome from "./CandidateHome";
+
+import { useEffect } from "react";
+const CandidateDashboard = () => {
+    const MenuSelected = useSelector(state => state.MenuSelected);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const MenuSelect = () => {
+            dispatch({ type: "CHANGE_SELECTED_MENU", payload: "candidate_dashboard" })
+        }
+        MenuSelect();
+    }, [dispatch]);
+    return (<>
+        <Stack direction="column" sx={{
+            padding: { "xs": "0px", "sm": "0px", "md": "0px 10px", "lg": "0px 10px", "xl": "0px 10px" }
+        }}>
+            {(MenuSelected === "candidate_dashboard") && (<><CandidateHome /></>)}
+        </Stack>
+    </>)
+}
+
+export default CandidateDashboard;
