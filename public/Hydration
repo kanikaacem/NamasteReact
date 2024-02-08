@@ -1,0 +1,2 @@
+ It refers to the process of taking a server-side rendered HTML page and connecting event listeners
+and data to it on the client side. This procedure allows for faster rendering speeds and a better user experience.
