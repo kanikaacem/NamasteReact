@@ -1,0 +1,221 @@
+***********************************************Pagination Component (13/02/2024)********************************************************** 
+
+import React, { useEffect } from "react";
+import Pagination from "react-bootstrap/Pagination";
+import styles from "@/styles/Pagination.module.css";
+
+const PaginationComponent = ({
+  itemsCount,
+  itemsPerPage,
+  currentPage,
+  setCurrentPage,
+  alwaysShown = true,
+}) => {
+
+  const pagesCount = Math.ceil(itemsCount / itemsPerPage);
+  const isPaginationShown = alwaysShown ? true : pagesCount > 1;
+  const isCurrentPageFirst = currentPage === 1;
+  const isCurrentPageLast = currentPage === pagesCount;
+
+  // const scrollToTop = () =>
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth",
+  //   });
+
+  const changePage = (number) => {
+    if (currentPage === number) return;
+    setCurrentPage(number);
+    // scrollToTop();
+  };
+
+  const onPageNumberClick = (pageNumber) => {
+    changePage(pageNumber);
+  };
+
+  const onPreviousPageClick = () => {
+    changePage((currentPage) => currentPage - 1);
+  };
+
+  const onNextPageClick = () => {
+    changePage((currentPage) => currentPage + 1);
+  };
+
+  const setLastPageAsCurrent = () => {
+    if (currentPage > pagesCount) {
+      setCurrentPage(pagesCount);
+    }
+  };
+
+  let isPageNumberOutOfRange;
+  //"_" : It indicate that the first parameter (which represents the current element of the array being processed) is not being used in the callback function.
+  const pageNumbers = [...new Array(pagesCount)].map((_, index) => {
+    const pageNumber = index + 1;
+    const isPageNumberFirst = pageNumber === 1;
+    const isPageNumberLast = pageNumber === pagesCount;
+    const isCurrentPageWithinTwoPageNumbers =
+      Math.abs(pageNumber - currentPage) <= 2;
+
+    if (
+      isPageNumberFirst ||
+      isPageNumberLast ||
+      isCurrentPageWithinTwoPageNumbers
+    ) {
+      isPageNumberOutOfRange = false;
+      return (
+        <Pagination.Item
+          linkStyle={{
+            color: pageNumber === currentPage ? '#FFFFFF' : '#FF671F',
+            backgroundColor: pageNumber === currentPage ? '#FF671F' : '#FFFFFF',
+            border: '1px solid #FF671F'
+          }}
+          key={pageNumber}
+          onClick={() => onPageNumberClick(pageNumber)}
+          active={pageNumber === currentPage}
+        >
+          {pageNumber}
+        </Pagination.Item>
+      );
+    }
+
+    if (!isPageNumberOutOfRange) {
+      isPageNumberOutOfRange = true;
+      return <Pagination.Ellipsis key={pageNumber} className="muted" linkStyle={{ color: '#FF671F', border: '1px solid #FF671F' }} />;
+    }
+
+    return null;
+  });
+
+  useEffect(setLastPageAsCurrent, [pagesCount]);
+
+  return (
+    <>
+      {isPaginationShown && (
+        <Pagination className={styles.pagination}>
+          <Pagination.Prev
+            linkStyle={{
+              boxShadow: "#FF671F",
+              color: '#FF671F',
+              border: '1px solid #FF671F'
+            }}
+            onClick={onPreviousPageClick}
+            disabled={isCurrentPageFirst}
+          />
+          {pageNumbers}
+          <Pagination.Next
+            linkStyle={{
+              boxShadow: "#FF671F",
+              color: '#FF671F',
+              border: '1px solid #FF671F'
+            }}
+            className={styles.pageItem}
+            onClick={onNextPageClick}
+            disabled={isCurrentPageLast}
+          />
+        </Pagination>
+      )}
+    </>
+  );
+};
+
+export default PaginationComponent;
+<PaginationComponent
+              itemsCount = {totalCount}
+              itemsPerPage = {10}
+              currentPage = {currentPage}
+              setCurrentPage = {setCurrentPage}
+              alwaysShown = {true}
+          />
+
+
+************************************************INPUT TYPE FILE ******************************************************************************************
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file
+https://developer.mozilla.org/en-US/docs/Web/API/FileReader/FileReader
+
+*****************HOW TO READ THE CSV OR EXCEL FILES ***************************
+ const handleUpload = async () => {
+    if (fileData && fileData.length > 0 && !uploadStatus) {
+      setUploadStatus(true);
+      let file = fileData[0];
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        const wb = read(event.target.result);
+        const sheets = wb.SheetNames;
+
+        if (sheets.length) {
+          const rows = utils.sheet_to_json(wb.Sheets[sheets[0]]);
+          const stringifiedData = rows
+            .filter((entry) => {
+              if (entry.full_name && entry.mobile_number && entry.mobile_number.toString().length == 10) return entry;
+              else setErrorFields((prev) => [...prev, entry]);
+            })
+            .map((entry) => ({
+              ...entry,
+              mobile_number: entry.mobile_number.toString(),
+            }));
+
+          let rowData = {
+            data: stringifiedData,
+          };
+
+          try {
+            let response = await postRequestWithToken(
+              "/partner/candidatecsv",
+              rowData
+            );
+            if (
+              response.status === "Success" &&
+              response?.data?.duplicates?.length > 0
+            ) {
+              setErr("Few duplicates found in this file.");
+              setUploadStatus(false);
+            } else if (response.status === "Success") {
+              setUploadStatus(false);
+              getCandidateList();
+              setFileData(null);
+              setErr("");
+              toast.success(
+                "Your file is under process. We will notify you via email and whatsapp once completed."
+              );
+              setSuccessMsg(
+                "Your file is under process. We will notify you via email and whatsapp once completed."
+              );
+            }
+          } catch (e) {
+            setUploadStatus(false);
+            setFileData(null);
+            let errs = e.response.data.msg ? e.response.data.msg : e.message;
+            toast.error(`${errs}`);
+            setErr(errs);
+            console.log(e);
+          }
+        }
+      };
+      if (file) reader.readAsArrayBuffer(file);
+    }
+  };
+
+*****************************************************REACT-HOT-TOAST********************************************************************
+const myPromise = new Promise((resolve,reject) =>{
+    setTimeout(()=>reject(),3000);
+  })
+  toast.promise(myPromise,{
+    loading: 'Loading',
+    success: 'Got the data',
+    error: 'Error when fetching',
+  })
+
+import toast, { Toaster } from 'react-hot-toast';
+
+const notify = () => toast('Here is your toast.');
+
+const App = () => {
+  return (
+    <div>
+      <button onClick={notify}>Make me a toast</button>
+      <Toaster />
+    </div>
+  );
+};
+
