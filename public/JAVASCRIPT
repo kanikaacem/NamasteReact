@@ -1,0 +1,68 @@
+JAVASCRIPT : Callback hell is a phenomenon that happens when multiple callbacks are nested on top of each other.This is also known as pyramid of Doom. 
+  for ex. 
+  const cart = ["a","b","c"]
+  api.createOrder(cart, function(){
+    api.proceedToPayment(orderId,function(){
+      api.showOrderSummary(function(){
+        api.updateWallet()
+      })
+    })
+  })
+
+* Javascript function is a first class citizen in javascript as they can store to a variable, (pass function() as an agrument to another ) known as callback,
+and can be return through any other function.
+
+* The Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+  the object contains { state : (fullfilled, pending, rejected) ,data} and there is a handler attached to promise object to 
+  handle this state, for eg. 
+ const cart = ["a","b","c"]
+  async ( use to handle promise) createOrder (cart) {
+    return orderId
+  }
+
+  const promise = createOrder()
+  promise.then((value) => ProceedToPayment(value))  //run only when promise is fullfilled.
+  promise.catch() to catch the rejected state of the promise
+  promise.finally () it will run even when the promise is rejected or succedd
+
+ * fetch api : to make HTTP requests to servers , returns a promise  ,supports cors error,
+ let response = fetch(url); 
+ The fetch() method returns a Promise so you can use the then() and catch() methods to handle it:
+  fetch(url)
+    .then(response => {
+        // handle the response
+    })
+    .catch(error => {
+        // handle the error
+    });
+ 
+
+* To create a promise 
+  const cart = ["a","b","c"]
+  function createOrder = new Promise (constructor : takes a callback function) ( function(resolve,reject)){
+    if(!validateCart(cart)){
+      const err = new Error("Cart is not valid")
+      reject(err)
+    }
+    const orderid = 789456
+    if(orderid){
+      resolve(OrderId)
+    }
+  }
+
+* Async await is better way to write promises 
+export async function getServerSideProps() {
+await (wait to complete the promise , In promise we will handle all the states but in case of async and await we use try/catch)
+const promise1 = fetch('https://api.com/data1').then(res => res.json());
+const promise2 = fetch('https://api.com/data2').then(res => res.json());
+
+const [data1, data2] = await Promise.all([promise1, promise2]);
+
+return {
+  props: {
+    data1,
+    data2  
+  }
+}
+
+}
