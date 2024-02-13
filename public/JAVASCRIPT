@@ -50,7 +50,11 @@ and can be return through any other function.
     }
   }
 
-* Async await is better way to write promises 
+* Async await is better way to write promises  (This is the async function which returns a promise )
+const asyncFunction = async () => "This is the async function which return a promise";
+  const promise = asyncFunction();
+  console.log(promise)
+
 export async function getServerSideProps() {
 await (wait to complete the promise , In promise we will handle all the states but in case of async and await we use try/catch)
 const promise1 = fetch('https://api.com/data1').then(res => res.json());
@@ -66,3 +70,38 @@ return {
 }
 
 }
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling
+
+
+async getData() {
+  try {
+    const categories = await getRequest(`/homepage/categorydata`);
+    const locations = await getRequest(`/homepage/locationdata`);
+    if (categories.status === "Success" && locations.status === 'Success') {
+      return {
+        props: {
+          categories: categories.data,
+          locations: locations.data,
+          error: null,
+        },
+        revalidate: 10,
+      };
+    } else {
+      throw new Error(`Something went wrong`); // When the status of the api is not success it will throw an error and the flow of the code is go to the catch block.
+
+    }
+  } catch (err) {
+    console.log("Failed to fetch jobs, received status");
+    return {
+      props: {
+        categories: [],
+        locations: [],
+        error: "Failed to fetch categories, received status",
+      },
+      revalidate: 10,
+    };
+  }
+}
+
+getData();
