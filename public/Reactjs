@@ -219,3 +219,25 @@ const App = () => {
   );
 };
 
+**********************************************************SUBMIT BUTTON ONSCROLL**************************************************************
+<Button  
+     type="submit" 
+     onClick={() => setTimeout(()=>scrollToFirstError())} 
+     className={`my-2 mx-auto ${styles.primary} `} style={{fontSize:"1rem" ,background:"#ff671f"}}disabled={isSubmitting}>
+    {translations.SUBMIT}
+</Button>
+
+it will use the concept of bubbling 
+first It will run the scrollToFirstError
+const scrollToFirstError = () => {
+    const errorElement = document.querySelector('.error'); // Adjust this selector based on your error class
+    console.log(errorElement)
+    if (errorElement) {
+      errorElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center',
+      });
+      errorElement.focus();
+    }
+  };
