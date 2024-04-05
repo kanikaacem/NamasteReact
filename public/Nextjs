@@ -62,3 +62,28 @@ export const config = {
   // Matcher ignoring `/_next/` and `/api/`
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 }
+
+
+useSearchParams is a Client Component hook that lets you read the current URL's query string.
+
+useSearchParams returns a read-only version of the URLSearchParams interface.
+
+app/dashboard/search-bar.tsx
+
+TypeScript
+
+'use client'
+ 
+import { useSearchParams } from 'next/navigation'
+ 
+export default function SearchBar() {
+  const searchParams = useSearchParams()
+ 
+  const search = searchParams.get('search')
+ 
+  // URL -> `/dashboard?search=my-project`
+  // `search` -> 'my-project'
+  return <>Search: {search}</>
+}
+
+The useRouter hook should be imported from next/navigation and not next/router when using the App Router ****************/// IMPORTANT
