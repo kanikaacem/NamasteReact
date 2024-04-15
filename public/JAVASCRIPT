@@ -114,4 +114,37 @@ function OuterFunction(value1){
 const newFunction = OuterFunction("Hello")
 newFunction("World");
   
+//https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Relationship_of_grid_layout_with_other_layout_methods
+https://dev.to/kylejb/a-key-difference-between-then-and-async-await-in-javascript-53e9
+//https://jsonplaceholder.typicode.com/
+
+What is Event Delegation?
+Event delegation is a design pattern in which a single event listener is attached to a common ancestor, 
+rather than attaching listeners to multiple individual elements. This pattern takes advantage of event propagation, 
+specifically the "bubbling" phase, where an event travels up the DOM hierarchy from the target element to the root.
+It is based on the event bubbling.
+
+What is CSS Model?
+The CSS Model consists of four areas : Margin, border, padding, content. This layers affects the size and spacing of element on the page.
+p {
+    width: 80px;
+    height: 70px;
+    margin: 0;
+    border: 2px solid black;
+    padding: 5px;
+}
+Total Width Calculation
+Total element width = width + left padding + right padding + left border + right border + left margin + right margin
+
+Total width of the element is 94px.
+Total width = 80px (width) + 10px (left padding + right padding) + 4px (left border + right border) + 0px (left margin + right margin) = 94px.
+Total Height Calculation
+Total element height = height + top padding + bottom padding + top border + bottom border + top margin + bottom margin
+
+Total height of the element is 84px.
+Total height = 70px (height) + 10px (top padding + bottom padding) + 4px (top border + bottom border) + 0px (top margin + bottom margin) = 84px.
+
+//https://devdocs.io/react/hooks-reference#usestate
+
+
 
