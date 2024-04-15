@@ -105,3 +105,13 @@ async getData() {
 }
 
 getData();
+
+CLOSURE: It is a feature when inner function have access to the variables of the outer function (or where it is defined)
+function OuterFunction(value1){
+  return InnerFunction(value2){
+    console.log("value1:",value1,"value2:",value2)}}
+
+const newFunction = OuterFunction("Hello")
+newFunction("World");
+  
+
