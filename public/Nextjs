@@ -87,3 +87,6 @@ export default function SearchBar() {
 }
 
 The useRouter hook should be imported from next/navigation and not next/router when using the App Router ****************/// IMPORTANT
+
+12/04/2024
+DISPLAY : INLINE PROPERTY
