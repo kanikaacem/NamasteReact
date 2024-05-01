@@ -241,3 +241,42 @@ const scrollToFirstError = () => {
       errorElement.focus();
     }
   };
+
+The respone we get from a api
+
+export const postRequestWithToken = async (api_url, dataToSend) => {
+    try {
+        let response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}${api_url}`, {
+            method: "POST",
+            headers: {
+                ...header,
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBhYTk4M2FmMDY3OWNiYTY4ZWYxMmUiLCJhY2Nlc3MiOiJhdXRoIiwiZXhwIjoxNzE2MDI3Njc0LCJpYXQiOjE3MTM0MzU2NzR9.sjTO9HGmZRTi41Qmt-4O_PvNUQHHm7y4pTWvGuWC_yQ'
+              },
+            body: JSON.stringify(dataToSend)
+        });
+        if (response.ok) {
+            response = await response.json();
+            return response;
+        }
+        else {
+            throw new Error("Request Failed")
+        }
+    } catch (error) {
+        console.error("Error", error);
+        throw error;
+    }
+  }
+
+ZOD VALIDATION 
+
+  officialContactPersonName: z.string().refine((data) => {
+      if (data !== "") return nameRegex.test(data);
+      return true;
+    }),
+    officialContactPersonPhoneNumber: z.string().refine(
+      (data) => {
+        if (data !== "") return regexForMobile.test(data);
+        return true;
+      },
+      { message: "Please enter a valid phone number" }
+    ),
